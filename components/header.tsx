@@ -21,7 +21,7 @@ export function Header() {
           </div>
 
           {/* Company Name */}
-          <span className="text-2xl font-bold text-gray-900 dark:text-white">Talk</span>
+          <span className="text-2xl font-bold text-gray-900 dark:text-white">Talk To Me Data</span>
         </div>
       </div>
     </header>

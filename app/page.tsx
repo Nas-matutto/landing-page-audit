@@ -2,6 +2,7 @@ import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { AuditForm } from "@/components/audit-form"
 import { ReportFeatures } from "@/components/report-features"
+import { ComparisonChart } from "@/components/comparison-chart"
 
 export default function HomePage() {
   return (
@@ -10,7 +11,7 @@ export default function HomePage() {
 
       <main className="flex-1 bg-gradient-to-b from-blue-50 to-white dark:from-gray-950 dark:to-gray-900">
         {/* Hero Section */}
-        <section className="container mx-auto px-4 py-16 md:py-24 lg:py-32">
+        <section className="container mx-auto px-4 py-12 md:py-16 lg:py-20">
           <div className="mx-auto max-w-4xl text-center">
             <h1 className="text-4xl font-bold tracking-tight text-balance text-gray-900 dark:text-white sm:text-5xl md:text-6xl lg:text-7xl">
               Stop Guessing Why Your Landing Page{" "}
@@ -37,8 +38,13 @@ export default function HomePage() {
           </div>
         </section>
 
+        {/* Comparison Section */}
+        <section className="container mx-auto px-4 py-8 md:py-12">
+          <ComparisonChart />
+        </section>
+
         {/* Audit Form Section */}
-        <section id="audit-form" className="container mx-auto px-4 py-16">
+        <section id="audit-form" className="container mx-auto px-4 py-8 md:py-12">
           <AuditForm />
         </section>
 
