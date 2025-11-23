@@ -19,7 +19,7 @@ export default function HomePage() {
             </h1>
 
             <p className="mt-6 text-lg leading-relaxed text-gray-600 dark:text-gray-300 sm:text-xl md:text-2xl text-pretty">
-              Know exactly why visitors aren't converting - and what to fix today to turn them into sign-ups, demos, and
+              Get a Free Audit today and learn what to fix to turn visitors into sign-ups, demos, and
               paying customers
             </p>
 

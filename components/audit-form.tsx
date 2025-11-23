@@ -1,7 +1,5 @@
 "use client"
 
-import type React from "react"
-
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -20,14 +18,28 @@ export function AuditForm() {
     e.preventDefault()
     setIsSubmitting(true)
 
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 1500))
+    try {
+      const res = await fetch("/api/submit-audit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      })
 
-    console.log("[v0] Form submitted:", formData)
-    alert("Thank you! We'll send your audit report shortly.")
+      const result = await res.json()
+
+      if (res.ok && result.status === "success") {
+        alert("Thank you! We'll send your audit report shortly.")
+        setFormData({ url: "", name: "", email: "" })
+      } else {
+        console.error(result)
+        alert("Something went wrong — please try again.")
+      }
+    } catch (error) {
+      console.error("Submission error:", error)
+      alert("Network error — please try again!")
+    }
 
     setIsSubmitting(false)
-    setFormData({ url: "", name: "", email: "" })
   }
 
   return (
