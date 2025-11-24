@@ -58,8 +58,7 @@ export function AuditForm() {
             </Label>
             <Input
               id="url"
-              type="url"
-              pattern=".*"
+              type="text"
               placeholder="https://yourlandingpage.com"
               required
               value={formData.url}
