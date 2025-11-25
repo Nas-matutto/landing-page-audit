@@ -7,8 +7,9 @@ export function PostHogInit() {
   useEffect(() => {
     if (!posthog.__loaded) {
       posthog.init(process.env.NEXT_PUBLIC_POSTHOG_KEY!, {
-        api_host: "https://app.posthog.com",
-      })
+    api_host: "https://eu.i.posthog.com",
+    })
+
     }
 
     // Optional: make PostHog accessible in DevTools for testing
