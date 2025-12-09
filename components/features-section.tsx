@@ -54,6 +54,17 @@ const features = [
     description: "Analyze information architecture, visual hierarchy, and content structure for maximum impact.",
     benefits: ["Visual hierarchy", "Content structure", "Call-to-action placement", "Information flow"],
   },
+  {
+    icon: CheckCircle,
+    title: "Get A/B Test Recommendations",
+    description: "Receive data-driven A/B test suggestions to validate changes and maximize conversion improvements.",
+    benefits: [
+      "Test hypothesis generation",
+      "Priority recommendations",
+      "Expected impact estimates",
+      "Implementation guides",
+    ],
+  },
 ]
 
 export function FeaturesSection() {

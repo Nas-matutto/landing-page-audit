@@ -9,10 +9,10 @@ export function Footer() {
           {/* Company info */}
           <div>
             <div className="flex items-center gap-2 mb-4">
-              <span className="text-2xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+              <span className="text-xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
                 TTMD
               </span>
-              <span className="font-bold text-lg">Talk to me Data</span>
+              <span className="font-bold text-base">Talk to me Data</span>
             </div>
             <p className="text-sm text-background/70 leading-relaxed mb-4">
               Optimize your website for maximum conversions with AI-powered analysis and actionable insights.
@@ -50,12 +50,20 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="#how-it-works" className="text-background/70 hover:text-background transition-colors">
+                <Link
+                  href="/#how-it-works"
+                  scroll={true}
+                  className="text-background/70 hover:text-background transition-colors"
+                >
                   How it works
                 </Link>
               </li>
               <li>
-                <Link href="#pricing" className="text-background/70 hover:text-background transition-colors">
+                <Link
+                  href="/pricing"
+                  scroll={false}
+                  className="text-background/70 hover:text-background transition-colors"
+                >
                   Pricing
                 </Link>
               </li>
@@ -72,7 +80,11 @@ export function Footer() {
             <h3 className="font-bold text-base mb-4">Resources</h3>
             <ul className="space-y-2 text-sm">
               <li>
-                <Link href="#blog" className="text-background/70 hover:text-background transition-colors">
+                <Link
+                  href="/blog"
+                  scroll={false}
+                  className="text-background/70 hover:text-background transition-colors"
+                >
                   Blog
                 </Link>
               </li>

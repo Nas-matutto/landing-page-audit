@@ -35,12 +35,17 @@ export function Header() {
           {/* Navigation - Desktop */}
           <nav className="hidden md:flex items-center gap-8">
             <Link
-              href="#how-it-works"
+              href="/#how-it-works"
+              scroll={true}
               className="text-sm font-medium text-foreground hover:text-primary transition-colors"
             >
               How it works
             </Link>
-            <Link href="#pricing" className="text-sm font-medium text-foreground hover:text-primary transition-colors">
+            <Link
+              href="/pricing"
+              scroll={false}
+              className="text-sm font-medium text-foreground hover:text-primary transition-colors"
+            >
               Pricing
             </Link>
           </nav>
@@ -71,14 +76,16 @@ export function Header() {
           <div className="md:hidden py-4 border-t border-border bg-white">
             <nav className="flex flex-col gap-4">
               <Link
-                href="#how-it-works"
+                href="/#how-it-works"
+                scroll={true}
                 className="text-sm font-medium text-foreground hover:text-primary transition-colors py-2"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 How it works
               </Link>
               <Link
-                href="#pricing"
+                href="/pricing"
+                scroll={false}
                 className="text-sm font-medium text-foreground hover:text-primary transition-colors py-2"
                 onClick={() => setMobileMenuOpen(false)}
               >

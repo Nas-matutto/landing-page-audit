@@ -51,7 +51,7 @@ export function HowItWorksSection() {
                 <button
                   onClick={handleAnalyze}
                   disabled={!url || analyzing || showResults}
-                  className="px-6 py-3 bg-primary hover:bg-primary disabled:bg-muted disabled:text-muted-foreground text-primary-foreground font-semibold rounded-lg shadow-lg transition-colors cursor-pointer flex items-center justify-center gap-2 whitespace-nowrap"
+                  className="px-6 py-3 bg-primary hover:bg-blue-600 disabled:bg-muted disabled:text-muted-foreground text-primary-foreground font-semibold rounded-lg shadow-lg transition-colors cursor-pointer flex items-center justify-center gap-2 whitespace-nowrap"
                 >
                   {analyzing ? "Analyzing..." : showResults ? "Analyzed" : "Analyze Now"}
                   {!analyzing && !showResults && <ArrowRight className="w-5 h-5" />}
