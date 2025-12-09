@@ -1,37 +1,45 @@
-import React from "react"
+import type React from "react"
 import type { Metadata } from "next"
 import { Geist, Geist_Mono } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import "./globals.css"
 
-// Import client-only PostHog initializer
-import { PostHogInit } from "@/components/PostHogInit"
-
 const _geist = Geist({ subsets: ["latin"] })
 const _geistMono = Geist_Mono({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "AI Landing Page Audits - Convert More Visitors Today",
+  title: "Talk to me Data - Optimize Your Website for Maximum Conversions",
   description:
-    "Get fast, actionable AI landing-page audits that help startups convert more. Know exactly why visitors aren't converting and what to fix today.",
+    "Get instant, actionable insights on SEO, UX, messaging, speed, mobile performance, and structure. AI-powered website analysis for founders.",
+  keywords: ["website optimization", "conversion rate", "SEO analysis", "UX optimization", "website performance"],
   generator: "v0.app",
   icons: {
     icon: [
-      { url: "/icon-light-32x32.png", media: "(prefers-color-scheme: light)" },
-      { url: "/icon-dark-32x32.png", media: "(prefers-color-scheme: dark)" },
-      { url: "/icon.svg", type: "image/svg+xml" },
+      {
+        url: "/icon-light-32x32.png",
+        media: "(prefers-color-scheme: light)",
+      },
+      {
+        url: "/icon-dark-32x32.png",
+        media: "(prefers-color-scheme: dark)",
+      },
+      {
+        url: "/icon.svg",
+        type: "image/svg+xml",
+      },
     ],
     apple: "/apple-icon.png",
   },
 }
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode
+}>) {
   return (
     <html lang="en">
-      <body className="font-sans antialiased">
-        {/* Client-side PostHog initialization */}
-        <PostHogInit />
-
+      <body className={`font-sans antialiased`}>
         {children}
         <Analytics />
       </body>

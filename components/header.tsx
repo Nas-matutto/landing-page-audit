@@ -1,28 +1,103 @@
+"use client"
+
+import { useState, useEffect } from "react"
+import Link from "next/link"
+import { Button } from "@/components/ui/button"
+import { Menu, X } from "lucide-react"
+
 export function Header() {
+  const [scrolled, setScrolled] = useState(false)
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20)
+    }
+    window.addEventListener("scroll", handleScroll)
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
+
   return (
-    <header className="border-b border-gray-200 dark:border-gray-800 bg-white/80 dark:bg-gray-950/80 backdrop-blur-sm sticky top-0 z-50">
-      <div className="container mx-auto px-4 py-4">
-        <div className="flex items-center gap-3">
-          {/* Logo - Talking Mouth Icon */}
-          <div className="relative flex h-10 w-10 items-center justify-center rounded-lg bg-blue-600">
-            <svg viewBox="0 0 24 24" fill="none" className="h-6 w-6 text-white" xmlns="http://www.w3.org/2000/svg">
-              {/* Outer mouth shape */}
-              <path
-                d="M12 4C7.58172 4 4 7.58172 4 12C4 16.4183 7.58172 20 12 20C16.4183 20 20 16.4183 20 12C20 7.58172 16.4183 4 12 4Z"
-                fill="currentColor"
-                opacity="0.2"
-              />
-              {/* Inner mouth/speech bubble */}
-              <path
-                d="M8 10C8 9.44772 8.44772 9 9 9H15C15.5523 9 16 9.44772 16 10V14C16 14.5523 15.5523 15 15 15H9L7 17V10Z"
-                fill="currentColor"
-              />
-            </svg>
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        scrolled ? "liquid-glass-opaque shadow-sm" : "bg-transparent"
+      }`}
+    >
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-16 sm:h-20">
+          {/* Logo - Gradient text from blue to lime without background box */}
+          <Link href="/" className="flex items-center gap-2">
+            <span className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+              TTMD
+            </span>
+          </Link>
+
+          {/* Navigation - Desktop */}
+          <nav className="hidden md:flex items-center gap-8">
+            <Link
+              href="#how-it-works"
+              className="text-sm font-medium text-foreground hover:text-primary transition-colors"
+            >
+              How it works
+            </Link>
+            <Link href="#pricing" className="text-sm font-medium text-foreground hover:text-primary transition-colors">
+              Pricing
+            </Link>
+          </nav>
+
+          {/* CTA Buttons - Desktop - Added Login text button and cursor-pointer class */}
+          <div className="hidden md:flex items-center gap-4">
+            <Button variant="ghost" className="text-sm font-medium cursor-pointer">
+              Login
+            </Button>
+            <Button
+              className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold px-6 shadow-lg cursor-pointer"
+              size="default"
+            >
+              Sign Up
+            </Button>
           </div>
 
-          {/* Company Name */}
-          <span className="text-2xl font-bold text-gray-900 dark:text-white">Talk To Me Data</span>
+          <button
+            className="md:hidden p-2 text-foreground hover:text-primary transition-colors cursor-pointer"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label="Toggle menu"
+          >
+            {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          </button>
         </div>
+
+        {mobileMenuOpen && (
+          <div className="md:hidden py-4 border-t border-border bg-white">
+            <nav className="flex flex-col gap-4">
+              <Link
+                href="#how-it-works"
+                className="text-sm font-medium text-foreground hover:text-primary transition-colors py-2"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                How it works
+              </Link>
+              <Link
+                href="#pricing"
+                className="text-sm font-medium text-foreground hover:text-primary transition-colors py-2"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Pricing
+              </Link>
+              <div className="flex flex-col gap-2 pt-2 border-t border-border">
+                <Button variant="ghost" className="w-full text-sm font-medium cursor-pointer">
+                  Login
+                </Button>
+                <Button
+                  className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-semibold shadow-lg cursor-pointer"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Sign Up
+                </Button>
+              </div>
+            </nav>
+          </div>
+        )}
       </div>
     </header>
   )

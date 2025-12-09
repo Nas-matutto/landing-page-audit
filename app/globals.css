@@ -3,33 +3,43 @@
 
 @custom-variant dark (&:is(.dark *));
 
-/* <CHANGE> Updated color scheme to blue tones for SaaS theme */
 :root {
-  --background: oklch(0.99 0.005 240);
-  --foreground: oklch(0.15 0.02 240);
+  /* Core colors - black and white backgrounds/text */
+  --background: oklch(1 0 0); /* white */
+  --foreground: oklch(0.15 0 0); /* near black */
+
+  /* Blue primary colors */
+  --primary: oklch(0.55 0.18 250); /* deep blue */
+  --primary-foreground: oklch(1 0 0); /* white text on blue */
+
+  /* Light blue secondary */
+  --secondary: oklch(0.85 0.08 230); /* light blue */
+  --secondary-foreground: oklch(0.2 0 0); /* dark text on light blue */
+
+  /* Lime accent - #AEEA00 */
+  --accent: oklch(0.88 0.22 110); /* lime green */
+  --accent-foreground: oklch(0.15 0 0); /* dark text on lime */
+
+  /* Neutral grays */
+  --muted: oklch(0.96 0 0); /* very light gray */
+  --muted-foreground: oklch(0.45 0 0); /* medium gray */
+
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.15 0.02 240);
+  --card-foreground: oklch(0.15 0 0);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.15 0.02 240);
-  --primary: oklch(0.52 0.19 250);
-  --primary-foreground: oklch(0.99 0.005 240);
-  --secondary: oklch(0.96 0.01 240);
-  --secondary-foreground: oklch(0.15 0.02 240);
-  --muted: oklch(0.96 0.01 240);
-  --muted-foreground: oklch(0.5 0.03 240);
-  --accent: oklch(0.58 0.21 245);
-  --accent-foreground: oklch(0.99 0.005 240);
+  --popover-foreground: oklch(0.15 0 0);
   --destructive: oklch(0.577 0.245 27.325);
-  --destructive-foreground: oklch(0.99 0.005 240);
-  --border: oklch(0.9 0.01 240);
-  --input: oklch(0.9 0.01 240);
-  --ring: oklch(0.52 0.19 250);
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
-  --radius: 0.5rem;
+  --destructive-foreground: oklch(0.985 0 0);
+  --border: oklch(0.92 0 0);
+  --input: oklch(0.92 0 0);
+  --ring: oklch(0.55 0.18 250);
+
+  --chart-1: oklch(0.55 0.18 250);
+  --chart-2: oklch(0.7 0.15 230);
+  --chart-3: oklch(0.88 0.22 110);
+  --chart-4: oklch(0.4 0.2 250);
+  --chart-5: oklch(0.6 0.12 230);
+  --radius: 0.75rem;
   --sidebar: oklch(0.985 0 0);
   --sidebar-foreground: oklch(0.145 0 0);
   --sidebar-primary: oklch(0.205 0 0);
@@ -41,25 +51,30 @@
 }
 
 .dark {
-  --background: oklch(0.1 0.02 240);
-  --foreground: oklch(0.98 0.005 240);
-  --card: oklch(0.13 0.02 240);
-  --card-foreground: oklch(0.98 0.005 240);
-  --popover: oklch(0.13 0.02 240);
-  --popover-foreground: oklch(0.98 0.005 240);
-  --primary: oklch(0.6 0.21 245);
-  --primary-foreground: oklch(0.99 0.005 240);
-  --secondary: oklch(0.2 0.02 240);
-  --secondary-foreground: oklch(0.98 0.005 240);
-  --muted: oklch(0.2 0.02 240);
-  --muted-foreground: oklch(0.65 0.05 240);
-  --accent: oklch(0.58 0.21 245);
-  --accent-foreground: oklch(0.99 0.005 240);
+  --background: oklch(0.12 0 0); /* near black */
+  --foreground: oklch(0.98 0 0); /* near white */
+
+  --primary: oklch(0.65 0.18 240); /* brighter blue for dark mode */
+  --primary-foreground: oklch(0.98 0 0);
+
+  --secondary: oklch(0.25 0.08 230);
+  --secondary-foreground: oklch(0.9 0 0);
+
+  --accent: oklch(0.88 0.22 110);
+  --accent-foreground: oklch(0.15 0 0);
+
+  --muted: oklch(0.22 0 0);
+  --muted-foreground: oklch(0.6 0 0);
+
+  --card: oklch(0.15 0 0);
+  --card-foreground: oklch(0.98 0 0);
+  --popover: oklch(0.15 0 0);
+  --popover-foreground: oklch(0.98 0 0);
   --destructive: oklch(0.396 0.141 25.723);
-  --destructive-foreground: oklch(0.99 0.005 240);
-  --border: oklch(0.22 0.02 240);
-  --input: oklch(0.22 0.02 240);
-  --ring: oklch(0.6 0.21 245);
+  --destructive-foreground: oklch(0.985 0 0);
+  --border: oklch(0.25 0 0);
+  --input: oklch(0.25 0 0);
+  --ring: oklch(0.65 0.18 240);
   --chart-1: oklch(0.488 0.243 264.376);
   --chart-2: oklch(0.696 0.17 162.48);
   --chart-3: oklch(0.769 0.188 70.08);
@@ -76,6 +91,7 @@
 }
 
 @theme inline {
+  /* optional: --font-sans, --font-serif, --font-mono if they are applied in the layout.tsx */
   --font-sans: "Geist", "Geist Fallback";
   --font-mono: "Geist Mono", "Geist Mono Fallback";
   --color-background: var(--background);
@@ -123,4 +139,35 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+/* Liquid glass effect */
+.liquid-glass {
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(12px) saturate(180%);
+  -webkit-backdrop-filter: blur(12px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.dark .liquid-glass {
+  background: rgba(18, 18, 18, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Added more opaque liquid glass for better visibility when scrolled */
+.liquid-glass-opaque {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.dark .liquid-glass-opaque {
+  background: rgba(18, 18, 18, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+/* Added hide-scrollbar utility for horizontal scroll */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
 }
