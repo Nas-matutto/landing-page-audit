@@ -58,6 +58,7 @@ export function Header() {
             <Button
               className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold px-6 shadow-lg cursor-pointer"
               size="default"
+              onClick={() => window.open('https://app.talktomedata.com', '_blank')}
             >
               Sign Up
             </Button>
@@ -97,7 +98,10 @@ export function Header() {
                 </Button>
                 <Button
                   className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-semibold shadow-lg cursor-pointer"
-                  onClick={() => setMobileMenuOpen(false)}
+                  onClick={() => {
+                    window.open('https://app.talktomedata.com', '_blank')
+                    setMobileMenuOpen(false)
+                  }}
                 >
                   Sign Up
                 </Button>
