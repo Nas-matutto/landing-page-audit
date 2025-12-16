@@ -17,6 +17,14 @@ export function Header() {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
+  const handleLogin = () => {
+    window.open('https://app.talktomedata.com/login', '_blank')
+  }
+
+  const handleSignUp = () => {
+    window.open('https://app.talktomedata.com/signup', '_blank')
+  }
+
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
@@ -52,13 +60,17 @@ export function Header() {
 
           {/* CTA Buttons - Desktop - Added Login text button and cursor-pointer class */}
           <div className="hidden md:flex items-center gap-4">
-            <Button variant="ghost" className="text-sm font-medium cursor-pointer">
+            <Button 
+              variant="ghost" 
+              className="text-sm font-medium cursor-pointer"
+              onClick={handleLogin}
+            >
               Login
             </Button>
             <Button
               className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold px-6 shadow-lg cursor-pointer"
               size="default"
-              onClick={() => window.open('https://app.talktomedata.com', '_blank')}
+              onClick={handleSignUp}
             >
               Sign Up
             </Button>
@@ -93,13 +105,20 @@ export function Header() {
                 Pricing
               </Link>
               <div className="flex flex-col gap-2 pt-2 border-t border-border">
-                <Button variant="ghost" className="w-full text-sm font-medium cursor-pointer">
+                <Button 
+                  variant="ghost" 
+                  className="w-full text-sm font-medium cursor-pointer"
+                  onClick={() => {
+                    handleLogin()
+                    setMobileMenuOpen(false)
+                  }}
+                >
                   Login
                 </Button>
                 <Button
                   className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-semibold shadow-lg cursor-pointer"
                   onClick={() => {
-                    window.open('https://app.talktomedata.com', '_blank')
+                    handleSignUp()
                     setMobileMenuOpen(false)
                   }}
                 >

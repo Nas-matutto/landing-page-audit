@@ -2,6 +2,17 @@ import { Button } from "@/components/ui/button"
 import { ArrowRight, Zap } from "lucide-react"
 
 export function HeroSection() {
+  const handleGetFreeAnalysis = () => {
+    window.open('https://app.talktomedata.com/signup', '_blank')
+  }
+
+  const handleWatchDemo = () => {
+    const demoSection = document.getElementById('demo-section')
+    if (demoSection) {
+      demoSection.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    }
+  }
+
   return (
     <section className="relative pt-32 sm:pt-40 pb-16 sm:pb-24 overflow-hidden">
       {/* Background decoration */}
@@ -37,6 +48,7 @@ export function HeroSection() {
             <Button
               size="lg"
               className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold px-8 py-6 text-lg shadow-xl group cursor-pointer"
+              onClick={handleGetFreeAnalysis}
             >
               Get Free Analysis
               <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -45,6 +57,7 @@ export function HeroSection() {
               size="lg"
               variant="outline"
               className="border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground font-semibold px-8 py-6 text-lg bg-transparent cursor-pointer"
+              onClick={handleWatchDemo}
             >
               Watch Demo
             </Button>
@@ -63,7 +76,7 @@ export function HeroSection() {
               ))}
             </div>
             <span className="font-medium text-center sm:text-left">
-              Join <span className="text-foreground font-semibold">2,000+</span> founders optimizing their websites
+              Be one of the first <span className="text-foreground font-semibold">2,000</span> founders optimizing their websites
             </span>
           </div>
         </div>

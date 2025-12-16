@@ -2,7 +2,7 @@ import { Play } from "lucide-react"
 
 export function DemoSection() {
   return (
-    <section className="py-16 sm:py-24 bg-muted/30">
+    <section id="demo-section" className="py-16 sm:py-24 bg-muted/30">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-5xl mx-auto">
           {/* Section header */}

@@ -10,12 +10,12 @@ export function HowItWorksSection() {
   const [showResults, setShowResults] = useState(false)
 
   const handleAnalyze = () => {
-    if (!url) return
-    setAnalyzing(true)
-    setTimeout(() => {
-      setAnalyzing(false)
-      setShowResults(true)
-    }, 2000)
+    // Redirect to signup page with URL parameter if available
+    if (url) {
+      window.open(`https://app.talktomedata.com/signup?url=${encodeURIComponent(url)}`, '_blank')
+    } else {
+      window.open('https://app.talktomedata.com/signup', '_blank')
+    }
   }
 
   return (
@@ -50,7 +50,7 @@ export function HowItWorksSection() {
                 </div>
                 <button
                   onClick={handleAnalyze}
-                  disabled={!url || analyzing || showResults}
+                  disabled={analyzing || showResults}
                   className="px-6 py-3 bg-primary hover:bg-blue-600 disabled:bg-muted disabled:text-muted-foreground text-primary-foreground font-semibold rounded-lg shadow-lg transition-colors cursor-pointer flex items-center justify-center gap-2 whitespace-nowrap"
                 >
                   {analyzing ? "Analyzing..." : showResults ? "Analyzed" : "Analyze Now"}

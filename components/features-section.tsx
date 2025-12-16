@@ -82,6 +82,10 @@ export function FeaturesSection() {
     }
   }
 
+  const handleStartFreeAnalysis = () => {
+    window.open('https://app.talktomedata.com/signup', '_blank')
+  }
+
   return (
     <section className="py-16 sm:py-24 bg-background">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -160,7 +164,10 @@ export function FeaturesSection() {
               <h3 className="text-2xl sm:text-3xl font-bold mb-2">Ready to optimize your website?</h3>
               <p className="text-muted-foreground">Get your free analysis in under 60 seconds.</p>
             </div>
-            <button className="w-full sm:w-auto px-8 py-3 bg-primary hover:bg-primary/90 text-primary-foreground font-semibold rounded-lg shadow-lg transition-colors cursor-pointer whitespace-nowrap">
+            <button 
+              className="w-full sm:w-auto px-8 py-3 bg-primary hover:bg-primary/90 text-primary-foreground font-semibold rounded-lg shadow-lg transition-colors cursor-pointer whitespace-nowrap"
+              onClick={handleStartFreeAnalysis}
+            >
               Start Free Analysis
             </button>
           </div>
