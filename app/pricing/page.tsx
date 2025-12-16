@@ -9,6 +9,14 @@ import { useState } from "react"
 export default function PricingPage() {
   const [billingPeriod, setBillingPeriod] = useState<"monthly" | "annual">("annual")
 
+  const handleGetStarted = () => {
+    window.open('https://app.talktomedata.com/signup', '_blank')
+  }
+
+  const handleContactSales = () => {
+    window.location.href = 'mailto:nas@talktomedata.com?subject=Talk to me Data - Sales Inquiry&body=Hi, I would like to learn more about Talk to me Data.'
+  }
+
   const tiers = [
     {
       name: "Free",
@@ -16,14 +24,17 @@ export default function PricingPage() {
       period: "forever",
       description: "Perfect for getting started",
       features: [
-        "1 website report",
-        "Basic SEO analysis",
-        "Performance overview",
-        "Mobile compatibility check",
+        "1 monthly landing page report",
+        "Complete UX audit",
+        "Messaging & copywriting insights",
+        "Speed optimization recommendations",
+        "Mobile performance deep-dive",
+        "Structure & navigation analysis",
         "Email support",
       ],
-      cta: "Get Started Free",
+      cta: "Get Started for Free",
       highlighted: false,
+      action: handleGetStarted,
     },
     {
       name: "Pro",
@@ -31,19 +42,20 @@ export default function PricingPage() {
       period: "per month",
       description: "For serious website optimization",
       features: [
-        "Unlimited website reports",
-        "Advanced SEO analysis",
+        "5 monthly landing page reports",
         "Complete UX audit",
         "Messaging & copywriting insights",
         "Speed optimization recommendations",
         "Mobile performance deep-dive",
         "Structure & navigation analysis",
+        "Advanced SEO analysis",
+        "Social media idea generation",
         "Priority email support",
-        "Weekly performance tracking",
       ],
-      cta: "Start Free Trial",
+      cta: "Get Started for Free",
       highlighted: true,
       showBilling: true,
+      action: handleGetStarted,
     },
     {
       name: "Enterprise",
@@ -52,17 +64,17 @@ export default function PricingPage() {
       description: "For teams and agencies",
       features: [
         "Everything in Pro",
-        "White-label reports",
-        "API access",
+        "Competitor analysis",
+        "Team accounts & collaboration",
         "Custom integrations",
         "Dedicated account manager",
-        "Team collaboration tools",
         "Advanced analytics dashboard",
-        "Priority phone support",
         "Custom reporting schedules",
+        "And more...",
       ],
       cta: "Contact Us",
       highlighted: false,
+      action: handleContactSales,
     },
   ]
 
@@ -151,6 +163,7 @@ export default function PricingPage() {
                 </ul>
 
                 <Button
+                  onClick={tier.action}
                   className={`w-full font-semibold py-5 md:py-6 cursor-pointer text-sm md:text-base ${
                     tier.highlighted
                       ? "bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg"
@@ -167,10 +180,10 @@ export default function PricingPage() {
           <div className="max-w-3xl mx-auto text-center mt-16 pt-16 border-t border-border">
             <h2 className="text-2xl font-bold mb-4">Need help choosing?</h2>
             <p className="text-muted-foreground mb-6 leading-relaxed">
-              Not sure which plan is right for you? Start with our free plan and upgrade anytime. All paid plans come
-              with a 14-day money-back guarantee.
+              Not sure which plan is right for you? Get in touch and we'll help you choose!
             </p>
             <Button
+              onClick={handleContactSales}
               variant="outline"
               className="cursor-pointer border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground bg-transparent"
             >
