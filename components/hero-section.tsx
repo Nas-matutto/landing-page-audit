@@ -1,3 +1,5 @@
+"use client"
+
 import { Button } from "@/components/ui/button"
 import { ArrowRight, Zap } from "lucide-react"
 
@@ -76,7 +78,7 @@ export function HeroSection() {
               ))}
             </div>
             <span className="font-medium text-center sm:text-left">
-              Be one of the first <span className="text-foreground font-semibold">2,000</span> founders optimizing their websites
+              Join <span className="text-foreground font-semibold">2,000+</span> founders optimizing their websites
             </span>
           </div>
         </div>
