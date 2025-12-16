@@ -110,12 +110,6 @@ export function Footer() {
           <div>
             <h3 className="font-bold text-base mb-4">Contact</h3>
             <ul className="space-y-3 text-sm">
-              <li className="flex items-start gap-2 text-background/70">
-                <Mail className="w-4 h-4 mt-0.5 shrink-0" />
-                <a href="mailto:hello@talktomedata.com" className="hover:text-background transition-colors">
-                  hello@talktomedata.com
-                </a>
-              </li>
               <li>
                 <Link href="#" className="text-background/70 hover:text-background transition-colors">
                   Support
