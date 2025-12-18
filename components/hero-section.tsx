@@ -2,6 +2,7 @@
 
 import { Button } from "@/components/ui/button"
 import { ArrowRight, Zap } from "lucide-react"
+import Image from "next/image"
 
 export function HeroSection() {
   const handleGetFreeAnalysis = () => {
@@ -14,6 +15,15 @@ export function HeroSection() {
       demoSection.scrollIntoView({ behavior: 'smooth', block: 'start' })
     }
   }
+
+  // 👇 ADD YOUR PROFILE IMAGE PATHS HERE
+  // Place images in: public/avatars/user1.jpg, user2.jpg, etc.
+  const profilePictures = [
+    "/avatars/user1.jpg",
+    "/avatars/user2.jpg",
+    "/avatars/user3.jpg",
+    "/avatars/user4.jpg",
+  ]
 
   return (
     <section className="relative pt-32 sm:pt-40 pb-16 sm:pb-24 overflow-hidden">
@@ -65,15 +75,20 @@ export function HeroSection() {
             </Button>
           </div>
 
-          {/* Social proof */}
+          {/* Social proof with profile pictures */}
           <div className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-3 text-sm text-muted-foreground">
             <div className="flex -space-x-2">
-              {[1, 2, 3, 4].map((i) => (
+              {profilePictures.map((pic, i) => (
                 <div
                   key={i}
-                  className="w-8 h-8 rounded-full bg-secondary border-2 border-background flex items-center justify-center text-xs font-semibold"
+                  className="w-8 h-8 rounded-full border-2 border-background overflow-hidden relative"
                 >
-                  {String.fromCharCode(64 + i)}
+                  <Image
+                    src={pic}
+                    alt={`User ${i + 1}`}
+                    fill
+                    className="object-cover"
+                  />
                 </div>
               ))}
             </div>
