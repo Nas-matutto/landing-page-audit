@@ -73,11 +73,12 @@ export default function BlogPost() {
 
                   {/* Image 1 */}
                   <div className="my-8 rounded-lg overflow-hidden border-2 border-border">
-            <img
-                src="/blog/desk-calendar-wall.jpg"
-                alt="30 Day sprint calendar and desk setup"
-                className="w-full h-auto"/>
-            </div>
+                    <img
+                      src="/blog/desk-calendar-wall.jpg"
+                      alt="30 Day sprint calendar and desk setup"
+                      className="w-full h-auto"
+                    />
+                  </div>
 
                   <h2 className="text-3xl font-bold text-foreground mt-12 mb-4">Why Can You Increase Conversions Without a Redesign?</h2>
                   
@@ -191,8 +192,6 @@ export default function BlogPost() {
                     </div>
                   </div>
 
- 
-
                   <div className="my-6">
                     <h3 className="text-xl font-bold text-foreground mb-3">Day 3-4: CTA Button Optimization</h3>
                     
@@ -291,11 +290,14 @@ export default function BlogPost() {
                     </div>
                   </div>
 
-                        <img
-                            src="/blog/dpage-speed-insightsjpg"
-                            alt="Google Page Speed Insights example"
-                            className="w-full h-auto"/>
-                        </div>
+                  {/* Image 2 */}
+                  <div className="my-8 rounded-lg overflow-hidden border-2 border-border">
+                    <img
+                      src="/blog/page-speed-insights.jpg"
+                      alt="Google Page Speed Insights example"
+                      className="w-full h-auto"
+                    />
+                  </div>
 
                   <div className="my-6">
                     <h3 className="text-xl font-bold text-foreground mb-3">Day 11-14: Mobile Optimization</h3>
@@ -395,8 +397,6 @@ export default function BlogPost() {
                     </ol>
                   </div>
 
-
-
                   <div className="bg-muted/30 border-2 border-border p-6 my-8 rounded-lg">
                     <p className="font-bold text-foreground mb-3">Minimum Viable Form Fields by Type:</p>
                     <ul className="list-disc pl-6 space-y-2">
@@ -475,13 +475,14 @@ export default function BlogPost() {
                     </div>
                   </div>
 
-                   {/* Image 3 */}
+                  {/* Image 3 */}
                   <div className="my-8 rounded-lg overflow-hidden border-2 border-border">
                     <img
-                        src="/blog/A-B-Test-with-TTMD"
-                        alt="A/B Testing with Talk To Me Data"
-                        className="w-full h-auto"/>
-                    </div>
+                      src="/blog/A-B-Test-with-TTMD.jpg"
+                      alt="A/B Testing with Talk To Me Data"
+                      className="w-full h-auto"
+                    />
+                  </div>
 
                   <div className="my-6">
                     <h3 className="text-xl font-bold text-foreground mb-3">Day 26-28: Analytics Review and Documentation</h3>
