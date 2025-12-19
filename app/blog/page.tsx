@@ -14,7 +14,7 @@ const blogPosts = [
       "Learn the exact framework top founders use to identify and fix conversion problems on their websites. A practical, step-by-step guide.",
     category: "Conversion",
     date: "December 19, 2025",
-    readTime: "5 min read",
+    readTime: "9 min read",
     image: "/blog/conversion-analysis-cover.jpg",
     author: "Nas",
     featured: true,
