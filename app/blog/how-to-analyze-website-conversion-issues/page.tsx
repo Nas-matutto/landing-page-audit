@@ -36,7 +36,7 @@ export default function BlogPost() {
                 <div className="flex items-center gap-6 text-muted-foreground">
                   <div className="flex items-center gap-2">
                     <Calendar className="w-4 h-4" />
-                    <span>December 19, 2024</span>
+                    <span>December 19, 2025</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <Clock className="w-4 h-4" />
@@ -73,7 +73,7 @@ export default function BlogPost() {
                     A <strong>conversion rate</strong> is calculated by dividing the number of conversions by total visitors and multiplying by 100. For example, if 1,000 people visit your site and 20 make a purchase, your conversion rate is 2%. Industry benchmarks vary significantly: e-commerce sites average 2-3%, SaaS platforms 3-5%, and lead generation sites 5-15%. Understanding these metrics provides the foundation for effective optimization.
                   </p>
 
-                  {/* Image placeholder */}
+                  {/* Image 1 */}
             <div className="my-8 rounded-lg overflow-hidden border-2 border-border">
             <img
                 src="/blog/conversion-funnel.jpg"
@@ -170,15 +170,11 @@ export default function BlogPost() {
 
                   {/* Image placeholder */}
                   <div className="my-8 rounded-lg overflow-hidden border-2 border-border">
-                    <div className="bg-muted/30 aspect-video flex items-center justify-center">
-                      <span className="text-muted-foreground text-sm">[Image: Google Analytics Funnel Visualization Example]</span>
-                    </div>
-                  </div>
-
-                  <div className="bg-muted/30 border-l-4 border-primary p-6 my-8 rounded-r-lg">
-                    <p className="text-foreground font-semibold mb-2">Pro Tip:</p>
-                    <p>Segment your analytics by traffic source. Paid traffic often converts differently than organic. Identify which sources deliver high-intent visitors and optimize for those user behaviors specifically.</p>
-                  </div>
+            <img
+                src="/blog/google-analytics-dashboard.jpg"
+                alt="Conversion rate in Google Analytics"
+                className="w-full h-auto"/>
+            </div>
 
                   {/* Step 2 */}
                   <h2 className="text-3xl font-bold text-foreground mt-12 mb-4">Step 2: What Makes an Effective Value Proposition for Conversions</h2>
@@ -222,18 +218,19 @@ export default function BlogPost() {
                   <div className="my-6">
                     <h3 className="text-xl font-bold text-foreground mb-3">Speed Testing Tools and Metrics</h3>
                     <ul className="list-disc pl-6 space-y-3">
-                      <li><strong>Google PageSpeed Insights:</strong> Provides Core Web Vitals scores (LCP, FID, CLS) and specific optimization suggestions</li>
-                      <li><strong>GTmetrix:</strong> Offers detailed waterfall charts showing exactly which resources slow your site</li>
-                      <li><strong>WebPageTest:</strong> Tests from multiple global locations and device types</li>
+                      <li><strong><a href="https://pagespeed.web.dev/" target="_blank" rel="noopener noreferrer">Google PageSpeed Insights:</a></strong> Provides Core Web Vitals scores (LCP, FID, CLS) and specific optimization suggestions</li>
+                      <li><strong><a href="https://gtmetrix.com/" target="_blank" rel="noopener noreferrer">GTmetrix:</a></strong> Offers detailed waterfall charts showing exactly which resources slow your site</li>
+                      <li><strong><a href="https://www.webpagetest.org/" target="_blank" rel="noopener noreferrer">WebPageTest:</a></strong> Tests from multiple global locations and device types</li>
                     </ul>
                   </div>
 
-                  {/* Image placeholder */}
+                  {/* Image 3 */}
                   <div className="my-8 rounded-lg overflow-hidden border-2 border-border">
-                    <div className="bg-muted/30 aspect-video flex items-center justify-center">
-                      <span className="text-muted-foreground text-sm">[Image: PageSpeed Insights Score Example]</span>
-                    </div>
-                  </div>
+            <img
+                src="/blog/page-speed-insights.jpg"
+                alt="PageSpeed Insights score example"
+                className="w-full h-auto"/>
+            </div>
 
                   <div className="my-6">
                     <h3 className="text-xl font-bold text-foreground mb-3">Quick Speed Optimization Wins</h3>
@@ -289,12 +286,7 @@ export default function BlogPost() {
                     </div>
                   </div>
 
-                  {/* Image placeholder */}
-                  <div className="my-8 rounded-lg overflow-hidden border-2 border-border">
-                    <div className="bg-muted/30 aspect-video flex items-center justify-center">
-                      <span className="text-muted-foreground text-sm">[Image: Mobile vs Desktop Touch Target Comparison]</span>
-                    </div>
-                  </div>
+
 
                   {/* Step 5 */}
                   <h2 className="text-3xl font-bold text-foreground mt-12 mb-4">Step 5: How to Simplify Your Conversion Path and Reduce Friction</h2>
@@ -381,12 +373,7 @@ export default function BlogPost() {
                     </table>
                   </div>
 
-                  {/* Image placeholder */}
-                  <div className="my-8 rounded-lg overflow-hidden border-2 border-border">
-                    <div className="bg-muted/30 aspect-video flex items-center justify-center">
-                      <span className="text-muted-foreground text-sm">[Image: Example of Well-Placed Trust Signals on Checkout Page]</span>
-                    </div>
-                  </div>
+
 
                   {/* Step 7 */}
                   <h2 className="text-3xl font-bold text-foreground mt-12 mb-4">Step 7: How to Conduct User Testing for Conversion Insights</h2>
@@ -420,8 +407,9 @@ export default function BlogPost() {
                   <div className="bg-muted/30 border-l-4 border-primary p-6 my-8 rounded-r-lg">
                     <p className="text-foreground font-semibold mb-2">Budget-Friendly Testing Options:</p>
                     <ul className="list-disc pl-6 space-y-2">
-                      <li><strong>UserTesting.com:</strong> $49 per test for recorded sessions with real users</li>
-                      <li><strong>Hotjar:</strong> Free heatmaps and session recordings to see user behavior</li>
+                      <li><strong><a href="https://www.usertesting.com/" target="_blank" rel="noopener noreferrer">UserTesting.com:</a></strong> $49 per test for recorded sessions with real users</li>
+                      <li><strong><a href="https://posthog.com/" target="_blank" rel="noopener noreferrer">Posthog:</a></strong> Free heatmaps and session recordings to see user behavior</li>
+                      <li><strong><a href="https://talktomedata.com/" target="_blank" rel="noopener noreferrer">Talk to Me Data:</a></strong> Free website reports that help identify conversion issues</li>
                       <li><strong>Friends and family:</strong> Free, though less representative of your target market</li>
                       <li><strong>Social media recruitment:</strong> Post in relevant groups offering small incentives</li>
                     </ul>
@@ -459,6 +447,11 @@ export default function BlogPost() {
                       </thead>
                       <tbody>
                         <tr>
+                          <td className="border border-border p-4">Assessment</td>
+                          <td className="border border-border p-4">Talk to Me Data</td>
+                          <td className="border border-border p-4">Free - $39/mo</td>
+                        </tr>
+                        <tr>
                           <td className="border border-border p-4">Analytics</td>
                           <td className="border border-border p-4">Google Analytics 4, Mixpanel</td>
                           <td className="border border-border p-4">Free - $89/mo</td>
@@ -470,7 +463,7 @@ export default function BlogPost() {
                         </tr>
                         <tr>
                           <td className="border border-border p-4">Heatmaps</td>
-                          <td className="border border-border p-4">Hotjar, Microsoft Clarity</td>
+                          <td className="border border-border p-4">Posthog, Hotjar, Microsoft Clarity</td>
                           <td className="border border-border p-4">Free - $39/mo</td>
                         </tr>
                         <tr className="bg-muted/20">
@@ -495,7 +488,7 @@ export default function BlogPost() {
                   </p>
 
                   <p>
-                    The CONVERT framework—Analytics, Value Proposition, Speed, Mobile, Path Simplification, Trust Signals, and User Testing—provides a comprehensive methodology for identifying and fixing conversion issues. Start with high-impact, low-effort changes (unclear value propositions, missing trust signals) before tackling complex technical implementations.
+                    The CONVERT framework - Analytics, Value Proposition, Speed, Mobile, Path Simplification, Trust Signals, and User Testing - provides a comprehensive methodology for identifying and fixing conversion issues. Start with high-impact, low-effort changes (unclear value propositions, missing trust signals) before tackling complex technical implementations.
                   </p>
 
                   <p className="text-xl font-medium text-foreground/90">
