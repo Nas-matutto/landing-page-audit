@@ -16,8 +16,20 @@ const blogPosts = [
     date: "December 19, 2025",
     readTime: "9 min read",
     image: "/blog/conversion-analysis-cover.jpg",
-    author: "Nas",
+    author: "Talk to me Data Team",
     featured: true,
+  },
+  {
+    slug: "increase-conversion-rate-30-days",
+    title: "How to Increase Website Conversion Rate in 30 Days (No Redesign Required)",
+    excerpt:
+      "Achieve 15-30% conversion improvements in 30 days using the Sprint Method. Focus on high-impact changes that require no redesign.",
+    category: "Conversion",
+    date: "December 21, 2025",
+    readTime: "10 min read",
+    image: "/blog/30-day-sprint-cover.jpg",
+    author: "Talk to me Data Team",
+    featured: false,
   },
   // Add more blog posts here as you write them
 ]

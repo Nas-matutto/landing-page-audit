@@ -34,7 +34,7 @@ export default function BlogPost() {
                 <div className="flex items-center gap-6 text-muted-foreground">
                   <div className="flex items-center gap-2">
                     <Calendar className="w-4 h-4" />
-                    <span>December 21, 2024</span>
+                    <span>December 21, 2025</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <Clock className="w-4 h-4" />
@@ -312,10 +312,10 @@ export default function BlogPost() {
                     <p className="font-semibold text-foreground mb-2">Critical Mobile Fixes (CSS-Only, No Redesign):</p>
                     <ol className="list-decimal pl-6 space-y-3">
                       <li>
-                        <strong>Increase button sizes:</strong> All clickable elements should be minimum 44x44 pixels. Add CSS: `min-width: 44px; min-height: 44px; padding: 12px 24px;`
+                        <strong>Increase button sizes:</strong> All clickable elements should be minimum 44x44 pixels. Add CSS: <code className="text-sm">min-width: 44px; min-height: 44px; padding: 12px 24px;</code>
                       </li>
                       <li>
-                        <strong>Fix font sizes:</strong> Body text minimum 16px on mobile (prevents pinch-to-zoom). Add: `@media (max-width: 768px) { body { font-size: 16px; } }`
+                        <strong>Fix font sizes:</strong> Body text minimum 16px on mobile (prevents pinch-to-zoom). Add CSS: <code className="text-sm">@media (max-width: 768px) {'{ body { font-size: 16px; } }'}</code>
                       </li>
                       <li>
                         <strong>Simplify mobile navigation:</strong> Implement hamburger menu if you haven't already. Reduce menu items to 5-7 maximum.
