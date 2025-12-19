@@ -71,17 +71,18 @@ export default function BlogPost() {
                     Unlike traditional conversion optimization that can span 3-6 months, the Sprint Method compresses timelines by focusing exclusively on changes that meet three criteria: (1) implementable within 1-3 days, (2) no backend development required, and (3) proven impact based on industry data. This creates rapid momentum while building organizational confidence in optimization as a growth strategy.
                   </p>
 
-                  {/* Image placeholder */}
+                  {/* Image 1 */}
                   <div className="my-8 rounded-lg overflow-hidden border-2 border-border">
-                    <div className="bg-muted/30 aspect-video flex items-center justify-center">
-                      <span className="text-muted-foreground text-sm">[Image: 30-Day Sprint Timeline Visualization]</span>
-                    </div>
-                  </div>
+            <img
+                src="/blog/desk-calendar-wall.jpg"
+                alt="30 Day sprint calendar and desk setup"
+                className="w-full h-auto"/>
+            </div>
 
                   <h2 className="text-3xl font-bold text-foreground mt-12 mb-4">Why Can You Increase Conversions Without a Redesign?</h2>
                   
                   <p>
-                    Research from Baymard Institute shows that 68.8% of e-commerce shopping carts are abandoned due to factors unrelated to design: complicated checkout processes (17%), unexpected costs (48%), account creation requirements (24%), and security concerns (18%). Similarly, B2B and SaaS conversion issues predominantly stem from unclear value propositions, slow page speeds, and friction in conversion paths—all fixable without redesigning a single page.
+                    Research from <strong><a href="https://baymard.com/" target="_blank" rel="noopener noreferrer">Baymard Institute</a></strong> shows that 68.8% of e-commerce shopping carts are abandoned due to factors unrelated to design: complicated checkout processes (17%), unexpected costs (48%), account creation requirements (24%), and security concerns (18%). Similarly, B2B and SaaS conversion issues predominantly stem from unclear value propositions, slow page speeds, and friction in conversion paths—all fixable without redesigning a single page.
                   </p>
 
                   <p>
@@ -190,12 +191,7 @@ export default function BlogPost() {
                     </div>
                   </div>
 
-                  {/* Image placeholder */}
-                  <div className="my-8 rounded-lg overflow-hidden border-2 border-border">
-                    <div className="bg-muted/30 aspect-video flex items-center justify-center">
-                      <span className="text-muted-foreground text-sm">[Image: Before/After Headline Comparison]</span>
-                    </div>
-                  </div>
+ 
 
                   <div className="my-6">
                     <h3 className="text-xl font-bold text-foreground mb-3">Day 3-4: CTA Button Optimization</h3>
@@ -291,16 +287,15 @@ export default function BlogPost() {
 
                     <div className="bg-primary/5 border-2 border-primary/20 p-6 my-6 rounded-lg">
                       <p className="font-bold text-foreground mb-2">Measurement:</p>
-                      <p>Before making changes, test your site at PageSpeed Insights (pagespeed.web.dev). Note your score. After implementing optimizations, retest. Target: 90+ score on desktop, 80+ on mobile.</p>
+                      <p>Before making changes, test your site at <strong><a href="https://pagespeed.web.dev/" target="_blank" rel="noopener noreferrer">PageSpeed Insights</a></strong>. Note your score. After implementing optimizations, retest. Target: 90+ score on desktop, 80+ on mobile.</p>
                     </div>
                   </div>
 
-                  {/* Image placeholder */}
-                  <div className="my-8 rounded-lg overflow-hidden border-2 border-border">
-                    <div className="bg-muted/30 aspect-video flex items-center justify-center">
-                      <span className="text-muted-foreground text-sm">[Image: PageSpeed Score Improvement Graph]</span>
-                    </div>
-                  </div>
+                        <img
+                            src="/blog/dpage-speed-insightsjpg"
+                            alt="Google Page Speed Insights example"
+                            className="w-full h-auto"/>
+                        </div>
 
                   <div className="my-6">
                     <h3 className="text-xl font-bold text-foreground mb-3">Day 11-14: Mobile Optimization</h3>
@@ -400,12 +395,7 @@ export default function BlogPost() {
                     </ol>
                   </div>
 
-                  {/* Image placeholder */}
-                  <div className="my-8 rounded-lg overflow-hidden border-2 border-border">
-                    <div className="bg-muted/30 aspect-video flex items-center justify-center">
-                      <span className="text-muted-foreground text-sm">[Image: Form Simplification Before/After]</span>
-                    </div>
-                  </div>
+
 
                   <div className="bg-muted/30 border-2 border-border p-6 my-8 rounded-lg">
                     <p className="font-bold text-foreground mb-3">Minimum Viable Form Fields by Type:</p>
@@ -485,12 +475,13 @@ export default function BlogPost() {
                     </div>
                   </div>
 
-                  {/* Image placeholder */}
+                   {/* Image 3 */}
                   <div className="my-8 rounded-lg overflow-hidden border-2 border-border">
-                    <div className="bg-muted/30 aspect-video flex items-center justify-center">
-                      <span className="text-muted-foreground text-sm">[Image: A/B Test Results Dashboard]</span>
+                    <img
+                        src="/blog/A-B-Test-with-TTMD"
+                        alt="A/B Testing with Talk To Me Data"
+                        className="w-full h-auto"/>
                     </div>
-                  </div>
 
                   <div className="my-6">
                     <h3 className="text-xl font-bold text-foreground mb-3">Day 26-28: Analytics Review and Documentation</h3>
