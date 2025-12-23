@@ -16,7 +16,7 @@ const blogPosts = [
     date: "December 19, 2025",
     readTime: "9 min read",
     image: "/blog/conversion-analysis-cover.jpg",
-    author: "Talk to me Data Team",
+    author: "Nas",
     featured: true,
   },
   {
@@ -28,7 +28,19 @@ const blogPosts = [
     date: "December 21, 2025",
     readTime: "10 min read",
     image: "/blog/30-day-sprint-cover.jpg",
-    author: "Talk to me Data Team",
+    author: "Nas",
+    featured: false,
+  },
+  {  
+    slug: "yc-landing-page-optimization",
+    title: "10 Things Every Y Combinator Startup Landing Page Has in Common (2026 Analysis)",
+    excerpt:
+      "Analyze the common patterns in successful YC startup landing pages and learn how to apply them to your own website.",
+    category: "Conversion,Structure,UX & Messaging",
+    date: "December 23, 2025",
+    readTime: "15 min read",
+    image: "/blog/YC_image.jpeg",
+    author: "Nas",
     featured: false,
   },
   // Add more blog posts here as you write them
