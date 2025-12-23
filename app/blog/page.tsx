@@ -36,7 +36,7 @@ const blogPosts = [
     title: "10 Things Every Y Combinator Startup Landing Page Has in Common (2026 Analysis)",
     excerpt:
       "Analyze the common patterns in successful YC startup landing pages and learn how to apply them to your own website.",
-    category: "Conversion,Structure,UX & Messaging",
+    category: "Conversion, Structure, UX & Messaging",
     date: "December 23, 2025",
     readTime: "15 min read",
     image: "/blog/YC_image.jpeg",
