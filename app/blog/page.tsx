@@ -43,6 +43,18 @@ const blogPosts = [
     author: "Nas",
     featured: false,
   },
+    {
+    slug: "how-to-make-website-faster",
+    title: "How to Make Your Website Faster: The Complete Guide for Founders",
+    excerpt:
+      "Practical speed optimization strategies that reduce load time by 50-70%. Learn which tools to use and how page speed impacts conversions.",
+    category: "Performance",
+    date: "December 26, 2025",
+    readTime: "10 min read",
+    image: "/blog/website-speed-cover.jpg",
+    author: "Nas",
+    featured: false,
+  },
   // Add more blog posts here as you write them
 ]
 

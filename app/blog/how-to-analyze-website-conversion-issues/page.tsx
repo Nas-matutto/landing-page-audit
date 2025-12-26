@@ -70,7 +70,7 @@ export default function BlogPost() {
                   </p>
 
                   <p>
-                    A <strong>conversion rate</strong> is calculated by dividing the number of conversions by total visitors and multiplying by 100. For example, if 1,000 people visit your site and 20 make a purchase, your conversion rate is 2%. Industry benchmarks vary significantly: e-commerce sites average 2-3%, SaaS platforms 3-5%, and lead generation sites 5-15%. Understanding these metrics provides the foundation for effective optimization.
+                    A <strong>conversion rate</strong> is calculated by dividing the number of conversions by total visitors and multiplying by 100. For example, if 1,000 people visit your site and 20 make a purchase, your conversion rate is 2%. Industry benchmarks vary significantly: e-commerce sites average 2-3%, SaaS platforms 3-5%, and lead generation sites 5-15%. Understanding these metrics provides the foundation for effective optimization. If you want to calculate your website's conversion rate, use our <a href="https://talktomedata.com/features/conversion-rate-calculator" target="_blank" rel="noopener noreferrer">free Conversion Rate calculator</a>.
                   </p>
 
                   {/* Image 1 */}

@@ -49,7 +49,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'monthly',
       priority: 0.7,
     },
-    
+    {
+      url: `${baseUrl}/blog/how-to-make-website-faster`,
+      lastModified: new Date('2025-12-26'),
+      changeFrequency: 'monthly',
+      priority: 0.7,
+    },
+
     // Features
     {
       url: `${baseUrl}/features/conversion-rate-calculator`,
