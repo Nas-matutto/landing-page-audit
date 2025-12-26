@@ -45,7 +45,7 @@ export function Footer() {
             <h3 className="font-bold text-base mb-4">Product</h3>
             <ul className="space-y-2 text-sm">
               <li>
-                <Link href="#" className="text-background/70 hover:text-background transition-colors">
+                <Link href="/features" className="text-background/70 hover:text-background transition-colors">
                   Features
                 </Link>
               </li>
