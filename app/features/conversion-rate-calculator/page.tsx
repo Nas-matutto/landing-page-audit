@@ -8,6 +8,17 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { useState } from "react"
 
+export const metadata = {
+  title: "Free Conversion Rate Calculator | Calculate Your Website CVR Instantly with Talktomedata.com",
+  description: "Calculate your website conversion rate in seconds. Free tool with industry benchmarks, personalized insights, and expert tips to boost conversions. Improve your CVR by 2% and increase sales by 50%.",
+  keywords: "conversion rate calculator, CVR calculator, website conversion rate, calculate conversion rate, conversion optimization, improve conversion rate, conversion rate benchmarks",
+  openGraph: {
+    title: "Free Conversion Rate Calculator - Instant CVR Analysis",
+    description: "Calculate your conversion rate and get expert insights to boost sales. Free tool with industry benchmarks and actionable optimization tips.",
+    type: "website",
+  },
+}
+
 export default function ConversionRateCalculator() {
   const [visitors, setVisitors] = useState<string>("")
   const [conversions, setConversions] = useState<string>("")
@@ -26,40 +37,40 @@ export default function ConversionRateCalculator() {
   }
 
   const getInsight = (rate: number) => {
-    if (rate >= 10) {
+    if (rate >= 7) {
       return {
         status: "Excellent",
-        color: "text-green-600",
-        bgColor: "bg-green-100",
-        message: "Your conversion rate is exceptional! You're in the top 10% of websites. Keep optimizing and testing to maintain this performance.",
+        color: "text-green-800",
+        bgColor: "bg-green-200",
+        message: "Outstanding! Your conversion rate is in the top 5% of all websites. You're converting exceptionally well. Continue A/B testing and optimizing to maintain this elite performance.",
       }
-    } else if (rate >= 5) {
+    } else if (rate >= 4) {
       return {
         status: "Good",
-        color: "text-blue-600",
-        bgColor: "bg-blue-100",
-        message: "Your conversion rate is above average. Focus on A/B testing your CTAs and reducing friction points to push into the excellent range.",
+        color: "text-green-600",
+        bgColor: "bg-green-100",
+        message: "Great work! Your conversion rate is above average and performing well. Focus on advanced optimization tactics like personalization and urgency elements to reach excellent status.",
       }
     } else if (rate >= 2) {
       return {
         status: "Average",
         color: "text-yellow-600",
         bgColor: "bg-yellow-100",
-        message: "Your conversion rate is in the average range. Consider improving your value proposition, page speed, and trust signals to boost conversions.",
+        message: "Your conversion rate is in the average range. There's significant room for improvement. Focus on clarifying your value proposition, improving page speed, and adding trust signals.",
       }
     } else if (rate >= 1) {
       return {
         status: "Below Average",
         color: "text-orange-600",
         bgColor: "bg-orange-100",
-        message: "Your conversion rate needs improvement. Focus on clarifying your value proposition, simplifying your conversion path, and optimizing page load speed.",
+        message: "Your conversion rate is below industry standards. Immediate action needed. Prioritize simplifying your conversion path, improving mobile experience, and testing different CTAs.",
       }
     } else {
       return {
-        status: "Critical",
+        status: "Low",
         color: "text-red-600",
         bgColor: "bg-red-100",
-        message: "Your conversion rate is critically low. Consider a complete landing page redesign focusing on clear messaging, strong CTAs, and mobile optimization.",
+        message: "Critical: Your conversion rate is severely underperforming. This indicates fundamental issues with your website's value proposition, user experience, or technical performance. A comprehensive redesign may be necessary.",
       }
     }
   }
@@ -272,8 +283,8 @@ export default function ConversionRateCalculator() {
               </div>
             )}
 
-            {/* CTA Section */}
-            <div className="mt-12">
+            {/* CTA Section with Educational Content */}
+            <div className="mt-12 space-y-8">
               <Card className="glass-card border-0 bg-gradient-to-r from-primary/5 to-primary/10">
                 <CardContent className="pt-8 pb-8 text-center">
                   <h2 className="text-2xl font-bold mb-4">
@@ -282,13 +293,92 @@ export default function ConversionRateCalculator() {
                   <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
                     Get detailed insights on UX, SEO, page speed, mobile optimization, and conversion optimization with our AI-powered analyzer.
                   </p>
-                  <Link href="/signup">
+                  <a 
+                    href="https://app.talktomedata.com/signup"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     <Button className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold cursor-pointer">
                       Analyze Your Website Free →
                     </Button>
-                  </Link>
+                  </a>
                 </CardContent>
               </Card>
+
+              {/* Educational Content Section */}
+              <div className="prose prose-lg max-w-none">
+                <Card className="glass-card border-0">
+                  <CardHeader>
+                    <CardTitle className="text-2xl">Why Your Conversion Rate Matters More Than You Think</CardTitle>
+                  </CardHeader>
+                  <CardContent className="space-y-6 text-muted-foreground leading-relaxed">
+                    <p>
+                      Your conversion rate is one of the most critical metrics for your online business success. It's the percentage of visitors who take a desired action on your website—whether that's making a purchase, signing up for a newsletter, or requesting a demo. Understanding and optimizing this number can be the difference between business growth and stagnation.
+                    </p>
+
+                    <div>
+                      <h3 className="text-xl font-bold text-foreground mb-3">The Power of Small Improvements</h3>
+                      <p>
+                        Here's why calculating and tracking your conversion rate is essential: even small improvements compound into massive revenue gains. If you're currently converting at 2% and improve to 3%—just a 1 percentage point increase—you've actually grown your conversions by 50%.
+                      </p>
+                      <p className="mt-3">
+                        Let's put this in concrete terms: If you have 10,000 monthly visitors and increase your conversion rate from 2% to 3%, you go from 200 conversions to 300 conversions per month. At an average order value of $100, that's an additional $10,000 in monthly revenue, or $120,000 annually. All without spending a single dollar more on traffic acquisition.
+                      </p>
+                    </div>
+
+                    <div>
+                      <h3 className="text-xl font-bold text-foreground mb-3">What's Considered a Good Conversion Rate?</h3>
+                      <p>
+                        Understanding where your conversion rate stands is crucial for setting realistic optimization goals:
+                      </p>
+                      <ul className="list-disc pl-6 space-y-2 mt-3">
+                        <li><strong className="text-red-600">Under 1%:</strong> This is critically low and indicates serious problems with your website's value proposition, user experience, or technical performance. Immediate action is required.</li>
+                        <li><strong className="text-orange-600">1-2%:</strong> Below average. Your site is underperforming compared to industry standards. Focus on fundamental improvements like clarifying your offer and simplifying the conversion path.</li>
+                        <li><strong className="text-yellow-600">2-4%:</strong> Average. You're in the middle of the pack. There's significant room for improvement through systematic optimization and testing.</li>
+                        <li><strong className="text-green-600">4-7%:</strong> Good. You're performing above average and doing many things right. Continue testing and refining to reach excellent status.</li>
+                        <li><strong className="text-green-800">Above 7%:</strong> Excellent. You're in the top tier of websites. Your conversion optimization efforts are paying off significantly. Maintain this through continuous testing and improvement.</li>
+                      </ul>
+                    </div>
+
+                    <div>
+                      <h3 className="text-xl font-bold text-foreground mb-3">Why Knowing Your Conversion Rate is Critical</h3>
+                      <p>
+                        Many business owners focus exclusively on driving more traffic to their website. They invest heavily in ads, SEO, and content marketing—all while ignoring a fundamental truth: it's far cheaper and more profitable to convert more of your existing traffic than to acquire new visitors.
+                      </p>
+                      <p className="mt-3">
+                        Calculating your conversion rate gives you a baseline for improvement. Without this number, you're flying blind. You can't improve what you don't measure. Once you know your current conversion rate, you can:
+                      </p>
+                      <ul className="list-disc pl-6 space-y-2 mt-3">
+                        <li>Set realistic, data-driven goals for optimization</li>
+                        <li>Calculate the ROI of conversion optimization efforts</li>
+                        <li>Identify which pages or traffic sources convert best</li>
+                        <li>Make informed decisions about where to invest resources</li>
+                        <li>Track the impact of website changes and experiments</li>
+                      </ul>
+                    </div>
+
+                    <div>
+                      <h3 className="text-xl font-bold text-foreground mb-3">The Compounding Effect of Optimization</h3>
+                      <p>
+                        The beauty of conversion rate optimization is that improvements compound over time. When you increase your conversion rate by 2%, you're not just getting 2% more revenue—you're getting more data to optimize further, more customer feedback, more testimonials, and more resources to reinvest in growth.
+                      </p>
+                      <p className="mt-3">
+                        Consider this: if you improve your conversion rate by just 0.5% per month through systematic testing and optimization, after 12 months you'll have increased your conversions by over 6%. For a business with $500,000 in annual revenue, that's an additional $30,000+ without increasing your marketing spend.
+                      </p>
+                    </div>
+
+                    <div className="bg-primary/5 border-l-4 border-primary p-6 rounded-r-lg">
+                      <h3 className="text-xl font-bold text-foreground mb-3">Take Action Today</h3>
+                      <p>
+                        Don't let your conversion rate remain a mystery. Calculate it now using the tool above, understand where you stand, and start making incremental improvements. Remember: a website converting at 1% is leaving money on the table. A website converting at 5% or higher is a well-oiled revenue machine.
+                      </p>
+                      <p className="mt-3">
+                        The difference between these two scenarios could be hundreds of thousands of dollars in annual revenue. Start tracking, start testing, and start optimizing today.
+                      </p>
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
             </div>
 
           </div>
