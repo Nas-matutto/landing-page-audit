@@ -56,7 +56,7 @@ export default function BlogPost() {
                       <li>Image optimization alone can reduce page load time by 50-70%</li>
                       <li>Free tools like Google PageSpeed Insights, GTmetrix, and WebPageTest provide actionable optimization recommendations</li>
                       <li>Most speed improvements require no coding: compression, caching, and CDN setup are configuration-based</li>
-                      <li>Core Web Vitals (LCP, FID, CLS) are now Google ranking factors—optimizing them improves both speed and SEO</li>
+                      <li>Core Web Vitals (LCP, FID, CLS) are now Google ranking factors. Optimizing them improves both speed and SEO</li>
                     </ul>
                   </div>
 
@@ -71,17 +71,18 @@ export default function BlogPost() {
                     <strong>Page load time</strong> specifically measures the duration from the moment a user requests a page until all content (images, scripts, stylesheets) is fully downloaded and rendered in the browser. This differs from <strong>Time to First Byte (TTFB)</strong>, which measures only server response time, and <strong>First Contentful Paint (FCP)</strong>, which tracks when the first content becomes visible to users.
                   </p>
 
-                  {/* Image placeholder */}
-                  <div className="my-8 rounded-lg overflow-hidden border-2 border-border">
-                    <div className="bg-muted/30 aspect-video flex items-center justify-center">
-                      <span className="text-muted-foreground text-sm">[Image: Website Load Time Waterfall Chart]</span>
+                {/* Image 1 */}
+                    <div className="my-8 rounded-lg overflow-hidden border-2 border-border">
+                        <img
+                        src="/blog/pagespeed-TTMD.jpg"
+                        alt="Screenshot of Google PageSpeed Insights report showing performance metrics"
+                        className="w-full h-auto"/>
                     </div>
-                  </div>
 
                   <h2 className="text-3xl font-bold text-foreground mt-12 mb-4">Why Is Website Speed Critical for Business Success?</h2>
                   
                   <p>
-                    Website speed isn't just a technical metric—it's a business imperative that directly impacts revenue, user experience, and search engine rankings. Google research demonstrates that as page load time increases from 1 to 3 seconds, bounce probability increases 32%. From 1 to 5 seconds, it increases 90%. From 1 to 10 seconds, bounce probability increases 123%.
+                    Website speed isn't just a technical metric, it's a business imperative that directly impacts revenue, user experience, and search engine rankings. Google research demonstrates that as page load time increases from 1 to 3 seconds, bounce probability increases 32%. From 1 to 5 seconds, it increases 90%. From 1 to 10 seconds, bounce probability increases 123%.
                   </p>
 
                   <p>
@@ -164,7 +165,7 @@ export default function BlogPost() {
                       Before implementing individual speed optimizations, founders need to understand their current performance baseline and identify the highest-impact improvements. This is where comprehensive website analysis becomes essential.
                     </p>
                     <p className="mb-6">
-                      <strong>Talk to me Data</strong> provides instant, AI-powered speed analysis that goes beyond basic metrics. Our platform analyzes your entire website performance stack—images, scripts, server response time, render-blocking resources, and mobile optimization—then prioritizes fixes by expected impact on conversion rates. You'll know exactly which speed improvements will drive the most revenue, not just which issues exist.
+                      <strong>Talk to me Data</strong> provides instant, AI-powered speed analysis that goes beyond basic metrics. Our platform analyzes your entire website performance stack - images, scripts, server response time, render-blocking resources, and mobile optimization - then prioritizes fixes by expected impact on conversion rates. You'll know exactly which speed improvements will drive the most revenue, not just which issues exist.
                     </p>
                     <p className="mb-6">
                       Unlike traditional speed testing tools that only show technical metrics, Talk to me Data connects speed improvements directly to business outcomes. You'll see projected conversion rate increases and revenue impact for each optimization, helping you make data-driven decisions about where to invest your time.
@@ -232,12 +233,7 @@ export default function BlogPost() {
                     </p>
                   </div>
 
-                  {/* Image placeholder */}
-                  <div className="my-8 rounded-lg overflow-hidden border-2 border-border">
-                    <div className="bg-muted/30 aspect-video flex items-center justify-center">
-                      <span className="text-muted-foreground text-sm">[Image: Core Web Vitals Score Dashboard]</span>
-                    </div>
-                  </div>
+
 
                   <h2 className="text-3xl font-bold text-foreground mt-12 mb-4">How to Test Your Website Speed (Free Tools)</h2>
                   
@@ -256,7 +252,7 @@ export default function BlogPost() {
                       </thead>
                       <tbody>
                         <tr>
-                          <td className="border border-border p-4 font-semibold">Google PageSpeed Insights</td>
+                          <td className="border border-border p-4 font-semibold"><strong><a href="https://pagespeed.web.dev/" target="_blank" rel="noopener noreferrer">Google PageSpeed Insights</a></strong></td>
                           <td className="border border-border p-4">Core Web Vitals, overall score</td>
                           <td className="border border-border p-4">Real user data (CrUX), specific fix recommendations</td>
                         </tr>
@@ -340,12 +336,7 @@ export default function BlogPost() {
                     </div>
                   </div>
 
-                  {/* Image placeholder */}
-                  <div className="my-8 rounded-lg overflow-hidden border-2 border-border">
-                    <div className="bg-muted/30 aspect-video flex items-center justify-center">
-                      <span className="text-muted-foreground text-sm">[Image: Before/After Image Compression Comparison]</span>
-                    </div>
-                  </div>
+
 
                   <h2 className="text-3xl font-bold text-foreground mt-12 mb-4">How to Minimize and Optimize JavaScript and CSS</h2>
                   
@@ -528,12 +519,7 @@ export default function BlogPost() {
                     </div>
                   </div>
 
-                  {/* Image placeholder */}
-                  <div className="my-8 rounded-lg overflow-hidden border-2 border-border">
-                    <div className="bg-muted/30 aspect-video flex items-center justify-center">
-                      <span className="text-muted-foreground text-sm">[Image: CDN Global Network Map]</span>
-                    </div>
-                  </div>
+        
 
                   <h2 className="text-3xl font-bold text-foreground mt-12 mb-4">How to Optimize Server Response Time</h2>
                   
@@ -627,13 +613,13 @@ export default function BlogPost() {
                   <h2 className="text-3xl font-bold text-foreground mt-12 mb-4">How to Create a Speed Optimization Action Plan</h2>
                   
                   <p>
-                    Speed optimization isn't a one-time project—it's an ongoing process. Use this framework to systematically improve and maintain website performance:
+                    Speed optimization isn't a one-time project - it's an ongoing process. Use this framework to systematically improve and maintain website performance:
                   </p>
 
                   <div className="my-6">
                     <h3 className="text-xl font-bold text-foreground mb-3">Phase 1: Baseline and Quick Wins (Week 1)</h3>
                     <ol className="list-decimal pl-6 space-y-2">
-                      <li>Test current speed with PageSpeed Insights and GTmetrix</li>
+                      <li>Test current speed with <a href="https://pagespeed.web.dev/" target="_blank" rel="noopener noreferrer">Google PageSpeed Insights</a> and <a href="https://gtmetrix.com/" target="_blank" rel="noopener noreferrer">GTmetrix</a></li>
                       <li>Compress all images using TinyPNG</li>
                       <li>Enable browser caching (via plugin or server config)</li>
                       <li>Enable Gzip compression</li>
@@ -709,7 +695,7 @@ export default function BlogPost() {
                   <h2 className="text-3xl font-bold text-foreground mt-12 mb-4">Summary: Speed as a Competitive Advantage</h2>
                   
                   <p>
-                    Website speed isn't just a technical metric—it's a fundamental business driver that impacts conversion rates, revenue, SEO rankings, and user satisfaction. The data is clear: faster websites convert better, rank higher, and generate more revenue.
+                    Website speed isn't just a technical metric. It's a fundamental business driver that impacts conversion rates, revenue, SEO rankings, and user satisfaction. The data is clear: faster websites convert better, rank higher, and generate more revenue.
                   </p>
 
                   <p>
@@ -734,7 +720,7 @@ export default function BlogPost() {
                   <div className="bg-primary/5 border-2 border-primary/20 p-8 my-12 rounded-2xl">
                     <h3 className="text-2xl font-bold text-foreground mb-4">Get Your Complete Website Performance Analysis</h3>
                     <p className="mb-6">
-                      Stop guessing which speed optimizations will actually improve conversions. Talk to me Data analyzes your entire website performance stack and provides a prioritized action plan based on expected conversion impact. Get specific, actionable recommendations in 60 seconds—not generic metrics.
+                      Stop guessing which speed optimizations will actually improve conversions. Talk to me Data analyzes your entire website performance stack and provides a prioritized action plan based on expected conversion impact. Get specific, actionable recommendations in 60 seconds, not generic metrics.
                     </p>
                     <Button 
                       className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold cursor-pointer"
