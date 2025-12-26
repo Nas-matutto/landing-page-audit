@@ -302,13 +302,13 @@ export default function ConversionRateCalculator() {
                   </CardHeader>
                   <CardContent className="space-y-6 text-muted-foreground leading-relaxed">
                     <p>
-                      Your conversion rate is one of the most critical metrics for your online business success. It's the percentage of visitors who take a desired action on your website—whether that's making a purchase, signing up for a newsletter, or requesting a demo. Understanding and optimizing this number can be the difference between business growth and stagnation.
+                      Your conversion rate is one of the most critical metrics for your online business success. It's the percentage of visitors who take a desired action on your website - whether that's making a purchase, signing up for a newsletter, or requesting a demo. Understanding and optimizing this number can be the difference between business growth and stagnation.
                     </p>
 
                     <div>
                       <h3 className="text-xl font-bold text-foreground mb-3">The Power of Small Improvements</h3>
                       <p>
-                        Here's why calculating and tracking your conversion rate is essential: even small improvements compound into massive revenue gains. If you're currently converting at 2% and improve to 3%—just a 1 percentage point increase—you've actually grown your conversions by 50%.
+                        Here's why calculating and tracking your conversion rate is essential: even small improvements compound into massive revenue gains. If you're currently converting at 2% and improve to 3% (just a 1 percentage point increase), you've actually grown your conversions by 50%.
                       </p>
                       <p className="mt-3">
                         Let's put this in concrete terms: If you have 10,000 monthly visitors and increase your conversion rate from 2% to 3%, you go from 200 conversions to 300 conversions per month. At an average order value of $100, that's an additional $10,000 in monthly revenue, or $120,000 annually. All without spending a single dollar more on traffic acquisition.
@@ -349,7 +349,7 @@ export default function ConversionRateCalculator() {
                     <div>
                       <h3 className="text-xl font-bold text-foreground mb-3">The Compounding Effect of Optimization</h3>
                       <p>
-                        The beauty of conversion rate optimization is that improvements compound over time. When you increase your conversion rate by 2%, you're not just getting 2% more revenue—you're getting more data to optimize further, more customer feedback, more testimonials, and more resources to reinvest in growth.
+                        The beauty of conversion rate optimization is that improvements compound over time. When you increase your conversion rate by 2%, you're not just getting 2% more revenue - you're getting more data to optimize further, more customer feedback, more testimonials, and more resources to reinvest in growth.
                       </p>
                       <p className="mt-3">
                         Consider this: if you improve your conversion rate by just 0.5% per month through systematic testing and optimization, after 12 months you'll have increased your conversions by over 6%. For a business with $500,000 in annual revenue, that's an additional $30,000+ without increasing your marketing spend.
@@ -359,7 +359,7 @@ export default function ConversionRateCalculator() {
                     <div className="bg-primary/5 border-l-4 border-primary p-6 rounded-r-lg">
                       <h3 className="text-xl font-bold text-foreground mb-3">Take Action Today</h3>
                       <p>
-                        Don't let your conversion rate remain a mystery. Calculate it now using the tool above, understand where you stand, and start making incremental improvements. Remember: a website converting at 1% is leaving money on the table. A website converting at 5% or higher is a well-oiled revenue machine.
+                        Don't let your conversion rate remain a mystery. Sign up to <strong><a href="https://app.talktomedata.com/signup" target="_blank" rel="noopener noreferrer">Talk to me Data</a></strong> to understand exactly which sections of your website can be optimized for conversion. With the free report, you'll understand where you stand, and can start making incremental improvements. Remember: a website converting at 1% is leaving money on the table. A website converting at 5% or higher is a well-oiled revenue machine.
                       </p>
                       <p className="mt-3">
                         The difference between these two scenarios could be hundreds of thousands of dollars in annual revenue. Start tracking, start testing, and start optimizing today.
