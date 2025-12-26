@@ -1,9 +1,10 @@
-import type { MetadataRoute } from 'next'
+import { MetadataRoute } from 'next'
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://talktomedata.com'
   
   return [
+    // Main pages
     {
       url: baseUrl,
       lastModified: new Date(),
@@ -23,8 +24,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
     },
     {
+      url: `${baseUrl}/features`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly',
+      priority: 0.8,
+    },
+    
+    // Blog posts - CORRECTED URLS
+    {
       url: `${baseUrl}/blog/how-to-analyze-website-conversion-issues`,
-      lastModified: new Date('2024-12-19'),
+      lastModified: new Date('2025-12-19'),
       changeFrequency: 'monthly',
       priority: 0.7,
     },
@@ -34,6 +43,22 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'monthly',
       priority: 0.7,
     },
+    {
+      url: `${baseUrl}/blog/yc-landing-page-optimization`,
+      lastModified: new Date('2025-12-23'),
+      changeFrequency: 'monthly',
+      priority: 0.7,
+    },
+    
+    // Features
+    {
+      url: `${baseUrl}/features/conversion-rate-calculator`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    
+    // Legal pages
     {
       url: `${baseUrl}/privacy-policy`,
       lastModified: new Date(),
