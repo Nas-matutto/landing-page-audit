@@ -81,7 +81,7 @@ export default function FeaturesPage() {
                     Get detailed insights on UX, SEO, page speed, mobile optimization, and more with our AI-powered website analyzer.
                   </p>
                   <Link 
-                    href="/signup"
+                    href="https://app.talktomedata.com/signup"
                     className="inline-block bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-3 rounded-lg font-semibold transition-colors"
                   >
                     Analyze Your Website Free
