@@ -8,17 +8,6 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { useState } from "react"
 
-export const metadata = {
-  title: "Free Conversion Rate Calculator | Calculate Your Website CVR Instantly with Talktomedata.com",
-  description: "Calculate your website conversion rate in seconds. Free tool with industry benchmarks, personalized insights, and expert tips to boost conversions. Improve your CVR by 2% and increase sales by 50%.",
-  keywords: "conversion rate calculator, CVR calculator, website conversion rate, calculate conversion rate, conversion optimization, improve conversion rate, conversion rate benchmarks",
-  openGraph: {
-    title: "Free Conversion Rate Calculator - Instant CVR Analysis",
-    description: "Calculate your conversion rate and get expert insights to boost sales. Free tool with industry benchmarks and actionable optimization tips.",
-    type: "website",
-  },
-}
-
 export default function ConversionRateCalculator() {
   const [visitors, setVisitors] = useState<string>("")
   const [conversions, setConversions] = useState<string>("")
