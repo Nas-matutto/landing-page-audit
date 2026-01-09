@@ -7,6 +7,7 @@ import { Check } from "lucide-react"
 import { useState } from "react"
 
 export default function PricingPage() {
+  // Keep billing period state for future subscription model (currently hidden)
   const [billingPeriod, setBillingPeriod] = useState<"monthly" | "annual">("annual")
 
   const handleGetStarted = () => {
@@ -21,56 +22,51 @@ export default function PricingPage() {
     {
       name: "Free",
       price: "$0",
-      period: "forever",
+      // period: "forever", // Hidden for one-off payment model
       description: "Perfect for getting started",
       features: [
-        "1 monthly landing page report",
-        "Complete UX audit",
-        "Messaging & copywriting insights",
-        "Speed optimization recommendations",
-        "Mobile performance deep-dive",
-        "Structure & navigation analysis",
-        "Email support",
+        "Basic website report",
+        "Basic speed report",
+        "Free UX consultation",
       ],
       cta: "Get Started for Free",
       highlighted: false,
+      // showBilling: false, // Hidden for one-off payment model
       action: handleGetStarted,
     },
     {
       name: "Pro",
-      price: billingPeriod === "annual" ? "$29" : "$39",
-      period: "per month",
+      price: "$49", // One-off payment price
+      // Alternative pricing for future subscription model (hidden):
+      // price: billingPeriod === "annual" ? "$29" : "$39",
+      // period: "per month",
       description: "For serious website optimization",
       features: [
-        "5 monthly landing page reports",
-        "Complete UX audit",
-        "Messaging & copywriting insights",
-        "Speed optimization recommendations",
-        "Mobile performance deep-dive",
-        "Structure & navigation analysis",
-        "Advanced SEO analysis",
-        "Social media idea generation",
-        "Priority email support",
+        "Everything in Free, plus:",
+        "Full website report",
+        "Full speed report",
+        "Content generation Plan",
+        "Priority support",
       ],
-      cta: "Get Started for Free",
+      cta: "Get Started",
       highlighted: true,
-      showBilling: true,
+      // showBilling: true, // Hidden for one-off payment model
       action: handleGetStarted,
     },
     {
       name: "Enterprise",
       price: "Custom",
-      period: "pricing",
+      // period: "pricing",
       description: "For teams and agencies",
       features: [
-        "Everything in Pro",
+        "Everything in Pro, plus:",
         "Competitor analysis",
         "Team accounts & collaboration",
         "Custom integrations",
         "Dedicated account manager",
         "Advanced analytics dashboard",
         "Custom reporting schedules",
-        "And more...",
+        "Priority support",
       ],
       cta: "Contact Us",
       highlighted: false,
@@ -96,6 +92,9 @@ export default function PricingPage() {
             </p>
           </div>
 
+          {/* Monthly/Annual Toggle - Hidden for one-off payment model */}
+          {/* Uncomment this section to re-enable subscription billing toggle */}
+          {/*
           <div className="flex justify-center mb-8 md:mb-16">
             <div className="inline-flex items-center bg-secondary rounded-full p-1 gap-1">
               <button
@@ -118,9 +117,10 @@ export default function PricingPage() {
               </button>
             </div>
           </div>
+          */}
 
           {/* Pricing Cards */}
-          <div className="grid md:grid-cols-3 gap-6 md:gap-8 max-w-7xl mx-auto">
+          <div className="grid md:grid-cols-3 gap-6 md:gap-8 max-w-7xl mx-auto mb-12 md:mb-16">
             {tiers.map((tier, index) => (
               <div
                 key={index}
@@ -144,13 +144,17 @@ export default function PricingPage() {
                 <div className="mb-4 md:mb-6">
                   <div className="flex items-baseline gap-2">
                     <span className="text-3xl sm:text-4xl md:text-5xl font-bold">{tier.price}</span>
-                    <span className="text-muted-foreground text-xs sm:text-sm">/ {tier.period}</span>
+                    {/* Period text hidden for one-off payment model */}
+                    {/* {tier.period && (
+                      <span className="text-muted-foreground text-xs sm:text-sm">/ {tier.period}</span>
+                    )} */}
                   </div>
-                  {tier.showBilling && (
+                  {/* Billing period text hidden for one-off payment model */}
+                  {/* {tier.showBilling && (
                     <p className="text-xs text-muted-foreground mt-1">
                       {billingPeriod === "annual" ? "Billed annually" : "Billed monthly"}
                     </p>
-                  )}
+                  )} */}
                 </div>
 
                 <ul className="space-y-3 md:space-y-4 mb-6 md:mb-8 flex-grow">
