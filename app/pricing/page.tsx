@@ -36,7 +36,7 @@ export default function PricingPage() {
     },
     {
       name: "Pro",
-      price: "$49", // One-off payment price
+      price: "$25", // One-off payment price
       // Alternative pricing for future subscription model (hidden):
       // price: billingPeriod === "annual" ? "$29" : "$39",
       // period: "per month",
