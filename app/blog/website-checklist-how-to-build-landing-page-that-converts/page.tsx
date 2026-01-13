@@ -78,10 +78,10 @@ export default function BlogPost() {
                     <h3 className="text-xl font-bold text-foreground mb-3">TL;DR - Key Takeaways</h3>
                     <ul className="list-disc pl-6 space-y-2 text-foreground">
                       <li>Landing pages with complete checklists convert 40-60% better than pages missing critical elements</li>
-                      <li>Must-have elements (value proposition, CTA, mobile optimization) are non-negotiable—without them, expect 50%+ visitor loss</li>
+                      <li>Must-have elements (value proposition, CTA, mobile optimization) are non-negotiable - without them, expect 50%+ visitor loss</li>
                       <li>Business stage matters: idea-stage startups need different elements than scaling companies</li>
-                      <li>Remove navigation from landing pages—every link is an exit opportunity (25-40% conversion improvement)</li>
-                      <li>Page speed under 3 seconds is critical—each additional second costs 7% in conversions</li>
+                      <li>Remove navigation from landing pages - every link is an exit opportunity (25-40% conversion improvement)</li>
+                      <li>Page speed under 3 seconds is critical - each additional second costs 7% in conversions</li>
                       <li>Use our interactive checklist tool to get personalized must-have, nice-to-have, and do-later recommendations</li>
                     </ul>
                   </div>
@@ -90,11 +90,11 @@ export default function BlogPost() {
                   <h2 className="text-3xl font-bold text-foreground mt-12 mb-4">What is a Website Checklist and Why Does It Matter?</h2>
                   
                   <p>
-                    A <strong>website checklist</strong> (or landing page checklist) is a systematic list of essential elements, features, and optimizations that high-converting pages include. Rather than building pages based on intuition or copying competitors blindly, checklists provide proven frameworks based on thousands of A/B tests and conversion rate optimization studies. Think of it as a quality assurance process—ensuring nothing critical is overlooked before launching campaigns or spending ad budget driving traffic to underperforming pages.
+                    A <strong>website checklist</strong> (or landing page checklist) is a systematic list of essential elements, features, and optimizations that high-converting pages include. Rather than building pages based on intuition or copying competitors blindly, checklists provide proven frameworks based on thousands of A/B tests and conversion rate optimization studies. Think of it as a quality assurance process - ensuring nothing critical is overlooked before launching campaigns or spending ad budget driving traffic to underperforming pages.
                   </p>
 
                   <p>
-                    The distinction matters: a <strong>website</strong> serves multiple purposes with interconnected pages (homepage, about us, product pages, blog, contact), while a <strong>landing page</strong> is a single-purpose page focused exclusively on one conversion goal—capturing leads, driving sales, registering attendees, or generating signups. Landing pages remove all navigation and distractions to maintain singular focus. The checklist for each differs significantly because the goals and user contexts diverge.
+                    The distinction matters: a <strong>website</strong> serves multiple purposes with interconnected pages (homepage, about us, product pages, blog, contact), while a <strong>landing page</strong> is a single-purpose page focused exclusively on one conversion goal, capturing leads, driving sales, registering attendees, or generating signups. Landing pages remove all navigation and distractions to maintain singular focus. The checklist for each differs significantly because the goals and user contexts diverge.
                   </p>
 
                   {/* Image 1 */}
@@ -109,11 +109,11 @@ export default function BlogPost() {
                   <h2 className="text-3xl font-bold text-foreground mt-12 mb-4">Why Most Landing Pages Fail (And How Checklists Prevent It)</h2>
                   
                   <p>
-                    The average landing page conversion rate is just 2.35%. This means 97.65% of visitors leave without converting—a staggering waste of traffic, ad spend, and opportunity. Why? Most pages fail due to systematic, preventable mistakes: unclear value propositions, slow load times, poor mobile experience, missing trust signals, or confusing conversion paths.
+                    The average landing page conversion rate is just 2.35%. This means 97.65% of visitors leave without converting - a staggering waste of traffic, ad spend, and opportunity. Why? Most pages fail due to systematic, preventable mistakes: unclear value propositions, slow load times, poor mobile experience, missing trust signals, or confusing conversion paths.
                   </p>
 
                   <p>
-                    Here's the data: According to <a href="https://www.unbounce.com" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">Unbounce's conversion benchmark report</a>, the top 25% of landing pages convert at 5.31% or higher—more than 2x the average. The top 10% convert at 11.45%+. What separates high performers from failures? Systematic implementation of conversion best practices—exactly what checklists ensure.
+                    Here's the data: According to <a href="https://unbounce.com/conversion-benchmark-report/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">Unbounce's conversion benchmark report</a>, the top 25% of landing pages convert at 5.31% or higher - more than 2x the average. The top 10% convert at 11.45%+. What separates high performers from failures? Systematic implementation of conversion best practices—exactly what checklists ensure.
                   </p>
 
                   <div className="my-8 overflow-x-auto">
@@ -156,7 +156,7 @@ export default function BlogPost() {
                   </div>
 
                   <p>
-                    Notice the pattern: top performers convert at 2-3x higher rates. The difference isn't magic—it's systematic execution of fundamentals. For more on identifying and fixing specific conversion issues, see our <Link href="/blog/how-to-analyze-website-conversion-issues" className="text-primary hover:underline font-medium">comprehensive website conversion analysis guide</Link>.
+                    Notice the pattern: top performers convert at 2-3x higher rates. The difference isn't magic - it's systematic execution of fundamentals. For more on identifying and fixing specific conversion issues, see our <Link href="/blog/how-to-analyze-website-conversion-issues" className="text-primary hover:underline font-medium">comprehensive website conversion analysis guide</Link>.
                   </p>
 
                   {/* Interactive Tool CTA Box */}
@@ -197,7 +197,7 @@ export default function BlogPost() {
                     <h3 className="text-xl font-bold text-foreground mb-3">The 7 Non-Negotiable Landing Page Elements</h3>
                     
                     <div className="space-y-6">
-                      <div className="border-l-4 border-red-600 pl-6 bg-red-50 p-4 rounded-r-lg">
+                      <div className="border-l-4 border-green-500 pl-6 bg-green-50 p-4 rounded-r-lg">
                         <h4 className="text-lg font-bold text-foreground mb-2">1. Clear Value Proposition (Above the Fold)</h4>
                         <p className="mb-3">
                           Your headline and subheadline must communicate what you offer, who it's for, and why it matters—in 5 seconds or less. This isn't about clever wordplay; it's about clarity and specificity.
