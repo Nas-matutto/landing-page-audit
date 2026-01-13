@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import LandingPageChecklistClient from './client'
 
 export const metadata: Metadata = {
   title: 'Landing Page Optimization Checklist | Free Interactive Tool',
@@ -29,4 +30,8 @@ export const metadata: Metadata = {
   alternates: {
     canonical: 'https://talktomedata.com/features/landing-page-checklist',
   },
+}
+
+export default function LandingPageChecklistPage() {
+  return <LandingPageChecklistClient />
 }

@@ -8,7 +8,6 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { useState } from "react"
 
-export { metadata } from './metadata'
 export default function LandingPageChecklist() {
   const [businessType, setBusinessType] = useState<string>("")
   const [stage, setStage] = useState<string>("")
