@@ -100,7 +100,7 @@ export default function BlogPost() {
                   {/* Image 1 */}
                   <div className="my-8 rounded-lg overflow-hidden border-2 border-border">
             <img
-                src="/blog/Talktomedata-report-screenshotjpg"
+                src="/blog/Talktomedata-report-screenshot.jpg"
                 alt="Talk to me Data AI Conversion Analysis Report Screenshot"
                 className="w-full h-auto"/>
             </div>
@@ -691,7 +691,7 @@ export default function BlogPost() {
                   </p>
 
                   <p className="text-xl font-medium text-foreground/90">
-                    The question isn't whether AI can improve your conversion rate—data proves it can. The question is: when will you start? Every day of delay is revenue left on the table.
+                    The question isn't whether AI can improve your conversion rate - data proves it can. The question is: when will you start? Every day of delay is revenue left on the table.
                   </p>
 
                   {/* Final CTA */}
