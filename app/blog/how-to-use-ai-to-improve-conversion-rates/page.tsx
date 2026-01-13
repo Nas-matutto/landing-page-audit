@@ -14,7 +14,7 @@ export default function BlogPost() {
   const faqs = [
     {
       question: "How does AI improve website conversion rates?",
-      answer: "AI improves conversion rates by analyzing thousands of data points across your website—including user behavior patterns, page speed metrics, mobile optimization, messaging clarity, and structural issues—then providing specific, prioritized recommendations based on proven conversion optimization principles. Unlike manual analysis which can take days and relies on subjective judgment, AI delivers instant, objective insights that identify the exact changes that will drive the highest conversion impact."
+      answer: "AI improves conversion rates by analyzing thousands of data points across your website, which includes user behavior patterns, page speed metrics, mobile optimization, messaging clarity, and structural issues. It then provides specific, prioritized recommendations based on proven conversion optimization principles. Unlike manual analysis which can take days and relies on subjective judgment, AI delivers instant, objective insights that identify the exact changes that will drive the highest conversion impact."
     },
     {
       question: "What is the difference between AI-powered and traditional conversion optimization?",
@@ -81,7 +81,7 @@ export default function BlogPost() {
                       <li>AI-powered conversion optimization typically improves conversion rates by 15-40% within the first month</li>
                       <li>AI prioritizes recommendations by expected ROI, ensuring you fix high-impact issues first</li>
                       <li>Talk to me Data AI analyzes 150+ factors including SEO, UX, messaging, speed, mobile, and structure</li>
-                      <li>Most AI recommendations require no coding—60-70% are content and copy changes</li>
+                      <li>Most AI recommendations require no coding and 60-70% are content and copy changes</li>
                       <li>AI identifies patterns across thousands of high-converting websites, applying proven best practices to your site</li>
                     </ul>
                   </div>
@@ -90,24 +90,25 @@ export default function BlogPost() {
                   <h2 className="text-3xl font-bold text-foreground mt-12 mb-4">What is AI-Powered Conversion Rate Optimization?</h2>
                   
                   <p>
-                    <strong>AI-powered conversion rate optimization</strong> uses artificial intelligence and machine learning algorithms to analyze websites, identify conversion barriers, and provide data-driven recommendations for improvement. Unlike traditional manual audits that rely on individual expertise and can take days or weeks, AI processes thousands of data points in seconds—analyzing everything from page speed and mobile optimization to messaging clarity and user experience patterns.
+                    <strong>AI-powered conversion rate optimization</strong> uses artificial intelligence and machine learning algorithms to analyze websites, identify conversion barriers, and provide data-driven recommendations for improvement. Unlike traditional manual audits that rely on individual expertise and can take days or weeks, AI processes thousands of data points in seconds, analyzing everything from page speed and mobile optimization to messaging clarity and user experience patterns.
                   </p>
 
                   <p>
-                    <strong>Conversion rate optimization (CRO)</strong> is the systematic process of increasing the percentage of website visitors who complete desired actions (purchases, signups, form submissions). Traditional CRO involves manual analysis, hypothesis formation, and iterative testing. AI-powered CRO accelerates this process by instantly identifying issues, predicting impact, and prioritizing fixes based on expected return on investment—essentially compressing months of optimization work into minutes of analysis.
+                    <strong>Conversion rate optimization (CRO)</strong> is the systematic process of increasing the percentage of website visitors who complete desired actions (purchases, signups, form submissions). Traditional CRO involves manual analysis, hypothesis formation, and iterative testing. AI-powered CRO accelerates this process by instantly identifying issues, predicting impact, and prioritizing fixes based on expected return on investment - essentially compressing months of optimization work into minutes of analysis.
                   </p>
 
-                  {/* Image placeholder */}
+                  {/* Image 1 */}
                   <div className="my-8 rounded-lg overflow-hidden border-2 border-border">
-                    <div className="bg-muted/30 aspect-video flex items-center justify-center">
-                      <span className="text-muted-foreground text-sm">[Image: AI Analysis Dashboard Example]</span>
-                    </div>
-                  </div>
+            <img
+                src="/blog/Talktomedata-report-screenshotjpg"
+                alt="Talk to me Data AI Conversion Analysis Report Screenshot"
+                className="w-full h-auto"/>
+            </div>
 
                   <h2 className="text-3xl font-bold text-foreground mt-12 mb-4">Why Should Founders Use AI for Conversion Optimization?</h2>
                   
                   <p>
-                    Founders face a fundamental constraint: time. Building product, managing team, fundraising, and driving growth leave little bandwidth for deep website optimization. Yet conversion rate directly impacts every marketing dollar spent—a 2% conversion rate versus 3% means 50% more revenue from the same traffic.
+                    Founders face a fundamental constraint: time. Building product, managing team, fundraising, and driving growth leave little bandwidth for deep website optimization. Yet conversion rate directly impacts every marketing dollar spent - a 2% conversion rate versus 3% means 50% more revenue from the same traffic.
                   </p>
 
                   <p>
@@ -124,7 +125,7 @@ export default function BlogPost() {
                   </ul>
 
                   <p>
-                    Consider this: if you spend $10,000/month on ads driving 5,000 visitors at a 2% conversion rate, you get 100 conversions. Improve to 3% (a 50% relative increase), and you get 150 conversions—50% more results from the same budget. AI helps identify exactly how to achieve this improvement.
+                    Consider this: if you spend $10,000/month on ads driving 5,000 visitors at a 2% conversion rate, you get 100 conversions. Improve to 3% (a 50% relative increase), and you get 150 conversions - 50% more results from the same budget. AI helps identify exactly how to achieve this improvement.
                   </p>
 
                   {/* Early CTA Box */}
@@ -137,7 +138,7 @@ export default function BlogPost() {
                         <h3 className="text-2xl font-bold text-foreground">Get Your Free AI Conversion Analysis</h3>
                       </div>
                       <p className="text-foreground mb-6 leading-relaxed">
-                        Stop guessing what's hurting your conversions. Our AI analyzes your entire website in 60 seconds—covering SEO, UX, messaging, speed, mobile optimization, and structure. Get a prioritized action plan with specific fixes ranked by expected conversion impact.
+                        Stop guessing what's hurting your conversions. Our AI analyzes your entire website in 60 seconds - covering SEO, UX, messaging, speed, mobile optimization, and structure. Get a prioritized action plan with specific fixes ranked by expected conversion impact.
                       </p>
                       <div className="flex flex-col sm:flex-row gap-4">
                         <Button 
@@ -173,7 +174,7 @@ export default function BlogPost() {
                       <li><strong>Rendering issues:</strong> Layout shifts, render-blocking resources, lazy loading implementation</li>
                     </ul>
                     <p className="mt-3">
-                      As we covered in our guide on <Link href="/blog/how-to-make-website-faster" className="text-primary hover:underline font-medium">how to make your website faster</Link>, speed directly impacts conversions—every 100ms of delay reduces conversions by 1%.
+                      As we covered in our guide on <Link href="/blog/how-to-make-website-faster" className="text-primary hover:underline font-medium">how to make your website faster</Link>, speed directly impacts conversions - every 100ms of delay reduces conversions by 1%.
                     </p>
                   </div>
 
@@ -230,12 +231,13 @@ export default function BlogPost() {
                     </ul>
                   </div>
 
-                  {/* Image placeholder */}
+                  {/* Image 2 */}
                   <div className="my-8 rounded-lg overflow-hidden border-2 border-border">
-                    <div className="bg-muted/30 aspect-video flex items-center justify-center">
-                      <span className="text-muted-foreground text-sm">[Image: AI Analysis Categories Breakdown]</span>
-                    </div>
-                  </div>
+            <img
+                src="/blog/Website_speed_report_TTMD.jpg"
+                alt="Website Speed Report by Talk to me Data"
+                className="w-full h-auto"/>
+            </div>
 
                   <h2 className="text-3xl font-bold text-foreground mt-12 mb-4">What Conversion Issues Can AI Identify?</h2>
                   
@@ -298,7 +300,7 @@ export default function BlogPost() {
                         <div className="w-12 h-12 rounded-full bg-gradient-to-br from-accent to-primary flex items-center justify-center">
                           <span className="text-2xl">🧮</span>
                         </div>
-                        <h3 className="text-2xl font-bold text-foreground">Calculate Your Revenue Impact</h3>
+                        <h3 className="text-2xl font-bold text-foreground">Calculate Your Conversion Rate</h3>
                       </div>
                       <p className="text-foreground mb-6 leading-relaxed">
                         See exactly how much additional revenue you could generate by improving your conversion rate. Our interactive calculator shows the financial impact of AI-driven optimization based on your current traffic and conversion metrics.
@@ -420,7 +422,7 @@ export default function BlogPost() {
 
                   <div className="bg-muted/30 border-l-4 border-primary p-6 my-8 rounded-r-lg">
                     <p className="text-foreground font-semibold mb-2">Real-World Example:</p>
-                    <p>A SaaS company with 10,000 monthly visitors and a 2% conversion rate (200 conversions) used AI to identify and fix mobile optimization issues, unclear CTAs, and page speed problems. Within 45 days, conversion rate improved to 2.8% (280 conversions)—a 40% increase. At $50 average customer value, this represented $4,000 in additional monthly revenue or $48,000 annually, from the same traffic.</p>
+                    <p>A SaaS company with 10,000 monthly visitors and a 2% conversion rate (200 conversions) used AI to identify and fix mobile optimization issues, unclear CTAs, and page speed problems. Within 45 days, conversion rate improved to 2.8% (280 conversions) - a 40% increase. At $50 average customer value, this represented $4,000 in additional monthly revenue or $48,000 annually, from the same traffic.</p>
                   </div>
 
                   <h2 className="text-3xl font-bold text-foreground mt-12 mb-4">How is AI Conversion Optimization Different from Hiring a CRO Expert?</h2>
@@ -486,7 +488,7 @@ export default function BlogPost() {
                   <div className="my-6">
                     <h3 className="text-xl font-bold text-foreground mb-3">1. Conversion-Focused Analysis</h3>
                     <p>
-                      Generic website analysis tools report technical metrics without connecting them to business outcomes. Talk to me Data's AI specifically analyzes factors proven to impact conversion rates, then prioritizes recommendations by expected conversion improvement—not just by technical severity.
+                      Generic website analysis tools report technical metrics without connecting them to business outcomes. Talk to me Data's AI specifically analyzes factors proven to impact conversion rates, then prioritizes recommendations by expected conversion improvement - not just by technical severity.
                     </p>
                   </div>
 
@@ -524,16 +526,17 @@ export default function BlogPost() {
                   <div className="my-6">
                     <h3 className="text-xl font-bold text-foreground mb-3">4. Continuous Learning and Updates</h3>
                     <p>
-                      Talk to me Data's AI continuously learns from new websites, emerging best practices, and conversion data. The recommendations you receive today incorporate the latest insights from thousands of optimized sites—knowledge that compounds over time as the AI analyzes more data.
+                      Talk to me Data's AI continuously learns from new websites, emerging best practices, and conversion data. The recommendations you receive today incorporate the latest insights from thousands of optimized sites - knowledge that compounds over time as the AI analyzes more data.
                     </p>
                   </div>
 
-                  {/* Image placeholder */}
+                  {/* Image 3 */}
                   <div className="my-8 rounded-lg overflow-hidden border-2 border-border">
-                    <div className="bg-muted/30 aspect-video flex items-center justify-center">
-                      <span className="text-muted-foreground text-sm">[Image: Talk to me Data AI Analysis Interface]</span>
-                    </div>
-                  </div>
+            <img
+                src="/blog/TTMD_sign_up_page.jpg"
+                alt="Talk to me Data Sign Up Page"
+                className="w-full h-auto"/>
+            </div>
 
                   <h2 className="text-3xl font-bold text-foreground mt-12 mb-4">How to Get Started with AI Conversion Optimization</h2>
                   
@@ -614,33 +617,33 @@ export default function BlogPost() {
                       <tbody>
                         <tr>
                           <td className="border border-border p-4">AI Conversion Analysis</td>
-                          <td className="border border-border p-4 font-semibold">Talk to me Data</td>
+                          <td className="border border-border p-4 font-semibold"><Link href="https://talktomedata.com/" className="text-primary hover:underline font-medium" target="_blank" rel="noopener noreferrer">Talk to Me Data</Link></td>
                           <td className="border border-border p-4">Free - $49</td>
                         </tr>
                         <tr className="bg-muted/20">
                           <td className="border border-border p-4">Analytics</td>
-                          <td className="border border-border p-4">Google Analytics 4</td>
+                          <td className="border border-border p-4"><Link href="https://marketingplatform.google.com/about/analytics/" className="text-primary hover:underline font-medium" target="_blank" rel="noopener noreferrer">Google Analytics 4</Link></td>
                           <td className="border border-border p-4">Free</td>
                         </tr>
                         <tr>
                           <td className="border border-border p-4">A/B Testing</td>
-                          <td className="border border-border p-4">Google Optimize</td>
-                          <td className="border border-border p-4">Free</td>
+                          <td className="border border-border p-4"><Link href="https://vwo.com/campaign/migrate-google-optimize/?utm_source=google&utm_medium=paid&utm_campaign=s-europe_webtesting_search_gold_bof_googleoptimize_brand&utm_content=750819699578&utm_term=google%20optimize&mobile=&network=g&device=c&gad_source=1&gad_campaignid=22524451409&gbraid=0AAAAADGBh2gqZZhDLlGzTezal-YULoQvN&gclid=Cj0KCQiA1JLLBhCDARIsAAVfy7h1z7NUxYB_Aup4mWMG9_D3r5uc9lhSaXO168RATZDpm0NVVpzD4nQaAhfqEALw_wcB" className="text-primary hover:underline font-medium" target="_blank" rel="noopener noreferrer">VWO</Link></td>
+                          <td className="border border-border p-4">+$100</td>
                         </tr>
                         <tr className="bg-muted/20">
                           <td className="border border-border p-4">Speed Testing</td>
-                          <td className="border border-border p-4">PageSpeed Insights</td>
-                          <td className="border border-border p-4">Free</td>
+                          <td className="border border-border p-4"><Link href="https://talktomedata.com/" className="text-primary hover:underline font-medium" target="_blank" rel="noopener noreferrer">Talk to Me Data</Link></td>
+                          <td className="border border-border p-4">Free - $49</td>
                         </tr>
                         <tr>
                           <td className="border border-border p-4">Image Compression</td>
-                          <td className="border border-border p-4">TinyPNG</td>
+                          <td className="border border-border p-4"><Link href="https://tinypng.com/" className="text-primary hover:underline font-medium" target="_blank" rel="noopener noreferrer">TinyPNG</Link></td>
                           <td className="border border-border p-4">Free</td>
                         </tr>
                         <tr className="bg-muted/20">
                           <td className="border border-border p-4">Heatmaps (optional)</td>
-                          <td className="border border-border p-4">Microsoft Clarity</td>
-                          <td className="border border-border p-4">Free</td>
+                          <td className="border border-border p-4"><Link href="https://www.hotjar.com/" className="text-primary hover:underline font-medium" target="_blank" rel="noopener noreferrer">Hotjar</Link></td>
+                          <td className="border border-border p-4">Free - $50</td>
                         </tr>
                       </tbody>
                     </table>
@@ -684,7 +687,7 @@ export default function BlogPost() {
                   </p>
 
                   <p>
-                    The competitive advantage belongs to founders who move quickly. While competitors debate whether to hire agencies or wonder which changes to make, you can analyze your site in 60 seconds, implement prioritized recommendations, and measure results—all within 30 days.
+                    The competitive advantage belongs to founders who move quickly. While competitors debate whether to hire agencies or wonder which changes to make, you can analyze your site in 60 seconds, implement prioritized recommendations, and measure results - all within 30 days.
                   </p>
 
                   <p className="text-xl font-medium text-foreground/90">
@@ -695,7 +698,7 @@ export default function BlogPost() {
                   <div className="bg-gradient-to-br from-primary/10 via-accent/10 to-primary/10 border-2 border-primary/20 p-8 my-12 rounded-2xl shadow-xl">
                     <h3 className="text-2xl font-bold text-foreground mb-4">Start Your AI-Powered Conversion Optimization Today</h3>
                     <p className="mb-6 leading-relaxed">
-                      Get instant, comprehensive analysis of your website covering SEO, UX, messaging, speed, mobile optimization, and site structure. Talk to me Data's AI identifies exactly what's hurting your conversions and provides a prioritized action plan ranked by expected impact. First analysis is free—see your conversion opportunities in 60 seconds.
+                      Get instant, comprehensive analysis of your website covering SEO, UX, messaging, speed, mobile optimization, and site structure. Talk to me Data's AI identifies exactly what's hurting your conversions and provides a prioritized action plan ranked by expected impact. First analysis is free - see your conversion opportunities in 60 seconds.
                     </p>
                     <Button 
                       className="bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90 text-white font-semibold py-6 px-8 cursor-pointer shadow-lg hover:shadow-xl transition-all"
