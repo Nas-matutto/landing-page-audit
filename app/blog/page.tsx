@@ -19,15 +19,39 @@ const blogPosts = [
     author: "Nas",
     featured: true,
   },
-  {
-    slug: "increase-conversion-rate-30-days",
-    title: "How to Increase Website Conversion Rate in 30 Days (No Redesign Required)",
+   {
+    slug: "how-to-use-ai-to-improve-conversion-rates",
+    title: "How to Use AI to Improve Conversion Rate: A Practical Guide for Founders",
     excerpt:
-      "Achieve 15-30% conversion improvements in 30 days using the Sprint Method. Focus on high-impact changes that require no redesign.",
-    category: "Conversion",
-    date: "December 21, 2025",
+      "Discover how AI analyzes 150+ factors in 60 seconds to boost conversions by 15-40%. Learn to implement AI recommendations and measure results.",
+    category: "AI & Conversion",
+    date: "January 13, 2026",
+    readTime: "11 min read",
+    image: "/blog/ai-conversion-cover.jpg",
+    author: "Nas",
+    featured: false,
+  },
+    {
+    slug: "how-to-build-website-to-collect-leads",
+    title: "How to Build a Website to Collect Leads: The Complete B2B Landing Page Guide",
+    excerpt:
+      "Master B2B lead generation with proven landing page structures, form optimization strategies, and follow-up systems that convert visitors into qualified leads.",
+    category: "Lead Generation",
+    date: "January 08, 2026",
+    readTime: "12 min read",
+    image: "/blog/lead-generation-cover.jpg",
+    author: "Nas",
+    featured: false,
+  },
+     {
+    slug: "how-to-make-website-faster",
+    title: "How to Make Your Website Faster: The Complete Guide for Founders",
+    excerpt:
+      "Practical speed optimization strategies that reduce load time by 50-70%. Learn which tools to use and how page speed impacts conversions.",
+    category: "Performance",
+    date: "December 26, 2025",
     readTime: "10 min read",
-    image: "/blog/30-day-sprint-cover.jpg",
+    image: "/blog/website-speed-cover.jpg",
     author: "Nas",
     featured: false,
   },
@@ -43,30 +67,18 @@ const blogPosts = [
     author: "Nas",
     featured: false,
   },
-    {
-    slug: "how-to-make-website-faster",
-    title: "How to Make Your Website Faster: The Complete Guide for Founders",
+   {
+    slug: "increase-conversion-rate-30-days",
+    title: "How to Increase Website Conversion Rate in 30 Days (No Redesign Required)",
     excerpt:
-      "Practical speed optimization strategies that reduce load time by 50-70%. Learn which tools to use and how page speed impacts conversions.",
-    category: "Performance",
-    date: "December 26, 2025",
+      "Achieve 15-30% conversion improvements in 30 days using the Sprint Method. Focus on high-impact changes that require no redesign.",
+    category: "Conversion",
+    date: "December 21, 2025",
     readTime: "10 min read",
-    image: "/blog/website-speed-cover.jpg",
+    image: "/blog/30-day-sprint-cover.jpg",
     author: "Nas",
     featured: false,
-  },
-  {
-    slug: "how-to-use-ai-to-improve-conversion-rates",
-    title: "How to Use AI to Improve Conversion Rate: A Practical Guide for Founders",
-    excerpt:
-      "Discover how AI analyzes 150+ factors in 60 seconds to boost conversions by 15-40%. Learn to implement AI recommendations and measure results.",
-    category: "AI & Conversion",
-    date: "January 13, 2026",
-    readTime: "11 min read",
-    image: "/blog/ai-conversion-cover.jpg",
-    author: "Nas",
-    featured: false,
-  },
+  }
   // Add more blog posts here as you write them
 ]
 
