@@ -2,7 +2,7 @@
 
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
-import { ArrowLeft, TrendingUp, AlertCircle } from "lucide-react"
+import { ArrowLeft, TrendingUp, AlertCircle, Calculator } from "lucide-react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
@@ -59,7 +59,7 @@ export default function ConversionRateCalculator() {
         status: "Low",
         color: "text-red-600",
         bgColor: "bg-red-100",
-        message: "Critical: Your conversion rate is severely underperforming. This indicates fundamental issues with your website's value proposition, user experience, or technical performance. A comprehensive redesign may be necessary.",
+        message: "Critical: Your conversion rate is severely underperforming. This indicates fundamental issues with your website's value proposition, user experience, or technical performance. A comprehensive analysis is recommended.",
       }
     }
   }
@@ -80,30 +80,33 @@ export default function ConversionRateCalculator() {
           <div className="max-w-4xl mx-auto">
             
             {/* Back button */}
-            <Link href="/features" className="inline-flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors mb-8 group">
+            <Link href="/" className="inline-flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors mb-8 group">
               <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
-              <span>Back to Features</span>
+              <span>Back to Home</span>
             </Link>
 
-            {/* Page Header */}
+            {/* Page Header - SEO Optimized */}
             <div className="text-center mb-12">
               <div className="inline-block mb-4">
                 <span className="px-3 py-1 bg-primary/10 text-primary text-sm font-semibold rounded-full">
-                  Analytics Tool
+                  Free Calculator Tool
                 </span>
               </div>
-              <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight mb-6">
-                Conversion Rate Calculator
+              <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight mb-6 text-balance">
+                Free Conversion Rate Calculator: Calculate Your Website's Performance
               </h1>
-              <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-                Calculate your website's conversion rate and get actionable insights to improve performance
+              <p className="text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+                Instantly calculate your website conversion rate and discover how to improve it. Get personalized insights and industry benchmarks—completely free.
               </p>
             </div>
 
             {/* Calculator Card */}
-            <Card className="glass-card border-0 mb-8">
+            <Card className="glass-card border-2 border-primary/20 mb-8 shadow-lg">
               <CardHeader>
-                <CardTitle className="text-2xl">Calculate Your Conversion Rate</CardTitle>
+                <CardTitle className="text-2xl flex items-center gap-2">
+                  <Calculator className="w-6 h-6 text-primary" />
+                  Calculate Your Conversion Rate
+                </CardTitle>
                 <CardDescription className="text-base">
                   Enter your website traffic and conversions to see how you're performing
                 </CardDescription>
@@ -112,7 +115,7 @@ export default function ConversionRateCalculator() {
                 <div className="grid md:grid-cols-2 gap-6">
                   <div>
                     <label htmlFor="visitors" className="block text-sm font-medium mb-2">
-                      Total Visitors
+                      Total Visitors (per month)
                     </label>
                     <input
                       id="visitors"
@@ -120,12 +123,13 @@ export default function ConversionRateCalculator() {
                       value={visitors}
                       onChange={(e) => setVisitors(e.target.value)}
                       placeholder="e.g., 10000"
-                      className="w-full rounded-lg border border-input bg-white/60 px-4 py-3 outline-none placeholder:text-muted-foreground focus:ring-2 focus:ring-primary"
+                      className="w-full rounded-lg border-2 border-input bg-white/60 px-4 py-3 outline-none placeholder:text-muted-foreground focus:ring-2 focus:ring-primary focus:border-primary transition-all"
+                      aria-label="Enter total number of website visitors"
                     />
                   </div>
                   <div>
                     <label htmlFor="conversions" className="block text-sm font-medium mb-2">
-                      Total Conversions
+                      Total Conversions (per month)
                     </label>
                     <input
                       id="conversions"
@@ -133,7 +137,8 @@ export default function ConversionRateCalculator() {
                       value={conversions}
                       onChange={(e) => setConversions(e.target.value)}
                       placeholder="e.g., 250"
-                      className="w-full rounded-lg border border-input bg-white/60 px-4 py-3 outline-none placeholder:text-muted-foreground focus:ring-2 focus:ring-primary"
+                      className="w-full rounded-lg border-2 border-input bg-white/60 px-4 py-3 outline-none placeholder:text-muted-foreground focus:ring-2 focus:ring-primary focus:border-primary transition-all"
+                      aria-label="Enter total number of conversions"
                     />
                   </div>
                 </div>
@@ -141,9 +146,9 @@ export default function ConversionRateCalculator() {
                 <Button
                   onClick={calculateConversionRate}
                   disabled={!visitors || !conversions}
-                  className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-semibold cursor-pointer h-12"
+                  className="w-full bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90 text-white font-semibold cursor-pointer h-12 shadow-lg hover:shadow-xl transition-all"
                 >
-                  Calculate Conversion Rate
+                  Calculate Conversion Rate →
                 </Button>
               </CardContent>
             </Card>
@@ -152,12 +157,12 @@ export default function ConversionRateCalculator() {
             {conversionRate !== null && (
               <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
                 {/* Conversion Rate Display */}
-                <Card className="glass-card border-0 bg-gradient-to-br from-primary/5 to-primary/10">
+                <Card className="glass-card border-0 bg-gradient-to-br from-primary/10 via-accent/5 to-primary/10 shadow-xl">
                   <CardContent className="pt-8 pb-8">
                     <div className="text-center">
-                      <p className="text-muted-foreground mb-2">Your Conversion Rate</p>
+                      <p className="text-muted-foreground mb-2 text-lg">Your Conversion Rate</p>
                       <div className="flex items-center justify-center gap-2 mb-4">
-                        <span className="text-6xl font-bold text-primary">
+                        <span className="text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent">
                           {conversionRate.toFixed(2)}%
                         </span>
                       </div>
@@ -171,11 +176,11 @@ export default function ConversionRateCalculator() {
                 </Card>
 
                 {/* Insight */}
-                <Card className="glass-card border-0">
+                <Card className="glass-card border-0 shadow-lg">
                   <CardHeader>
                     <CardTitle className="flex items-center gap-2">
                       <AlertCircle className="w-5 h-5 text-primary" />
-                      What This Means
+                      What This Means for Your Business
                     </CardTitle>
                   </CardHeader>
                   <CardContent>
@@ -185,12 +190,40 @@ export default function ConversionRateCalculator() {
                   </CardContent>
                 </Card>
 
+                {/* Early CTA - Gradient Style */}
+                <div className="rounded-2xl overflow-hidden border-2 border-primary bg-gradient-to-br from-primary/5 via-accent/5 to-primary/5 shadow-lg">
+                  <div className="p-8">
+                    <div className="flex items-center gap-3 mb-4">
+                      <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center">
+                        <span className="text-2xl">🎯</span>
+                      </div>
+                      <h3 className="text-2xl font-bold text-foreground">Want to Improve Your Conversion Rate?</h3>
+                    </div>
+                    <p className="text-foreground mb-6 leading-relaxed">
+                      Get a comprehensive AI-powered analysis of your website. Discover exactly what's hurting your conversions and receive a prioritized action plan to boost your results. Our analysis covers UX, SEO, messaging, speed, mobile optimization, and more.
+                    </p>
+                    <div className="flex flex-col sm:flex-row gap-4">
+                      <Button 
+                        className="bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90 text-white font-semibold py-6 px-8 cursor-pointer shadow-lg hover:shadow-xl transition-all"
+                        onClick={() => window.open('https://app.talktomedata.com/signup', '_blank')}
+                      >
+                        Get Free Website Analysis →
+                      </Button>
+                      <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                        <span>✓ Takes 60 seconds</span>
+                        <span>•</span>
+                        <span>✓ No credit card needed</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
                 {/* Industry Benchmarks */}
-                <Card className="glass-card border-0">
+                <Card className="glass-card border-0 shadow-lg">
                   <CardHeader>
                     <CardTitle className="flex items-center gap-2">
                       <TrendingUp className="w-5 h-5 text-primary" />
-                      Industry Benchmarks
+                      Industry Conversion Rate Benchmarks
                     </CardTitle>
                     <CardDescription>
                       See how your conversion rate compares to industry averages
@@ -198,72 +231,78 @@ export default function ConversionRateCalculator() {
                   </CardHeader>
                   <CardContent>
                     <div className="grid md:grid-cols-3 gap-4">
-                      <div className="p-4 bg-muted/30 rounded-lg">
+                      <div className="p-4 bg-gradient-to-br from-muted/50 to-muted/30 rounded-lg border border-border">
                         <p className="text-sm text-muted-foreground mb-1">E-commerce</p>
-                        <p className="text-2xl font-bold">{getBenchmark().ecommerce}</p>
+                        <p className="text-2xl font-bold text-primary">{getBenchmark().ecommerce}</p>
+                        <p className="text-xs text-muted-foreground mt-1">Online retail stores</p>
                       </div>
-                      <div className="p-4 bg-muted/30 rounded-lg">
+                      <div className="p-4 bg-gradient-to-br from-muted/50 to-muted/30 rounded-lg border border-border">
                         <p className="text-sm text-muted-foreground mb-1">SaaS</p>
-                        <p className="text-2xl font-bold">{getBenchmark().saas}</p>
+                        <p className="text-2xl font-bold text-primary">{getBenchmark().saas}</p>
+                        <p className="text-xs text-muted-foreground mt-1">Software as a service</p>
                       </div>
-                      <div className="p-4 bg-muted/30 rounded-lg">
+                      <div className="p-4 bg-gradient-to-br from-muted/50 to-muted/30 rounded-lg border border-border">
                         <p className="text-sm text-muted-foreground mb-1">Lead Generation</p>
-                        <p className="text-2xl font-bold">{getBenchmark().leadGen}</p>
+                        <p className="text-2xl font-bold text-primary">{getBenchmark().leadGen}</p>
+                        <p className="text-xs text-muted-foreground mt-1">B2B & services</p>
                       </div>
                     </div>
                   </CardContent>
                 </Card>
 
                 {/* Quick Tips */}
-                <Card className="glass-card border-0">
+                <Card className="glass-card border-0 shadow-lg">
                   <CardHeader>
-                    <CardTitle>5 Quick Ways to Improve Your Conversion Rate</CardTitle>
+                    <CardTitle>5 Proven Ways to Improve Your Conversion Rate</CardTitle>
+                    <CardDescription>
+                      Implement these strategies to boost your website performance
+                    </CardDescription>
                   </CardHeader>
                   <CardContent>
-                    <ul className="space-y-3">
+                    <ul className="space-y-4">
                       <li className="flex items-start gap-3">
-                        <span className="flex h-6 w-6 items-center justify-center rounded-full bg-primary text-primary-foreground text-sm flex-shrink-0 mt-0.5">
+                        <span className="flex h-6 w-6 items-center justify-center rounded-full bg-gradient-to-br from-primary to-accent text-white text-sm flex-shrink-0 mt-0.5 font-semibold">
                           1
                         </span>
                         <div>
-                          <p className="font-semibold">Clarify Your Value Proposition</p>
-                          <p className="text-sm text-muted-foreground">Make it crystal clear what you offer and why visitors should choose you in the first 5 seconds</p>
+                          <p className="font-semibold text-foreground">Clarify Your Value Proposition</p>
+                          <p className="text-sm text-muted-foreground">Make it crystal clear what you offer and why visitors should choose you in the first 5 seconds. A clear headline can improve conversions by 20-40%.</p>
                         </div>
                       </li>
                       <li className="flex items-start gap-3">
-                        <span className="flex h-6 w-6 items-center justify-center rounded-full bg-primary text-primary-foreground text-sm flex-shrink-0 mt-0.5">
+                        <span className="flex h-6 w-6 items-center justify-center rounded-full bg-gradient-to-br from-primary to-accent text-white text-sm flex-shrink-0 mt-0.5 font-semibold">
                           2
                         </span>
                         <div>
-                          <p className="font-semibold">Improve Page Speed</p>
-                          <p className="text-sm text-muted-foreground">Every second of load time costs you 7% in conversions. Aim for under 3 seconds</p>
+                          <p className="font-semibold text-foreground">Improve Page Speed</p>
+                          <p className="text-sm text-muted-foreground">Every second of load time costs you 7% in conversions. Aim for under 3 seconds. Learn more in our <Link href="/blog/how-to-make-website-faster" className="text-primary hover:underline">website speed guide</Link>.</p>
                         </div>
                       </li>
                       <li className="flex items-start gap-3">
-                        <span className="flex h-6 w-6 items-center justify-center rounded-full bg-primary text-primary-foreground text-sm flex-shrink-0 mt-0.5">
+                        <span className="flex h-6 w-6 items-center justify-center rounded-full bg-gradient-to-br from-primary to-accent text-white text-sm flex-shrink-0 mt-0.5 font-semibold">
                           3
                         </span>
                         <div>
-                          <p className="font-semibold">Add Trust Signals</p>
-                          <p className="text-sm text-muted-foreground">Display customer testimonials, security badges, and client logos to build credibility</p>
+                          <p className="font-semibold text-foreground">Add Trust Signals</p>
+                          <p className="text-sm text-muted-foreground">Display customer testimonials, security badges, and client logos to build credibility. Trust signals can increase conversions by 15-42%.</p>
                         </div>
                       </li>
                       <li className="flex items-start gap-3">
-                        <span className="flex h-6 w-6 items-center justify-center rounded-full bg-primary text-primary-foreground text-sm flex-shrink-0 mt-0.5">
+                        <span className="flex h-6 w-6 items-center justify-center rounded-full bg-gradient-to-br from-primary to-accent text-white text-sm flex-shrink-0 mt-0.5 font-semibold">
                           4
                         </span>
                         <div>
-                          <p className="font-semibold">Simplify Your Forms</p>
-                          <p className="text-sm text-muted-foreground">Reduce form fields from 11 to 4 can increase conversions by 120%</p>
+                          <p className="font-semibold text-foreground">Simplify Your Forms</p>
+                          <p className="text-sm text-muted-foreground">Reducing form fields from 11 to 4 can increase conversions by 120%. Only ask for essential information.</p>
                         </div>
                       </li>
                       <li className="flex items-start gap-3">
-                        <span className="flex h-6 w-6 items-center justify-center rounded-full bg-primary text-primary-foreground text-sm flex-shrink-0 mt-0.5">
+                        <span className="flex h-6 w-6 items-center justify-center rounded-full bg-gradient-to-br from-primary to-accent text-white text-sm flex-shrink-0 mt-0.5 font-semibold">
                           5
                         </span>
                         <div>
-                          <p className="font-semibold">Optimize for Mobile</p>
-                          <p className="text-sm text-muted-foreground">60% of traffic is mobile. Ensure your site works perfectly on all devices</p>
+                          <p className="font-semibold text-foreground">Optimize for Mobile</p>
+                          <p className="text-sm text-muted-foreground">60%+ of traffic is mobile. Ensure buttons are 44x44 pixels minimum, text is readable, and forms work perfectly on small screens.</p>
                         </div>
                       </li>
                     </ul>
@@ -272,102 +311,175 @@ export default function ConversionRateCalculator() {
               </div>
             )}
 
-            {/* CTA Section with Educational Content */}
+            {/* Educational Content Section - SEO Optimized */}
             <div className="mt-12 space-y-8">
-              <Card className="glass-card border-0 bg-gradient-to-r from-primary/5 to-primary/10">
-                <CardContent className="pt-8 pb-8 text-center">
-                  <h2 className="text-2xl font-bold mb-4">
-                    Want a Complete Website Analysis?
-                  </h2>
-                  <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-                    Get detailed insights on UX, SEO, page speed, mobile optimization, and conversion optimization with our AI-powered analyzer.
-                  </p>
-                  <a 
-                    href="https://app.talktomedata.com/signup"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <Button className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold cursor-pointer">
-                      Analyze Your Website Free →
-                    </Button>
-                  </a>
-                </CardContent>
-              </Card>
-
-              {/* Educational Content Section */}
+              
+              {/* Main Educational Content */}
               <div className="prose prose-lg max-w-none">
-                <Card className="glass-card border-0">
+                <Card className="glass-card border-0 shadow-lg">
                   <CardHeader>
-                    <CardTitle className="text-2xl">Why Your Conversion Rate Matters More Than You Think</CardTitle>
+                    <CardTitle className="text-3xl">What is a Conversion Rate and Why Does It Matter?</CardTitle>
+                    <CardDescription className="text-base">
+                      Understanding conversion rates is essential for online business success
+                    </CardDescription>
                   </CardHeader>
                   <CardContent className="space-y-6 text-muted-foreground leading-relaxed">
-                    <p>
-                      Your conversion rate is one of the most critical metrics for your online business success. It's the percentage of visitors who take a desired action on your website - whether that's making a purchase, signing up for a newsletter, or requesting a demo. Understanding and optimizing this number can be the difference between business growth and stagnation.
-                    </p>
-
                     <div>
-                      <h3 className="text-xl font-bold text-foreground mb-3">The Power of Small Improvements</h3>
+                      <h3 className="text-2xl font-bold text-foreground mb-3">How to Calculate Conversion Rate</h3>
                       <p>
-                        Here's why calculating and tracking your conversion rate is essential: even small improvements compound into massive revenue gains. If you're currently converting at 2% and improve to 3% (just a 1 percentage point increase), you've actually grown your conversions by 50%.
+                        A <strong>conversion rate</strong> is the percentage of website visitors who complete a desired action—whether that's making a purchase, signing up for a newsletter, requesting a demo, or downloading a resource. The conversion rate formula is simple:
                       </p>
-                      <p className="mt-3">
-                        Let's put this in concrete terms: If you have 10,000 monthly visitors and increase your conversion rate from 2% to 3%, you go from 200 conversions to 300 conversions per month. At an average order value of $100, that's an additional $10,000 in monthly revenue, or $120,000 annually. All without spending a single dollar more on traffic acquisition.
+                      <div className="bg-primary/5 border-2 border-primary/20 p-6 rounded-lg my-4">
+                        <p className="text-center text-lg font-semibold text-foreground">
+                          Conversion Rate = (Total Conversions ÷ Total Visitors) × 100
+                        </p>
+                      </div>
+                      <p>
+                        For example, if 10,000 people visit your website and 250 make a purchase, your conversion rate is (250 ÷ 10,000) × 100 = 2.5%.
                       </p>
                     </div>
 
                     <div>
-                      <h3 className="text-xl font-bold text-foreground mb-3">What's Considered a Good Conversion Rate?</h3>
+                      <h3 className="text-2xl font-bold text-foreground mb-3">Why Your Conversion Rate Matters More Than Traffic</h3>
                       <p>
-                        Understanding where your conversion rate stands is crucial for setting realistic optimization goals:
+                        Many business owners obsess over driving more traffic to their website through ads, SEO, and content marketing—while ignoring a fundamental truth: <strong>it's far cheaper and more profitable to convert more of your existing traffic than to acquire new visitors.</strong>
+                      </p>
+                      <p className="mt-3">
+                        Consider this real-world example: If you spend $10,000/month on ads driving 5,000 visitors at a 2% conversion rate, you get 100 conversions. Improve to 3% (a 50% relative increase), and you get 150 conversions—50% more results from the same budget. At $100 average order value, that's an extra $5,000 per month or $60,000 annually.
+                      </p>
+                    </div>
+
+                    <div>
+                      <h3 className="text-2xl font-bold text-foreground mb-3">What is a Good Conversion Rate?</h3>
+                      <p>
+                        Understanding where your conversion rate stands is crucial for setting realistic optimization goals. Here are industry-standard benchmarks:
                       </p>
                       <ul className="list-disc pl-6 space-y-2 mt-3">
-                        <li><strong className="text-red-600">Under 1%:</strong> This is critically low and indicates serious problems with your website's value proposition, user experience, or technical performance. Immediate action is required.</li>
-                        <li><strong className="text-orange-600">1-2%:</strong> Below average. Your site is underperforming compared to industry standards. Focus on fundamental improvements like clarifying your offer and simplifying the conversion path.</li>
-                        <li><strong className="text-yellow-600">2-4%:</strong> Average. You're in the middle of the pack. There's significant room for improvement through systematic optimization and testing.</li>
-                        <li><strong className="text-green-600">4-7%:</strong> Good. You're performing above average and doing many things right. Continue testing and refining to reach excellent status.</li>
-                        <li><strong className="text-green-800">Above 7%:</strong> Excellent. You're in the top tier of websites. Your conversion optimization efforts are paying off significantly. Maintain this through continuous testing and improvement.</li>
+                        <li><strong className="text-red-600">Under 1%:</strong> Critically low. Indicates serious problems with value proposition, user experience, or technical performance. Immediate action required.</li>
+                        <li><strong className="text-orange-600">1-2%:</strong> Below average. Your site is underperforming. Focus on fundamental improvements like clarifying your offer and simplifying the conversion path.</li>
+                        <li><strong className="text-yellow-600">2-4%:</strong> Average. You're in the middle of the pack. Significant room for improvement through systematic optimization.</li>
+                        <li><strong className="text-green-600">4-7%:</strong> Good. Above average performance. Continue testing and refining to reach excellent status.</li>
+                        <li><strong className="text-green-800">Above 7%:</strong> Excellent. Top 5% of websites. Your optimization efforts are paying off significantly.</li>
                       </ul>
                     </div>
 
                     <div>
-                      <h3 className="text-xl font-bold text-foreground mb-3">Why Knowing Your Conversion Rate is Critical</h3>
+                      <h3 className="text-2xl font-bold text-foreground mb-3">The Compounding Effect of Small Improvements</h3>
                       <p>
-                        Many business owners focus exclusively on driving more traffic to their website. They invest heavily in ads, SEO, and content marketing—all while ignoring a fundamental truth: it's far cheaper and more profitable to convert more of your existing traffic than to acquire new visitors.
+                        The beauty of conversion rate optimization is that improvements compound over time. Let's break down the math:
                       </p>
                       <p className="mt-3">
-                        Calculating your conversion rate gives you a baseline for improvement. Without this number, you're flying blind. You can't improve what you don't measure. Once you know your current conversion rate, you can:
+                        A website with 10,000 monthly visitors converting at 2% generates 200 conversions. Here's what happens with various improvements:
                       </p>
                       <ul className="list-disc pl-6 space-y-2 mt-3">
-                        <li>Set realistic, data-driven goals for optimization</li>
-                        <li>Calculate the ROI of conversion optimization efforts</li>
-                        <li>Identify which pages or traffic sources convert best</li>
-                        <li>Make informed decisions about where to invest resources</li>
-                        <li>Track the impact of website changes and experiments</li>
+                        <li><strong>Improve to 2.5%:</strong> 250 conversions (25% increase) = +$5,000/month at $100 AOV</li>
+                        <li><strong>Improve to 3%:</strong> 300 conversions (50% increase) = +$10,000/month</li>
+                        <li><strong>Improve to 4%:</strong> 400 conversions (100% increase) = +$20,000/month</li>
+                        <li><strong>Improve to 5%:</strong> 500 conversions (150% increase) = +$30,000/month</li>
                       </ul>
+                      <p className="mt-3">
+                        These aren't hypothetical numbers. Many businesses achieve 2-3 percentage point improvements within 30-90 days of systematic optimization. Use our <Link href="/blog/increase-conversion-rate-30-days" className="text-primary hover:underline font-medium">30-day sprint method</Link> to see results fast.
+                      </p>
                     </div>
 
                     <div>
-                      <h3 className="text-xl font-bold text-foreground mb-3">The Compounding Effect of Optimization</h3>
+                      <h3 className="text-2xl font-bold text-foreground mb-3">How to Improve Your Conversion Rate: Step-by-Step</h3>
                       <p>
-                        The beauty of conversion rate optimization is that improvements compound over time. When you increase your conversion rate by 2%, you're not just getting 2% more revenue - you're getting more data to optimize further, more customer feedback, more testimonials, and more resources to reinvest in growth.
+                        Improving your conversion rate isn't about guesswork—it's about systematic analysis and implementation:
+                      </p>
+                      <ol className="list-decimal pl-6 space-y-3 mt-3">
+                        <li>
+                          <strong>Analyze your current performance:</strong> Use this calculator to establish your baseline. You can't improve what you don't measure.
+                        </li>
+                        <li>
+                          <strong>Identify conversion barriers:</strong> Run a comprehensive website analysis to discover what's holding you back. Our <Link href="/blog/how-to-analyze-website-conversion-issues" className="text-primary hover:underline font-medium">conversion analysis guide</Link> walks through the complete process.
+                        </li>
+                        <li>
+                          <strong>Prioritize high-impact changes:</strong> Focus on quick wins first—headline optimization, CTA improvements, trust signals. These require no coding and can improve conversions by 10-15%.
+                        </li>
+                        <li>
+                          <strong>Implement technical optimizations:</strong> Address page speed, mobile optimization, and form simplification. Technical fixes typically add another 5-10% improvement.
+                        </li>
+                        <li>
+                          <strong>Test and measure:</strong> Use A/B testing to validate changes. Track results weekly and iterate based on data.
+                        </li>
+                      </ol>
+                    </div>
+
+                    <div>
+                      <h3 className="text-2xl font-bold text-foreground mb-3">Using AI to Optimize Conversion Rates</h3>
+                      <p>
+                        Traditional conversion optimization requires expensive consultants and weeks of manual analysis. AI changes everything by analyzing your entire website in seconds, identifying issues humans might miss, and prioritizing fixes by expected impact.
                       </p>
                       <p className="mt-3">
-                        Consider this: if you improve your conversion rate by just 0.5% per month through systematic testing and optimization, after 12 months you'll have increased your conversions by over 6%. For a business with $500,000 in annual revenue, that's an additional $30,000+ without increasing your marketing spend.
+                        <strong>Talk to me Data</strong> uses AI to analyze 150+ factors across your website—including SEO, UX, messaging, speed, mobile optimization, and site structure. Instead of spending $5,000-15,000 on manual audits that take weeks, get instant, comprehensive analysis for free. Learn more about <Link href="/blog/how-to-use-ai-to-improve-conversion-rate" className="text-primary hover:underline font-medium">using AI for conversion optimization</Link>.
                       </p>
                     </div>
 
-                    <div className="bg-primary/5 border-l-4 border-primary p-6 rounded-r-lg">
-                      <h3 className="text-xl font-bold text-foreground mb-3">Take Action Today</h3>
+                    <div>
+                      <h3 className="text-2xl font-bold text-foreground mb-3">Common Conversion Rate Mistakes to Avoid</h3>
                       <p>
-                        Don't let your conversion rate remain a mystery. Sign up to <strong><a href="https://app.talktomedata.com/signup" target="_blank" rel="noopener noreferrer">Talk to me Data</a></strong> to understand exactly which sections of your website can be optimized for conversion. With the free report, you'll understand where you stand, and can start making incremental improvements. Remember: a website converting at 1% is leaving money on the table. A website converting at 5% or higher is a well-oiled revenue machine.
+                        Many websites unknowingly sabotage their conversion rates. Here are the most common mistakes:
+                      </p>
+                      <ul className="list-disc pl-6 space-y-2 mt-3">
+                        <li><strong>Unclear value proposition:</strong> Visitors can't understand what you offer in 5 seconds</li>
+                        <li><strong>Slow page speed:</strong> Sites taking 3+ seconds to load lose 50%+ of visitors</li>
+                        <li><strong>Poor mobile experience:</strong> 60% of traffic is mobile, but most sites aren't optimized</li>
+                        <li><strong>Too many form fields:</strong> Asking for 10+ pieces of information kills conversions</li>
+                        <li><strong>Missing trust signals:</strong> No testimonials, reviews, or security badges</li>
+                        <li><strong>Weak CTAs:</strong> Generic "Submit" buttons instead of action-oriented copy</li>
+                        <li><strong>Complex navigation:</strong> Visitors can't find what they need quickly</li>
+                      </ul>
+                    </div>
+
+                    <div className="bg-gradient-to-br from-primary/5 via-accent/5 to-primary/5 border-2 border-primary/20 p-8 rounded-2xl shadow-lg">
+                      <h3 className="text-2xl font-bold text-foreground mb-3">Take Action: Optimize Your Conversion Rate Today</h3>
+                      <p>
+                        Now that you've calculated your conversion rate and understand its importance, it's time to improve it. A website converting at 1% is leaving massive revenue on the table. A website converting at 5%+ is a well-oiled revenue machine.
                       </p>
                       <p className="mt-3">
-                        The difference between these two scenarios could be hundreds of thousands of dollars in annual revenue. Start tracking, start testing, and start optimizing today.
+                        The difference between these scenarios could be hundreds of thousands of dollars in annual revenue. Don't let your conversion rate remain a mystery or accept mediocre performance.
+                      </p>
+                      <div className="mt-6">
+                        <Button 
+                          className="bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90 text-white font-semibold py-6 px-8 cursor-pointer shadow-lg hover:shadow-xl transition-all"
+                          onClick={() => window.open('https://app.talktomedata.com/signup', '_blank')}
+                        >
+                          Get Your Free Conversion Analysis Now →
+                        </Button>
+                      </div>
+                      <p className="text-sm text-muted-foreground mt-4">
+                        Discover exactly what's hurting your conversions. Our AI analyzes your entire website and provides a prioritized action plan. Results in 60 seconds—no credit card required.
                       </p>
                     </div>
                   </CardContent>
                 </Card>
               </div>
+
+              {/* Final CTA with Gradient */}
+              <div className="rounded-2xl overflow-hidden border-2 border-accent bg-gradient-to-br from-accent/10 via-primary/5 to-accent/10 shadow-xl">
+                <div className="p-8 text-center">
+                  <div className="flex items-center justify-center gap-3 mb-4">
+                    <div className="w-12 h-12 rounded-full bg-gradient-to-br from-accent to-primary flex items-center justify-center">
+                      <span className="text-2xl">🚀</span>
+                    </div>
+                    <h3 className="text-2xl font-bold text-foreground">Ready to Double Your Conversion Rate?</h3>
+                  </div>
+                  <p className="text-foreground mb-6 max-w-2xl mx-auto leading-relaxed">
+                    Get instant AI-powered insights on exactly what's holding back your conversions. Our comprehensive analysis covers everything from page speed to mobile optimization to messaging clarity. Start optimizing today—completely free.
+                  </p>
+                  <Button 
+                    className="bg-gradient-to-r from-accent to-primary hover:from-accent/90 hover:to-primary/90 text-white font-semibold py-6 px-8 cursor-pointer shadow-lg hover:shadow-xl transition-all"
+                    onClick={() => window.open('https://app.talktomedata.com/signup', '_blank')}
+                  >
+                    Analyze Your Website Free →
+                  </Button>
+                  <p className="text-sm text-muted-foreground mt-4">
+                    Join 10,000+ founders optimizing their websites • No credit card required
+                  </p>
+                </div>
+              </div>
+
             </div>
 
           </div>
