@@ -14,23 +14,23 @@ export default function BlogPost() {
   const faqs = [
     {
       question: "What's the difference between a website and a landing page?",
-      answer: "A website is a collection of interconnected pages serving multiple purposes (education, navigation, product information, company information). A landing page is a single, focused page designed for one specific conversion goal—typically capturing leads or driving sales. Websites have navigation menus and multiple paths; landing pages remove navigation to keep visitors focused on the conversion action. Think of a website as a store with many departments, and a landing page as a single product display with one 'buy now' button."
+      answer: "A website is a collection of interconnected pages serving multiple purposes (education, navigation, product information, company information). A landing page is a single, focused page designed for one specific conversion goal - typically capturing leads or driving sales. Websites have navigation menus and multiple paths; landing pages remove navigation to keep visitors focused on the conversion action. Think of a website as a store with many departments, and a landing page as a single product display with one 'buy now' button."
     },
     {
       question: "How long should my landing page be?",
-      answer: "Landing page length depends on offer complexity and audience awareness. For simple, low-commitment offers (newsletter signup, ebook download), 300-500 words with clear value proposition works best. For complex, high-consideration purchases (enterprise software, consulting services, expensive products), 1,000-2,000 words with detailed benefits, testimonials, and objection handling converts better. The rule: include enough content to overcome objections and build trust, but not so much that attention wanes. Test shorter vs longer versions with your specific audience—data beats assumptions."
+      answer: "Landing page length depends on offer complexity and audience awareness. For simple, low-commitment offers (newsletter signup, ebook download), 300-500 words with clear value proposition works best. For complex, high-consideration purchases (enterprise software, consulting services, expensive products), 1,000-2,000 words with detailed benefits, testimonials, and objection handling converts better. The rule: include enough content to overcome objections and build trust, but not so much that attention wanes. Test shorter vs longer versions with your specific audience - data beats assumptions."
     },
     {
       question: "Should I remove navigation from my landing page?",
-      answer: "Yes, for dedicated conversion-focused landing pages, remove all navigation links. Every link is an exit opportunity—visitors who click away rarely return. Studies show landing pages without navigation convert 25-40% better than pages with navigation menus. However, keep legal links (privacy policy, terms) in a minimal footer. Exception: if your 'landing page' is actually a product page on your main website where browsing is expected, keep navigation. But for campaign-specific pages (ads, email campaigns, specific offers), always remove navigation to maximize focus."
+      answer: "Yes, for dedicated conversion - focused landing pages, remove all navigation links. Every link is an exit opportunity—visitors who click away rarely return. Studies show landing pages without navigation convert 25-40% better than pages with navigation menus. However, keep legal links (privacy policy, terms) in a minimal footer. Exception: if your 'landing page' is actually a product page on your main website where browsing is expected, keep navigation. But for campaign-specific pages (ads, email campaigns, specific offers), always remove navigation to maximize focus."
     },
     {
       question: "How many call-to-action buttons should a landing page have?",
-      answer: "Include 2-3 CTA buttons strategically placed throughout the page. Place the first CTA above the fold (visible without scrolling) so visitors can convert immediately. Add a second CTA after your main benefits or social proof section (typically 60% down the page) for those who need more information. Include a final CTA at the bottom after all objections are addressed. All CTAs should use identical copy and design for consistency. Avoid offering multiple different actions (like 'Buy Now' and 'Learn More')—one conversion goal per landing page ensures clarity."
+      answer: "Include 2-3 CTA buttons strategically placed throughout the page. Place the first CTA above the fold (visible without scrolling) so visitors can convert immediately. Add a second CTA after your main benefits or social proof section (typically 60% down the page) for those who need more information. Include a final CTA at the bottom after all objections are addressed. All CTAs should use identical copy and design for consistency. Avoid offering multiple different actions (like 'Buy Now' and 'Learn More') - one conversion goal per landing page ensures clarity."
     },
     {
       question: "What conversion rate should I expect from my landing page?",
-      answer: "Average landing page conversion rates vary by industry and offer type. E-commerce landing pages: 2-3%. SaaS free trials: 5-10%. Webinar registrations: 15-30%. Newsletter signups: 20-40%. B2B lead generation: 5-15%. Content downloads: 10-25%. However, 'average' isn't the goal—focus on continuous improvement. A well-optimized landing page can achieve 2-3x industry averages. Track your baseline, implement improvements systematically, and measure impact. Even a 1% conversion rate improvement can mean thousands in additional revenue annually."
+      answer: "Average landing page conversion rates vary by industry and offer type. E-commerce landing pages: 2-3%. SaaS free trials: 5-10%. Webinar registrations: 15-30%. Newsletter signups: 20-40%. B2B lead generation: 5-15%. Content downloads: 10-25%. However, 'average' isn't the goal - focus on continuous improvement. A well-optimized landing page can achieve 2-3x industry averages. Track your baseline, implement improvements systematically, and measure impact. Even a 1% conversion rate improvement can mean thousands in additional revenue annually."
     }
   ]
 
@@ -200,7 +200,7 @@ export default function BlogPost() {
                       <div className="border-l-4 border-green-500 pl-6 bg-green-50 p-4 rounded-r-lg">
                         <h4 className="text-lg font-bold text-foreground mb-2">1. Clear Value Proposition (Above the Fold)</h4>
                         <p className="mb-3">
-                          Your headline and subheadline must communicate what you offer, who it's for, and why it matters—in 5 seconds or less. This isn't about clever wordplay; it's about clarity and specificity.
+                          Your headline and subheadline must communicate what you offer, who it's for, and why it matters, in 5 seconds or less. This isn't about clever wordplay; it's about clarity and specificity.
                         </p>
                         <div className="bg-white border-2 border-red-200 p-4 my-3 rounded-lg">
                           <p className="text-sm font-semibold text-foreground mb-2">❌ Weak Value Proposition:</p>
@@ -213,7 +213,7 @@ export default function BlogPost() {
                         </p>
                       </div>
 
-                      <div className="border-l-4 border-red-600 pl-6 bg-red-50 p-4 rounded-r-lg">
+                      <div className="border-l-4 border-green-500 pl-6 bg-green-50 p-4 rounded-r-lg">
                         <h4 className="text-lg font-bold text-foreground mb-2">2. Single, Prominent Call-to-Action</h4>
                         <p className="mb-3">
                           Your primary CTA button must be visible above the fold (without scrolling) and repeated 2-3 times down the page. Use action-oriented, first-person copy that tells users exactly what happens next.
@@ -227,7 +227,7 @@ export default function BlogPost() {
                         </p>
                       </div>
 
-                      <div className="border-l-4 border-red-600 pl-6 bg-red-50 p-4 rounded-r-lg">
+                      <div className="border-l-4 border-green-500 pl-6 bg-green-50 p-4 rounded-r-lg">
                         <h4 className="text-lg font-bold text-foreground mb-2">3. Mobile-Optimized Experience</h4>
                         <p className="mb-3">
                           60-70% of traffic comes from mobile devices. If your landing page doesn't work perfectly on mobile, you're losing the majority of potential customers immediately.
@@ -242,7 +242,7 @@ export default function BlogPost() {
                         </ul>
                       </div>
 
-                      <div className="border-l-4 border-red-600 pl-6 bg-red-50 p-4 rounded-r-lg">
+                      <div className="border-l-4 border-green-500 pl-6 bg-green-50 p-4 rounded-r-lg">
                         <h4 className="text-lg font-bold text-foreground mb-2">4. Fast Page Speed (Under 3 Seconds)</h4>
                         <p className="mb-3">
                           Every additional second of load time reduces conversions by 7%. Pages taking 5+ seconds to load lose 50%+ of visitors before content even displays. Speed is a conversion fundamental, not a nice-to-have.
@@ -252,7 +252,7 @@ export default function BlogPost() {
                         </p>
                       </div>
 
-                      <div className="border-l-4 border-red-600 pl-6 bg-red-50 p-4 rounded-r-lg">
+                      <div className="border-l-4 border-green-500 pl-6 bg-green-50 p-4 rounded-r-lg">
                         <h4 className="text-lg font-bold text-foreground mb-2">5. Social Proof</h4>
                         <p className="mb-3">
                           B2B buyers are risk-averse. Social proof reduces perceived risk by demonstrating others' success. Even early-stage companies can include social proof.
@@ -267,7 +267,7 @@ export default function BlogPost() {
                         </ul>
                       </div>
 
-                      <div className="border-l-4 border-red-600 pl-6 bg-red-50 p-4 rounded-r-lg">
+                      <div className="border-l-4 border-green-500 pl-6 bg-green-50 p-4 rounded-r-lg">
                         <h4 className="text-lg font-bold text-foreground mb-2">6. Benefit-Focused Copy (Not Features)</h4>
                         <p className="mb-3">
                           Visitors care about outcomes, not technical specifications. Translate every feature into a concrete business benefit or result.
@@ -276,11 +276,11 @@ export default function BlogPost() {
                           <p className="text-sm font-semibold text-foreground mb-2">❌ Feature-focused:</p>
                           <p className="italic mb-3">"Advanced workflow automation with 50+ integrations"</p>
                           <p className="text-sm font-semibold text-foreground mb-2">✅ Benefit-focused:</p>
-                          <p className="italic">"Reduce manual data entry by 15 hours per week—automate repetitive tasks so your team focuses on closing deals"</p>
+                          <p className="italic">"Reduce manual data entry by 15 hours per week and automate repetitive tasks so your team focuses on closing deals"</p>
                         </div>
                       </div>
 
-                      <div className="border-l-4 border-red-600 pl-6 bg-red-50 p-4 rounded-r-lg">
+                      <div className="border-l-4 border-green-500 pl-6 bg-green-50 p-4 rounded-r-lg">
                         <h4 className="text-lg font-bold text-foreground mb-2">7. Simplified Forms (3-5 Fields Maximum)</h4>
                         <p className="mb-3">
                           Every form field reduces conversion rate by 5-10%. Ask only for information you'll actually use immediately.
@@ -299,12 +299,6 @@ export default function BlogPost() {
                     </div>
                   </div>
 
-                  {/* Image placeholder */}
-                  <div className="my-8 rounded-lg overflow-hidden border-2 border-border">
-                    <div className="bg-muted/30 aspect-video flex items-center justify-center">
-                      <span className="text-muted-foreground text-sm">[Image: Landing Page Anatomy with Must-Have Elements]</span>
-                    </div>
-                  </div>
 
                   <h2 className="text-3xl font-bold text-foreground mt-12 mb-4">How Does Business Stage Affect Your Landing Page Checklist?</h2>
                   
@@ -415,19 +409,19 @@ export default function BlogPost() {
                     
                     <ol className="list-decimal pl-6 space-y-4">
                       <li>
-                        <strong>Exit Intent Popups:</strong> Capture visitors trying to leave with last-chance offer or value proposition. Can recover 10-15% of abandoning visitors. Keep offer simple and compelling—avoid overwhelming with multiple choices.
+                        <strong>Exit Intent Popups:</strong> Capture visitors trying to leave with last-chance offer or value proposition. Can recover 10-15% of abandoning visitors. Keep offer simple and compelling - avoid overwhelming with multiple choices.
                       </li>
                       <li>
                         <strong>Video Content:</strong> Product demo videos (30-90 seconds) showing actual interface and usage. Video testimonials with real customers discussing specific results. Video increases engagement time 88% and can improve conversions 20-30% for complex products.
                       </li>
                       <li>
-                        <strong>Social Proof Notifications:</strong> Real-time popups showing recent conversions: "Sarah from Acme Corp just signed up" or "127 people viewed this page in the last hour." Creates urgency and reduces hesitation. Use authentic data only—fake notifications destroy trust.
+                        <strong>Social Proof Notifications:</strong> Real-time popups showing recent conversions: "Sarah from Acme Corp just signed up" or "127 people viewed this page in the last hour." Creates urgency and reduces hesitation. Use authentic data only - fake notifications destroy trust.
                       </li>
                       <li>
                         <strong>FAQ Section:</strong> Address 5-8 most common objections visitors have. Place near bottom of page after main content. Reduces support inquiries and removes conversion barriers. Questions should reflect actual customer concerns, not invented scenarios.
                       </li>
                       <li>
-                        <strong>Comparison Tables:</strong> "Us vs Competitor" pages showing feature advantages. Particularly effective for B2B SaaS where prospects actively evaluate alternatives. Be honest—highlighting real differences builds more credibility than claiming superiority in everything.
+                        <strong>Comparison Tables:</strong> "Us vs Competitor" pages showing feature advantages. Particularly effective for B2B SaaS where prospects actively evaluate alternatives. Be honest - highlighting real differences builds more credibility than claiming superiority in everything.
                       </li>
                     </ol>
                   </div>
@@ -470,7 +464,7 @@ export default function BlogPost() {
                     <div className="bg-muted/30 border-l-4 border-red-600 p-6 rounded-r-lg">
                       <p className="font-semibold text-foreground mb-2">❌ Mistake #5: Ignoring Load Speed</p>
                       <p>
-                        Beautiful landing page taking 6 seconds to load will convert worse than ugly, fast page. Compress images aggressively (use WebP format, reduce dimensions), minimize JavaScript, enable caching. Every second counts—literally 7% per second in conversion rate.
+                        Beautiful landing page taking 6 seconds to load will convert worse than ugly, fast page. Compress images aggressively (use WebP format, reduce dimensions), minimize JavaScript, enable caching. Every second counts - literally 7% per second in conversion rate. Learn more about how to make your website faster <a href="https://talktomedata.com/blog/how-to-make-website-faster" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">in this article</a>.
                       </p>
                     </div>
                   </div>
@@ -486,14 +480,16 @@ export default function BlogPost() {
                   </p>
 
                   <p>
-                    For example: instead of "improve your headline," AI provides "Current headline focuses on features not benefits. Recommend: '[Specific Outcome] for [Target Audience] in [Timeframe]' structure. Expected impact: 15-25% conversion increase based on similar pages." For more on AI-powered optimization, see our <Link href="/blog/how-to-use-ai-to-improve-conversion-rate" className="text-primary hover:underline font-medium">complete guide to using AI for conversion optimization</Link>.
+                    For example: instead of "improve your headline," AI provides "Current headline focuses on features not benefits. Recommend: '[Specific Outcome] for [Target Audience] in [Timeframe]' structure. Expected impact: 15-25% conversion increase based on similar pages." For more on AI-powered optimization, see our <Link href="/blog/how-to-use-ai-to-improve-conversion-rates" className="text-primary hover:underline font-medium">complete guide to using AI for conversion optimization</Link>.
                   </p>
 
-                  {/* Image placeholder */}
+                 {/* Image 2 */}
                   <div className="my-8 rounded-lg overflow-hidden border-2 border-border">
-                    <div className="bg-muted/30 aspect-video flex items-center justify-center">
-                      <span className="text-muted-foreground text-sm">[Image: Before/After Landing Page Optimization]</span>
-                    </div>
+                    <img
+                      src="/blog/TTMD_speed_test_1.jpg"
+                      alt="Website speed test - Talk to me Data"
+                      className="w-full h-auto"
+                    />
                   </div>
 
                   <h2 className="text-3xl font-bold text-foreground mt-12 mb-4">How Do You Implement Your Landing Page Checklist?</h2>
@@ -605,7 +601,7 @@ export default function BlogPost() {
                   <h2 className="text-3xl font-bold text-foreground mt-12 mb-4">Summary: Building Landing Pages That Convert</h2>
                   
                   <p>
-                    High-converting landing pages aren't accidents—they're systematic implementations of proven principles. The difference between average (2-3% conversion) and top-performing (8-15% conversion) isn't magic or massive budgets; it's executing fundamentals consistently.
+                    High-converting landing pages aren't accidents - they're systematic implementations of proven principles. The difference between average (2-3% conversion) and top-performing (8-15% conversion) isn't magic or massive budgets; it's executing fundamentals consistently.
                   </p>
 
                   <p>
@@ -613,18 +609,18 @@ export default function BlogPost() {
                   </p>
 
                   <p>
-                    Avoid common mistakes that sabotage conversions: multiple conversion goals, keeping navigation links, generic stock photos, asking for too much information, and ignoring page speed. Each mistake can reduce conversions by 20-50%—they compound quickly.
+                    Avoid common mistakes that sabotage conversions: multiple conversion goals, keeping navigation links, generic stock photos, asking for too much information, and ignoring page speed. Each mistake can reduce conversions by 20-50%, they compound quickly.
                   </p>
 
                   <p className="text-xl font-medium text-foreground/90">
-                    Use our interactive checklist tool to generate personalized recommendations based on your specific business type and stage. Get must-have, nice-to-have, and do-later priorities tailored to where you are in your journey. Don't guess what matters—let data and proven frameworks guide implementation.
+                    Use our interactive checklist tool to generate personalized recommendations based on your specific business type and stage. Get must-have, nice-to-have, and do-later priorities tailored to where you are in your journey. Don't guess what matters - let data and proven frameworks guide implementation.
                   </p>
 
                   {/* Final CTA */}
                   <div className="bg-gradient-to-br from-primary/10 via-accent/10 to-primary/10 border-2 border-primary/20 p-8 my-12 rounded-2xl shadow-xl">
                     <h3 className="text-2xl font-bold text-foreground mb-4">Get Your Complete Landing Page Analysis</h3>
                     <p className="mb-6 leading-relaxed">
-                      Ready to implement your checklist but want specific guidance for YOUR landing page? Talk to me Data analyzes your actual page and provides prioritized recommendations with expected conversion impact for each fix. Get AI-powered insights covering all checklist categories—value proposition, CTAs, mobile experience, speed, social proof, and more.
+                      Ready to implement your checklist but want specific guidance for YOUR landing page? Talk to me Data analyzes your actual page and provides prioritized recommendations with expected conversion impact for each fix. Get AI-powered insights covering all checklist categories - value proposition, CTAs, mobile experience, speed, social proof, and more.
                     </p>
                     <Button 
                       className="bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90 text-white font-semibold py-6 px-8 cursor-pointer shadow-lg hover:shadow-xl transition-all"
