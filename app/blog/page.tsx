@@ -55,6 +55,18 @@ const blogPosts = [
     author: "Nas",
     featured: false,
   },
+  {
+    slug: "how-to-use-ai-to-improve-conversion-rates",
+    title: "How to Use AI to Improve Conversion Rate: A Practical Guide for Founders",
+    excerpt:
+      "Discover how AI analyzes 150+ factors in 60 seconds to boost conversions by 15-40%. Learn to implement AI recommendations and measure results.",
+    category: "AI & Conversion",
+    date: "January 13, 2026",
+    readTime: "11 min read",
+    image: "/blog/ai-conversion-cover.jpg",
+    author: "Nas",
+    featured: false,
+  },
   // Add more blog posts here as you write them
 ]
 
