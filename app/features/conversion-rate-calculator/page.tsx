@@ -96,7 +96,7 @@ export default function ConversionRateCalculator() {
                 Free Conversion Rate Calculator: Calculate Your Website's Performance
               </h1>
               <p className="text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-                Instantly calculate your website conversion rate and discover how to improve it. Get personalized insights and industry benchmarks—completely free.
+                Instantly calculate your website conversion rate and discover how to improve it. Get personalized insights and industry benchmarks - completely free.
               </p>
             </div>
 
@@ -449,7 +449,7 @@ export default function ConversionRateCalculator() {
                         </Button>
                       </div>
                       <p className="text-sm text-muted-foreground mt-4">
-                        Discover exactly what's hurting your conversions. Our AI analyzes your entire website and provides a prioritized action plan. Results in 60 seconds—no credit card required.
+                        Discover exactly what's hurting your conversions. Our AI analyzes your entire website and provides a prioritized action plan. Results in 60 seconds - no credit card required.
                       </p>
                     </div>
                   </CardContent>
@@ -466,7 +466,7 @@ export default function ConversionRateCalculator() {
                     <h3 className="text-2xl font-bold text-foreground">Ready to Double Your Conversion Rate?</h3>
                   </div>
                   <p className="text-foreground mb-6 max-w-2xl mx-auto leading-relaxed">
-                    Get instant AI-powered insights on exactly what's holding back your conversions. Our comprehensive analysis covers everything from page speed to mobile optimization to messaging clarity. Start optimizing today—completely free.
+                    Get instant AI-powered insights on exactly what's holding back your conversions. Our comprehensive analysis covers everything from page speed to mobile optimization to messaging clarity. Start optimizing today - completely free.
                   </p>
                   <Button 
                     className="bg-gradient-to-r from-accent to-primary hover:from-accent/90 hover:to-primary/90 text-white font-semibold py-6 px-8 cursor-pointer shadow-lg hover:shadow-xl transition-all"
@@ -475,7 +475,7 @@ export default function ConversionRateCalculator() {
                     Analyze Your Website Free →
                   </Button>
                   <p className="text-sm text-muted-foreground mt-4">
-                    Join 10,000+ founders optimizing their websites • No credit card required
+                    Join founders from all around the world optimizing their websites • No credit card required
                   </p>
                 </div>
               </div>
