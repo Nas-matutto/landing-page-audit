@@ -89,6 +89,14 @@ export function Header() {
           <div className="md:hidden py-4 border-t border-border bg-white">
             <nav className="flex flex-col gap-4">
               <Link
+                href="/features"
+                scroll={true}
+                className="text-sm font-medium text-foreground hover:text-primary transition-colors py-2"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Features
+              </Link>
+              <Link
                 href="/#how-it-works"
                 scroll={true}
                 className="text-sm font-medium text-foreground hover:text-primary transition-colors py-2"
