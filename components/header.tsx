@@ -43,6 +43,13 @@ export function Header() {
           {/* Navigation - Desktop */}
           <nav className="hidden md:flex items-center gap-8">
             <Link
+              href="/features"
+              scroll={false}
+              className="text-sm font-medium text-foreground hover:text-primary transition-colors"
+            >
+              Features
+            </Link>
+            <Link
               href="/#how-it-works"
               scroll={true}
               className="text-sm font-medium text-foreground hover:text-primary transition-colors"
