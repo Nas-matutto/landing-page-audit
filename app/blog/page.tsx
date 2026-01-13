@@ -19,6 +19,18 @@ const blogPosts = [
     author: "Nas",
     featured: true,
   },
+  {
+    slug: "website-checklist-how-to-build-landing-page-that-converts",
+    title: "Website Checklist: How to Build a Landing Page That Converts",
+    excerpt:
+      "Complete landing page checklist covering must-have elements, business stage priorities, and common mistakes. Build pages that convert at 2-3x industry averages.",
+    category: "Website Optimization",
+    date: "January 14, 2026",
+    readTime: "11 min read",
+    image: "/blog/website-checklist-cover.jpg",
+    author: "Nas",
+    featured: false,
+  },
    {
     slug: "how-to-use-ai-to-improve-conversion-rates",
     title: "How to Use AI to Improve Conversion Rate: A Practical Guide for Founders",

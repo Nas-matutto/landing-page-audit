@@ -67,6 +67,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'monthly',
       priority: 0.7,
     },
+    {
+      url: `${baseUrl}/blog/website-checklist-how-to-build-landing-page-that-converts`,
+      lastModified: new Date('2026-01-14'),
+      changeFrequency: 'monthly',
+      priority: 0.7,
+    },
 
     // Features
     {
