@@ -80,7 +80,7 @@ export default function BlogPost() {
                       <li>B2B lead generation landing pages convert 5-15% on average vs 2-3% for general websites</li>
                       <li>Single-purpose pages with no navigation outperform multi-page funnels by 25-40%</li>
                       <li>Forms with 3-5 fields balance conversion rate (higher with fewer) and lead quality (higher with more)</li>
-                      <li>Above-the-fold CTAs are critical—66% of clicks happen without scrolling</li>
+                      <li>Above-the-fold CTAs are critical - 66% of clicks happen without scrolling</li>
                       <li>Following up within 5 minutes increases conversion probability by 21x vs 30-minute delays</li>
                       <li>Social proof (customer logos, testimonials) increases conversions by 34% for B2B landing pages</li>
                     </ul>
@@ -90,19 +90,20 @@ export default function BlogPost() {
                   <h2 className="text-3xl font-bold text-foreground mt-12 mb-4">What is a Lead Generation Landing Page?</h2>
                   
                   <p>
-                    A <strong>lead generation landing page</strong> is a standalone web page specifically designed to capture visitor information (typically name, email, company) in exchange for something of value—such as content, demos, consultations, or free trials. Unlike general website pages with multiple navigation options and purposes, lead generation pages have a single conversion goal: getting visitors to complete a form and become leads in your sales pipeline.
+                    A <strong>lead generation landing page</strong> is a standalone web page specifically designed to capture visitor information (typically name, email, company) in exchange for something of value, such as content, demos, consultations, or free trials. Unlike general website pages with multiple navigation options and purposes, lead generation pages have a single conversion goal: getting visitors to complete a form and become leads in your sales pipeline.
                   </p>
 
                   <p>
                     In B2B contexts, <strong>leads</strong> are potential customers who have expressed interest in your product or service by providing contact information and permission to be contacted. A <strong>qualified lead</strong> meets specific criteria indicating genuine purchase potential: right company size, relevant industry, decision-making authority, and active interest timing. The quality of leads generated depends directly on landing page design, form questions, and offer relevance.
                   </p>
 
-                  {/* Image placeholder */}
-                  <div className="my-8 rounded-lg overflow-hidden border-2 border-border">
-                    <div className="bg-muted/30 aspect-video flex items-center justify-center">
-                      <span className="text-muted-foreground text-sm">[Image: Lead Generation Landing Page Anatomy]</span>
-                    </div>
-                  </div>
+                             {/* Image 1 */}
+            <div className="my-8 rounded-lg overflow-hidden border-2 border-border">
+            <img
+                src="/blog/lead-generation-cover.jpg"
+                alt="Example of a B2B Lead Generation Landing Page"
+                className="w-full h-auto"/>
+            </div>
 
                   <h2 className="text-3xl font-bold text-foreground mt-12 mb-4">Why Do B2B Companies Need Dedicated Lead Generation Pages?</h2>
                   
@@ -111,7 +112,7 @@ export default function BlogPost() {
                   </p>
 
                   <p>
-                    Consider the data: According to <a href="https://www.hubspot.com" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">HubSpot</a>, companies with 10-15 landing pages see 55% more leads than those with fewer than 10. Companies with 40+ landing pages generate 12x more leads than those with 1-5 pages. Why? Because each landing page targets a specific audience segment, campaign, or offer—matching message to visitor intent precisely.
+                    Consider the data: According to <a href="https://www.hubspot.com" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">HubSpot</a>, companies with 10-15 landing pages see 55% more leads than those with fewer than 10. Companies with 40+ landing pages generate 12x more leads than those with 1-5 pages. Why? Because each landing page targets a specific audience segment, campaign, or offer - matching message to visitor intent precisely.
                   </p>
 
                   <div className="my-8 overflow-x-auto">
@@ -179,7 +180,7 @@ export default function BlogPost() {
                   <h2 className="text-3xl font-bold text-foreground mt-12 mb-4">How to Structure a High-Converting B2B Landing Page</h2>
                   
                   <p>
-                    Landing page structure determines visitor attention flow and conversion probability. B2B buyers are sophisticated—they scan pages in F-patterns, evaluate credibility signals, and compare alternatives. Your structure must guide this journey systematically.
+                    Landing page structure determines visitor attention flow and conversion probability. B2B buyers are sophisticated - they scan pages in F-patterns, evaluate credibility signals, and compare alternatives. Your structure must guide this journey systematically.
                   </p>
 
                   <div className="my-6">
@@ -292,17 +293,18 @@ export default function BlogPost() {
                     </div>
                   </div>
 
-                  {/* Image placeholder */}
+                  {/* Image 2 */}
                   <div className="my-8 rounded-lg overflow-hidden border-2 border-border">
-                    <div className="bg-muted/30 aspect-video flex items-center justify-center">
-                      <span className="text-muted-foreground text-sm">[Image: Landing Page Wireframe with 7 Sections]</span>
-                    </div>
-                  </div>
+            <img
+                src="/blog/Talktomedata-report-screenshot.jpg"
+                alt="Talk to me Data AI Conversion Analysis Report Screenshot"
+                className="w-full h-auto"/>
+            </div>
 
                   <h2 className="text-3xl font-bold text-foreground mt-12 mb-4">How to Design and Optimize Your Lead Capture Form</h2>
                   
                   <p>
-                    Your form is the conversion gateway. Every design decision—field count, labels, button copy—directly impacts lead volume and quality. The challenge: fewer fields increase submissions but reduce lead quality; more fields decrease submissions but increase qualification.
+                    Your form is the conversion gateway. Every design decision such as field count, labels, button copy and others, directly impact lead volume and quality. The challenge: fewer fields increase submissions but reduce lead quality; more fields decrease submissions but increase qualification.
                   </p>
 
                   <div className="my-6">
@@ -399,7 +401,7 @@ export default function BlogPost() {
 
                   <div className="bg-muted/30 border-l-4 border-primary p-6 my-8 rounded-r-lg">
                     <p className="text-foreground font-semibold mb-2">Form Optimization Quick Win:</p>
-                    <p>Test reducing your form from 7 fields to 5 fields, then to 3 fields. Many B2B companies discover that collecting less information upfront (then qualifying during follow-up calls) generates 40-60% more leads with only slightly lower qualification rates—resulting in significantly more sales.</p>
+                    <p>Test reducing your form from 7 fields to 5 fields, then to 3 fields. Many B2B companies discover that collecting less information upfront (then qualifying during follow-up calls) generates 40-60% more leads with only slightly lower qualification rates - resulting in significantly more sales.</p>
                   </div>
 
                   {/* Conversion Calculator Box */}
@@ -517,12 +519,7 @@ export default function BlogPost() {
                     </p>
                   </div>
 
-                  {/* Image placeholder */}
-                  <div className="my-8 rounded-lg overflow-hidden border-2 border-border">
-                    <div className="bg-muted/30 aspect-video flex items-center justify-center">
-                      <span className="text-muted-foreground text-sm">[Image: Lead Follow-Up Timeline Diagram]</span>
-                    </div>
-                  </div>
+
 
                   <h2 className="text-3xl font-bold text-foreground mt-12 mb-4">What Makes High-Converting Landing Pages Work: Real Examples</h2>
                   
@@ -557,7 +554,7 @@ export default function BlogPost() {
                         <li><strong>Minimal form:</strong> Only 3 fields (Name, Email, Company) with "Download My Copy" CTA</li>
                         <li><strong>Bullet list:</strong> "Inside You'll Discover:" with 8 specific insights from report</li>
                         <li><strong>Social proof:</strong> "Join 15,000+ marketers who downloaded this report"</li>
-                        <li><strong>Instant delivery:</strong> "Get instant PDF access—no waiting" addressed objection about delayed delivery</li>
+                        <li><strong>Instant delivery:</strong> "Get instant PDF access - no waiting" addressed objection about delayed delivery</li>
                       </ul>
                     </div>
 
@@ -572,13 +569,13 @@ export default function BlogPost() {
                         <li><strong>Sample audit:</strong> Embedded anonymized sample audit showing level of detail prospects receive</li>
                         <li><strong>Form position:</strong> Sticky sidebar form always visible as users scrolled</li>
                         <li><strong>Authority building:</strong> Founder's credentials, featured publications, client results</li>
-                        <li><strong>Scarcity:</strong> "We only offer 20 free audits per month—12 remaining this month"</li>
+                        <li><strong>Scarcity:</strong> "We only offer 20 free audits per month - 12 remaining this month"</li>
                       </ul>
                     </div>
                   </div>
 
                   <p className="mt-6">
-                    Notice commonalities: clear value propositions, minimal friction (3-4 form fields), strong social proof, and specific CTAs. These aren't coincidences—they're proven principles.
+                    Notice commonalities: clear value propositions, minimal friction (3-4 form fields), strong social proof, and specific CTAs. These aren't coincidences - they're proven principles.
                   </p>
 
                   <h2 className="text-3xl font-bold text-foreground mt-12 mb-4">How to Optimize Landing Page Performance</h2>
@@ -664,11 +661,11 @@ export default function BlogPost() {
                   <h2 className="text-3xl font-bold text-foreground mt-12 mb-4">Summary: Building Landing Pages That Generate Quality Leads</h2>
                   
                   <p>
-                    Effective B2B lead generation landing pages aren't accidents—they're systematic implementations of proven principles. Structure pages with clear value propositions, minimal friction forms, strong social proof, and singular focus. Optimize for mobile, ensure fast load times, and remove navigation distractions.
+                    Effective B2B lead generation landing pages aren't accidents - they're systematic implementations of proven principles. Structure pages with clear value propositions, minimal friction forms, strong social proof, and singular focus. Optimize for mobile, ensure fast load times, and remove navigation distractions.
                   </p>
 
                   <p>
-                    Remember the data: companies with 10-15 landing pages generate 55% more leads than those with fewer pages. Companies with 40+ landing pages generate 12x more leads. The opportunity isn't building one perfect landing page—it's building many targeted pages, each optimized for specific audiences, campaigns, and offers.
+                    Remember the data: companies with 10-15 landing pages generate 55% more leads than those with fewer pages. Companies with 40+ landing pages generate 12x more leads. The opportunity isn't building one perfect landing page - it's building many targeted pages, each optimized for specific audiences, campaigns, and offers.
                   </p>
 
                   <p className="text-xl font-medium text-foreground/90">
@@ -679,7 +676,7 @@ export default function BlogPost() {
                   <div className="bg-gradient-to-br from-primary/10 via-accent/10 to-primary/10 border-2 border-primary/20 p-8 my-12 rounded-2xl shadow-xl">
                     <h3 className="text-2xl font-bold text-foreground mb-4">Optimize Your Lead Generation Pages Today</h3>
                     <p className="mb-6 leading-relaxed">
-                      Get instant AI-powered analysis of your landing pages and lead generation forms. Discover exactly what's reducing conversions and receive a prioritized action plan to generate more qualified leads. Our comprehensive analysis covers page structure, form optimization, messaging clarity, mobile experience, and more—everything covered in this guide.
+                      Get instant AI-powered analysis of your landing pages and lead generation forms. Discover exactly what's reducing conversions and receive a prioritized action plan to generate more qualified leads. Our comprehensive analysis covers page structure, form optimization, messaging clarity, mobile experience, and more - everything covered in this guide.
                     </p>
                     <Button 
                       className="bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90 text-white font-semibold py-6 px-8 cursor-pointer shadow-lg hover:shadow-xl transition-all"

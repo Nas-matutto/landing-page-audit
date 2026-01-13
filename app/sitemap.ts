@@ -55,6 +55,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'monthly',
       priority: 0.7,
     },
+        {
+      url: `${baseUrl}/blog/how-to-build-website-to-collect-leads`,
+      lastModified: new Date('2026-01-13'),
+      changeFrequency: 'monthly',
+      priority: 0.7,
+    },
+    {
+      url: `${baseUrl}/blog/how-to-use-ai-to-improve-conversion-rate`,
+      lastModified: new Date('2026-01-13'),
+      changeFrequency: 'monthly',
+      priority: 0.7,
+    },
 
     // Features
     {
