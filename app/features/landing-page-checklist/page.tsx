@@ -518,7 +518,7 @@ export default function LandingPageChecklist() {
                       <h3 className="text-2xl font-bold text-foreground">Ready to Optimize Your Landing Page?</h3>
                     </div>
                     <p className="text-foreground mb-6 max-w-2xl mx-auto leading-relaxed">
-                      This checklist shows you what to optimize—Talk to me Data shows you exactly HOW to optimize your specific landing page. Get AI-powered analysis covering UX, messaging, speed, mobile optimization, and conversion barriers. Receive a prioritized action plan with expected impact for each improvement.
+                      This checklist shows you what to optimize, but Talk to me Data shows you exactly HOW to optimize your specific landing page. Get AI-powered analysis covering UX, messaging, speed, mobile optimization, and conversion barriers. Receive a prioritized action plan with expected impact for each improvement.
                     </p>
                     <Button 
                       className="bg-gradient-to-r from-accent to-primary hover:from-accent/90 hover:to-primary/90 text-white font-semibold py-6 px-8 cursor-pointer shadow-lg hover:shadow-xl transition-all"
@@ -527,7 +527,7 @@ export default function LandingPageChecklist() {
                       Get Free Landing Page Analysis →
                     </Button>
                     <p className="text-sm text-muted-foreground mt-4">
-                      Join 10,000+ founders optimizing their landing pages • No credit card required
+                      Join thousands of founders optimizing their landing pages • No credit card required
                     </p>
                   </div>
                 </div>
@@ -635,7 +635,7 @@ export default function LandingPageChecklist() {
                     <div className="bg-gradient-to-br from-primary/5 via-accent/5 to-primary/5 border-2 border-primary/20 p-8 rounded-2xl shadow-lg">
                       <h3 className="text-2xl font-bold text-foreground mb-3">Take Action: Optimize Your Landing Page Today</h3>
                       <p>
-                        This checklist provides the framework—now it's time to implement. Start with must-have items, measure results, then systematically work through recommended improvements. Each optimization compounds, turning your landing page into a conversion machine.
+                        This checklist provides the framework - now it's time to implement. Start with must-have items, measure results, then systematically work through recommended improvements. Each optimization compounds, turning your landing page into a conversion machine.
                       </p>
                       <p className="mt-3">
                         Don't know where to start or which optimizations will have the biggest impact on YOUR specific page? Get instant AI-powered analysis showing exactly what to fix, why it matters, and expected conversion improvement.
@@ -649,7 +649,7 @@ export default function LandingPageChecklist() {
                         </Button>
                       </div>
                       <p className="text-sm text-muted-foreground mt-4">
-                        Get your personalized optimization report in 60 seconds—no credit card required
+                        Get your personalized optimization report in 60 seconds - no credit card required
                       </p>
                     </div>
                   </CardContent>
