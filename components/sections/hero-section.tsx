@@ -1,7 +1,7 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
-import { ArrowRight, Zap } from "lucide-react"
+import { ArrowRight } from "lucide-react"
 import Image from "next/image"
 
 export function HeroSection() {
@@ -36,8 +36,16 @@ export function HeroSection() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto text-center">
           {/* Badge */}
-          <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-2 rounded-full bg-secondary text-secondary-foreground text-[11px] sm:text-sm font-medium mb-6">
-            <Zap className="w-3 h-3 sm:w-4 sm:h-4" />
+          <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-2 rounded-full bg-[#95BF47]/10 border border-[#95BF47]/20 text-[#5E8E3E] text-[11px] sm:text-sm font-medium mb-6">
+            {/* Shopify Logo SVG */}
+            <svg 
+              className="w-4 h-4 sm:w-5 sm:h-5" 
+              viewBox="0 0 24 24" 
+              fill="currentColor"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path d="M15.337 2.368c-.017-.106-.09-.195-.195-.195-.106 0-1.376-.035-1.376-.035s-1.017-.993-1.14-1.116c-.124-.124-.371-.089-.466-.053 0 0-.231.071-.626.195-.052-.16-.124-.354-.23-.566-.337-.69-.832-1.057-1.429-1.057h-.071c-.213-.266-.478-.372-.69-.372C8.432-.83 7.76.124 7.485.92c-.195.566-.337 1.27-.39 1.695-.832.266-1.411.443-1.482.478-.46.142-.478.16-.531.584C5.03 4 3.22 19.633 3.22 19.633l11.78 2.226 5.77-1.411S15.354 2.474 15.337 2.368zm-3.477-.778c-.372.106-.796.266-1.27.408v-.337c0-.637-.089-1.146-.23-1.553.584.053 1.075.69 1.5 1.482zm-1.958-.478c-.142.39-.266.85-.337 1.5-.514.16-1.075.337-1.64.514.16-.973.673-1.93 1.27-2.368.195.106.478.248.707.354zm-.92-1.14c.106 0 .213.035.301.106-.69.531-1.376 1.71-1.606 3.441-.478.142-.938.301-1.376.443.195-1.712 1.34-3.99 2.681-3.99z"/>
+            </svg>
             <span className="whitespace-nowrap">Built Specifically for Shopify Stores</span>
           </div>
 
