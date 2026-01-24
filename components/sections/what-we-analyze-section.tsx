@@ -1,6 +1,8 @@
 "use client"
 
+import { useState, useRef } from "react"
 import { Card, CardContent } from "@/components/ui/card"
+import { ChevronLeft, ChevronRight } from "lucide-react"
 import { 
   Zap, 
   Eye, 
@@ -20,6 +22,10 @@ import {
 } from "lucide-react"
 
 export function WhatWeAnalyzeSection() {
+  const scrollContainerRef = useRef<HTMLDivElement>(null)
+  const [showLeftArrow, setShowLeftArrow] = useState(false)
+  const [showRightArrow, setShowRightArrow] = useState(true)
+
   const analysisCategories = [
     {
       icon: Zap,
@@ -173,6 +179,28 @@ export function WhatWeAnalyzeSection() {
     }
   ]
 
+  const scroll = (direction: 'left' | 'right') => {
+    if (scrollContainerRef.current) {
+      const scrollAmount = 300
+      const newScrollLeft = direction === 'left' 
+        ? scrollContainerRef.current.scrollLeft - scrollAmount
+        : scrollContainerRef.current.scrollLeft + scrollAmount
+      
+      scrollContainerRef.current.scrollTo({
+        left: newScrollLeft,
+        behavior: 'smooth'
+      })
+    }
+  }
+
+  const handleScroll = () => {
+    if (scrollContainerRef.current) {
+      const { scrollLeft, scrollWidth, clientWidth } = scrollContainerRef.current
+      setShowLeftArrow(scrollLeft > 0)
+      setShowRightArrow(scrollLeft < scrollWidth - clientWidth - 10)
+    }
+  }
+
   return (
     <section className="py-16 sm:py-24 bg-background">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -187,9 +215,36 @@ export function WhatWeAnalyzeSection() {
             </p>
           </div>
 
-          {/* Analysis categories - Horizontal scroll on all devices */}
+          {/* Analysis categories - Horizontal scroll on all devices with navigation arrows */}
           <div className="relative">
-            <div className="flex gap-4 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-hide">
+            {/* Left Arrow */}
+            {showLeftArrow && (
+              <button
+                onClick={() => scroll('left')}
+                className="absolute left-0 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-background border-2 border-border shadow-lg flex items-center justify-center hover:bg-muted transition-colors cursor-pointer"
+                aria-label="Scroll left"
+              >
+                <ChevronLeft className="w-5 h-5 text-foreground" />
+              </button>
+            )}
+
+            {/* Right Arrow */}
+            {showRightArrow && (
+              <button
+                onClick={() => scroll('right')}
+                className="absolute right-0 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-background border-2 border-border shadow-lg flex items-center justify-center hover:bg-muted transition-colors cursor-pointer"
+                aria-label="Scroll right"
+              >
+                <ChevronRight className="w-5 h-5 text-foreground" />
+              </button>
+            )}
+
+            {/* Scrollable container */}
+            <div 
+              ref={scrollContainerRef}
+              onScroll={handleScroll}
+              className="flex gap-4 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-hide px-12"
+            >
               {analysisCategories.map((category, index) => (
                 <Card 
                   key={index} 
