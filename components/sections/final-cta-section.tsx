@@ -28,7 +28,7 @@ export function FinalCTASection() {
           {/* Benefits grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-10 max-w-2xl mx-auto">
             {[
-              "Analyze 150+ conversion factors in 60 seconds",
+              "Analyze your store",
               "Get Shopify-specific recommendations",
               "Prioritized by revenue impact",
               "No credit card required"
@@ -53,7 +53,7 @@ export function FinalCTASection() {
               <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </Button>
             <p className="text-sm text-muted-foreground">
-              Join 2,000+ Shopify merchants already optimizing their stores
+              Join 2,000+ Shopify stores already optimizing their conversions
             </p>
           </div>
 

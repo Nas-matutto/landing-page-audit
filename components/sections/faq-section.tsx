@@ -20,14 +20,6 @@ export function FAQSection() {
       answer: "It depends on which recommendations you implement first. Quick wins like fixing broken mobile buttons or adding trust badges can show results within days. Site speed improvements typically show impact within 1-2 weeks. More comprehensive changes like restructuring product pages may take 3-4 weeks to show full impact. We prioritize our recommendations by expected impact and implementation effort, so you can focus on high-impact, quick wins first."
     },
     {
-      question: "Can you analyze Shopify Plus stores?",
-      answer: "Absolutely! We analyze both standard Shopify stores and Shopify Plus stores. For Shopify Plus merchants, we also examine Plus-specific features like custom checkout, expanded APIs, and advanced reporting capabilities. Our recommendations take into account the additional customization options available to Plus merchants."
-    },
-    {
-      question: "What if I use custom checkout or headless commerce?",
-      answer: "We can analyze stores with custom checkout experiences. For headless Shopify implementations, our analysis focuses on the storefront experience, API performance, and conversion funnel optimization. Since headless setups vary significantly, some recommendations may require customization. We'll flag which recommendations apply to your specific setup and provide guidance on implementation approaches for headless architectures."
-    },
-    {
       question: "How often should I run a new analysis?",
       answer: "We recommend running a new analysis every 30-60 days, especially after making changes to your store. This helps you track improvement over time and identify new optimization opportunities as you add products, change themes, or install new apps. Many merchants run a baseline analysis, implement recommendations, then re-analyze after 30 days to measure impact and get fresh insights."
     },

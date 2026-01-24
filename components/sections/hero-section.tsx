@@ -92,7 +92,7 @@ export function HeroSection() {
               ))}
             </div>
             <span className="font-medium text-center sm:text-left">
-              Join <span className="text-foreground font-semibold">2,000+</span> Shopify merchants optimizing their stores
+              Join <span className="text-foreground font-semibold">2,000+</span> Shopify brands optimizing their stores
             </span>
           </div>
         </div>

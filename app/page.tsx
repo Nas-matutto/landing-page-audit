@@ -5,7 +5,6 @@ import { HeroSection } from "@/components/sections/hero-section"
 import { PainPointsSection } from "@/components/sections/pain-points-section"
 import { HowItWorksSection } from "@/components/sections/how-it-works-section"
 import { WhatWeAnalyzeSection } from "@/components/sections/what-we-analyze-section"
-import { SocialProofSection } from "@/components/sections/social-proof-section"
 import { FAQSection } from "@/components/sections/faq-section"
 import { FinalCTASection } from "@/components/sections/final-cta-section"
 
@@ -71,7 +70,6 @@ export default function HomePage() {
         <PainPointsSection />
         <HowItWorksSection />
         <WhatWeAnalyzeSection />
-        <SocialProofSection />
         <FAQSection />
         <FinalCTASection />
       </main>

@@ -10,28 +10,28 @@ export function PainPointsSection() {
       title: "80% Cart Abandonment?",
       description: "High abandonment rates are costing you thousands in lost revenue. We identify exactly what's driving customers away before checkout.",
       stat: "Average cart abandonment: 69.9%",
-      statColor: "text-red-600"
+      statColor: "text-green-600"
     },
     {
       icon: TrendingDown,
       title: "Product Pages Not Converting?",
       description: "Your products get views but not sales. We analyze images, descriptions, trust signals, and CTAs to fix what's blocking purchases.",
       stat: "Average product page CVR: 1-2%",
-      statColor: "text-orange-600"
+      statColor: "text-green-600"
     },
     {
       icon: Zap,
       title: "Slow Site Killing Sales?",
       description: "Every second of load time costs 7% in conversions. We pinpoint theme bloat, unoptimized images, and app conflicts slowing you down.",
       stat: "3+ second load = 40% bounce rate",
-      statColor: "text-red-600"
+      statColor: "text-green-600"
     },
     {
       icon: Smartphone,
       title: "Mobile Checkout Frustrating Customers?",
       description: "70% of traffic is mobile, but your checkout isn't optimized. We identify touch target issues, form friction, and mobile UX problems.",
       stat: "Mobile conversion 50% lower than desktop",
-      statColor: "text-orange-600"
+      statColor: "text-green-600"
     }
   ]
 
@@ -82,16 +82,6 @@ export function PainPointsSection() {
                 </CardContent>
               </Card>
             ))}
-          </div>
-
-          {/* Bottom CTA */}
-          <div className="mt-12 text-center">
-            <p className="text-muted-foreground mb-4">
-              Don't let conversion issues cost you another sale.
-            </p>
-            <p className="text-foreground font-semibold text-lg">
-              Get your free store analysis in 60 seconds →
-            </p>
           </div>
         </div>
       </div>
