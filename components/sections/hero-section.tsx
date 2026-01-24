@@ -10,7 +10,7 @@ export function HeroSection() {
   }
 
   const handleWatchDemo = () => {
-    const demoSection = document.getElementById('demo-section')
+    const demoSection = document.getElementById('how-it-works')
     if (demoSection) {
       demoSection.scrollIntoView({ behavior: 'smooth', block: 'start' })
     }
@@ -38,31 +38,30 @@ export function HeroSection() {
           {/* Badge */}
           <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-2 rounded-full bg-secondary text-secondary-foreground text-[11px] sm:text-sm font-medium mb-6">
             <Zap className="w-3 h-3 sm:w-4 sm:h-4" />
-            <span className="whitespace-nowrap">Transform Your Website Performance</span>
+            <span className="whitespace-nowrap">Built Specifically for Shopify Stores</span>
           </div>
 
           {/* Main headline */}
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-balance mb-6">
-            Optimize Your Website for{" "}
+            Increase Your Shopify Store{" "}
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary via-primary to-accent">
-              Maximum Conversions
+              Conversion Rate
             </span>
           </h1>
 
           {/* Subheadline */}
           <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto mb-8 leading-relaxed text-pretty">
-            Get instant, actionable insights on SEO, UX, messaging, speed, mobile performance, and structure. Make
-            data-driven decisions that actually move the needle.
+            Get instant AI-powered insights on your product pages, checkout flow, site speed, mobile experience, and conversion blockers. Turn more visitors into paying customers.
           </p>
 
-          {/* CTA Button */}
+          {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Button
               size="lg"
               className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold px-8 py-6 text-lg shadow-xl group cursor-pointer"
               onClick={handleGetFreeAnalysis}
             >
-              Get Free Analysis
+              Analyze My Store Free
               <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </Button>
             <Button
@@ -71,7 +70,7 @@ export function HeroSection() {
               className="border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground font-semibold px-8 py-6 text-lg bg-transparent cursor-pointer"
               onClick={handleWatchDemo}
             >
-              Watch Demo
+              See How It Works
             </Button>
           </div>
 
@@ -85,7 +84,7 @@ export function HeroSection() {
                 >
                   <Image
                     src={pic}
-                    alt={`User ${i + 1}`}
+                    alt={`Shopify store owner ${i + 1}`}
                     fill
                     className="object-cover"
                   />
@@ -93,7 +92,7 @@ export function HeroSection() {
               ))}
             </div>
             <span className="font-medium text-center sm:text-left">
-              Join <span className="text-foreground font-semibold">2,000+</span> founders optimizing their websites
+              Join <span className="text-foreground font-semibold">2,000+</span> Shopify merchants optimizing their stores
             </span>
           </div>
         </div>
