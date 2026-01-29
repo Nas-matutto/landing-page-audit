@@ -87,7 +87,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'monthly',
       priority: 0.7,
     },
-    
+        {
+      url: `${baseUrl}/features/store-analyzer`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.7,
+    },
     // Legal pages
     {
       url: `${baseUrl}/privacy-policy`,

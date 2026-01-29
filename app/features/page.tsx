@@ -2,7 +2,7 @@
 
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
-import { Calculator, CheckSquare, ArrowRight } from "lucide-react"
+import { Calculator, CheckSquare, SearchIcon, ArrowRight } from "lucide-react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
@@ -10,23 +10,9 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 export default function FeaturesPage() {
   const features = [
     {
-      title: "Conversion Rate Calculator",
-      description: "Calculate your website's conversion rate and get personalized insights on how to improve it. Includes industry benchmarks and revenue impact analysis.",
-      icon: Calculator,
-      href: "/features/conversion-rate-calculator",
-      category: "Analytics",
-      color: "from-accent to-primary",
-      features: [
-        "Instant conversion rate calculation",
-        "Industry benchmark comparisons",
-        "Personalized improvement recommendations",
-        "Revenue impact projections",
-      ],
-    },
-     {
       title: "E-commerce Store Analyzer",
       description: "Get instant analysis of your online store with a conversion health score. Discover optimization opportunities across speed, UX, trust signals, and more. Completely free and unlimited.",
-      icon: Search,
+      icon: SearchIcon,
       href: "/features/store-analyzer",
       category: "Analysis",
       color: "from-accent to-primary",
@@ -38,12 +24,26 @@ export default function FeaturesPage() {
       ],
     },
     {
+      title: "Conversion Rate Calculator",
+      description: "Calculate your website's conversion rate and get personalized insights on how to improve it. Includes industry benchmarks and revenue impact analysis.",
+      icon: Calculator,
+      href: "/features/conversion-rate-calculator",
+      category: "Analytics",
+      color: "from-primary to-accent",
+      features: [
+        "Instant conversion rate calculation",
+        "Industry benchmark comparisons",
+        "Personalized improvement recommendations",
+        "Revenue impact projections",
+      ],
+    },
+    {
       title: "Landing Page Checklist",
       description: "Get a customized optimization checklist based on your business type and growth stage. Know exactly what to prioritize for maximum conversion impact.",
       icon: CheckSquare,
       href: "/features/landing-page-checklist",
       category: "Optimization",
-      color: "from-accent to-primary",
+      color: "from-primary to-accent",
       features: [
         "Personalized to your business type",
         "Stage-specific recommendations",
@@ -75,7 +75,7 @@ export default function FeaturesPage() {
             </div>
 
             {/* Features Grid */}
-            <div className="grid md:grid-cols-2 gap-8 mb-16">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
               {features.map((feature, index) => (
                 <Card key={index} className="glass-card border-2 border-border hover:border-primary/50 transition-all shadow-lg hover:shadow-xl group">
                   <CardHeader>
@@ -113,24 +113,19 @@ export default function FeaturesPage() {
             </div>
 
             {/* CTA Section */}
-            <div className="rounded-2xl overflow-hidden border-2 border-primary bg-gradient-to-br from-primary/5 via-accent/5 to-primary/5 shadow-xl">
-              <div className="p-8 md:p-12 text-center">
-                <h2 className="text-3xl font-bold text-foreground mb-4">
-                  Want More Than Just Tools?
-                </h2>
-                <p className="text-foreground mb-8 max-w-2xl mx-auto leading-relaxed text-lg">
-                  Get a complete AI-powered analysis of your website. Discover exactly what's hurting your conversions and receive a prioritized action plan with specific fixes ranked by expected impact.
-                </p>
-                <Button 
-                  className="bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90 text-white font-semibold py-6 px-8 cursor-pointer shadow-lg hover:shadow-xl transition-all text-lg"
-                  onClick={() => window.open('https://app.talktomedata.com/signup', '_blank')}
-                >
-                  Get Free Website Analysis →
-                </Button>
-                <p className="text-sm text-muted-foreground mt-4">
-                  Comprehensive analysis in 60 seconds • No credit card required
-                </p>
-              </div>
+            <div className="mt-16 p-8 rounded-2xl bg-gradient-to-br from-primary/10 via-accent/5 to-primary/10 border-2 border-primary/20 text-center">
+              <h2 className="text-3xl font-bold mb-4">
+                Want More Advanced Analysis?
+              </h2>
+              <p className="text-lg text-muted-foreground mb-6 max-w-2xl mx-auto">
+                Get comprehensive AI-powered website analysis with detailed recommendations, A/B testing suggestions, and ongoing conversion tracking.
+              </p>
+              <Button 
+                className="bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90 text-white font-semibold px-8 py-6 text-lg cursor-pointer"
+                onClick={() => window.open('https://app.talktomedata.com/signup', '_blank')}
+              >
+                Try Talk to me Data Free →
+              </Button>
             </div>
           </div>
         </div>
