@@ -52,6 +52,13 @@ function analyzeStore(html: string, url: string) {
   const linkButtons = html.match(/class=["'][^"']*\b(button|btn)\b[^"']*["']/gi) || []
   const totalButtons = buttonMatches.length + linkButtons.length
   
+  // SEO elements
+  const titleMatch = html.match(/<title[^>]*>([^<]+)<\/title>/i)
+  const title = titleMatch ? titleMatch[1].trim() : ''
+  const descMatch = html.match(/<meta\s+name=["']description["']\s+content=["']([^"']+)["']/i)
+  const description = descMatch ? descMatch[1].trim() : ''
+  const h1Matches = html.match(/<h1[^>]*>/gi) || []
+  
   // Check for various features
   const hasViewport = htmlLower.includes('viewport') && htmlLower.includes('width=device-width')
   const hasReviews = htmlLower.includes('review') || htmlLower.includes('rating') || htmlLower.includes('testimonial') || htmlLower.includes('★') || htmlLower.includes('star')
@@ -60,6 +67,7 @@ function analyzeStore(html: string, url: string) {
   const hasReturns = htmlLower.includes('return') || htmlLower.includes('refund') || htmlLower.includes('money back') || htmlLower.includes('guarantee')
   const hasPaymentBadges = htmlLower.includes('visa') || htmlLower.includes('mastercard') || htmlLower.includes('paypal') || htmlLower.includes('stripe')
   const hasLazyLoad = htmlLower.includes('loading="lazy"') || htmlLower.includes('lazy')
+  const hasContact = htmlLower.includes('contact') || htmlLower.includes('email') || htmlLower.includes('phone')
 
   // 1. Check page title
   const titleMatch = html.match(/<title[^>]*>([^<]+)<\/title>/i)
@@ -158,29 +166,7 @@ function analyzeStore(html: string, url: string) {
     })
   }
 
-  // 7. Check H1 tags
-  const h1Matches = html.match(/<h1[^>]*>/gi) || []
-  const h1Count = h1Matches.length
-  
-  if (h1Count === 0) {
-    issues.push({
-      category: 'SEO',
-      title: 'Missing H1 Heading',
-      impact: 'medium',
-      description: 'Your page needs one clear H1 heading that describes the main content. H1 tags are important for SEO and accessibility.'
-    })
-    score -= 5
-  } else if (h1Count > 1) {
-    issues.push({
-      category: 'SEO',
-      title: 'Multiple H1 Headings',
-      impact: 'low',
-      description: `Found ${h1Count} H1 headings. Best practice is to have exactly one H1 per page for optimal SEO.`
-    })
-    score -= 3
-  }
-
-  // 8. Check for analytics
+  // 7. Analytics tracking check
   const hasGA = htmlLower.includes('google-analytics.com') || 
                 htmlLower.includes('gtag') || 
                 htmlLower.includes('ga(')
@@ -200,21 +186,6 @@ function analyzeStore(html: string, url: string) {
       title: 'Analytics Tracking Active',
       description: 'Your store has analytics tracking installed. This allows you to measure performance and make data-driven optimization decisions.'
     })
-  }
-
-  // 9. Check for contact information
-  const hasContact = htmlLower.includes('contact') || 
-                     htmlLower.includes('email') ||
-                     htmlLower.includes('phone') ||
-                     htmlLower.includes('support')
-  if (!hasContact) {
-    issues.push({
-      category: 'Trust & Security',
-      title: 'No Contact Information Visible',
-      impact: 'medium',
-      description: 'Visible contact information builds trust with customers. Add email, phone, or a contact page link to your site.'
-    })
-    score -= 5
   }
 
   // 10. Check image alt tags
@@ -421,11 +392,7 @@ function analyzeStore(html: string, url: string) {
   let seoScore = 100
   const seoFindings = []
   
-  const titleMatch = html.match(/<title[^>]*>([^<]+)<\/title>/i)
-  const title = titleMatch ? titleMatch[1].trim() : ''
-  const descMatch = html.match(/<meta\s+name=["']description["']\s+content=["']([^"']+)["']/i)
-  const description = descMatch ? descMatch[1].trim() : ''
-  
+  // Use title and description already declared at top of function
   if (!title || title.length < 30) {
     seoScore -= 35
     seoFindings.push(`Page title missing or too short (${title.length} chars)`)
@@ -446,13 +413,14 @@ function analyzeStore(html: string, url: string) {
     seoFindings.push(`Meta description well-optimized (${description.length} chars)`)
   }
   
-  const h1Matches = html.match(/<h1[^>]*>/gi) || []
-  if (h1Matches.length === 0) {
+  // Use h1Matches already declared at top of function
+  const h1Count = h1Matches.length
+  if (h1Count === 0) {
     seoScore -= 25
     seoFindings.push("No H1 heading found - critical for SEO")
-  } else if (h1Matches.length > 1) {
+  } else if (h1Count > 1) {
     seoScore -= 10
-    seoFindings.push(`${h1Matches.length} H1 headings found - should only have 1`)
+    seoFindings.push(`${h1Count} H1 headings found - should only have 1`)
   } else {
     seoFindings.push("Proper H1 heading structure")
   }
@@ -523,7 +491,7 @@ function analyzeStore(html: string, url: string) {
     trustFindings.push("Payment method logos displayed")
   }
   
-  const hasContact = htmlLower.includes('contact') || htmlLower.includes('email') || htmlLower.includes('phone')
+  // Use hasContact already declared at top
   if (!hasContact) {
     trustScore -= 25
     trustFindings.push("No visible contact information - hurts credibility")
