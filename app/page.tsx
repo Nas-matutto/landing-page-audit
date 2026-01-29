@@ -9,9 +9,10 @@ import { FAQSection } from "@/components/sections/faq-section"
 import { FinalCTASection } from "@/components/sections/final-cta-section"
 
 export const metadata: Metadata = {
-  title: 'Shopify Conversion Rate Optimization | Increase Your Store Sales | Talk to me Data',
-  description: 'Get instant AI-powered analysis of your Shopify store. Identify conversion blockers in product pages, checkout flow, site speed & mobile UX. Increase sales by 30-50% in 30 days.',
+  title: 'Talk to me Data | Shopify Conversion Rate Optimization & Store Analysis',
+  description: 'Talk to me Data provides instant AI-powered analysis of your Shopify store. Identify conversion blockers in product pages, checkout flow, site speed & mobile UX. Increase sales by 30-50% in 30 days.',
   keywords: [
+    'Talk to me Data',
     'Shopify conversion rate optimization',
     'Shopify store optimization',
     'increase Shopify sales',
@@ -26,10 +27,11 @@ export const metadata: Metadata = {
     'Shopify analytics'
   ],
   openGraph: {
-    title: 'Increase Your Shopify Store Conversion Rate - Get Free Analysis',
+    title: 'Talk to me Data | Increase Your Shopify Store Conversion Rate',
     description: 'AI-powered analysis identifies conversion blockers in your Shopify store. Get actionable recommendations to increase sales by 30-50%.',
     type: 'website',
     url: 'https://talktomedata.com',
+    siteName: 'Talk to me Data',
     images: [
       {
         url: '/og-image.jpg',
@@ -41,9 +43,10 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Shopify Conversion Rate Optimization | Talk to me Data',
+    title: 'Talk to me Data | Shopify Conversion Rate Optimization',
     description: 'Analyze your Shopify store in 60 seconds. Get AI-powered insights to increase conversions and sales.',
-    images: ['/og-image.jpg']
+    images: ['/og-image.jpg'],
+    creator: '@talktomedata'
   },
   alternates: {
     canonical: 'https://talktomedata.com'
@@ -59,6 +62,10 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
+  applicationName: 'Talk to me Data',
+  authors: [{ name: 'Talk to me Data' }],
+  generator: 'Next.js',
+  referrer: 'origin-when-cross-origin',
 }
 
 export default function HomePage() {
