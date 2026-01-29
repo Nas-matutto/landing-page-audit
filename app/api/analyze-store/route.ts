@@ -69,40 +69,9 @@ function analyzeStore(html: string, url: string) {
   const hasLazyLoad = htmlLower.includes('loading="lazy"') || htmlLower.includes('lazy')
   const hasContact = htmlLower.includes('contact') || htmlLower.includes('email') || htmlLower.includes('phone')
 
-  // 1. Check page title
-  const titleMatch = html.match(/<title[^>]*>([^<]+)<\/title>/i)
-  const title = titleMatch ? titleMatch[1].trim() : ''
-  
-  if (!title || title.length < 30) {
-    issues.push({
-      category: 'SEO',
-      title: 'Missing or Short Page Title',
-      impact: 'high',
-      description: 'Your page title is missing or too short (less than 30 characters). A compelling title (50-60 characters) helps both SEO and conversion rates.'
-    })
-    score -= 8
-  } else {
-    positives.push({
-      title: 'Strong Page Title',
-      description: `Your page has a well-optimized title tag (${title.length} characters). This helps with both SEO rankings and click-through rates from search results.`
-    })
-  }
+  // 1. Title and description now checked in detailed analysis section
 
-  // 2. Check meta description
-  const descMatch = html.match(/<meta\s+name=["']description["']\s+content=["']([^"']+)["']/i)
-  const description = descMatch ? descMatch[1].trim() : ''
-  
-  if (!description || description.length < 120) {
-    issues.push({
-      category: 'SEO',
-      title: 'Missing or Short Meta Description',
-      impact: 'medium',
-      description: 'Your meta description is missing or too short (less than 120 characters). This affects click-through rates from search results.'
-    })
-    score -= 5
-  }
-
-  // 3. Check for mobile viewport
+  // 2. Check for mobile viewport
   if (!hasViewport) {
     issues.push({
       category: 'Mobile UX',
@@ -118,7 +87,7 @@ function analyzeStore(html: string, url: string) {
     })
   }
 
-  // 4. Check for SSL
+  // 3. Check for SSL
   if (!url.startsWith('https://')) {
     issues.push({
       category: 'Trust & Security',
@@ -134,7 +103,7 @@ function analyzeStore(html: string, url: string) {
     })
   }
 
-  // 5. Check for CTA buttons
+  // 4. Check for CTA buttons
   if (totalButtons < 1) {
     issues.push({
       category: 'Conversion',
@@ -150,7 +119,7 @@ function analyzeStore(html: string, url: string) {
     })
   }
 
-  // 6. Check for reviews/social proof
+  // 5. Check for reviews/social proof
   if (!hasReviews) {
     issues.push({
       category: 'Social Proof',
@@ -166,7 +135,7 @@ function analyzeStore(html: string, url: string) {
     })
   }
 
-  // 7. Analytics tracking check
+  // 6. Analytics tracking check
   const hasGA = htmlLower.includes('google-analytics.com') || 
                 htmlLower.includes('gtag') || 
                 htmlLower.includes('ga(')
@@ -188,7 +157,7 @@ function analyzeStore(html: string, url: string) {
     })
   }
 
-  // 10. Check image alt tags
+  // 7. Check image alt tags
   const imagesWithoutAlt = imageMatches.filter(img => !img.match(/alt=["'][^"']+["']/i)).length
   
   if (imagesWithoutAlt > 5) {
@@ -201,7 +170,7 @@ function analyzeStore(html: string, url: string) {
     score -= 4
   }
 
-  // 11. Check for cart/checkout keywords
+  // 8. Check for cart/checkout keywords
   if (!hasCart) {
     issues.push({
       category: 'E-commerce',
@@ -212,7 +181,7 @@ function analyzeStore(html: string, url: string) {
     score -= 10
   }
 
-  // 12. Check for shipping information
+  // 9. Check for shipping information
   if (!hasShipping) {
     issues.push({
       category: 'E-commerce',
@@ -223,7 +192,7 @@ function analyzeStore(html: string, url: string) {
     score -= 5
   }
 
-  // 13. Check for return policy
+  // 10. Check for return policy
   if (!hasReturns) {
     issues.push({
       category: 'Trust & Security',
@@ -234,7 +203,7 @@ function analyzeStore(html: string, url: string) {
     score -= 5
   }
 
-  // 14. Check for live chat
+  // 11. Check for live chat
   const hasChat = htmlLower.includes('chat') || 
                   htmlLower.includes('intercom') ||
                   htmlLower.includes('zendesk') ||
@@ -251,7 +220,7 @@ function analyzeStore(html: string, url: string) {
     score -= 3
   }
 
-  // 15. Check for structured data
+  // 12. Check for structured data
   const hasStructuredData = htmlLower.includes('schema.org') || 
                             htmlLower.includes('"@type":"product"') ||
                             htmlLower.includes('application/ld+json')
@@ -265,7 +234,7 @@ function analyzeStore(html: string, url: string) {
     score -= 5
   }
 
-  // 16. Check for payment trust badges
+  // 13. Check for payment trust badges
   if (!hasPaymentBadges) {
     issues.push({
       category: 'Trust & Security',
@@ -276,7 +245,7 @@ function analyzeStore(html: string, url: string) {
     score -= 4
   }
 
-  // 17. Check for urgency/scarcity elements
+  // 14. Check for urgency/scarcity elements
   const hasUrgency = htmlLower.includes('limited time') || 
                      htmlLower.includes('only') ||
                      htmlLower.includes('hurry') ||
@@ -292,7 +261,7 @@ function analyzeStore(html: string, url: string) {
     score -= 3
   }
 
-  // 18. Check for newsletter signup
+  // 15. Check for newsletter signup
   const hasNewsletter = htmlLower.includes('newsletter') || 
                         htmlLower.includes('subscribe') ||
                         htmlLower.includes('email signup')
@@ -306,7 +275,7 @@ function analyzeStore(html: string, url: string) {
     score -= 3
   }
 
-  // 19. Check page load optimization indicators
+  // 16. Check page load optimization indicators
   if (!hasLazyLoad) {
     issues.push({
       category: 'Page Speed',
