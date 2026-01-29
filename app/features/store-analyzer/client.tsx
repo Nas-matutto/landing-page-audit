@@ -286,7 +286,7 @@ export function StoreAnalyzerClient() {
                     Unlock Your Complete Store Analysis
                   </h3>
                   <p className="text-lg text-muted-foreground mb-6">
-                    You've seen 4 out of 15 optimization categories. Get the full picture with detailed insights on pricing psychology, upsell opportunities, abandonment recovery, personalization, and 11 more critical areas.
+                    Below are 4 out of 15 optimization categories. Get the full picture with detailed insights on pricing psychology, upsell opportunities, abandonment recovery, personalization, and 11 more critical areas.
                   </p>
                 </div>
 
@@ -297,7 +297,7 @@ export function StoreAnalyzerClient() {
                   </div>
                   <div className="p-4 rounded-lg bg-background/50 border border-border">
                     <div className="text-2xl font-bold text-primary mb-1">100%</div>
-                    <div className="text-sm text-muted-foreground">Free Forever</div>
+                    <div className="text-sm text-muted-foreground">Free</div>
                   </div>
                   <div className="p-4 rounded-lg bg-background/50 border border-border">
                     <div className="text-2xl font-bold text-primary mb-1">60s</div>
@@ -315,7 +315,7 @@ export function StoreAnalyzerClient() {
                 </Button>
                 
                 <p className="text-sm font-semibold text-foreground">
-                  No credit card required • Instant access • Unlimited reports
+                  No credit card required • Instant access • Free Analysis
                 </p>
               </div>
             </CardContent>

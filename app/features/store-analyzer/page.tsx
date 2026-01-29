@@ -111,7 +111,7 @@ export default function StoreAnalyzerPage() {
                 <section>
                   <h3 className="text-2xl font-bold mb-4 text-foreground">Why E-commerce Landing Page Optimization Matters</h3>
                   <p className="text-muted-foreground leading-relaxed mb-4">
-                    In today's competitive e-commerce landscape, optimizing your store's landing pages isn't optional—it's essential. Studies show that a one-second delay in page load time can reduce conversions by 7%, while optimized landing pages can increase conversion rates by up to 300%. Whether you're running a Shopify store, WooCommerce site, or custom e-commerce platform, conversion rate optimization (CRO) is the key to maximizing your revenue without spending more on advertising.
+                    In today's competitive e-commerce landscape, optimizing your store's landing pages isn't optional - it's essential. Studies show that a one-second delay in page load time can reduce conversions by 7%, while optimized landing pages can increase conversion rates by up to 300%. Whether you're running a Shopify store, WooCommerce site, or custom e-commerce platform, conversion rate optimization (CRO) is the key to maximizing your revenue without spending more on advertising.
                   </p>
                   <p className="text-muted-foreground leading-relaxed">
                     Our free e-commerce store analyzer helps you identify exactly where your store is losing potential customers. By analyzing 15+ critical conversion factors, we provide actionable insights that can dramatically improve your store's performance.
@@ -151,7 +151,7 @@ export default function StoreAnalyzerPage() {
                 <section>
                   <h3 className="text-2xl font-bold mb-4 text-foreground">The ROI of Store Optimization</h3>
                   <p className="text-muted-foreground leading-relaxed mb-4">
-                    Improving your conversion rate from 2% to 3% means 50% more revenue from the same traffic. If you're spending $10,000/month on ads generating 10,000 visitors and 200 sales, improving to 3% means 300 sales—an extra $XX,XXX in revenue depending on your average order value. Unlike paid advertising, optimization improvements compound over time and benefit all traffic sources.
+                    Improving your conversion rate from 2% to 3% means 50% more revenue from the same traffic. If you're spending $10,000/month on ads generating 10,000 visitors and 200 sales, improving to 3% means 300 sales - an extra $XX,XXX in revenue depending on your average order value. Unlike paid advertising, optimization improvements compound over time and benefit all traffic sources.
                   </p>
                   <p className="text-muted-foreground leading-relaxed">
                     Our e-commerce store analyzer identifies quick wins that can be implemented immediately, as well as strategic improvements for long-term growth. Most stores see measurable improvements within 30 days of implementing our recommendations.
