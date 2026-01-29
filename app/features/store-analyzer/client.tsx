@@ -4,7 +4,15 @@ import { useState } from "react"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { Search, CheckCircle2, AlertCircle, Loader2, ArrowRight, TrendingUp, Zap } from "lucide-react"
+import { Search, CheckCircle2, AlertCircle, Loader2, ArrowRight, TrendingUp, Zap, Lock } from "lucide-react"
+
+interface DetailedAnalysis {
+  category: string
+  score: number
+  findings: string[]
+  recommendation: string
+  impact: string
+}
 
 interface AnalysisResult {
   score: number
@@ -20,6 +28,7 @@ interface AnalysisResult {
     impact: 'high' | 'medium' | 'low'
     description: string
   }[]
+  detailedAnalysis: DetailedAnalysis[]
   totalIssues: number
 }
 
@@ -77,6 +86,21 @@ export function StoreAnalyzerClient() {
     window.open('https://app.talktomedata.com/signup', '_blank')
   }
 
+  // Categories that are locked (shown after signup CTA)
+  const lockedCategories = [
+    "Pricing Psychology",
+    "Smart Upsells & Cross-Sells",
+    "Exit Intent & Abandonment Capture",
+    "Personalization",
+    "Live Chat / Fast Support",
+    "Scarcity & Urgency",
+    "Above-the-Fold Value Proposition",
+    "High-Quality Product Media",
+    "Clear Shipping & Returns Policy",
+    "On-Site Trust Signals",
+    "Mobile UX Optimization"
+  ]
+
   return (
     <div className="space-y-8">
       {/* Input Section */}
@@ -126,7 +150,7 @@ export function StoreAnalyzerClient() {
 
       {/* Results Section */}
       {result && (
-        <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
+        <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
           {/* Score Card */}
           <Card className="border-2 border-primary/20 bg-gradient-to-br from-primary/5 to-accent/5">
             <CardContent className="p-6 sm:p-8">
@@ -250,30 +274,147 @@ export function StoreAnalyzerClient() {
             </div>
           </div>
 
-          {/* CTA Box */}
-          <Card className="border-2 border-accent/20 bg-gradient-to-br from-accent/5 to-primary/5">
-            <CardContent className="p-6 sm:p-8 text-center">
-              <div className="mb-4">
-                <div className="text-3xl font-bold text-foreground mb-2">
-                  Get Your Complete Analysis Free
+          {/* High-Converting Signup CTA */}
+          <Card className="border-2 border-accent/30 bg-gradient-to-br from-accent/10 via-primary/5 to-accent/10 shadow-xl">
+            <CardContent className="p-8 sm:p-10">
+              <div className="text-center max-w-2xl mx-auto">
+                <div className="mb-6">
+                  <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br from-primary to-accent mb-4">
+                    <Lock className="w-8 h-8 text-white" />
+                  </div>
+                  <h3 className="text-2xl sm:text-3xl font-bold text-foreground mb-3">
+                    Unlock Your Complete Store Analysis
+                  </h3>
+                  <p className="text-lg text-muted-foreground mb-6">
+                    You've seen 4 out of 15 optimization categories. Get the full picture with detailed insights on pricing psychology, upsell opportunities, abandonment recovery, personalization, and 11 more critical areas.
+                  </p>
                 </div>
-                <p className="text-muted-foreground">
-                  Our free report assesses 15+ parameters to help increase your store's conversion rate. See exactly what to fix and how to implement each recommendation.
-                </p>
-              </div>
-              <div className="space-y-4">
+
+                <div className="grid sm:grid-cols-3 gap-4 mb-8">
+                  <div className="p-4 rounded-lg bg-background/50 border border-border">
+                    <div className="text-2xl font-bold text-primary mb-1">15+</div>
+                    <div className="text-sm text-muted-foreground">Parameters Analyzed</div>
+                  </div>
+                  <div className="p-4 rounded-lg bg-background/50 border border-border">
+                    <div className="text-2xl font-bold text-primary mb-1">100%</div>
+                    <div className="text-sm text-muted-foreground">Free Forever</div>
+                  </div>
+                  <div className="p-4 rounded-lg bg-background/50 border border-border">
+                    <div className="text-2xl font-bold text-primary mb-1">60s</div>
+                    <div className="text-sm text-muted-foreground">Setup Time</div>
+                  </div>
+                </div>
+
                 <Button
                   onClick={handleSignup}
-                  className="bg-gradient-to-r from-accent to-primary hover:from-accent/90 hover:to-primary/90 text-white font-semibold px-8 py-6 text-lg cursor-pointer"
+                  size="lg"
+                  className="bg-gradient-to-r from-accent to-primary hover:from-accent/90 hover:to-primary/90 text-white font-bold px-10 py-7 text-lg shadow-2xl cursor-pointer mb-4"
                 >
-                  Get Full Report Free →
+                  Get Full Report Free
+                  <ArrowRight className="ml-2 w-5 h-5" />
                 </Button>
-                <p className="text-sm font-medium text-foreground">
-                  Sign up for Free
+                
+                <p className="text-sm font-semibold text-foreground">
+                  No credit card required • Instant access • Unlimited reports
                 </p>
               </div>
             </CardContent>
           </Card>
+
+          {/* Detailed Analysis - 4 Categories Shown */}
+          <div>
+            <div className="mb-6">
+              <h3 className="text-2xl font-bold mb-2">Detailed Analysis</h3>
+              <p className="text-muted-foreground">
+                Here's what we found across 4 key conversion categories
+              </p>
+            </div>
+            
+            <div className="grid sm:grid-cols-2 gap-4">
+              {result.detailedAnalysis.map((analysis, index) => (
+                <Card key={index} className="glass-card hover:shadow-lg transition-shadow">
+                  <CardContent className="p-6">
+                    {/* Category Header */}
+                    <div className="flex items-center justify-between mb-4">
+                      <h4 className="font-bold text-lg text-foreground">{analysis.category}</h4>
+                      <div className="flex items-center gap-2">
+                        <div className={`w-12 h-12 rounded-lg flex items-center justify-center text-xl font-bold ${
+                          analysis.score >= 80 ? 'bg-green-100 text-green-700' :
+                          analysis.score >= 60 ? 'bg-yellow-100 text-yellow-700' :
+                          'bg-red-100 text-red-700'
+                        }`}>
+                          {analysis.score}
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Findings */}
+                    <div className="mb-4">
+                      <div className="text-xs font-semibold text-muted-foreground uppercase mb-2">
+                        What We Found
+                      </div>
+                      <ul className="space-y-2">
+                        {analysis.findings.map((finding, i) => (
+                          <li key={i} className="flex items-start gap-2 text-sm">
+                            <div className="w-1.5 h-1.5 rounded-full bg-primary mt-1.5 flex-shrink-0" />
+                            <span className="text-muted-foreground">{finding}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    {/* Recommendation */}
+                    <div className="p-3 rounded-lg bg-primary/5 border border-primary/20">
+                      <div className="text-xs font-semibold text-primary uppercase mb-1">
+                        {analysis.impact}
+                      </div>
+                      <p className="text-sm text-foreground leading-relaxed">
+                        {analysis.recommendation}
+                      </p>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+
+          {/* Locked Categories Preview */}
+          <div>
+            <div className="mb-4">
+              <h3 className="text-xl font-bold text-muted-foreground flex items-center gap-2">
+                <Lock className="w-5 h-5" />
+                11 More Categories Available
+              </h3>
+            </div>
+            
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
+              {lockedCategories.map((category, index) => (
+                <div 
+                  key={index}
+                  className="p-4 rounded-lg border-2 border-dashed border-border bg-muted/30 relative overflow-hidden group hover:border-primary/30 transition-colors"
+                >
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-accent/5 opacity-0 group-hover:opacity-100 transition-opacity" />
+                  <div className="relative">
+                    <Lock className="w-4 h-4 text-muted-foreground mb-2" />
+                    <div className="text-sm font-semibold text-foreground">
+                      {category}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div className="mt-6 text-center">
+              <Button
+                onClick={handleSignup}
+                variant="outline"
+                className="border-2 border-primary text-primary hover:bg-primary hover:text-white font-semibold cursor-pointer"
+              >
+                Unlock All Categories Free
+                <ArrowRight className="ml-2 w-4 h-4" />
+              </Button>
+            </div>
+          </div>
         </div>
       )}
 

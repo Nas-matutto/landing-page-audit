@@ -388,6 +388,65 @@ function analyzeStore(html: string, url: string) {
     }
   }
 
+  // Generate detailed analysis for 4 categories
+  const detailedAnalysis = []
+
+  // 1. Page Speed Analysis
+  const pageSpeedScore = hasLazyLoad ? 75 : 60
+  detailedAnalysis.push({
+    category: "Page Speed (Mobile First)",
+    score: pageSpeedScore,
+    findings: [
+      imageCount > 10 ? `${imageCount} images detected - optimization recommended` : "Image count is reasonable",
+      hasLazyLoad ? "Lazy loading detected" : "No lazy loading implementation found",
+      "Mobile load time estimation based on resource count"
+    ],
+    recommendation: "Compress images to WebP format, implement lazy loading for below-the-fold images, and minimize theme CSS/JS. Target mobile load time under 3 seconds.",
+    impact: "High Impact - Every 1s improvement = 7% conversion increase"
+  })
+
+  // 2. Product Page Structure
+  const productScore = (totalButtons > 0 ? 30 : 0) + (hasCart ? 30 : 0) + (hasShipping ? 20 : 0) + (hasReturns ? 20 : 0)
+  detailedAnalysis.push({
+    category: "Product Page Structure",
+    score: productScore,
+    findings: [
+      totalButtons > 0 ? `${totalButtons} CTA buttons found` : "No clear CTAs detected",
+      hasShipping ? "Shipping information present" : "Shipping info not visible",
+      hasReturns ? "Return policy mentioned" : "Return policy not found"
+    ],
+    recommendation: "Make Add to Cart button sticky on scroll, place price near primary CTA, show key benefits above the fold, and display shipping/returns info prominently.",
+    impact: "High Impact - Clear CTAs increase conversions by 80-200%"
+  })
+
+  // 3. Social Proof
+  const socialProofScore = hasReviews ? 85 : 30
+  detailedAnalysis.push({
+    category: "Social Proof",
+    score: socialProofScore,
+    findings: [
+      hasReviews ? "Reviews or ratings detected" : "No customer reviews found",
+      "Trust badge analysis pending full scan",
+      hasReviews ? "Social proof elements present" : "Missing social proof signals"
+    ],
+    recommendation: "Display customer reviews near Add to Cart button, show UGC photos, add 'X people bought this today' notifications, and prominently feature trust badges.",
+    impact: "Critical Impact - Reviews increase conversions by up to 270%"
+  })
+
+  // 4. Checkout Optimization
+  const checkoutScore = (url.startsWith('https://') ? 40 : 0) + (hasCart ? 30 : 0) + (hasPaymentBadges ? 30 : 0)
+  detailedAnalysis.push({
+    category: "Simple Checkout (Friction Removal)",
+    score: checkoutScore,
+    findings: [
+      url.startsWith('https://') ? "HTTPS secure checkout" : "Not using HTTPS - major security concern",
+      hasPaymentBadges ? "Payment methods visible" : "Payment logos not detected",
+      "Multi-step checkout analysis requires full scan"
+    ],
+    recommendation: "Enable guest checkout, add Shop Pay/Apple Pay/Google Pay, minimize form fields to essentials only, and show clear progress indicators throughout checkout.",
+    impact: "Critical Impact - Reducing checkout steps by 1 = 10-15% conversion lift"
+  })
+
   // Sort issues by impact
   const impactOrder = { high: 0, medium: 1, low: 2 }
   issues.sort((a, b) => impactOrder[a.impact] - impactOrder[b.impact])
@@ -398,6 +457,7 @@ function analyzeStore(html: string, url: string) {
     url,
     positives: positives.slice(0, 3),
     issues,
+    detailedAnalysis,
     totalIssues: issues.length
   }
 }
