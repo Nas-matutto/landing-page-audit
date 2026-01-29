@@ -45,6 +45,22 @@ function analyzeStore(html: string, url: string) {
   // Convert HTML to lowercase for easier searching
   const htmlLower = html.toLowerCase()
 
+  // Calculate values we'll need throughout (moved to top)
+  const imageMatches = html.match(/<img[^>]*>/gi) || []
+  const imageCount = imageMatches.length
+  const buttonMatches = html.match(/<button[^>]*>|<input[^>]*type=["']submit["'][^>]*>/gi) || []
+  const linkButtons = html.match(/class=["'][^"']*\b(button|btn)\b[^"']*["']/gi) || []
+  const totalButtons = buttonMatches.length + linkButtons.length
+  
+  // Check for various features
+  const hasViewport = htmlLower.includes('viewport') && htmlLower.includes('width=device-width')
+  const hasReviews = htmlLower.includes('review') || htmlLower.includes('rating') || htmlLower.includes('testimonial') || htmlLower.includes('★') || htmlLower.includes('star')
+  const hasCart = htmlLower.includes('cart') || htmlLower.includes('checkout') || htmlLower.includes('add to cart') || htmlLower.includes('buy now')
+  const hasShipping = htmlLower.includes('shipping') || htmlLower.includes('delivery') || htmlLower.includes('free shipping')
+  const hasReturns = htmlLower.includes('return') || htmlLower.includes('refund') || htmlLower.includes('money back') || htmlLower.includes('guarantee')
+  const hasPaymentBadges = htmlLower.includes('visa') || htmlLower.includes('mastercard') || htmlLower.includes('paypal') || htmlLower.includes('stripe')
+  const hasLazyLoad = htmlLower.includes('loading="lazy"') || htmlLower.includes('lazy')
+
   // 1. Check page title
   const titleMatch = html.match(/<title[^>]*>([^<]+)<\/title>/i)
   const title = titleMatch ? titleMatch[1].trim() : ''
@@ -79,7 +95,6 @@ function analyzeStore(html: string, url: string) {
   }
 
   // 3. Check for mobile viewport
-  const hasViewport = htmlLower.includes('viewport') && htmlLower.includes('width=device-width')
   if (!hasViewport) {
     issues.push({
       category: 'Mobile UX',
@@ -112,10 +127,6 @@ function analyzeStore(html: string, url: string) {
   }
 
   // 5. Check for CTA buttons
-  const buttonMatches = html.match(/<button[^>]*>|<input[^>]*type=["']submit["'][^>]*>/gi) || []
-  const linkButtons = html.match(/class=["'][^"']*\b(button|btn)\b[^"']*["']/gi) || []
-  const totalButtons = buttonMatches.length + linkButtons.length
-  
   if (totalButtons < 1) {
     issues.push({
       category: 'Conversion',
@@ -132,11 +143,6 @@ function analyzeStore(html: string, url: string) {
   }
 
   // 6. Check for reviews/social proof
-  const hasReviews = htmlLower.includes('review') || 
-                     htmlLower.includes('rating') ||
-                     htmlLower.includes('testimonial') ||
-                     htmlLower.includes('★') ||
-                     htmlLower.includes('star')
   if (!hasReviews) {
     issues.push({
       category: 'Social Proof',
@@ -212,7 +218,6 @@ function analyzeStore(html: string, url: string) {
   }
 
   // 10. Check image alt tags
-  const imageMatches = html.match(/<img[^>]*>/gi) || []
   const imagesWithoutAlt = imageMatches.filter(img => !img.match(/alt=["'][^"']+["']/i)).length
   
   if (imagesWithoutAlt > 5) {
@@ -226,10 +231,6 @@ function analyzeStore(html: string, url: string) {
   }
 
   // 11. Check for cart/checkout keywords
-  const hasCart = htmlLower.includes('cart') || 
-                  htmlLower.includes('checkout') ||
-                  htmlLower.includes('add to cart') ||
-                  htmlLower.includes('buy now')
   if (!hasCart) {
     issues.push({
       category: 'E-commerce',
@@ -241,9 +242,6 @@ function analyzeStore(html: string, url: string) {
   }
 
   // 12. Check for shipping information
-  const hasShipping = htmlLower.includes('shipping') || 
-                      htmlLower.includes('delivery') ||
-                      htmlLower.includes('free shipping')
   if (!hasShipping) {
     issues.push({
       category: 'E-commerce',
@@ -255,10 +253,6 @@ function analyzeStore(html: string, url: string) {
   }
 
   // 13. Check for return policy
-  const hasReturns = htmlLower.includes('return') || 
-                     htmlLower.includes('refund') ||
-                     htmlLower.includes('money back') ||
-                     htmlLower.includes('guarantee')
   if (!hasReturns) {
     issues.push({
       category: 'Trust & Security',
@@ -301,10 +295,6 @@ function analyzeStore(html: string, url: string) {
   }
 
   // 16. Check for payment trust badges
-  const hasPaymentBadges = htmlLower.includes('visa') || 
-                           htmlLower.includes('mastercard') ||
-                           htmlLower.includes('paypal') ||
-                           htmlLower.includes('stripe')
   if (!hasPaymentBadges) {
     issues.push({
       category: 'Trust & Security',
@@ -346,7 +336,6 @@ function analyzeStore(html: string, url: string) {
   }
 
   // 19. Check page load optimization indicators
-  const hasLazyLoad = htmlLower.includes('loading="lazy"') || htmlLower.includes('lazy')
   if (!hasLazyLoad) {
     issues.push({
       category: 'Page Speed',

@@ -15,7 +15,7 @@ export default function FeaturesPage() {
       icon: SearchIcon,
       href: "/features/store-analyzer",
       category: "Analysis",
-      color: "from-accent to-primary",
+      color: "from-primary to-accent",
       features: [
         "Instant conversion health score",
         "Real-time store scanning",
