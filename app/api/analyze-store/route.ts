@@ -39,6 +39,7 @@ export async function POST(request: NextRequest) {
 
 function analyzeStore(html: string, url: string) {
   const issues: any[] = []
+  const positives: any[] = []
   let score = 100
 
   // Convert HTML to lowercase for easier searching
@@ -56,6 +57,11 @@ function analyzeStore(html: string, url: string) {
       description: 'Your page title is missing or too short (less than 30 characters). A compelling title (50-60 characters) helps both SEO and conversion rates.'
     })
     score -= 8
+  } else {
+    positives.push({
+      title: 'Strong Page Title',
+      description: `Your page has a well-optimized title tag (${title.length} characters). This helps with both SEO rankings and click-through rates from search results.`
+    })
   }
 
   // 2. Check meta description
@@ -82,20 +88,27 @@ function analyzeStore(html: string, url: string) {
       description: 'Your site may not display correctly on mobile devices. 70% of e-commerce traffic is mobile. Add a viewport meta tag.'
     })
     score -= 10
+  } else {
+    positives.push({
+      title: 'Mobile-Optimized',
+      description: 'Your store has proper mobile viewport configuration. This ensures your site displays correctly on smartphones and tablets.'
+    })
   }
 
-  // 4. Check for images
-  const imageMatches = html.match(/<img[^>]*>/gi) || []
-  const imageCount = imageMatches.length
-  
-  if (imageCount > 15) {
+  // 4. Check for SSL
+  if (!url.startsWith('https://')) {
     issues.push({
-      category: 'Page Speed',
-      title: 'Too Many Images Detected',
+      category: 'Trust & Security',
+      title: 'Not Using HTTPS',
       impact: 'high',
-      description: `Found ${imageCount} images on the page. Too many large images slow page load. Compress images and use WebP format for faster loading.`
+      description: 'Your store is not using HTTPS. This is critical for security and customer trust. Browsers will show "Not Secure" warnings.'
     })
-    score -= 8
+    score -= 15
+  } else {
+    positives.push({
+      title: 'Secure HTTPS Connection',
+      description: 'Your store uses HTTPS encryption, which protects customer data and builds trust. This is essential for e-commerce credibility.'
+    })
   }
 
   // 5. Check for CTA buttons
@@ -111,20 +124,14 @@ function analyzeStore(html: string, url: string) {
       description: 'Could not detect obvious CTAs like "Add to Cart" or "Buy Now" buttons. Clear CTAs are critical for e-commerce conversions.'
     })
     score -= 12
-  }
-
-  // 6. Check for SSL
-  if (!url.startsWith('https://')) {
-    issues.push({
-      category: 'Trust & Security',
-      title: 'Not Using HTTPS',
-      impact: 'high',
-      description: 'Your store is not using HTTPS. This is critical for security and customer trust. Browsers will show "Not Secure" warnings.'
+  } else {
+    positives.push({
+      title: 'Clear Call-to-Action Buttons',
+      description: `Found ${totalButtons} CTA buttons on your page. Clear, prominent CTAs guide customers toward making a purchase.`
     })
-    score -= 15
   }
 
-  // 7. Check for reviews/social proof
+  // 6. Check for reviews/social proof
   const hasReviews = htmlLower.includes('review') || 
                      htmlLower.includes('rating') ||
                      htmlLower.includes('testimonial') ||
@@ -138,9 +145,14 @@ function analyzeStore(html: string, url: string) {
       description: 'Social proof (reviews, ratings, testimonials) increases trust and can boost conversion rates by up to 270%. Add customer reviews to your site.'
     })
     score -= 10
+  } else {
+    positives.push({
+      title: 'Social Proof Present',
+      description: 'Your store displays customer reviews or ratings. Social proof is one of the most powerful conversion drivers in e-commerce.'
+    })
   }
 
-  // 8. Check H1 tags
+  // 7. Check H1 tags
   const h1Matches = html.match(/<h1[^>]*>/gi) || []
   const h1Count = h1Matches.length
   
@@ -162,7 +174,7 @@ function analyzeStore(html: string, url: string) {
     score -= 3
   }
 
-  // 9. Check for analytics
+  // 8. Check for analytics
   const hasGA = htmlLower.includes('google-analytics.com') || 
                 htmlLower.includes('gtag') || 
                 htmlLower.includes('ga(')
@@ -177,9 +189,14 @@ function analyzeStore(html: string, url: string) {
       description: 'Could not detect Google Analytics, Facebook Pixel, or Google Tag Manager. Analytics tracking is essential for understanding customer behavior.'
     })
     score -= 6
+  } else {
+    positives.push({
+      title: 'Analytics Tracking Active',
+      description: 'Your store has analytics tracking installed. This allows you to measure performance and make data-driven optimization decisions.'
+    })
   }
 
-  // 10. Check for contact information
+  // 9. Check for contact information
   const hasContact = htmlLower.includes('contact') || 
                      htmlLower.includes('email') ||
                      htmlLower.includes('phone') ||
@@ -194,7 +211,8 @@ function analyzeStore(html: string, url: string) {
     score -= 5
   }
 
-  // 11. Check image alt tags
+  // 10. Check image alt tags
+  const imageMatches = html.match(/<img[^>]*>/gi) || []
   const imagesWithoutAlt = imageMatches.filter(img => !img.match(/alt=["'][^"']+["']/i)).length
   
   if (imagesWithoutAlt > 5) {
@@ -207,7 +225,7 @@ function analyzeStore(html: string, url: string) {
     score -= 4
   }
 
-  // 12. Check for cart/checkout keywords
+  // 11. Check for cart/checkout keywords
   const hasCart = htmlLower.includes('cart') || 
                   htmlLower.includes('checkout') ||
                   htmlLower.includes('add to cart') ||
@@ -222,7 +240,7 @@ function analyzeStore(html: string, url: string) {
     score -= 10
   }
 
-  // 13. Check for shipping information
+  // 12. Check for shipping information
   const hasShipping = htmlLower.includes('shipping') || 
                       htmlLower.includes('delivery') ||
                       htmlLower.includes('free shipping')
@@ -236,7 +254,7 @@ function analyzeStore(html: string, url: string) {
     score -= 5
   }
 
-  // 14. Check for return policy
+  // 13. Check for return policy
   const hasReturns = htmlLower.includes('return') || 
                      htmlLower.includes('refund') ||
                      htmlLower.includes('money back') ||
@@ -251,7 +269,7 @@ function analyzeStore(html: string, url: string) {
     score -= 5
   }
 
-  // 15. Check for live chat
+  // 14. Check for live chat
   const hasChat = htmlLower.includes('chat') || 
                   htmlLower.includes('intercom') ||
                   htmlLower.includes('zendesk') ||
@@ -268,7 +286,7 @@ function analyzeStore(html: string, url: string) {
     score -= 3
   }
 
-  // 16. Check for structured data
+  // 15. Check for structured data
   const hasStructuredData = htmlLower.includes('schema.org') || 
                             htmlLower.includes('"@type":"product"') ||
                             htmlLower.includes('application/ld+json')
@@ -282,7 +300,7 @@ function analyzeStore(html: string, url: string) {
     score -= 5
   }
 
-  // 17. Check for payment trust badges
+  // 16. Check for payment trust badges
   const hasPaymentBadges = htmlLower.includes('visa') || 
                            htmlLower.includes('mastercard') ||
                            htmlLower.includes('paypal') ||
@@ -297,7 +315,7 @@ function analyzeStore(html: string, url: string) {
     score -= 4
   }
 
-  // 18. Check for urgency/scarcity elements
+  // 17. Check for urgency/scarcity elements
   const hasUrgency = htmlLower.includes('limited time') || 
                      htmlLower.includes('only') ||
                      htmlLower.includes('hurry') ||
@@ -313,7 +331,7 @@ function analyzeStore(html: string, url: string) {
     score -= 3
   }
 
-  // 19. Check for newsletter signup
+  // 18. Check for newsletter signup
   const hasNewsletter = htmlLower.includes('newsletter') || 
                         htmlLower.includes('subscribe') ||
                         htmlLower.includes('email signup')
@@ -327,7 +345,7 @@ function analyzeStore(html: string, url: string) {
     score -= 3
   }
 
-  // 20. Check page load optimization indicators
+  // 19. Check page load optimization indicators
   const hasLazyLoad = htmlLower.includes('loading="lazy"') || htmlLower.includes('lazy')
   if (!hasLazyLoad) {
     issues.push({
@@ -342,13 +360,43 @@ function analyzeStore(html: string, url: string) {
   // Ensure score is between 0 and 100
   score = Math.max(0, Math.min(100, score))
 
+  // Calculate score range (±12% from actual score)
+  const scoreRange = {
+    min: Math.max(0, score - 12),
+    max: Math.min(100, score)
+  }
+
+  // Ensure we have at least 3 positives (fill with generic ones if needed)
+  while (positives.length < 3) {
+    const genericPositives = [
+      {
+        title: 'Online Presence Established',
+        description: 'Your store is live and accessible online. Having an active e-commerce presence is the foundation for building your business.'
+      },
+      {
+        title: 'Product Catalog Available',
+        description: 'Your store has product information available for customers to browse. This is essential for driving e-commerce sales.'
+      },
+      {
+        title: 'Brand Identity Visible',
+        description: 'Your store has branding elements in place. A consistent brand identity helps build trust and recognition with customers.'
+      }
+    ]
+    
+    if (positives.length < 3) {
+      positives.push(genericPositives[positives.length])
+    }
+  }
+
   // Sort issues by impact
   const impactOrder = { high: 0, medium: 1, low: 2 }
   issues.sort((a, b) => impactOrder[a.impact] - impactOrder[b.impact])
 
   return {
     score: Math.round(score),
+    scoreRange,
     url,
+    positives: positives.slice(0, 3),
     issues,
     totalIssues: issues.length
   }

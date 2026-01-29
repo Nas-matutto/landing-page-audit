@@ -1,14 +1,19 @@
 "use client"
 
 import { useState } from "react"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Search, CheckCircle2, AlertCircle, Loader2, ArrowRight, TrendingUp, Zap } from "lucide-react"
 
 interface AnalysisResult {
   score: number
+  scoreRange: { min: number; max: number }
   url: string
+  positives: {
+    title: string
+    description: string
+  }[]
   issues: {
     category: string
     title: string
@@ -30,10 +35,10 @@ export function StoreAnalyzerClient() {
       return
     }
 
-    // Basic URL validation
-    if (!url.match(/^https?:\/\/.+/)) {
-      setError("Please enter a valid URL starting with http:// or https://")
-      return
+    // Add https:// if missing
+    let finalUrl = url.trim()
+    if (!finalUrl.match(/^https?:\/\//)) {
+      finalUrl = 'https://' + finalUrl
     }
 
     setError("")
@@ -46,7 +51,7 @@ export function StoreAnalyzerClient() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ url }),
+        body: JSON.stringify({ url: finalUrl }),
       })
 
       if (!response.ok) {
@@ -82,11 +87,11 @@ export function StoreAnalyzerClient() {
               <div className="relative flex-1">
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
                 <Input
-                  type="url"
+                  type="text"
                   value={url}
                   onChange={(e) => setUrl(e.target.value)}
                   onKeyPress={handleKeyPress}
-                  placeholder="https://yourstore.com"
+                  placeholder="yourstore.com"
                   className="pl-10 h-12 text-base border-2"
                   disabled={loading}
                 />
@@ -126,26 +131,23 @@ export function StoreAnalyzerClient() {
           <Card className="border-2 border-primary/20 bg-gradient-to-br from-primary/5 to-accent/5">
             <CardContent className="p-6 sm:p-8">
               <div className="flex flex-col sm:flex-row items-center justify-between gap-6">
-                <div className="text-center sm:text-left">
+                <div className="text-center sm:text-left flex-1">
                   <div className="text-sm text-muted-foreground font-medium mb-2">
-                    Conversion Health Score
+                    Estimated Conversion Score
                   </div>
                   <div className="flex items-center gap-4">
-                    <div className="text-6xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-                      {result.score}%
+                    <div className="text-5xl sm:text-6xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+                      {result.scoreRange.min}% - {result.scoreRange.max}%
                     </div>
-                    <div className="text-left">
-                      <div className={`text-sm font-semibold ${
-                        result.score >= 80 ? 'text-green-600' : 
-                        result.score >= 60 ? 'text-yellow-600' : 
-                        'text-red-600'
-                      }`}>
-                        {result.score >= 80 ? 'Great!' : result.score >= 60 ? 'Good' : 'Needs Work'}
-                      </div>
-                      <div className="text-xs text-muted-foreground">
-                        {result.totalIssues} optimization opportunities found
-                      </div>
-                    </div>
+                  </div>
+                  <div className="mt-3">
+                    <Button
+                      onClick={handleSignup}
+                      variant="outline"
+                      className="border-2 border-primary text-primary hover:bg-primary hover:text-white font-semibold cursor-pointer"
+                    >
+                      Sign Up to See Full Analysis
+                    </Button>
                   </div>
                 </div>
                 <div className="flex items-center gap-3">
@@ -159,9 +161,40 @@ export function StoreAnalyzerClient() {
             </CardContent>
           </Card>
 
-          {/* Top 5 Issues */}
+          {/* Overview - Positive Points */}
           <div>
-            <h3 className="text-2xl font-bold mb-4">Top Priority Issues</h3>
+            <h3 className="text-2xl font-bold mb-4">Overview</h3>
+            <div className="space-y-3">
+              {result.positives.map((positive, index) => (
+                <Card 
+                  key={index}
+                  className="border-l-4 border-l-green-500 hover:shadow-md transition-shadow"
+                >
+                  <CardContent className="p-5">
+                    <div className="flex items-start gap-4">
+                      <div className="flex-shrink-0">
+                        <div className="w-10 h-10 rounded-lg bg-green-100 flex items-center justify-center">
+                          <CheckCircle2 className="w-5 h-5 text-green-600" />
+                        </div>
+                      </div>
+                      <div className="flex-1">
+                        <h4 className="font-bold text-foreground mb-1">
+                          {positive.title}
+                        </h4>
+                        <p className="text-sm text-muted-foreground leading-relaxed">
+                          {positive.description}
+                        </p>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+
+          {/* Areas of Improvement */}
+          <div>
+            <h3 className="text-2xl font-bold mb-4">Areas of Improvement</h3>
             <div className="space-y-3">
               {result.issues.slice(0, 5).map((issue, index) => (
                 <Card 
@@ -217,32 +250,26 @@ export function StoreAnalyzerClient() {
             </div>
           </div>
 
-          {/* More Issues Available */}
+          {/* CTA Box */}
           <Card className="border-2 border-accent/20 bg-gradient-to-br from-accent/5 to-primary/5">
             <CardContent className="p-6 sm:p-8 text-center">
               <div className="mb-4">
-                <div className="text-4xl font-bold text-foreground mb-2">
-                  +{result.totalIssues - 5} More Issues
+                <div className="text-3xl font-bold text-foreground mb-2">
+                  Get Your Complete Analysis Free
                 </div>
                 <p className="text-muted-foreground">
-                  We found {result.totalIssues - 5} additional optimization opportunities across page speed, mobile UX, checkout flow, and more.
+                  Our free report assesses 15+ parameters to help increase your store's conversion rate. See exactly what to fix and how to implement each recommendation.
                 </p>
               </div>
               <div className="space-y-4">
-                <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-accent" />
-                  <span className="text-sm text-foreground font-medium">
-                    Get your complete analysis with step-by-step fix instructions
-                  </span>
-                </div>
                 <Button
                   onClick={handleSignup}
                   className="bg-gradient-to-r from-accent to-primary hover:from-accent/90 hover:to-primary/90 text-white font-semibold px-8 py-6 text-lg cursor-pointer"
                 >
                   Get Full Report Free →
                 </Button>
-                <p className="text-xs text-muted-foreground">
-                  No credit card required • Instant access • Unlimited use
+                <p className="text-sm font-medium text-foreground">
+                  Sign up for Free
                 </p>
               </div>
             </CardContent>
@@ -262,7 +289,7 @@ export function StoreAnalyzerClient() {
             {
               step: "02",
               title: "AI Analyzes Your Store",
-              description: "We scan 50+ conversion factors in real-time"
+              description: "We scan 15+ conversion factors in real-time"
             },
             {
               step: "03",

@@ -75,7 +75,7 @@ export default function FeaturesPage() {
             </div>
 
             {/* Features Grid */}
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+            <div className="grid md:grid-cols-2 gap-8 mb-16">
               {features.map((feature, index) => (
                 <Card key={index} className="glass-card border-2 border-border hover:border-primary/50 transition-all shadow-lg hover:shadow-xl group">
                   <CardHeader>
