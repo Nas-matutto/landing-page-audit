@@ -417,45 +417,57 @@ function analyzeStore(html: string, url: string) {
     impact: "High Impact - Every 1s improvement = 7% conversion increase"
   })
 
-  // 2. Product Page Structure
-  let productScore = 100
-  const productFindings = []
+  // 2. SEO & Discoverability
+  let seoScore = 100
+  const seoFindings = []
   
-  if (totalButtons === 0) {
-    productScore -= 40
-    productFindings.push("No clear CTA buttons detected - critical issue")
-  } else if (totalButtons < 3) {
-    productScore -= 20
-    productFindings.push(`Only ${totalButtons} CTA button(s) found - may need more`)
+  const titleMatch = html.match(/<title[^>]*>([^<]+)<\/title>/i)
+  const title = titleMatch ? titleMatch[1].trim() : ''
+  const descMatch = html.match(/<meta\s+name=["']description["']\s+content=["']([^"']+)["']/i)
+  const description = descMatch ? descMatch[1].trim() : ''
+  
+  if (!title || title.length < 30) {
+    seoScore -= 35
+    seoFindings.push(`Page title missing or too short (${title.length} chars)`)
+  } else if (title.length > 60) {
+    seoScore -= 15
+    seoFindings.push(`Page title too long (${title.length} chars) - will be cut off in search`)
   } else {
-    productFindings.push(`${totalButtons} CTA buttons found - good visibility`)
+    seoFindings.push(`Page title optimized (${title.length} chars)`)
   }
   
-  if (!hasShipping) {
-    productScore -= 25
-    productFindings.push("Shipping information not visible on page")
+  if (!description || description.length < 120) {
+    seoScore -= 30
+    seoFindings.push(`Meta description missing or too short (${description.length} chars)`)
+  } else if (description.length > 160) {
+    seoScore -= 10
+    seoFindings.push(`Meta description too long (${description.length} chars)`)
   } else {
-    productFindings.push("Shipping information present on page")
+    seoFindings.push(`Meta description well-optimized (${description.length} chars)`)
   }
   
-  if (!hasReturns) {
-    productScore -= 25
-    productFindings.push("Return policy not found - hurts trust")
+  const h1Matches = html.match(/<h1[^>]*>/gi) || []
+  if (h1Matches.length === 0) {
+    seoScore -= 25
+    seoFindings.push("No H1 heading found - critical for SEO")
+  } else if (h1Matches.length > 1) {
+    seoScore -= 10
+    seoFindings.push(`${h1Matches.length} H1 headings found - should only have 1`)
   } else {
-    productFindings.push("Return policy information accessible")
+    seoFindings.push("Proper H1 heading structure")
   }
   
-  if (!hasCart) {
-    productScore -= 10
-    productFindings.push("Cart/checkout elements unclear")
+  if (imagesWithoutAltCount > 3) {
+    seoScore -= 15
+    seoFindings.push(`${imagesWithoutAltCount} images missing alt text - hurts SEO`)
   }
   
   detailedAnalysis.push({
-    category: "Product Page Structure",
-    score: Math.max(0, productScore),
-    findings: productFindings.slice(0, 3),
-    recommendation: "Make Add to Cart button sticky on scroll, place price near primary CTA, show key benefits above the fold, and display shipping/returns info prominently.",
-    impact: "High Impact - Clear CTAs increase conversions by 80-200%"
+    category: "SEO & Discoverability",
+    score: Math.max(0, seoScore),
+    findings: seoFindings.slice(0, 3),
+    recommendation: "Optimize title tags to 50-60 characters, write compelling meta descriptions (120-160 chars), ensure one H1 per page, and add descriptive alt text to all images.",
+    impact: "High Impact - Good SEO can increase organic traffic by 50-100%"
   })
 
   // 3. Social Proof
@@ -493,37 +505,46 @@ function analyzeStore(html: string, url: string) {
     impact: "Critical Impact - Reviews increase conversions by up to 270%"
   })
 
-  // 4. Checkout Optimization
-  let checkoutScore = 100
-  const checkoutFindings = []
+  // 4. Trust & Security Signals
+  let trustScore = 100
+  const trustFindings = []
   
   if (!url.startsWith('https://')) {
-    checkoutScore -= 50
-    checkoutFindings.push("Not using HTTPS - major security and trust concern")
+    trustScore -= 50
+    trustFindings.push("Not using HTTPS - browsers show 'Not Secure' warning")
   } else {
-    checkoutFindings.push("HTTPS secure connection enabled")
+    trustFindings.push("HTTPS enabled - secure connection")
   }
   
   if (!hasPaymentBadges) {
-    checkoutScore -= 30
-    checkoutFindings.push("Payment method logos not visible - hurts trust")
+    trustScore -= 25
+    trustFindings.push("No payment method logos visible - reduces trust")
   } else {
-    checkoutFindings.push("Payment methods displayed - builds confidence")
+    trustFindings.push("Payment method logos displayed")
   }
   
-  if (!hasCart) {
-    checkoutScore -= 20
-    checkoutFindings.push("Checkout process unclear or hard to find")
+  const hasContact = htmlLower.includes('contact') || htmlLower.includes('email') || htmlLower.includes('phone')
+  if (!hasContact) {
+    trustScore -= 25
+    trustFindings.push("No visible contact information - hurts credibility")
   } else {
-    checkoutFindings.push("Cart/checkout functionality present")
+    trustFindings.push("Contact information accessible")
+  }
+  
+  const hasSecurityBadges = htmlLower.includes('secure') || htmlLower.includes('ssl') || htmlLower.includes('verified')
+  if (!hasSecurityBadges) {
+    trustScore -= 15
+    trustFindings.push("No security badges or trust seals detected")
+  } else {
+    trustFindings.push("Security badges present")
   }
   
   detailedAnalysis.push({
-    category: "Simple Checkout (Friction Removal)",
-    score: Math.max(0, checkoutScore),
-    findings: checkoutFindings,
-    recommendation: "Enable guest checkout, add Shop Pay/Apple Pay/Google Pay, minimize form fields to essentials only, and show clear progress indicators throughout checkout.",
-    impact: "Critical Impact - Reducing checkout steps by 1 = 10-15% conversion lift"
+    category: "Trust & Security Signals",
+    score: Math.max(0, trustScore),
+    findings: trustFindings,
+    recommendation: "Display SSL certificates, show accepted payment methods, make contact info prominent, add trust badges (Norton, McAfee, BBB), and highlight security features throughout checkout.",
+    impact: "Critical Impact - Trust signals can reduce cart abandonment by 18%"
   })
 
   // Sort issues by impact
