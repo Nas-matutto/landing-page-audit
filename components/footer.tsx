@@ -140,7 +140,7 @@ export function Footer() {
         {/* Bottom bar */}
         <div className="pt-8 border-t border-background/10">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-background/70">
-            <p>© 2025 Talk to me Data. All rights reserved.</p>
+            <p>© 2026 Talk to me Data. All rights reserved.</p>
             <p>Built for founders who care about conversions.</p>
           </div>
         </div>

@@ -15,12 +15,26 @@ export default function FeaturesPage() {
       icon: Calculator,
       href: "/features/conversion-rate-calculator",
       category: "Analytics",
-      color: "from-primary to-accent",
+      color: "from-accent to-primary",
       features: [
         "Instant conversion rate calculation",
         "Industry benchmark comparisons",
         "Personalized improvement recommendations",
         "Revenue impact projections",
+      ],
+    },
+     {
+      title: "E-commerce Store Analyzer",
+      description: "Get instant analysis of your online store with a conversion health score. Discover optimization opportunities across speed, UX, trust signals, and more. Completely free and unlimited.",
+      icon: Search,
+      href: "/features/store-analyzer",
+      category: "Analysis",
+      color: "from-accent to-primary",
+      features: [
+        "Instant conversion health score",
+        "Real-time store scanning",
+        "50+ factors analyzed automatically",
+        "Unlimited free use"
       ],
     },
     {
