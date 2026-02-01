@@ -25,8 +25,8 @@ export default function PricingPage() {
       // period: "forever", // Hidden for one-off payment model
       description: "Perfect for getting started",
       features: [
-        "Basic website report",
-        "Basic speed report",
+        "Full website analysis",
+        "Track Conversion metrics",
         "Free UX consultation",
       ],
       cta: "Get Started for Free",
@@ -42,11 +42,11 @@ export default function PricingPage() {
       // period: "per month",
       description: "For serious website optimization",
       features: [
-        "Everything in Free, plus:",
-        "Full website report",
-        "Full speed report",
-        "Content generation Plan",
+        "Full website analysis",
+        "Track Conversion metrics",
+        "Free UX consultation",
         "Priority support",
+        "A/B Testing recommendations",
       ],
       cta: "Get Started",
       highlighted: true,
