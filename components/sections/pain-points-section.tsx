@@ -121,13 +121,13 @@ export function PainPointsSection() {
             className="mt-10 grid grid-cols-3 divide-x divide-slate-200 border border-slate-200 rounded-2xl overflow-hidden bg-slate-50"
           >
             {[
-              { stat: "247M+", label: "Job postings scanned" },
-              { stat: "+10k", label: "SaaS tools covered" },
-              { stat: "Weekly", label: "Data refresh cadence" },
+              { stat: "247M+", label: "Job postings" },
+              { stat: "+10k", label: "SaaS tools" },
+              { stat: "Weekly", label: "Refresh" },
             ].map(({ stat, label }, i) => (
-              <div key={i} className="py-6 text-center">
-                <p className="text-2xl sm:text-3xl font-bold text-foreground">{stat}</p>
-                <p className="text-xs text-slate-500 mt-1">{label}</p>
+              <div key={i} className="py-4 sm:py-6 px-2 text-center">
+                <p className="text-base sm:text-2xl md:text-3xl font-bold text-foreground leading-tight">{stat}</p>
+                <p className="text-[10px] sm:text-xs text-slate-500 mt-0.5 sm:mt-1 leading-snug">{label}</p>
               </div>
             ))}
           </motion.div>

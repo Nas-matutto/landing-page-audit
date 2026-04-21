@@ -11,11 +11,20 @@ const _geist = Geist({ subsets: ["latin"] })
 const _geistMono = Geist_Mono({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "Talk to me Data - Optimize Your Website for Maximum Conversions",
+  title: "Talk to me Data — Sales Intelligence Powered by Real Signals",
   description:
-    "Get instant, actionable insights on SEO, UX, messaging, speed, mobile performance, and structure. AI-powered website analysis for founders.",
-  keywords: ["website optimization", "conversion rate", "SEO analysis", "UX optimization", "website performance"],
-  generator: "v0.app",
+    "Find companies already using your competitors' tools. TTMD crawls job postings and reviews to surface warm sales prospects — no cold lists, just real signals.",
+  keywords: [
+    "sales intelligence",
+    "competitor intelligence",
+    "B2B prospecting",
+    "signal-based outreach",
+    "companies using HubSpot",
+    "companies using Salesforce",
+    "SaaS sales tools",
+    "warm outreach",
+  ],
+  generator: "Next.js",
   icons: {
     icon: [
       {

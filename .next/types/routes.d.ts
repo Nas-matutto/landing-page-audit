@@ -4,7 +4,7 @@
 type AppRoutes = "/" | "/blog" | "/blog/how-to-analyze-website-conversion-issues" | "/blog/how-to-build-website-to-collect-leads" | "/blog/how-to-make-website-faster" | "/blog/how-to-use-ai-to-improve-conversion-rates" | "/blog/increase-conversion-rate-30-days" | "/blog/website-checklist-how-to-build-landing-page-that-converts" | "/blog/yc-landing-page-optimization" | "/book-demo" | "/features" | "/features/conversion-rate-calculator" | "/features/landing-page-checklist" | "/features/store-analyzer" | "/pricing" | "/privacy-policy" | "/terms-of-service"
 type AppRouteHandlerRoutes = "/api/analyze-store"
 type PageRoutes = never
-type LayoutRoutes = "/" | "/features/conversion-rate-calculator"
+type LayoutRoutes = "/" | "/book-demo" | "/features/conversion-rate-calculator"
 type RedirectRoutes = never
 type RewriteRoutes = never
 type Routes = AppRoutes | PageRoutes | LayoutRoutes | RedirectRoutes | RewriteRoutes | AppRouteHandlerRoutes
@@ -36,6 +36,7 @@ export type ParamsOf<Route extends Routes> = ParamMap[Route]
 
 interface LayoutSlotMap {
   "/": never
+  "/book-demo": never
   "/features/conversion-rate-calculator": never
 }
 

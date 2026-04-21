@@ -213,6 +213,15 @@ type RouteHandlerConfig<Route extends AppRouteHandlerRoutes = AppRouteHandlerRou
 
 
 
+// Validate ../../../app/book-demo/layout.tsx
+{
+  type __IsExpected<Specific extends LayoutConfig<"/book-demo">> = Specific
+  const handler = {} as typeof import("../../../app/book-demo/layout.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
 // Validate ../../../app/features/conversion-rate-calculator/layout.tsx
 {
   type __IsExpected<Specific extends LayoutConfig<"/features/conversion-rate-calculator">> = Specific

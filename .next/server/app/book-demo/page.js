@@ -1,7 +1,7 @@
 var R=require("../../chunks/ssr/[turbopack]_runtime.js")("server/app/book-demo/page.js")
 R.c("server/chunks/ssr/[root-of-the-server]__e779bc13._.js")
 R.c("server/chunks/ssr/e559b_next_dist_6e07c1b8._.js")
-R.c("server/chunks/ssr/_f6d32922._.js")
+R.c("server/chunks/ssr/_df21f1a2._.js")
 R.c("server/chunks/ssr/[root-of-the-server]__6db8fe7f._.js")
 R.c("server/chunks/ssr/[root-of-the-server]__6b142534._.js")
 R.c("server/chunks/ssr/e559b_next_dist_66d926d9._.js")
@@ -10,6 +10,7 @@ R.c("server/chunks/ssr/[root-of-the-server]__e15a9928._.js")
 R.c("server/chunks/ssr/e559b_next_dist_client_components_56348840._.js")
 R.c("server/chunks/ssr/e559b_next_dist_client_components_builtin_forbidden_26d90682.js")
 R.c("server/chunks/ssr/e559b_next_dist_client_components_builtin_unauthorized_a30ebe5e.js")
+R.c("server/chunks/ssr/app_book-demo_layout_tsx_831e9504._.js")
 R.c("server/chunks/ssr/_next-internal_server_app_book-demo_page_actions_c7342eaa.js")
-R.m(85369)
-module.exports=R.m(85369).exports
+R.m(3032)
+module.exports=R.m(3032).exports
