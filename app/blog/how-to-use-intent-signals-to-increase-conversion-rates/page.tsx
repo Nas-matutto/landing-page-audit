@@ -275,10 +275,10 @@ export default function BlogPost() {
                   </div>
 
                   {/* CTA box */}
-                  <div className="my-12 rounded-2xl overflow-hidden border-2 border-primary bg-linear-to-br from-primary/5 via-accent/5 to-primary/5 shadow-lg">
+                  <div className="my-12 rounded-2xl overflow-hidden border-2 border-primary bg-linear-to-br from-primary/5 via-violet-500/5 to-primary/5 shadow-lg">
                     <div className="p-8">
                       <div className="flex items-center gap-3 mb-4">
-                        <div className="w-12 h-12 rounded-full bg-linear-to-br from-primary to-accent flex items-center justify-center">
+                        <div className="w-12 h-12 rounded-full bg-linear-to-br from-primary to-violet-600 flex items-center justify-center">
                           <span className="text-2xl">🎯</span>
                         </div>
                         <h3 className="text-2xl font-bold text-foreground">See which companies use your competitors' tools</h3>
@@ -289,7 +289,7 @@ export default function BlogPost() {
                       <div className="flex flex-col sm:flex-row gap-4">
                         <Link
                           href="/book-demo"
-                          className="inline-flex items-center justify-center bg-linear-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90 text-white font-semibold py-3 px-8 rounded-lg shadow-lg hover:shadow-xl transition-all"
+                          className="inline-flex items-center justify-center bg-linear-to-r from-primary to-violet-600 hover:from-primary/90 hover:to-violet-600/90 text-white font-semibold py-3 px-8 rounded-lg shadow-lg hover:shadow-xl transition-all"
                         >
                           Book a Demo →
                         </Link>
@@ -441,14 +441,14 @@ export default function BlogPost() {
                   </p>
 
                   {/* Final CTA */}
-                  <div className="bg-linear-to-br from-primary/10 via-accent/10 to-primary/10 border-2 border-primary/20 p-8 my-12 rounded-2xl shadow-xl">
+                  <div className="bg-linear-to-br from-primary/10 via-violet-600/10 to-primary/10 border-2 border-primary/20 p-8 my-12 rounded-2xl shadow-xl">
                     <h3 className="text-2xl font-bold text-foreground mb-4">Start prospecting with intent signals today</h3>
                     <p className="mb-6 leading-relaxed">
                       Talk to me Data crawls job postings and UGC reviews to show you exactly which companies use your competitors' tools — with the specific signal evidence so you can personalize every message. Book a demo and we'll show you your first list of warm prospects.
                     </p>
                     <Link
                       href="/book-demo"
-                      className="inline-flex items-center justify-center bg-linear-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90 text-white font-semibold py-3 px-8 rounded-lg shadow-lg hover:shadow-xl transition-all cursor-pointer"
+                      className="inline-flex items-center justify-center bg-linear-to-r from-primary to-violet-600 hover:from-primary/90 hover:to-violet-600/90 text-white font-semibold py-3 px-8 rounded-lg shadow-lg hover:shadow-xl transition-all cursor-pointer"
                     >
                       Book a Demo →
                     </Link>

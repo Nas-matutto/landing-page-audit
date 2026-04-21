@@ -13,7 +13,7 @@ const blogPosts = [
     category: "Sales Intelligence",
     date: "April 21, 2026",
     readTime: "10 min read",
-    image: "/blog/intent-signals-cover.jpg",
+    image: "/blog/Signal_based_buying.jpg",
     author: "Nas",
     featured: true,
   },
