@@ -94,6 +94,12 @@
       "namedRegex": "^/blog/yc\\-landing\\-page\\-optimization(?:/)?$"
     },
     {
+      "page": "/book-demo",
+      "regex": "^/book\\-demo(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/book\\-demo(?:/)?$"
+    },
+    {
       "page": "/features",
       "regex": "^/features(?:/)?$",
       "routeKeys": {},

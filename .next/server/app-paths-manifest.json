@@ -10,6 +10,7 @@
   "/blog/page": "app/blog/page.js",
   "/blog/website-checklist-how-to-build-landing-page-that-converts/page": "app/blog/website-checklist-how-to-build-landing-page-that-converts/page.js",
   "/blog/yc-landing-page-optimization/page": "app/blog/yc-landing-page-optimization/page.js",
+  "/book-demo/page": "app/book-demo/page.js",
   "/features/conversion-rate-calculator/page": "app/features/conversion-rate-calculator/page.js",
   "/features/landing-page-checklist/page": "app/features/landing-page-checklist/page.js",
   "/features/page": "app/features/page.js",

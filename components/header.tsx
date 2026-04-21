@@ -2,10 +2,12 @@
 
 import { useState, useEffect } from "react"
 import Link from "next/link"
+import { useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Menu, X } from "lucide-react"
 
 export function Header() {
+  const router = useRouter()
   const [scrolled, setScrolled] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
@@ -21,9 +23,7 @@ export function Header() {
     window.open('https://app.talktomedata.com/login', '_blank')
   }
 
-  const handleSignUp = () => {
-    window.open('https://app.talktomedata.com/signup', '_blank')
-  }
+  const handleBookDemo = () => router.push("/book-demo")
 
   return (
     <header
@@ -74,13 +74,13 @@ export function Header() {
             >
               Login
             </Button>
-            <Button
-              className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold px-6 shadow-lg cursor-pointer"
-              size="default"
-              onClick={handleSignUp}
+            <button
+              onClick={handleBookDemo}
+              className="relative overflow-hidden group bg-linear-to-r from-primary to-violet-500 text-white text-sm font-semibold px-5 py-2 rounded-lg shadow-md shadow-primary/25 hover:shadow-primary/40 hover:shadow-lg transition-all cursor-pointer"
             >
-              Start free
-            </Button>
+              <span className="absolute inset-0 bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-in-out" />
+              <span className="relative">Book Demo</span>
+            </button>
           </div>
 
           <button
@@ -131,12 +131,13 @@ export function Header() {
                 >
                   Login
                 </Button>
-                <Button
-                  className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-semibold shadow-lg cursor-pointer"
-                  onClick={() => { handleSignUp(); setMobileMenuOpen(false) }}
+                <button
+                  onClick={() => { handleBookDemo(); setMobileMenuOpen(false) }}
+                  className="relative overflow-hidden group w-full bg-linear-to-r from-primary to-violet-500 text-white text-sm font-semibold py-2.5 rounded-lg shadow-md shadow-primary/20 cursor-pointer"
                 >
-                  Start free
-                </Button>
+                  <span className="absolute inset-0 bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-in-out" />
+                  <span className="relative">Book Demo</span>
+                </button>
               </div>
             </nav>
           </div>
