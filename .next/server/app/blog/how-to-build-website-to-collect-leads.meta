@@ -1,0 +1,16 @@
+{
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/blog/layout,_N_T_/blog/how-to-build-website-to-collect-leads/layout,_N_T_/blog/how-to-build-website-to-collect-leads/page,_N_T_/blog/how-to-build-website-to-collect-leads"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/blog/how-to-build-website-to-collect-leads/__PAGE__",
+    "/blog/how-to-build-website-to-collect-leads",
+    "/blog",
+    "/_index",
+    "/_head"
+  ]
+}

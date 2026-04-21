@@ -1,0 +1,170 @@
+{
+  "version": 3,
+  "pages404": true,
+  "caseSensitive": false,
+  "basePath": "",
+  "redirects": [
+    {
+      "source": "/:path+/",
+      "destination": "/:path+",
+      "internal": true,
+      "priority": true,
+      "statusCode": 308,
+      "regex": "^(?:/((?:[^/]+?)(?:/(?:[^/]+?))*))/$"
+    }
+  ],
+  "headers": [],
+  "rewrites": {
+    "beforeFiles": [],
+    "afterFiles": [],
+    "fallback": []
+  },
+  "dynamicRoutes": [],
+  "staticRoutes": [
+    {
+      "page": "/",
+      "regex": "^/(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/(?:/)?$"
+    },
+    {
+      "page": "/_global-error",
+      "regex": "^/_global\\-error(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/_global\\-error(?:/)?$"
+    },
+    {
+      "page": "/_not-found",
+      "regex": "^/_not\\-found(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/_not\\-found(?:/)?$"
+    },
+    {
+      "page": "/api/analyze-store",
+      "regex": "^/api/analyze\\-store(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/analyze\\-store(?:/)?$"
+    },
+    {
+      "page": "/blog",
+      "regex": "^/blog(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/blog(?:/)?$"
+    },
+    {
+      "page": "/blog/how-to-analyze-website-conversion-issues",
+      "regex": "^/blog/how\\-to\\-analyze\\-website\\-conversion\\-issues(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/blog/how\\-to\\-analyze\\-website\\-conversion\\-issues(?:/)?$"
+    },
+    {
+      "page": "/blog/how-to-build-website-to-collect-leads",
+      "regex": "^/blog/how\\-to\\-build\\-website\\-to\\-collect\\-leads(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/blog/how\\-to\\-build\\-website\\-to\\-collect\\-leads(?:/)?$"
+    },
+    {
+      "page": "/blog/how-to-make-website-faster",
+      "regex": "^/blog/how\\-to\\-make\\-website\\-faster(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/blog/how\\-to\\-make\\-website\\-faster(?:/)?$"
+    },
+    {
+      "page": "/blog/how-to-use-ai-to-improve-conversion-rates",
+      "regex": "^/blog/how\\-to\\-use\\-ai\\-to\\-improve\\-conversion\\-rates(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/blog/how\\-to\\-use\\-ai\\-to\\-improve\\-conversion\\-rates(?:/)?$"
+    },
+    {
+      "page": "/blog/increase-conversion-rate-30-days",
+      "regex": "^/blog/increase\\-conversion\\-rate\\-30\\-days(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/blog/increase\\-conversion\\-rate\\-30\\-days(?:/)?$"
+    },
+    {
+      "page": "/blog/website-checklist-how-to-build-landing-page-that-converts",
+      "regex": "^/blog/website\\-checklist\\-how\\-to\\-build\\-landing\\-page\\-that\\-converts(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/blog/website\\-checklist\\-how\\-to\\-build\\-landing\\-page\\-that\\-converts(?:/)?$"
+    },
+    {
+      "page": "/blog/yc-landing-page-optimization",
+      "regex": "^/blog/yc\\-landing\\-page\\-optimization(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/blog/yc\\-landing\\-page\\-optimization(?:/)?$"
+    },
+    {
+      "page": "/features",
+      "regex": "^/features(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/features(?:/)?$"
+    },
+    {
+      "page": "/features/conversion-rate-calculator",
+      "regex": "^/features/conversion\\-rate\\-calculator(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/features/conversion\\-rate\\-calculator(?:/)?$"
+    },
+    {
+      "page": "/features/landing-page-checklist",
+      "regex": "^/features/landing\\-page\\-checklist(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/features/landing\\-page\\-checklist(?:/)?$"
+    },
+    {
+      "page": "/features/store-analyzer",
+      "regex": "^/features/store\\-analyzer(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/features/store\\-analyzer(?:/)?$"
+    },
+    {
+      "page": "/pricing",
+      "regex": "^/pricing(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/pricing(?:/)?$"
+    },
+    {
+      "page": "/privacy-policy",
+      "regex": "^/privacy\\-policy(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/privacy\\-policy(?:/)?$"
+    },
+    {
+      "page": "/robots.txt",
+      "regex": "^/robots\\.txt(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/robots\\.txt(?:/)?$"
+    },
+    {
+      "page": "/sitemap.xml",
+      "regex": "^/sitemap\\.xml(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/sitemap\\.xml(?:/)?$"
+    },
+    {
+      "page": "/terms-of-service",
+      "regex": "^/terms\\-of\\-service(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/terms\\-of\\-service(?:/)?$"
+    }
+  ],
+  "dataRoutes": [],
+  "rsc": {
+    "header": "rsc",
+    "varyHeader": "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch",
+    "prefetchHeader": "next-router-prefetch",
+    "didPostponeHeader": "x-nextjs-postponed",
+    "contentTypeHeader": "text/x-component",
+    "suffix": ".rsc",
+    "prefetchSuffix": ".prefetch.rsc",
+    "prefetchSegmentHeader": "next-router-segment-prefetch",
+    "prefetchSegmentSuffix": ".segment.rsc",
+    "prefetchSegmentDirSuffix": ".segments",
+    "clientParamParsing": false,
+    "dynamicRSCPrerender": false
+  },
+  "rewriteHeaders": {
+    "pathHeader": "x-nextjs-rewritten-path",
+    "queryHeader": "x-nextjs-rewritten-query"
+  }
+}

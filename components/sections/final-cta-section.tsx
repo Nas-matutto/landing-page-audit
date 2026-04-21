@@ -1,82 +1,51 @@
 "use client"
 
-import { Button } from "@/components/ui/button"
-import { ArrowRight, CheckCircle2 } from "lucide-react"
+import { motion } from "framer-motion"
+import { ArrowRight } from "lucide-react"
 
 export function FinalCTASection() {
-  const handleGetAnalysis = () => {
-    window.open('https://app.talktomedata.com/signup', '_blank')
-  }
-
   return (
-    <section className="py-16 sm:py-24 bg-gradient-to-br from-primary/5 via-accent/5 to-primary/5">
+    <section className="py-24 sm:py-32 bg-primary">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="max-w-4xl mx-auto">
-          {/* Main content */}
-          <div className="text-center mb-10">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight mb-6 text-balance">
-              Stop Losing Sales to{" "}
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent">
-                Hidden Conversion Issues
-              </span>
+        <div className="max-w-3xl mx-auto text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-white text-balance mb-6">
+              Stop guessing. Start with signals.
             </h2>
-            <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto mb-8 leading-relaxed">
-              Every day without optimization costs you revenue. Get instant insights into what's blocking conversions on your Shopify store.
+            <p className="text-lg text-white/70 mb-10 max-w-xl mx-auto leading-relaxed">
+              Find the companies already using your competitors' tools. Start free — no credit card, no setup, no fluff.
             </p>
-          </div>
 
-          {/* Benefits grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-10 max-w-2xl mx-auto">
-            {[
-              "Analyze your store",
-              "Get Shopify-specific recommendations",
-              "Prioritized by revenue impact",
-              "No credit card required"
-            ].map((benefit, index) => (
-              <div key={index} className="flex items-center gap-3 text-left">
-                <div className="flex-shrink-0">
-                  <CheckCircle2 className="w-5 h-5 text-accent" />
-                </div>
-                <span className="text-foreground font-medium">{benefit}</span>
-              </div>
-            ))}
-          </div>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <button
+                onClick={() => window.open("#", "_blank")}
+                className="group flex items-center gap-2 bg-white text-primary font-bold px-8 py-4 rounded-xl text-base hover:bg-white/90 transition-all shadow-xl cursor-pointer"
+              >
+                Find warm prospects free
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </button>
+              <p className="text-white/50 text-sm">10 free searches every month · No card needed</p>
+            </div>
 
-          {/* CTA Button */}
-          <div className="flex flex-col items-center gap-4">
-            <Button
-              size="lg"
-              className="bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90 text-white font-semibold px-10 py-7 text-lg shadow-2xl group cursor-pointer"
-              onClick={handleGetAnalysis}
-            >
-              Analyze My Shopify Store Free
-              <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
-            </Button>
-            <p className="text-sm text-muted-foreground">
-              Join 2,000+ Shopify stores already optimizing their conversions
-            </p>
-          </div>
-
-          {/* Social proof stats */}
-          <div className="mt-12 pt-12 border-t border-border">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8">
+            <div className="mt-16 pt-12 border-t border-white/15 grid grid-cols-2 sm:grid-cols-4 gap-8">
               {[
-                { number: "2,000+", label: "Stores Analyzed" },
-                { number: "37%", label: "Avg Conversion Increase" },
-                { number: "60s", label: "Analysis Time" },
-                { number: "$0", label: "To Get Started" }
-              ].map((stat, index) => (
-                <div key={index} className="text-center">
-                  <div className="text-2xl sm:text-3xl font-bold text-foreground mb-1">
-                    {stat.number}
-                  </div>
-                  <div className="text-sm text-muted-foreground">
-                    {stat.label}
-                  </div>
+                { stat: "200+", label: "Tools covered" },
+                { stat: "10K+", label: "Companies indexed" },
+                { stat: "Weekly", label: "Data refresh" },
+                { stat: "$0", label: "To get started" },
+              ].map(({ stat, label }, i) => (
+                <div key={i} className="text-center">
+                  <p className="text-2xl sm:text-3xl font-black text-white">{stat}</p>
+                  <p className="text-xs text-white/50 mt-1">{label}</p>
                 </div>
               ))}
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

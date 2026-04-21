@@ -1,0 +1,23 @@
+{
+  "/_global-error/page": "/_global-error",
+  "/_not-found/page": "/_not-found",
+  "/api/analyze-store/route": "/api/analyze-store",
+  "/blog/how-to-analyze-website-conversion-issues/page": "/blog/how-to-analyze-website-conversion-issues",
+  "/blog/how-to-build-website-to-collect-leads/page": "/blog/how-to-build-website-to-collect-leads",
+  "/blog/how-to-make-website-faster/page": "/blog/how-to-make-website-faster",
+  "/blog/how-to-use-ai-to-improve-conversion-rates/page": "/blog/how-to-use-ai-to-improve-conversion-rates",
+  "/blog/increase-conversion-rate-30-days/page": "/blog/increase-conversion-rate-30-days",
+  "/blog/page": "/blog",
+  "/blog/website-checklist-how-to-build-landing-page-that-converts/page": "/blog/website-checklist-how-to-build-landing-page-that-converts",
+  "/blog/yc-landing-page-optimization/page": "/blog/yc-landing-page-optimization",
+  "/features/conversion-rate-calculator/page": "/features/conversion-rate-calculator",
+  "/features/landing-page-checklist/page": "/features/landing-page-checklist",
+  "/features/page": "/features",
+  "/features/store-analyzer/page": "/features/store-analyzer",
+  "/page": "/",
+  "/pricing/page": "/pricing",
+  "/privacy-policy/page": "/privacy-policy",
+  "/robots.txt/route": "/robots.txt",
+  "/sitemap.xml/route": "/sitemap.xml",
+  "/terms-of-service/page": "/terms-of-service"
+}

@@ -1,221 +1,114 @@
 "use client"
 
-import { useState } from "react"
-import { ArrowRight, LinkIcon, ShoppingBag, AlertCircle, CheckCircle2 } from "lucide-react"
-import { Card } from "@/components/ui/card"
+import { motion } from "framer-motion"
+import { Search, Building2, Send } from "lucide-react"
+
+const steps = [
+  {
+    number: "01",
+    icon: Search,
+    title: "Search a competitor's tool",
+    description: "Type in any SaaS product — HubSpot, Salesforce, Notion, Linear, whatever your prospect might already be using.",
+    terminal: [
+      { prompt: "$", cmd: 'search --tool "HubSpot"' },
+      { out: "Scanning job postings..." },
+      { out: "Parsing G2 reviews..." },
+      { out: "Cross-referencing Capterra..." },
+    ],
+  },
+  {
+    number: "02",
+    icon: Building2,
+    title: "Get a verified company list",
+    description: "We surface companies with real evidence — a job description mentioning the tool, or a review from one of their employees.",
+    terminal: [
+      { out: "Found 247 companies using HubSpot" },
+      { out: "" },
+      { out: "→ Acme Corp         (4 signals)" },
+      { out: "→ TechFlow Inc      (2 signals)" },
+      { out: "→ GrowthLab         (3 signals)" },
+      { out: "→ ... 244 more" },
+    ],
+  },
+  {
+    number: "03",
+    icon: Send,
+    title: "Reach out with real context",
+    description: "Know exactly what tools your prospect uses before you send a single word. Reference their stack, address their pain points, close more deals.",
+    terminal: [
+      { out: 'Hey Sarah,' },
+      { out: '' },
+      { out: "Saw Acme is hiring for a" },
+      { out: `"HubSpot admin" role — sounds` },
+      { out: `like you're scaling fast.` },
+      { out: '' },
+      { out: 'We help teams like yours...' },
+    ],
+  },
+]
 
 export function HowItWorksSection() {
-  const [url, setUrl] = useState("")
-  const [analyzing, setAnalyzing] = useState(false)
-  const [showResults, setShowResults] = useState(false)
-
-  const handleAnalyze = () => {
-    // Redirect to signup page with URL parameter if available
-    if (url) {
-      window.open(`https://app.talktomedata.com/signup?url=${encodeURIComponent(url)}`, '_blank')
-    } else {
-      window.open('https://app.talktomedata.com/signup', '_blank')
-    }
-  }
-
   return (
-    <section id="how-it-works" className="py-16 sm:py-24 bg-gradient-to-b from-background to-muted/30">
+    <section id="how-it-works" className="py-24 sm:py-32 bg-slate-50">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="max-w-4xl mx-auto">
-          {/* Section header */}
-          <div className="text-center mb-12">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight mb-4 text-balance">
-              How It <span className="text-primary">Works</span>
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-16">
+            <p className="text-xs font-semibold tracking-widest uppercase text-primary mb-4">How it works</p>
+            <h2 className="text-4xl sm:text-5xl font-bold tracking-tight text-balance">
+              Three steps to warmer outreach
             </h2>
-            <p className="text-lg text-muted-foreground text-pretty">
-              Enter your Shopify store URL and get instant insights. Our AI analyzes your entire store in 60 seconds.
-            </p>
           </div>
 
-          {/* Interactive demo */}
-          <Card className="p-6 sm:p-8 border-2 border-primary/20 shadow-xl">
-            <div className="space-y-6">
-              {/* URL Input */}
-              <div className="flex flex-col sm:flex-row gap-3">
-                <div className="flex-1 relative">
-                  <ShoppingBag className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
-                  <input
-                    type="url"
-                    value={url}
-                    onChange={(e) => setUrl(e.target.value)}
-                    placeholder="yourstore.myshopify.com"
-                    className="w-full pl-10 pr-4 py-3 border-2 border-border rounded-lg focus:outline-none focus:border-primary transition-colors text-base"
-                    disabled={analyzing || showResults}
-                  />
-                </div>
-                <button
-                  onClick={handleAnalyze}
-                  disabled={analyzing || showResults}
-                  className="px-6 py-3 bg-primary hover:bg-primary/90 disabled:bg-muted disabled:text-muted-foreground text-primary-foreground font-semibold rounded-lg shadow-lg transition-colors cursor-pointer flex items-center justify-center gap-2 whitespace-nowrap"
-                >
-                  {analyzing ? "Analyzing..." : showResults ? "Analyzed" : "Analyze Store"}
-                  {!analyzing && !showResults && <ArrowRight className="w-5 h-5" />}
-                </button>
-              </div>
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            {steps.map((step, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: i * 0.12 }}
+                className="relative"
+              >
+                {/* Connector line */}
+                {i < steps.length - 1 && (
+                  <div className="hidden lg:block absolute top-8 left-full w-full h-px bg-linear-to-r from-primary/30 to-transparent -translate-y-1/2 z-0" style={{ width: "calc(100% - 4rem)", left: "calc(100% - 2rem)" }} />
+                )}
 
-              {/* Loading state */}
-              {analyzing && (
-                <div className="space-y-3 animate-pulse">
-                  <div className="h-3 bg-primary/20 rounded-full w-full" />
-                  <div className="h-3 bg-primary/20 rounded-full w-3/4" />
-                  <div className="h-3 bg-primary/20 rounded-full w-5/6" />
-                </div>
-              )}
-
-              {/* Results */}
-              {showResults && (
-                <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
-                  {/* Score display */}
-                  <div className="flex flex-col sm:flex-row items-center justify-between gap-4 p-6 rounded-xl bg-gradient-to-r from-primary/10 to-accent/10 border-2 border-primary/20">
-                    <div className="text-center sm:text-left">
-                      <div className="text-sm text-muted-foreground font-medium mb-1">Conversion Health Score</div>
-                      <div className="text-5xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-                        73%
-                      </div>
-                    </div>
-                    <div className="text-center sm:text-right">
-                      <div className="text-sm text-muted-foreground font-medium mb-1">Issues Found</div>
-                      <div className="text-3xl font-bold text-accent">18</div>
+                <div className="relative z-10 bg-white rounded-2xl border border-slate-200 p-6 h-full flex flex-col shadow-sm hover:shadow-md transition-shadow">
+                  {/* Step number + icon */}
+                  <div className="flex items-center gap-3 mb-5">
+                    <span className="text-4xl font-black text-slate-100 leading-none select-none">{step.number}</span>
+                    <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
+                      <step.icon className="w-5 h-5 text-primary" />
                     </div>
                   </div>
 
-                  {/* Recommendations preview */}
-                  <div className="space-y-3">
-                    <h4 className="font-bold text-lg">Critical Issues Blocking Conversions</h4>
-                    {[
-                      {
-                        category: "Product Pages",
-                        issue: "Missing product reviews and social proof on 12 products",
-                        impact: "High",
-                        color: "bg-red-500",
-                        icon: AlertCircle
-                      },
-                      {
-                        category: "Site Speed",
-                        issue: "Large hero images (3.2MB) slowing homepage load to 5.4s",
-                        impact: "High",
-                        color: "bg-red-500",
-                        icon: AlertCircle
-                      },
-                      {
-                        category: "Checkout",
-                        issue: "Missing trust badges and security indicators at checkout",
-                        impact: "High",
-                        color: "bg-red-500",
-                        icon: AlertCircle
-                      },
-                      {
-                        category: "Mobile UX",
-                        issue: "Add to Cart button too small on mobile (36px vs 44px min)",
-                        impact: "Medium",
-                        color: "bg-yellow-500",
-                        icon: AlertCircle
-                      },
-                      {
-                        category: "Cart",
-                        issue: "No cart abandonment recovery email sequence detected",
-                        impact: "Medium",
-                        color: "bg-yellow-500",
-                        icon: AlertCircle
-                      },
-                    ].map((rec, idx) => (
-                      <div
-                        key={idx}
-                        className="flex items-start gap-3 p-4 rounded-lg bg-muted/50 border border-border hover:border-primary/40 transition-colors"
-                      >
-                        <div className={`w-1.5 h-full ${rec.color} rounded-full shrink-0 mt-1`} />
-                        <div className="flex-1 min-w-0">
-                          <div className="flex flex-wrap items-center gap-2 mb-1">
-                            <span className="text-xs font-semibold text-primary">{rec.category}</span>
-                            <span className="text-xs text-muted-foreground">• {rec.impact} Impact</span>
-                          </div>
-                          <p className="text-sm text-foreground leading-relaxed">{rec.issue}</p>
-                        </div>
+                  <h3 className="text-lg font-bold text-slate-800 mb-2">{step.title}</h3>
+                  <p className="text-sm text-slate-500 leading-relaxed mb-5">{step.description}</p>
+
+                  {/* Terminal preview */}
+                  <div className="mt-auto rounded-xl bg-slate-900 p-4 font-mono text-xs overflow-hidden">
+                    <div className="flex gap-1.5 mb-3">
+                      <div className="w-2.5 h-2.5 rounded-full bg-red-500/70" />
+                      <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/70" />
+                      <div className="w-2.5 h-2.5 rounded-full bg-green-500/70" />
+                    </div>
+                    {step.terminal.map((line, j) => (
+                      <div key={j} className="leading-relaxed">
+                        {"prompt" in line ? (
+                          <span>
+                            <span className="text-green-400">{line.prompt} </span>
+                            <span className="text-slate-200">{line.cmd}</span>
+                          </span>
+                        ) : (
+                          <span className="text-slate-400">{line.out || " "}</span>
+                        )}
                       </div>
                     ))}
+                    <span className="inline-block w-1.5 h-3.5 bg-slate-400 ml-0.5 animate-pulse" />
                   </div>
-
-                  {/* What you'll get */}
-                  <div className="bg-accent/10 border-2 border-accent/20 rounded-lg p-4">
-                    <h5 className="font-semibold text-foreground mb-3 flex items-center gap-2">
-                      <CheckCircle2 className="w-5 h-5 text-accent" />
-                      Your Full Report Includes:
-                    </h5>
-                    <ul className="space-y-2 text-sm text-muted-foreground">
-                      <li className="flex items-center gap-2">
-                        <div className="w-1.5 h-1.5 rounded-full bg-accent" />
-                        Prioritized action plan ranked by revenue impact
-                      </li>
-                      <li className="flex items-center gap-2">
-                        <div className="w-1.5 h-1.5 rounded-full bg-accent" />
-                        Specific fixes for product pages, cart, and checkout
-                      </li>
-                      <li className="flex items-center gap-2">
-                        <div className="w-1.5 h-1.5 rounded-full bg-accent" />
-                        Mobile optimization recommendations
-                      </li>
-                      <li className="flex items-center gap-2">
-                        <div className="w-1.5 h-1.5 rounded-full bg-accent" />
-                        Speed optimization quick wins
-                      </li>
-                    </ul>
-                  </div>
-
-                  {/* CTA */}
-                  <button 
-                    onClick={handleAnalyze}
-                    className="w-full py-3 bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90 text-white font-semibold rounded-lg shadow-lg transition-all cursor-pointer flex items-center justify-center gap-2"
-                  >
-                    Get My Full Store Analysis
-                    <ArrowRight className="w-5 h-5" />
-                  </button>
-
-                  {/* Reset button */}
-                  <button
-                    onClick={() => {
-                      setShowResults(false)
-                      setUrl("")
-                    }}
-                    className="text-sm text-muted-foreground hover:text-foreground transition-colors cursor-pointer mx-auto block"
-                  >
-                    Try another store URL
-                  </button>
                 </div>
-              )}
-            </div>
-          </Card>
-
-          {/* Process steps */}
-          <div className="mt-16 grid grid-cols-1 sm:grid-cols-3 gap-8">
-            {[
-              {
-                step: "01",
-                title: "Enter Your Store URL",
-                description: "Paste your Shopify store URL and click analyze",
-              },
-              {
-                step: "02",
-                title: "AI Scans Your Store",
-                description: "We analyze 150+ conversion factors across your entire store",
-              },
-              {
-                step: "03",
-                title: "Get Action Plan",
-                description: "Receive prioritized recommendations ranked by revenue impact",
-              },
-            ].map((item, idx) => (
-              <div key={idx} className="text-center">
-                <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-gradient-to-br from-primary/10 to-accent/10 text-primary font-bold text-lg mb-4">
-                  {item.step}
-                </div>
-                <h4 className="font-bold text-lg mb-2">{item.title}</h4>
-                <p className="text-sm text-muted-foreground leading-relaxed">{item.description}</p>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>

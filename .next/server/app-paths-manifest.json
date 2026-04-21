@@ -1,0 +1,23 @@
+{
+  "/_global-error/page": "app/_global-error/page.js",
+  "/_not-found/page": "app/_not-found/page.js",
+  "/api/analyze-store/route": "app/api/analyze-store/route.js",
+  "/blog/how-to-analyze-website-conversion-issues/page": "app/blog/how-to-analyze-website-conversion-issues/page.js",
+  "/blog/how-to-build-website-to-collect-leads/page": "app/blog/how-to-build-website-to-collect-leads/page.js",
+  "/blog/how-to-make-website-faster/page": "app/blog/how-to-make-website-faster/page.js",
+  "/blog/how-to-use-ai-to-improve-conversion-rates/page": "app/blog/how-to-use-ai-to-improve-conversion-rates/page.js",
+  "/blog/increase-conversion-rate-30-days/page": "app/blog/increase-conversion-rate-30-days/page.js",
+  "/blog/page": "app/blog/page.js",
+  "/blog/website-checklist-how-to-build-landing-page-that-converts/page": "app/blog/website-checklist-how-to-build-landing-page-that-converts/page.js",
+  "/blog/yc-landing-page-optimization/page": "app/blog/yc-landing-page-optimization/page.js",
+  "/features/conversion-rate-calculator/page": "app/features/conversion-rate-calculator/page.js",
+  "/features/landing-page-checklist/page": "app/features/landing-page-checklist/page.js",
+  "/features/page": "app/features/page.js",
+  "/features/store-analyzer/page": "app/features/store-analyzer/page.js",
+  "/page": "app/page.js",
+  "/pricing/page": "app/pricing/page.js",
+  "/privacy-policy/page": "app/privacy-policy/page.js",
+  "/robots.txt/route": "app/robots.txt/route.js",
+  "/sitemap.xml/route": "app/sitemap.xml/route.js",
+  "/terms-of-service/page": "app/terms-of-service/page.js"
+}

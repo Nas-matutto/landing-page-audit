@@ -1,305 +1,193 @@
 "use client"
 
-import { useState, useRef } from "react"
-import { Card, CardContent } from "@/components/ui/card"
-import { ChevronLeft, ChevronRight } from "lucide-react"
-import { 
-  Zap, 
-  Eye, 
-  Package, 
-  Image as ImageIcon, 
-  Star, 
-  CreditCard, 
-  Truck, 
-  DollarSign, 
-  Smartphone, 
-  Shield, 
-  ShoppingCart, 
-  Mail, 
-  Sparkles, 
-  MessageCircle, 
-  Clock 
-} from "lucide-react"
+import { motion } from "framer-motion"
+import { Briefcase, MessageSquare, Star, Hash } from "lucide-react"
+
+const JOB_EXAMPLES = [
+  {
+    role: "Sales Operations Manager",
+    company: "Vertex Systems",
+    snippet: "...3+ years of experience with **Salesforce** CRM. Familiarity with HubSpot is a plus...",
+    signals: ["Salesforce", "HubSpot"],
+  },
+  {
+    role: "Sr. Software Engineer",
+    company: "Orbit CRM",
+    snippet: "...our stack includes **Linear** for project tracking and **Notion** for documentation...",
+    signals: ["Linear", "Notion"],
+  },
+  {
+    role: "Head of Growth",
+    company: "Meridian SaaS",
+    snippet: "...you'll own our **Intercom** setup and work with **Mixpanel** for funnel analytics...",
+    signals: ["Intercom", "Mixpanel"],
+  },
+]
+
+const UGC_EXAMPLES = [
+  {
+    source: "G2",
+    icon: Star,
+    reviewer: "VP of Sales, TechFlow Inc",
+    snippet: "We've been using **HubSpot** for 2 years. The CRM is solid but the reporting is...",
+    signals: ["HubSpot"],
+    color: "text-orange-500",
+    bg: "bg-orange-50",
+  },
+  {
+    source: "Reddit",
+    icon: Hash,
+    reviewer: "r/salesforce · 234 upvotes",
+    snippet: "Anyone else migrating from **Salesforce** to **Pipedrive**? We just finished the switch and...",
+    signals: ["Salesforce", "Pipedrive"],
+    color: "text-blue-500",
+    bg: "bg-blue-50",
+  },
+  {
+    source: "Capterra",
+    icon: MessageSquare,
+    reviewer: "Operations Lead, GrowthLab",
+    snippet: "Switched to **Monday.com** after trying Asana and Jira. The integrations with **Slack** are...",
+    signals: ["Monday.com", "Slack"],
+    color: "text-green-500",
+    bg: "bg-green-50",
+  },
+]
+
+function HighlightedText({ text }: { text: string }) {
+  const parts = text.split(/\*\*(.*?)\*\*/g)
+  return (
+    <span>
+      {parts.map((part, i) =>
+        i % 2 === 1 ? (
+          <span key={i} className="font-semibold text-primary bg-primary/8 px-0.5 rounded">
+            {part}
+          </span>
+        ) : (
+          <span key={i}>{part}</span>
+        )
+      )}
+    </span>
+  )
+}
 
 export function WhatWeAnalyzeSection() {
-  const scrollContainerRef = useRef<HTMLDivElement>(null)
-  const [showLeftArrow, setShowLeftArrow] = useState(false)
-  const [showRightArrow, setShowRightArrow] = useState(true)
-
-  const analysisCategories = [
-    {
-      icon: Zap,
-      title: "Page Speed",
-      checks: [
-        "Mobile load time under 3s",
-        "Image compression & format",
-        "Theme bloat detection",
-        "App conflict analysis"
-      ]
-    },
-    {
-      icon: Eye,
-      title: "Above-the-Fold Value Proposition",
-      checks: [
-        "Clear product benefit",
-        "Target audience clarity",
-        "Social proof visibility",
-        "CTA prominence"
-      ]
-    },
-    {
-      icon: Package,
-      title: "Product Page Structure",
-      checks: [
-        "Sticky Add to Cart button",
-        "Price near primary CTA",
-        "Benefits above the fold",
-        "Shipping & returns clarity"
-      ]
-    },
-    {
-      icon: ImageIcon,
-      title: "Product Media Quality",
-      checks: [
-        "Multiple product angles",
-        "Lifestyle photography",
-        "Zoom functionality",
-        "Video demonstrations"
-      ]
-    },
-    {
-      icon: Star,
-      title: "Social Proof",
-      checks: [
-        "Reviews near Add to Cart",
-        "UGC photos & videos",
-        "Recent purchase notifications",
-        "Trust badge placement"
-      ]
-    },
-    {
-      icon: CreditCard,
-      title: "Checkout Optimization",
-      checks: [
-        "Guest checkout option",
-        "Express payment buttons",
-        "Minimal form fields",
-        "Progress indicators"
-      ]
-    },
-    {
-      icon: Truck,
-      title: "Shipping & Returns Policy",
-      checks: [
-        "Delivery timeframes visible",
-        "Free shipping threshold",
-        "Returns process clarity",
-        "Shipping calculator access"
-      ]
-    },
-    {
-      icon: DollarSign,
-      title: "Pricing Psychology",
-      checks: [
-        "Price anchoring tactics",
-        "Bundle offers",
-        "Quantity discounts",
-        "Free shipping incentives"
-      ]
-    },
-    {
-      icon: Smartphone,
-      title: "Mobile UX",
-      checks: [
-        "Touch target sizing (44px+)",
-        "Thumb-zone CTA placement",
-        "No intrusive popups",
-        "Simplified navigation"
-      ]
-    },
-    {
-      icon: Shield,
-      title: "Trust Signals",
-      checks: [
-        "Secure checkout badges",
-        "Real contact information",
-        "About page credibility",
-        "Payment method logos"
-      ]
-    },
-    {
-      icon: ShoppingCart,
-      title: "Upsells & Cross-Sells",
-      checks: [
-        "Cart drawer recommendations",
-        "Post-purchase offers",
-        "Frequently bought together",
-        "Related product placement"
-      ]
-    },
-    {
-      icon: Mail,
-      title: "Abandonment Recovery",
-      checks: [
-        "Exit intent popups",
-        "Cart recovery emails",
-        "SMS cart reminders",
-        "Klaviyo integration"
-      ]
-    },
-    {
-      icon: Sparkles,
-      title: "Personalization",
-      checks: [
-        "Geo-based messaging",
-        "Returning visitor offers",
-        "Dynamic recommendations",
-        "Browsing history widgets"
-      ]
-    },
-    {
-      icon: MessageCircle,
-      title: "Live Support",
-      checks: [
-        "Chat widget placement",
-        "AI chatbot quality",
-        "WhatsApp integration",
-        "Response time indicators"
-      ]
-    },
-    {
-      icon: Clock,
-      title: "Scarcity & Urgency",
-      checks: [
-        "Low stock indicators",
-        "Shipping cutoff timers",
-        "Limited-time offers",
-        "Countdown timers"
-      ]
-    }
-  ]
-
-  const scroll = (direction: 'left' | 'right') => {
-    if (scrollContainerRef.current) {
-      const scrollAmount = 300
-      const newScrollLeft = direction === 'left' 
-        ? scrollContainerRef.current.scrollLeft - scrollAmount
-        : scrollContainerRef.current.scrollLeft + scrollAmount
-      
-      scrollContainerRef.current.scrollTo({
-        left: newScrollLeft,
-        behavior: 'smooth'
-      })
-    }
-  }
-
-  const handleScroll = () => {
-    if (scrollContainerRef.current) {
-      const { scrollLeft, scrollWidth, clientWidth } = scrollContainerRef.current
-      setShowLeftArrow(scrollLeft > 0)
-      setShowRightArrow(scrollLeft < scrollWidth - clientWidth - 10)
-    }
-  }
-
   return (
-    <section className="py-16 sm:py-24 bg-background">
+    <section id="signals" className="py-24 sm:py-32 bg-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          {/* Section header */}
-          <div className="text-center mb-12 sm:mb-16">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight mb-4 text-balance">
-              What We <span className="text-primary">Analyze</span> in Your Store
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-16">
+            <p className="text-xs font-semibold tracking-widest uppercase text-primary mb-4">Signal sources</p>
+            <h2 className="text-4xl sm:text-5xl font-bold tracking-tight text-balance">
+              Where we find the signals
             </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto text-pretty">
-              We examine 15 critical conversion categories to identify what's blocking your sales.
+            <p className="mt-4 text-lg text-slate-500 max-w-2xl mx-auto">
+              Companies reveal their tech stack constantly — in the jobs they post and the reviews they write. We read all of it so you don't have to.
             </p>
           </div>
 
-          {/* Analysis categories - Horizontal scroll on all devices with navigation arrows */}
-          <div className="relative">
-            {/* Left Arrow */}
-            {showLeftArrow && (
-              <button
-                onClick={() => scroll('left')}
-                className="absolute left-0 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-background border-2 border-border shadow-lg flex items-center justify-center hover:bg-muted transition-colors cursor-pointer"
-                aria-label="Scroll left"
-              >
-                <ChevronLeft className="w-5 h-5 text-foreground" />
-              </button>
-            )}
-
-            {/* Right Arrow */}
-            {showRightArrow && (
-              <button
-                onClick={() => scroll('right')}
-                className="absolute right-0 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-background border-2 border-border shadow-lg flex items-center justify-center hover:bg-muted transition-colors cursor-pointer"
-                aria-label="Scroll right"
-              >
-                <ChevronRight className="w-5 h-5 text-foreground" />
-              </button>
-            )}
-
-            {/* Scrollable container */}
-            <div 
-              ref={scrollContainerRef}
-              onScroll={handleScroll}
-              className="flex gap-4 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-hide px-12"
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
+            {/* Job Postings */}
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
             >
-              {analysisCategories.map((category, index) => (
-                <Card 
-                  key={index} 
-                  className="glass-card border-0 hover:shadow-xl transition-all duration-300 group flex-shrink-0 w-[280px] snap-start"
-                >
-                  <CardContent className="p-6 h-full flex flex-col">
-                    {/* Icon */}
-                    <div className="mb-4">
-                      <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-primary/10 to-accent/10 flex items-center justify-center group-hover:scale-110 transition-transform">
-                        <category.icon className="w-6 h-6 text-primary" />
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
+                  <Briefcase className="w-5 h-5 text-primary" />
+                </div>
+                <div>
+                  <h3 className="font-bold text-lg text-slate-800">Job Postings</h3>
+                  <p className="text-xs text-slate-500">Greenhouse · Lever · Ashby · Workable</p>
+                </div>
+              </div>
+              <p className="text-sm text-slate-500 mb-5 leading-relaxed">
+                Job descriptions are goldmines. When a company hires for "Salesforce Admin" or lists "HubSpot experience required", they're telling you exactly what they use.
+              </p>
+              <div className="space-y-3">
+                {JOB_EXAMPLES.map((ex, i) => (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, y: 8 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.4, delay: i * 0.1 }}
+                    className="rounded-xl border border-slate-200 bg-slate-50 p-4"
+                  >
+                    <div className="flex items-start justify-between gap-2 mb-2">
+                      <div>
+                        <p className="text-sm font-semibold text-slate-800">{ex.role}</p>
+                        <p className="text-xs text-slate-500 font-mono">{ex.company}</p>
+                      </div>
+                      <div className="flex gap-1 shrink-0">
+                        {ex.signals.map(s => (
+                          <span key={s} className="text-xs bg-primary/10 text-primary px-2 py-0.5 rounded-full font-medium">{s}</span>
+                        ))}
                       </div>
                     </div>
-
-                    {/* Title */}
-                    <h3 className="text-lg font-bold text-foreground mb-4">
-                      {category.title}
-                    </h3>
-
-                    {/* Checks list */}
-                    <ul className="space-y-2.5 flex-1">
-                      {category.checks.map((check, checkIndex) => (
-                        <li 
-                          key={checkIndex} 
-                          className="flex items-start gap-2 text-sm text-muted-foreground"
-                        >
-                          <div className="w-1.5 h-1.5 rounded-full bg-primary mt-1.5 flex-shrink-0" />
-                          <span className="leading-relaxed">{check}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-
-            {/* Scroll indicator */}
-            <div className="flex justify-center gap-2 mt-4">
-              <div className="text-xs text-muted-foreground flex items-center gap-2">
-                <span>Scroll to see all categories</span>
-                <span className="text-primary">→</span>
+                    <p className="text-xs text-slate-500 leading-relaxed italic">
+                      "<HighlightedText text={ex.snippet} />"
+                    </p>
+                  </motion.div>
+                ))}
               </div>
-            </div>
+            </motion.div>
+
+            {/* UGC Signals */}
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+            >
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-10 h-10 rounded-xl bg-violet-100 flex items-center justify-center">
+                  <MessageSquare className="w-5 h-5 text-violet-600" />
+                </div>
+                <div>
+                  <h3 className="font-bold text-lg text-slate-800">Reviews & Community</h3>
+                  <p className="text-xs text-slate-500">G2 · Capterra · Reddit · Product Hunt</p>
+                </div>
+              </div>
+              <p className="text-sm text-slate-500 mb-5 leading-relaxed">
+                When employees write reviews or discuss tools online, they name the products they use. We parse these mentions to confirm adoption — and sometimes catch who's unhappy with a competitor.
+              </p>
+              <div className="space-y-3">
+                {UGC_EXAMPLES.map((ex, i) => (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, y: 8 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.4, delay: i * 0.1 }}
+                    className="rounded-xl border border-slate-200 bg-slate-50 p-4"
+                  >
+                    <div className="flex items-start justify-between gap-2 mb-2">
+                      <div className="flex items-center gap-2">
+                        <span className={`inline-flex items-center gap-1 text-xs font-semibold px-2 py-0.5 rounded-full ${ex.bg} ${ex.color}`}>
+                          <ex.icon className="w-3 h-3" />
+                          {ex.source}
+                        </span>
+                        <p className="text-xs text-slate-500">{ex.reviewer}</p>
+                      </div>
+                      <div className="flex gap-1 shrink-0">
+                        {ex.signals.map(s => (
+                          <span key={s} className="text-xs bg-violet-100 text-violet-700 px-2 py-0.5 rounded-full font-medium">{s}</span>
+                        ))}
+                      </div>
+                    </div>
+                    <p className="text-xs text-slate-500 leading-relaxed italic">
+                      "<HighlightedText text={ex.snippet} />"
+                    </p>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
           </div>
         </div>
       </div>
-
-      <style jsx global>{`
-        .scrollbar-hide::-webkit-scrollbar {
-          display: none;
-        }
-        .scrollbar-hide {
-          -ms-overflow-style: none;
-          scrollbar-width: none;
-        }
-      `}</style>
     </section>
   )
 }

@@ -1,0 +1,16 @@
+{
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/blog/layout,_N_T_/blog/website-checklist-how-to-build-landing-page-that-converts/layout,_N_T_/blog/website-checklist-how-to-build-landing-page-that-converts/page,_N_T_/blog/website-checklist-how-to-build-landing-page-that-converts"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/blog/website-checklist-how-to-build-landing-page-that-converts/__PAGE__",
+    "/blog/website-checklist-how-to-build-landing-page-that-converts",
+    "/blog",
+    "/_index",
+    "/_head"
+  ]
+}

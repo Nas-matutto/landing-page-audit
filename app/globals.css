@@ -3,7 +3,25 @@
 
 @custom-variant dark (&:is(.dark *));
 
+@keyframes aurora {
+  from {
+    background-position: 50% 50%, 50% 50%;
+  }
+  to {
+    background-position: 350% 50%, 350% 50%;
+  }
+}
+
 :root {
+  /* Aurora component color aliases */
+  --white: #ffffff;
+  --black: #000000;
+  --transparent: transparent;
+  --blue-500: #3b82f6;
+  --blue-400: #60a5fa;
+  --blue-300: #93c5fd;
+  --indigo-300: #a5b4fc;
+  --violet-200: #ddd6fe;
   /* Core colors - black and white backgrounds/text */
   --background: oklch(1 0 0); /* white */
   --foreground: oklch(0.15 0 0); /* near black */
@@ -91,6 +109,8 @@
 }
 
 @theme inline {
+  --animate-aurora: aurora 60s linear infinite;
+
   /* optional: --font-sans, --font-serif, --font-mono if they are applied in the layout.tsx */
   --font-sans: "Geist", "Geist Fallback";
   --font-mono: "Geist Mono", "Geist Mono Fallback";

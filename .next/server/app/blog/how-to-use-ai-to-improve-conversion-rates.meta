@@ -1,0 +1,16 @@
+{
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/blog/layout,_N_T_/blog/how-to-use-ai-to-improve-conversion-rates/layout,_N_T_/blog/how-to-use-ai-to-improve-conversion-rates/page,_N_T_/blog/how-to-use-ai-to-improve-conversion-rates"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/blog/how-to-use-ai-to-improve-conversion-rates/__PAGE__",
+    "/blog/how-to-use-ai-to-improve-conversion-rates",
+    "/blog",
+    "/_index",
+    "/_head"
+  ]
+}

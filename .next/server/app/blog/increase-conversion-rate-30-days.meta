@@ -1,0 +1,16 @@
+{
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/blog/layout,_N_T_/blog/increase-conversion-rate-30-days/layout,_N_T_/blog/increase-conversion-rate-30-days/page,_N_T_/blog/increase-conversion-rate-30-days"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/blog/increase-conversion-rate-30-days/__PAGE__",
+    "/blog/increase-conversion-rate-30-days",
+    "/blog",
+    "/_index",
+    "/_head"
+  ]
+}

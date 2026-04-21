@@ -1,0 +1,16 @@
+{
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/features/layout,_N_T_/features/landing-page-checklist/layout,_N_T_/features/landing-page-checklist/page,_N_T_/features/landing-page-checklist"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/features/landing-page-checklist/__PAGE__",
+    "/features/landing-page-checklist",
+    "/features",
+    "/_index",
+    "/_head"
+  ]
+}

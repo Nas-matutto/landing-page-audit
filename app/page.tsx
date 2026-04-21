@@ -5,30 +5,30 @@ import { HeroSection } from "@/components/sections/hero-section"
 import { PainPointsSection } from "@/components/sections/pain-points-section"
 import { HowItWorksSection } from "@/components/sections/how-it-works-section"
 import { WhatWeAnalyzeSection } from "@/components/sections/what-we-analyze-section"
+import { PricingSection } from "@/components/sections/pricing-section"
 import { FAQSection } from "@/components/sections/faq-section"
 import { FinalCTASection } from "@/components/sections/final-cta-section"
 
 export const metadata: Metadata = {
-  title: 'Talk to me Data | Shopify Conversion Rate Optimization & Store Analysis',
-  description: 'Talk to me Data provides instant AI-powered analysis of your Shopify store. Identify conversion blockers in product pages, checkout flow, site speed & mobile UX. Increase sales by 30-50% in 30 days.',
+  title: "Talk to me Data | Find Companies Using Your Competitor's Tools",
+  description: 'Sales intelligence powered by job postings and reviews. See which companies use specific SaaS products — then reach out with real context. Free to start.',
   keywords: [
-    'Talk to me Data',
-    'Shopify conversion rate optimization',
-    'Shopify store optimization',
-    'increase Shopify sales',
-    'Shopify conversion analysis',
-    'Shopify cart abandonment',
-    'Shopify site speed',
-    'Shopify mobile optimization',
-    'Shopify checkout optimization',
-    'Shopify product page optimization',
-    'improve Shopify conversion rate',
-    'Shopify CRO',
-    'Shopify analytics'
+    'sales intelligence',
+    'competitor intelligence',
+    'tech stack detection',
+    'job posting signals',
+    'B2B sales prospecting',
+    'warm outreach',
+    'companies using HubSpot',
+    'companies using Salesforce',
+    'SaaS sales tools',
+    'signal-based outreach',
+    'sales prospecting software',
+    'account-based sales',
   ],
   openGraph: {
-    title: 'Talk to me Data | Increase Your Shopify Store Conversion Rate',
-    description: 'AI-powered analysis identifies conversion blockers in your Shopify store. Get actionable recommendations to increase sales by 30-50%.',
+    title: "Talk to me Data | Find Companies Using Your Competitor's Tools",
+    description: 'Sales intelligence powered by job postings and reviews. Find warm prospects instead of cold lists.',
     type: 'website',
     url: 'https://talktomedata.com',
     siteName: 'Talk to me Data',
@@ -37,14 +37,14 @@ export const metadata: Metadata = {
         url: '/og-image.jpg',
         width: 1200,
         height: 630,
-        alt: 'Talk to me Data - Shopify Conversion Optimization'
+        alt: 'Talk to me Data - Sales Signal Intelligence'
       }
     ]
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Talk to me Data | Shopify Conversion Rate Optimization',
-    description: 'Analyze your Shopify store in 60 seconds. Get AI-powered insights to increase conversions and sales.',
+    title: 'Talk to me Data | Signal-Based Sales Intelligence',
+    description: "See which companies use your competitor's tools. Job posting + review signals, updated weekly.",
     images: ['/og-image.jpg'],
     creator: '@talktomedata'
   },
@@ -77,6 +77,7 @@ export default function HomePage() {
         <PainPointsSection />
         <HowItWorksSection />
         <WhatWeAnalyzeSection />
+        <PricingSection />
         <FAQSection />
         <FinalCTASection />
       </main>
