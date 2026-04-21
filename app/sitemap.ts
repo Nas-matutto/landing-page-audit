@@ -18,12 +18,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.95,
     },
     {
-      url: `${baseUrl}/pricing`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
       url: `${baseUrl}/blog`,
       lastModified: new Date(),
       changeFrequency: 'weekly',
@@ -31,6 +25,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
 
     // Blog posts
+    {
+      url: `${baseUrl}/blog/how-to-use-intent-signals-to-increase-conversion-rates`,
+      lastModified: new Date('2026-04-21'),
+      changeFrequency: 'monthly',
+      priority: 0.6,
+    },
     {
       url: `${baseUrl}/blog/how-to-analyze-website-conversion-issues`,
       lastModified: new Date('2025-12-19'),

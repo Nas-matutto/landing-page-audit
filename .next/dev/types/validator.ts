@@ -83,6 +83,15 @@ type RouteHandlerConfig<Route extends AppRouteHandlerRoutes = AppRouteHandlerRou
   type __Unused = __Check
 }
 
+// Validate ../../../app/blog/how-to-use-intent-signals-to-increase-conversion-rates/page.tsx
+{
+  type __IsExpected<Specific extends AppPageConfig<"/blog/how-to-use-intent-signals-to-increase-conversion-rates">> = Specific
+  const handler = {} as typeof import("../../../app/blog/how-to-use-intent-signals-to-increase-conversion-rates/page.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
 // Validate ../../../app/blog/increase-conversion-rate-30-days/page.tsx
 {
   type __IsExpected<Specific extends AppPageConfig<"/blog/increase-conversion-rate-30-days">> = Specific
@@ -128,55 +137,10 @@ type RouteHandlerConfig<Route extends AppRouteHandlerRoutes = AppRouteHandlerRou
   type __Unused = __Check
 }
 
-// Validate ../../../app/features/conversion-rate-calculator/page.tsx
-{
-  type __IsExpected<Specific extends AppPageConfig<"/features/conversion-rate-calculator">> = Specific
-  const handler = {} as typeof import("../../../app/features/conversion-rate-calculator/page.js")
-  type __Check = __IsExpected<typeof handler>
-  // @ts-ignore
-  type __Unused = __Check
-}
-
-// Validate ../../../app/features/landing-page-checklist/page.tsx
-{
-  type __IsExpected<Specific extends AppPageConfig<"/features/landing-page-checklist">> = Specific
-  const handler = {} as typeof import("../../../app/features/landing-page-checklist/page.js")
-  type __Check = __IsExpected<typeof handler>
-  // @ts-ignore
-  type __Unused = __Check
-}
-
-// Validate ../../../app/features/page.tsx
-{
-  type __IsExpected<Specific extends AppPageConfig<"/features">> = Specific
-  const handler = {} as typeof import("../../../app/features/page.js")
-  type __Check = __IsExpected<typeof handler>
-  // @ts-ignore
-  type __Unused = __Check
-}
-
-// Validate ../../../app/features/store-analyzer/page.tsx
-{
-  type __IsExpected<Specific extends AppPageConfig<"/features/store-analyzer">> = Specific
-  const handler = {} as typeof import("../../../app/features/store-analyzer/page.js")
-  type __Check = __IsExpected<typeof handler>
-  // @ts-ignore
-  type __Unused = __Check
-}
-
 // Validate ../../../app/page.tsx
 {
   type __IsExpected<Specific extends AppPageConfig<"/">> = Specific
   const handler = {} as typeof import("../../../app/page.js")
-  type __Check = __IsExpected<typeof handler>
-  // @ts-ignore
-  type __Unused = __Check
-}
-
-// Validate ../../../app/pricing/page.tsx
-{
-  type __IsExpected<Specific extends AppPageConfig<"/pricing">> = Specific
-  const handler = {} as typeof import("../../../app/pricing/page.js")
   type __Check = __IsExpected<typeof handler>
   // @ts-ignore
   type __Unused = __Check
@@ -217,15 +181,6 @@ type RouteHandlerConfig<Route extends AppRouteHandlerRoutes = AppRouteHandlerRou
 {
   type __IsExpected<Specific extends LayoutConfig<"/book-demo">> = Specific
   const handler = {} as typeof import("../../../app/book-demo/layout.js")
-  type __Check = __IsExpected<typeof handler>
-  // @ts-ignore
-  type __Unused = __Check
-}
-
-// Validate ../../../app/features/conversion-rate-calculator/layout.tsx
-{
-  type __IsExpected<Specific extends LayoutConfig<"/features/conversion-rate-calculator">> = Specific
-  const handler = {} as typeof import("../../../app/features/conversion-rate-calculator/layout.js")
   type __Check = __IsExpected<typeof handler>
   // @ts-ignore
   type __Unused = __Check
