@@ -1,2 +1,3 @@
 [00:00:00.413] Server  LOG      ✓ Ready in 272ms
 [00:00:05.240] Server  WARN     ⚠ metadataBase property in metadata export is not set for resolving social open graph or twitter images, using "http://localhost:3000". See https://nextjs.org/docs/app/api-reference/functions/generate-metadata#metadatabase
+[01:02:39.417] Server  LOG      ✓ Compiled in 29ms

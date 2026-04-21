@@ -1,7 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Check, ArrowRight } from "lucide-react"
+import { Check, ArrowRight, MessageCircle } from "lucide-react"
 import { useRouter } from "next/navigation"
 
 const plans = [
@@ -12,30 +12,31 @@ const plans = [
     description: "For founders doing focused outreach.",
     cta: "Book a demo",
     features: [
-      "100 tool searches per month",
-      "Full company lists per search",
+      "500 credits per month",
       "Job posting + UGC signals",
       "CSV export",
       "Signal date & freshness indicators",
       "Email support",
     ],
     gradient: false,
+    custom: false,
   },
   {
-    name: "Growth",
-    price: "$149",
-    period: "per month",
+    name: "Custom",
+    price: "Let's talk",
+    period: "",
     description: "For sales teams running outreach at scale.",
-    cta: "Book a demo",
+    cta: "Get in touch",
     features: [
-      "Unlimited searches",
-      "Unlimited company results",
-      "All signal sources",
+      "Everything in Starter",
+      "Custom credit volume",
       "Bulk CSV export",
       "CRM webhook (HubSpot / Pipedrive)",
-      "Priority support & onboarding",
+      "Dedicated onboarding & support",
+      "Custom integrations",
     ],
     gradient: true,
+    custom: true,
   },
 ]
 
@@ -82,28 +83,30 @@ export function PricingSection() {
                 )}
 
                 <div className="relative mb-5">
-                  <div className="flex items-center justify-between mb-1">
-                    <h3 className={`font-bold text-lg ${plan.gradient ? "text-white" : "text-slate-800"}`}>
-                      {plan.name}
-                    </h3>
-                    {plan.gradient && (
-                      <span className="text-xs font-bold bg-white/15 text-white px-2.5 py-1 rounded-full">
-                        Popular
-                      </span>
-                    )}
-                  </div>
+                  <h3 className={`font-bold text-lg mb-1 ${plan.gradient ? "text-white" : "text-slate-800"}`}>
+                    {plan.name}
+                  </h3>
                   <p className={`text-sm ${plan.gradient ? "text-white/70" : "text-slate-500"}`}>
                     {plan.description}
                   </p>
                 </div>
 
                 <div className="relative mb-6">
-                  <span className={`text-5xl font-black ${plan.gradient ? "text-white" : "text-slate-900"}`}>
-                    {plan.price}
-                  </span>
-                  <span className={`text-sm ml-1.5 ${plan.gradient ? "text-white/60" : "text-slate-400"}`}>
-                    /{plan.period}
-                  </span>
+                  {plan.custom ? (
+                    <div className="flex items-center gap-2">
+                      <MessageCircle className="w-6 h-6 text-white/70" />
+                      <span className="text-2xl font-bold text-white">Let's talk</span>
+                    </div>
+                  ) : (
+                    <>
+                      <span className={`text-5xl font-black ${plan.gradient ? "text-white" : "text-slate-900"}`}>
+                        {plan.price}
+                      </span>
+                      <span className={`text-sm ml-1.5 ${plan.gradient ? "text-white/60" : "text-slate-400"}`}>
+                        /{plan.period}
+                      </span>
+                    </>
+                  )}
                 </div>
 
                 <ul className="relative space-y-3 mb-8 flex-1">
@@ -140,7 +143,7 @@ export function PricingSection() {
           </div>
 
           <p className="text-center text-sm text-slate-400 mt-10">
-            All plans require a demo first. Cancel anytime, no long-term contracts.
+            All plans require a demo first. No long-term contracts.
           </p>
         </div>
       </div>

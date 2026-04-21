@@ -10,7 +10,6 @@ export function FinalCTASection() {
 
   return (
     <section className="py-24 sm:py-32 bg-linear-to-br from-primary via-blue-600 to-violet-600 relative overflow-hidden">
-      {/* Decorative blobs */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute -top-24 -right-24 w-80 h-80 bg-violet-400/20 rounded-full blur-3xl" />
         <div className="absolute -bottom-24 -left-24 w-80 h-80 bg-blue-300/15 rounded-full blur-3xl" />
@@ -24,16 +23,11 @@ export function FinalCTASection() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 border border-white/20 text-white text-xs font-semibold tracking-widest uppercase mb-8">
-              <CalendarDays className="w-3.5 h-3.5" />
-              Limited early access
-            </div>
-
             <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-white text-balance mb-6">
               Ready to prospect smarter?
             </h2>
             <p className="text-lg text-white/70 mb-10 max-w-xl mx-auto leading-relaxed">
-              TTMD is invite-only for now. Book a 20-minute demo with our team — we'll show you exactly which companies are using your competitors' tools and set you up if it's a fit.
+              Book a 20-minute demo with our team. We'll show you exactly which companies are using your competitors' tools and get you set up if it's a fit.
             </p>
 
             <button
@@ -52,12 +46,11 @@ export function FinalCTASection() {
               20-minute call · No commitment required · We'll follow up within 24h
             </p>
 
-            <div className="mt-14 pt-10 border-t border-white/15 grid grid-cols-2 sm:grid-cols-4 gap-6 sm:gap-8">
+            <div className="mt-14 pt-10 border-t border-white/15 grid grid-cols-3 gap-6 sm:gap-8 max-w-xl mx-auto">
               {[
-                { stat: "200+", label: "Tools covered" },
                 { stat: "10K+", label: "Companies indexed" },
                 { stat: "Weekly", label: "Data refresh" },
-                { stat: "Invite only", label: "Access model" },
+                { stat: "Personalized", label: "Onboarding" },
               ].map(({ stat, label }, i) => (
                 <div key={i} className="text-center">
                   <p className="text-xl sm:text-2xl font-black text-white">{stat}</p>

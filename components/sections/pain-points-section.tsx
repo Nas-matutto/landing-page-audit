@@ -122,7 +122,7 @@ export function PainPointsSection() {
           >
             {[
               { stat: "247M+", label: "Job postings scanned" },
-              { stat: "50+", label: "SaaS tools covered" },
+              { stat: "+10k", label: "SaaS tools covered" },
               { stat: "Weekly", label: "Data refresh cadence" },
             ].map(({ stat, label }, i) => (
               <div key={i} className="py-6 text-center">

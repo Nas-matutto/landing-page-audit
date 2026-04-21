@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { Twitter, Linkedin, Github } from "lucide-react"
+import { Twitter, Linkedin, Github, CalendarDays } from "lucide-react"
 
 export function Footer() {
   return (
@@ -57,8 +57,9 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="#" className="text-background/70 hover:text-background transition-colors">
-                  Changelog
+                <Link href="/book-demo" className="inline-flex items-center gap-1.5 text-background/70 hover:text-background transition-colors">
+                  <CalendarDays className="w-3.5 h-3.5" />
+                  Book Demo
                 </Link>
               </li>
             </ul>
