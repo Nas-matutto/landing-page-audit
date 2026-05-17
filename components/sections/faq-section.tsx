@@ -6,28 +6,28 @@ import { motion, AnimatePresence } from "framer-motion"
 
 const faqs = [
   {
-    question: "How do you detect which tools a company is using?",
-    answer: "We scan two public signal sources: job postings (via ATS platforms like Greenhouse and Lever that expose public APIs for job descriptions) and user-generated content (reviews on G2, Capterra, Reddit, and Product Hunt). When a company posts a job requiring 'Salesforce experience' or an employee writes a G2 review mentioning HubSpot, we capture and index that signal.",
+    question: "Do I need any technical knowledge to get started?",
+    answer: "None at all. You describe what you want to automate in plain language — we handle all the technical work. No code, no configuration files, no developer required on your side.",
   },
   {
-    question: "How accurate is the data?",
-    answer: "We show verified signals with evidence — you'll see the actual excerpt from the job posting or review that triggered the match, plus the date it was captured. We don't infer or guess. If a company appears in your results, there's a real public source backing it up. That said, signals are indirect — we can't guarantee every company in the list is an active current user of the tool.",
+    question: "How long does it take to get my agent live?",
+    answer: "Most agents go live within 3 business days of our initial call. Complex workflows with multiple integrations may take up to a week. We'll give you a clear timeline at the end of your free call.",
   },
   {
-    question: "How fresh is the data? How often is it updated?",
-    answer: "We re-scan job boards weekly and UGC sources every 2–3 days. Each result shows the signal date so you know how recent the evidence is. A job posting from last week is a much stronger buying signal than one from 6 months ago.",
+    question: "What tools and platforms can my agent connect to?",
+    answer: "We integrate with most popular business tools — Gmail, Outlook, Slack, Zendesk, HubSpot, Pipedrive, Calendly, Google Sheets, Notion, and more. If you use a tool that isn't on this list, let us know and we'll check if it's possible.",
   },
   {
-    question: "Is scraping job postings and reviews legal?",
-    answer: "Yes. We only use data from public sources — job listings that companies post publicly and reviews that are publicly accessible on platforms like G2 and Reddit. We use the official public APIs where available (Greenhouse, Lever) and only access public-facing pages for the rest. We don't scrape private profile data or anything behind a login.",
+    question: "Who hosts and monitors the agent after it goes live?",
+    answer: "We do. Your agent runs on our infrastructure and we monitor it around the clock. If something breaks or behaves unexpectedly, we fix it — you don't have to manage anything.",
   },
   {
-    question: "What SaaS tools can I search for?",
-    answer: "We currently cover 200+ popular SaaS tools across CRM, project management, marketing, HR, analytics, and more. This includes tools like HubSpot, Salesforce, Notion, Linear, Slack, Intercom, Mixpanel, Figma, Webflow, Monday.com, and many others. If we don't cover a tool you need, tell us — we can add it in days.",
+    question: "Can I make changes to my agent after it's deployed?",
+    answer: "Yes. If your workflow changes or you want to expand what the agent does, just let us know. We handle all updates and redeployments as part of your plan.",
   },
   {
-    question: "Can I export the results to my CRM?",
-    answer: "On the Starter plan and above, you can export any search result as a CSV with company name, domain, signal count, signal types, and most recent signal date. Growth plan users get direct CRM webhooks for HubSpot and Pipedrive, with more integrations coming.",
+    question: "Is my data safe?",
+    answer: "Yes. We follow standard data security practices and only access the tools and data sources required to run your agent. We never share your data with third parties. For specific compliance requirements (GDPR, SOC 2, etc.), let us know on the call and we'll walk you through how we handle them.",
   },
 ]
 

@@ -4,17 +4,17 @@ import { motion } from "framer-motion"
 import { X, Check } from "lucide-react"
 
 const cold = [
-  "Buy a list of 10,000 random companies",
-  "Send the same email to everyone",
-  "Hope someone happens to need you",
-  "1–3% response rate on a good day",
+  "Hire expensive developers to build it",
+  "Wait months for something to go live",
+  "Manage infrastructure, bugs, and updates yourself",
+  "Still not sure if it actually works",
 ]
 
 const warm = [
-  "Search for companies using a competitor",
-  "See real signals: job posts + reviews",
-  "Reach out with context that resonates",
-  "Dramatically higher reply rates",
+  "Describe your workflow in plain language",
+  "We design, build, and configure your agent",
+  "Deployed and hosted — we monitor everything",
+  "Live in days, not months",
 ]
 
 const container = {
@@ -33,11 +33,11 @@ export function PainPointsSection() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-16">
-            <p className="text-xs font-semibold tracking-widest uppercase text-primary mb-4">The old way vs. the new way</p>
+            <p className="text-xs font-semibold tracking-widest uppercase text-primary mb-4">The old way vs. the Agently way</p>
             <h2 className="text-4xl sm:text-5xl font-bold tracking-tight text-balance">
-              Cold outreach is broken.{" "}
+              Building AI in-house is broken.{" "}
               <span className="bg-clip-text text-transparent bg-linear-to-r from-primary to-violet-500">
-                Signals fix it.
+                We fix it.
               </span>
             </h2>
           </div>
@@ -55,7 +55,7 @@ export function PainPointsSection() {
                 <div className="w-8 h-8 rounded-full bg-red-100 flex items-center justify-center">
                   <X className="w-4 h-4 text-red-500" />
                 </div>
-                <h3 className="font-bold text-lg text-slate-800">Cold outreach</h3>
+                <h3 className="font-bold text-lg text-slate-800">Building it yourself</h3>
               </div>
               <motion.ul
                 variants={container}
@@ -72,8 +72,8 @@ export function PainPointsSection() {
                 ))}
               </motion.ul>
               <div className="mt-6 pt-6 border-t border-red-100">
-                <p className="text-2xl font-bold text-red-500">~1%</p>
-                <p className="text-xs text-slate-500 mt-1">Average response rate</p>
+                <p className="text-2xl font-bold text-red-500">Months</p>
+                <p className="text-xs text-slate-500 mt-1">Typical time to deployment</p>
               </div>
             </motion.div>
 
@@ -89,7 +89,7 @@ export function PainPointsSection() {
                 <div className="w-8 h-8 rounded-full bg-primary/15 flex items-center justify-center">
                   <Check className="w-4 h-4 text-primary" />
                 </div>
-                <h3 className="font-bold text-lg text-slate-800">Signal-based outreach</h3>
+                <h3 className="font-bold text-lg text-slate-800">The TTMD way</h3>
               </div>
               <motion.ul
                 variants={container}
@@ -106,8 +106,8 @@ export function PainPointsSection() {
                 ))}
               </motion.ul>
               <div className="mt-6 pt-6 border-t border-primary/15">
-                <p className="text-2xl font-bold text-primary">5–15×</p>
-                <p className="text-xs text-slate-500 mt-1">Higher reply rates with context</p>
+                <p className="text-2xl font-bold text-primary">24 hours</p>
+                <p className="text-xs text-slate-500 mt-1">Average time from brief to live agent</p>
               </div>
             </motion.div>
           </div>
@@ -121,9 +121,9 @@ export function PainPointsSection() {
             className="mt-10 grid grid-cols-3 divide-x divide-slate-200 border border-slate-200 rounded-2xl overflow-hidden bg-slate-50"
           >
             {[
-              { stat: "247M+", label: "Job postings" },
-              { stat: "+10k", label: "SaaS tools" },
-              { stat: "Weekly", label: "Refresh" },
+              { stat: "24 hours", label: "Brief to live agent" },
+              { stat: "Zero code", label: "Required from you" },
+              { stat: "100%", label: "Managed & hosted" },
             ].map(({ stat, label }, i) => (
               <div key={i} className="py-4 sm:py-6 px-2 text-center">
                 <p className="text-base sm:text-2xl md:text-3xl font-bold text-foreground leading-tight">{stat}</p>

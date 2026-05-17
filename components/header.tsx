@@ -47,10 +47,10 @@ export function Header() {
               How it works
             </Link>
             <Link
-              href="/#signals"
+              href="/#use-cases"
               className="text-sm font-medium text-foreground hover:text-primary transition-colors"
             >
-              Signals
+              Use cases
             </Link>
             <Link
               href="/#pricing"
@@ -103,11 +103,11 @@ export function Header() {
                 How it works
               </Link>
               <Link
-                href="/#signals"
+                href="/#use-cases"
                 className="text-sm font-medium text-foreground hover:text-primary transition-colors py-2"
                 onClick={() => setMobileMenuOpen(false)}
               >
-                Signals
+                Use cases
               </Link>
               <Link
                 href="/#pricing"

@@ -1,190 +1,123 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Briefcase, MessageSquare, Star, Hash } from "lucide-react"
+import { Headphones, Users, Calendar, FileText } from "lucide-react"
 
-const JOB_EXAMPLES = [
+const USE_CASES = [
   {
-    role: "Sales Operations Manager",
-    company: "Vertex Systems",
-    snippet: "...3+ years of experience with **Salesforce** CRM. Familiarity with HubSpot is a plus...",
-    signals: ["Salesforce", "HubSpot"],
-  },
-  {
-    role: "Sr. Software Engineer",
-    company: "Orbit CRM",
-    snippet: "...our stack includes **Linear** for project tracking and **Notion** for documentation...",
-    signals: ["Linear", "Notion"],
-  },
-  {
-    role: "Head of Growth",
-    company: "Meridian SaaS",
-    snippet: "...you'll own our **Intercom** setup and work with **Mixpanel** for funnel analytics...",
-    signals: ["Intercom", "Mixpanel"],
-  },
-]
-
-const UGC_EXAMPLES = [
-  {
-    source: "G2",
-    icon: Star,
-    reviewer: "VP of Sales, TechFlow Inc",
-    snippet: "We've been using **HubSpot** for 2 years. The CRM is solid but the reporting is...",
-    signals: ["HubSpot"],
-    color: "text-orange-500",
-    bg: "bg-orange-50",
-  },
-  {
-    source: "Reddit",
-    icon: Hash,
-    reviewer: "r/salesforce · 234 upvotes",
-    snippet: "Anyone else migrating from **Salesforce** to **Pipedrive**? We just finished the switch and...",
-    signals: ["Salesforce", "Pipedrive"],
-    color: "text-blue-500",
+    icon: Headphones,
+    color: "text-blue-600",
     bg: "bg-blue-50",
+    title: "Customer support agent",
+    tag: "Answers questions 24/7",
+    description: "Handles FAQs, tracks orders, and escalates complex issues — without a support team on call.",
+    examples: [
+      { label: "Ticket resolved", value: "Order #4821 status confirmed" },
+      { label: "Auto-escalated", value: "Billing dispute → Human agent" },
+      { label: "Response time", value: "< 2 seconds" },
+    ],
   },
   {
-    source: "Capterra",
-    icon: MessageSquare,
-    reviewer: "Operations Lead, GrowthLab",
-    snippet: "Switched to **Monday.com** after trying Asana and Jira. The integrations with **Slack** are...",
-    signals: ["Monday.com", "Slack"],
-    color: "text-green-500",
-    bg: "bg-green-50",
+    icon: Users,
+    color: "text-teal-600",
+    bg: "bg-teal-50",
+    title: "Lead qualification agent",
+    tag: "Captures and scores inbound leads",
+    description: "Engages visitors, asks qualifying questions, and routes hot leads directly to your inbox.",
+    examples: [
+      { label: "Lead scored", value: "High intent · Budget confirmed" },
+      { label: "Routed to", value: "Sales rep · Slack notified" },
+      { label: "Qualified today", value: "14 of 38 visitors" },
+    ],
   },
 ]
 
-function HighlightedText({ text }: { text: string }) {
-  const parts = text.split(/\*\*(.*?)\*\*/g)
+const USE_CASES_2 = [
+  {
+    icon: Calendar,
+    color: "text-amber-600",
+    bg: "bg-amber-50",
+    title: "Booking & scheduling agent",
+    tag: "Automates appointments",
+    description: "Lets clients self-book, reschedule, and get reminders — synced to your calendar automatically.",
+    examples: [
+      { label: "Booking confirmed", value: "Tue 14 Jan · 10:00am" },
+      { label: "Reminder sent", value: "24h before · via email" },
+      { label: "Reschedule handled", value: "No back-and-forth needed" },
+    ],
+  },
+  {
+    icon: FileText,
+    color: "text-violet-600",
+    bg: "bg-violet-50",
+    title: "Document Q&A agent",
+    tag: "Answers from your own docs",
+    description: "Upload your manuals, policies, or reports. Your agent answers staff or client questions instantly.",
+    examples: [
+      { label: "Source", value: "Employee handbook · p.12" },
+      { label: "Question answered", value: "Parental leave policy" },
+      { label: "Accuracy", value: "Grounded in your actual docs" },
+    ],
+  },
+]
+
+function UseCaseCard({ uc, delay }: { uc: typeof USE_CASES[0]; delay: number }) {
   return (
-    <span>
-      {parts.map((part, i) =>
-        i % 2 === 1 ? (
-          <span key={i} className="font-semibold text-primary bg-primary/8 px-0.5 rounded">
-            {part}
-          </span>
-        ) : (
-          <span key={i}>{part}</span>
-        )
-      )}
-    </span>
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5, delay }}
+      className="rounded-2xl border border-slate-200 bg-white p-6 hover:shadow-md transition-shadow"
+    >
+      <div className="flex items-center gap-3 mb-4">
+        <div className={`w-10 h-10 rounded-xl ${uc.bg} flex items-center justify-center`}>
+          <uc.icon className={`w-5 h-5 ${uc.color}`} />
+        </div>
+        <div>
+          <h3 className="font-bold text-base text-slate-800">{uc.title}</h3>
+          <p className={`text-xs font-semibold ${uc.color}`}>{uc.tag}</p>
+        </div>
+      </div>
+      <p className="text-sm text-slate-500 leading-relaxed mb-4">{uc.description}</p>
+      <div className="space-y-2">
+        {uc.examples.map((ex, i) => (
+          <div key={i} className="flex items-center justify-between rounded-lg bg-slate-50 px-3 py-2">
+            <span className="text-xs text-slate-400">{ex.label}</span>
+            <span className="text-xs font-medium text-slate-700">{ex.value}</span>
+          </div>
+        ))}
+      </div>
+    </motion.div>
   )
 }
 
 export function WhatWeAnalyzeSection() {
   return (
-    <section id="signals" className="py-24 sm:py-32 bg-white">
+    <section id="use-cases" className="py-24 sm:py-32 bg-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
-            <p className="text-xs font-semibold tracking-widest uppercase text-primary mb-4">Signal sources</p>
+            <p className="text-xs font-semibold tracking-widest uppercase text-primary mb-4">Use cases</p>
             <h2 className="text-4xl sm:text-5xl font-bold tracking-tight text-balance">
-              Where we find the signals
+              What businesses use it for
             </h2>
             <p className="mt-4 text-lg text-slate-500 max-w-2xl mx-auto">
-              Companies reveal their tech stack constantly — in the jobs they post and the reviews they write. We read all of it so you don't have to.
+              From answering customer questions to qualifying leads — any repetitive workflow is a candidate for an AI agent.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
-            {/* Job Postings */}
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-            >
-              <div className="flex items-center gap-3 mb-6">
-                <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
-                  <Briefcase className="w-5 h-5 text-primary" />
-                </div>
-                <div>
-                  <h3 className="font-bold text-lg text-slate-800">Job Postings</h3>
-                  <p className="text-xs text-slate-500">Greenhouse · Lever · Ashby · Workable</p>
-                </div>
-              </div>
-              <p className="text-sm text-slate-500 mb-5 leading-relaxed">
-                Job descriptions are goldmines. When a company hires for "Salesforce Admin" or lists "HubSpot experience required", they're telling you exactly what they use.
-              </p>
-              <div className="space-y-3">
-                {JOB_EXAMPLES.map((ex, i) => (
-                  <motion.div
-                    key={i}
-                    initial={{ opacity: 0, y: 8 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.4, delay: i * 0.1 }}
-                    className="rounded-xl border border-slate-200 bg-slate-50 p-4"
-                  >
-                    <div className="flex items-start justify-between gap-2 mb-2">
-                      <div>
-                        <p className="text-sm font-semibold text-slate-800">{ex.role}</p>
-                        <p className="text-xs text-slate-500 font-mono">{ex.company}</p>
-                      </div>
-                      <div className="flex gap-1 shrink-0">
-                        {ex.signals.map(s => (
-                          <span key={s} className="text-xs bg-primary/10 text-primary px-2 py-0.5 rounded-full font-medium">{s}</span>
-                        ))}
-                      </div>
-                    </div>
-                    <p className="text-xs text-slate-500 leading-relaxed italic">
-                      "<HighlightedText text={ex.snippet} />"
-                    </p>
-                  </motion.div>
-                ))}
-              </div>
-            </motion.div>
-
-            {/* UGC Signals */}
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-            >
-              <div className="flex items-center gap-3 mb-6">
-                <div className="w-10 h-10 rounded-xl bg-violet-100 flex items-center justify-center">
-                  <MessageSquare className="w-5 h-5 text-violet-600" />
-                </div>
-                <div>
-                  <h3 className="font-bold text-lg text-slate-800">Reviews & Community</h3>
-                  <p className="text-xs text-slate-500">G2 · Capterra · Reddit · Product Hunt</p>
-                </div>
-              </div>
-              <p className="text-sm text-slate-500 mb-5 leading-relaxed">
-                When employees write reviews or discuss tools online, they name the products they use. We parse these mentions to confirm adoption — and sometimes catch who's unhappy with a competitor.
-              </p>
-              <div className="space-y-3">
-                {UGC_EXAMPLES.map((ex, i) => (
-                  <motion.div
-                    key={i}
-                    initial={{ opacity: 0, y: 8 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.4, delay: i * 0.1 }}
-                    className="rounded-xl border border-slate-200 bg-slate-50 p-4"
-                  >
-                    <div className="flex items-start justify-between gap-2 mb-2">
-                      <div className="flex items-center gap-2">
-                        <span className={`inline-flex items-center gap-1 text-xs font-semibold px-2 py-0.5 rounded-full ${ex.bg} ${ex.color}`}>
-                          <ex.icon className="w-3 h-3" />
-                          {ex.source}
-                        </span>
-                        <p className="text-xs text-slate-500">{ex.reviewer}</p>
-                      </div>
-                      <div className="flex gap-1 shrink-0">
-                        {ex.signals.map(s => (
-                          <span key={s} className="text-xs bg-violet-100 text-violet-700 px-2 py-0.5 rounded-full font-medium">{s}</span>
-                        ))}
-                      </div>
-                    </div>
-                    <p className="text-xs text-slate-500 leading-relaxed italic">
-                      "<HighlightedText text={ex.snippet} />"
-                    </p>
-                  </motion.div>
-                ))}
-              </div>
-            </motion.div>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <div className="space-y-6">
+              {USE_CASES.map((uc, i) => (
+                <UseCaseCard key={i} uc={uc} delay={i * 0.1} />
+              ))}
+            </div>
+            <div className="space-y-6">
+              {USE_CASES_2.map((uc, i) => (
+                <UseCaseCard key={i} uc={uc} delay={i * 0.1 + 0.1} />
+              ))}
+            </div>
           </div>
         </div>
       </div>

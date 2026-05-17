@@ -1,48 +1,51 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Search, Building2, Send } from "lucide-react"
+import { MessageSquare, Settings, Rocket } from "lucide-react"
 
 const steps = [
   {
     number: "01",
-    icon: Search,
-    title: "Search a competitor's tool",
-    description: "Type in any SaaS product — HubSpot, Salesforce, Notion, Linear, whatever your prospect might already be using.",
+    icon: MessageSquare,
+    title: "Tell us your workflow",
+    description: "Describe what you want to automate — in plain language, no specs needed.",
     terminal: [
-      { prompt: "$", cmd: 'search --tool "HubSpot"' },
-      { out: "Scanning job postings..." },
-      { out: "Parsing G2 reviews..." },
-      { out: "Cross-referencing Capterra..." },
+      { prompt: "$", cmd: "describe your workflow" },
+      { out: "> What do you want to automate?" },
+      { out: "You: Handle customer support emails" },
+      { out: "> Any specific tools or channels?" },
+      { out: "You: Gmail + Zendesk" },
+      { out: "> Got it. We'll build that." },
     ],
   },
   {
     number: "02",
-    icon: Building2,
-    title: "Get a verified company list",
-    description: "We surface companies with real evidence — a job description mentioning the tool, or a review from one of their employees.",
+    icon: Settings,
+    title: "We build your agent",
+    description: "Our team designs, trains, and configures your agent on our platform.",
     terminal: [
-      { out: "Found 247 companies using HubSpot" },
+      { out: "Building your agent..." },
       { out: "" },
-      { out: "→ Acme Corp         (4 signals)" },
-      { out: "→ TechFlow Inc      (2 signals)" },
-      { out: "→ GrowthLab         (3 signals)" },
-      { out: "→ ... 244 more" },
+      { out: "✓ Workflow mapped" },
+      { out: "✓ Agent configured" },
+      { out: "✓ Connected to Gmail + Zendesk" },
+      { out: "✓ Testing responses..." },
+      { out: "✓ Agent ready" },
     ],
   },
   {
     number: "03",
-    icon: Send,
-    title: "Reach out with real context",
-    description: "Know exactly what tools your prospect uses before you send a single word. Reference their stack, address their pain points, close more deals.",
+    icon: Rocket,
+    title: "You go live",
+    description: "Your agent is deployed and hosted. We monitor it. You just watch it work.",
     terminal: [
-      { out: 'Hey Sarah,' },
-      { out: '' },
-      { out: "Saw Acme is hiring for a" },
-      { out: `"HubSpot admin" role — sounds` },
-      { out: `like you're scaling fast.` },
-      { out: '' },
-      { out: 'We help teams like yours...' },
+      { out: "agent status: live ✓" },
+      { out: "" },
+      { out: "→ 24 tickets handled today" },
+      { out: "→ 92% resolved automatically" },
+      { out: "→ 3 escalated to your team" },
+      { out: "" },
+      { out: "Uptime: 99.9%" },
     ],
   },
 ]
@@ -55,7 +58,7 @@ export function HowItWorksSection() {
           <div className="text-center mb-16">
             <p className="text-xs font-semibold tracking-widest uppercase text-primary mb-4">How it works</p>
             <h2 className="text-4xl sm:text-5xl font-bold tracking-tight text-balance">
-              Three steps to warmer outreach
+              Three steps to your first AI agent
             </h2>
           </div>
 

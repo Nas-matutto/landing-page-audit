@@ -8,9 +8,9 @@ import { Footer } from "@/components/footer"
 import { GoogleCalendarButton } from "@/components/google-calendar-button"
 
 const BENEFITS = [
-  "See live demo of job posting & review signals",
-  "Get a list of companies using any competitor tool",
-  "Understand pricing & what's included",
+  "Tell us the workflow you want to automate",
+  "We'll show you exactly what your agent could do",
+  "Get a clear timeline from brief to live",
   "Ask questions before committing to anything",
 ]
 
@@ -38,10 +38,10 @@ export default function BookDemoPage() {
                 transition={{ duration: 0.5 }}
               >
                 <h1 className="text-4xl sm:text-5xl font-bold tracking-tight text-slate-900 mb-5 text-balance">
-                  See TTMD in action
+                  Let's build your first AI agent
                 </h1>
                 <p className="text-lg text-slate-500 leading-relaxed mb-10">
-                  Book a 20-minute demo with our team. We'll walk you through exactly how signal-based prospecting works — and whether it's the right fit for your sales workflow.
+                  Book a free 20-minute call with our team. Tell us what you want to automate — we'll tell you exactly what's possible and how fast we can get it live.
                 </p>
 
                 <ul className="space-y-4 mb-10">
@@ -62,9 +62,9 @@ export default function BookDemoPage() {
                 </ul>
 
                 <div className="p-5 rounded-2xl bg-linear-to-br from-primary/5 to-violet-50 border border-primary/10">
-                  <p className="text-sm font-semibold text-slate-800 mb-1">Book a Demo to get access</p>
+                  <p className="text-sm font-semibold text-slate-800 mb-1">No commitment, just a conversation</p>
                   <p className="text-sm text-slate-500 leading-relaxed">
-                    Access to TTMD is through a demo first. We want to make sure it's the right fit and set you up for success from day one.
+                    We start with a free call to understand your workflow. If we're a good fit, we'll have your agent live within 24 hours of the brief.
                   </p>
                 </div>
               </motion.div>
@@ -76,9 +76,9 @@ export default function BookDemoPage() {
                 transition={{ duration: 0.5, delay: 0.15 }}
                 className="rounded-2xl border border-slate-200 bg-white shadow-xl shadow-slate-100/80 p-8"
               >
-                <h2 className="text-xl font-bold text-slate-900 mb-2">Pick a time that works</h2>
+                <h2 className="text-xl font-bold text-slate-900 mb-2">Pick a time that works for you</h2>
                 <p className="text-sm text-slate-500 mb-8">
-                  Choose a slot directly in our calendar. The call is 20 minutes, no preparation needed.
+                  Choose a slot directly in our calendar. The call is free, 20 minutes, and no preparation needed.
                 </p>
 
                 <GoogleCalendarButton />

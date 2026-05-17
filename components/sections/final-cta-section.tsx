@@ -24,10 +24,10 @@ export function FinalCTASection() {
             transition={{ duration: 0.6 }}
           >
             <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-white text-balance mb-6">
-              Ready to prospect smarter?
+              Ready to automate your first workflow?
             </h2>
             <p className="text-lg text-white/70 mb-10 max-w-xl mx-auto leading-relaxed">
-              Book a 20-minute demo with our team. We'll show you exactly which companies are using your competitors' tools and get you set up if it's a fit.
+              Book a free 20-minute call. We'll tell you exactly what's possible for your business — and what it'll take to get your first agent live.
             </p>
 
             <button
@@ -37,20 +37,20 @@ export function FinalCTASection() {
               <span className="absolute inset-0 bg-linear-to-r from-transparent via-primary/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-in-out" />
               <span className="relative flex items-center gap-2">
                 <CalendarDays className="w-4 h-4" />
-                Book your demo
+                Book a free call
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
               </span>
             </button>
 
             <p className="text-white/40 text-sm mt-5">
-              20-minute call · No commitment required · We'll follow up within 24h
+              Free 20-minute call · No commitment · Live in days if it's a fit
             </p>
 
             <div className="mt-14 pt-10 border-t border-white/15 grid grid-cols-3 gap-6 sm:gap-8 max-w-xl mx-auto">
               {[
-                { stat: "10K+", label: "Companies indexed" },
-                { stat: "Weekly", label: "Data refresh" },
-                { stat: "Personalized", label: "Onboarding" },
+                { stat: "24 hours", label: "Average time to go live" },
+                { stat: "Zero code", label: "Required from you" },
+                { stat: "100%", label: "Managed & monitored" },
               ].map(({ stat, label }, i) => (
                 <div key={i} className="text-center">
                   <p className="text-xl sm:text-2xl font-black text-white">{stat}</p>

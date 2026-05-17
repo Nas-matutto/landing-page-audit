@@ -21,20 +21,18 @@ export function GoogleCalendarButton() {
     link.href = "https://calendar.google.com/calendar/scheduling-button-script.css"
     document.head.appendChild(link)
 
-    const script = document.createElement("script")
-    script.src = "https://calendar.google.com/calendar/scheduling-button-script.js"
-    script.async = true
-    script.onload = () => {
+    const loadButton = () => {
       if (!containerRef.current || !window.calendar) return
+      // Prevent duplicate buttons if the effect runs twice (React strict mode)
+      if (containerRef.current.querySelector("a, button")) return
 
       window.calendar.schedulingButton.load({
         url: "https://calendar.google.com/calendar/appointments/schedules/AcZssZ2GEdSIRiXNGs2UjuxM8qmbJ4KKwq0PU1-veJzukFJumxcOjPgTr-_HHhIt1C9SMqhzZPqllK5k?gv=true",
         color: "#4361ee",
-        label: "Book Demo",
+        label: "Book a free call",
         target: containerRef.current,
       })
 
-      // Override button styles to match site theme (gradient + full-width on mobile)
       setTimeout(() => {
         if (!containerRef.current) return
         const btn = containerRef.current.querySelector<HTMLElement>("a, button")
@@ -56,11 +54,28 @@ export function GoogleCalendarButton() {
         btn.onmouseout = () => { btn.style.boxShadow = "0 4px 14px rgba(67, 97, 238, 0.35)" }
       }, 200)
     }
-    document.body.appendChild(script)
+
+    const existingScript = document.querySelector<HTMLScriptElement>(
+      'script[src="https://calendar.google.com/calendar/scheduling-button-script.js"]'
+    )
+
+    if (existingScript) {
+      // Script already loaded — call immediately if calendar API is ready
+      if (window.calendar) {
+        loadButton()
+      } else {
+        existingScript.addEventListener("load", loadButton)
+      }
+    } else {
+      const script = document.createElement("script")
+      script.src = "https://calendar.google.com/calendar/scheduling-button-script.js"
+      script.async = true
+      script.onload = loadButton
+      document.body.appendChild(script)
+    }
 
     return () => {
       if (document.head.contains(link)) document.head.removeChild(link)
-      if (document.body.contains(script)) document.body.removeChild(script)
     }
   }, [])
 

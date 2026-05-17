@@ -7,15 +7,15 @@ import { useRouter } from "next/navigation"
 const plans = [
   {
     name: "Starter",
-    price: "$49",
+    price: "$499",
     period: "per month",
-    description: "For founders doing focused outreach.",
-    cta: "Book a demo",
+    description: "For small teams that want one AI agent up and running fast.",
+    cta: "Book a free call",
     features: [
-      "500 credits per month",
-      "Job posting + UGC signals",
-      "CSV export",
-      "Signal date & freshness indicators",
+      "1 custom AI agent",
+      "Built and deployed by our team",
+      "Fully hosted and monitored",
+      "One integration (e.g. Gmail, Slack, Zendesk)",
       "Email support",
     ],
     gradient: false,
@@ -25,15 +25,15 @@ const plans = [
     name: "Custom",
     price: "Let's talk",
     period: "",
-    description: "For sales teams running outreach at scale.",
+    description: "For businesses that need multiple agents or complex workflows.",
     cta: "Get in touch",
     features: [
       "Everything in Starter",
-      "Custom credit volume",
-      "Bulk CSV export",
-      "CRM webhook (HubSpot / Pipedrive)",
-      "Dedicated onboarding & support",
-      "Custom integrations",
+      "Multiple agents",
+      "Custom integrations & CRM connections",
+      "Priority build queue",
+      "Dedicated account manager",
+      "Monthly review & optimisation calls",
     ],
     gradient: true,
     custom: true,
@@ -51,13 +51,13 @@ export function PricingSection() {
           <div className="text-center mb-16">
             <p className="text-xs font-semibold tracking-widest uppercase text-primary mb-4">Pricing</p>
             <h2 className="text-4xl sm:text-5xl font-bold tracking-tight text-balance">
-              Starting at{" "}
+              Simple,{" "}
               <span className="bg-clip-text text-transparent bg-linear-to-r from-primary to-violet-500">
-                $49/mo
+                transparent pricing
               </span>
             </h2>
             <p className="mt-4 text-lg text-slate-500">
-              Book a demo to see TTMD in action — then choose the plan that fits your team.
+              We build your agent, host it, and keep it running. No setup fees, no hidden costs.
             </p>
           </div>
 
@@ -143,7 +143,7 @@ export function PricingSection() {
           </div>
 
           <p className="text-center text-sm text-slate-400 mt-10">
-            All plans require a demo first. No long-term contracts.
+            All plans start with a free 20-minute call. No long-term contracts.
           </p>
         </div>
       </div>
