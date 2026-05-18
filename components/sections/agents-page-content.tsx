@@ -1,192 +1,36 @@
 "use client"
 
-import { motion, AnimatePresence } from "framer-motion"
+import { motion } from "framer-motion"
 import { useRouter } from "next/navigation"
 import { useState, useEffect, useMemo } from "react"
 import {
   Headphones, Users, Calendar, FileText, Package, UserCheck,
-  Receipt, HelpCircle, ArrowRight, Check, Zap, ChevronRight
+  Receipt, HelpCircle, ArrowRight, Zap, Check,
+  Server, KeyRound, Bot, Activity, RefreshCw, Plug, Shield, LayoutDashboard,
 } from "lucide-react"
+import { CardStack, CardStackItem } from "@/components/ui/card-stack"
 
-const ROTATING_WORDS = [
-  "Customer Service",
-  "Marketing",
-  "Sales",
-  "HR",
-  "Finance",
-  "Operations",
-]
+// ─── Rotating hero words ─────────────────────────────────────────────────────
 
-const AGENTS = [
-  {
-    icon: Headphones,
-    color: "#2563eb",
-    glow: "rgba(37,99,235,0.25)",
-    ring: "ring-blue-500/30",
-    bg: "bg-blue-500/10",
-    title: "Customer support",
-    tagline: "Always-on support without the headcount",
-    description: "Handles FAQs, order status, refunds, and complaints. Escalates intelligently when a human is needed — across email, chat, and WhatsApp.",
-    capabilities: [
-      "Answers FAQs from your knowledge base",
-      "Tracks orders via your backend",
-      "Handles returns & refunds",
-      "Escalates to your team when needed",
-      "Works across email, chat, WhatsApp",
-    ],
-    stat: "92% resolved automatically",
-  },
-  {
-    icon: Users,
-    color: "#0d9488",
-    glow: "rgba(13,148,136,0.25)",
-    ring: "ring-teal-500/30",
-    bg: "bg-teal-500/10",
-    title: "Lead qualification",
-    tagline: "Only talk to leads worth your time",
-    description: "Engages every inbound lead instantly, asks qualifying questions, scores intent, and routes hot leads straight to your inbox or CRM — 24/7.",
-    capabilities: [
-      "Qualifies leads based on your criteria",
-      "Asks dynamic follow-up questions",
-      "Scores and ranks by intent",
-      "Routes to the right rep via Slack",
-      "Logs everything to HubSpot/Pipedrive",
-    ],
-    stat: "3× more qualified conversations",
-  },
-  {
-    icon: Calendar,
-    color: "#d97706",
-    glow: "rgba(217,119,6,0.25)",
-    ring: "ring-amber-500/30",
-    bg: "bg-amber-500/10",
-    title: "Booking & scheduling",
-    tagline: "Zero back-and-forth, full calendars",
-    description: "Lets clients self-book, reschedule, and cancel — synced to your calendar. Sends reminders automatically and handles no-shows.",
-    capabilities: [
-      "Self-serve booking from any channel",
-      "Real-time calendar availability sync",
-      "Automated reminders via email/SMS",
-      "Handles reschedules and cancellations",
-      "Works with Google Calendar & Calendly",
-    ],
-    stat: "Saves 5+ hours per week",
-  },
-  {
-    icon: FileText,
-    color: "#7c3aed",
-    glow: "rgba(124,58,237,0.25)",
-    ring: "ring-violet-500/30",
-    bg: "bg-violet-500/10",
-    title: "Document Q&A",
-    tagline: "Instant answers from your own content",
-    description: "Upload manuals, policies, or reports. Your agent reads them and answers staff or client questions accurately — grounded in your actual documents.",
-    capabilities: [
-      "Trained on your PDFs and docs",
-      "Cites the source page per answer",
-      "Handles compliance & policy queries",
-      "Updates when you add new documents",
-      "Works for teams or external clients",
-    ],
-    stat: "Replaces hours of search daily",
-  },
-  {
-    icon: Package,
-    color: "#ea580c",
-    glow: "rgba(234,88,12,0.25)",
-    ring: "ring-orange-500/30",
-    bg: "bg-orange-500/10",
-    title: "Order tracking",
-    tagline: "Keep customers informed automatically",
-    description: "Connects to your fulfilment platform and gives real-time order updates. Eliminates WISMO tickets before they're raised.",
-    capabilities: [
-      "Real-time order status lookups",
-      "Proactive shipping notifications",
-      "Handles 'Where is my order?' queries",
-      "Integrates with Shopify & WooCommerce",
-      "Escalates exceptions to your team",
-    ],
-    stat: "Up to 80% fewer support tickets",
-  },
-  {
-    icon: UserCheck,
-    color: "#16a34a",
-    glow: "rgba(22,163,74,0.25)",
-    ring: "ring-emerald-500/30",
-    bg: "bg-emerald-500/10",
-    title: "Onboarding",
-    tagline: "Guide every user to their first win",
-    description: "Walks new users through your product step by step, answers setup questions, and nudges them toward activation milestones — hands-free.",
-    capabilities: [
-      "Personalised onboarding per user type",
-      "Answers product questions in context",
-      "Sends timely nudges and check-ins",
-      "Tracks progress and flags drop-off",
-      "Integrates with your product or CRM",
-    ],
-    stat: "Higher activation, less churn",
-  },
-  {
-    icon: Receipt,
-    color: "#e11d48",
-    glow: "rgba(225,29,72,0.25)",
-    ring: "ring-rose-500/30",
-    bg: "bg-rose-500/10",
-    title: "Invoice processing",
-    tagline: "Extract, validate, and route automatically",
-    description: "Reads incoming invoices from email or uploads, extracts data, matches against POs, and routes for approval — without anyone touching a spreadsheet.",
-    capabilities: [
-      "Extracts data from PDFs and images",
-      "Matches invoices to POs automatically",
-      "Flags discrepancies for human review",
-      "Routes for approval via email/Slack",
-      "Integrates with Xero & QuickBooks",
-    ],
-    stat: "90% faster invoice processing",
-  },
-  {
-    icon: HelpCircle,
-    color: "#4f46e5",
-    glow: "rgba(79,70,229,0.25)",
-    ring: "ring-indigo-500/30",
-    bg: "bg-indigo-500/10",
-    title: "HR helpdesk",
-    tagline: "Answer HR questions without involving HR",
-    description: "Gives employees instant answers on leave policies, benefits, payroll, and procedures — drawn from your internal documentation.",
-    capabilities: [
-      "Covers leave, benefits, payroll FAQs",
-      "Trained on your employee handbook",
-      "Handles onboarding paperwork queries",
-      "Escalates sensitive issues to HR",
-      "Available on Slack or your intranet",
-    ],
-    stat: "~70% of HR queries resolved automatically",
-  },
-]
+const ROTATING_WORDS = ["Customer Service", "Marketing", "Sales", "HR", "Finance", "Operations"]
 
 function RotatingWord() {
   const [index, setIndex] = useState(0)
   const titles = useMemo(() => ROTATING_WORDS, [])
 
   useEffect(() => {
-    const id = setTimeout(() => {
-      setIndex(i => (i + 1) % titles.length)
-    }, 2200)
+    const id = setTimeout(() => setIndex(i => (i + 1) % titles.length), 2200)
     return () => clearTimeout(id)
   }, [index, titles])
 
   return (
-    <span className="relative inline-flex justify-center w-full overflow-hidden h-[1.15em]">
+    <span className="relative inline-flex justify-center w-full overflow-hidden" style={{ height: "1.15em" }}>
       {titles.map((word, i) => (
         <motion.span
           key={word}
-          className="absolute font-bold bg-clip-text text-transparent bg-linear-to-r from-primary to-violet-400"
+          className="absolute font-bold bg-clip-text text-transparent bg-linear-to-r from-primary to-violet-500"
           initial={{ opacity: 0, y: 60 }}
-          animate={
-            index === i
-              ? { opacity: 1, y: 0 }
-              : { opacity: 0, y: index > i ? -60 : 60 }
-          }
+          animate={index === i ? { opacity: 1, y: 0 } : { opacity: 0, y: index > i ? -60 : 60 }}
           transition={{ type: "spring", stiffness: 80, damping: 18 }}
         >
           {word}
@@ -196,106 +40,143 @@ function RotatingWord() {
   )
 }
 
-function AgentCard({ agent, index }: { agent: typeof AGENTS[0]; index: number }) {
-  const [open, setOpen] = useState(false)
-  const router = useRouter()
+// ─── Agent card data ──────────────────────────────────────────────────────────
 
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 32 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.45, delay: (index % 4) * 0.07 }}
-      className="group relative rounded-2xl bg-slate-900 border border-white/8 overflow-hidden cursor-pointer transition-all duration-300 hover:border-white/20"
-      style={{
-        boxShadow: open ? `0 0 40px ${agent.glow}` : "none",
-      }}
-      onClick={() => setOpen(o => !o)}
-    >
-      {/* Glow layer on hover */}
-      <div
-        className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
-        style={{
-          background: `radial-gradient(ellipse at top left, ${agent.glow} 0%, transparent 65%)`,
-        }}
-      />
-
-      <div className="relative p-6">
-        {/* Icon + title row */}
-        <div className="flex items-start justify-between gap-3 mb-4">
-          <div className={`w-11 h-11 rounded-xl ${agent.bg} ring-1 ${agent.ring} flex items-center justify-center shrink-0`}>
-            <agent.icon className="w-5 h-5" style={{ color: agent.color }} />
-          </div>
-          <ChevronRight
-            className="w-4 h-4 text-white/30 shrink-0 mt-1 transition-transform duration-300"
-            style={{ transform: open ? "rotate(90deg)" : "rotate(0deg)" }}
-          />
-        </div>
-
-        <h3 className="text-base font-bold text-white mb-1">{agent.title}</h3>
-        <p className="text-xs font-medium mb-3" style={{ color: agent.color }}>{agent.tagline}</p>
-        <p className="text-sm text-white/50 leading-relaxed">{agent.description}</p>
-
-        {/* Expandable capabilities */}
-        <AnimatePresence>
-          {open && (
-            <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
-              exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.25, ease: "easeInOut" }}
-              className="overflow-hidden"
-            >
-              <div className="mt-5 pt-5 border-t border-white/8">
-                <ul className="space-y-2 mb-5">
-                  {agent.capabilities.map((cap, j) => (
-                    <li key={j} className="flex items-start gap-2 text-sm text-white/60">
-                      <Check className="w-3.5 h-3.5 mt-0.5 shrink-0" style={{ color: agent.color }} />
-                      {cap}
-                    </li>
-                  ))}
-                </ul>
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-1.5">
-                    <Zap className="w-3.5 h-3.5" style={{ color: agent.color }} />
-                    <span className="text-xs font-semibold text-white/70">{agent.stat}</span>
-                  </div>
-                  <button
-                    onClick={e => { e.stopPropagation(); router.push("/book-demo") }}
-                    className="flex items-center gap-1.5 text-xs font-bold px-3 py-1.5 rounded-lg transition-colors cursor-pointer"
-                    style={{ backgroundColor: `${agent.color}22`, color: agent.color }}
-                  >
-                    Get this agent <ArrowRight className="w-3 h-3" />
-                  </button>
-                </div>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </div>
-    </motion.div>
-  )
+type AgentItem = CardStackItem & {
+  icon: React.ComponentType<{ className?: string; style?: React.CSSProperties }>
+  gradient: string
+  tagline: string
+  stat: string
 }
+
+const AGENTS: AgentItem[] = [
+  {
+    id: 1,
+    icon: Headphones,
+    title: "Customer support",
+    tagline: "Always-on support without the headcount",
+    description: "Handles FAQs, order status, refunds, and complaints — across email, chat, and WhatsApp. Escalates to a human when needed.",
+    gradient: "linear-gradient(135deg, #1e40af 0%, #2563eb 55%, #60a5fa 100%)",
+    stat: "92% resolved automatically",
+  },
+  {
+    id: 2,
+    icon: Users,
+    title: "Lead qualification",
+    tagline: "Only talk to leads worth your time",
+    description: "Engages every inbound lead instantly, asks qualifying questions, scores intent, and routes hot leads to your inbox or CRM — 24/7.",
+    gradient: "linear-gradient(135deg, #0f766e 0%, #0d9488 55%, #2dd4bf 100%)",
+    stat: "3× more qualified conversations",
+  },
+  {
+    id: 3,
+    icon: Calendar,
+    title: "Booking & scheduling",
+    tagline: "Zero back-and-forth, full calendars",
+    description: "Lets clients self-book, reschedule, and cancel — synced to your calendar. Sends reminders automatically and handles no-shows.",
+    gradient: "linear-gradient(135deg, #92400e 0%, #d97706 55%, #fbbf24 100%)",
+    stat: "Saves 5+ hours per week",
+  },
+  {
+    id: 4,
+    icon: FileText,
+    title: "Document Q&A",
+    tagline: "Instant answers from your own content",
+    description: "Upload manuals, policies, or reports. Your agent answers staff or client questions accurately — grounded in your actual documents.",
+    gradient: "linear-gradient(135deg, #4c1d95 0%, #7c3aed 55%, #a78bfa 100%)",
+    stat: "Replaces hours of search daily",
+  },
+  {
+    id: 5,
+    icon: Package,
+    title: "Order tracking",
+    tagline: "Keep customers informed automatically",
+    description: "Real-time order updates across any channel. Eliminates WISMO tickets before they're raised.",
+    gradient: "linear-gradient(135deg, #9a3412 0%, #ea580c 55%, #fb923c 100%)",
+    stat: "Up to 80% fewer support tickets",
+  },
+  {
+    id: 6,
+    icon: UserCheck,
+    title: "Onboarding",
+    tagline: "Guide every user to their first win",
+    description: "Walks new users through your product step by step, answers setup questions, and nudges them toward activation milestones.",
+    gradient: "linear-gradient(135deg, #065f46 0%, #16a34a 55%, #4ade80 100%)",
+    stat: "Higher activation, less churn",
+  },
+  {
+    id: 7,
+    icon: Receipt,
+    title: "Invoice processing",
+    tagline: "Extract, validate, and route automatically",
+    description: "Reads incoming invoices, extracts data, matches against POs, and routes for approval — no spreadsheet required.",
+    gradient: "linear-gradient(135deg, #881337 0%, #e11d48 55%, #fb7185 100%)",
+    stat: "90% faster invoice processing",
+  },
+  {
+    id: 8,
+    icon: HelpCircle,
+    title: "HR helpdesk",
+    tagline: "Answer HR questions without involving HR",
+    description: "Gives employees instant answers on leave, benefits, payroll, and procedures — drawn from your internal documentation.",
+    gradient: "linear-gradient(135deg, #312e81 0%, #4f46e5 55%, #818cf8 100%)",
+    stat: "~70% of HR queries resolved automatically",
+  },
+]
+
+// ─── Responsive card dimensions ───────────────────────────────────────────────
+
+function useCardDims() {
+  const [dims, setDims] = useState({ width: 500, height: 340 })
+  useEffect(() => {
+    const update = () => {
+      const w = window.innerWidth
+      if (w < 640) setDims({ width: Math.min(w - 48, 360), height: 280 })
+      else if (w < 1024) setDims({ width: 440, height: 310 })
+      else setDims({ width: 500, height: 340 })
+    }
+    update()
+    window.addEventListener("resize", update)
+    return () => window.removeEventListener("resize", update)
+  }, [])
+  return dims
+}
+
+// ─── What we handle ───────────────────────────────────────────────────────────
+
+const WE_HANDLE = [
+  { icon: Server, title: "Cloud infrastructure", body: "Your agent runs on enterprise-grade hosting. Zero DevOps required on your end." },
+  { icon: KeyRound, title: "AI model access & API keys", body: "We manage all API access — GPT-4, Claude, and more. You don't need any AI accounts." },
+  { icon: Bot, title: "Agent design & configuration", body: "We design, train, and configure your agent from scratch based on a plain-language brief." },
+  { icon: Activity, title: "24/7 monitoring & alerts", body: "Uptime monitoring around the clock. If something breaks, we catch and fix it before you notice." },
+  { icon: Plug, title: "Integrations & connections", body: "We wire up your tools — email, CRM, Slack, Calendly, Zendesk. No API docs for you to read." },
+  { icon: RefreshCw, title: "Ongoing updates", body: "As AI improves, so does your agent. We retrain and redeploy — you always have the latest." },
+  { icon: Shield, title: "Security & data isolation", body: "Your data stays yours. Isolated environments, never used for training. Enterprise-grade by default." },
+  { icon: LayoutDashboard, title: "Unified dashboard", body: "See all your agents, their activity, and status in one place — no logins to multiple tools." },
+]
+
+// ─── Main component ───────────────────────────────────────────────────────────
 
 export function AgentsPageContent() {
   const router = useRouter()
+  const dims = useCardDims()
 
   return (
     <>
-      {/* Hero — dark */}
-      <section className="relative min-h-[70vh] flex flex-col items-center justify-center bg-slate-950 overflow-hidden pt-24 pb-20">
-        {/* Subtle grid background */}
+      {/* ── Hero ── light theme */}
+      <section className="relative pt-32 pb-20 bg-linear-to-b from-slate-50 to-white overflow-hidden">
+        {/* Subtle radial glow behind rotating text */}
+        <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
+          <div className="w-150 h-100 bg-primary/8 rounded-full blur-[100px]" />
+        </div>
+        {/* Dot grid */}
         <div
-          className="absolute inset-0 pointer-events-none"
+          className="pointer-events-none absolute inset-0 opacity-40"
           style={{
-            backgroundImage:
-              "linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px)",
-            backgroundSize: "60px 60px",
+            backgroundImage: "radial-gradient(circle, #cbd5e1 1px, transparent 1px)",
+            backgroundSize: "32px 32px",
           }}
         />
-        {/* Glow blobs */}
-        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-primary/15 rounded-full blur-[120px] pointer-events-none" />
-        <div className="absolute bottom-0 right-1/4 w-[300px] h-[300px] bg-violet-600/10 rounded-full blur-[100px] pointer-events-none" />
 
         <motion.div
           initial={{ opacity: 0, y: 24 }}
@@ -303,20 +184,20 @@ export function AgentsPageContent() {
           transition={{ duration: 0.6 }}
           className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 text-center"
         >
-          <div className="inline-flex items-center gap-2 mb-8 px-4 py-1.5 rounded-full border border-white/10 bg-white/5 text-white/60 text-xs font-semibold tracking-widest uppercase">
+          <div className="inline-flex items-center gap-2 mb-8 px-4 py-1.5 rounded-full border border-primary/20 bg-primary/5 text-primary text-xs font-semibold tracking-widest uppercase">
             <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
-            Fully managed · Deployed in 24h
+            Fully managed · Deployed in 24 hours
           </div>
 
-          <h1 className="text-5xl sm:text-6xl md:text-7xl font-bold tracking-tight text-white leading-tight mb-4">
+          <h1 className="text-5xl sm:text-6xl md:text-7xl font-bold tracking-tight text-slate-900 leading-tight mb-4">
             AI agents built for
           </h1>
           <div className="text-5xl sm:text-6xl md:text-7xl font-bold tracking-tight leading-tight mb-8">
             <RotatingWord />
           </div>
 
-          <p className="text-lg text-white/50 leading-relaxed max-w-2xl mx-auto mb-10">
-            We build, deploy, and host custom AI agents on our infrastructure. Tell us your workflow — we'll have your agent live within 24 hours.
+          <p className="text-lg text-slate-500 leading-relaxed max-w-2xl mx-auto mb-10">
+            We build, deploy, and host custom AI agents on our infrastructure. Tell us your workflow — your agent is live within 24 hours.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -329,12 +210,12 @@ export function AgentsPageContent() {
                 Book a free call <ArrowRight className="w-4 h-4" />
               </span>
             </button>
-            <p className="text-sm text-white/30">20-minute call · No commitment</p>
+            <p className="text-sm text-slate-400">20-minute call · No commitment</p>
           </div>
         </motion.div>
       </section>
 
-      {/* Agents grid — light */}
+      {/* ── CardStack: agent showcase ── */}
       <section className="py-24 sm:py-32 bg-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-6xl mx-auto">
@@ -343,56 +224,187 @@ export function AgentsPageContent() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
-              className="text-center mb-16"
+              className="text-center mb-4"
             >
               <p className="text-xs font-semibold tracking-widest uppercase text-primary mb-4">All agents</p>
               <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-slate-900 mb-4">
-                Click any agent to explore what it does
+                Browse what we build
               </h2>
-              <p className="text-slate-500 max-w-xl mx-auto">
-                Each agent is custom-built for your business and fully hosted on our infrastructure. No code, no setup, no maintenance.
+              <p className="text-slate-500 max-w-xl mx-auto mb-2">
+                Click any card in the stack to bring it forward. Drag left or right to navigate.
               </p>
             </motion.div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-              {AGENTS.map((agent, i) => (
-                <AgentCard key={agent.title} agent={agent} index={i} />
-              ))}
-            </div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              className="mt-10 text-center"
-            >
-              <p className="text-sm text-slate-400">
-                Don't see your workflow? We build custom agents too.{" "}
-                <button
-                  onClick={() => router.push("/book-demo")}
-                  className="text-primary font-semibold hover:underline cursor-pointer"
+            <CardStack
+              items={AGENTS}
+              cardWidth={dims.width}
+              cardHeight={dims.height}
+              spreadDeg={42}
+              overlap={0.44}
+              autoAdvance
+              intervalMs={3000}
+              pauseOnHover
+              showDots
+              renderCard={(item: AgentItem, { active }) => (
+                <div
+                  className="relative h-full w-full flex flex-col justify-between p-7 overflow-hidden"
+                  style={{ background: item.gradient }}
                 >
-                  Tell us what you need →
-                </button>
-              </p>
-            </motion.div>
+                  {/* Decorative circle */}
+                  <div className="absolute -top-10 -right-10 w-48 h-48 rounded-full bg-white/8 pointer-events-none" />
+                  <div className="absolute -bottom-12 -left-8 w-36 h-36 rounded-full bg-black/10 pointer-events-none" />
+
+                  {/* Top row: icon + label */}
+                  <div className="relative flex items-start justify-between">
+                    <div className="w-12 h-12 rounded-2xl bg-white/15 backdrop-blur-sm flex items-center justify-center ring-1 ring-white/20">
+                      <item.icon className="w-6 h-6 text-white" />
+                    </div>
+                    <span className="text-[10px] font-bold text-white/40 uppercase tracking-widest mt-1">
+                      AI Agent
+                    </span>
+                  </div>
+
+                  {/* Middle: title + tagline + description */}
+                  <div className="relative">
+                    <h3 className="text-2xl font-bold text-white mb-1">{item.title}</h3>
+                    <p className="text-white/70 text-sm font-medium mb-2">{item.tagline}</p>
+                    {active && item.description && (
+                      <motion.p
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        className="text-white/55 text-sm leading-relaxed line-clamp-2"
+                      >
+                        {item.description}
+                      </motion.p>
+                    )}
+                  </div>
+
+                  {/* Bottom: stat + CTA */}
+                  <div className="relative flex items-center justify-between">
+                    <div className="flex items-center gap-2 bg-white/15 rounded-lg px-3 py-1.5 backdrop-blur-sm">
+                      <Zap className="w-3.5 h-3.5 text-white/70 shrink-0" />
+                      <span className="text-xs text-white font-semibold">{item.stat}</span>
+                    </div>
+                    {active && (
+                      <motion.button
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        onClick={e => { e.stopPropagation(); router.push("/book-demo") }}
+                        className="flex items-center gap-1.5 text-xs font-bold text-white/80 hover:text-white transition-colors cursor-pointer"
+                      >
+                        Get this agent <ArrowRight className="w-3 h-3" />
+                      </motion.button>
+                    )}
+                  </div>
+                </div>
+              )}
+            />
+
+            <motion.p
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.3 }}
+              className="text-center text-sm text-slate-400 mt-8"
+            >
+              Don't see your workflow?{" "}
+              <button
+                onClick={() => router.push("/book-demo")}
+                className="text-primary font-semibold hover:underline cursor-pointer"
+              >
+                Tell us what you need →
+              </button>
+            </motion.p>
           </div>
         </div>
       </section>
 
-      {/* Bottom CTA */}
-      <section className="py-24 bg-slate-950 relative overflow-hidden">
+      {/* ── AI Agents on Demand ── */}
+      <section className="py-24 sm:py-32 bg-slate-50">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-6xl mx-auto">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+
+              {/* Left: heading + description */}
+              <motion.div
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5 }}
+                className="lg:sticky lg:top-32"
+              >
+                <p className="text-xs font-semibold tracking-widest uppercase text-primary mb-4">AI Agents on Demand</p>
+                <h2 className="text-4xl sm:text-5xl font-bold tracking-tight text-slate-900 mb-6 text-balance">
+                  Plug and play.{" "}
+                  <span className="bg-clip-text text-transparent bg-linear-to-r from-primary to-violet-500">
+                    We handle everything.
+                  </span>
+                </h2>
+                <p className="text-lg text-slate-500 leading-relaxed mb-8">
+                  You don't need a server, an OpenAI account, or a developer on your team. Give us a brief — we handle every layer of the stack and hand you back a working agent.
+                </p>
+
+                {/* What you do */}
+                <div className="rounded-2xl border border-slate-200 bg-white p-6">
+                  <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-4">What you do</p>
+                  <ul className="space-y-3">
+                    {[
+                      "Describe your workflow in plain language (once)",
+                      "Get on a 20-minute call with our team",
+                      "Use your live agent — request changes anytime",
+                    ].map((step, i) => (
+                      <li key={i} className="flex items-start gap-3">
+                        <div className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center shrink-0 mt-0.5">
+                          <Check className="w-3.5 h-3.5 text-primary" />
+                        </div>
+                        <span className="text-sm text-slate-700 leading-relaxed">{step}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <button
+                  onClick={() => router.push("/book-demo")}
+                  className="relative overflow-hidden group mt-8 flex items-center gap-2 bg-linear-to-r from-primary to-violet-500 text-white font-semibold text-sm px-6 py-3 rounded-xl shadow-md shadow-primary/25 hover:shadow-primary/40 hover:shadow-lg transition-all cursor-pointer"
+                >
+                  <span className="absolute inset-0 bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-in-out" />
+                  <span className="relative flex items-center gap-2">
+                    Get started <ArrowRight className="w-4 h-4" />
+                  </span>
+                </button>
+              </motion.div>
+
+              {/* Right: what we handle grid */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <p className="text-xs font-bold text-slate-400 uppercase tracking-widest col-span-full mb-2">What we handle</p>
+                {WE_HANDLE.map((item, i) => (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.4, delay: i * 0.06 }}
+                    className="rounded-2xl border border-slate-200 bg-white p-5 hover:shadow-md hover:border-primary/20 transition-all"
+                  >
+                    <div className="w-9 h-9 rounded-xl bg-primary/10 flex items-center justify-center mb-3">
+                      <item.icon className="w-4 h-4 text-primary" />
+                    </div>
+                    <h3 className="text-sm font-bold text-slate-800 mb-1.5">{item.title}</h3>
+                    <p className="text-xs text-slate-500 leading-relaxed">{item.body}</p>
+                  </motion.div>
+                ))}
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Bottom CTA ── */}
+      <section className="py-24 bg-linear-to-br from-primary via-blue-600 to-violet-600 relative overflow-hidden">
         <div className="absolute inset-0 pointer-events-none">
-          <div
-            className="absolute inset-0"
-            style={{
-              backgroundImage:
-                "linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px)",
-              backgroundSize: "60px 60px",
-            }}
-          />
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[300px] bg-primary/20 rounded-full blur-[100px]" />
+          <div className="absolute -top-24 -right-24 w-80 h-80 bg-violet-400/20 rounded-full blur-3xl" />
+          <div className="absolute -bottom-24 -left-24 w-80 h-80 bg-blue-300/15 rounded-full blur-3xl" />
         </div>
         <div className="relative container mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
@@ -404,19 +416,19 @@ export function AgentsPageContent() {
             <h2 className="text-3xl sm:text-4xl font-bold text-white text-balance mb-4">
               Ready to automate your first workflow?
             </h2>
-            <p className="text-white/50 text-lg mb-8 max-w-xl mx-auto">
+            <p className="text-white/70 text-lg mb-8 max-w-xl mx-auto">
               Book a free 20-minute call. We'll tell you exactly what your agent can do and get it live within 24 hours.
             </p>
             <button
               onClick={() => router.push("/book-demo")}
-              className="relative overflow-hidden group inline-flex items-center gap-2 bg-white text-slate-900 font-bold px-8 py-4 rounded-xl text-base hover:bg-white/90 transition-all cursor-pointer shadow-2xl shadow-black/40"
+              className="relative overflow-hidden group inline-flex items-center gap-2 bg-white text-primary font-bold px-8 py-4 rounded-xl text-base shadow-2xl shadow-black/20 hover:shadow-black/30 transition-all cursor-pointer"
             >
               <span className="absolute inset-0 bg-linear-to-r from-transparent via-primary/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-in-out" />
               <span className="relative flex items-center gap-2">
                 Book a free call <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
               </span>
             </button>
-            <p className="text-white/25 text-sm mt-5">Free call · No commitment · Live in 24h if it's a fit</p>
+            <p className="text-white/40 text-sm mt-5">Free call · No commitment · Live in 24h if it's a fit</p>
           </motion.div>
         </div>
       </section>
