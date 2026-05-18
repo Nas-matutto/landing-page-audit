@@ -1,289 +1,398 @@
 "use client"
 
-import { motion } from "framer-motion"
+import { motion, AnimatePresence } from "framer-motion"
 import { useRouter } from "next/navigation"
+import { useState, useEffect, useMemo } from "react"
 import {
   Headphones, Users, Calendar, FileText, Package, UserCheck,
-  Receipt, HelpCircle, ArrowRight, Check, Zap
+  Receipt, HelpCircle, ArrowRight, Check, Zap, ChevronRight
 } from "lucide-react"
+
+const ROTATING_WORDS = [
+  "Customer Service",
+  "Marketing",
+  "Sales",
+  "HR",
+  "Finance",
+  "Operations",
+]
 
 const AGENTS = [
   {
     icon: Headphones,
-    color: "text-blue-600",
-    bg: "bg-blue-50",
-    border: "border-blue-100",
-    title: "Customer support agent",
+    color: "#2563eb",
+    glow: "rgba(37,99,235,0.25)",
+    ring: "ring-blue-500/30",
+    bg: "bg-blue-500/10",
+    title: "Customer support",
     tagline: "Always-on support without the headcount",
-    description: "Handles your most common customer questions automatically — order status, FAQs, refunds, and account queries. When something needs a human, it escalates intelligently.",
+    description: "Handles FAQs, order status, refunds, and complaints. Escalates intelligently when a human is needed — across email, chat, and WhatsApp.",
     capabilities: [
       "Answers FAQs from your knowledge base",
-      "Tracks order status via your backend",
-      "Handles returns, refunds, and complaints",
+      "Tracks orders via your backend",
+      "Handles returns & refunds",
       "Escalates to your team when needed",
-      "Works across email, chat, and WhatsApp",
+      "Works across email, chat, WhatsApp",
     ],
-    example: { label: "Response time", value: "< 2 seconds" },
-    stat: "92% resolved without human",
+    stat: "92% resolved automatically",
   },
   {
     icon: Users,
-    color: "text-teal-600",
-    bg: "bg-teal-50",
-    border: "border-teal-100",
-    title: "Lead qualification agent",
+    color: "#0d9488",
+    glow: "rgba(13,148,136,0.25)",
+    ring: "ring-teal-500/30",
+    bg: "bg-teal-500/10",
+    title: "Lead qualification",
     tagline: "Only talk to leads worth your time",
-    description: "Engages every inbound lead the moment they arrive, asks the right qualifying questions, scores intent, and routes hot leads straight to your inbox or CRM — 24/7.",
+    description: "Engages every inbound lead instantly, asks qualifying questions, scores intent, and routes hot leads straight to your inbox or CRM — 24/7.",
     capabilities: [
       "Qualifies leads based on your criteria",
       "Asks dynamic follow-up questions",
-      "Scores and ranks by intent signals",
-      "Routes to the right rep via Slack or email",
-      "Logs everything to HubSpot or Pipedrive",
+      "Scores and ranks by intent",
+      "Routes to the right rep via Slack",
+      "Logs everything to HubSpot/Pipedrive",
     ],
-    example: { label: "Avg response delay", value: "Instant" },
     stat: "3× more qualified conversations",
   },
   {
     icon: Calendar,
-    color: "text-amber-600",
-    bg: "bg-amber-50",
-    border: "border-amber-100",
-    title: "Booking & scheduling agent",
+    color: "#d97706",
+    glow: "rgba(217,119,6,0.25)",
+    ring: "ring-amber-500/30",
+    bg: "bg-amber-500/10",
+    title: "Booking & scheduling",
     tagline: "Zero back-and-forth, full calendars",
-    description: "Lets clients self-book, reschedule, and cancel — synced directly to your calendar. Sends reminders automatically and handles no-shows gracefully.",
+    description: "Lets clients self-book, reschedule, and cancel — synced to your calendar. Sends reminders automatically and handles no-shows.",
     capabilities: [
       "Self-serve booking from any channel",
       "Real-time calendar availability sync",
-      "Automated reminders via email or SMS",
+      "Automated reminders via email/SMS",
       "Handles reschedules and cancellations",
-      "Works with Google Calendar and Calendly",
+      "Works with Google Calendar & Calendly",
     ],
-    example: { label: "No-show rate reduction", value: "↓ 60%" },
     stat: "Saves 5+ hours per week",
   },
   {
     icon: FileText,
-    color: "text-violet-600",
-    bg: "bg-violet-50",
-    border: "border-violet-100",
-    title: "Document Q&A agent",
+    color: "#7c3aed",
+    glow: "rgba(124,58,237,0.25)",
+    ring: "ring-violet-500/30",
+    bg: "bg-violet-500/10",
+    title: "Document Q&A",
     tagline: "Instant answers from your own content",
-    description: "Upload your manuals, policies, contracts, or reports. Your agent reads them and answers staff or client questions accurately — grounded in your actual documents.",
+    description: "Upload manuals, policies, or reports. Your agent reads them and answers staff or client questions accurately — grounded in your actual documents.",
     capabilities: [
-      "Trained on your PDFs, docs, and sheets",
-      "Cites the source page for every answer",
-      "Handles policy, procedure, and compliance queries",
-      "Updates when you upload new documents",
-      "Works for internal teams or external clients",
+      "Trained on your PDFs and docs",
+      "Cites the source page per answer",
+      "Handles compliance & policy queries",
+      "Updates when you add new documents",
+      "Works for teams or external clients",
     ],
-    example: { label: "Accuracy", value: "Grounded in your docs" },
-    stat: "Replaces hours of search time daily",
+    stat: "Replaces hours of search daily",
   },
   {
     icon: Package,
-    color: "text-orange-600",
-    bg: "bg-orange-50",
-    border: "border-orange-100",
-    title: "Order tracking agent",
-    tagline: "Keep customers informed, automatically",
-    description: "Connects to your fulfilment platform and gives customers real-time order updates across any channel. Reduces WISMO tickets by handling them before they're raised.",
+    color: "#ea580c",
+    glow: "rgba(234,88,12,0.25)",
+    ring: "ring-orange-500/30",
+    bg: "bg-orange-500/10",
+    title: "Order tracking",
+    tagline: "Keep customers informed automatically",
+    description: "Connects to your fulfilment platform and gives real-time order updates. Eliminates WISMO tickets before they're raised.",
     capabilities: [
       "Real-time order status lookups",
-      "Proactive shipping update notifications",
+      "Proactive shipping notifications",
       "Handles 'Where is my order?' queries",
-      "Integrates with Shopify, WooCommerce, and more",
+      "Integrates with Shopify & WooCommerce",
       "Escalates exceptions to your team",
     ],
-    example: { label: "WISMO tickets eliminated", value: "Up to 80%" },
-    stat: "Fewer support tickets, happier customers",
+    stat: "Up to 80% fewer support tickets",
   },
   {
     icon: UserCheck,
-    color: "text-emerald-600",
-    bg: "bg-emerald-50",
-    border: "border-emerald-100",
-    title: "Onboarding agent",
-    tagline: "Guide every new user to their first win",
-    description: "Walks new clients or users through your product step by step, answers setup questions, and nudges them towards key activation milestones — all without manual touchpoints.",
+    color: "#16a34a",
+    glow: "rgba(22,163,74,0.25)",
+    ring: "ring-emerald-500/30",
+    bg: "bg-emerald-500/10",
+    title: "Onboarding",
+    tagline: "Guide every user to their first win",
+    description: "Walks new users through your product step by step, answers setup questions, and nudges them toward activation milestones — hands-free.",
     capabilities: [
-      "Personalised onboarding flows per user type",
+      "Personalised onboarding per user type",
       "Answers product questions in context",
       "Sends timely nudges and check-ins",
       "Tracks progress and flags drop-off",
       "Integrates with your product or CRM",
     ],
-    example: { label: "Time to first value", value: "↓ significantly" },
     stat: "Higher activation, less churn",
   },
   {
     icon: Receipt,
-    color: "text-rose-600",
-    bg: "bg-rose-50",
-    border: "border-rose-100",
-    title: "Invoice processing agent",
-    tagline: "Extract, validate, and route invoices automatically",
-    description: "Reads incoming invoices from email or uploads, extracts line items and totals, matches against purchase orders, and routes for approval — without anyone touching a spreadsheet.",
+    color: "#e11d48",
+    glow: "rgba(225,29,72,0.25)",
+    ring: "ring-rose-500/30",
+    bg: "bg-rose-500/10",
+    title: "Invoice processing",
+    tagline: "Extract, validate, and route automatically",
+    description: "Reads incoming invoices from email or uploads, extracts data, matches against POs, and routes for approval — without anyone touching a spreadsheet.",
     capabilities: [
       "Extracts data from PDFs and images",
       "Matches invoices to POs automatically",
       "Flags discrepancies for human review",
-      "Routes for approval via email or Slack",
-      "Integrates with Xero, QuickBooks, and more",
+      "Routes for approval via email/Slack",
+      "Integrates with Xero & QuickBooks",
     ],
-    example: { label: "Processing time", value: "< 30 seconds per invoice" },
-    stat: "Cuts invoice processing time by 90%",
+    stat: "90% faster invoice processing",
   },
   {
     icon: HelpCircle,
-    color: "text-indigo-600",
-    bg: "bg-indigo-50",
-    border: "border-indigo-100",
-    title: "HR helpdesk agent",
-    tagline: "Answer every HR question without involving HR",
-    description: "Gives employees instant answers to HR questions — leave policies, benefits, payroll dates, and procedures — drawn from your internal documentation.",
+    color: "#4f46e5",
+    glow: "rgba(79,70,229,0.25)",
+    ring: "ring-indigo-500/30",
+    bg: "bg-indigo-500/10",
+    title: "HR helpdesk",
+    tagline: "Answer HR questions without involving HR",
+    description: "Gives employees instant answers on leave policies, benefits, payroll, and procedures — drawn from your internal documentation.",
     capabilities: [
-      "Covers leave, benefits, and payroll FAQs",
+      "Covers leave, benefits, payroll FAQs",
       "Trained on your employee handbook",
       "Handles onboarding paperwork queries",
-      "Escalates sensitive issues to HR team",
+      "Escalates sensitive issues to HR",
       "Available on Slack or your intranet",
     ],
-    example: { label: "HR queries resolved automatically", value: "~70%" },
-    stat: "Frees your HR team for real work",
+    stat: "~70% of HR queries resolved automatically",
   },
 ]
 
+function RotatingWord() {
+  const [index, setIndex] = useState(0)
+  const titles = useMemo(() => ROTATING_WORDS, [])
+
+  useEffect(() => {
+    const id = setTimeout(() => {
+      setIndex(i => (i + 1) % titles.length)
+    }, 2200)
+    return () => clearTimeout(id)
+  }, [index, titles])
+
+  return (
+    <span className="relative inline-flex justify-center w-full overflow-hidden h-[1.15em]">
+      {titles.map((word, i) => (
+        <motion.span
+          key={word}
+          className="absolute font-bold bg-clip-text text-transparent bg-linear-to-r from-primary to-violet-400"
+          initial={{ opacity: 0, y: 60 }}
+          animate={
+            index === i
+              ? { opacity: 1, y: 0 }
+              : { opacity: 0, y: index > i ? -60 : 60 }
+          }
+          transition={{ type: "spring", stiffness: 80, damping: 18 }}
+        >
+          {word}
+        </motion.span>
+      ))}
+    </span>
+  )
+}
+
+function AgentCard({ agent, index }: { agent: typeof AGENTS[0]; index: number }) {
+  const [open, setOpen] = useState(false)
+  const router = useRouter()
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 32 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.45, delay: (index % 4) * 0.07 }}
+      className="group relative rounded-2xl bg-slate-900 border border-white/8 overflow-hidden cursor-pointer transition-all duration-300 hover:border-white/20"
+      style={{
+        boxShadow: open ? `0 0 40px ${agent.glow}` : "none",
+      }}
+      onClick={() => setOpen(o => !o)}
+    >
+      {/* Glow layer on hover */}
+      <div
+        className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+        style={{
+          background: `radial-gradient(ellipse at top left, ${agent.glow} 0%, transparent 65%)`,
+        }}
+      />
+
+      <div className="relative p-6">
+        {/* Icon + title row */}
+        <div className="flex items-start justify-between gap-3 mb-4">
+          <div className={`w-11 h-11 rounded-xl ${agent.bg} ring-1 ${agent.ring} flex items-center justify-center shrink-0`}>
+            <agent.icon className="w-5 h-5" style={{ color: agent.color }} />
+          </div>
+          <ChevronRight
+            className="w-4 h-4 text-white/30 shrink-0 mt-1 transition-transform duration-300"
+            style={{ transform: open ? "rotate(90deg)" : "rotate(0deg)" }}
+          />
+        </div>
+
+        <h3 className="text-base font-bold text-white mb-1">{agent.title}</h3>
+        <p className="text-xs font-medium mb-3" style={{ color: agent.color }}>{agent.tagline}</p>
+        <p className="text-sm text-white/50 leading-relaxed">{agent.description}</p>
+
+        {/* Expandable capabilities */}
+        <AnimatePresence>
+          {open && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.25, ease: "easeInOut" }}
+              className="overflow-hidden"
+            >
+              <div className="mt-5 pt-5 border-t border-white/8">
+                <ul className="space-y-2 mb-5">
+                  {agent.capabilities.map((cap, j) => (
+                    <li key={j} className="flex items-start gap-2 text-sm text-white/60">
+                      <Check className="w-3.5 h-3.5 mt-0.5 shrink-0" style={{ color: agent.color }} />
+                      {cap}
+                    </li>
+                  ))}
+                </ul>
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-1.5">
+                    <Zap className="w-3.5 h-3.5" style={{ color: agent.color }} />
+                    <span className="text-xs font-semibold text-white/70">{agent.stat}</span>
+                  </div>
+                  <button
+                    onClick={e => { e.stopPropagation(); router.push("/book-demo") }}
+                    className="flex items-center gap-1.5 text-xs font-bold px-3 py-1.5 rounded-lg transition-colors cursor-pointer"
+                    style={{ backgroundColor: `${agent.color}22`, color: agent.color }}
+                  >
+                    Get this agent <ArrowRight className="w-3 h-3" />
+                  </button>
+                </div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
+    </motion.div>
+  )
+}
+
 export function AgentsPageContent() {
   const router = useRouter()
-  const goToDemo = () => router.push("/book-demo")
 
   return (
     <>
-      {/* Hero */}
-      <section className="pt-32 pb-20 bg-white">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-4xl mx-auto text-center">
-            <motion.div
-              initial={{ opacity: 0, y: 24 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
+      {/* Hero — dark */}
+      <section className="relative min-h-[70vh] flex flex-col items-center justify-center bg-slate-950 overflow-hidden pt-24 pb-20">
+        {/* Subtle grid background */}
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            backgroundImage:
+              "linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px)",
+            backgroundSize: "60px 60px",
+          }}
+        />
+        {/* Glow blobs */}
+        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-primary/15 rounded-full blur-[120px] pointer-events-none" />
+        <div className="absolute bottom-0 right-1/4 w-[300px] h-[300px] bg-violet-600/10 rounded-full blur-[100px] pointer-events-none" />
+
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 text-center"
+        >
+          <div className="inline-flex items-center gap-2 mb-8 px-4 py-1.5 rounded-full border border-white/10 bg-white/5 text-white/60 text-xs font-semibold tracking-widest uppercase">
+            <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
+            Fully managed · Deployed in 24h
+          </div>
+
+          <h1 className="text-5xl sm:text-6xl md:text-7xl font-bold tracking-tight text-white leading-tight mb-4">
+            AI agents built for
+          </h1>
+          <div className="text-5xl sm:text-6xl md:text-7xl font-bold tracking-tight leading-tight mb-8">
+            <RotatingWord />
+          </div>
+
+          <p className="text-lg text-white/50 leading-relaxed max-w-2xl mx-auto mb-10">
+            We build, deploy, and host custom AI agents on our infrastructure. Tell us your workflow — we'll have your agent live within 24 hours.
+          </p>
+
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <button
+              onClick={() => router.push("/book-demo")}
+              className="relative overflow-hidden group flex items-center gap-2 bg-linear-to-r from-primary to-violet-500 text-white font-semibold text-sm px-7 py-3.5 rounded-xl shadow-lg shadow-primary/30 hover:shadow-primary/50 transition-all cursor-pointer"
             >
-              <p className="text-xs font-semibold tracking-widest uppercase text-primary mb-4">AI Agents</p>
-              <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-balance mb-6">
-                Every agent we{" "}
-                <span className="bg-clip-text text-transparent bg-linear-to-r from-primary to-violet-500">
-                  build and host
-                </span>
-                {" "}for you
-              </h1>
-              <p className="text-lg text-slate-500 leading-relaxed max-w-2xl mx-auto mb-10">
-                We build custom AI agents for the workflows that eat the most time in your business. Each one is fully hosted and monitored on our infrastructure — you just use it.
+              <span className="absolute inset-0 bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-in-out" />
+              <span className="relative flex items-center gap-2">
+                Book a free call <ArrowRight className="w-4 h-4" />
+              </span>
+            </button>
+            <p className="text-sm text-white/30">20-minute call · No commitment</p>
+          </div>
+        </motion.div>
+      </section>
+
+      {/* Agents grid — light */}
+      <section className="py-24 sm:py-32 bg-white">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-6xl mx-auto">
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+              className="text-center mb-16"
+            >
+              <p className="text-xs font-semibold tracking-widest uppercase text-primary mb-4">All agents</p>
+              <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-slate-900 mb-4">
+                Click any agent to explore what it does
+              </h2>
+              <p className="text-slate-500 max-w-xl mx-auto">
+                Each agent is custom-built for your business and fully hosted on our infrastructure. No code, no setup, no maintenance.
               </p>
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            </motion.div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+              {AGENTS.map((agent, i) => (
+                <AgentCard key={agent.title} agent={agent} index={i} />
+              ))}
+            </div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="mt-10 text-center"
+            >
+              <p className="text-sm text-slate-400">
+                Don't see your workflow? We build custom agents too.{" "}
                 <button
-                  onClick={goToDemo}
-                  className="relative overflow-hidden group flex items-center gap-2 bg-linear-to-r from-primary to-violet-500 text-white font-semibold text-sm px-6 py-3 rounded-xl shadow-md shadow-primary/30 hover:shadow-lg hover:shadow-primary/40 transition-all cursor-pointer"
+                  onClick={() => router.push("/book-demo")}
+                  className="text-primary font-semibold hover:underline cursor-pointer"
                 >
-                  <span className="absolute inset-0 bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-in-out" />
-                  <span className="relative flex items-center gap-2">
-                    Book a free call <ArrowRight className="w-4 h-4" />
-                  </span>
+                  Tell us what you need →
                 </button>
-                <p className="text-sm text-slate-400">20-minute call · No commitment</p>
-              </div>
+              </p>
             </motion.div>
           </div>
         </div>
       </section>
 
-      {/* Stats strip */}
-      <div className="bg-slate-50 border-y border-slate-200">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-3 divide-x divide-slate-200 max-w-2xl mx-auto">
-            {[
-              { stat: "8+", label: "Agent types available" },
-              { stat: "24h", label: "Average time to go live" },
-              { stat: "100%", label: "Hosted & monitored by us" },
-            ].map(({ stat, label }, i) => (
-              <div key={i} className="py-6 text-center">
-                <p className="text-2xl font-black text-foreground">{stat}</p>
-                <p className="text-xs text-slate-500 mt-1">{label}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      {/* Agents grid */}
-      <section className="py-24 sm:py-32 bg-white">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-6xl mx-auto space-y-8">
-            {AGENTS.map((agent, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.05 }}
-                className={`rounded-2xl border-2 ${agent.border} bg-white p-8 hover:shadow-md transition-shadow`}
-              >
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                  {/* Left: title + description */}
-                  <div className="lg:col-span-2">
-                    <div className="flex items-center gap-4 mb-4">
-                      <div className={`w-12 h-12 rounded-2xl ${agent.bg} flex items-center justify-center shrink-0`}>
-                        <agent.icon className={`w-6 h-6 ${agent.color}`} />
-                      </div>
-                      <div>
-                        <h2 className="text-xl font-bold text-slate-900">{agent.title}</h2>
-                        <p className={`text-sm font-semibold ${agent.color}`}>{agent.tagline}</p>
-                      </div>
-                    </div>
-                    <p className="text-slate-500 leading-relaxed mb-6">{agent.description}</p>
-                    <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                      {agent.capabilities.map((cap, j) => (
-                        <li key={j} className="flex items-start gap-2.5 text-sm text-slate-600">
-                          <Check className="w-4 h-4 text-primary mt-0.5 shrink-0" />
-                          {cap}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  {/* Right: stat card */}
-                  <div className="flex flex-col gap-4">
-                    <div className={`rounded-xl ${agent.bg} p-5 border ${agent.border}`}>
-                      <div className="flex items-center gap-2 mb-3">
-                        <Zap className={`w-4 h-4 ${agent.color}`} />
-                        <span className="text-xs font-semibold text-slate-500 uppercase tracking-wide">Live example</span>
-                      </div>
-                      <div className="flex items-center justify-between rounded-lg bg-white/70 px-3 py-2 mb-2">
-                        <span className="text-xs text-slate-400">{agent.example.label}</span>
-                        <span className="text-xs font-semibold text-slate-700">{agent.example.value}</span>
-                      </div>
-                      <p className={`text-sm font-bold ${agent.color} mt-3`}>{agent.stat}</p>
-                    </div>
-                    <button
-                      onClick={goToDemo}
-                      className="group flex items-center justify-center gap-2 w-full py-3 rounded-xl border-2 border-slate-200 text-sm font-semibold text-slate-700 hover:border-primary/40 hover:text-primary transition-all cursor-pointer"
-                    >
-                      Get this agent
-                      <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
-                    </button>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Bottom CTA */}
-      <section className="py-24 bg-linear-to-br from-primary via-blue-600 to-violet-600 relative overflow-hidden">
+      <section className="py-24 bg-slate-950 relative overflow-hidden">
         <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute -top-24 -right-24 w-80 h-80 bg-violet-400/20 rounded-full blur-3xl" />
-          <div className="absolute -bottom-24 -left-24 w-80 h-80 bg-blue-300/15 rounded-full blur-3xl" />
+          <div
+            className="absolute inset-0"
+            style={{
+              backgroundImage:
+                "linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px)",
+              backgroundSize: "60px 60px",
+            }}
+          />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[300px] bg-primary/20 rounded-full blur-[100px]" />
         </div>
         <div className="relative container mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
@@ -293,21 +402,21 @@ export function AgentsPageContent() {
             transition={{ duration: 0.5 }}
           >
             <h2 className="text-3xl sm:text-4xl font-bold text-white text-balance mb-4">
-              Don't see exactly what you need?
+              Ready to automate your first workflow?
             </h2>
-            <p className="text-white/70 text-lg mb-8 max-w-xl mx-auto">
-              We build custom agents for almost any workflow. Book a free call and describe what you want — we'll tell you if and how we can build it.
+            <p className="text-white/50 text-lg mb-8 max-w-xl mx-auto">
+              Book a free 20-minute call. We'll tell you exactly what your agent can do and get it live within 24 hours.
             </p>
             <button
-              onClick={goToDemo}
-              className="relative overflow-hidden group inline-flex items-center gap-2 bg-white text-primary font-bold px-8 py-4 rounded-xl text-base shadow-2xl shadow-black/20 hover:shadow-black/30 transition-all cursor-pointer"
+              onClick={() => router.push("/book-demo")}
+              className="relative overflow-hidden group inline-flex items-center gap-2 bg-white text-slate-900 font-bold px-8 py-4 rounded-xl text-base hover:bg-white/90 transition-all cursor-pointer shadow-2xl shadow-black/40"
             >
               <span className="absolute inset-0 bg-linear-to-r from-transparent via-primary/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-in-out" />
               <span className="relative flex items-center gap-2">
                 Book a free call <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
               </span>
             </button>
-            <p className="text-white/40 text-sm mt-5">Free 20-minute call · No commitment · Live in 24 hours if it's a fit</p>
+            <p className="text-white/25 text-sm mt-5">Free call · No commitment · Live in 24h if it's a fit</p>
           </motion.div>
         </div>
       </section>
