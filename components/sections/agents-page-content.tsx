@@ -126,20 +126,28 @@ const AGENTS: AgentItem[] = [
 
 // ─── Responsive card dimensions ───────────────────────────────────────────────
 
-function useCardDims() {
-  const [dims, setDims] = useState({ width: 500, height: 340 })
+type CardProps = { width: number; height: number; spreadDeg: number; overlap: number; maxVisible: number }
+
+function useCardProps(): CardProps {
+  const [props, setProps] = useState<CardProps>({ width: 500, height: 340, spreadDeg: 42, overlap: 0.44, maxVisible: 7 })
   useEffect(() => {
     const update = () => {
       const w = window.innerWidth
-      if (w < 640) setDims({ width: Math.min(w - 48, 360), height: 280 })
-      else if (w < 1024) setDims({ width: 440, height: 310 })
-      else setDims({ width: 500, height: 340 })
+      if (w < 480) {
+        setProps({ width: w - 48, height: 260, spreadDeg: 0, overlap: 0, maxVisible: 1 })
+      } else if (w < 640) {
+        setProps({ width: w - 48, height: 270, spreadDeg: 16, overlap: 0.15, maxVisible: 3 })
+      } else if (w < 1024) {
+        setProps({ width: 440, height: 310, spreadDeg: 28, overlap: 0.36, maxVisible: 5 })
+      } else {
+        setProps({ width: 500, height: 340, spreadDeg: 42, overlap: 0.44, maxVisible: 7 })
+      }
     }
     update()
     window.addEventListener("resize", update)
     return () => window.removeEventListener("resize", update)
   }, [])
-  return dims
+  return props
 }
 
 // ─── What we handle ───────────────────────────────────────────────────────────
@@ -159,7 +167,7 @@ const WE_HANDLE = [
 
 export function AgentsPageContent() {
   const router = useRouter()
-  const dims = useCardDims()
+  const cardProps = useCardProps()
 
   return (
     <>
@@ -216,7 +224,7 @@ export function AgentsPageContent() {
       </section>
 
       {/* ── CardStack: agent showcase ── */}
-      <section className="py-24 sm:py-32 bg-white">
+      <section className="py-24 sm:py-32 bg-white overflow-hidden">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-6xl mx-auto">
             <motion.div
@@ -226,21 +234,21 @@ export function AgentsPageContent() {
               transition={{ duration: 0.5 }}
               className="text-center mb-4"
             >
-              <p className="text-xs font-semibold tracking-widest uppercase text-primary mb-4">All agents</p>
               <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-slate-900 mb-4">
-                Browse what we build
+                Explore Agents
               </h2>
               <p className="text-slate-500 max-w-xl mx-auto mb-2">
-                Click any card in the stack to bring it forward. Drag left or right to navigate.
+                Click any card in the stack to bring it forward. Drag or swipe to navigate.
               </p>
             </motion.div>
 
             <CardStack
               items={AGENTS}
-              cardWidth={dims.width}
-              cardHeight={dims.height}
-              spreadDeg={42}
-              overlap={0.44}
+              cardWidth={cardProps.width}
+              cardHeight={cardProps.height}
+              spreadDeg={cardProps.spreadDeg}
+              overlap={cardProps.overlap}
+              maxVisible={cardProps.maxVisible}
               autoAdvance
               intervalMs={3000}
               pauseOnHover
