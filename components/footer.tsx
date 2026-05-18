@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { Twitter, Linkedin, Github, CalendarDays } from "lucide-react"
+import { CalendarDays } from "lucide-react"
 
 export function Footer() {
   return (
@@ -14,28 +14,8 @@ export function Footer() {
               <span className="font-bold text-base">Talk to me Data</span>
             </div>
             <p className="text-sm text-background/70 leading-relaxed mb-4">
-              Signal intelligence for sales teams. Find companies using your competitors' tools — from job postings and reviews.
+              We build, deploy, and host custom AI agents for your business — fully managed on our infrastructure. No code, no complexity.
             </p>
-            <div className="flex items-center gap-3">
-              <Link
-                href="#"
-                className="w-9 h-9 rounded-lg bg-background/10 hover:bg-background/20 flex items-center justify-center transition-colors"
-              >
-                <Twitter className="w-4 h-4" />
-              </Link>
-              <Link
-                href="#"
-                className="w-9 h-9 rounded-lg bg-background/10 hover:bg-background/20 flex items-center justify-center transition-colors"
-              >
-                <Linkedin className="w-4 h-4" />
-              </Link>
-              <Link
-                href="#"
-                className="w-9 h-9 rounded-lg bg-background/10 hover:bg-background/20 flex items-center justify-center transition-colors"
-              >
-                <Github className="w-4 h-4" />
-              </Link>
-            </div>
           </div>
 
           <div>
@@ -47,19 +27,19 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/#signals" className="text-background/70 hover:text-background transition-colors">
-                  Signal sources
+                <Link href="/#use-cases" className="text-background/70 hover:text-background transition-colors">
+                  Use cases
                 </Link>
               </li>
               <li>
-                <Link href="/#pricing" className="text-background/70 hover:text-background transition-colors">
-                  Pricing
+                <Link href="/agents" className="text-background/70 hover:text-background transition-colors">
+                  Agents
                 </Link>
               </li>
               <li>
                 <Link href="/book-demo" className="inline-flex items-center gap-1.5 text-background/70 hover:text-background transition-colors">
                   <CalendarDays className="w-3.5 h-3.5" />
-                  Book Demo
+                  Book a free call
                 </Link>
               </li>
             </ul>
@@ -76,11 +56,6 @@ export function Footer() {
               <li>
                 <Link href="#" className="text-background/70 hover:text-background transition-colors">
                   Documentation
-                </Link>
-              </li>
-              <li>
-                <Link href="#" className="text-background/70 hover:text-background transition-colors">
-                  Use Cases
                 </Link>
               </li>
               <li>
@@ -116,7 +91,7 @@ export function Footer() {
         <div className="pt-8 border-t border-background/10">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-background/70">
             <p>© 2026 Talk to me Data. All rights reserved.</p>
-            <p>Built for founders who sell smarter.</p>
+            <p>Built for businesses that move fast.</p>
           </div>
         </div>
       </div>

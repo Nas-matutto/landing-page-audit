@@ -10,8 +10,8 @@ import { FAQSection } from "@/components/sections/faq-section"
 import { FinalCTASection } from "@/components/sections/final-cta-section"
 
 export const metadata: Metadata = {
-  title: "Agently — AI agents built, deployed, and hosted for you",
-  description: "Tell us what you need to automate. We build, deploy, and host your custom AI agent — you just use it. From brief to live in days.",
+  title: "Talk to me Data — AI Agents built, deployed, and hosted for you",
+  description: "Tell us what you need to automate. We build, deploy, and host your custom AI agent — you just use it. From brief to live in 24 hours.",
   keywords: [
     "AI agents",
     "AI automation",
@@ -23,19 +23,19 @@ export const metadata: Metadata = {
     "AI lead qualification",
   ],
   openGraph: {
-    title: "Agently — AI agents built, deployed, and hosted for you",
+    title: "Talk to me Data — AI Agents built, deployed, and hosted for you",
     description: "Tell us what you need to automate. We build, deploy, and host your custom AI agent — you just use it.",
     type: 'website',
-    url: 'https://agently.ai',
-    siteName: 'Agently',
+    url: 'https://talktomedata.com',
+    siteName: 'Talk to me Data',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Agently — AI agents built, deployed, and hosted for you',
+    title: 'Talk to me Data — AI Agents built, deployed, and hosted for you',
     description: "No code. No complexity. We build your AI agent and you just use it.",
   },
   alternates: {
-    canonical: 'https://agently.ai'
+    canonical: 'https://talktomedata.com'
   },
 }
 

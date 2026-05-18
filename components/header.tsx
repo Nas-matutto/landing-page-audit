@@ -53,16 +53,10 @@ export function Header() {
               Use cases
             </Link>
             <Link
-              href="/#pricing"
+              href="/agents"
               className="text-sm font-medium text-foreground hover:text-primary transition-colors"
             >
-              Pricing
-            </Link>
-            <Link
-              href="/blog"
-              className="text-sm font-medium text-foreground hover:text-primary transition-colors"
-            >
-              Blog
+              Agents
             </Link>
           </nav>
 
@@ -110,18 +104,11 @@ export function Header() {
                 Use cases
               </Link>
               <Link
-                href="/#pricing"
+                href="/agents"
                 className="text-sm font-medium text-foreground hover:text-primary transition-colors py-2"
                 onClick={() => setMobileMenuOpen(false)}
               >
-                Pricing
-              </Link>
-              <Link
-                href="/blog"
-                className="text-sm font-medium text-foreground hover:text-primary transition-colors py-2"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                Blog
+                Agents
               </Link>
               <div className="flex flex-col gap-2 pt-2 border-t border-border">
                 <Button
