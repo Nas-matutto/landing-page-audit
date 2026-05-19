@@ -61,13 +61,6 @@ export function Header() {
           </nav>
 
           <div className="hidden md:flex items-center gap-4">
-            <Button
-              variant="ghost"
-              className="text-sm font-medium cursor-pointer"
-              onClick={handleLogin}
-            >
-              Login
-            </Button>
             <button
               onClick={handleBookDemo}
               className="relative overflow-hidden group bg-linear-to-r from-primary to-violet-500 text-white text-sm font-semibold px-5 py-2 rounded-lg shadow-md shadow-primary/25 hover:shadow-primary/40 hover:shadow-lg transition-all cursor-pointer"
@@ -111,13 +104,6 @@ export function Header() {
                 Agents
               </Link>
               <div className="flex flex-col gap-2 pt-2 border-t border-border">
-                <Button
-                  variant="ghost"
-                  className="w-full text-sm font-medium cursor-pointer"
-                  onClick={() => { handleLogin(); setMobileMenuOpen(false) }}
-                >
-                  Login
-                </Button>
                 <button
                   onClick={() => { handleBookDemo(); setMobileMenuOpen(false) }}
                   className="relative overflow-hidden group w-full bg-linear-to-r from-primary to-violet-500 text-white text-sm font-semibold py-2.5 rounded-lg shadow-md shadow-primary/20 cursor-pointer"

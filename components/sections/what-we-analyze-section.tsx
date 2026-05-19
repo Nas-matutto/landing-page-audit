@@ -1,7 +1,8 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Headphones, Users, Calendar, FileText } from "lucide-react"
+import { Headphones, Users, Calendar, FileText, ArrowRight } from "lucide-react"
+import { useRouter } from "next/navigation"
 
 const USE_CASES = [
   {
@@ -93,6 +94,7 @@ function UseCaseCard({ uc, delay }: { uc: typeof USE_CASES[0]; delay: number }) 
 }
 
 export function WhatWeAnalyzeSection() {
+  const router = useRouter()
   return (
     <section id="use-cases" className="py-24 sm:py-32 bg-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -119,6 +121,24 @@ export function WhatWeAnalyzeSection() {
               ))}
             </div>
           </div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="mt-12 text-center"
+          >
+            <button
+              onClick={() => router.push("/agents")}
+              className="relative overflow-hidden group inline-flex items-center gap-2 bg-linear-to-r from-primary to-violet-500 text-white font-semibold text-sm px-6 py-3 rounded-xl shadow-md shadow-primary/25 hover:shadow-lg hover:shadow-primary/35 transition-all cursor-pointer"
+            >
+              <span className="absolute inset-0 bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-in-out" />
+              <span className="relative flex items-center gap-2">
+                Explore Agents <ArrowRight className="w-4 h-4" />
+              </span>
+            </button>
+          </motion.div>
         </div>
       </div>
     </section>

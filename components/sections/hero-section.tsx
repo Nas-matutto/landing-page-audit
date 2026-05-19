@@ -56,29 +56,18 @@ export function HeroSection() {
         transition={{ delay: 0.2, duration: 0.7, ease: "easeOut" }}
         className="relative z-10 flex flex-col items-center w-full max-w-4xl mx-auto px-4 sm:px-6 text-center"
       >
-        {/* Badge */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.1, duration: 0.5 }}
-          className="inline-flex items-center gap-2 mb-6 sm:mb-8 px-4 py-1.5 rounded-full border border-primary/20 bg-primary/5 text-primary text-xs font-semibold tracking-widest uppercase"
-        >
-          <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
-          No code. No complexity.
-        </motion.div>
-
         {/* Headline */}
         <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-balance leading-[1.08] mb-5">
           Your AI agents,{" "}
           <span className="bg-clip-text text-transparent bg-linear-to-r from-primary via-blue-400 to-violet-500">
             built and running
           </span>{" "}
-          in days — not months.
+          in days - not months.
         </h1>
 
         {/* Subtitle */}
         <p className="text-base sm:text-lg text-slate-600 max-w-2xl mx-auto mb-8 sm:mb-10 leading-relaxed">
-          Tell us what you need to automate. We build, deploy, and host your custom AI agent — you just use it.
+          Tell us what you need to automate. We build, deploy, and host your custom AI agent - you just use it.
         </p>
 
         {/* Search box — typing is visual only; any action goes to Book Demo */}
