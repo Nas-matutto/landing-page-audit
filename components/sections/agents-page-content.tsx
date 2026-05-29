@@ -62,7 +62,7 @@ const AGENTS: AgentItem[] = [
     title: "Customer support",
     tagline: "Always-on support without the headcount",
     description: "Handles FAQs, order status, refunds, and complaints — across email, chat, and WhatsApp. Escalates to a human when needed.",
-    gradient: "linear-gradient(135deg, #1e40af 0%, #2563eb 55%, #60a5fa 100%)",
+    gradient: "linear-gradient(135deg, #1e3a8a 0%, #1d4ed8 55%, #60a5fa 100%)",
     stat: "92% resolved automatically",
   },
   {
@@ -71,7 +71,7 @@ const AGENTS: AgentItem[] = [
     title: "Lead qualification",
     tagline: "Only talk to leads worth your time",
     description: "Engages every inbound lead instantly, asks qualifying questions, scores intent, and routes hot leads to your inbox or CRM — 24/7.",
-    gradient: "linear-gradient(135deg, #0f766e 0%, #0d9488 55%, #2dd4bf 100%)",
+    gradient: "linear-gradient(135deg, #185FA5 0%, #2563eb 55%, #93c5fd 100%)",
     stat: "3× more qualified conversations",
   },
   {
@@ -80,7 +80,7 @@ const AGENTS: AgentItem[] = [
     title: "Booking & scheduling",
     tagline: "Zero back-and-forth, full calendars",
     description: "Lets clients self-book, reschedule, and cancel — synced to your calendar. Sends reminders automatically and handles no-shows.",
-    gradient: "linear-gradient(135deg, #92400e 0%, #d97706 55%, #fbbf24 100%)",
+    gradient: "linear-gradient(135deg, #1d4ed8 0%, #4338ca 55%, #818cf8 100%)",
     stat: "Saves 5+ hours per week",
   },
   {
@@ -89,7 +89,7 @@ const AGENTS: AgentItem[] = [
     title: "Document Q&A",
     tagline: "Instant answers from your own content",
     description: "Upload manuals, policies, or reports. Your agent answers staff or client questions accurately — grounded in your actual documents.",
-    gradient: "linear-gradient(135deg, #4c1d95 0%, #7c3aed 55%, #a78bfa 100%)",
+    gradient: "linear-gradient(135deg, #312e81 0%, #4f46e5 55%, #a5b4fc 100%)",
     stat: "Replaces hours of search daily",
   },
   {
@@ -98,7 +98,7 @@ const AGENTS: AgentItem[] = [
     title: "Order tracking",
     tagline: "Keep customers informed automatically",
     description: "Real-time order updates across any channel. Eliminates WISMO tickets before they're raised.",
-    gradient: "linear-gradient(135deg, #9a3412 0%, #ea580c 55%, #fb923c 100%)",
+    gradient: "linear-gradient(135deg, #3730a3 0%, #6d28d9 55%, #c4b5fd 100%)",
     stat: "Up to 80% fewer support tickets",
   },
   {
@@ -107,7 +107,7 @@ const AGENTS: AgentItem[] = [
     title: "Onboarding",
     tagline: "Guide every user to their first win",
     description: "Walks new users through your product step by step, answers setup questions, and nudges them toward activation milestones.",
-    gradient: "linear-gradient(135deg, #065f46 0%, #16a34a 55%, #4ade80 100%)",
+    gradient: "linear-gradient(135deg, #4c1d95 0%, #7c3aed 55%, #c4b5fd 100%)",
     stat: "Higher activation, less churn",
   },
   {
@@ -116,7 +116,7 @@ const AGENTS: AgentItem[] = [
     title: "Invoice processing",
     tagline: "Extract, validate, and route automatically",
     description: "Reads incoming invoices, extracts data, matches against POs, and routes for approval — no spreadsheet required.",
-    gradient: "linear-gradient(135deg, #881337 0%, #e11d48 55%, #fb7185 100%)",
+    gradient: "linear-gradient(135deg, #1e3a8a 0%, #3730a3 55%, #6366f1 100%)",
     stat: "90% faster invoice processing",
   },
   {
@@ -125,7 +125,7 @@ const AGENTS: AgentItem[] = [
     title: "HR helpdesk",
     tagline: "Answer HR questions without involving HR",
     description: "Gives employees instant answers on leave, benefits, payroll, and procedures — drawn from your internal documentation.",
-    gradient: "linear-gradient(135deg, #312e81 0%, #4f46e5 55%, #818cf8 100%)",
+    gradient: "linear-gradient(135deg, #0f172a 0%, #1e40af 55%, #3b82f6 100%)",
     stat: "~70% of HR queries resolved automatically",
   },
 ]
