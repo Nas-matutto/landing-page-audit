@@ -35,6 +35,12 @@ const USE_CASES = [
     description:
       "Gives customers real-time order status, shipping updates, and return instructions automatically — reducing support tickets and keeping customers informed.",
   },
+  {
+    id: "uc-6",
+    title: "Something Else? We'll Build It.",
+    description:
+      "Every business has workflows that don't fit a template. Tell us what you need to automate and we'll design a custom agent built specifically around your process.",
+  },
 ]
 
 export function WhatWeAnalyzeSection() {
@@ -52,7 +58,7 @@ export function WhatWeAnalyzeSection() {
             </p>
             <h2 className="text-4xl sm:text-5xl font-bold tracking-tight text-slate-900 leading-[1.1] mb-6">
               What businesses{" "}
-              <span className="text-primary">use it for</span>
+              <span className="bg-linear-to-r from-primary to-violet-500 bg-clip-text text-transparent">use it for</span>
             </h2>
             <p className="text-slate-500 text-base leading-relaxed max-w-sm mb-8">
               From answering customer questions to qualifying leads — any repetitive workflow is a candidate for an AI agent.
@@ -69,11 +75,11 @@ export function WhatWeAnalyzeSection() {
           </div>
 
           {/* Right — stacking cards */}
-          <ContainerScroll className="min-h-[420vh] space-y-6 py-24">
+          <ContainerScroll className="min-h-[120vh] space-y-6 py-24">
             {USE_CASES.map((uc, index) => (
               <CardSticky
                 key={uc.id}
-                index={index + 2}
+                index={index + 7}
                 incrementY={14}
                 className="rounded-2xl border border-slate-200 bg-white p-8 shadow-sm"
               >
