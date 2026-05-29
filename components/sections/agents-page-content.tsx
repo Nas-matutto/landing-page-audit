@@ -9,6 +9,7 @@ import {
   Server, KeyRound, Bot, Activity, RefreshCw, Plug, Shield, LayoutDashboard,
 } from "lucide-react"
 import { CardStack, CardStackItem } from "@/components/ui/card-stack"
+import { InfiniteGridBackground } from "@/components/ui/the-infinite-grid"
 import { FaSlack, FaWhatsapp, FaGoogle } from "react-icons/fa"
 import {
   SiNotion, SiSalesforce, SiHubspot, SiShopify, SiStripe,
@@ -283,20 +284,9 @@ export function AgentsPageContent() {
 
   return (
     <>
-      {/* ── Hero ── light theme */}
-      <section className="relative pt-32 pb-20 bg-linear-to-b from-slate-50 to-white overflow-hidden">
-        {/* Subtle radial glow behind rotating text */}
-        <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
-          <div className="w-150 h-100 bg-primary/8 rounded-full blur-[100px]" />
-        </div>
-        {/* Dot grid */}
-        <div
-          className="pointer-events-none absolute inset-0 opacity-40"
-          style={{
-            backgroundImage: "radial-gradient(circle, #cbd5e1 1px, transparent 1px)",
-            backgroundSize: "32px 32px",
-          }}
-        />
+      {/* ── Hero ── infinite grid background */}
+      <section className="relative pt-32 pb-20 bg-white overflow-hidden">
+        <InfiniteGridBackground />
 
         <motion.div
           initial={{ opacity: 0, y: 24 }}
