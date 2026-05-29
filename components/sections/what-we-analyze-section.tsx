@@ -1,14 +1,17 @@
 "use client"
 
-import { motion } from "framer-motion"
-import { Headphones, Users, Calendar, FileText, ArrowRight } from "lucide-react"
+import { useEffect, useRef, useState, useCallback } from "react"
+import { motion, AnimatePresence } from "framer-motion"
+import { Headphones, Users, Calendar, FileText, ChevronLeft, ChevronRight, ArrowRight } from "lucide-react"
 import { useRouter } from "next/navigation"
+import { InteractiveAgentCard, type AgentCardData } from "@/components/ui/card-7"
 
-const USE_CASES = [
+const CARDS: AgentCardData[] = [
   {
     icon: Headphones,
-    color: "text-blue-600",
-    bg: "bg-blue-50",
+    iconColor: "#ffffff",
+    gradientFrom: "#2563eb",
+    gradientTo: "#60a5fa",
     title: "Customer support agent",
     tag: "Answers questions 24/7",
     description: "Handles FAQs, tracks orders, and escalates complex issues — without a support team on call.",
@@ -20,8 +23,9 @@ const USE_CASES = [
   },
   {
     icon: Users,
-    color: "text-teal-600",
-    bg: "bg-teal-50",
+    iconColor: "#ffffff",
+    gradientFrom: "#0d9488",
+    gradientTo: "#5eead4",
     title: "Lead qualification agent",
     tag: "Captures and scores inbound leads",
     description: "Engages visitors, asks qualifying questions, and routes hot leads directly to your inbox.",
@@ -31,13 +35,11 @@ const USE_CASES = [
       { label: "Qualified today", value: "14 of 38 visitors" },
     ],
   },
-]
-
-const USE_CASES_2 = [
   {
     icon: Calendar,
-    color: "text-amber-600",
-    bg: "bg-amber-50",
+    iconColor: "#ffffff",
+    gradientFrom: "#d97706",
+    gradientTo: "#fcd34d",
     title: "Booking & scheduling agent",
     tag: "Automates appointments",
     description: "Lets clients self-book, reschedule, and get reminders — synced to your calendar automatically.",
@@ -49,8 +51,9 @@ const USE_CASES_2 = [
   },
   {
     icon: FileText,
-    color: "text-violet-600",
-    bg: "bg-violet-50",
+    iconColor: "#ffffff",
+    gradientFrom: "#7c3aed",
+    gradientTo: "#c4b5fd",
     title: "Document Q&A agent",
     tag: "Answers from your own docs",
     description: "Upload your manuals, policies, or reports. Your agent answers staff or client questions instantly.",
@@ -62,44 +65,34 @@ const USE_CASES_2 = [
   },
 ]
 
-function UseCaseCard({ uc, delay }: { uc: typeof USE_CASES[0]; delay: number }) {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.5, delay }}
-      className="rounded-2xl border border-slate-200 bg-white p-6 hover:shadow-md transition-shadow"
-    >
-      <div className="flex items-center gap-3 mb-4">
-        <div className={`w-10 h-10 rounded-xl ${uc.bg} flex items-center justify-center`}>
-          <uc.icon className={`w-5 h-5 ${uc.color}`} />
-        </div>
-        <div>
-          <h3 className="font-bold text-base text-slate-800">{uc.title}</h3>
-          <p className={`text-xs font-semibold ${uc.color}`}>{uc.tag}</p>
-        </div>
-      </div>
-      <p className="text-sm text-slate-500 leading-relaxed mb-4">{uc.description}</p>
-      <div className="space-y-2">
-        {uc.examples.map((ex, i) => (
-          <div key={i} className="flex items-center justify-between rounded-lg bg-slate-50 px-3 py-2">
-            <span className="text-xs text-slate-400">{ex.label}</span>
-            <span className="text-xs font-medium text-slate-700">{ex.value}</span>
-          </div>
-        ))}
-      </div>
-    </motion.div>
-  )
-}
+const AUTO_INTERVAL = 3500
 
 export function WhatWeAnalyzeSection() {
   const router = useRouter()
+  const [active, setActive] = useState(0)
+  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null)
+
+  const next = useCallback(() => setActive((a) => (a + 1) % CARDS.length), [])
+  const prev = useCallback(() => setActive((a) => (a - 1 + CARDS.length) % CARDS.length), [])
+
+  const resetTimer = useCallback(() => {
+    if (timerRef.current) clearInterval(timerRef.current)
+    timerRef.current = setInterval(next, AUTO_INTERVAL)
+  }, [next])
+
+  useEffect(() => {
+    resetTimer()
+    return () => { if (timerRef.current) clearInterval(timerRef.current) }
+  }, [resetTimer])
+
+  const handlePrev = () => { prev(); resetTimer() }
+  const handleNext = () => { next(); resetTimer() }
+
   return (
-    <section id="use-cases" className="py-24 sm:py-32 bg-white">
+    <section id="use-cases" className="py-24 sm:py-32 bg-white overflow-hidden">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
+          <div className="text-center mb-14">
             <p className="text-xs font-semibold tracking-widest uppercase text-primary mb-4">Use cases</p>
             <h2 className="text-4xl sm:text-5xl font-bold tracking-tight text-balance">
               What businesses use it for
@@ -109,19 +102,78 @@ export function WhatWeAnalyzeSection() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            <div className="space-y-6">
-              {USE_CASES.map((uc, i) => (
-                <UseCaseCard key={i} uc={uc} delay={i * 0.1} />
-              ))}
+          {/* Desktop: all 4 cards side by side */}
+          <div className="hidden lg:flex items-stretch gap-5 justify-center">
+            {CARDS.map((card, i) => (
+              <motion.div
+                key={card.title}
+                animate={{
+                  scale: i === active ? 1.04 : 0.97,
+                  opacity: i === active ? 1 : 0.72,
+                }}
+                transition={{ duration: 0.35, ease: "easeOut" }}
+                onClick={() => { setActive(i); resetTimer() }}
+                className="cursor-pointer"
+              >
+                <InteractiveAgentCard card={card} />
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Mobile / tablet: single card carousel */}
+          <div className="lg:hidden flex flex-col items-center gap-6">
+            <div className="relative w-72">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={active}
+                  initial={{ opacity: 0, x: 40 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -40 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <InteractiveAgentCard card={CARDS[active]} />
+                </motion.div>
+              </AnimatePresence>
             </div>
-            <div className="space-y-6">
-              {USE_CASES_2.map((uc, i) => (
-                <UseCaseCard key={i} uc={uc} delay={i * 0.1 + 0.1} />
-              ))}
+
+            {/* Arrows */}
+            <div className="flex items-center gap-4">
+              <button
+                onClick={handlePrev}
+                className="w-9 h-9 rounded-full border border-slate-200 flex items-center justify-center text-slate-500 hover:border-primary/40 hover:text-primary transition-colors"
+              >
+                <ChevronLeft className="w-4 h-4" />
+              </button>
+              <div className="flex gap-2">
+                {CARDS.map((_, i) => (
+                  <button
+                    key={i}
+                    onClick={() => { setActive(i); resetTimer() }}
+                    className={`h-2 rounded-full transition-all ${i === active ? "w-6 bg-primary" : "w-2 bg-slate-300"}`}
+                  />
+                ))}
+              </div>
+              <button
+                onClick={handleNext}
+                className="w-9 h-9 rounded-full border border-slate-200 flex items-center justify-center text-slate-500 hover:border-primary/40 hover:text-primary transition-colors"
+              >
+                <ChevronRight className="w-4 h-4" />
+              </button>
             </div>
           </div>
 
+          {/* Desktop dot indicators */}
+          <div className="hidden lg:flex justify-center gap-2 mt-8">
+            {CARDS.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => { setActive(i); resetTimer() }}
+                className={`h-2 rounded-full transition-all ${i === active ? "w-6 bg-primary" : "w-2 bg-slate-300"}`}
+              />
+            ))}
+          </div>
+
+          {/* CTA */}
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}

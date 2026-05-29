@@ -40,6 +40,12 @@
       "namedRegex": "^/_not\\-found(?:/)?$"
     },
     {
+      "page": "/agents",
+      "regex": "^/agents(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/agents(?:/)?$"
+    },
+    {
       "page": "/api/analyze-store",
       "regex": "^/api/analyze\\-store(?:/)?$",
       "routeKeys": {},
@@ -76,6 +82,12 @@
       "namedRegex": "^/blog/how\\-to\\-use\\-ai\\-to\\-improve\\-conversion\\-rates(?:/)?$"
     },
     {
+      "page": "/blog/how-to-use-intent-signals-to-increase-conversion-rates",
+      "regex": "^/blog/how\\-to\\-use\\-intent\\-signals\\-to\\-increase\\-conversion\\-rates(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/blog/how\\-to\\-use\\-intent\\-signals\\-to\\-increase\\-conversion\\-rates(?:/)?$"
+    },
+    {
       "page": "/blog/increase-conversion-rate-30-days",
       "regex": "^/blog/increase\\-conversion\\-rate\\-30\\-days(?:/)?$",
       "routeKeys": {},
@@ -98,36 +110,6 @@
       "regex": "^/book\\-demo(?:/)?$",
       "routeKeys": {},
       "namedRegex": "^/book\\-demo(?:/)?$"
-    },
-    {
-      "page": "/features",
-      "regex": "^/features(?:/)?$",
-      "routeKeys": {},
-      "namedRegex": "^/features(?:/)?$"
-    },
-    {
-      "page": "/features/conversion-rate-calculator",
-      "regex": "^/features/conversion\\-rate\\-calculator(?:/)?$",
-      "routeKeys": {},
-      "namedRegex": "^/features/conversion\\-rate\\-calculator(?:/)?$"
-    },
-    {
-      "page": "/features/landing-page-checklist",
-      "regex": "^/features/landing\\-page\\-checklist(?:/)?$",
-      "routeKeys": {},
-      "namedRegex": "^/features/landing\\-page\\-checklist(?:/)?$"
-    },
-    {
-      "page": "/features/store-analyzer",
-      "regex": "^/features/store\\-analyzer(?:/)?$",
-      "routeKeys": {},
-      "namedRegex": "^/features/store\\-analyzer(?:/)?$"
-    },
-    {
-      "page": "/pricing",
-      "regex": "^/pricing(?:/)?$",
-      "routeKeys": {},
-      "namedRegex": "^/pricing(?:/)?$"
     },
     {
       "page": "/privacy-policy",
