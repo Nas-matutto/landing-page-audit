@@ -86,11 +86,28 @@ function OrbitRing({ icons, durationS, sizeRem }: typeof ORBITS[0]) {
   )
 }
 
+// Shared orbit canvas — 36rem × 36rem, scaled by caller
+function OrbitCanvas() {
+  return (
+    <div className="relative flex items-center justify-center" style={{ width: "36rem", height: "36rem" }}>
+      {/* Center icon */}
+      <div className="relative z-10 w-20 h-20 rounded-full bg-linear-to-br from-primary to-violet-500 flex items-center justify-center shadow-xl shadow-primary/30">
+        <Bot className="w-10 h-10 text-white" />
+      </div>
+      {ORBITS.map((orbit, i) => (
+        <div key={i} className="absolute inset-0 flex items-center justify-center">
+          <OrbitRing {...orbit} />
+        </div>
+      ))}
+    </div>
+  )
+}
+
 export function HeroSection() {
   const router = useRouter()
 
   return (
-    <section className="relative w-full min-h-screen flex items-center bg-white overflow-hidden pt-20">
+    <section className="relative w-full bg-white overflow-hidden pt-20">
       {/* Dot grid background */}
       <div
         className="pointer-events-none absolute inset-0"
@@ -99,17 +116,16 @@ export function HeroSection() {
           backgroundSize: "28px 28px",
         }}
       />
-      {/* Fade-out mask so dots don't show at edges */}
       <div className="pointer-events-none absolute inset-0 bg-linear-to-r from-white via-transparent to-white" />
       <div className="pointer-events-none absolute inset-0 bg-linear-to-b from-white via-transparent to-white" />
 
-      <div className="relative w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-16 flex items-center">
-        {/* ── Left: text ── */}
+      <div className="relative w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-16">
+        {/* ── Text block ── */}
         <motion.div
           initial={{ opacity: 0, y: 28 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
-          className="w-full lg:w-1/2 z-10 py-20"
+          className="w-full lg:w-1/2 z-10 pt-10 pb-6 lg:py-32"
         >
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight leading-[1.08] mb-6 text-slate-900 text-balance">
             Your AI agents,{" "}
@@ -146,23 +162,20 @@ export function HeroSection() {
           </p>
         </motion.div>
 
-        {/* ── Right: orbit animation ── */}
+        {/* ── Mobile orbit — below text ── */}
+        <div className="lg:hidden flex justify-center items-center overflow-hidden pb-12" style={{ height: "300px" }}>
+          <div style={{ transform: "scale(0.46)", transformOrigin: "center center" }}>
+            <OrbitCanvas />
+          </div>
+        </div>
+
+        {/* ── Desktop orbit — right half, absolute ── */}
         <div className="hidden lg:block absolute right-0 top-0 bottom-0 w-1/2 overflow-hidden">
           <div
             className="absolute inset-0 flex items-center justify-center"
             style={{ transform: "translateX(22%)" }}
           >
-            {/* Center icon */}
-            <div className="relative z-10 w-20 h-20 rounded-full bg-linear-to-br from-primary to-violet-500 flex items-center justify-center shadow-xl shadow-primary/30">
-              <Bot className="w-10 h-10 text-white" />
-            </div>
-
-            {/* Orbit rings — each centered on the same point */}
-            {ORBITS.map((orbit, i) => (
-              <div key={i} className="absolute inset-0 flex items-center justify-center">
-                <OrbitRing {...orbit} />
-              </div>
-            ))}
+            <OrbitCanvas />
           </div>
         </div>
       </div>
