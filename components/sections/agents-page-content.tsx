@@ -9,6 +9,12 @@ import {
   Server, KeyRound, Bot, Activity, RefreshCw, Plug, Shield, LayoutDashboard,
 } from "lucide-react"
 import { CardStack, CardStackItem } from "@/components/ui/card-stack"
+import { FaSlack, FaWhatsapp, FaGoogle } from "react-icons/fa"
+import {
+  SiNotion, SiSalesforce, SiHubspot, SiShopify, SiStripe,
+  SiZendesk, SiGmail, SiAirtable, SiMailchimp, SiAsana,
+  SiTrello, SiIntercom, SiJira,
+} from "react-icons/si"
 
 // ─── Rotating hero words ─────────────────────────────────────────────────────
 
@@ -162,6 +168,112 @@ const WE_HANDLE = [
   { icon: Shield, title: "Security & data isolation", body: "Your data stays yours. Isolated environments, never used for training. Enterprise-grade by default." },
   { icon: LayoutDashboard, title: "Unified dashboard", body: "See all your agents, their activity, and status in one place — no logins to multiple tools." },
 ]
+
+// ─── Integrations strip ───────────────────────────────────────────────────────
+
+type IntegrationIcon = {
+  Icon: React.ComponentType<{ className?: string; style?: React.CSSProperties }>
+  color: string
+  label: string
+}
+
+const ROW_1: IntegrationIcon[] = [
+  { Icon: FaSlack, color: "#4A154B", label: "Slack" },
+  { Icon: SiHubspot, color: "#FF7A59", label: "HubSpot" },
+  { Icon: FaWhatsapp, color: "#25D366", label: "WhatsApp" },
+  { Icon: SiSalesforce, color: "#00A1E0", label: "Salesforce" },
+  { Icon: FaGoogle, color: "#4285F4", label: "Google" },
+  { Icon: SiNotion, color: "#374151", label: "Notion" },
+  { Icon: SiGmail, color: "#EA4335", label: "Gmail" },
+  { Icon: SiShopify, color: "#7AB55C", label: "Shopify" },
+]
+
+const ROW_2: IntegrationIcon[] = [
+  { Icon: SiStripe, color: "#635BFF", label: "Stripe" },
+  { Icon: SiZendesk, color: "#03363D", label: "Zendesk" },
+  { Icon: SiAirtable, color: "#18BFFF", label: "Airtable" },
+  { Icon: SiMailchimp, color: "#e8a825", label: "Mailchimp" },
+  { Icon: SiIntercom, color: "#1F8DED", label: "Intercom" },
+  { Icon: SiJira, color: "#0052CC", label: "Jira" },
+  { Icon: SiAsana, color: "#F06A6A", label: "Asana" },
+  { Icon: SiTrello, color: "#0079BF", label: "Trello" },
+]
+
+function repeat<T>(arr: T[], times = 4): T[] {
+  return Array.from({ length: times }).flatMap(() => arr)
+}
+
+function IntegrationsSection() {
+  return (
+    <section className="py-24 bg-white overflow-hidden">
+      {/* CSS keyframes injected inline — avoids modifying globals.css */}
+      <style>{`
+        @keyframes scroll-left {
+          0%   { transform: translateX(0); }
+          100% { transform: translateX(-50%); }
+        }
+        @keyframes scroll-right {
+          0%   { transform: translateX(-50%); }
+          100% { transform: translateX(0); }
+        }
+        .integ-scroll-left  { animation: scroll-left  35s linear infinite; }
+        .integ-scroll-right { animation: scroll-right 35s linear infinite; }
+      `}</style>
+
+      <div className="max-w-4xl mx-auto px-6 text-center mb-12">
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+        >
+          <span className="inline-flex items-center gap-1.5 px-3 py-1 mb-5 text-xs font-semibold rounded-full border border-primary/20 bg-primary/5 text-primary tracking-widest uppercase">
+            ⚡ Integrations
+          </span>
+          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-slate-900 mb-4">
+            Works with your existing tools
+          </h2>
+          <p className="text-lg text-slate-500 max-w-xl mx-auto">
+            Your agents connect to the platforms you already use — no migrations, no new logins. We wire everything up for you.
+          </p>
+        </motion.div>
+      </div>
+
+      {/* Scrolling rows */}
+      <div className="relative">
+        {/* Row 1 — scrolls left */}
+        <div className="flex gap-6 whitespace-nowrap integ-scroll-left mb-6">
+          {repeat(ROW_1).map((item, i) => (
+            <div
+              key={`r1-${i}`}
+              title={item.label}
+              className="shrink-0 w-16 h-16 rounded-2xl bg-white border border-slate-100 shadow-sm flex items-center justify-center hover:shadow-md hover:border-slate-200 transition-shadow"
+            >
+              <item.Icon className="w-7 h-7" style={{ color: item.color }} />
+            </div>
+          ))}
+        </div>
+
+        {/* Row 2 — scrolls right */}
+        <div className="flex gap-6 whitespace-nowrap integ-scroll-right">
+          {repeat(ROW_2).map((item, i) => (
+            <div
+              key={`r2-${i}`}
+              title={item.label}
+              className="shrink-0 w-16 h-16 rounded-2xl bg-white border border-slate-100 shadow-sm flex items-center justify-center hover:shadow-md hover:border-slate-200 transition-shadow"
+            >
+              <item.Icon className="w-7 h-7" style={{ color: item.color }} />
+            </div>
+          ))}
+        </div>
+
+        {/* Fade overlays */}
+        <div className="pointer-events-none absolute inset-y-0 left-0 w-32 bg-linear-to-r from-white to-transparent" />
+        <div className="pointer-events-none absolute inset-y-0 right-0 w-32 bg-linear-to-l from-white to-transparent" />
+      </div>
+    </section>
+  )
+}
 
 // ─── Main component ───────────────────────────────────────────────────────────
 
@@ -407,6 +519,9 @@ export function AgentsPageContent() {
           </div>
         </div>
       </section>
+
+      {/* ── Integrations ── */}
+      <IntegrationsSection />
 
       {/* ── Bottom CTA ── */}
       <section className="py-24 bg-linear-to-br from-primary via-blue-600 to-violet-600 relative overflow-hidden">

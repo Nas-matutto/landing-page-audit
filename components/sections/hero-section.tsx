@@ -116,11 +116,11 @@ export function HeroSection() {
             <span className="bg-clip-text text-transparent bg-linear-to-r from-primary via-blue-400 to-violet-500">
               built and running
             </span>{" "}
-            in days — not months.
+            in days - not months.
           </h1>
 
           <p className="text-lg text-slate-500 leading-relaxed max-w-xl mb-8">
-            Tell us what you need to automate. We build, deploy, and host your custom AI agent — you just use it.
+            Tell us what you need to automate. We build, deploy, and host your custom AI agent - you just use it.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-3">
