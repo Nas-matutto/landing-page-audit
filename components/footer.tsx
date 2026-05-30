@@ -14,7 +14,7 @@ export function Footer() {
               <span className="font-bold text-base">Talk to me Data</span>
             </div>
             <p className="text-sm text-background/70 leading-relaxed mb-4">
-              We build, deploy, and host custom AI agents for your business — fully managed on our infrastructure. No code, no complexity.
+              We build, deploy, and host custom AI agents for your business - fully managed on our infrastructure. No code, no complexity.
             </p>
           </div>
 
@@ -39,7 +39,7 @@ export function Footer() {
               <li>
                 <Link href="/book-demo" className="inline-flex items-center gap-1.5 text-background/70 hover:text-background transition-colors">
                   <CalendarDays className="w-3.5 h-3.5" />
-                  Book a free call
+                  Book a Demo
                 </Link>
               </li>
             </ul>

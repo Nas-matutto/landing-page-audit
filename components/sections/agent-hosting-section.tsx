@@ -58,7 +58,7 @@ export function AgentHostingSection() {
                 </span>
               </h2>
               <p className="text-lg text-slate-500 leading-relaxed mb-8">
-                You don't need a server, a developer, or an IT team. Once your agent is live, we handle everything — hosting, monitoring, updates, and support. You just use it.
+                You don't need a server, a developer, or an IT team. Once your agent is live, we handle everything - hosting, monitoring, updates, and support. You just use it.
               </p>
 
               {/* Platform preview card */}

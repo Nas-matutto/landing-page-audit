@@ -7,19 +7,19 @@ import { motion, AnimatePresence } from "framer-motion"
 const faqs = [
   {
     question: "Do I need any technical knowledge to get started?",
-    answer: "None at all. You describe what you want to automate in plain language — we handle all the technical work. No code, no configuration files, no developer required on your side.",
+    answer: "None at all. You describe what you want to automate in plain language and we handle all the technical work. No code, no configuration files, no developer required on your side.",
   },
   {
     question: "How long does it take to get my agent live?",
-    answer: "Most agents go live within 3 business days of our initial call. Complex workflows with multiple integrations may take up to a week. We'll give you a clear timeline at the end of your free call.",
+    answer: "Most agents are live between 24 hours and 3 business days of our initial call. Complex workflows with multiple integrations may take up to a week. We'll give you a clear timeline at the end of your free call.",
   },
   {
     question: "What tools and platforms can my agent connect to?",
-    answer: "We integrate with most popular business tools — Gmail, Outlook, Slack, Zendesk, HubSpot, Pipedrive, Calendly, Google Sheets, Notion, and more. If you use a tool that isn't on this list, let us know and we'll check if it's possible.",
+    answer: "We integrate with most popular business tools - Gmail, Outlook, Slack, Zendesk, HubSpot, Pipedrive, Calendly, Google Sheets, Notion, and more. If you use a tool that isn't on this list, let us know and we'll check if it's possible.",
   },
   {
     question: "Who hosts and monitors the agent after it goes live?",
-    answer: "We do. Your agent runs on our infrastructure and we monitor it around the clock. If something breaks or behaves unexpectedly, we fix it — you don't have to manage anything.",
+    answer: "We do. Your agent runs on our infrastructure and we monitor it around the clock. If something breaks or behaves unexpectedly, we fix it - you don't have to manage anything.",
   },
   {
     question: "Can I make changes to my agent after it's deployed?",
@@ -27,7 +27,7 @@ const faqs = [
   },
   {
     question: "Is my data safe?",
-    answer: "Yes. We follow standard data security practices and only access the tools and data sources required to run your agent. We never share your data with third parties. For specific compliance requirements (GDPR, SOC 2, etc.), let us know on the call and we'll walk you through how we handle them.",
+    answer: "Yes. We follow standard data security practices and only access the tools and data sources required to run your agent.",
   },
 ]
 

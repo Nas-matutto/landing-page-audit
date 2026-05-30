@@ -27,7 +27,7 @@ export function FinalCTASection() {
               Ready to automate your first workflow?
             </h2>
             <p className="text-lg text-white/70 mb-10 max-w-xl mx-auto leading-relaxed">
-              Book a free 20-minute call. We'll tell you exactly what's possible for your business — and what it'll take to get your first agent live.
+              Book a free 20-minute call. We'll tell you exactly what's possible for your business, and what it'll take to get your first agent live.
             </p>
 
             <button
