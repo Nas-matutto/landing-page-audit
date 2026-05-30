@@ -48,7 +48,7 @@ export default function BlogPost() {
                 <div className="space-y-6 text-muted-foreground leading-relaxed">
                   
                   {/* TL;DR Section */}
-                  <div className="bg-accent/10 border-l-4 border-accent p-6 my-8 rounded-r-lg">
+                  <div className="bg-primary/8 border-l-4 border-primary p-6 my-8 rounded-r-lg">
                     <h3 className="text-xl font-bold text-foreground mb-3">TL;DR - Key Takeaways</h3>
                     <ul className="list-disc pl-6 space-y-2 text-foreground">
                       <li>Website speed directly impacts conversion rates: a 1-second delay reduces conversions by 7%</li>
@@ -114,7 +114,7 @@ export default function BlogPost() {
                         </tr>
                         <tr className="bg-muted/20">
                           <td className="border border-border p-4">3 seconds</td>
-                          <td className="border border-border p-4 text-accent">+32%</td>
+                          <td className="border border-border p-4 text-primary">+32%</td>
                           <td className="border border-border p-4 text-red-600">-7%</td>
                         </tr>
                         <tr>
@@ -159,23 +159,48 @@ export default function BlogPost() {
                     </ol>
                   </div>
 
-                  <div className="bg-primary/5 border-2 border-primary/20 p-8 my-8 rounded-2xl">
-                    <h3 className="text-2xl font-bold text-foreground mb-4">Speed Optimization: A Must-Use Strategy for Founders</h3>
-                    <p className="mb-4">
-                      Before implementing individual speed optimizations, founders need to understand their current performance baseline and identify the highest-impact improvements. This is where comprehensive website analysis becomes essential.
-                    </p>
-                    <p className="mb-6">
-                      <strong>Talk to me Data</strong> provides instant, AI-powered speed analysis that goes beyond basic metrics. Our platform analyzes your entire website performance stack - images, scripts, server response time, render-blocking resources, and mobile optimization - then prioritizes fixes by expected impact on conversion rates. You'll know exactly which speed improvements will drive the most revenue, not just which issues exist.
-                    </p>
-                    <p className="mb-6">
-                      Unlike traditional speed testing tools that only show technical metrics, Talk to me Data connects speed improvements directly to business outcomes. You'll see projected conversion rate increases and revenue impact for each optimization, helping you make data-driven decisions about where to invest your time.
-                    </p>
-                    <Button 
-                      className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold cursor-pointer"
-                      onClick={() => window.open('https://app.talktomedata.com/signup', '_blank')}
-                    >
-                      Analyze Your Website Speed Now (Free) →
-                    </Button>
+                  {/* AI Agent speed section */}
+                  <div className="my-10 rounded-2xl overflow-hidden border border-slate-200">
+                    <div className="px-8 py-6 bg-linear-to-r from-primary to-violet-500">
+                      <p className="text-xs font-semibold tracking-widest uppercase text-white/70 mb-2">The shortcut</p>
+                      <h3 className="text-2xl font-bold text-white leading-snug">
+                        PageSpeed gives you a score. An AI agent tells you which issue is costing you the most money.
+                      </h3>
+                    </div>
+                    <div className="px-8 py-6 bg-white space-y-4 text-slate-600 text-base leading-relaxed">
+                      <p>
+                        Most founders run a PageSpeed Insights report, see 23 flagged issues, and have no idea where to start. The report tells you <em>what</em> is slow — it doesn't tell you which fix will move revenue.
+                      </p>
+                      <p>
+                        An AI agent built for speed optimisation bridges that gap. It reads your performance data and translates technical scores into business decisions:
+                      </p>
+                      <ul className="space-y-3 mt-4">
+                        {[
+                          ["Maps speed issues to conversion impact", "Instead of \"render-blocking resources detected,\" you get: \"this issue is adding ~1.4s to your LCP and is estimated to cost you 9% in conversions.\""],
+                          ["Prioritises fixes by ROI, not severity", "Not every \"critical\" PageSpeed issue matters equally. The agent ranks your to-do list by expected revenue recovered per hour of work."],
+                          ["Spots regressions before they compound", "New plugin installed? Theme updated? The agent monitors your scores over time and flags drops before they become month-long conversion problems."],
+                          ["Answers your \"why is it still slow?\" questions", "After you've made changes, the agent validates whether the fix worked — and explains in plain language why the score moved (or didn't)."],
+                        ].map(([title, desc]) => (
+                          <li key={title} className="flex gap-3">
+                            <span className="mt-1 w-5 h-5 rounded-full bg-linear-to-br from-primary to-violet-500 flex items-center justify-center shrink-0">
+                              <svg className="w-3 h-3 text-white" fill="none" viewBox="0 0 12 12"><path d="M2 6l3 3 5-5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                            </span>
+                            <span><strong className="text-slate-800">{title}.</strong> {desc}</span>
+                          </li>
+                        ))}
+                      </ul>
+                      <p className="pt-2 text-slate-500">
+                        The sprint below is still valuable — but an AI agent means you're running it with perfect information, not working through a generic checklist hoping something moves the needle.
+                      </p>
+                      <div className="pt-4">
+                        <button
+                          onClick={() => { window.location.href = '/book-demo' }}
+                          className="inline-flex items-center gap-2 bg-linear-to-r from-primary to-violet-500 text-white font-semibold text-sm px-6 py-3 rounded-xl shadow-md shadow-primary/20 hover:shadow-primary/40 transition-all cursor-pointer"
+                        >
+                          Book a free call →
+                        </button>
+                      </div>
+                    </div>
                   </div>
 
                   <h2 className="text-3xl font-bold text-foreground mt-12 mb-4">What Are Core Web Vitals and Why Do They Matter?</h2>
@@ -717,17 +742,20 @@ export default function BlogPost() {
                   </div>
 
                   {/* Final CTA */}
-                  <div className="bg-primary/5 border-2 border-primary/20 p-8 my-12 rounded-2xl">
-                    <h3 className="text-2xl font-bold text-foreground mb-4">Get Your Complete Website Performance Analysis</h3>
-                    <p className="mb-6">
-                      Stop guessing which speed optimizations will actually improve conversions. Talk to me Data analyzes your entire website performance stack and provides a prioritized action plan based on expected conversion impact. Get specific, actionable recommendations in 60 seconds, not generic metrics.
-                    </p>
-                    <Button 
-                      className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold cursor-pointer"
-                      onClick={() => window.open('https://app.talktomedata.com/signup', '_blank')}
-                    >
-                      Start Free Website Analysis →
-                    </Button>
+                  <div className="relative overflow-hidden p-8 my-12 rounded-2xl bg-linear-to-br from-primary via-blue-600 to-violet-500">
+                    <div className="absolute inset-0 opacity-10" style={{ backgroundImage: "radial-gradient(circle, white 1px, transparent 1px)", backgroundSize: "24px 24px" }} />
+                    <div className="relative z-10">
+                      <h3 className="text-2xl font-bold text-white mb-3">Want an AI agent doing your speed audits for you?</h3>
+                      <p className="text-white/80 mb-6 max-w-xl">
+                        Book a free 20-minute call. We'll review your site's current performance, identify your highest-impact fix, and show you how an AI agent can keep your scores healthy — automatically.
+                      </p>
+                      <button
+                        onClick={() => { window.location.href = '/book-demo' }}
+                        className="inline-flex items-center gap-2 bg-white text-primary font-semibold text-sm px-6 py-3 rounded-xl hover:bg-white/90 transition-colors cursor-pointer"
+                      >
+                        Book a free call →
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -751,13 +779,13 @@ export default function BlogPost() {
             {/* Related posts / CTA */}
             <div className="mt-16 pt-16 border-t border-border">
               <div className="text-center">
-                <h3 className="text-2xl font-bold mb-4">Ready to speed up your website?</h3>
+                <h3 className="text-2xl font-bold mb-4">Want an AI agent keeping your site fast — automatically?</h3>
                 <p className="text-muted-foreground mb-6">
-                  Get instant insights into your website's performance issues and conversion impact.
+                  Book a free 20-minute call. We'll identify your biggest speed bottleneck and show you how an agent can monitor and flag regressions before they cost you conversions.
                 </p>
-                <Link href="/">
-                  <Button className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold cursor-pointer">
-                    Get Started Free
+                <Link href="/book-demo">
+                  <Button className="bg-linear-to-r from-primary to-violet-500 text-white font-semibold cursor-pointer hover:opacity-90 transition-opacity">
+                    Book a free call →
                   </Button>
                 </Link>
               </div>
