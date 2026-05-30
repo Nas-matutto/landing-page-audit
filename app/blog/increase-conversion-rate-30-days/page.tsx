@@ -48,7 +48,7 @@ export default function BlogPost() {
                 <div className="space-y-6 text-muted-foreground leading-relaxed">
                   
                   {/* TL;DR Section */}
-                  <div className="bg-accent/10 border-l-4 border-accent p-6 my-8 rounded-r-lg">
+                  <div className="bg-primary/8 border-l-4 border-primary p-6 my-8 rounded-r-lg">
                     <h3 className="text-xl font-bold text-foreground mb-3">TL;DR - Key Takeaways</h3>
                     <ul className="list-disc pl-6 space-y-2 text-foreground">
                       <li>You can achieve 15-30% conversion rate improvements in 30 days without a complete redesign</li>
@@ -249,7 +249,7 @@ export default function BlogPost() {
                     </ol>
                   </div>
 
-                  <div className="bg-muted/30 border-l-4 border-primary p-6 my-8 rounded-r-lg">
+                  <div className="bg-primary/8 border-l-4 border-primary p-6 my-8 rounded-r-lg">
                     <p className="text-foreground font-semibold mb-2">Week 1 Quick Win:</p>
                     <p>If you only have 2 hours this week, focus on rewriting your headline and primary CTA button. These two changes alone can produce 5-8% conversion improvements.</p>
                   </div>
@@ -646,18 +646,55 @@ export default function BlogPost() {
                     Start your sprint today. Your current conversion rate represents baseline performance—every percentage point improvement is revenue left on the table.
                   </p>
 
+                  {/* AI Agent punchline section */}
+                  <div className="my-12 rounded-2xl overflow-hidden border border-slate-200">
+                    <div className="px-8 py-6 bg-linear-to-r from-primary to-violet-500">
+                      <p className="text-xs font-semibold tracking-widest uppercase text-white/70 mb-2">The shortcut</p>
+                      <h3 className="text-2xl font-bold text-white leading-snug">
+                        What takes you 30 days, an AI agent does continuously — on autopilot
+                      </h3>
+                    </div>
+                    <div className="px-8 py-6 bg-white space-y-4 text-slate-600 text-base leading-relaxed">
+                      <p>
+                        Manual sprints work. But they still depend on your team spotting friction, writing copy, and following up on leads. An AI agent removes that dependency entirely — and runs 24/7 without burning sprint budgets.
+                      </p>
+                      <p>Here's what a custom-built AI agent does for conversion rates, automatically:</p>
+                      <ul className="space-y-3 mt-4">
+                        {[
+                          ["Answers visitor questions instantly", "Reducing bounce rate the moment hesitation appears — no live agent required."],
+                          ["Qualifies inbound leads around the clock", "Engages every visitor, scores intent, and routes hot prospects to your inbox before they leave."],
+                          ["Books calls without back-and-forth", "Turns interested visitors into scheduled conversations — even while you sleep."],
+                          ["Responds from your own docs & pricing", "Grounds every answer in your real content, so visitors get accurate, trust-building responses immediately."],
+                        ].map(([title, desc]) => (
+                          <li key={title} className="flex gap-3">
+                            <span className="mt-1 w-5 h-5 rounded-full bg-linear-to-br from-primary to-violet-500 flex items-center justify-center shrink-0">
+                              <svg className="w-3 h-3 text-white" fill="none" viewBox="0 0 12 12"><path d="M2 6l3 3 5-5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                            </span>
+                            <span><strong className="text-slate-800">{title}.</strong> {desc}</span>
+                          </li>
+                        ))}
+                      </ul>
+                      <p className="pt-2 text-slate-500">
+                        Instead of one sprint improving conversions by 20% for a month, you'd have an agent compounding those gains every day — capturing leads you're currently losing to friction, slow response times, or unanswered questions.
+                      </p>
+                    </div>
+                  </div>
+
                   {/* Final CTA */}
-                  <div className="bg-primary/5 border-2 border-primary/20 p-8 my-12 rounded-2xl">
-                    <h3 className="text-2xl font-bold text-foreground mb-4">Get Your Website's Optimization Roadmap in 60 Seconds</h3>
-                    <p className="mb-6">
-                      Our AI-powered analysis identifies your highest-impact optimization opportunities across all seven conversion factors. Know exactly where to start your 30-day sprint.
-                    </p>
-                    <Button 
-                      className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold cursor-pointer"
-                      onClick={() => window.open('https://app.talktomedata.com/signup', '_blank')}
-                    >
-                      Analyze Your Website Now →
-                    </Button>
+                  <div className="relative overflow-hidden p-8 my-12 rounded-2xl bg-linear-to-br from-primary via-blue-600 to-violet-500">
+                    <div className="absolute inset-0 opacity-10" style={{ backgroundImage: "radial-gradient(circle, white 1px, transparent 1px)", backgroundSize: "24px 24px" }} />
+                    <div className="relative z-10">
+                      <h3 className="text-2xl font-bold text-white mb-3">Ready to deploy your first AI agent?</h3>
+                      <p className="text-white/80 mb-6 max-w-xl">
+                        Book a free 20-minute call. We'll show you exactly which part of your conversion funnel an AI agent can automate first — and have it live within 24 hours.
+                      </p>
+                      <button
+                        onClick={() => { window.location.href = '/book-demo' }}
+                        className="inline-flex items-center gap-2 bg-white text-primary font-semibold text-sm px-6 py-3 rounded-xl hover:bg-white/90 transition-colors cursor-pointer"
+                      >
+                        Book a free call →
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -681,13 +718,13 @@ export default function BlogPost() {
             {/* Related posts / CTA */}
             <div className="mt-16 pt-16 border-t border-border">
               <div className="text-center">
-                <h3 className="text-2xl font-bold mb-4">Ready to start your 30-day sprint?</h3>
+                <h3 className="text-2xl font-bold mb-4">Want an AI agent doing this for your business?</h3>
                 <p className="text-muted-foreground mb-6">
-                  Get a comprehensive analysis of your website to identify your optimization priorities.
+                  Book a free 20-minute call — we'll map out exactly what to automate first and have it live within 24 hours.
                 </p>
-                <Link href="/">
-                  <Button className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold cursor-pointer">
-                    Get Started Free
+                <Link href="/book-demo">
+                  <Button className="bg-linear-to-r from-primary to-violet-500 text-white font-semibold cursor-pointer hover:opacity-90 transition-opacity">
+                    Book a free call →
                   </Button>
                 </Link>
               </div>
