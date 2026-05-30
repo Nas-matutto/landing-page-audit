@@ -100,6 +100,42 @@ export default function BlogPost() {
                     Meanwhile, targeted optimizations using existing design frameworks can be implemented in days or weeks, cost little to nothing, and produce immediate measurable results. You're not avoiding a redesign because it's bad—you're prioritizing faster ROI through proven quick wins.
                   </p>
 
+                  {/* AI Agent punchline section */}
+                  <div className="my-12 rounded-2xl overflow-hidden border border-slate-200">
+                    <div className="px-8 py-6 bg-linear-to-r from-primary to-violet-500">
+                      <p className="text-xs font-semibold tracking-widest uppercase text-white/70 mb-2">The shortcut</p>
+                      <h3 className="text-2xl font-bold text-white leading-snug">
+                        The fastest conversion lift? A dedicated agent that handles hesitation in real time
+                      </h3>
+                    </div>
+                    <div className="px-8 py-6 bg-white space-y-4 text-slate-600 text-base leading-relaxed">
+                      <p>
+                        The 30-day sprint fixes problems you can already see. But the biggest conversion leak is invisible: visitors who <em>almost</em> converted — they read your page, got interested, had one unanswered question, and left.
+                      </p>
+                      <p>
+                        A conversion-focused AI agent sits on your landing page and intercepts that moment. It doesn't wait for visitors to fill in a form — it meets them at the exact point of hesitation and converts them before they bounce.
+                      </p>
+                      <ul className="space-y-3 mt-4">
+                        {[
+                          ["Answers hesitation questions on the spot", "\"Does this work for e-commerce?\" \"What's the pricing?\" \"How long does setup take?\" — handled instantly, without a human in the loop."],
+                          ["Captures leads before the exit", "When a visitor scrolls back up or pauses, the agent checks in. If they're not ready to buy, it collects their email and follows up automatically."],
+                          ["Removes the objections that cause bounces", "Pricing confusion, trust gaps, unclear fit — the agent addresses all three in real time, grounded in your actual product info and FAQs."],
+                          ["Books calls with high-intent visitors", "Visitors who ask detailed questions are your warmest leads. The agent recognises intent signals and offers a call slot before they close the tab."],
+                        ].map(([title, desc]) => (
+                          <li key={title} className="flex gap-3">
+                            <span className="mt-1 w-5 h-5 rounded-full bg-linear-to-br from-primary to-violet-500 flex items-center justify-center shrink-0">
+                              <svg className="w-3 h-3 text-white" fill="none" viewBox="0 0 12 12"><path d="M2 6l3 3 5-5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                            </span>
+                            <span><strong className="text-slate-800">{title}.</strong> {desc}</span>
+                          </li>
+                        ))}
+                      </ul>
+                      <p className="pt-2 text-slate-500">
+                        Your 30-day sprint improves the page. The agent improves every conversation that happens on it. They compound — and together, you're not leaving a single basis point of conversion on the table.
+                      </p>
+                    </div>
+                  </div>
+
                   {/* Framework Overview */}
                   <h2 className="text-3xl font-bold text-foreground mt-12 mb-4">The 30-Day Sprint Framework Overview</h2>
 
@@ -645,40 +681,6 @@ export default function BlogPost() {
                   <p className="text-xl font-medium text-foreground/90">
                     Start your sprint today. Your current conversion rate represents baseline performance—every percentage point improvement is revenue left on the table.
                   </p>
-
-                  {/* AI Agent punchline section */}
-                  <div className="my-12 rounded-2xl overflow-hidden border border-slate-200">
-                    <div className="px-8 py-6 bg-linear-to-r from-primary to-violet-500">
-                      <p className="text-xs font-semibold tracking-widest uppercase text-white/70 mb-2">The shortcut</p>
-                      <h3 className="text-2xl font-bold text-white leading-snug">
-                        What takes you 30 days, an AI agent does continuously — on autopilot
-                      </h3>
-                    </div>
-                    <div className="px-8 py-6 bg-white space-y-4 text-slate-600 text-base leading-relaxed">
-                      <p>
-                        Manual sprints work. But they still depend on your team spotting friction, writing copy, and following up on leads. An AI agent removes that dependency entirely — and runs 24/7 without burning sprint budgets.
-                      </p>
-                      <p>Here's what a custom-built AI agent does for conversion rates, automatically:</p>
-                      <ul className="space-y-3 mt-4">
-                        {[
-                          ["Answers visitor questions instantly", "Reducing bounce rate the moment hesitation appears — no live agent required."],
-                          ["Qualifies inbound leads around the clock", "Engages every visitor, scores intent, and routes hot prospects to your inbox before they leave."],
-                          ["Books calls without back-and-forth", "Turns interested visitors into scheduled conversations — even while you sleep."],
-                          ["Responds from your own docs & pricing", "Grounds every answer in your real content, so visitors get accurate, trust-building responses immediately."],
-                        ].map(([title, desc]) => (
-                          <li key={title} className="flex gap-3">
-                            <span className="mt-1 w-5 h-5 rounded-full bg-linear-to-br from-primary to-violet-500 flex items-center justify-center shrink-0">
-                              <svg className="w-3 h-3 text-white" fill="none" viewBox="0 0 12 12"><path d="M2 6l3 3 5-5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>
-                            </span>
-                            <span><strong className="text-slate-800">{title}.</strong> {desc}</span>
-                          </li>
-                        ))}
-                      </ul>
-                      <p className="pt-2 text-slate-500">
-                        Instead of one sprint improving conversions by 20% for a month, you'd have an agent compounding those gains every day — capturing leads you're currently losing to friction, slow response times, or unanswered questions.
-                      </p>
-                    </div>
-                  </div>
 
                   {/* Final CTA */}
                   <div className="relative overflow-hidden p-8 my-12 rounded-2xl bg-linear-to-br from-primary via-blue-600 to-violet-500">

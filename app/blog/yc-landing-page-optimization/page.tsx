@@ -75,7 +75,7 @@ export default function BlogPost() {
                 <div className="space-y-6 text-muted-foreground leading-relaxed">
                   
                   {/* TL;DR Section */}
-                  <div className="bg-accent/10 border-l-4 border-accent p-6 my-8 rounded-r-lg">
+                  <div className="bg-primary/8 border-l-4 border-primary p-6 my-8 rounded-r-lg">
                     <h3 className="text-xl font-bold text-foreground mb-3">TL;DR - Key Takeaways</h3>
                     <ul className="list-disc pl-6 space-y-2 text-foreground">
                       <li>YC startups use extremely narrow positioning to help visitors self-qualify in seconds</li>
@@ -101,30 +101,21 @@ export default function BlogPost() {
                   </p>
 
                   {/* Early CTA Box #1 */}
-                  <div className="my-12 rounded-2xl overflow-hidden border-2 border-primary bg-gradient-to-br from-primary/5 via-accent/5 to-primary/5 shadow-lg">
-                    <div className="p-8">
-                      <div className="flex items-center gap-3 mb-4">
-                        <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center">
-                          <span className="text-2xl">🚀</span>
-                        </div>
-                        <h3 className="text-2xl font-bold text-foreground">Analyze Your Startup Landing Page</h3>
-                      </div>
-                      <p className="text-foreground mb-6 leading-relaxed">
-                        Before implementing these YC patterns, understand where your current landing page stands. Get an instant AI-powered analysis covering positioning, messaging clarity, conversion elements, and quick wins. See exactly which of these 10 patterns you're missing.
+                  <div className="my-12 rounded-2xl overflow-hidden border border-slate-200 shadow-sm">
+                    <div className="px-8 py-5 bg-linear-to-r from-primary to-violet-500">
+                      <p className="text-xs font-semibold tracking-widest uppercase text-white/70 mb-1">Before you start</p>
+                      <h3 className="text-xl font-bold text-white">Analyze your startup's landing page first</h3>
+                    </div>
+                    <div className="p-8 bg-white">
+                      <p className="text-slate-600 mb-6 leading-relaxed">
+                        Before implementing these patterns, understand exactly where your current page is falling short. Book a free 20-minute call — we'll walk through your landing page and tell you which of these 10 patterns will move the needle most for your business.
                       </p>
-                      <div className="flex flex-col sm:flex-row gap-4">
-                        <Button 
-                          className="bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90 text-white font-semibold py-6 px-8 cursor-pointer shadow-lg hover:shadow-xl transition-all"
-                          onClick={() => window.open('https://app.talktomedata.com/signup', '_blank')}
-                        >
-                          Get Free Landing Page Analysis →
-                        </Button>
-                        <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                          <span>✓ Takes 60 seconds</span>
-                          <span>•</span>
-                          <span>✓ No signup required</span>
-                        </div>
-                      </div>
+                      <button
+                        onClick={() => { window.location.href = '/book-demo' }}
+                        className="inline-flex items-center gap-2 bg-linear-to-r from-primary to-violet-500 text-white font-semibold text-sm px-6 py-3 rounded-xl shadow-md shadow-primary/20 hover:shadow-primary/40 transition-all cursor-pointer"
+                      >
+                        Book a free call →
+                      </button>
                     </div>
                   </div>
 
@@ -282,29 +273,7 @@ export default function BlogPost() {
                     People make purchase decisions based on whether they can imagine themselves using the product. The faster you help them visualize that, the higher your conversion rate. Video demos of the product in action convert 35% higher than static images in YC portfolio A/B tests.
                   </p>
 
-                  {/* Mid-Article CTA Box #2 */}
-                  <div className="my-12 rounded-2xl overflow-hidden border-2 border-accent bg-gradient-to-br from-accent/10 via-primary/5 to-accent/10 shadow-lg">
-                    <div className="p-8">
-                      <div className="flex items-center gap-3 mb-4">
-                        <div className="w-12 h-12 rounded-full bg-gradient-to-br from-accent to-primary flex items-center justify-center">
-                          <span className="text-2xl">✅</span>
-                        </div>
-                        <h3 className="text-2xl font-bold text-foreground">Get Your Landing Page Checklist</h3>
-                      </div>
-                      <p className="text-foreground mb-6 leading-relaxed">
-                        Want a systematic way to implement these patterns? Use our interactive landing page checklist tool to get personalized must-have, nice-to-have, and do-later recommendations based on your business type and stage. See exactly what to prioritize on your startup's homepage.
-                      </p>
-                      <Button 
-                        className="bg-gradient-to-r from-accent to-primary hover:from-accent/90 hover:to-primary/90 text-white font-semibold py-6 px-8 cursor-pointer shadow-lg hover:shadow-xl transition-all"
-                        onClick={() => window.open('/features/landing-page-checklist', '_self')}
-                      >
-                        Get My Free Checklist →
-                      </Button>
-                      <p className="text-sm text-muted-foreground mt-4">
-                        Takes 30 seconds • Personalized for your stage • No signup required
-                      </p>
-                    </div>
-                  </div>
+                  {/* Mid-Article CTA Box #2 — removed checklist tool, replaced with book-demo nudge */}
 
                   {/* Pattern 5 */}
                   <h2 className="text-3xl font-bold text-foreground mt-12 mb-4">5. Proof Is Lightweight but Targeted</h2>
@@ -317,7 +286,7 @@ export default function BlogPost() {
                     Too much proof signals desperation. Targeted proof signals legitimacy. Early-stage buyers don't need to be convinced that 10,000 companies use you. They need to know that companies like them use you.
                   </p>
 
-                  <div className="bg-accent/10 border-l-4 border-accent p-6 my-8 rounded-r-lg">
+                  <div className="bg-primary/8 border-l-4 border-primary p-6 my-8 rounded-r-lg">
                     <h3 className="text-xl font-bold text-foreground mb-3">Data-Backed Insight</h3>
                     <p className="text-foreground">Landing pages with 3-5 customer logos convert 18% better than those with 0 logos. But pages with 20+ logos actually convert 12% worse – analysis from YC's internal conversion studies.</p>
                   </div>
@@ -494,7 +463,7 @@ export default function BlogPost() {
                     <p>As YC companies grow and find product-market fit, their landing pages evolve. They add more sophisticated design, longer-form content, brand storytelling, and advanced features. But they start with the essentials.</p>
                   </div>
 
-                  <div className="bg-accent/10 border-l-4 border-accent p-6 my-8 rounded-r-lg">
+                  <div className="bg-primary/8 border-l-4 border-primary p-6 my-8 rounded-r-lg">
                     <h3 className="text-xl font-bold text-foreground mb-3">The Mistake Most Founders Make</h3>
                     <p className="text-foreground">They try to build a landing page that looks like a Series B company when they're pre-seed. They copy Notion's beautiful homepage when they should be copying Notion's first homepage (which was plain, functional, and very similar to the patterns above).</p>
                   </div>
@@ -594,6 +563,50 @@ export default function BlogPost() {
                     </div>
                   </div>
 
+                  {/* AI Agent punchline */}
+                  <div className="my-12 rounded-2xl overflow-hidden border border-slate-200">
+                    <div className="px-8 py-6 bg-linear-to-r from-primary to-violet-500">
+                      <p className="text-xs font-semibold tracking-widest uppercase text-white/70 mb-2">The shortcut</p>
+                      <h3 className="text-2xl font-bold text-white leading-snug">
+                        Pattern #8 on autopilot: an AI agent that converts hesitating visitors before they leave
+                      </h3>
+                    </div>
+                    <div className="px-8 py-6 bg-white space-y-4 text-slate-600 text-base leading-relaxed">
+                      <p>
+                        The hardest YC pattern to implement manually is #8 — low-commitment CTAs that reduce friction at the right moment. The challenge: you can't be live on your landing page at midnight when a warm visitor is deciding whether to sign up.
+                      </p>
+                      <p>
+                        A landing page AI agent solves this. It sits on your page and handles the moment of hesitation — the exact instant between "this looks interesting" and "I'll look at this later" (and never coming back).
+                      </p>
+                      <ul className="space-y-3 mt-4">
+                        {[
+                          ["Answers \"what does this actually do?\" in seconds", "The #1 reason early visitors bounce isn't price — it's confusion. The agent answers positioning questions on the spot, in plain language."],
+                          ["Surfaces the right trust signal at the right time", "Pattern #5 says social proof should be targeted. The agent can surface the most relevant proof point based on what the visitor is asking."],
+                          ["Turns \"book a demo\" friction into a conversation", "Instead of a cold form, visitors chat first. By the time they book, they're already warm — cutting your demo no-show rate significantly."],
+                          ["Captures leads from visitors not yet ready to sign up", "Many YC-stage visitors are just researching. The agent captures their email with a low-commitment offer and follows up automatically."],
+                        ].map(([title, desc]) => (
+                          <li key={title} className="flex gap-3">
+                            <span className="mt-1 w-5 h-5 rounded-full bg-linear-to-br from-primary to-violet-500 flex items-center justify-center shrink-0">
+                              <svg className="w-3 h-3 text-white" fill="none" viewBox="0 0 12 12"><path d="M2 6l3 3 5-5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                            </span>
+                            <span><strong className="text-slate-800">{title}.</strong> {desc}</span>
+                          </li>
+                        ))}
+                      </ul>
+                      <p className="pt-2 text-slate-500">
+                        YC landing pages are built to learn fast. An AI agent accelerates that — every question a visitor asks is a signal about what your page isn't communicating clearly enough. You get the conversion and the insight.
+                      </p>
+                      <div className="pt-4">
+                        <button
+                          onClick={() => { window.location.href = '/book-demo' }}
+                          className="inline-flex items-center gap-2 bg-linear-to-r from-primary to-violet-500 text-white font-semibold text-sm px-6 py-3 rounded-xl shadow-md shadow-primary/20 hover:shadow-primary/40 transition-all cursor-pointer"
+                        >
+                          Book a free call →
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+
                   {/* Tools & Resources */}
                   <h2 className="text-3xl font-bold text-foreground mt-12 mb-4">Tools and Resources</h2>
                   
@@ -673,17 +686,20 @@ export default function BlogPost() {
                   </p>
 
                   {/* Final CTA */}
-                  <div className="bg-gradient-to-br from-primary/10 via-accent/10 to-primary/10 border-2 border-primary/20 p-8 my-12 rounded-2xl shadow-xl">
-                    <h3 className="text-2xl font-bold text-foreground mb-4">Analyze Your Landing Page in 60 Seconds</h3>
-                    <p className="mb-6 leading-relaxed">
-                      Get an AI-powered analysis of your startup's landing page. Identify conversion issues, UX problems, and quick wins to improve your homepage performance. See exactly which of these 10 YC patterns you're missing and how to implement them.
-                    </p>
-                    <Button 
-                      className="bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90 text-white font-semibold py-6 px-8 cursor-pointer shadow-lg hover:shadow-xl transition-all"
-                      onClick={() => window.open('https://app.talktomedata.com/signup', '_blank')}
-                    >
-                      Get Your Free Analysis →
-                    </Button>
+                  <div className="relative overflow-hidden p-8 my-12 rounded-2xl bg-linear-to-br from-primary via-blue-600 to-violet-500">
+                    <div className="absolute inset-0 opacity-10" style={{ backgroundImage: "radial-gradient(circle, white 1px, transparent 1px)", backgroundSize: "24px 24px" }} />
+                    <div className="relative z-10">
+                      <h3 className="text-2xl font-bold text-white mb-3">Want an AI agent on your landing page?</h3>
+                      <p className="text-white/80 mb-6 max-w-xl">
+                        Book a free 20-minute call. We'll review your current page, identify your biggest conversion gap, and show you how a custom-built agent can handle it — live within 24 hours.
+                      </p>
+                      <button
+                        onClick={() => { window.location.href = '/book-demo' }}
+                        className="inline-flex items-center gap-2 bg-white text-primary font-semibold text-sm px-6 py-3 rounded-xl hover:bg-white/90 transition-colors cursor-pointer"
+                      >
+                        Book a free call →
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -707,13 +723,13 @@ export default function BlogPost() {
             {/* Related posts / CTA */}
             <div className="mt-16 pt-16 border-t border-border">
               <div className="text-center">
-                <h3 className="text-2xl font-bold mb-4">Ready to optimize your landing page?</h3>
+                <h3 className="text-2xl font-bold mb-4">Want an AI agent converting visitors on your landing page?</h3>
                 <p className="text-muted-foreground mb-6">
-                  Get a comprehensive analysis of your website in 60 seconds.
+                  Book a free 20-minute call — we'll identify your biggest conversion gap and have an agent live within 24 hours.
                 </p>
-                <Link href="/">
-                  <Button className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold cursor-pointer">
-                    Get Started Free
+                <Link href="/book-demo">
+                  <Button className="bg-linear-to-r from-primary to-violet-500 text-white font-semibold cursor-pointer hover:opacity-90 transition-opacity">
+                    Book a free call →
                   </Button>
                 </Link>
               </div>
