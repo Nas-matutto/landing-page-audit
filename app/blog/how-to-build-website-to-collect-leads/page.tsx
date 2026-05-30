@@ -74,7 +74,7 @@ export default function BlogPost() {
                 <div className="space-y-6 text-muted-foreground leading-relaxed">
                   
                   {/* TL;DR Section */}
-                  <div className="bg-accent/10 border-l-4 border-accent p-6 my-8 rounded-r-lg">
+                  <div className="bg-primary/8 border-l-4 border-primary p-6 my-8 rounded-r-lg">
                     <h3 className="text-xl font-bold text-foreground mb-3">TL;DR - Key Takeaways</h3>
                     <ul className="list-disc pl-6 space-y-2 text-foreground">
                       <li>B2B lead generation landing pages convert 5-15% on average vs 2-3% for general websites</li>
@@ -149,31 +149,31 @@ export default function BlogPost() {
                     </table>
                   </div>
 
-                  {/* Early CTA Box */}
-                  <div className="my-12 rounded-2xl overflow-hidden border-2 border-primary bg-gradient-to-br from-primary/5 via-accent/5 to-primary/5 shadow-lg">
-                    <div className="p-8">
-                      <div className="flex items-center gap-3 mb-4">
-                        <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center">
-                          <span className="text-2xl">📊</span>
-                        </div>
-                        <h3 className="text-2xl font-bold text-foreground">Analyze Your Current Landing Pages</h3>
-                      </div>
-                      <p className="text-foreground mb-6 leading-relaxed">
-                        Before building new landing pages, understand why your current pages aren't converting. Talk to me Data analyzes your entire website structure, identifies conversion barriers, and provides specific recommendations to improve lead capture. Get instant insights on form optimization, page speed, mobile experience, and messaging clarity.
+                  {/* LeadLanding.dev recommendation */}
+                  <div className="my-12 rounded-2xl overflow-hidden border border-slate-200 shadow-sm">
+                    <div className="bg-linear-to-r from-primary to-violet-500 px-8 py-5">
+                      <p className="text-white/80 text-xs font-semibold uppercase tracking-widest mb-1">Quick start</p>
+                      <h3 className="text-xl font-bold text-white">Don't have a domain yet? Skip it entirely.</h3>
+                    </div>
+                    <div className="bg-white px-8 py-6">
+                      <p className="text-foreground mb-4 leading-relaxed">
+                        If you just need a page that captures leads — without buying a domain, setting up hosting, or touching code —{" "}
+                        <a href="https://www.leadlanding.dev/" target="_blank" rel="noopener noreferrer" className="text-primary font-semibold hover:underline">LeadLanding.dev</a>{" "}
+                        lets you launch a lead-collecting landing page in minutes. You get a built-in form, a shareable link, and leads delivered straight to your inbox.
                       </p>
-                      <div className="flex flex-col sm:flex-row gap-4">
-                        <Button 
-                          className="bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90 text-white font-semibold py-6 px-8 cursor-pointer shadow-lg hover:shadow-xl transition-all"
-                          onClick={() => window.open('https://app.talktomedata.com/signup', '_blank')}
-                        >
-                          Analyze Your Website Free →
-                        </Button>
-                        <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                          <span>✓ 60-second analysis</span>
-                          <span>•</span>
-                          <span>✓ No signup required</span>
-                        </div>
-                      </div>
+                      <ul className="space-y-2 mb-6 text-sm text-foreground">
+                        <li className="flex items-center gap-2"><span className="text-primary font-bold">✓</span> No domain purchase required</li>
+                        <li className="flex items-center gap-2"><span className="text-primary font-bold">✓</span> Built-in lead capture form — live immediately</li>
+                        <li className="flex items-center gap-2"><span className="text-primary font-bold">✓</span> Ideal for validating an idea before committing to a full website</li>
+                      </ul>
+                      <a
+                        href="https://www.leadlanding.dev/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 bg-linear-to-r from-primary to-violet-500 text-white font-semibold text-sm px-6 py-3 rounded-xl hover:opacity-90 transition-opacity"
+                      >
+                        Launch a lead page for free →
+                      </a>
                     </div>
                   </div>
 
@@ -338,12 +338,12 @@ export default function BlogPost() {
                           <tr className="bg-muted/20">
                             <td className="border border-border p-4">Demo Request</td>
                             <td className="border border-border p-4">Name, Email, Company, Phone, Role (5 fields)</td>
-                            <td className="border border-border p-4 text-accent">8-15%</td>
+                            <td className="border border-border p-4 text-primary">8-15%</td>
                           </tr>
                           <tr>
                             <td className="border border-border p-4">Consultation/Assessment</td>
                             <td className="border border-border p-4">Name, Email, Company, Phone, Role, Company Size (6 fields)</td>
-                            <td className="border border-border p-4 text-accent">5-12%</td>
+                            <td className="border border-border p-4 text-primary">5-12%</td>
                           </tr>
                           <tr className="bg-muted/20">
                             <td className="border border-border p-4">Pricing Quote</td>
@@ -404,27 +404,41 @@ export default function BlogPost() {
                     <p>Test reducing your form from 7 fields to 5 fields, then to 3 fields. Many B2B companies discover that collecting less information upfront (then qualifying during follow-up calls) generates 40-60% more leads with only slightly lower qualification rates - resulting in significantly more sales.</p>
                   </div>
 
-                  {/* Conversion Calculator Box */}
-                  <div className="my-12 rounded-2xl overflow-hidden border-2 border-accent bg-gradient-to-br from-accent/10 via-primary/5 to-accent/10 shadow-lg">
-                    <div className="p-8">
-                      <div className="flex items-center gap-3 mb-4">
-                        <div className="w-12 h-12 rounded-full bg-gradient-to-br from-accent to-primary flex items-center justify-center">
-                          <span className="text-2xl">🧮</span>
-                        </div>
-                        <h3 className="text-2xl font-bold text-foreground">Calculate Your Lead Generation Potential</h3>
-                      </div>
-                      <p className="text-foreground mb-6 leading-relaxed">
-                        See exactly how improving your landing page conversion rate impacts lead volume. Our interactive calculator shows the revenue impact of optimization based on your current traffic. Even a 2-3% conversion rate improvement can generate hundreds of additional leads monthly.
+                  {/* AI Agent mid-article section */}
+                  <div className="my-12 rounded-2xl overflow-hidden border border-slate-200 shadow-sm">
+                    <div className="bg-linear-to-r from-primary to-violet-500 px-8 py-5">
+                      <p className="text-white/80 text-xs font-semibold uppercase tracking-widest mb-1">The shortcut</p>
+                      <h3 className="text-xl font-bold text-white">Your form isn't the only thing that captures leads — an AI agent can do it 24/7.</h3>
+                    </div>
+                    <div className="bg-white px-8 py-6">
+                      <p className="text-foreground mb-4 leading-relaxed">
+                        A static form waits passively for visitors to fill it out. An AI lead qualification agent engages them the moment they land — answering questions, handling objections, and capturing contact details even from visitors who would have bounced without converting.
                       </p>
-                      <Button 
-                        className="bg-gradient-to-r from-accent to-primary hover:from-accent/90 hover:to-primary/90 text-white font-semibold py-6 px-8 cursor-pointer shadow-lg hover:shadow-xl transition-all"
-                        onClick={() => window.open('https://talktomedata.com/features/conversion-rate-calculator', '_blank')}
+                      <ul className="space-y-3 mb-6 text-foreground">
+                        <li className="flex items-start gap-3">
+                          <span className="text-primary font-bold mt-0.5 shrink-0">✓</span>
+                          <span><strong>Answers form-related questions in real time</strong> — "What happens after I submit?", "Will I be spammed?" — removing the hesitation that kills conversions</span>
+                        </li>
+                        <li className="flex items-start gap-3">
+                          <span className="text-primary font-bold mt-0.5 shrink-0">✓</span>
+                          <span><strong>Qualifies visitors before they fill out the form</strong> — asking a couple of questions conversationally so your team only follows up with the right leads</span>
+                        </li>
+                        <li className="flex items-start gap-3">
+                          <span className="text-primary font-bold mt-0.5 shrink-0">✓</span>
+                          <span><strong>Captures leads before they leave</strong> — triggered on exit intent, collecting a name and email from visitors who weren't ready to commit to the full form</span>
+                        </li>
+                        <li className="flex items-start gap-3">
+                          <span className="text-primary font-bold mt-0.5 shrink-0">✓</span>
+                          <span><strong>Routes hot prospects instantly</strong> — books a call directly with high-intent visitors, cutting your follow-up time from hours to seconds</span>
+                        </li>
+                      </ul>
+                      <p className="text-sm text-muted-foreground mb-5">We build, deploy, and host custom lead qualification agents — you just watch the leads come in.</p>
+                      <button
+                        onClick={() => window.location.href = '/book-demo'}
+                        className="inline-flex items-center gap-2 bg-linear-to-r from-primary to-violet-500 text-white font-semibold text-sm px-6 py-3 rounded-xl hover:opacity-90 transition-opacity cursor-pointer"
                       >
-                        Open Conversion Rate Calculator →
-                      </Button>
-                      <p className="text-sm text-muted-foreground mt-4">
-                        Free tool • Instant results • No signup required
-                      </p>
+                        See how it works →
+                      </button>
                     </div>
                   </div>
 
@@ -444,7 +458,7 @@ export default function BlogPost() {
                     <p className="font-semibold text-foreground mb-2">Implement This Three-Tier Follow-Up System:</p>
                     
                     <div className="space-y-4 mt-4">
-                      <div className="border-l-4 border-accent pl-6">
+                      <div className="border-l-4 border-primary pl-6">
                         <h4 className="text-lg font-bold text-foreground mb-2">Tier 1: Immediate Automated Response (0-60 seconds)</h4>
                         <p className="mb-2">Trigger instant automated email when form submits:</p>
                         <ul className="list-disc pl-6 space-y-2">
@@ -455,7 +469,7 @@ export default function BlogPost() {
                         </ul>
                       </div>
 
-                      <div className="border-l-4 border-accent pl-6">
+                      <div className="border-l-4 border-primary pl-6">
                         <h4 className="text-lg font-bold text-foreground mb-2">Tier 2: Personal Human Follow-Up (1-5 minutes during business hours)</h4>
                         <p className="mb-2">Sales or BDR team responds personally:</p>
                         <ul className="list-disc pl-6 space-y-2">
@@ -466,7 +480,7 @@ export default function BlogPost() {
                         </ul>
                       </div>
 
-                      <div className="border-l-4 border-accent pl-6">
+                      <div className="border-l-4 border-primary pl-6">
                         <h4 className="text-lg font-bold text-foreground mb-2">Tier 3: Automated Nurture Sequence (leads not ready to buy)</h4>
                         <p className="mb-2">For leads who don't respond or aren't ready:</p>
                         <ul className="list-disc pl-6 space-y-2">
@@ -673,17 +687,26 @@ export default function BlogPost() {
                   </p>
 
                   {/* Final CTA */}
-                  <div className="bg-gradient-to-br from-primary/10 via-accent/10 to-primary/10 border-2 border-primary/20 p-8 my-12 rounded-2xl shadow-xl">
-                    <h3 className="text-2xl font-bold text-foreground mb-4">Optimize Your Lead Generation Pages Today</h3>
-                    <p className="mb-6 leading-relaxed">
-                      Get instant AI-powered analysis of your landing pages and lead generation forms. Discover exactly what's reducing conversions and receive a prioritized action plan to generate more qualified leads. Our comprehensive analysis covers page structure, form optimization, messaging clarity, mobile experience, and more - everything covered in this guide.
-                    </p>
-                    <Button 
-                      className="bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90 text-white font-semibold py-6 px-8 cursor-pointer shadow-lg hover:shadow-xl transition-all"
-                      onClick={() => window.open('https://app.talktomedata.com/signup', '_blank')}
+                  <div className="my-12 rounded-2xl overflow-hidden border border-slate-200 shadow-sm">
+                    <div
+                      className="relative px-8 py-10"
+                      style={{
+                        background: "linear-gradient(135deg, #185FA5, #2563eb, #7c3aed)",
+                        backgroundImage: "linear-gradient(135deg, #185FA5, #2563eb, #7c3aed), radial-gradient(circle, rgba(255,255,255,0.07) 1px, transparent 1px)",
+                        backgroundSize: "100% 100%, 24px 24px",
+                      }}
                     >
-                      Analyze Your Landing Pages Free →
-                    </Button>
+                      <h3 className="text-2xl font-bold text-white mb-3">Ready to turn your landing page into a lead machine?</h3>
+                      <p className="text-white/80 mb-6 leading-relaxed max-w-xl">
+                        We'll build a custom AI agent that qualifies visitors, captures leads, and books calls — live on your site in days, not months.
+                      </p>
+                      <button
+                        onClick={() => window.location.href = '/book-demo'}
+                        className="inline-flex items-center gap-2 bg-white text-primary font-semibold text-sm px-6 py-3 rounded-xl hover:bg-white/90 transition-colors cursor-pointer"
+                      >
+                        Book a free call →
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -707,13 +730,13 @@ export default function BlogPost() {
             {/* Related posts / CTA */}
             <div className="mt-16 pt-16 border-t border-border">
               <div className="text-center">
-                <h3 className="text-2xl font-bold mb-4">Ready to generate more leads?</h3>
+                <h3 className="text-2xl font-bold mb-4">Want more leads from the traffic you already have?</h3>
                 <p className="text-muted-foreground mb-6">
-                  Get instant insights on how to optimize your landing pages for maximum lead generation.
+                  Book a free call and we'll show you exactly what's possible for your business.
                 </p>
-                <Link href="/">
-                  <Button className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold cursor-pointer">
-                    Get Started Free
+                <Link href="/book-demo">
+                  <Button className="bg-linear-to-r from-primary to-violet-500 hover:opacity-90 text-white font-semibold cursor-pointer">
+                    Book a free call →
                   </Button>
                 </Link>
               </div>
