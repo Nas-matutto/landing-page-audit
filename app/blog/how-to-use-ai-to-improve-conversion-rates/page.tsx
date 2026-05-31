@@ -74,7 +74,7 @@ export default function BlogPost() {
                 <div className="space-y-6 text-muted-foreground leading-relaxed">
                   
                   {/* TL;DR Section */}
-                  <div className="bg-accent/10 border-l-4 border-accent p-6 my-8 rounded-r-lg">
+                  <div className="bg-primary/8 border-l-4 border-primary p-6 my-8 rounded-r-lg">
                     <h3 className="text-xl font-bold text-foreground mb-3">TL;DR - Key Takeaways</h3>
                     <ul className="list-disc pl-6 space-y-2 text-foreground">
                       <li>AI analyzes your website in 60 seconds, identifying conversion issues that would take humans days to find</li>
@@ -129,30 +129,21 @@ export default function BlogPost() {
                   </p>
 
                   {/* Early CTA Box */}
-                  <div className="my-12 rounded-2xl overflow-hidden border-2 border-primary bg-gradient-to-br from-primary/5 via-accent/5 to-primary/5 shadow-lg">
-                    <div className="p-8">
-                      <div className="flex items-center gap-3 mb-4">
-                        <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center">
-                          <span className="text-2xl">🚀</span>
-                        </div>
-                        <h3 className="text-2xl font-bold text-foreground">Get Your Free AI Conversion Analysis</h3>
-                      </div>
+                  <div className="my-12 rounded-2xl overflow-hidden border border-slate-200 shadow-sm">
+                    <div className="bg-linear-to-r from-primary to-violet-500 px-8 py-5">
+                      <p className="text-white/80 text-xs font-semibold uppercase tracking-widest mb-1">See it in action</p>
+                      <h3 className="text-xl font-bold text-white">Want to know exactly what's killing your conversions?</h3>
+                    </div>
+                    <div className="bg-white px-8 py-6">
                       <p className="text-foreground mb-6 leading-relaxed">
-                        Stop guessing what's hurting your conversions. Our AI analyzes your entire website in 60 seconds - covering SEO, UX, messaging, speed, mobile optimization, and structure. Get a prioritized action plan with specific fixes ranked by expected conversion impact.
+                        Book a free call and we'll walk through your site live — identifying your highest-impact conversion fixes and showing you how an AI agent can take care of them automatically.
                       </p>
-                      <div className="flex flex-col sm:flex-row gap-4">
-                        <Button 
-                          className="bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90 text-white font-semibold py-6 px-8 cursor-pointer shadow-lg hover:shadow-xl transition-all"
-                          onClick={() => window.open('https://app.talktomedata.com/signup', '_blank')}
-                        >
-                          Start Free Analysis Now →
-                        </Button>
-                        <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                          <span>✓ No credit card required</span>
-                          <span>•</span>
-                          <span>✓ Results in 60 seconds</span>
-                        </div>
-                      </div>
+                      <button
+                        onClick={() => window.location.href = '/book-demo'}
+                        className="inline-flex items-center gap-2 bg-linear-to-r from-primary to-violet-500 text-white font-semibold text-sm px-6 py-3 rounded-xl hover:opacity-90 transition-opacity cursor-pointer"
+                      >
+                        Book a free call →
+                      </button>
                     </div>
                   </div>
 
@@ -293,27 +284,41 @@ export default function BlogPost() {
                     For a comprehensive breakdown of conversion analysis techniques, see our detailed guide on <Link href="/blog/how-to-analyze-website-conversion-issues" className="text-primary hover:underline font-medium">how to analyze your website for conversion issues</Link>.
                   </p>
 
-                  {/* Conversion Rate Calculator Box */}
-                  <div className="my-12 rounded-2xl overflow-hidden border-2 border-accent bg-gradient-to-br from-accent/10 via-primary/5 to-accent/10 shadow-lg">
-                    <div className="p-8">
-                      <div className="flex items-center gap-3 mb-4">
-                        <div className="w-12 h-12 rounded-full bg-gradient-to-br from-accent to-primary flex items-center justify-center">
-                          <span className="text-2xl">🧮</span>
-                        </div>
-                        <h3 className="text-2xl font-bold text-foreground">Calculate Your Conversion Rate</h3>
-                      </div>
-                      <p className="text-foreground mb-6 leading-relaxed">
-                        See exactly how much additional revenue you could generate by improving your conversion rate. Our interactive calculator shows the financial impact of AI-driven optimization based on your current traffic and conversion metrics.
+                  {/* AI Agent mid-article section */}
+                  <div className="my-12 rounded-2xl overflow-hidden border border-slate-200 shadow-sm">
+                    <div className="bg-linear-to-r from-primary to-violet-500 px-8 py-5">
+                      <p className="text-white/80 text-xs font-semibold uppercase tracking-widest mb-1">The shortcut</p>
+                      <h3 className="text-xl font-bold text-white">AI that analyses your site is one thing. An AI agent that actively converts visitors is another.</h3>
+                    </div>
+                    <div className="bg-white px-8 py-6">
+                      <p className="text-foreground mb-4 leading-relaxed">
+                        Most AI tools tell you what to fix and leave the rest to you. A custom AI conversion agent skips the to-do list entirely — it engages visitors the moment they land, handles the objections that cause drop-off, and converts them before they leave.
                       </p>
-                      <Button 
-                        className="bg-gradient-to-r from-accent to-primary hover:from-accent/90 hover:to-primary/90 text-white font-semibold py-6 px-8 cursor-pointer shadow-lg hover:shadow-xl transition-all"
-                        onClick={() => window.open('https://talktomedata.com/features/conversion-rate-calculator', '_blank')}
+                      <ul className="space-y-3 mb-6 text-foreground">
+                        <li className="flex items-start gap-3">
+                          <span className="text-primary font-bold mt-0.5 shrink-0">✓</span>
+                          <span><strong>Handles the "I'm not sure" visitor</strong> — answers questions about your product, pricing, or process in real time, removing the hesitation that kills conversions</span>
+                        </li>
+                        <li className="flex items-start gap-3">
+                          <span className="text-primary font-bold mt-0.5 shrink-0">✓</span>
+                          <span><strong>Surfaces the right trust signals automatically</strong> — testimonials, case studies, guarantees — matched to what each visitor is asking about</span>
+                        </li>
+                        <li className="flex items-start gap-3">
+                          <span className="text-primary font-bold mt-0.5 shrink-0">✓</span>
+                          <span><strong>Turns "Book a demo" into a real conversation</strong> — instead of sending visitors to a Calendly page, the agent qualifies them first and schedules instantly</span>
+                        </li>
+                        <li className="flex items-start gap-3">
+                          <span className="text-primary font-bold mt-0.5 shrink-0">✓</span>
+                          <span><strong>Captures leads from visitors who aren't ready to convert yet</strong> — collecting name and email from exit-intent visitors so you can follow up later</span>
+                        </li>
+                      </ul>
+                      <p className="text-sm text-muted-foreground mb-5">We build, deploy, and host the agent. You get the conversions.</p>
+                      <button
+                        onClick={() => window.location.href = '/book-demo'}
+                        className="inline-flex items-center gap-2 bg-linear-to-r from-primary to-violet-500 text-white font-semibold text-sm px-6 py-3 rounded-xl hover:opacity-90 transition-opacity cursor-pointer"
                       >
-                        Open Conversion Rate Calculator →
-                      </Button>
-                      <p className="text-sm text-muted-foreground mt-4">
-                        Free tool • Instant results • No signup required
-                      </p>
+                        See how it works →
+                      </button>
                     </div>
                   </div>
 
@@ -695,17 +700,26 @@ export default function BlogPost() {
                   </p>
 
                   {/* Final CTA */}
-                  <div className="bg-gradient-to-br from-primary/10 via-accent/10 to-primary/10 border-2 border-primary/20 p-8 my-12 rounded-2xl shadow-xl">
-                    <h3 className="text-2xl font-bold text-foreground mb-4">Start Your AI-Powered Conversion Optimization Today</h3>
-                    <p className="mb-6 leading-relaxed">
-                      Get instant, comprehensive analysis of your website covering SEO, UX, messaging, speed, mobile optimization, and site structure. Talk to me Data's AI identifies exactly what's hurting your conversions and provides a prioritized action plan ranked by expected impact. First analysis is free - see your conversion opportunities in 60 seconds.
-                    </p>
-                    <Button 
-                      className="bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90 text-white font-semibold py-6 px-8 cursor-pointer shadow-lg hover:shadow-xl transition-all"
-                      onClick={() => window.open('https://app.talktomedata.com/signup', '_blank')}
+                  <div className="my-12 rounded-2xl overflow-hidden border border-slate-200 shadow-sm">
+                    <div
+                      className="relative px-8 py-10"
+                      style={{
+                        background: "linear-gradient(135deg, #185FA5, #2563eb, #7c3aed)",
+                        backgroundImage: "linear-gradient(135deg, #185FA5, #2563eb, #7c3aed), radial-gradient(circle, rgba(255,255,255,0.07) 1px, transparent 1px)",
+                        backgroundSize: "100% 100%, 24px 24px",
+                      }}
                     >
-                      Analyze Your Website Free →
-                    </Button>
+                      <h3 className="text-2xl font-bold text-white mb-3">Ready to put AI to work on your conversion rate?</h3>
+                      <p className="text-white/80 mb-6 leading-relaxed max-w-xl">
+                        Book a free 20-minute call. We'll show you exactly what an AI agent can do for your site — and have it live in days.
+                      </p>
+                      <button
+                        onClick={() => window.location.href = '/book-demo'}
+                        className="inline-flex items-center gap-2 bg-white text-primary font-semibold text-sm px-6 py-3 rounded-xl hover:bg-white/90 transition-colors cursor-pointer"
+                      >
+                        Book a free call →
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -729,13 +743,13 @@ export default function BlogPost() {
             {/* Related posts / CTA */}
             <div className="mt-16 pt-16 border-t border-border">
               <div className="text-center">
-                <h3 className="text-2xl font-bold mb-4">Ready to optimize with AI?</h3>
+                <h3 className="text-2xl font-bold mb-4">Want an AI agent working on your conversions around the clock?</h3>
                 <p className="text-muted-foreground mb-6">
-                  Get instant AI-powered insights and start improving your conversion rate today.
+                  Book a free call and we'll tell you exactly what's possible for your site.
                 </p>
-                <Link href="/">
-                  <Button className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold cursor-pointer">
-                    Get Started Free
+                <Link href="/book-demo">
+                  <Button className="bg-linear-to-r from-primary to-violet-500 hover:opacity-90 text-white font-semibold cursor-pointer">
+                    Book a free call →
                   </Button>
                 </Link>
               </div>
