@@ -37,6 +37,26 @@ export const metadata: Metadata = {
   },
 }
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://talktomedata.com/#website",
+      "name": "Talk to me Data",
+      "url": "https://talktomedata.com",
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://talktomedata.com/#organization",
+      "name": "Talk to me Data",
+      "url": "https://talktomedata.com",
+      "logo": "https://talktomedata.com/favicon-96x96.png",
+      "sameAs": [],
+    },
+  ],
+}
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -44,6 +64,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
       <body className={`font-sans antialiased`}>
         <PostHogProvider>
           {children}

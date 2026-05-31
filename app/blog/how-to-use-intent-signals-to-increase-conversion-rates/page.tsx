@@ -72,7 +72,7 @@ export default function BlogPost() {
                 <div className="space-y-6 text-muted-foreground leading-relaxed">
 
                   {/* TL;DR Section */}
-                  <div className="bg-accent/10 border-l-4 border-accent p-6 my-8 rounded-r-lg">
+                  <div className="bg-primary/8 border-l-4 border-primary p-6 my-8 rounded-r-lg">
                     <h3 className="text-xl font-bold text-foreground mb-3">TL;DR — Key Takeaways</h3>
                     <ul className="list-disc pl-6 space-y-2 text-foreground">
                       <li>Intent signals are public data points — job postings and UGC reviews — that reveal which companies use specific software tools</li>
@@ -275,25 +275,59 @@ export default function BlogPost() {
                   </div>
 
                   {/* CTA box */}
-                  <div className="my-12 rounded-2xl overflow-hidden border-2 border-primary bg-linear-to-br from-primary/5 via-violet-500/5 to-primary/5 shadow-lg">
-                    <div className="p-8">
-                      <div className="flex items-center gap-3 mb-4">
-                        <div className="w-12 h-12 rounded-full bg-linear-to-br from-primary to-violet-600 flex items-center justify-center">
-                          <span className="text-2xl">🎯</span>
-                        </div>
-                        <h3 className="text-2xl font-bold text-foreground">See which companies use your competitors' tools</h3>
-                      </div>
+                  <div className="my-12 rounded-2xl overflow-hidden border border-slate-200 shadow-sm">
+                    <div className="bg-linear-to-r from-primary to-violet-500 px-8 py-5">
+                      <p className="text-white/80 text-xs font-semibold uppercase tracking-widest mb-1">See it in action</p>
+                      <h3 className="text-xl font-bold text-white">See which companies use your competitors' tools — right now.</h3>
+                    </div>
+                    <div className="bg-white px-8 py-6">
                       <p className="text-foreground mb-6 leading-relaxed">
-                        Talk to me Data crawls job postings and reviews to surface warm prospects — so you can skip the cold list and go straight to the warm conversation. Book a demo to see it in action.
+                        Talk to me Data crawls job postings and reviews to surface warm prospects — so you can skip the cold list and go straight to the warm conversation. Book a demo to see your first list.
                       </p>
-                      <div className="flex flex-col sm:flex-row gap-4">
-                        <Link
-                          href="/book-demo"
-                          className="inline-flex items-center justify-center bg-linear-to-r from-primary to-violet-600 hover:from-primary/90 hover:to-violet-600/90 text-white font-semibold py-3 px-8 rounded-lg shadow-lg hover:shadow-xl transition-all"
-                        >
-                          Book a Demo →
-                        </Link>
-                      </div>
+                      <Link
+                        href="/book-demo"
+                        className="inline-flex items-center gap-2 bg-linear-to-r from-primary to-violet-500 text-white font-semibold text-sm px-6 py-3 rounded-xl hover:opacity-90 transition-opacity"
+                      >
+                        Book a demo →
+                      </Link>
+                    </div>
+                  </div>
+
+                  {/* AI Agent mid-article section */}
+                  <div className="my-12 rounded-2xl overflow-hidden border border-slate-200 shadow-sm">
+                    <div className="bg-linear-to-r from-primary to-violet-500 px-8 py-5">
+                      <p className="text-white/80 text-xs font-semibold uppercase tracking-widest mb-1">The shortcut</p>
+                      <h3 className="text-xl font-bold text-white">Intent signals get the right prospect to your page. An AI agent makes sure they don't leave without converting.</h3>
+                    </div>
+                    <div className="bg-white px-8 py-6">
+                      <p className="text-foreground mb-4 leading-relaxed">
+                        Signal-based outreach brings warm, high-intent prospects to your site. But even a pre-qualified visitor will bounce if they hit a static page with no one to talk to. A custom AI agent closes that gap — engaging the visitor the moment they land, while their intent is highest.
+                      </p>
+                      <ul className="space-y-3 mb-6 text-foreground">
+                        <li className="flex items-start gap-3">
+                          <span className="text-primary font-bold mt-0.5 shrink-0">✓</span>
+                          <span><strong>Engages warm prospects immediately</strong> — when someone lands from a targeted campaign, the agent opens a conversation specific to their context, not a generic "can I help you?"</span>
+                        </li>
+                        <li className="flex items-start gap-3">
+                          <span className="text-primary font-bold mt-0.5 shrink-0">✓</span>
+                          <span><strong>Handles the competitor comparison on the spot</strong> — answers "how are you different from [Competitor]?" in real time, with your best arguments, every time</span>
+                        </li>
+                        <li className="flex items-start gap-3">
+                          <span className="text-primary font-bold mt-0.5 shrink-0">✓</span>
+                          <span><strong>Books the meeting while intent is hot</strong> — instead of sending a warm prospect to a Calendly link, the agent qualifies and schedules directly in the conversation</span>
+                        </li>
+                        <li className="flex items-start gap-3">
+                          <span className="text-primary font-bold mt-0.5 shrink-0">✓</span>
+                          <span><strong>Captures the ones who weren't ready yet</strong> — collects name and email from exit-intent visitors so your signal-sourced prospect list doesn't leak</span>
+                        </li>
+                      </ul>
+                      <p className="text-sm text-muted-foreground mb-5">We build, deploy, and host the agent. You keep running the signals and watch the pipeline grow.</p>
+                      <button
+                        onClick={() => window.location.href = '/book-demo'}
+                        className="inline-flex items-center gap-2 bg-linear-to-r from-primary to-violet-500 text-white font-semibold text-sm px-6 py-3 rounded-xl hover:opacity-90 transition-opacity cursor-pointer"
+                      >
+                        See how it works →
+                      </button>
                     </div>
                   </div>
 
@@ -441,17 +475,26 @@ export default function BlogPost() {
                   </p>
 
                   {/* Final CTA */}
-                  <div className="bg-linear-to-br from-primary/10 via-violet-600/10 to-primary/10 border-2 border-primary/20 p-8 my-12 rounded-2xl shadow-xl">
-                    <h3 className="text-2xl font-bold text-foreground mb-4">Start prospecting with intent signals today</h3>
-                    <p className="mb-6 leading-relaxed">
-                      Talk to me Data crawls job postings and UGC reviews to show you exactly which companies use your competitors' tools — with the specific signal evidence so you can personalize every message. Book a demo and we'll show you your first list of warm prospects.
-                    </p>
-                    <Link
-                      href="/book-demo"
-                      className="inline-flex items-center justify-center bg-linear-to-r from-primary to-violet-600 hover:from-primary/90 hover:to-violet-600/90 text-white font-semibold py-3 px-8 rounded-lg shadow-lg hover:shadow-xl transition-all cursor-pointer"
+                  <div className="my-12 rounded-2xl overflow-hidden border border-slate-200 shadow-sm">
+                    <div
+                      className="relative px-8 py-10"
+                      style={{
+                        background: "linear-gradient(135deg, #185FA5, #2563eb, #7c3aed)",
+                        backgroundImage: "linear-gradient(135deg, #185FA5, #2563eb, #7c3aed), radial-gradient(circle, rgba(255,255,255,0.07) 1px, transparent 1px)",
+                        backgroundSize: "100% 100%, 24px 24px",
+                      }}
                     >
-                      Book a Demo →
-                    </Link>
+                      <h3 className="text-2xl font-bold text-white mb-3">Ready to start prospecting with intent signals?</h3>
+                      <p className="text-white/80 mb-6 leading-relaxed max-w-xl">
+                        Book a demo and we'll show you your first list of warm prospects — companies already using your competitors' tools, with the signal evidence to personalise every message.
+                      </p>
+                      <Link
+                        href="/book-demo"
+                        className="inline-flex items-center gap-2 bg-white text-primary font-semibold text-sm px-6 py-3 rounded-xl hover:bg-white/90 transition-colors"
+                      >
+                        Book a demo →
+                      </Link>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -481,9 +524,9 @@ export default function BlogPost() {
                 </p>
                 <Link
                   href="/book-demo"
-                  className="inline-flex items-center justify-center bg-primary hover:bg-primary/90 text-primary-foreground font-semibold py-3 px-8 rounded-lg cursor-pointer transition-colors"
+                  className="inline-flex items-center justify-center bg-linear-to-r from-primary to-violet-500 hover:opacity-90 text-white font-semibold py-3 px-8 rounded-xl cursor-pointer transition-opacity"
                 >
-                  Book a Demo
+                  Book a demo →
                 </Link>
               </div>
             </div>
