@@ -54,8 +54,8 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="#" className="text-background/70 hover:text-background transition-colors">
-                  Documentation
+                <Link href="/free-tools" className="text-background/70 hover:text-background transition-colors">
+                  Free Tools
                 </Link>
               </li>
               <li>
