@@ -9,8 +9,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Valid email is required' }, { status: 400 })
     }
 
-    // Send to PostHog as a server-side event — shows up in People with the email as distinct_id.
-    // Wire up an additional email service (Loops, Mailchimp, Resend, etc.) here when ready.
+    // PostHog — server-side event capture (shows up in People with email as distinct_id)
     const posthogKey = process.env.NEXT_PUBLIC_POSTHOG_KEY
     if (posthogKey) {
       await fetch('https://app.posthog.com/capture/', {
@@ -27,7 +26,7 @@ export async function POST(request: NextRequest) {
             team_size: teamSize,
             tasks,
             hours_saved_per_week: hoursSaved,
-            annual_value_eur: annualValue,
+            annual_value_usd: annualValue,
             $set: {
               email,
               role,
@@ -35,7 +34,34 @@ export async function POST(request: NextRequest) {
             },
           },
         }),
-      })
+      }).catch(() => {/* non-blocking */})
+    }
+
+    // Brevo — add/update contact and add to list
+    const brevoKey = process.env.BREVO_API_KEY
+    const brevoListId = process.env.BREVO_LIST_ID ? parseInt(process.env.BREVO_LIST_ID) : null
+    if (brevoKey) {
+      const brevoBody: Record<string, unknown> = {
+        email,
+        updateEnabled: true,
+        attributes: {
+          SOURCE: source,
+          ...(role ? { ROLE: role } : {}),
+          ...(teamSize ? { TEAM_SIZE: teamSize } : {}),
+          ...(hoursSaved ? { HOURS_SAVED: hoursSaved } : {}),
+          ...(annualValue ? { ANNUAL_VALUE: annualValue } : {}),
+        },
+        ...(brevoListId ? { listIds: [brevoListId] } : {}),
+      }
+
+      await fetch('https://api.brevo.com/v3/contacts', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'api-key': brevoKey,
+        },
+        body: JSON.stringify(brevoBody),
+      }).catch(() => {/* non-blocking */})
     }
 
     return NextResponse.json({ success: true })
