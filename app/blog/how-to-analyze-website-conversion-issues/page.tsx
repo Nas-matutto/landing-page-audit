@@ -50,7 +50,7 @@ export default function BlogPost() {
                 <div className="space-y-6 text-muted-foreground leading-relaxed">
                   
                   {/* TL;DR Section */}
-                  <div className="bg-accent/10 border-l-4 border-accent p-6 my-8 rounded-r-lg">
+                  <div className="bg-primary/8 border-l-4 border-primary p-6 my-8 rounded-r-lg">
                     <h3 className="text-xl font-bold text-foreground mb-3">TL;DR - Key Takeaways</h3>
                     <ul className="list-disc pl-6 space-y-2 text-foreground">
                       <li>Website conversion analysis is the systematic process of identifying barriers preventing visitors from completing desired actions</li>
@@ -111,7 +111,7 @@ export default function BlogPost() {
                         <tr>
                           <td className="border border-border p-4">Slow page speed (&gt;3s load)</td>
                           <td className="border border-border p-4">-7% per second delay</td>
-                          <td className="border border-border p-4 text-accent font-semibold">Medium</td>
+                          <td className="border border-border p-4 text-primary font-semibold">Medium</td>
                         </tr>
                         <tr className="bg-muted/20">
                           <td className="border border-border p-4">Unclear value proposition</td>
@@ -126,7 +126,7 @@ export default function BlogPost() {
                         <tr className="bg-muted/20">
                           <td className="border border-border p-4">Complex checkout/signup</td>
                           <td className="border border-border p-4">-25-35% abandonment</td>
-                          <td className="border border-border p-4 text-accent font-semibold">Medium</td>
+                          <td className="border border-border p-4 text-primary font-semibold">Medium</td>
                         </tr>
                         <tr>
                           <td className="border border-border p-4">Missing trust signals</td>
@@ -352,17 +352,17 @@ export default function BlogPost() {
                         <tr>
                           <td className="border border-border p-4">Money-back guarantee</td>
                           <td className="border border-border p-4">+25% conversion rate</td>
-                          <td className="border border-border p-4 text-accent font-semibold">High</td>
+                          <td className="border border-border p-4 text-primary font-semibold">High</td>
                         </tr>
                         <tr className="bg-muted/20">
                           <td className="border border-border p-4">Security badges (Norton, McAfee)</td>
                           <td className="border border-border p-4">+15% conversion rate</td>
-                          <td className="border border-border p-4 text-accent font-semibold">High</td>
+                          <td className="border border-border p-4 text-primary font-semibold">High</td>
                         </tr>
                         <tr>
                           <td className="border border-border p-4">Client logos (B2B)</td>
                           <td className="border border-border p-4">+20% conversion rate</td>
-                          <td className="border border-border p-4 text-accent font-semibold">High</td>
+                          <td className="border border-border p-4 text-primary font-semibold">High</td>
                         </tr>
                         <tr className="bg-muted/20">
                           <td className="border border-border p-4">Contact information visible</td>
@@ -433,6 +433,44 @@ export default function BlogPost() {
                     </ul>
                   </div>
 
+                  {/* AI Agent mid-article section */}
+                  <div className="my-12 rounded-2xl overflow-hidden border border-slate-200 shadow-sm">
+                    <div className="bg-linear-to-r from-primary to-violet-500 px-8 py-5">
+                      <p className="text-white/80 text-xs font-semibold uppercase tracking-widest mb-1">The shortcut</p>
+                      <h3 className="text-xl font-bold text-white">Analysis tells you where visitors drop off. An AI agent stops the drop-off from happening in the first place.</h3>
+                    </div>
+                    <div className="bg-white px-8 py-6">
+                      <p className="text-foreground mb-4 leading-relaxed">
+                        The CONVERT framework helps you identify what's broken. But for the most common conversion killers — hesitation, unanswered questions, trust gaps — there's a faster fix: an AI agent that handles those moments live, while the visitor is still on your page.
+                      </p>
+                      <ul className="space-y-3 mb-6 text-foreground">
+                        <li className="flex items-start gap-3">
+                          <span className="text-primary font-bold mt-0.5 shrink-0">✓</span>
+                          <span><strong>Addresses the drop-off your funnel analysis reveals</strong> — when analytics show visitors leaving at the pricing section, the agent answers pricing questions in real time before they bounce</span>
+                        </li>
+                        <li className="flex items-start gap-3">
+                          <span className="text-primary font-bold mt-0.5 shrink-0">✓</span>
+                          <span><strong>Delivers your trust signals at the right moment</strong> — surfaces testimonials, guarantees, and social proof exactly when a visitor's behaviour signals they need reassurance</span>
+                        </li>
+                        <li className="flex items-start gap-3">
+                          <span className="text-primary font-bold mt-0.5 shrink-0">✓</span>
+                          <span><strong>Simplifies the conversion path on the spot</strong> — instead of sending visitors through a form, the agent qualifies them conversationally and books a call directly</span>
+                        </li>
+                        <li className="flex items-start gap-3">
+                          <span className="text-primary font-bold mt-0.5 shrink-0">✓</span>
+                          <span><strong>Captures the leads your analysis says you're losing</strong> — exit-intent engagement that recovers prospects before they disappear from your funnel for good</span>
+                        </li>
+                      </ul>
+                      <p className="text-sm text-muted-foreground mb-5">We build, deploy, and host the agent. You keep running your analysis — and start seeing results faster.</p>
+                      <button
+                        onClick={() => window.location.href = '/book-demo'}
+                        className="inline-flex items-center gap-2 bg-linear-to-r from-primary to-violet-500 text-white font-semibold text-sm px-6 py-3 rounded-xl hover:opacity-90 transition-opacity cursor-pointer"
+                      >
+                        See how it works →
+                      </button>
+                    </div>
+                  </div>
+
                   {/* Tools Section */}
                   <h2 className="text-3xl font-bold text-foreground mt-12 mb-4">What Tools Do You Need for Conversion Analysis?</h2>
                   
@@ -496,17 +534,26 @@ export default function BlogPost() {
                   </p>
 
                   {/* Final CTA */}
-                  <div className="bg-primary/5 border-2 border-primary/20 p-8 my-12 rounded-2xl">
-                    <h3 className="text-2xl font-bold text-foreground mb-4">Get Your Website's Conversion Analysis in 60 Seconds</h3>
-                    <p className="mb-6">
-                      Our AI-powered tool analyzes 150+ data points across SEO, UX, mobile performance, and conversion optimization. Identify your biggest opportunities instantly.
-                    </p>
-                    <Button 
-                      className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold cursor-pointer"
-                      onClick={() => window.open('https://app.talktomedata.com/signup', '_blank')}
+                  <div className="my-12 rounded-2xl overflow-hidden border border-slate-200 shadow-sm">
+                    <div
+                      className="relative px-8 py-10"
+                      style={{
+                        background: "linear-gradient(135deg, #185FA5, #2563eb, #7c3aed)",
+                        backgroundImage: "linear-gradient(135deg, #185FA5, #2563eb, #7c3aed), radial-gradient(circle, rgba(255,255,255,0.07) 1px, transparent 1px)",
+                        backgroundSize: "100% 100%, 24px 24px",
+                      }}
                     >
-                      Analyze Your Website Now →
-                    </Button>
+                      <h3 className="text-2xl font-bold text-white mb-3">Want to know exactly what's costing you conversions?</h3>
+                      <p className="text-white/80 mb-6 leading-relaxed max-w-xl">
+                        Book a free call and we'll walk through your site using the CONVERT framework — and show you how an AI agent can fix the biggest drop-off points automatically.
+                      </p>
+                      <button
+                        onClick={() => window.location.href = '/book-demo'}
+                        className="inline-flex items-center gap-2 bg-white text-primary font-semibold text-sm px-6 py-3 rounded-xl hover:bg-white/90 transition-colors cursor-pointer"
+                      >
+                        Book a free call →
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -530,13 +577,13 @@ export default function BlogPost() {
             {/* Related posts / CTA */}
             <div className="mt-16 pt-16 border-t border-border">
               <div className="text-center">
-                <h3 className="text-2xl font-bold mb-4">Ready to optimize your website?</h3>
+                <h3 className="text-2xl font-bold mb-4">Ready to turn your conversion analysis into action?</h3>
                 <p className="text-muted-foreground mb-6">
-                  Get a comprehensive analysis of your website in 60 seconds.
+                  Book a free call and we'll show you exactly what an AI agent can fix on your site — automatically.
                 </p>
-                <Link href="/">
-                  <Button className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold cursor-pointer">
-                    Get Started Free
+                <Link href="/book-demo">
+                  <Button className="bg-linear-to-r from-primary to-violet-500 hover:opacity-90 text-white font-semibold cursor-pointer">
+                    Book a free call →
                   </Button>
                 </Link>
               </div>

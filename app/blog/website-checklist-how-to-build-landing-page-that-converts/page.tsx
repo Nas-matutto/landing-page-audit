@@ -74,7 +74,7 @@ export default function BlogPost() {
                 <div className="space-y-6 text-muted-foreground leading-relaxed">
                   
                   {/* TL;DR Section */}
-                  <div className="bg-accent/10 border-l-4 border-accent p-6 my-8 rounded-r-lg">
+                  <div className="bg-primary/8 border-l-4 border-primary p-6 my-8 rounded-r-lg">
                     <h3 className="text-xl font-bold text-foreground mb-3">TL;DR - Key Takeaways</h3>
                     <ul className="list-disc pl-6 space-y-2 text-foreground">
                       <li>Landing pages with complete checklists convert 40-60% better than pages missing critical elements</li>
@@ -159,31 +159,22 @@ export default function BlogPost() {
                     Notice the pattern: top performers convert at 2-3x higher rates. The difference isn't magic - it's systematic execution of fundamentals. For more on identifying and fixing specific conversion issues, see our <Link href="/blog/how-to-analyze-website-conversion-issues" className="text-primary hover:underline font-medium">comprehensive website conversion analysis guide</Link>.
                   </p>
 
-                  {/* Interactive Tool CTA Box */}
-                  <div className="my-12 rounded-2xl overflow-hidden border-2 border-accent bg-gradient-to-br from-accent/10 via-primary/5 to-accent/10 shadow-lg">
-                    <div className="p-8">
-                      <div className="flex items-center gap-3 mb-4">
-                        <div className="w-12 h-12 rounded-full bg-gradient-to-br from-accent to-primary flex items-center justify-center">
-                          <span className="text-2xl">✅</span>
-                        </div>
-                        <h3 className="text-2xl font-bold text-foreground">Get Your Personalized Landing Page Checklist</h3>
-                      </div>
+                  {/* Early CTA Box */}
+                  <div className="my-12 rounded-2xl overflow-hidden border border-slate-200 shadow-sm">
+                    <div className="bg-linear-to-r from-primary to-violet-500 px-8 py-5">
+                      <p className="text-white/80 text-xs font-semibold uppercase tracking-widest mb-1">Not sure where to start?</p>
+                      <h3 className="text-xl font-bold text-white">We'll walk through your landing page with you — for free.</h3>
+                    </div>
+                    <div className="bg-white px-8 py-6">
                       <p className="text-foreground mb-6 leading-relaxed">
-                        Stop guessing what your landing page needs. Our interactive checklist tool asks about your business type and stage, then generates a customized list of must-have, nice-to-have, and do-later optimizations. See exactly what to prioritize based on where you are in your journey.
+                        Book a free 20-minute call and we'll tell you exactly what's missing, what to prioritize, and what an AI agent could do to turn your page into a 24/7 conversion machine.
                       </p>
-                      <div className="flex flex-col sm:flex-row gap-4">
-                        <Button 
-                          className="bg-gradient-to-r from-accent to-primary hover:from-accent/90 hover:to-primary/90 text-white font-semibold py-6 px-8 cursor-pointer shadow-lg hover:shadow-xl transition-all"
-                          onClick={() => window.open('/features/landing-page-checklist', '_self')}
-                        >
-                          Get My Free Checklist →
-                        </Button>
-                        <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                          <span>✓ Takes 30 seconds</span>
-                          <span>•</span>
-                          <span>✓ Personalized results</span>
-                        </div>
-                      </div>
+                      <button
+                        onClick={() => window.location.href = '/book-demo'}
+                        className="inline-flex items-center gap-2 bg-linear-to-r from-primary to-violet-500 text-white font-semibold text-sm px-6 py-3 rounded-xl hover:opacity-90 transition-opacity cursor-pointer"
+                      >
+                        Book a free call →
+                      </button>
                     </div>
                   </div>
 
@@ -374,27 +365,41 @@ export default function BlogPost() {
                     Notice the progression: idea stage focuses on clarity and vision, early traction adds social proof and product demonstration, scaling stage implements advanced optimization and comprehensive trust building. Skipping stages or implementing out of order wastes resources on features that don't yet move the conversion needle.
                   </p>
 
-                  {/* Calculator Tool CTA Box */}
-                  <div className="my-12 rounded-2xl overflow-hidden border-2 border-primary bg-gradient-to-br from-primary/5 via-accent/5 to-primary/5 shadow-lg">
-                    <div className="p-8">
-                      <div className="flex items-center gap-3 mb-4">
-                        <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center">
-                          <span className="text-2xl">🧮</span>
-                        </div>
-                        <h3 className="text-2xl font-bold text-foreground">Calculate Your Potential Conversion Improvement</h3>
-                      </div>
-                      <p className="text-foreground mb-6 leading-relaxed">
-                        Wondering how much revenue you're leaving on the table? Use our conversion rate calculator to see exactly how improving your landing page from average to top-performing could impact your bottom line. Even a 2% conversion increase can mean thousands in additional monthly revenue.
+                  {/* AI Agent mid-article section */}
+                  <div className="my-12 rounded-2xl overflow-hidden border border-slate-200 shadow-sm">
+                    <div className="bg-linear-to-r from-primary to-violet-500 px-8 py-5">
+                      <p className="text-white/80 text-xs font-semibold uppercase tracking-widest mb-1">The shortcut</p>
+                      <h3 className="text-xl font-bold text-white">You can check every box on the checklist — and still lose visitors who just had one unanswered question.</h3>
+                    </div>
+                    <div className="bg-white px-8 py-6">
+                      <p className="text-foreground mb-4 leading-relaxed">
+                        Even a well-built landing page is passive. Visitors with questions bounce. Visitors unsure about pricing leave. Visitors who almost converted but wanted reassurance — gone. An AI conversion agent solves this by staying live on your page and handling those moments in real time.
                       </p>
-                      <Button 
-                        className="bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90 text-white font-semibold py-6 px-8 cursor-pointer shadow-lg hover:shadow-xl transition-all"
-                        onClick={() => window.open('/features/conversion-rate-calculator', '_self')}
+                      <ul className="space-y-3 mb-6 text-foreground">
+                        <li className="flex items-start gap-3">
+                          <span className="text-primary font-bold mt-0.5 shrink-0">✓</span>
+                          <span><strong>Answers the questions your copy doesn't cover</strong> — pricing edge cases, integration questions, "is this right for me?" — handled instantly, without losing the visitor</span>
+                        </li>
+                        <li className="flex items-start gap-3">
+                          <span className="text-primary font-bold mt-0.5 shrink-0">✓</span>
+                          <span><strong>Handles objections in real time</strong> — the same objections you'd address in a sales call, surfaced and resolved before the visitor decides to leave</span>
+                        </li>
+                        <li className="flex items-start gap-3">
+                          <span className="text-primary font-bold mt-0.5 shrink-0">✓</span>
+                          <span><strong>Replaces your "Book a Demo" form with a real conversation</strong> — qualifies the visitor, then books the call automatically, cutting time-to-meeting from days to minutes</span>
+                        </li>
+                        <li className="flex items-start gap-3">
+                          <span className="text-primary font-bold mt-0.5 shrink-0">✓</span>
+                          <span><strong>Captures leads from visitors who weren't ready to fill out the form</strong> — exit-intent engagement that recovers prospects before they bounce for good</span>
+                        </li>
+                      </ul>
+                      <p className="text-sm text-muted-foreground mb-5">We build, deploy, and host the agent for you. You keep the checklist and gain a 24/7 closer.</p>
+                      <button
+                        onClick={() => window.location.href = '/book-demo'}
+                        className="inline-flex items-center gap-2 bg-linear-to-r from-primary to-violet-500 text-white font-semibold text-sm px-6 py-3 rounded-xl hover:opacity-90 transition-opacity cursor-pointer"
                       >
-                        Calculate My Conversion Potential →
-                      </Button>
-                      <p className="text-sm text-muted-foreground mt-4">
-                        Free tool • Instant results • No signup required
-                      </p>
+                        See how it works →
+                      </button>
                     </div>
                   </div>
 
@@ -617,17 +622,26 @@ export default function BlogPost() {
                   </p>
 
                   {/* Final CTA */}
-                  <div className="bg-gradient-to-br from-primary/10 via-accent/10 to-primary/10 border-2 border-primary/20 p-8 my-12 rounded-2xl shadow-xl">
-                    <h3 className="text-2xl font-bold text-foreground mb-4">Get Your Complete Landing Page Analysis</h3>
-                    <p className="mb-6 leading-relaxed">
-                      Ready to implement your checklist but want specific guidance for YOUR landing page? Talk to me Data analyzes your actual page and provides prioritized recommendations with expected conversion impact for each fix. Get AI-powered insights covering all checklist categories - value proposition, CTAs, mobile experience, speed, social proof, and more.
-                    </p>
-                    <Button 
-                      className="bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90 text-white font-semibold py-6 px-8 cursor-pointer shadow-lg hover:shadow-xl transition-all"
-                      onClick={() => window.open('https://app.talktomedata.com/signup', '_blank')}
+                  <div className="my-12 rounded-2xl overflow-hidden border border-slate-200 shadow-sm">
+                    <div
+                      className="relative px-8 py-10"
+                      style={{
+                        background: "linear-gradient(135deg, #185FA5, #2563eb, #7c3aed)",
+                        backgroundImage: "linear-gradient(135deg, #185FA5, #2563eb, #7c3aed), radial-gradient(circle, rgba(255,255,255,0.07) 1px, transparent 1px)",
+                        backgroundSize: "100% 100%, 24px 24px",
+                      }}
                     >
-                      Analyze My Landing Page Free →
-                    </Button>
+                      <h3 className="text-2xl font-bold text-white mb-3">Ready to build a landing page that actually converts?</h3>
+                      <p className="text-white/80 mb-6 leading-relaxed max-w-xl">
+                        Book a free call. We'll review your page against the checklist, spot the highest-impact gaps, and show you how an AI agent can handle the conversion work your page can't do on its own.
+                      </p>
+                      <button
+                        onClick={() => window.location.href = '/book-demo'}
+                        className="inline-flex items-center gap-2 bg-white text-primary font-semibold text-sm px-6 py-3 rounded-xl hover:bg-white/90 transition-colors cursor-pointer"
+                      >
+                        Book a free call →
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -651,13 +665,13 @@ export default function BlogPost() {
             {/* Related posts / CTA */}
             <div className="mt-16 pt-16 border-t border-border">
               <div className="text-center">
-                <h3 className="text-2xl font-bold mb-4">Ready to optimize your landing page?</h3>
+                <h3 className="text-2xl font-bold mb-4">Want a second set of eyes on your landing page?</h3>
                 <p className="text-muted-foreground mb-6">
-                  Get your personalized checklist and start improving conversions today.
+                  Book a free call and we'll tell you exactly what to fix — and what an AI agent can take off your plate.
                 </p>
-                <Link href="/features/landing-page-checklist">
-                  <Button className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold cursor-pointer">
-                    Get My Free Checklist
+                <Link href="/book-demo">
+                  <Button className="bg-linear-to-r from-primary to-violet-500 hover:opacity-90 text-white font-semibold cursor-pointer">
+                    Book a free call →
                   </Button>
                 </Link>
               </div>
