@@ -6,6 +6,8 @@ import { Footer } from "@/components/footer"
 import { ArrowRight, CheckCircle2, Plus, Trash2 } from "lucide-react"
 import Link from "next/link"
 
+// ─── Automatable keyword heuristic ───────────────────────────────────────────
+
 const AUTOMATABLE_KEYWORDS = [
   "email", "send", "notify", "notification", "ping", "message", "slack", "teams",
   "log", "record", "update", "enter", "save", "create", "add", "post",
@@ -25,38 +27,42 @@ function isAutomatable(step: string): boolean {
   return AUTOMATABLE_KEYWORDS.some(kw => lower.includes(kw))
 }
 
-interface Step {
-  id: string
-  text: string
+// ─── Canvas constants ─────────────────────────────────────────────────────────
+
+const CW = 720          // canvas width
+const NW = 560          // node width
+const NX = (CW - NW) / 2 // node left edge
+const NH = 76           // standard node height
+const ARROW = 52        // vertical gap between nodes (for the arrow)
+const PT = 52           // pad top
+const PB = 52           // pad bottom
+const CX = CW / 2       // canvas horizontal center
+
+// Rotating palette for automatable steps: [fill-start, fill-end, text]
+const AUTO_PALETTE: [string, string][] = [
+  ["#2563eb", "#3b82f6"],
+  ["#7c3aed", "#8b5cf6"],
+  ["#0d9488", "#14b8a6"],
+  ["#dc2626", "#ef4444"],
+  ["#d97706", "#f59e0b"],
+  ["#4f46e5", "#6366f1"],
+]
+
+function canvasHeight(stepCount: number): number {
+  // trigger + steps + output = stepCount + 2 nodes, stepCount + 1 arrows
+  return PT + (stepCount + 2) * NH + (stepCount + 1) * ARROW + PB
 }
 
-type Phase = "form" | "diagram"
-
-// Canvas dimensions
-const CANVAS_W = 640
-const NODE_W = 480
-const NODE_H = 72
-const ARROW_H = 36
-const PAD_TOP = 32
-const PAD_BOTTOM = 32
-const PAD_X = (CANVAS_W - NODE_W) / 2
-
-function nodeY(index: number): number {
-  return PAD_TOP + index * (NODE_H + ARROW_H)
+function nodeTopY(index: number): number {
+  // index 0 = trigger, index 1..n = steps, index n+1 = output
+  return PT + index * (NH + ARROW)
 }
 
-function totalCanvasHeight(stepCount: number): number {
-  // trigger + steps + output = stepCount + 2 total nodes
-  return PAD_TOP + (stepCount + 2) * (NODE_H + ARROW_H) - ARROW_H + PAD_BOTTOM
-}
+// ─── Canvas helpers ───────────────────────────────────────────────────────────
 
-function roundRect(
+function pill(
   ctx: CanvasRenderingContext2D,
-  x: number,
-  y: number,
-  w: number,
-  h: number,
-  r: number
+  x: number, y: number, w: number, h: number, r: number
 ) {
   ctx.beginPath()
   ctx.moveTo(x + r, y)
@@ -71,142 +77,260 @@ function roundRect(
   ctx.closePath()
 }
 
-function drawArrow(ctx: CanvasRenderingContext2D, fromY: number) {
-  const x = CANVAS_W / 2
-  const y1 = fromY + NODE_H
-  const y2 = fromY + NODE_H + ARROW_H
+function diamond(
+  ctx: CanvasRenderingContext2D,
+  cx: number, cy: number, hw: number, hh: number
+) {
+  ctx.beginPath()
+  ctx.moveTo(cx, cy - hh)
+  ctx.lineTo(cx + hw, cy)
+  ctx.lineTo(cx, cy + hh)
+  ctx.lineTo(cx - hw, cy)
+  ctx.closePath()
+}
 
-  ctx.strokeStyle = "#cbd5e1"
-  ctx.lineWidth = 1.5
+function shadow(ctx: CanvasRenderingContext2D, color: string, blur: number, dy: number) {
+  ctx.shadowColor = color
+  ctx.shadowBlur = blur
+  ctx.shadowOffsetX = 0
+  ctx.shadowOffsetY = dy
+}
+
+function noShadow(ctx: CanvasRenderingContext2D) {
+  ctx.shadowColor = "transparent"
+  ctx.shadowBlur = 0
+  ctx.shadowOffsetY = 0
+}
+
+function badge(
+  ctx: CanvasRenderingContext2D,
+  x: number, y: number, text: string,
+  bg: string, fg: string
+) {
+  ctx.font = "600 10px system-ui,sans-serif"
+  const tw = ctx.measureText(text).width
+  const bw = tw + 16
+  const bh = 18
+  pill(ctx, x, y, bw, bh, 9)
+  ctx.fillStyle = bg
+  ctx.fill()
+  ctx.fillStyle = fg
+  ctx.textAlign = "left"
+  ctx.fillText(text, x + 8, y + 13)
+}
+
+function truncate(text: string, max: number): string {
+  return text.length > max ? text.slice(0, max - 1) + "…" : text
+}
+
+function drawArrow(ctx: CanvasRenderingContext2D, fromY: number, color: string = "#94a3b8") {
+  const ay = fromY + NH         // start of arrow gap
+  const by = fromY + NH + ARROW // end (top of next node)
+  const mid = (ay + by) / 2
+
+  ctx.strokeStyle = color
+  ctx.lineWidth = 2
   ctx.setLineDash([])
   ctx.beginPath()
-  ctx.moveTo(x, y1)
-  ctx.lineTo(x, y2 - 8)
+  ctx.moveTo(CX, ay)
+  ctx.bezierCurveTo(CX, mid, CX, mid, CX, by - 10)
   ctx.stroke()
 
-  // Arrowhead
-  ctx.fillStyle = "#cbd5e1"
+  // Filled arrowhead
+  ctx.fillStyle = color
   ctx.beginPath()
-  ctx.moveTo(x - 5, y2 - 8)
-  ctx.lineTo(x + 5, y2 - 8)
-  ctx.lineTo(x, y2)
+  ctx.moveTo(CX - 7, by - 10)
+  ctx.lineTo(CX + 7, by - 10)
+  ctx.lineTo(CX, by)
   ctx.closePath()
   ctx.fill()
 }
 
-function drawNode(
-  ctx: CanvasRenderingContext2D,
-  y: number,
-  label: string,
-  type: "trigger" | "automatable" | "manual" | "output"
+// ─── Node drawing ─────────────────────────────────────────────────────────────
+
+function drawTrigger(ctx: CanvasRenderingContext2D, y: number, text: string) {
+  const x = NX
+
+  shadow(ctx, "rgba(24,95,165,0.28)", 18, 6)
+  const grad = ctx.createLinearGradient(x, y, x + NW, y + NH)
+  grad.addColorStop(0, "#185FA5")
+  grad.addColorStop(1, "#2563eb")
+  pill(ctx, x, y, NW, NH, NH / 2)
+  ctx.fillStyle = grad
+  ctx.fill()
+  noShadow(ctx)
+
+  // Left icon circle
+  const iconR = 22
+  const iconCX = x + iconR + 14
+  const iconCY = y + NH / 2
+  ctx.fillStyle = "rgba(255,255,255,0.18)"
+  ctx.beginPath()
+  ctx.arc(iconCX, iconCY, iconR, 0, Math.PI * 2)
+  ctx.fill()
+
+  // Lightning bolt icon (simple polygon)
+  ctx.fillStyle = "#fff"
+  ctx.beginPath()
+  ctx.moveTo(iconCX + 2, iconCY - 10)
+  ctx.lineTo(iconCX - 4, iconCY + 2)
+  ctx.lineTo(iconCX + 2, iconCY + 2)
+  ctx.lineTo(iconCX - 2, iconCY + 11)
+  ctx.lineTo(iconCX + 5, iconCY - 1)
+  ctx.lineTo(iconCX - 1, iconCY - 1)
+  ctx.closePath()
+  ctx.fill()
+
+  // Text
+  ctx.fillStyle = "#fff"
+  ctx.font = "600 13px system-ui,sans-serif"
+  ctx.textAlign = "left"
+  ctx.fillText(truncate(text, 46), x + iconR * 2 + 24, y + NH / 2 + 5)
+
+  // Badge
+  badge(ctx, x + NW - 76, y + 13, "⚡ Trigger", "rgba(255,255,255,0.22)", "#fff")
+}
+
+function drawAutoStep(
+  ctx: CanvasRenderingContext2D, y: number,
+  text: string, num: number, colorIdx: number
 ) {
-  const x = PAD_X
+  const x = NX
+  const [c1, c2] = AUTO_PALETTE[colorIdx % AUTO_PALETTE.length]
 
-  if (type === "trigger") {
-    // Filled blue
-    ctx.fillStyle = "#185FA5"
-    roundRect(ctx, x, y, NODE_W, NODE_H, 10)
-    ctx.fill()
+  shadow(ctx, `${c1}55`, 16, 5)
+  const grad = ctx.createLinearGradient(x, y, x + NW, y)
+  grad.addColorStop(0, c1)
+  grad.addColorStop(1, c2)
+  pill(ctx, x, y, NW, NH, 14)
+  ctx.fillStyle = grad
+  ctx.fill()
+  noShadow(ctx)
 
-    // Badge
-    const badgeText = "✦ Trigger"
-    ctx.font = "600 10px system-ui, sans-serif"
-    const bw = ctx.measureText(badgeText).width + 16
-    const bx = x + NODE_W - bw - 12
-    const by = y + 12
-    ctx.fillStyle = "rgba(255,255,255,0.18)"
-    roundRect(ctx, bx, by, bw, 18, 9)
-    ctx.fill()
-    ctx.fillStyle = "#fff"
-    ctx.fillText(badgeText, bx + 8, by + 13)
+  // Step number circle
+  const numCX = x + 28
+  const numCY = y + NH / 2
+  ctx.fillStyle = "rgba(255,255,255,0.22)"
+  ctx.beginPath()
+  ctx.arc(numCX, numCY, 16, 0, Math.PI * 2)
+  ctx.fill()
+  ctx.fillStyle = "#fff"
+  ctx.font = "bold 13px system-ui,sans-serif"
+  ctx.textAlign = "center"
+  ctx.fillText(String(num), numCX, numCY + 5)
 
-    // Label
-    ctx.fillStyle = "#fff"
-    ctx.font = "600 13px system-ui, sans-serif"
-    ctx.fillText(label, x + 16, y + NODE_H / 2 + 5)
+  // Text
+  ctx.fillStyle = "#fff"
+  ctx.font = "600 13px system-ui,sans-serif"
+  ctx.textAlign = "left"
+  ctx.fillText(truncate(text, 46), x + 56, y + NH / 2 + 5)
 
-  } else if (type === "output") {
-    // Dark fill
-    ctx.fillStyle = "#0f172a"
-    roundRect(ctx, x, y, NODE_W, NODE_H, 10)
-    ctx.fill()
+  // Badge
+  badge(ctx, x + NW - 104, y + 13, "✦ Automatable", "rgba(255,255,255,0.24)", "#fff")
+}
 
-    // Badge
-    const badgeText = "Output"
-    ctx.font = "600 10px system-ui, sans-serif"
-    const bw = ctx.measureText(badgeText).width + 16
-    const bx = x + NODE_W - bw - 12
-    const by = y + 12
-    ctx.fillStyle = "rgba(255,255,255,0.15)"
-    roundRect(ctx, bx, by, bw, 18, 9)
-    ctx.fill()
-    ctx.fillStyle = "#fff"
-    ctx.fillText(badgeText, bx + 8, by + 13)
+function drawManualStep(
+  ctx: CanvasRenderingContext2D, y: number,
+  text: string, num: number
+) {
+  const x = NX
 
-    ctx.fillStyle = "#fff"
-    ctx.font = "600 13px system-ui, sans-serif"
-    ctx.fillText(label, x + 16, y + NODE_H / 2 + 5)
+  shadow(ctx, "rgba(0,0,0,0.06)", 10, 3)
+  pill(ctx, x, y, NW, NH, 14)
+  ctx.fillStyle = "#f8fafc"
+  ctx.fill()
+  noShadow(ctx)
 
-  } else if (type === "automatable") {
-    // Light blue fill + blue border
-    ctx.fillStyle = "#eff6ff"
-    roundRect(ctx, x, y, NODE_W, NODE_H, 10)
-    ctx.fill()
-    ctx.strokeStyle = "#185FA5"
-    ctx.lineWidth = 1.5
-    ctx.setLineDash([])
-    roundRect(ctx, x, y, NODE_W, NODE_H, 10)
-    ctx.stroke()
+  ctx.strokeStyle = "#cbd5e1"
+  ctx.lineWidth = 2
+  ctx.setLineDash([6, 4])
+  pill(ctx, x, y, NW, NH, 14)
+  ctx.stroke()
+  ctx.setLineDash([])
 
-    // Badge
-    const badgeText = "✦ Automatable"
-    ctx.font = "600 10px system-ui, sans-serif"
-    const bw = ctx.measureText(badgeText).width + 16
-    const bx = x + NODE_W - bw - 12
-    const by = y + 12
-    ctx.fillStyle = "#185FA5"
-    roundRect(ctx, bx, by, bw, 18, 9)
-    ctx.fill()
-    ctx.fillStyle = "#fff"
-    ctx.fillText(badgeText, bx + 8, by + 13)
+  // Step number circle
+  const numCX = x + 28
+  const numCY = y + NH / 2
+  ctx.fillStyle = "#e2e8f0"
+  ctx.beginPath()
+  ctx.arc(numCX, numCY, 16, 0, Math.PI * 2)
+  ctx.fill()
+  ctx.fillStyle = "#64748b"
+  ctx.font = "bold 13px system-ui,sans-serif"
+  ctx.textAlign = "center"
+  ctx.fillText(String(num), numCX, numCY + 5)
 
-    ctx.fillStyle = "#185FA5"
-    ctx.font = "600 13px system-ui, sans-serif"
-    ctx.fillText(label, x + 16, y + NODE_H / 2 + 5)
+  // Text
+  ctx.fillStyle = "#334155"
+  ctx.font = "600 13px system-ui,sans-serif"
+  ctx.textAlign = "left"
+  ctx.fillText(truncate(text, 46), x + 56, y + NH / 2 + 5)
 
-  } else {
-    // Manual: light grey + grey border dashed
-    ctx.fillStyle = "#f8fafc"
-    roundRect(ctx, x, y, NODE_W, NODE_H, 10)
-    ctx.fill()
-    ctx.strokeStyle = "#e2e8f0"
-    ctx.lineWidth = 1.5
-    ctx.setLineDash([4, 3])
-    roundRect(ctx, x, y, NODE_W, NODE_H, 10)
-    ctx.stroke()
-    ctx.setLineDash([])
+  // Badge
+  badge(ctx, x + NW - 76, y + 13, "Manual step", "#e2e8f0", "#64748b")
+}
 
-    // Badge
-    const badgeText = "Manual step"
-    ctx.font = "600 10px system-ui, sans-serif"
-    const bw = ctx.measureText(badgeText).width + 16
-    const bx = x + NODE_W - bw - 12
-    const by = y + 12
-    ctx.fillStyle = "#e2e8f0"
-    roundRect(ctx, bx, by, bw, 18, 9)
-    ctx.fill()
-    ctx.fillStyle = "#64748b"
-    ctx.fillText(badgeText, bx + 8, by + 13)
+function drawOutput(ctx: CanvasRenderingContext2D, y: number, text: string) {
+  const x = NX
 
-    ctx.fillStyle = "#334155"
-    ctx.font = "600 13px system-ui, sans-serif"
-    ctx.fillText(label, x + 16, y + NODE_H / 2 + 5)
+  shadow(ctx, "rgba(0,0,0,0.22)", 20, 7)
+  pill(ctx, x, y, NW, NH, 14)
+  ctx.fillStyle = "#0f172a"
+  ctx.fill()
+  noShadow(ctx)
+
+  // Inner glow border
+  ctx.strokeStyle = "rgba(255,255,255,0.1)"
+  ctx.lineWidth = 1.5
+  pill(ctx, x + 2, y + 2, NW - 4, NH - 4, 13)
+  ctx.stroke()
+
+  // Left diamond shape (UML activity final)
+  const dCX = x + 32
+  const dCY = y + NH / 2
+  diamond(ctx, dCX, dCY, 14, 14)
+  ctx.fillStyle = "#334155"
+  ctx.fill()
+  diamond(ctx, dCX, dCY, 7, 7)
+  ctx.fillStyle = "#94a3b8"
+  ctx.fill()
+
+  // Text
+  ctx.fillStyle = "#e2e8f0"
+  ctx.font = "600 13px system-ui,sans-serif"
+  ctx.textAlign = "left"
+  ctx.fillText(truncate(text, 46), x + 58, y + NH / 2 + 5)
+
+  // Badge
+  badge(ctx, x + NW - 68, y + 13, "✓ Output", "rgba(255,255,255,0.1)", "#94a3b8")
+}
+
+function drawBackground(ctx: CanvasRenderingContext2D, w: number, h: number) {
+  ctx.fillStyle = "#ffffff"
+  ctx.fillRect(0, 0, w, h)
+
+  // Dot grid (Excalidraw-ish)
+  ctx.fillStyle = "#e2e8f0"
+  const spacing = 22
+  for (let gx = spacing; gx < w; gx += spacing) {
+    for (let gy = spacing; gy < h; gy += spacing) {
+      ctx.beginPath()
+      ctx.arc(gx, gy, 1.2, 0, Math.PI * 2)
+      ctx.fill()
+    }
   }
 }
 
-function truncate(text: string, maxLen: number): string {
-  return text.length > maxLen ? text.slice(0, maxLen - 1) + "…" : text
+// ─── Types ────────────────────────────────────────────────────────────────────
+
+interface Step {
+  id: string
+  text: string
 }
+
+type Phase = "form" | "diagram"
+
+// ─── Component ───────────────────────────────────────────────────────────────
 
 export default function WorkflowMapperPage() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
@@ -219,7 +343,9 @@ export default function WorkflowMapperPage() {
   const [emailSubmitted, setEmailSubmitted] = useState(false)
   const [emailLoading, setEmailLoading] = useState(false)
 
-  const canMap = trigger.trim().length > 0 && steps.some(s => s.text.trim().length > 0) && output.trim().length > 0
+  const filledSteps = steps.filter(s => s.text.trim().length > 0)
+  const canMap = trigger.trim().length > 0 && filledSteps.length > 0 && output.trim().length > 0
+  const automatableCount = filledSteps.filter(s => isAutomatable(s.text)).length
 
   const addStep = () => {
     if (steps.length >= 10) return
@@ -234,49 +360,56 @@ export default function WorkflowMapperPage() {
     setSteps(prev => prev.map(s => s.id === id ? { ...s, text } : s))
   }
 
-  const filledSteps = steps.filter(s => s.text.trim().length > 0)
-  const automatableCount = filledSteps.filter(s => isAutomatable(s.text)).length
-
   const drawDiagram = () => {
     const canvas = canvasRef.current
     if (!canvas) return
 
-    const totalNodes = filledSteps.length + 2 // trigger + steps + output
-    canvas.width = CANVAS_W
-    canvas.height = totalCanvasHeight(filledSteps.length)
+    const n = filledSteps.length
+    const ch = canvasHeight(n)
+    canvas.width = CW
+    canvas.height = ch
 
     const ctx = canvas.getContext("2d")
     if (!ctx) return
 
-    // Background
-    ctx.fillStyle = "#ffffff"
-    ctx.fillRect(0, 0, canvas.width, canvas.height)
+    drawBackground(ctx, CW, ch)
 
     // Trigger
-    drawNode(ctx, nodeY(0), truncate(trigger.trim(), 55), "trigger")
+    const trigY = nodeTopY(0)
+    drawTrigger(ctx, trigY, trigger.trim())
+    drawArrow(ctx, trigY, "#185FA5")
 
     // Steps
+    let autoIdx = 0
     filledSteps.forEach((step, i) => {
-      drawArrow(ctx, nodeY(i))
-      const type = isAutomatable(step.text) ? "automatable" : "manual"
-      drawNode(ctx, nodeY(i + 1), truncate(step.text, 55), type)
+      const stepY = nodeTopY(i + 1)
+      const auto = isAutomatable(step.text)
+
+      if (auto) {
+        drawAutoStep(ctx, stepY, step.text, i + 1, autoIdx)
+        autoIdx++
+      } else {
+        drawManualStep(ctx, stepY, step.text, i + 1)
+      }
+
+      drawArrow(ctx, stepY, auto ? AUTO_PALETTE[Math.max(autoIdx - 1, 0) % AUTO_PALETTE.length][0] : "#cbd5e1")
     })
 
     // Output
-    drawArrow(ctx, nodeY(filledSteps.length))
-    drawNode(ctx, nodeY(filledSteps.length + 1), truncate(output.trim(), 55), "output")
+    drawOutput(ctx, nodeTopY(n + 1), output.trim())
 
     // Watermark
     ctx.fillStyle = "#cbd5e1"
-    ctx.font = "11px system-ui, sans-serif"
-    ctx.fillText("talktomedata.com", CANVAS_W - 130, canvas.height - 10)
+    ctx.font = "11px system-ui,sans-serif"
+    ctx.textAlign = "right"
+    ctx.fillText("talktomedata.com", CW - 16, ch - 14)
+    ctx.textAlign = "left"
   }
 
   const handleMap = () => {
     if (!canMap) return
     setPhase("diagram")
-    // Draw after state update + canvas mount
-    setTimeout(drawDiagram, 50)
+    setTimeout(drawDiagram, 60)
   }
 
   const handleDownload = () => {
@@ -371,7 +504,7 @@ export default function WorkflowMapperPage() {
                       2. What are the steps in your workflow?
                     </label>
                     <p className="text-xs text-slate-400 mb-3">
-                      Add each manual step in order. The tool will label which ones an agent can automate.
+                      Add each step in order. The tool detects which ones an agent can automate.
                     </p>
                     <div className="space-y-2">
                       {steps.map((step, i) => (
@@ -460,55 +593,52 @@ export default function WorkflowMapperPage() {
                     </button>
                   </div>
 
-                  {/* Summary badge row */}
+                  {/* Summary */}
                   {automatableCount > 0 && (
                     <div className="bg-primary/5 border border-primary/20 rounded-xl px-5 py-4">
                       <p className="text-sm text-slate-700">
-                        <span className="font-bold text-primary">{automatableCount} of {filledSteps.length} step{filledSteps.length !== 1 ? "s" : ""}</span>{" "}
-                        in your workflow can be automated by an AI agent — saving you the manual work every time this workflow runs.
+                        <span className="font-bold text-primary">
+                          {automatableCount} of {filledSteps.length} step{filledSteps.length !== 1 ? "s" : ""}
+                        </span>{" "}
+                        in your workflow can be automated by an AI agent — saving you the manual work every time this runs.
                       </p>
                     </div>
                   )}
 
-                  {/* Canvas */}
-                  <div className="overflow-x-auto rounded-xl border border-slate-200 bg-white">
+                  {/* Canvas diagram */}
+                  <div className="overflow-x-auto rounded-xl border border-slate-200 bg-white p-2">
                     <canvas
                       ref={canvasRef}
-                      className="block mx-auto"
+                      className="block mx-auto rounded-lg"
                       style={{ maxWidth: "100%" }}
                     />
                   </div>
 
-                  {/* Download button */}
-                  <div className="flex items-center gap-3">
+                  {/* Legend + Download */}
+                  <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                    <div className="flex flex-wrap gap-4 text-xs text-slate-500">
+                      <div className="flex items-center gap-1.5">
+                        <span className="w-3 h-3 rounded-full bg-[#185FA5] inline-block" />
+                        Trigger / Output
+                      </div>
+                      <div className="flex items-center gap-1.5">
+                        <span className="w-3 h-3 rounded-sm bg-[#2563eb] inline-block" />
+                        Automatable step
+                      </div>
+                      <div className="flex items-center gap-1.5">
+                        <span className="w-3 h-3 rounded-sm border-2 border-dashed border-slate-300 bg-slate-50 inline-block" />
+                        Manual step
+                      </div>
+                    </div>
                     <button
                       onClick={handleDownload}
-                      className="inline-flex items-center gap-2 px-5 py-2.5 border border-slate-200 rounded-lg text-sm font-medium text-slate-600 hover:border-slate-300 hover:text-slate-800 transition-colors cursor-pointer"
+                      className="inline-flex items-center gap-2 px-4 py-2 border border-slate-200 rounded-lg text-sm font-medium text-slate-600 hover:border-slate-300 hover:text-slate-800 transition-colors cursor-pointer shrink-0"
                     >
                       <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                         <path strokeLinecap="round" strokeLinejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
                       </svg>
-                      Download as PNG
+                      Download PNG
                     </button>
-                    <p className="text-xs text-slate-400">
-                      Share with your team or save for later.
-                    </p>
-                  </div>
-
-                  {/* Legend */}
-                  <div className="flex flex-wrap gap-4 text-xs text-slate-500">
-                    <div className="flex items-center gap-1.5">
-                      <span className="w-3 h-3 rounded-sm bg-[#185FA5] inline-block" />
-                      Trigger / Output
-                    </div>
-                    <div className="flex items-center gap-1.5">
-                      <span className="w-3 h-3 rounded-sm bg-[#eff6ff] border border-[#185FA5] inline-block" />
-                      Automatable step
-                    </div>
-                    <div className="flex items-center gap-1.5">
-                      <span className="w-3 h-3 rounded-sm bg-[#f8fafc] border border-slate-200 inline-block" />
-                      Manual step
-                    </div>
                   </div>
 
                   {/* Email capture */}

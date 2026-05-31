@@ -45,11 +45,10 @@ export default function CalculatorPage() {
   const selectedTeam = TEAM_SIZES.find(t => t.id === teamSize)
 
   const checkedTasks = DEFAULT_TASKS.filter(t => selectedTasks.includes(t.id))
-  const totalPersonHoursPerWeek = checkedTasks.reduce((sum, t) => sum + (taskHours[t.id] ?? t.defaultHours), 0)
-  const totalTeamHoursPerWeek = Math.round(totalPersonHoursPerWeek * (selectedTeam?.multiplier ?? 1))
-  const annualValue = Math.round((totalTeamHoursPerWeek * 52 * HOURLY_RATE) / 100) * 100
+  const totalHoursPerWeek = Math.round(checkedTasks.reduce((sum, t) => sum + (taskHours[t.id] ?? t.defaultHours), 0) * 10) / 10
+  const annualValue = Math.round((totalHoursPerWeek * 52 * HOURLY_RATE) / 100) * 100
 
-  const canCalculate = teamSize && selectedTasks.length > 0
+  const canCalculate = selectedTasks.length > 0
 
   const toggleTask = (id: string) => {
     setSelectedTasks(prev =>
@@ -77,7 +76,7 @@ export default function CalculatorPage() {
           source: "workflow_calculator",
           teamSize: selectedTeam?.label,
           tasks: checkedTasks.map(t => t.label),
-          hoursSaved: totalTeamHoursPerWeek,
+          hoursSaved: totalHoursPerWeek,
           annualValue,
         }),
       })
@@ -128,11 +127,12 @@ export default function CalculatorPage() {
               {phase === "form" ? (
                 <div className="space-y-8">
 
-                  {/* Team size */}
+                  {/* Team size (optional context) */}
                   <div>
-                    <p className="text-sm font-semibold text-slate-700 mb-3">
-                      1. How big is your team?
+                    <p className="text-sm font-semibold text-slate-700 mb-1">
+                      1. How big is your team? <span className="font-normal text-slate-400">(optional)</span>
                     </p>
+                    <p className="text-xs text-slate-400 mb-3">Shown in your results for context — doesn't affect the calculation.</p>
                     <div className="flex flex-wrap gap-2">
                       {TEAM_SIZES.map(t => (
                         <button
@@ -153,7 +153,7 @@ export default function CalculatorPage() {
                   {/* Tasks with hour inputs */}
                   <div>
                     <p className="text-sm font-semibold text-slate-700 mb-1">
-                      2. Which tasks does your team handle manually?
+                      2. Which tasks do you handle manually?
                     </p>
                     <p className="text-xs text-slate-400 mb-3">
                       Check each task that applies and adjust the hours your team spends on it per week.
@@ -238,7 +238,7 @@ export default function CalculatorPage() {
                     </button>
                     {!canCalculate && (
                       <p className="text-xs text-slate-400 mt-2">
-                        Select your team size and at least one task to continue.
+                        Select at least one task to continue.
                       </p>
                     )}
                   </div>
@@ -256,11 +256,12 @@ export default function CalculatorPage() {
 
                     <div className="bg-slate-50 border border-slate-200 rounded-xl p-6 mb-6">
                       <p className="text-slate-500 text-sm mb-2">
-                        Based on {checkedTasks.length} workflow{checkedTasks.length !== 1 ? "s" : ""} · {selectedTeam?.label}
+                        Based on {checkedTasks.length} workflow{checkedTasks.length !== 1 ? "s" : ""}
+                        {selectedTeam ? ` · ${selectedTeam.label}` : ""}
                       </p>
                       <p className="text-2xl sm:text-3xl font-bold text-slate-900 leading-snug">
-                        An agent could save your team{" "}
-                        <span className="text-primary">{totalTeamHoursPerWeek}h/week</span>
+                        An agent could save you{" "}
+                        <span className="text-primary">{totalHoursPerWeek}h/week</span>
                         {" "}— worth approximately{" "}
                         <span className="text-primary">${annualValue.toLocaleString()}/year</span>.
                       </p>
@@ -270,7 +271,7 @@ export default function CalculatorPage() {
                     <div className="grid grid-cols-3 gap-3 mb-6">
                       <div className="border border-slate-200 rounded-xl p-4 text-center">
                         <Clock className="w-4 h-4 text-primary mx-auto mb-1.5" />
-                        <p className="text-2xl font-bold text-slate-900">{totalTeamHoursPerWeek}h</p>
+                        <p className="text-2xl font-bold text-slate-900">{totalHoursPerWeek}h</p>
                         <p className="text-xs text-slate-400 mt-0.5">saved / week</p>
                       </div>
                       <div className="border border-slate-200 rounded-xl p-4 text-center">
