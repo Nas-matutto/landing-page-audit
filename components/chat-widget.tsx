@@ -85,6 +85,7 @@ function UserChip({ text }: { text: string }) {
 export function ChatWidget() {
   const [isOpen, setIsOpen] = useState(false)
   const [showButton, setShowButton] = useState(false)
+  const [pulsing, setPulsing] = useState(true)
   const [step, setStep] = useState(0)
   const [answers, setAnswers] = useState<string[]>([])
   const [showTyping, setShowTyping] = useState(false)
@@ -93,8 +94,15 @@ export function ChatWidget() {
   const [emailError, setEmailError] = useState("")
   const [submitting, setSubmitting] = useState(false)
   const messagesEndRef = useRef<HTMLDivElement>(null)
+  // Ref so scroll/timer callbacks always see the latest dismissed state
+  const dismissedRef = useRef(false)
 
   const SESSION_KEY = "ttmd_chat_dismissed"
+
+  const openWidget = () => {
+    setIsOpen(true)
+    setPulsing(false)
+  }
 
   // Show button after 3s; auto-open after 10s or 50% scroll
   useEffect(() => {
@@ -104,14 +112,13 @@ export function ChatWidget() {
     const buttonTimer = setTimeout(() => setShowButton(true), 3000)
 
     const openTimer = setTimeout(() => {
-      setIsOpen(true)
+      if (!dismissedRef.current) openWidget()
     }, 10000)
 
     const handleScroll = () => {
+      if (dismissedRef.current) return
       const scrolled = window.scrollY / (document.body.scrollHeight - window.innerHeight)
-      if (scrolled >= 0.5) {
-        setIsOpen(true)
-      }
+      if (scrolled >= 0.5) openWidget()
     }
 
     window.addEventListener("scroll", handleScroll, { passive: true })
@@ -174,48 +181,34 @@ export function ChatWidget() {
 
   const handleClose = () => {
     setIsOpen(false)
+    setPulsing(false)
+    dismissedRef.current = true
     sessionStorage.setItem(SESSION_KEY, "1")
   }
 
-  // Build the rendered message list from current step
+  // Build the rendered message list.
+  // Rule: show the agent message for step N once step >= N (not N+1).
   const renderedMessages: React.ReactNode[] = []
 
-  // Step 0 agent message is always shown once open
-  if (step >= 0) {
-    renderedMessages.push(
-      <AgentBubble key="msg-0" text={STEPS[0].message} />
-    )
-  }
+  // Greeting is always visible once the panel opens
+  renderedMessages.push(<AgentBubble key="msg-0" text={STEPS[0].message} />)
 
-  // Each completed step: show selected answer + next agent message
+  // For each step that has been answered, show the answer chip + the next agent message
   for (let i = 0; i < Math.min(step, STEPS.length); i++) {
     if (answers[i]) {
       renderedMessages.push(<UserChip key={`ans-${i}`} text={answers[i]} />)
     }
-    if (i + 1 < step) {
-      const nextMsg = i + 1 < STEPS.length
-        ? STEPS[i + 1].message
-        : i + 1 === EMAIL_STEP
-        ? "Last thing — are you interested in seeing a more tailored recommendation, with no strings attached? Drop your work email below 👇"
-        : "This experience was delivered with an AI Agent. Want to speak to us on how you can implement it in your business?"
+    // Show the agent's response to this answer as soon as step has advanced past it
+    if (i + 1 <= step) {
+      const nextMsg =
+        i + 1 < STEPS.length
+          ? STEPS[i + 1].message
+          : "Last thing — are you interested in seeing a more tailored recommendation, with no strings attached? Drop your work email below 👇"
       renderedMessages.push(<AgentBubble key={`msg-${i + 1}`} text={nextMsg} />)
     }
   }
 
-  // Email step
-  if (step === EMAIL_STEP) {
-    if (answers[STEPS.length - 1]) {
-      renderedMessages.push(<UserChip key="ans-last" text={answers[STEPS.length - 1]} />)
-    }
-    renderedMessages.push(
-      <AgentBubble
-        key="msg-email"
-        text="Last thing — are you interested in seeing a more tailored recommendation, with no strings attached? Drop your work email below 👇"
-      />
-    )
-  }
-
-  // Success step
+  // After email is submitted, show it as a user chip + the final success message
   if (step === SUCCESS_STEP) {
     renderedMessages.push(<UserChip key="ans-email" text={email} />)
     renderedMessages.push(
@@ -236,12 +229,14 @@ export function ChatWidget() {
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.8 }}
-            onClick={() => setIsOpen(true)}
+            onClick={() => openWidget()}
             className="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full bg-linear-to-br from-primary to-violet-500 text-white shadow-lg flex items-center justify-center cursor-pointer hover:scale-105 transition-transform"
             aria-label="Open chat"
           >
-            {/* Pulse ring */}
-            <span className="absolute inset-0 rounded-full bg-linear-to-br from-primary to-violet-500 animate-ping opacity-30" />
+            {/* Pulse ring — stops once user has interacted */}
+            {pulsing && (
+              <span className="absolute inset-0 rounded-full bg-linear-to-br from-primary to-violet-500 animate-ping opacity-30" />
+            )}
             <svg className="w-6 h-6 relative z-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
             </svg>
