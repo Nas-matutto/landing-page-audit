@@ -5,13 +5,8 @@ import { Analytics } from "@vercel/analytics/next"
 import { PostHogProvider } from "@/components/posthog-provider"
 import { GoogleAnalytics } from "@/components/google-analytics"
 import { MetaPixel } from "@/components/meta-pixel"
-import dynamic from "next/dynamic"
+import { ChatWidgetLoader } from "@/components/chat-widget-loader"
 import "./globals.css"
-
-const ChatWidget = dynamic(
-  () => import("@/components/chat-widget").then(m => m.ChatWidget),
-  { ssr: false }
-)
 
 const _geist = Geist({ subsets: ["latin"] })
 const _geistMono = Geist_Mono({ subsets: ["latin"] })
@@ -80,7 +75,7 @@ export default function RootLayout({
         <PostHogProvider>
           {children}
         </PostHogProvider>
-        <ChatWidget />
+        <ChatWidgetLoader />
         <GoogleAnalytics />
         <MetaPixel />
         <Analytics />
