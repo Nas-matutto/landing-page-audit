@@ -104,12 +104,21 @@ export function ChatWidget() {
     setPulsing(false)
   }
 
-  // Show button after 3s; auto-open after 10s or 50% scroll
+  // Show button after 3s (always); auto-open after 10s or 50% scroll only if not dismissed
   useEffect(() => {
-    const dismissed = sessionStorage.getItem(SESSION_KEY)
-    if (dismissed) return
+    const alreadyDismissed = !!sessionStorage.getItem(SESSION_KEY)
+    if (alreadyDismissed) {
+      dismissedRef.current = true
+      setPulsing(false)
+    }
 
+    // Button always appears so user can re-open manually
     const buttonTimer = setTimeout(() => setShowButton(true), 3000)
+
+    // Auto-open triggers only fire if never dismissed
+    if (alreadyDismissed) {
+      return () => clearTimeout(buttonTimer)
+    }
 
     const openTimer = setTimeout(() => {
       if (!dismissedRef.current) openWidget()
