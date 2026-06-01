@@ -8,7 +8,9 @@ const SCORE_MAP = {
 
 async function appendToSheet(row: string[]) {
   const email = process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL
-  const privateKey = process.env.GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY?.replace(/\\n/g, '\n')
+  const privateKey = process.env.GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY
+    ?.replace(/\\n/g, '\n')
+    ?.replace(/^["']|["']$/g, '') // strip accidental surrounding quotes
   const sheetId = process.env.GOOGLE_SHEETS_SPREADSHEET_ID
 
   if (!email || !privateKey || !sheetId) {

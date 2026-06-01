@@ -25,7 +25,7 @@ export async function GET() {
     return NextResponse.json({ ...result, error: 'Missing env vars' }, { status: 500 })
   }
 
-  const privateKey = privateKeyRaw.replace(/\\n/g, '\n')
+  const privateKey = privateKeyRaw.replace(/\\n/g, '\n').replace(/^["']|["']$/g, '')
   result.privateKeyAfterReplace = `starts with "${privateKey.slice(0, 40)}…", ends with "…${privateKey.slice(-30)}"`
 
   // Step 1: Try to authenticate

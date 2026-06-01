@@ -101,7 +101,6 @@ export function ChatWidget() {
   const [email, setEmail] = useState("")
   const [emailError, setEmailError] = useState("")
   const [submitting, setSubmitting] = useState(false)
-  const [showCalendar, setShowCalendar] = useState(false)
   const messagesEndRef = useRef<HTMLDivElement>(null)
   const dismissedRef = useRef(false)
 
@@ -433,7 +432,9 @@ export function ChatWidget() {
                     className="space-y-2"
                   >
                     <button
-                      onClick={() => setShowCalendar(true)}
+                      onClick={() => {
+                        window.open(CALENDAR_URL, 'calendar', 'width=640,height=700,left=200,top=100,resizable=yes,scrollbars=yes')
+                      }}
                       className="flex items-center justify-center gap-2 w-full py-3 text-sm font-semibold text-white rounded-xl bg-linear-to-r from-primary to-violet-500 hover:opacity-90 transition-opacity cursor-pointer"
                     >
                       Book a free call
@@ -458,46 +459,6 @@ export function ChatWidget() {
         )}
       </AnimatePresence>
 
-      {/* Calendar booking modal */}
-      <AnimatePresence>
-        {showCalendar && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[60] flex items-center justify-center bg-black/50 p-4"
-            onClick={e => { if (e.target === e.currentTarget) setShowCalendar(false) }}
-          >
-            <motion.div
-              initial={{ scale: 0.95, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.95, opacity: 0 }}
-              transition={{ type: "spring", stiffness: 380, damping: 30 }}
-              className="relative bg-white rounded-2xl overflow-hidden w-full max-w-2xl flex flex-col"
-              style={{ height: "80vh" }}
-            >
-              <div className="flex items-center justify-between px-4 py-3 border-b border-slate-100 shrink-0">
-                <p className="font-semibold text-slate-800 text-sm">Book a free call</p>
-                <button
-                  onClick={() => setShowCalendar(false)}
-                  className="text-slate-400 hover:text-slate-600 transition-colors p-1 cursor-pointer"
-                  aria-label="Close calendar"
-                >
-                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-                  </svg>
-                </button>
-              </div>
-              <iframe
-                src={CALENDAR_URL}
-                title="Book a free call"
-                className="w-full grow border-none"
-                allow="camera; microphone"
-              />
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </>
   )
 }
