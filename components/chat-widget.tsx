@@ -2,7 +2,6 @@
 
 import { useEffect, useRef, useState } from "react"
 import { AnimatePresence, motion } from "framer-motion"
-import Link from "next/link"
 
 // ─── Conversation definition ──────────────────────────────────────────────────
 
@@ -31,7 +30,7 @@ const CUSTOM_INTENT_MSG = "What are you trying to automate?"
 const EMAIL_STEP = 3
 const SUCCESS_STEP = 4
 const EMAIL_MSG =
-  "Last one — are you interested in learning how an AI Agent can help you, with no strings attached? Drop your work email below 👇"
+  "Last one - are you interested in learning how an AI Agent can help you, with no strings attached? Drop your work email below 👇"
 const SUCCESS_MSG =
   "This experience was delivered with an AI Agent. Want to speak to us on how you can implement it in your business?"
 const TYPING_DELAY = 700
@@ -85,6 +84,8 @@ function UserChip({ text }: { text: string }) {
   )
 }
 
+const CALENDAR_URL = "https://calendar.app.google/44swscmcQVWHCPxN8"
+
 // ─── Main widget ──────────────────────────────────────────────────────────────
 
 export function ChatWidget() {
@@ -100,6 +101,7 @@ export function ChatWidget() {
   const [email, setEmail] = useState("")
   const [emailError, setEmailError] = useState("")
   const [submitting, setSubmitting] = useState(false)
+  const [showCalendar, setShowCalendar] = useState(false)
   const messagesEndRef = useRef<HTMLDivElement>(null)
   const dismissedRef = useRef(false)
 
@@ -430,15 +432,15 @@ export function ChatWidget() {
                     animate={{ opacity: 1, y: 0 }}
                     className="space-y-2"
                   >
-                    <Link
-                      href="/book-demo"
-                      className="flex items-center justify-center gap-2 w-full py-3 text-sm font-semibold text-white rounded-xl bg-linear-to-r from-primary to-violet-500 hover:opacity-90 transition-opacity"
+                    <button
+                      onClick={() => setShowCalendar(true)}
+                      className="flex items-center justify-center gap-2 w-full py-3 text-sm font-semibold text-white rounded-xl bg-linear-to-r from-primary to-violet-500 hover:opacity-90 transition-opacity cursor-pointer"
                     >
                       Book a free call
                       <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                         <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
                       </svg>
-                    </Link>
+                    </button>
                     <button
                       onClick={handleClose}
                       className="w-full py-2 text-xs text-slate-400 hover:text-slate-600 transition-colors cursor-pointer"
@@ -452,6 +454,47 @@ export function ChatWidget() {
 
               </AnimatePresence>
             </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Calendar booking modal */}
+      <AnimatePresence>
+        {showCalendar && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[60] flex items-center justify-center bg-black/50 p-4"
+            onClick={e => { if (e.target === e.currentTarget) setShowCalendar(false) }}
+          >
+            <motion.div
+              initial={{ scale: 0.95, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.95, opacity: 0 }}
+              transition={{ type: "spring", stiffness: 380, damping: 30 }}
+              className="relative bg-white rounded-2xl overflow-hidden w-full max-w-2xl flex flex-col"
+              style={{ height: "80vh" }}
+            >
+              <div className="flex items-center justify-between px-4 py-3 border-b border-slate-100 shrink-0">
+                <p className="font-semibold text-slate-800 text-sm">Book a free call</p>
+                <button
+                  onClick={() => setShowCalendar(false)}
+                  className="text-slate-400 hover:text-slate-600 transition-colors p-1 cursor-pointer"
+                  aria-label="Close calendar"
+                >
+                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+              </div>
+              <iframe
+                src={CALENDAR_URL}
+                title="Book a free call"
+                className="w-full grow border-none"
+                allow="camera; microphone"
+              />
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
