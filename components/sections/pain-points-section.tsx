@@ -33,7 +33,7 @@ export function PainPointsSection() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-16">
-            <p className="text-xs font-semibold tracking-widest uppercase text-primary mb-4">The old way vs. the Agently way</p>
+            <p className="text-xs font-semibold tracking-widest uppercase text-primary mb-4">The old way vs. the TTMD way</p>
             <h2 className="text-4xl sm:text-5xl font-bold tracking-tight text-balance">
               Building AI in-house is broken.{" "}
               <span className="bg-clip-text text-transparent bg-linear-to-r from-primary to-violet-500">

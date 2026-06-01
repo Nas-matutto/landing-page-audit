@@ -27,9 +27,14 @@ const STEPS = [
   },
 ]
 
+const CUSTOM_INTENT_MSG = "What are you trying to automate?"
 const EMAIL_STEP = 3
 const SUCCESS_STEP = 4
-const TYPING_DELAY = 700  // ms before agent message appears
+const EMAIL_MSG =
+  "Last one — are you interested in learning how an AI Agent can help you, with no strings attached? Drop your work email below 👇"
+const SUCCESS_MSG =
+  "This experience was delivered with an AI Agent. Want to speak to us on how you can implement it in your business?"
+const TYPING_DELAY = 700
 
 // ─── Sub-components ───────────────────────────────────────────────────────────
 
@@ -88,23 +93,19 @@ export function ChatWidget() {
   const [pulsing, setPulsing] = useState(true)
   const [step, setStep] = useState(0)
   const [answers, setAnswers] = useState<string[]>([])
+  // "Something else" branch: collect free-text intent before resuming normal flow
+  const [customIntentMode, setCustomIntentMode] = useState(false)
+  const [customIntentText, setCustomIntentText] = useState("")
   const [showTyping, setShowTyping] = useState(false)
-  const [pendingMessage, setPendingMessage] = useState<string | null>(null)
   const [email, setEmail] = useState("")
   const [emailError, setEmailError] = useState("")
   const [submitting, setSubmitting] = useState(false)
   const messagesEndRef = useRef<HTMLDivElement>(null)
-  // Ref so scroll/timer callbacks always see the latest dismissed state
   const dismissedRef = useRef(false)
 
   const SESSION_KEY = "ttmd_chat_dismissed"
 
-  const openWidget = () => {
-    setIsOpen(true)
-    setPulsing(false)
-  }
-
-  // Show button after 3s (always); auto-open after 10s or 50% scroll only if not dismissed
+  // ── Auto-open logic ─────────────────────────────────────────────────────────
   useEffect(() => {
     const alreadyDismissed = !!sessionStorage.getItem(SESSION_KEY)
     if (alreadyDismissed) {
@@ -112,22 +113,28 @@ export function ChatWidget() {
       setPulsing(false)
     }
 
-    // Button always appears so user can re-open manually
-    const buttonTimer = setTimeout(() => setShowButton(true), 3000)
+    // Button always shows after 3 s so user can re-open manually
+    const buttonTimer = setTimeout(() => setShowButton(true), 3_000)
 
-    // Auto-open triggers only fire if never dismissed
     if (alreadyDismissed) {
       return () => clearTimeout(buttonTimer)
     }
 
+    // Use the stable state-setter functions directly — avoids stale-closure issues
     const openTimer = setTimeout(() => {
-      if (!dismissedRef.current) openWidget()
-    }, 10000)
+      if (!dismissedRef.current) {
+        setIsOpen(true)
+        setPulsing(false)
+      }
+    }, 10_000)
 
     const handleScroll = () => {
       if (dismissedRef.current) return
-      const scrolled = window.scrollY / (document.body.scrollHeight - window.innerHeight)
-      if (scrolled >= 0.5) openWidget()
+      const pct = window.scrollY / (document.body.scrollHeight - window.innerHeight)
+      if (pct >= 0.5) {
+        setIsOpen(true)
+        setPulsing(false)
+      }
     }
 
     window.addEventListener("scroll", handleScroll, { passive: true })
@@ -136,20 +143,16 @@ export function ChatWidget() {
       clearTimeout(openTimer)
       window.removeEventListener("scroll", handleScroll)
     }
-  }, [])
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
-  // Scroll to bottom on new content
+  // ── Scroll messages to bottom ───────────────────────────────────────────────
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })
-  }, [step, showTyping, answers])
+  }, [step, showTyping, answers, customIntentMode])
 
-  // Show typing indicator then reveal next agent message
+  // ── Helpers ─────────────────────────────────────────────────────────────────
   const advanceWithTyping = (nextStep: number) => {
     setShowTyping(true)
-    const next = nextStep < STEPS.length ? STEPS[nextStep].message
-      : nextStep === EMAIL_STEP ? "Last thing — are you interested in seeing a more tailored recommendation, with no strings attached? Drop your work email below 👇"
-      : "This experience was delivered with an AI Agent. Want to speak to us on how you can implement it in your business?"
-    setPendingMessage(next)
     setTimeout(() => {
       setShowTyping(false)
       setStep(nextStep)
@@ -157,8 +160,33 @@ export function ChatWidget() {
   }
 
   const handleOption = (option: string) => {
+    if (step === 0 && option === "Something else") {
+      // Store "Something else" so it shows as a user chip, then ask for detail
+      setAnswers(prev => [...prev, "Something else"])
+      setShowTyping(true)
+      setTimeout(() => {
+        setShowTyping(false)
+        setCustomIntentMode(true)
+      }, TYPING_DELAY)
+      return
+    }
     setAnswers(prev => [...prev, option])
     advanceWithTyping(step + 1)
+  }
+
+  const handleCustomIntentSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+    const text = customIntentText.trim()
+    if (!text) return
+    // Replace the placeholder "Something else" with the actual typed intent
+    setAnswers(prev => {
+      const updated = [...prev]
+      updated[0] = text
+      return updated
+    })
+    setCustomIntentMode(false)
+    setCustomIntentText("")
+    advanceWithTyping(1)
   }
 
   const handleEmailSubmit = async (e: React.FormEvent) => {
@@ -169,21 +197,15 @@ export function ChatWidget() {
     }
     setEmailError("")
     setSubmitting(true)
-
     try {
       await fetch("/api/qualify-lead", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          answers,
-          email,
-          page: window.location.pathname,
-        }),
+        body: JSON.stringify({ answers, email, page: window.location.pathname }),
       })
     } catch {
-      // non-blocking — advance regardless
+      // non-blocking
     }
-
     setSubmitting(false)
     advanceWithTyping(SUCCESS_STEP)
   }
@@ -195,39 +217,43 @@ export function ChatWidget() {
     sessionStorage.setItem(SESSION_KEY, "1")
   }
 
-  // Build the rendered message list.
-  // Rule: show the agent message for step N once step >= N (not N+1).
+  // ── Message list ────────────────────────────────────────────────────────────
   const renderedMessages: React.ReactNode[] = []
 
-  // Greeting is always visible once the panel opens
+  // Greeting always visible
   renderedMessages.push(<AgentBubble key="msg-0" text={STEPS[0].message} />)
 
-  // For each step that has been answered, show the answer chip + the next agent message
+  // "Something else" branch (still on step 0)
+  if (step === 0 && answers.length > 0) {
+    renderedMessages.push(<UserChip key="ans-something-else" text="Something else" />)
+    if (!showTyping && customIntentMode) {
+      renderedMessages.push(
+        <AgentBubble key="msg-custom" text={CUSTOM_INTENT_MSG} />
+      )
+    }
+  }
+
+  // Normal Q&A pairs for completed steps (step 1+)
   for (let i = 0; i < Math.min(step, STEPS.length); i++) {
     if (answers[i]) {
       renderedMessages.push(<UserChip key={`ans-${i}`} text={answers[i]} />)
     }
-    // Show the agent's response to this answer as soon as step has advanced past it
     if (i + 1 <= step) {
       const nextMsg =
         i + 1 < STEPS.length
           ? STEPS[i + 1].message
-          : "Last thing — are you interested in seeing a more tailored recommendation, with no strings attached? Drop your work email below 👇"
+          : EMAIL_MSG
       renderedMessages.push(<AgentBubble key={`msg-${i + 1}`} text={nextMsg} />)
     }
   }
 
-  // After email is submitted, show it as a user chip + the final success message
+  // Success: show submitted email + final agent message
   if (step === SUCCESS_STEP) {
     renderedMessages.push(<UserChip key="ans-email" text={email} />)
-    renderedMessages.push(
-      <AgentBubble
-        key="msg-success"
-        text="This experience was delivered with an AI Agent. Want to speak to us on how you can implement it in your business?"
-      />
-    )
+    renderedMessages.push(<AgentBubble key="msg-success" text={SUCCESS_MSG} />)
   }
 
+  // ── Render ──────────────────────────────────────────────────────────────────
   return (
     <>
       {/* Floating trigger button */}
@@ -238,11 +264,10 @@ export function ChatWidget() {
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.8 }}
-            onClick={() => openWidget()}
+            onClick={() => { setIsOpen(true); setPulsing(false) }}
             className="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full bg-linear-to-br from-primary to-violet-500 text-white shadow-lg flex items-center justify-center cursor-pointer hover:scale-105 transition-transform"
             aria-label="Open chat"
           >
-            {/* Pulse ring — stops once user has interacted */}
             {pulsing && (
               <span className="absolute inset-0 rounded-full bg-linear-to-br from-primary to-violet-500 animate-ping opacity-30" />
             )}
@@ -293,7 +318,6 @@ export function ChatWidget() {
             <div className="flex-1 overflow-y-auto bg-slate-50 px-4 py-4 space-y-3 min-h-0">
               {renderedMessages}
 
-              {/* Typing indicator */}
               <AnimatePresence>
                 {showTyping && (
                   <motion.div
@@ -320,8 +344,35 @@ export function ChatWidget() {
             <div className="bg-white border-t border-slate-100 px-4 py-3 shrink-0">
               <AnimatePresence mode="wait">
 
-                {/* Answer chips for steps 0–2 */}
-                {step < EMAIL_STEP && !showTyping && (
+                {/* Custom intent text input — after "Something else" on step 0 */}
+                {step === 0 && customIntentMode && !showTyping && (
+                  <motion.form
+                    key="custom-intent-form"
+                    initial={{ opacity: 0, y: 4 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0 }}
+                    onSubmit={handleCustomIntentSubmit}
+                    className="space-y-2"
+                  >
+                    <input
+                      type="text"
+                      value={customIntentText}
+                      onChange={e => setCustomIntentText(e.target.value)}
+                      placeholder="e.g. Automate order tracking notifications…"
+                      autoFocus
+                      className="w-full px-3 py-2.5 text-sm border border-slate-200 rounded-xl focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary"
+                    />
+                    <button
+                      type="submit"
+                      className="w-full py-2.5 text-sm font-semibold text-white rounded-xl bg-linear-to-r from-primary to-violet-500 hover:opacity-90 transition-opacity cursor-pointer"
+                    >
+                      Send →
+                    </button>
+                  </motion.form>
+                )}
+
+                {/* Answer chips for normal steps 0–2 */}
+                {step < EMAIL_STEP && !customIntentMode && !showTyping && (
                   <motion.div
                     key={`chips-${step}`}
                     initial={{ opacity: 0, y: 4 }}
@@ -359,9 +410,7 @@ export function ChatWidget() {
                       autoFocus
                       className="w-full px-3 py-2.5 text-sm border border-slate-200 rounded-xl focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary"
                     />
-                    {emailError && (
-                      <p className="text-xs text-red-500">{emailError}</p>
-                    )}
+                    {emailError && <p className="text-xs text-red-500">{emailError}</p>}
                     <button
                       type="submit"
                       disabled={submitting}
@@ -399,10 +448,7 @@ export function ChatWidget() {
                   </motion.div>
                 )}
 
-                {/* Placeholder while typing */}
-                {showTyping && (
-                  <motion.div key="typing-placeholder" className="h-8" />
-                )}
+                {showTyping && <motion.div key="typing-placeholder" className="h-8" />}
 
               </AnimatePresence>
             </div>
