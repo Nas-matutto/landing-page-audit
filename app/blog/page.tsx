@@ -1,10 +1,29 @@
+import type { Metadata } from "next"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { Calendar, Clock, ArrowRight } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 
+export const metadata: Metadata = {
+  title: "Blog — AI Agents & Automation Guides | Talk to me Data",
+  description:
+    "Practical guides on building and deploying AI agents for small and medium businesses. No code, no complexity — just results.",
+}
+
 const blogPosts = [
+  {
+    slug: "ai-agents-for-small-business",
+    title: "AI Agents for Small Business: How SMBs Are Automating Operations Without a Tech Team",
+    excerpt:
+      "Most small business owners assume AI automation is reserved for companies with large engineering teams and enterprise budgets. It isn't. Here's how AI agents are changing what's possible for SMBs — and how to get started.",
+    category: "AI Agents",
+    date: "June 3, 2026",
+    readTime: "13 min read",
+    image: "/blog/ai-agents-smb-cover.png",
+    author: "Nas",
+    featured: true,
+  },
   {
     slug: "how-to-use-intent-signals-to-increase-conversion-rates",
     title: "How to Use Intent Signals to Increase Your Conversion Rates",
@@ -15,7 +34,7 @@ const blogPosts = [
     readTime: "10 min read",
     image: "/blog/Signal_based_buying.jpg",
     author: "Nas",
-    featured: true,
+    featured: false,
   },
   {
     slug: "how-to-analyze-website-conversion-issues",
@@ -103,7 +122,7 @@ const blogPosts = [
   },
 ]
 
-const categories = ["All", "Sales Intelligence", "Lead Generation", "Conversion", "Performance", "AI & Conversion", "Website Optimization"]
+const categories = ["All", "AI Agents", "Sales Intelligence", "Lead Generation", "Conversion", "Performance", "AI & Conversion", "Website Optimization"]
 
 export default function BlogPage() {
   return (
@@ -113,15 +132,15 @@ export default function BlogPage() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           {/* Header Section */}
           <div className="max-w-3xl mx-auto text-center mb-16">
-            <p className="text-xs font-semibold tracking-widest uppercase text-primary mb-4">Signal-based sales</p>
+            <p className="text-xs font-semibold tracking-widest uppercase text-primary mb-4">AI Agents & Automation</p>
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-balance mb-6 text-slate-900">
-              Tips to{" "}
+              Read the best tips to launch your{" "}
               <span className="bg-clip-text text-transparent bg-linear-to-r from-primary to-violet-500">
-                Boost Sales
+                AI Agents
               </span>
             </h1>
             <p className="text-lg sm:text-xl text-slate-500 text-pretty leading-relaxed">
-              Guides and strategies for signal-based prospecting, warm outreach, and converting competitor users into your customers.
+              Practical guides on building, deploying and automating AI agents for your business — no code, no complexity, just results.
             </p>
           </div>
 

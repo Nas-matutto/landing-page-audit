@@ -50,6 +50,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
     // Blog posts
     {
+      url: `${baseUrl}/blog/ai-agents-for-small-business`,
+      lastModified: new Date('2026-06-03'),
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
       url: `${baseUrl}/blog/how-to-use-intent-signals-to-increase-conversion-rates`,
       lastModified: new Date('2026-04-21'),
       changeFrequency: 'monthly',
