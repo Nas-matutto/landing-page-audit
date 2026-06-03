@@ -81,17 +81,6 @@ export default function BlogPost() {
                 </div>
               </div>
 
-              {/* Hero Image */}
-              <div className="relative w-full h-72 sm:h-96 rounded-2xl overflow-hidden mb-10 bg-slate-100">
-                <Image
-                  src="/blog/ai-agents-smb-cover.png"
-                  alt="AI Agents for Small Business"
-                  fill
-                  className="object-cover"
-                  priority
-                />
-              </div>
-
               {/* Article Content */}
               <div className="prose prose-lg max-w-none">
                 <div className="space-y-6 text-muted-foreground leading-relaxed">
@@ -113,7 +102,7 @@ export default function BlogPost() {
                     Running a small or medium-sized business has always meant doing more with less. You hire carefully, spend cautiously, and find creative ways to stretch a team of five or ten people to cover ground that larger competitors handle with entire departments. For years, that tradeoff was simply the cost of being small - not a problem to be solved so much as a reality to be managed. But something meaningful has shifted in how businesses use software, and for SMB owners paying attention, the timing is genuinely good.
                   </p>
                   <p>
-                    AI agents represent a fundamentally different category of software from the chatbots and rule-based automation tools that came before them. Where a traditional chatbot follows a rigid script and breaks down the moment a user goes off the expected path, an AI agent can reason through novel situations, decide which actions to take, connect to your existing tools, and complete multi-step workflows end-to-end — without a human being at every decision point. The largest enterprise software vendors have spent the past two years building these capabilities into their platforms at enormous cost. The byproduct is that the underlying technology is now mature enough for specialist implementation teams to deploy it affordably for businesses that have never had a dedicated engineering function.
+                    AI agents represent a fundamentally different category of software from the chatbots and rule-based automation tools that came before them. Where a traditional chatbot follows a rigid script and breaks down the moment a user goes off the expected path, an AI agent can reason through novel situations, decide which actions to take, connect to your existing tools, and complete multi-step workflows end-to-end, without a human being at every decision point. The largest enterprise software vendors have spent the past two years building these capabilities into their platforms at enormous cost. The byproduct is that the underlying technology is now mature enough for specialist implementation teams to deploy it affordably for businesses that have never had a dedicated engineering function.
                   </p>
                   <p>
                     This guide covers what AI agents actually are, where they deliver the most immediate value for small and medium businesses, what realistic ROI looks like, and how to approach your first implementation without needing to hire a developer or sit through months of complex onboarding.
@@ -125,13 +114,13 @@ export default function BlogPost() {
                     The term "AI" gets applied to so many different things that it has become almost meaningless as a descriptor. Before talking about where agents create value for SMBs, it is worth being precise about what separates an AI agent from the tools that came before it, because the distinction has real implications for what you can and cannot automate.
                   </p>
                   <p>
-                    A rule-based chatbot is essentially a decision tree. It presents options, waits for the user to select one, and follows a branch. It can handle a finite set of scenarios well and everything else poorly. Most of the "chatbots" businesses deployed in the 2018–2022 era fell into this category, which is why the experience of using them was often so frustrating — the moment a customer asked something slightly outside the script, the bot either returned a generic fallback response or escalated to a human.
+                    A rule-based chatbot is essentially a decision tree. It presents options, waits for the user to select one, and follows a branch. It can handle a finite set of scenarios well and everything else poorly. Most of the "chatbots" businesses deployed in the 2018–2022 era fell into this category, which is why the experience of using them was often so frustrating - the moment a customer asked something slightly outside the script, the bot either returned a generic fallback response or escalated to a human.
                   </p>
                   <p>
-                    An AI agent operates differently at every level. It uses a large language model (LLM) to understand intent rather than match keywords, so it can handle questions it has never seen before. It has access to tools — your CRM, your calendar, your inbox, your knowledge base — and it can take actions, not just retrieve information. It can break a complex request into sub-tasks, execute them in sequence, check its own work, and adjust if something goes wrong. And critically, it can do all of this without a human supervising each step, because it has been configured with enough context about your business to know when it should act confidently and when it should escalate.
+                    An AI agent operates differently at every level. It uses a large language model (LLM) to understand intent rather than match keywords, so it can handle questions it has never seen before. It has access to tools such as your CRM, your calendar, your inbox, your knowledge base, and it can take actions, not just retrieve information. It can break a complex request into sub-tasks, execute them in sequence, check its own work, and adjust if something goes wrong. And critically, it can do all of this without a human supervising each step, because it has been configured with enough context about your business to know when it should act confidently and when it should escalate.
                   </p>
                   <p>
-                    For a small business, this matters because it means the automation ceiling is far higher than most owners assume. You are not limited to automating "press 1 for sales, press 2 for support." You can automate the full inbound sales qualification flow, the scheduling of the follow-up call, the logging of the outcome into your CRM, and the triggering of the next nurture email — all without anyone touching it.
+                    For a small business, this matters because it means the automation ceiling is far higher than most owners assume. You are not limited to automating "press 1 for sales, press 2 for support." You can automate the full inbound sales qualification flow, the scheduling of the follow-up call, the logging of the outcome into your CRM, and the triggering of the next nurture email - all without anyone touching it.
                   </p>
 
                   {/* Section 2 */}
@@ -142,57 +131,65 @@ export default function BlogPost() {
 
                   <h3 className="text-xl font-bold text-foreground mt-8 mb-3">1. Customer support and FAQ handling</h3>
                   <p>
-                    Most businesses find, when they actually audit their support volume, that somewhere between 60 and 80 percent of inbound questions fall into a relatively small number of categories. Delivery timelines, pricing, return policies, product specifications, account access — the same questions, asked in slightly different ways, over and over. Every one of those questions requires someone to stop what they are doing, read the message, find the answer, write a reply, and send it. Multiply that by 50 messages a week across a team of three people, and you are looking at a meaningful portion of productive time consumed by work that does not require human judgement.
+                    Most businesses find, when they actually audit their support volume, that somewhere between 60 and 80 percent of inbound questions fall into a relatively small number of categories. Delivery timelines, pricing, return policies, product specifications, account access - the same questions, asked in slightly different ways, over and over. Every one of those questions requires someone to stop what they are doing, read the message, find the answer, write a reply, and send it. Multiply that by 50 messages a week across a team of three people, and you are looking at a meaningful portion of productive time consumed by work that does not require human judgement.
                   </p>
                   <p>
-                    An AI customer support agent, trained on your existing documentation and given access to relevant systems, can handle that 60–80 percent autonomously and instantly — at any hour, on any day, without anyone on your team involved. The remaining 20–40 percent that genuinely requires human input gets escalated with context already assembled, so the person picking it up does not have to reconstruct the situation from scratch. The result is faster resolution for customers and significantly less time spent on repetitive communication by your team.
+                    An AI customer support agent, trained on your existing documentation and given access to relevant systems, can handle that 60–80 percent autonomously and instantly - at any hour, on any day, without anyone on your team involved. The remaining 20–40 percent that genuinely requires human input gets escalated with context already assembled, so the person picking it up does not have to reconstruct the situation from scratch. The result is faster resolution for customers and significantly less time spent on repetitive communication by your team.
                   </p>
 
                   <h3 className="text-xl font-bold text-foreground mt-8 mb-3">2. Lead qualification</h3>
                   <p>
-                    Inbound leads are valuable, but they are not all equal, and the process of separating the high-intent prospects from the casual browsers tends to consume a disproportionate amount of time. Someone has to make contact, ask the right qualifying questions, assess the answers, and decide whether this is worth a sales conversation. If that someone is you or a senior member of your team, you are spending high-cost time on a task that is largely mechanical — the questions are always the same, the scoring logic is always the same, and the routing decision follows from the answers in a predictable way.
+                    Inbound leads are valuable, but they are not all equal, and the process of separating the high-intent prospects from the casual browsers tends to consume a disproportionate amount of time. Someone has to make contact, ask the right qualifying questions, assess the answers, and decide whether this is worth a sales conversation. If that someone is you or a senior member of your team, you are spending high-cost time on a task that is largely mechanical, as the questions are always the same, the scoring logic is always the same, and the routing decision follows from the answers in a predictable way.
                   </p>
                   <p>
-                    A lead qualification agent can engage every inbound enquiry within seconds of it arriving, work through a structured conversation designed to surface intent, team size, timeline and budget, score the lead based on those answers, and either route them directly to a calendar booking link or flag them for manual review — all before a human has seen the notification. You can see a version of this <Link href="/#" className="text-primary hover:underline">on our own website</Link>, where the chat widget you may have encountered qualifies visitors and routes them to a demo booking. We built it exactly this way because it works.
+                    A lead qualification agent can engage every inbound enquiry within seconds of it arriving, work through a structured conversation designed to surface intent, team size, timeline and budget, score the lead based on those answers, and either route them directly to a calendar booking link or flag them for manual review - all before a human has seen the notification. You can see a version of this <Link href="/#" className="text-primary hover:underline">on our own website</Link>, where the chat widget you may have encountered qualifies visitors and routes them to a demo booking. We built it exactly this way because it works.
                   </p>
 
                   <h3 className="text-xl font-bold text-foreground mt-8 mb-3">3. Appointment booking and scheduling</h3>
                   <p>
-                    The back-and-forth involved in booking a meeting is one of those small time costs that does not feel significant in isolation but compounds painfully across a week. Four emails to find a slot that works, the rescheduling request that comes in the day before, the reminder that needs to go out the morning of — none of these tasks require human intelligence, yet all of them require a human to stop and do something. A scheduling agent connected to your calendar can handle the entire process: suggest available times based on real-time availability, confirm the booking, send reminders, and manage rescheduling requests without you being involved at any point.
+                    The back-and-forth involved in booking a meeting is one of those small time costs that does not feel significant in isolation but compounds painfully across a week. Four emails to find a slot that works, the rescheduling request that comes in the day before, the reminder that needs to go out the morning of - none of these tasks require human intelligence, yet all of them require a human to stop and do something. A scheduling agent connected to your calendar can handle the entire process: suggest available times based on real-time availability, confirm the booking, send reminders, and manage rescheduling requests without you being involved at any point.
                   </p>
                   <p>
-                    For service businesses in particular — consultancies, clinics, agencies, coaches — where revenue is directly tied to booked time, the value of eliminating scheduling friction is immediate and measurable. Our <Link href="/free-tools/calculator" className="text-primary hover:underline">ROI calculator</Link> can help you put a number on exactly how many hours your team is spending on scheduling today and what recovering that time is worth.
+                    For service businesses in particular such as consultancies, clinics, agencies, coaches etc. where revenue is directly tied to booked time, the value of eliminating scheduling friction is immediate and measurable. Our <Link href="/free-tools/calculator" className="text-primary hover:underline">ROI calculator</Link> can help you put a number on exactly how many hours your team is spending on scheduling today and what recovering that time is worth.
                   </p>
 
                   <h3 className="text-xl font-bold text-foreground mt-8 mb-3">4. Data entry and internal reporting</h3>
                   <p>
-                    Small businesses often have data scattered across a surprisingly large number of places: a CRM here, a spreadsheet there, an accounting platform somewhere else, sales figures in one system and customer records in another. Pulling these sources together into a weekly overview, a monthly management report, or a dashboard that gives you an actual picture of the business tends to fall to whoever has the most context — usually the founder or a senior operator — and it typically takes longer than it should because the data does not naturally live in one place.
+                    Small businesses often have data scattered across a surprisingly large number of places: a CRM here, a spreadsheet there, an accounting platform somewhere else, sales figures in one system and customer records in another. Pulling these sources together into a weekly overview, a monthly management report, or a dashboard that gives you an actual picture of the business tends to fall to whoever has the most context (usually the founder or a senior operator) and it typically takes longer than it should because the data does not naturally live in one place.
                   </p>
                   <p>
-                    An AI agent built for data retrieval and reporting can query your systems on a schedule, aggregate the relevant numbers, and produce a formatted summary — either emailed to you automatically or posted to a shared Slack channel — without anyone lifting a finger. The same approach applies to data entry: if information is arriving through one channel (a form, an email, a spreadsheet upload) and needs to be entered into another system (a CRM, a database, an ERP), an agent can handle the translation reliably and at volume.
+                    An AI agent built for data retrieval and reporting can query your systems on a schedule, aggregate the relevant numbers, and produce a formatted summary (either emailed to you automatically or posted to a shared Slack channel) without anyone lifting a finger. The same approach applies to data entry: if information is arriving through one channel (a form, an email, a spreadsheet upload) and needs to be entered into another system (a CRM, a database, an ERP), an agent can handle the translation reliably and at volume.
                   </p>
 
                   <h3 className="text-xl font-bold text-foreground mt-8 mb-3">5. Internal document Q&A</h3>
                   <p>
-                    Every business accumulates documentation over time: operational manuals, HR policies, product specifications, supplier contracts, compliance guidelines, training materials. The problem is that documentation is only useful if people can find the right information quickly, and in practice, finding an answer buried in a 40-page policy document takes long enough that people often just ask a colleague instead — which means a question that should take 30 seconds to answer takes 10 minutes of someone else's time.
+                    Every business accumulates documentation over time: operational manuals, HR policies, product specifications, supplier contracts, compliance guidelines, training materials. The problem is that documentation is only useful if people can find the right information quickly, and in practice, finding an answer buried in a 40-page policy document takes long enough that people often just ask a colleague instead, which means a question that should take 30 seconds to answer takes 10 minutes of someone else's time.
                   </p>
                   <p>
-                    A document Q&A agent ingests your existing files and lets staff — or customers — ask natural language questions and receive accurate, sourced answers instantly. "What is our returns policy for items purchased over 90 days ago?" "What does clause 7 of the supplier agreement say about delivery timelines?" "What are the eligibility criteria for the enhanced leave policy?" These are all questions that an agent can answer correctly in seconds, directly from your documentation, without any human involvement.
+                    A document Q&A agent ingests your existing files and lets staff or even customers ask natural language questions and receive accurate, sourced answers instantly. "What is our returns policy for items purchased over 90 days ago?" "What does clause 7 of the supplier agreement say about delivery timelines?" "What are the eligibility criteria for the enhanced leave policy?" These are all questions that an agent can answer correctly in seconds, directly from your documentation, without any human involvement.
                   </p>
 
                   {/* Section 3 */}
+                  <div className="relative w-full h-72 sm:h-80 rounded-2xl overflow-hidden my-10 bg-slate-100">
+                    <Image
+                      src="/blog/ai-agents-smb-cover.png"
+                      alt="AI Agents for Small Business — hire agents, not people"
+                      fill
+                      className="object-contain"
+                    />
+                  </div>
                   <h2 className="text-2xl font-bold text-foreground mt-10 mb-4">What the numbers actually look like</h2>
                   <p>
                     The ROI case for AI agents tends to sound abstract until you apply it to a specific context. Here is a concrete example using numbers that are representative of what we see in practice.
                   </p>
                   <p>
-                    Consider a professional services firm with 12 employees. Their customer support inbox receives around 180 messages per week. On average, each message takes four minutes to read and respond to — straightforward enough, but it adds up to 12 hours of team time per week. At a blended cost of £35 per hour for the people handling those messages, that is £420 per week, or roughly £21,000 per year, in labour dedicated to replying to emails that are mostly asking the same questions. An AI support agent handling 70 percent of those messages autonomously reclaims 8.4 hours per week — time that goes back to client work, business development, or simply not requiring the team to work late on Fridays.
+                    Consider a professional services firm with 12 employees. Their customer support inbox receives around 180 messages per week. On average, each message takes four minutes to read and respond to - straightforward enough, but it adds up to 12 hours of team time per week. At a blended cost of $35 per hour for the people handling those messages, that is $420 per week, or roughly $21,000 per year, in labour dedicated to replying to emails that are mostly asking the same questions. An AI support agent handling 70 percent of those messages autonomously reclaims 8.4 hours per week - time that goes back to client work, business development, or simply not requiring the team to work late on Fridays.
                   </p>
                   <p>
                     Add a lead qualification agent that engages every inbound enquiry and qualifies them before they reach a salesperson, and you remove the time your most senior people spend on prospects who were never going to buy. Add a scheduling agent and you stop losing 90 minutes a day to calendar management. The compounding effect across two or three agents deployed in tandem is where small businesses typically find the most dramatic shift in how their week feels.
                   </p>
                   <p>
-                    Research from the <a href="https://www.mckinsey.com/capabilities/mckinsey-digital/our-insights" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">McKinsey Global Institute</a> consistently finds that knowledge workers spend 19 percent of their working week searching for and gathering information — a category that maps almost entirely onto tasks that AI agents can perform autonomously. For an SMB owner, recovering even half of that time is the equivalent of hiring an additional part-time employee without the payroll cost.
+                    Research from the <a href="https://www.mckinsey.com/capabilities/mckinsey-digital/our-insights" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">McKinsey Global Institute</a> consistently finds that knowledge workers spend 19 percent of their working week searching for and gathering information, a category that maps almost entirely onto tasks that AI agents can perform autonomously. For an SMB owner, recovering even half of that time is the equivalent of hiring an additional part-time employee without the payroll cost.
                   </p>
                   <p>
                     You can run your own numbers using our <Link href="/free-tools/calculator" className="text-primary hover:underline">workflow time savings calculator</Link>, which lets you select the tasks your team currently handles manually and see the weekly and annual cost of that time.
@@ -204,7 +201,7 @@ export default function BlogPost() {
                     By far the most common reason SMB owners give for not yet implementing AI agents is a version of "we don't have the technical capability to do it ourselves." It is a reasonable concern, but it rests on a false assumption: that building and deploying an AI agent is something you need to do yourself.
                   </p>
                   <p>
-                    You would not expect to build your own accounting software simply because you needed to manage your finances. You would not wire your own office network because you needed reliable internet. In both cases, you would identify the outcome you needed and engage someone who had built this kind of thing many times before. AI agent implementation is no different. The technical complexity — choosing the right model, designing the conversation flow, connecting the relevant APIs, testing edge cases, monitoring performance after launch — is the implementation partner's problem, not yours.
+                    You would not expect to build your own accounting software simply because you needed to manage your finances. You would not wire your own office network because you needed reliable internet. In both cases, you would identify the outcome you needed and engage someone who had built this kind of thing many times before. AI agent implementation is no different. The technical complexity, like choosing the right model, designing the conversation flow, connecting the relevant APIs, testing edge cases, monitoring performance after launch etc. is the implementation partner's problem, not yours.
                   </p>
                   <p>
                     What you do bring to the process is knowledge of your own business: what the workflow looks like today, what good looks like when it is working correctly, and where the edge cases are that the agent will need to handle. That knowledge cannot be replaced, and it is what makes the difference between an agent that is technically correct and one that actually fits how your business operates.
@@ -216,10 +213,10 @@ export default function BlogPost() {
                   {/* Section 5 */}
                   <h2 className="text-2xl font-bold text-foreground mt-10 mb-4">How to approach your first AI agent implementation</h2>
                   <p>
-                    The most common mistake businesses make when approaching automation for the first time is trying to automate everything at once. They identify five workflows they want to improve, scope a complex multi-agent system, get overwhelmed by the apparent complexity, and do nothing. The better approach is to identify one high-volume, well-defined workflow — ideally one where the current manual process already has a clear structure — and start there.
+                    The most common mistake businesses make when approaching automation for the first time is trying to automate everything at once. They identify five workflows they want to improve, scope a complex multi-agent system, get overwhelmed by the apparent complexity, and do nothing. The better approach is to identify one high-volume, well-defined workflow (ideally one where the current manual process already has a clear structure) and start there.
                   </p>
                   <p>
-                    A useful way to choose your first agent is to ask: which recurring task does my team spend the most time on that follows a predictable pattern? The answer is almost always customer communication, internal reporting, or scheduling — the exact categories where agents deliver the fastest return. Build one agent, run it alongside the existing manual process for two weeks so you can verify it is performing correctly, and then hand it over fully. Once you have seen an agent working reliably in one area of the business, you will have a much clearer sense of where to deploy the next one.
+                    A useful way to choose your first agent is to ask: which recurring task does my team spend the most time on that follows a predictable pattern? The answer is almost always customer communication, internal reporting, or scheduling - the exact categories where agents deliver the fastest return. Build one agent, run it alongside the existing manual process for two weeks so you can verify it is performing correctly, and then hand it over fully. Once you have seen an agent working reliably in one area of the business, you will have a much clearer sense of where to deploy the next one.
                   </p>
                   <p>
                     The <Link href="/free-tools/workflow-mapper" className="text-primary hover:underline">workflow mapper tool</Link> on our site is a practical starting point if you want to visualise your current processes and identify which steps are most automatable. It takes less than five minutes and gives you a visual breakdown of where AI agents could have the highest impact.
@@ -240,16 +237,16 @@ export default function BlogPost() {
                   </div>
 
                   {/* Section 6 */}
-                  <h2 className="text-2xl font-bold text-foreground mt-10 mb-4">Common concerns — and honest answers</h2>
+                  <h2 className="text-2xl font-bold text-foreground mt-10 mb-4">Common concerns and honest answers</h2>
 
                   <h3 className="text-xl font-bold text-foreground mt-8 mb-3">What if the agent makes a mistake?</h3>
                   <p>
-                    AI agents make mistakes. Humans also make mistakes, and at high volume they do so at a rate that is rarely measured or acknowledged. The right question is not "can the agent be wrong?" but "how do we design the system so that mistakes are caught before they cause harm?" Good implementation includes guardrails — confidence thresholds below which the agent escalates to a human, human review queues for edge cases, and monitoring dashboards that flag anomalies. The goal is not to replace human judgement entirely; it is to deploy human judgement where it genuinely adds value and automate the rest.
+                    AI agents make mistakes. Humans also make mistakes, and at high volume they do so at a rate that is rarely measured or acknowledged. The right question is not "can the agent be wrong?" but "how do we design the system so that mistakes are caught before they cause harm?" Good implementation includes guardrails, because they establish confidence thresholds below which the agent escalates to a human, human review queues for edge cases, and monitoring dashboards that flag anomalies. The goal is not to replace human judgement entirely; it is to deploy human judgement where it genuinely adds value and automate the rest.
                   </p>
 
                   <h3 className="text-xl font-bold text-foreground mt-8 mb-3">Will our customers know they are talking to an agent?</h3>
                   <p>
-                    This is a question of design choice as much as technical capability. Some businesses prefer full transparency — the agent introduces itself as an AI assistant from the outset. Others use agents for the back-end processing (lead scoring, data logging, scheduling) and only surface human-facing communication for the interactions that genuinely benefit from it. We work with clients on both approaches depending on their brand positioning and customer expectations. What we would never recommend is designing an agent to actively deceive customers into thinking they are speaking with a human — both because it erodes trust when discovered, and because it is increasingly regulated in many jurisdictions.
+                    This is a question of design choice as much as technical capability. Some businesses prefer full transparency - the agent introduces itself as an AI assistant from the outset. Others use agents for the back-end processing (lead scoring, data logging, scheduling) and only surface human-facing communication for the interactions that genuinely benefit from it. We work with clients on both approaches depending on their brand positioning and customer expectations. What we would never recommend is designing an agent to actively deceive customers into thinking they are speaking with a human - both because it erodes trust when discovered, and because it is increasingly regulated in many jurisdictions.
                   </p>
 
                   <h3 className="text-xl font-bold text-foreground mt-8 mb-3">Is our data safe?</h3>
@@ -266,7 +263,7 @@ export default function BlogPost() {
                     For small and medium businesses in particular, the case for moving now is stronger than the case for waiting. The technology is mature, the implementation cost is manageable, and the competitive landscape has not yet sorted itself into businesses that have adopted this and businesses that have not. That window will not stay open indefinitely.
                   </p>
                   <p>
-                    If you want to understand what AI agents could realistically do for your specific business — not a theoretical overview, but a concrete look at your actual workflows and where automation would have the highest impact — <Link href="/book-demo" className="text-primary hover:underline font-semibold">book a free 20-minute call with our team</Link>. We will tell you exactly what is possible and what it would take to get there.
+                    If you want to understand what AI agents could realistically do for your specific business, not just a theoretical overview, but a concrete look at your actual workflows and where automation would have the highest impact - <Link href="/book-demo" className="text-primary hover:underline font-semibold">book a free 20-minute call with our team</Link>. We will tell you exactly what is possible and what it would take to get there.
                   </p>
 
                 </div>
@@ -300,7 +297,7 @@ export default function BlogPost() {
               {/* Bottom CTA */}
               <div className="mt-16 text-center border-t border-slate-100 pt-12">
                 <p className="text-sm text-muted-foreground mb-2">Ready to automate your first workflow?</p>
-                <h3 className="text-2xl font-bold text-foreground mb-4">Talk to us — it takes 20 minutes</h3>
+                <h3 className="text-2xl font-bold text-foreground mb-4">Talk to us - it takes 20 minutes</h3>
                 <p className="text-muted-foreground mb-8 max-w-xl mx-auto">
                   We will scope your use case, tell you what is realistic, and give you a clear picture of what implementation looks like. No commitment required.
                 </p>

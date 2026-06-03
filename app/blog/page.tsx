@@ -6,9 +6,9 @@ import Image from "next/image"
 import Link from "next/link"
 
 export const metadata: Metadata = {
-  title: "Blog — AI Agents & Automation Guides | Talk to me Data",
+  title: "AI Agents & Automation Guides | Talk to me Data",
   description:
-    "Practical guides on building and deploying AI agents for small and medium businesses. No code, no complexity — just results.",
+    "Practical guides on building and deploying AI agents for small and medium businesses. No code, no complexity - just results.",
 }
 
 const blogPosts = [
@@ -140,7 +140,7 @@ export default function BlogPage() {
               </span>
             </h1>
             <p className="text-lg sm:text-xl text-slate-500 text-pretty leading-relaxed">
-              Practical guides on building, deploying and automating AI agents for your business — no code, no complexity, just results.
+              Practical guides on building, deploying and automating AI agents for your business.
             </p>
           </div>
 
