@@ -25,6 +25,18 @@ const blogPosts = [
     featured: true,
   },
   {
+    slug: "how-to-build-ai-voice-agent",
+    title: "How to Build an AI Voice Agent for Free Using Claude and ElevenLabs",
+    excerpt:
+      "A step-by-step guide to building your first AI voice agent with no code and no cost — using Claude Desktop and ElevenLabs. Includes a ready-to-use agent prompt and a full video walkthrough.",
+    category: "AI Agents",
+    date: "June 7, 2026",
+    readTime: "11 min read",
+    image: "",
+    author: "Nas",
+    featured: false,
+  },
+  {
     slug: "how-to-use-intent-signals-to-increase-conversion-rates",
     title: "How to Use Intent Signals to Increase Your Conversion Rates",
     excerpt:

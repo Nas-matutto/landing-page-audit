@@ -56,6 +56,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
     {
+      url: `${baseUrl}/blog/how-to-build-ai-voice-agent`,
+      lastModified: new Date('2026-06-07'),
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
       url: `${baseUrl}/blog/how-to-use-intent-signals-to-increase-conversion-rates`,
       lastModified: new Date('2026-04-21'),
       changeFrequency: 'monthly',
