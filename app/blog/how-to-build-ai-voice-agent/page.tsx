@@ -3,6 +3,7 @@
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { Calendar, Clock, ArrowLeft, ChevronDown } from "lucide-react"
+import Image from "next/image"
 import Link from "next/link"
 import { useState } from "react"
 
@@ -37,12 +38,12 @@ export default function BlogPost() {
     {
       question: "Can I use this setup to handle real customer interactions for my business?",
       answer:
-        "Not in the configuration we build here, no. This demo runs inside Claude Desktop and processes one exchange at a time — you type a question, Claude responds, ElevenLabs converts that response to audio, and you play it back. It does not handle live phone calls, run continuously in the background, or integrate with your existing systems. Building a voice agent that does those things requires a proper deployment environment, telephony integration, speech-to-text input, and ongoing monitoring. That is exactly what Talk to Me Data builds and manages for businesses — book a free call if you want to understand what a real deployment would look like for your specific situation.",
+        "Not in the configuration we build here, no. This demo runs inside Claude Desktop and processes one exchange at a time, so you type a question, Claude responds, ElevenLabs converts that response to audio, and you play it back. It does not handle live phone calls, run continuously in the background, or integrate with your existing systems. Building a voice agent that does those things requires a proper deployment environment, telephony integration, speech-to-text input, and ongoing monitoring. That is exactly what Talk to Me Data builds and manages for businesses — book a free call if you want to understand what a real deployment would look like for your specific situation.",
     },
     {
       question: "Does the agent respond in real-time, like a phone call?",
       answer:
-        "Not in this setup. The interaction is turn-based: you type a message, Claude processes it and calls the ElevenLabs tool, ElevenLabs generates an audio file, and you play that audio in the Claude interface. Real-time voice conversation — where the agent listens to speech and responds in a continuous back-and-forth — requires a different architecture involving telephony or WebRTC infrastructure, a speech-to-text layer for input, and a more robust deployment environment. The demo we build here is a great way to understand the mechanics, but it is a prototype rather than a finished product.",
+        "Not in this setup. The interaction is turn-based: you type a message, Claude processes it and calls the ElevenLabs tool, ElevenLabs generates an audio file, and you play that audio in the Claude interface. Real-time voice conversation where the agent listens to speech and responds in a continuous back-and-forth, requires a different architecture involving telephony or WebRTC infrastructure, a speech-to-text layer for input, and a more robust deployment environment. The demo we build here is a great way to understand the mechanics, but it is a prototype rather than a finished product.",
     },
     {
       question: "What voices does ElevenLabs offer?",
@@ -98,14 +99,25 @@ export default function BlogPost() {
                 </div>
               </div>
 
+              {/* Hero Image */}
+              <div className="relative w-full h-72 sm:h-96 rounded-2xl overflow-hidden mb-10 bg-slate-100">
+                <Image
+                  src="/blog/ai-voice-agent-cover.png"
+                  alt="Simple AI Voice Agent diagram — Claude + ElevenLabs"
+                  fill
+                  className="object-contain"
+                  priority
+                />
+              </div>
+
               <div className="prose prose-lg max-w-none">
                 <div className="space-y-6 text-muted-foreground leading-relaxed">
 
                   {/* TL;DR */}
                   <div className="bg-primary/8 border-l-4 border-primary p-6 my-8 rounded-r-lg">
-                    <h3 className="text-xl font-bold text-foreground mb-3">TL;DR — Key Takeaways</h3>
+                    <h3 className="text-xl font-bold text-foreground mb-3">TL;DR - Key Takeaways</h3>
                     <ul className="list-disc pl-6 space-y-2 text-foreground">
-                      <li>You can build a working AI voice agent using Claude Desktop and ElevenLabs — both have free tiers and no code is required</li>
+                      <li>You can build a free AI voice agent using Claude Desktop and ElevenLabs as both have free tiers and no code is required</li>
                       <li>The demo we build here is for learning and prototyping only, not for commercial deployment at scale</li>
                       <li>The setup uses Claude as the reasoning model and ElevenLabs as the voice layer, connected via an MCP tool integration</li>
                       <li>Copy the ready-to-use agent prompt below and paste it directly into Claude to get started</li>
@@ -118,7 +130,7 @@ export default function BlogPost() {
                     Voice AI has moved from an enterprise curiosity to something any business owner can experiment with in an afternoon, and you do not need a development background or a technical team to get started. In this guide, we walk through exactly how to build a working AI voice agent using two tools you can access right now at no cost: Claude, the AI model built by Anthropic, and ElevenLabs, one of the most capable voice synthesis platforms currently available. By the end, you will have a functional demo agent that answers questions verbally, can switch between languages, and takes on configurable voice personas.
                   </p>
                   <p>
-                    One important caveat to establish before we go any further: what we are building here is a demonstration environment, not a production-ready deployment. This setup is designed for learning, prototyping, and getting a real feel for what voice AI can do. Because it runs inside Claude Desktop and uses token-based processing, it has usage limits that make it unsuitable for any sustained commercial purpose. If you are a business owner reading this because you actually want to deploy a voice agent for your customers rather than just understand how the technology works, there is a section near the end of this guide on what commercial deployment really involves — and how <Link href="/agents" className="text-primary hover:underline">Talk to Me Data</Link> handles all of that for you.
+                    One important caveat to establish before we go any further: what we are building here is a demonstration environment, not a production-ready deployment. This setup is designed for learning, prototyping, and getting a real feel for what voice AI can do. Because it runs inside Claude Desktop and uses token-based processing, it has usage limits that make it unsuitable for any sustained commercial purpose. If you are a business owner reading this because you actually want to deploy a voice agent for your customers rather than just understand how the technology works, there is a section near the end of this guide on what commercial deployment really involves - and how <Link href="/agents" className="text-primary hover:underline">Talk to Me Data</Link> handles all of that for you.
                   </p>
 
                   {/* Section 1 */}
@@ -127,10 +139,10 @@ export default function BlogPost() {
                     Before building anything, it is worth spending a moment on what actually constitutes a voice agent, because "voice AI" gets applied to a surprisingly wide range of things — from simple text-to-speech buttons on web pages to sophisticated real-time conversational systems that handle customer phone calls autonomously.
                   </p>
                   <p>
-                    At its core, any AI agent — voice or otherwise — has three fundamental components. The first is the model, which handles all the reasoning and generates responses. The second is the set of tools the agent has access to, which extend what the model can actually do beyond generating text. The third is context, meaning the instructions, background information, and personality you give the agent so it knows how to behave in a given situation. What distinguishes a voice agent from a standard text-based assistant is that one of those tools is a voice synthesis model — in our case, provided by ElevenLabs — which converts the agent's text responses into spoken audio before they reach you.
+                    At its core, any AI agent, whether it's a voice agent or something else, has three fundamental components. The first is the model, which handles all the reasoning and generates responses. The second is the set of tools the agent has access to, which extend what the model can actually do beyond generating text. The third is context, meaning the instructions, background information, and personality you give the agent so it knows how to behave in a given situation. What distinguishes a voice agent from a standard text-based assistant is that one of those tools is a voice synthesis model (in our case, provided by ElevenLabs) which converts the agent's text responses into spoken audio before they reach you.
                   </p>
                   <p>
-                    The flow in the demo we are building looks like this: you send a message to Claude, the model processes it using the instructions you have written, it calls the ElevenLabs tool to convert its response into speech, and you receive an audio file you can play back immediately. It is worth being clear that this is not a real-time back-and-forth telephone-style conversation within Claude's desktop app — that kind of infrastructure requires a considerably more substantial deployment. But it is a genuinely impressive prototype that will give you a clear picture of what the technology can do before you consider anything more serious.
+                    The flow in the demo we are building looks like this: you send a message to Claude, the model processes it using the instructions you have written, it calls the ElevenLabs tool to convert its response into speech, and you receive an audio file you can play back immediately. It is worth being clear that this is not a real-time back-and-forth telephone-style conversation within Claude's desktop app - that kind of infrastructure requires a considerably more substantial deployment. But it is a genuinely impressive prototype that will give you a clear picture of what the technology can do before you consider anything more serious.
                   </p>
                   <p>
                     If you want to read more about the broader landscape of what AI agents can do for businesses before diving into the technical setup, our guide on <Link href="/blog/ai-agents-for-small-business" className="text-primary hover:underline">AI agents for small and medium businesses</Link> covers the five most impactful use cases in depth.
@@ -163,7 +175,7 @@ export default function BlogPost() {
                     Open the Claude Desktop app and navigate to Settings, then look for the Integrations or Connectors section. This is where you add MCP (Model Context Protocol) tools, which are the mechanism that lets Claude access external services like ElevenLabs. Add a new connector, select ElevenLabs from the available options, and paste in the API key you generated in the previous step. Once connected, Claude will be able to call ElevenLabs directly whenever it wants to generate audio as part of a response.
                   </p>
                   <p>
-                    MCP is the open protocol that makes this kind of tool integration possible — it was developed by Anthropic and allows AI models to interact with external services in a structured, secure way. You can learn more about how it works at <a href="https://modelcontextprotocol.io" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">modelcontextprotocol.io</a> if you want to go deeper on the technical side.
+                    MCP is the open protocol that makes this kind of tool integration possible - it was developed by Anthropic and allows AI models to interact with external services in a structured, secure way. If you want to understand what MCPs are and how they work before going further, this <a href="https://www.sellingwithnas.com/what-are-mcps-ai-agents-beginner-guide" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">beginner's guide to MCPs and AI agents</a> is a good place to start.
                   </p>
 
                   <h3 className="text-xl font-bold text-foreground mt-8 mb-3">Step 4: Give your agent its instructions</h3>
@@ -174,7 +186,7 @@ export default function BlogPost() {
                   {/* Copyable Prompt */}
                   <div className="my-8 rounded-2xl overflow-hidden border border-slate-200">
                     <div className="flex items-center justify-between px-4 py-3 bg-slate-900">
-                      <span className="text-slate-400 text-sm font-mono">Agent Instructions — copy and paste into Claude</span>
+                      <span className="text-slate-400 text-sm font-mono">Agent Instructions: copy and paste into Claude</span>
                       <button
                         onClick={handleCopy}
                         className="px-3 py-1.5 text-xs font-semibold rounded-lg bg-primary/20 text-primary hover:bg-primary/30 transition-colors cursor-pointer"
@@ -193,7 +205,7 @@ export default function BlogPost() {
 
                   <h3 className="text-xl font-bold text-foreground mt-8 mb-3">Step 5: Test your voice agent</h3>
                   <p>
-                    With the instructions in place, start asking it questions. Try asking something like "What does Talk to Me Data actually do?" or "Can you explain how AI agents work for a small business?" and watch Claude process the question, call ElevenLabs, and return a playable audio file. The first time you hear the agent respond in a natural voice, it is a genuinely satisfying moment — it makes the technology feel real in a way that reading about it never quite does.
+                    With the instructions in place, start asking it questions. Try asking something like "What does Talk to Me Data actually do?" or "Can you explain how AI agents work for a small business?" and watch Claude process the question, call ElevenLabs, and return a playable audio file. The first time you hear the agent respond in a natural voice, it is a genuinely satisfying moment - it makes the technology feel real in a way that reading about it never quite does.
                   </p>
                   <p>
                     Ask it to respond in a different language, request a more formal or more casual tone, or try giving it a question it does not know the answer to and see how it handles the uncertainty. That kind of exploratory testing will give you a much better intuition for both the capabilities and the limits of what you have built.
@@ -226,7 +238,7 @@ export default function BlogPost() {
                     The second limitation is that this is not a live voice conversation. When Claude responds with the ElevenLabs tool, it generates an audio file that you play back — rather than speaking to you in real time through a microphone and speaker setup. The interaction flow is: you type a question, Claude processes it, ElevenLabs generates audio, and you click play. That is genuinely useful for understanding the technology and for internal demos, but it is categorically different from a customer picking up a phone, speaking to an agent, and hearing a response in under a second. Real-time voice infrastructure requires a whole additional layer of architecture.
                   </p>
                   <p>
-                    If you want to see what a production voice agent — one that handles real calls, integrates with your CRM, and runs continuously without you managing anything — actually looks like, that is what we build at Talk to Me Data. <Link href="/book-demo" className="text-primary hover:underline font-semibold">Book a free call with our team</Link> and we can walk you through what is possible for your specific business.
+                    If you want to see what a production voice agent (one that handles real calls, integrates with your CRM, and runs continuously without you managing anything) actually looks like, that is what we build at Talk to Me Data. <Link href="/book-demo" className="text-primary hover:underline font-semibold">Book a free call with our team</Link> and we can walk you through what is possible for your specific business.
                   </p>
 
                   {/* Fun experiments */}
@@ -235,7 +247,7 @@ export default function BlogPost() {
                     Once you have the basic customer service agent working, the ElevenLabs integration opens up some other genuinely fun capabilities that are worth exploring while you have the setup running.
                   </p>
                   <p>
-                    You can paste any block of text and ask Claude to read it aloud in a specific voice or emotional register — useful for proofreading your own writing in a way that forces you to hear it differently, or for generating rough audio drafts of scripts and presentations. Ask it to respond in Spanish, French, or Japanese and notice how naturally ElevenLabs handles the pronunciation and cadence of a different language without any additional configuration. Try asking it to generate a custom voice from a text description: something like "a calm, authoritative voice that sounds like a senior BBC correspondent" will produce a new synthesised voice within seconds.
+                    You can paste any block of text and ask Claude to read it aloud in a specific voice or emotional register - useful for proofreading your own writing in a way that forces you to hear it differently, or for generating rough audio drafts of scripts and presentations. Ask it to respond in Spanish, French, or Japanese and notice how naturally ElevenLabs handles the pronunciation and cadence of a different language without any additional configuration. Try asking it to generate a custom voice from a text description: something like "a calm, authoritative voice that sounds like a senior BBC correspondent" will produce a new synthesised voice within seconds.
                   </p>
                   <p>
                     You can also give ElevenLabs an audio file and ask it to transcribe it, which turns the tool into a surprisingly capable transcription service. And if you want to push into stranger territory, ask it to generate ambient audio — a coffee shop background, rain on a window, or a quiet office environment — which ElevenLabs can produce even though it is not technically a "voice" task. None of these are things you would build a business process around from Claude Desktop, but they are excellent ways to develop an intuition for what the underlying technology can actually do.
@@ -245,7 +257,7 @@ export default function BlogPost() {
                   <div className="bg-slate-900 text-white p-8 rounded-2xl my-10">
                     <h3 className="text-2xl font-bold mb-3">Ready to go beyond the demo?</h3>
                     <p className="text-slate-300 mb-6 leading-relaxed">
-                      Building a voice agent in Claude Desktop is a great starting point, but it is a long way from something you can put in front of customers. Talk to Me Data builds, deploys and hosts production-ready AI agents for businesses — including voice agents that handle real interactions, integrate with your existing tools, and run without you managing any of the infrastructure. We offer a free 20-minute call where we scope your use case and tell you exactly what is possible.
+                      Building a voice agent in Claude Desktop is a great starting point, but it is a long way from something you can put in front of customers. Talk to Me Data builds, deploys and hosts production-ready AI agents for businesses, including voice agents that handle real interactions, integrate with your existing tools, and run without you managing any of the infrastructure. We offer a free 20-minute call where we scope your use case and tell you exactly what is possible.
                     </p>
                     <Link
                       href="/book-demo"
@@ -261,7 +273,7 @@ export default function BlogPost() {
                     There is a meaningful gap between the prototype we built in this guide and a voice agent that a business can actually put to work handling customer interactions. Understanding that gap is useful regardless of whether you are planning to build something yourself or work with a partner to do it.
                   </p>
                   <p>
-                    A production voice agent needs to be accessible through the channel your customers actually use — whether that is a phone number, a website chat widget, a WhatsApp integration, or something else entirely. It needs to run persistently, meaning it is always available rather than requiring a human to start a Claude Desktop session. It needs to handle speech input, which means adding a speech-to-text layer that converts what the customer says into text the model can process. It needs integration with your existing business systems — your CRM, your booking calendar, your product catalogue, your helpdesk — so it can actually do things rather than just talk about them. And it needs monitoring, error handling, and human escalation pathways so that when something falls outside the agent's capabilities, it reaches a person rather than failing silently.
+                    A production voice agent needs to be accessible through the channel your customers actually use, whether that is a phone number, a website chat widget, a WhatsApp integration, or something else entirely. It needs to run persistently, meaning it is always available rather than requiring a human to start a Claude Desktop session. It needs to handle speech input, which means adding a speech-to-text layer that converts what the customer says into text the model can process. It needs integration with your existing business systems — your CRM, your booking calendar, your product catalogue, your helpdesk — so it can actually do things rather than just talk about them. And it needs monitoring, error handling, and human escalation pathways so that when something falls outside the agent's capabilities, it reaches a person rather than failing silently.
                   </p>
                   <p>
                     None of this is insurmountably complex, but each layer requires genuine engineering work and ongoing maintenance. At Talk to Me Data, we handle the full stack for businesses that want to deploy AI agents without building and managing that infrastructure themselves. You tell us what the workflow should look like, we build and test the agent, deploy it to your preferred channel, and manage it from that point forward. You use the agent, and we handle everything underneath it. If that sounds like what your business needs, our <Link href="/agents" className="text-primary hover:underline">agents page</Link> covers the specific use cases we work on, or you can <Link href="/book-demo" className="text-primary hover:underline font-semibold">book a free call</Link> and we will scope your specific situation directly.

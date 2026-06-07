@@ -28,11 +28,11 @@ const blogPosts = [
     slug: "how-to-build-ai-voice-agent",
     title: "How to Build an AI Voice Agent for Free Using Claude and ElevenLabs",
     excerpt:
-      "A step-by-step guide to building your first AI voice agent with no code and no cost — using Claude Desktop and ElevenLabs. Includes a ready-to-use agent prompt and a full video walkthrough.",
+      "A step-by-step guide to building your first AI voice agent with no code and no cost - using Claude Desktop and ElevenLabs. Includes a ready-to-use agent prompt and a full video walkthrough.",
     category: "AI Agents",
     date: "June 7, 2026",
     readTime: "11 min read",
-    image: "",
+    image: "/blog/ai-voice-agent-cover.png",
     author: "Nas",
     featured: false,
   },
