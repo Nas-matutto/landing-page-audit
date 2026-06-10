@@ -25,6 +25,18 @@ const blogPosts = [
     featured: true,
   },
   {
+    slug: "how-to-build-ai-lead-finder-agent",
+    title: "How to Build an AI Agent That Finds, Qualifies and Researches B2B Leads",
+    excerpt:
+      "A step-by-step guide to building a two-agent lead generation pipeline using Claude, Apify, and Google Sheets. Includes both agent prompts ready to copy, plus how to verify emails with NeverBounce before you send a single message.",
+    category: "AI Agents",
+    date: "June 10, 2026",
+    readTime: "12 min read",
+    image: "/blog/ai-leads-agent-cover.png",
+    author: "Nas",
+    featured: false,
+  },
+  {
     slug: "how-to-build-ai-voice-agent",
     title: "How to Build an AI Voice Agent for Free Using Claude and ElevenLabs",
     excerpt:
