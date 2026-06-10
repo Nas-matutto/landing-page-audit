@@ -59,6 +59,11 @@ export function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href="/free-guides" className="text-background/70 hover:text-background transition-colors">
+                  Free Guides
+                </Link>
+              </li>
+              <li>
                 <Link href="#" className="text-background/70 hover:text-background transition-colors">
                   Help Center
                 </Link>
