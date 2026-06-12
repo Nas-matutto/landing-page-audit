@@ -316,6 +316,21 @@ export default function BlogPost() {
                   </p>
 
                   {/* What's next */}
+                  {/* Video walkthrough */}
+                  <h2 className="text-2xl font-bold text-foreground mt-10 mb-4">Watch the full walkthrough</h2>
+                  <p>
+                    If you would prefer to follow along visually rather than reading through the steps, the video below walks through the entire pipeline — from connecting Apify to Claude, through to the Signal Research Agent writing personalized emails for each lead.
+                  </p>
+                  <div className="relative w-full my-8 rounded-2xl overflow-hidden bg-slate-900" style={{ paddingBottom: "56.25%" }}>
+                    <iframe
+                      className="absolute inset-0 w-full h-full"
+                      src="https://www.youtube.com/embed/husaiR18Fec"
+                      title="How to Build an AI Agent That Finds B2B Leads"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      allowFullScreen
+                    />
+                  </div>
+
                   <h2 className="text-2xl font-bold text-foreground mt-10 mb-4">What comes next: running the campaigns with Instantly</h2>
                   <p>
                     Once you have a Google Sheet full of verified, researched leads with personalized email copy ready for each one, the final step is running the actual outreach campaigns. The tool we use for this is <a href="https://instantly.ai" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Instantly</a>, which handles sequence scheduling, inbox rotation, reply detection, and campaign analytics in a clean interface designed specifically for cold email at volume. We will cover the full Instantly setup — including how to import leads from your Sheet, configure follow-up sequences, and interpret campaign data — in a follow-up post.
