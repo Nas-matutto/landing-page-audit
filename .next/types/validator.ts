@@ -312,6 +312,15 @@ type RouteHandlerConfig<Route extends AppRouteHandlerRoutes = AppRouteHandlerRou
   type __Unused = __Check
 }
 
+// Validate ../../app/free-guides/business-automation-checklist/layout.tsx
+{
+  type __IsExpected<Specific extends LayoutConfig<"/free-guides/business-automation-checklist">> = Specific
+  const handler = {} as typeof import("../../app/free-guides/business-automation-checklist/layout.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
 // Validate ../../app/free-tools/calculator/layout.tsx
 {
   type __IsExpected<Specific extends LayoutConfig<"/free-tools/calculator">> = Specific

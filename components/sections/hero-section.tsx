@@ -107,7 +107,7 @@ export function HeroSection() {
   const router = useRouter()
 
   return (
-    <section className="relative w-full bg-white overflow-hidden pt-20">
+    <section className="relative w-full bg-white overflow-hidden pt-32">
       {/* Dot grid background */}
       <div
         className="pointer-events-none absolute inset-0"

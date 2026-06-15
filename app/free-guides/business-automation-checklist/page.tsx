@@ -223,6 +223,75 @@ export default function BusinessAutomationChecklistPage() {
             </p>
           </div>
 
+          {/* Stats block */}
+          <div className="grid grid-cols-3 gap-4 mb-16 p-6 rounded-2xl bg-slate-50 border border-slate-100">
+            <div className="text-center">
+              <p className="text-3xl font-bold text-slate-900 mb-1">10–15h</p>
+              <p className="text-xs text-slate-500 leading-snug">lost per week to tasks that could be automated</p>
+            </div>
+            <div className="text-center border-x border-slate-200">
+              <p className="text-3xl font-bold text-slate-900 mb-1">73%</p>
+              <p className="text-xs text-slate-500 leading-snug">of repetitive business tasks can be automated today</p>
+            </div>
+            <div className="text-center">
+              <p className="text-3xl font-bold text-slate-900 mb-1">&lt;2h</p>
+              <p className="text-xs text-slate-500 leading-snug">to set up most of the quick wins in this checklist</p>
+            </div>
+          </div>
+
+          {/* Why automation matters */}
+          <div className="mb-16">
+            <h2 className="text-xl font-bold text-slate-900 mb-4">Why most business owners get automation wrong</h2>
+            <p className="text-slate-500 leading-relaxed mb-4">
+              The biggest mistake is trying to automate everything at once. Most people either buy a tool, spend a
+              weekend setting it up, and abandon it — or they keep waiting until they have "more time" to figure it out.
+              Neither works.
+            </p>
+            <p className="text-slate-500 leading-relaxed mb-4">
+              The right approach is to start with the tasks that cost you the most time and carry the least thinking.
+              Email triage, data entry, status updates, follow-up sequences — these are the automations that pay back
+              their setup time within a single week, and they compound over months.
+            </p>
+            <p className="text-slate-500 leading-relaxed">
+              Once those are running, you have the bandwidth to tackle more complex workflows — like
+              <Link href="/blog/how-to-build-ai-lead-finder-agent" className="text-primary hover:underline font-medium mx-1">AI-powered lead finding</Link>
+              or
+              <Link href="/agents" className="text-primary hover:underline font-medium mx-1">custom AI agents</Link>
+              that handle tasks no simple automation tool can touch. This checklist gives you the foundation to get there.
+            </p>
+          </div>
+
+          {/* Related reading */}
+          <div className="mb-16 p-6 rounded-2xl border border-slate-100 bg-slate-50/60">
+            <p className="text-xs font-semibold uppercase tracking-widest text-slate-400 mb-4">Related reading</p>
+            <ul className="space-y-3">
+              <li>
+                <Link href="/blog/ai-agents-for-small-business" className="group flex items-start gap-3">
+                  <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 shrink-0" />
+                  <span className="text-sm text-slate-600 group-hover:text-primary transition-colors leading-relaxed">
+                    AI Agents for Small Business — what they are and when to use one
+                  </span>
+                </Link>
+              </li>
+              <li>
+                <Link href="/blog/how-to-build-ai-lead-finder-agent" className="group flex items-start gap-3">
+                  <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 shrink-0" />
+                  <span className="text-sm text-slate-600 group-hover:text-primary transition-colors leading-relaxed">
+                    How to build an AI lead finder agent (step by step)
+                  </span>
+                </Link>
+              </li>
+              <li>
+                <Link href="/agents" className="group flex items-start gap-3">
+                  <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 shrink-0" />
+                  <span className="text-sm text-slate-600 group-hover:text-primary transition-colors leading-relaxed">
+                    See the AI agents we build and deploy for businesses
+                  </span>
+                </Link>
+              </li>
+            </ul>
+          </div>
+
           {/* Bottom CTA — repeat form */}
           <div className="rounded-2xl border border-slate-200 overflow-hidden shadow-sm">
             <div

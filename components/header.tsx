@@ -2,14 +2,16 @@
 
 import { useState, useEffect } from "react"
 import Link from "next/link"
-import { useRouter } from "next/navigation"
+import { useRouter, usePathname } from "next/navigation"
 import { Button } from "@/components/ui/button"
-import { Menu, X } from "lucide-react"
+import { Menu, X, ArrowRight } from "lucide-react"
 
 export function Header() {
   const router = useRouter()
+  const pathname = usePathname()
   const [scrolled, setScrolled] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const showAnnouncementBar = pathname === "/"
 
   useEffect(() => {
     const handleScroll = () => {
@@ -31,6 +33,16 @@ export function Header() {
         scrolled ? "liquid-glass-opaque shadow-sm" : "bg-transparent"
       }`}
     >
+      {showAnnouncementBar && (
+        <Link
+          href="/free-guides/business-automation-checklist"
+          className="flex items-center justify-center gap-2 px-4 py-2 text-white text-xs sm:text-sm font-medium hover:opacity-90 transition-opacity"
+          style={{ background: "linear-gradient(90deg, #185FA5, #2563eb, #7c3aed)" }}
+        >
+          <span>Download a Free Business Automation Checklist</span>
+          <ArrowRight className="w-3.5 h-3.5 shrink-0" />
+        </Link>
+      )}
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 sm:h-20">
           <Link href="/" className="flex items-center gap-2">

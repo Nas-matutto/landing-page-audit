@@ -1,7 +1,7 @@
 var R=require("../../../chunks/ssr/[turbopack]_runtime.js")("server/app/free-guides/business-automation-checklist/page.js")
 R.c("server/chunks/ssr/[root-of-the-server]__e43fc62c._.js")
 R.c("server/chunks/ssr/e559b_next_dist_6e07c1b8._.js")
-R.c("server/chunks/ssr/_fd0b499d._.js")
+R.c("server/chunks/ssr/_f9af9645._.js")
 R.c("server/chunks/ssr/[root-of-the-server]__768c7041._.js")
 R.c("server/chunks/ssr/e559b_next_dist_36ea2b70._.js")
 R.c("server/chunks/ssr/e559b_next_dist_66d926d9._.js")
@@ -10,6 +10,7 @@ R.c("server/chunks/ssr/[root-of-the-server]__c96948d7._.js")
 R.c("server/chunks/ssr/e559b_next_dist_client_components_56348840._.js")
 R.c("server/chunks/ssr/e559b_next_dist_client_components_builtin_forbidden_26d90682.js")
 R.c("server/chunks/ssr/e559b_next_dist_client_components_builtin_unauthorized_a30ebe5e.js")
+R.c("server/chunks/ssr/app_free-guides_business-automation-checklist_layout_tsx_32ff2232._.js")
 R.c("server/chunks/ssr/ce889_server_app_free-guides_business-automation-checklist_page_actions_8b038c00.js")
-R.m(66794)
-module.exports=R.m(66794).exports
+R.m(95300)
+module.exports=R.m(95300).exports
