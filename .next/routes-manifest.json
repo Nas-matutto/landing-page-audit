@@ -52,16 +52,64 @@
       "namedRegex": "^/api/analyze\\-store(?:/)?$"
     },
     {
+      "page": "/api/capture-lead",
+      "regex": "^/api/capture\\-lead(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/capture\\-lead(?:/)?$"
+    },
+    {
+      "page": "/api/qualify-lead",
+      "regex": "^/api/qualify\\-lead(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/qualify\\-lead(?:/)?$"
+    },
+    {
+      "page": "/api/send-guide",
+      "regex": "^/api/send\\-guide(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/send\\-guide(?:/)?$"
+    },
+    {
+      "page": "/api/test-brevo",
+      "regex": "^/api/test\\-brevo(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/test\\-brevo(?:/)?$"
+    },
+    {
+      "page": "/api/test-sheets",
+      "regex": "^/api/test\\-sheets(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/test\\-sheets(?:/)?$"
+    },
+    {
       "page": "/blog",
       "regex": "^/blog(?:/)?$",
       "routeKeys": {},
       "namedRegex": "^/blog(?:/)?$"
     },
     {
+      "page": "/blog/ai-agents-for-small-business",
+      "regex": "^/blog/ai\\-agents\\-for\\-small\\-business(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/blog/ai\\-agents\\-for\\-small\\-business(?:/)?$"
+    },
+    {
       "page": "/blog/how-to-analyze-website-conversion-issues",
       "regex": "^/blog/how\\-to\\-analyze\\-website\\-conversion\\-issues(?:/)?$",
       "routeKeys": {},
       "namedRegex": "^/blog/how\\-to\\-analyze\\-website\\-conversion\\-issues(?:/)?$"
+    },
+    {
+      "page": "/blog/how-to-build-ai-lead-finder-agent",
+      "regex": "^/blog/how\\-to\\-build\\-ai\\-lead\\-finder\\-agent(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/blog/how\\-to\\-build\\-ai\\-lead\\-finder\\-agent(?:/)?$"
+    },
+    {
+      "page": "/blog/how-to-build-ai-voice-agent",
+      "regex": "^/blog/how\\-to\\-build\\-ai\\-voice\\-agent(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/blog/how\\-to\\-build\\-ai\\-voice\\-agent(?:/)?$"
     },
     {
       "page": "/blog/how-to-build-website-to-collect-leads",
@@ -110,6 +158,36 @@
       "regex": "^/book\\-demo(?:/)?$",
       "routeKeys": {},
       "namedRegex": "^/book\\-demo(?:/)?$"
+    },
+    {
+      "page": "/free-guides",
+      "regex": "^/free\\-guides(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/free\\-guides(?:/)?$"
+    },
+    {
+      "page": "/free-guides/business-automation-checklist",
+      "regex": "^/free\\-guides/business\\-automation\\-checklist(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/free\\-guides/business\\-automation\\-checklist(?:/)?$"
+    },
+    {
+      "page": "/free-tools",
+      "regex": "^/free\\-tools(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/free\\-tools(?:/)?$"
+    },
+    {
+      "page": "/free-tools/calculator",
+      "regex": "^/free\\-tools/calculator(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/free\\-tools/calculator(?:/)?$"
+    },
+    {
+      "page": "/free-tools/workflow-mapper",
+      "regex": "^/free\\-tools/workflow\\-mapper(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/free\\-tools/workflow\\-mapper(?:/)?$"
     },
     {
       "page": "/privacy-policy",

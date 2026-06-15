@@ -1,0 +1,16 @@
+{
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/blog/layout,_N_T_/blog/ai-agents-for-small-business/layout,_N_T_/blog/ai-agents-for-small-business/page,_N_T_/blog/ai-agents-for-small-business"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/blog/ai-agents-for-small-business/__PAGE__",
+    "/blog/ai-agents-for-small-business",
+    "/blog",
+    "/_index",
+    "/_head"
+  ]
+}

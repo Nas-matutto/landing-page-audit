@@ -1,0 +1,16 @@
+{
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/free-guides/layout,_N_T_/free-guides/business-automation-checklist/layout,_N_T_/free-guides/business-automation-checklist/page,_N_T_/free-guides/business-automation-checklist"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/free-guides/business-automation-checklist/__PAGE__",
+    "/free-guides/business-automation-checklist",
+    "/free-guides",
+    "/_index",
+    "/_head"
+  ]
+}

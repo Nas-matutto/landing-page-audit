@@ -2,63 +2,95 @@
   "app": {
     "[project]/app/_not-found/page": [
       "static/media/caa3a2e1cccd8315-s.p.3b6cae6d.woff2",
-      "static/media/797e433ab948586e-s.p.479bea2b.woff2"
+      "static/media/797e433ab948586e-s.p.29207c2f.woff2"
     ],
     "[project]/app/agents/page": [
       "static/media/caa3a2e1cccd8315-s.p.3b6cae6d.woff2",
-      "static/media/797e433ab948586e-s.p.479bea2b.woff2"
+      "static/media/797e433ab948586e-s.p.29207c2f.woff2"
+    ],
+    "[project]/app/blog/ai-agents-for-small-business/page": [
+      "static/media/caa3a2e1cccd8315-s.p.3b6cae6d.woff2",
+      "static/media/797e433ab948586e-s.p.29207c2f.woff2"
     ],
     "[project]/app/blog/how-to-analyze-website-conversion-issues/page": [
       "static/media/caa3a2e1cccd8315-s.p.3b6cae6d.woff2",
-      "static/media/797e433ab948586e-s.p.479bea2b.woff2"
+      "static/media/797e433ab948586e-s.p.29207c2f.woff2"
+    ],
+    "[project]/app/blog/how-to-build-ai-lead-finder-agent/page": [
+      "static/media/caa3a2e1cccd8315-s.p.3b6cae6d.woff2",
+      "static/media/797e433ab948586e-s.p.29207c2f.woff2"
+    ],
+    "[project]/app/blog/how-to-build-ai-voice-agent/page": [
+      "static/media/caa3a2e1cccd8315-s.p.3b6cae6d.woff2",
+      "static/media/797e433ab948586e-s.p.29207c2f.woff2"
     ],
     "[project]/app/blog/how-to-build-website-to-collect-leads/page": [
       "static/media/caa3a2e1cccd8315-s.p.3b6cae6d.woff2",
-      "static/media/797e433ab948586e-s.p.479bea2b.woff2"
+      "static/media/797e433ab948586e-s.p.29207c2f.woff2"
     ],
     "[project]/app/blog/how-to-make-website-faster/page": [
       "static/media/caa3a2e1cccd8315-s.p.3b6cae6d.woff2",
-      "static/media/797e433ab948586e-s.p.479bea2b.woff2"
+      "static/media/797e433ab948586e-s.p.29207c2f.woff2"
     ],
     "[project]/app/blog/how-to-use-ai-to-improve-conversion-rates/page": [
       "static/media/caa3a2e1cccd8315-s.p.3b6cae6d.woff2",
-      "static/media/797e433ab948586e-s.p.479bea2b.woff2"
+      "static/media/797e433ab948586e-s.p.29207c2f.woff2"
     ],
     "[project]/app/blog/how-to-use-intent-signals-to-increase-conversion-rates/page": [
       "static/media/caa3a2e1cccd8315-s.p.3b6cae6d.woff2",
-      "static/media/797e433ab948586e-s.p.479bea2b.woff2"
+      "static/media/797e433ab948586e-s.p.29207c2f.woff2"
     ],
     "[project]/app/blog/increase-conversion-rate-30-days/page": [
       "static/media/caa3a2e1cccd8315-s.p.3b6cae6d.woff2",
-      "static/media/797e433ab948586e-s.p.479bea2b.woff2"
+      "static/media/797e433ab948586e-s.p.29207c2f.woff2"
     ],
     "[project]/app/blog/page": [
       "static/media/caa3a2e1cccd8315-s.p.3b6cae6d.woff2",
-      "static/media/797e433ab948586e-s.p.479bea2b.woff2"
+      "static/media/797e433ab948586e-s.p.29207c2f.woff2"
     ],
     "[project]/app/blog/website-checklist-how-to-build-landing-page-that-converts/page": [
       "static/media/caa3a2e1cccd8315-s.p.3b6cae6d.woff2",
-      "static/media/797e433ab948586e-s.p.479bea2b.woff2"
+      "static/media/797e433ab948586e-s.p.29207c2f.woff2"
     ],
     "[project]/app/blog/yc-landing-page-optimization/page": [
       "static/media/caa3a2e1cccd8315-s.p.3b6cae6d.woff2",
-      "static/media/797e433ab948586e-s.p.479bea2b.woff2"
+      "static/media/797e433ab948586e-s.p.29207c2f.woff2"
     ],
     "[project]/app/book-demo/page": [
       "static/media/caa3a2e1cccd8315-s.p.3b6cae6d.woff2",
-      "static/media/797e433ab948586e-s.p.479bea2b.woff2"
+      "static/media/797e433ab948586e-s.p.29207c2f.woff2"
+    ],
+    "[project]/app/free-guides/business-automation-checklist/page": [
+      "static/media/caa3a2e1cccd8315-s.p.3b6cae6d.woff2",
+      "static/media/797e433ab948586e-s.p.29207c2f.woff2"
+    ],
+    "[project]/app/free-guides/page": [
+      "static/media/caa3a2e1cccd8315-s.p.3b6cae6d.woff2",
+      "static/media/797e433ab948586e-s.p.29207c2f.woff2"
+    ],
+    "[project]/app/free-tools/calculator/page": [
+      "static/media/caa3a2e1cccd8315-s.p.3b6cae6d.woff2",
+      "static/media/797e433ab948586e-s.p.29207c2f.woff2"
+    ],
+    "[project]/app/free-tools/page": [
+      "static/media/caa3a2e1cccd8315-s.p.3b6cae6d.woff2",
+      "static/media/797e433ab948586e-s.p.29207c2f.woff2"
+    ],
+    "[project]/app/free-tools/workflow-mapper/page": [
+      "static/media/caa3a2e1cccd8315-s.p.3b6cae6d.woff2",
+      "static/media/797e433ab948586e-s.p.29207c2f.woff2"
     ],
     "[project]/app/page": [
       "static/media/caa3a2e1cccd8315-s.p.3b6cae6d.woff2",
-      "static/media/797e433ab948586e-s.p.479bea2b.woff2"
+      "static/media/797e433ab948586e-s.p.29207c2f.woff2"
     ],
     "[project]/app/privacy-policy/page": [
       "static/media/caa3a2e1cccd8315-s.p.3b6cae6d.woff2",
-      "static/media/797e433ab948586e-s.p.479bea2b.woff2"
+      "static/media/797e433ab948586e-s.p.29207c2f.woff2"
     ],
     "[project]/app/terms-of-service/page": [
       "static/media/caa3a2e1cccd8315-s.p.3b6cae6d.woff2",
-      "static/media/797e433ab948586e-s.p.479bea2b.woff2"
+      "static/media/797e433ab948586e-s.p.29207c2f.woff2"
     ]
   },
   "appUsingSizeAdjust": true,

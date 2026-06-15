@@ -1,0 +1,3 @@
+module.exports=[62791,a=>{"use strict";var b=a.i(26806);function c({children:a}){return(0,b.jsx)(b.Fragment,{children:a})}a.s(["default",()=>c,"metadata",0,{title:"Agent Workflow Mapper — Free Tools | Talk to me Data",description:"Describe your trigger, steps, and output. The mapper renders a diagram showing which steps an AI agent can automate — downloadable as PNG.",alternates:{canonical:"https://talktomedata.com/free-tools/workflow-mapper"}}])}];
+
+//# sourceMappingURL=app_free-tools_workflow-mapper_layout_tsx_38980ee8._.js.map

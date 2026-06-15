@@ -1,0 +1,16 @@
+{
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/free-tools/layout,_N_T_/free-tools/workflow-mapper/layout,_N_T_/free-tools/workflow-mapper/page,_N_T_/free-tools/workflow-mapper"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/free-tools/workflow-mapper/__PAGE__",
+    "/free-tools/workflow-mapper",
+    "/free-tools",
+    "/_index",
+    "/_head"
+  ]
+}
