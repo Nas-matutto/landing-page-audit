@@ -43,7 +43,7 @@ export async function POST(request: NextRequest) {
       console.warn('RESEND_API_KEY is not set — skipping email send')
     } else {
       const resend = new Resend(resendKey)
-      const fromEmail = process.env.RESEND_FROM_EMAIL ?? 'Nas <onboarding@resend.dev>'
+      const fromEmail = 'Nas <nas@talktomedata.com>'
 
       const pdfPath = path.join(process.cwd(), 'public', 'guides', 'automate-by-friday-checklist.pdf')
       const pdfBuffer = fs.readFileSync(pdfPath)
