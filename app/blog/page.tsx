@@ -13,18 +13,6 @@ export const metadata: Metadata = {
 
 const blogPosts = [
   {
-    slug: "ai-agents-for-small-business",
-    title: "AI Agents for Small Business: How SMBs Are Automating Operations Without a Tech Team",
-    excerpt:
-      "Most small business owners assume AI automation is reserved for companies with large engineering teams and enterprise budgets. It isn't. Here's how AI agents are changing what's possible for SMBs — and how to get started.",
-    category: "AI Agents",
-    date: "June 3, 2026",
-    readTime: "13 min read",
-    image: "/blog/ai-agents-smb-cover.png",
-    author: "Nas",
-    featured: true,
-  },
-  {
     slug: "what-are-ai-agents",
     title: "What Are AI Agents? A Plain-English Guide for Business Owners",
     excerpt:
@@ -32,6 +20,18 @@ const blogPosts = [
     category: "AI Agents",
     date: "June 16, 2026",
     readTime: "14 min read",
+    image: "/AI_Agents_Quiz.png",
+    author: "Nas",
+    featured: true,
+  },
+  {
+    slug: "ai-agents-for-small-business",
+    title: "AI Agents for Small Business: How SMBs Are Automating Operations Without a Tech Team",
+    excerpt:
+      "Most small business owners assume AI automation is reserved for companies with large engineering teams and enterprise budgets. It isn't. Here's how AI agents are changing what's possible for SMBs — and how to get started.",
+    category: "AI Agents",
+    date: "June 3, 2026",
+    readTime: "13 min read",
     image: "/blog/ai-agents-smb-cover.png",
     author: "Nas",
     featured: false,
