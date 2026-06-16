@@ -227,13 +227,13 @@ function Quiz() {
         <div className="rounded-2xl overflow-hidden border border-white/10 bg-white/5">
           <div className="px-8 py-5 border-b border-white/10">
             <p className="text-white font-bold text-lg mb-1">Want to see how AI agents could work in your business?</p>
-            <p className="text-white/50 text-sm">Get practical tips and real examples — sent to your inbox, no spam.</p>
+            <p className="text-white/50 text-sm">Get practical tips and real examples - sent to your inbox, no spam.</p>
           </div>
           <div className="px-8 py-6">
             {emailStatus === "success" ? (
               <div className="flex items-center gap-3">
                 <CheckCircle2 className="w-5 h-5 text-green-400 shrink-0" />
-                <p className="text-white/80 text-sm font-medium">You're in — check your inbox.</p>
+                <p className="text-white/80 text-sm font-medium">You're in - check your inbox.</p>
               </div>
             ) : (
               <>
@@ -255,7 +255,7 @@ function Quiz() {
                     {emailStatus === "loading" ? "Sending…" : "Send me more →"}
                   </button>
                 </form>
-                {emailStatus === "error" && <p className="text-red-400 text-xs mt-2">Something went wrong — please try again.</p>}
+                {emailStatus === "error" && <p className="text-red-400 text-xs mt-2">Something went wrong - please try again.</p>}
                 <p className="text-xs text-white/30 mt-3">No spam. Unsubscribe any time.</p>
               </>
             )}
@@ -376,7 +376,7 @@ export default function WhatAreAIAgentsPage() {
                   className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold border-2 border-violet-200 bg-violet-50 text-violet-700 hover:bg-violet-100 transition-colors"
                 >
                   <Brain className="w-4 h-4" />
-                  Includes a 10-question quiz — test your knowledge below
+                  Includes a 10-question quiz - test your knowledge below
                 </a>
               </div>
 
@@ -384,10 +384,10 @@ export default function WhatAreAIAgentsPage() {
                 <div className="space-y-6 text-muted-foreground leading-relaxed">
 
                   <p>
-                    "AI agent" is one of the most used — and most misunderstood — phrases in tech right now. It gets applied to everything from a basic chatbot to a fully autonomous system managing complex business workflows. That range makes it confusing.
+                    "AI agent" is one of the most used (and most misunderstood) phrases in tech right now. It gets applied to everything from a basic chatbot to a fully autonomous system managing complex business workflows, which can create confusion for a lot of people.
                   </p>
                   <p>
-                    This guide cuts through the noise. By the end, you'll know exactly what an AI agent is, how it works under the hood, how it differs from tools you already use, and — most importantly — what it can realistically do for your business today.
+                    This guide cuts through the noise. By the end, you'll know exactly what an AI agent is, how it works under the hood, how it differs from tools you already use, and, most importantly, what it can realistically do for your business today.
                   </p>
 
                   <div className="bg-primary/8 border-l-4 border-primary p-6 my-8 rounded-r-lg">
@@ -397,16 +397,16 @@ export default function WhatAreAIAgentsPage() {
                       <li>Unlike chatbots, agents can use tools, call APIs, and complete multi-step tasks without human prompting at each step</li>
                       <li>They differ from traditional automation (like Zapier) because they can reason, adapt, and handle exceptions</li>
                       <li>The most valuable use cases: lead qualification, customer support, internal reporting, and outbound outreach</li>
-                      <li>They work best on repetitive, high-volume, logic-driven tasks — not strategy or relationship-building</li>
+                      <li>They work best on repetitive, high-volume, logic-driven tasks - not strategy or relationship-building</li>
                     </ul>
                   </div>
 
                   <h2 className="text-3xl font-bold text-foreground mt-12 mb-4">The Short Answer: What Is an AI Agent?</h2>
                   <p>
-                    An <strong>AI agent</strong> is a software system that can perceive its environment, reason about what it perceives, decide what to do, and then act — repeatedly, without requiring a human to prompt it at every step.
+                    An <strong>AI agent</strong> is a software system that can perceive its environment, reason about what it perceives, decide what to do, and then act - repeatedly, without requiring a human to prompt it at every step.
                   </p>
                   <p>
-                    The term comes from AI research, where an "agent" is defined as anything that can take actions in pursuit of a goal. What makes modern AI agents different from earlier rule-based systems is that they're powered by large language models (LLMs) — which means they can reason in natural language, handle ambiguity, and adapt to situations that weren't explicitly anticipated when they were built.
+                    The term comes from AI research, where an "agent" is defined as anything that can take actions in pursuit of a goal. What makes modern AI agents different from earlier rule-based systems is that they're powered by large language models (LLMs) - which means they can reason in natural language, handle ambiguity, and adapt to situations that weren't explicitly anticipated when they were built.
                   </p>
                   <p>
                     A concrete way to think about it: a standard LLM like ChatGPT responds to a single prompt and stops. An AI agent receives a goal, breaks it into steps, takes actions across multiple tools and systems, handles what comes back, and keeps going until the task is done.
@@ -419,7 +419,7 @@ export default function WhatAreAIAgentsPage() {
                   <div className="my-6 space-y-4">
                     <div className="border-l-4 border-primary pl-6 bg-primary/5 p-4 rounded-r-lg">
                       <h4 className="text-base font-bold text-foreground mb-1">1. Perceive</h4>
-                      <p className="text-sm">The agent receives inputs — a user message, a new email, a webhook from your CRM, a scheduled trigger. This is what kicks the loop off.</p>
+                      <p className="text-sm">The agent receives inputs, say a user message, a new email, a webhook from your CRM or a scheduled trigger. This is what kicks the loop off.</p>
                     </div>
                     <div className="border-l-4 border-primary pl-6 bg-primary/5 p-4 rounded-r-lg">
                       <h4 className="text-base font-bold text-foreground mb-1">2. Reason</h4>
@@ -427,7 +427,7 @@ export default function WhatAreAIAgentsPage() {
                     </div>
                     <div className="border-l-4 border-primary pl-6 bg-primary/5 p-4 rounded-r-lg">
                       <h4 className="text-base font-bold text-foreground mb-1">3. Act</h4>
-                      <p className="text-sm">The agent calls a tool — searching the web, writing to a spreadsheet, sending an email, querying a database, calling an API. This is what separates agents from plain chatbots.</p>
+                      <p className="text-sm">The agent calls a tool, for example searching the web, writing to a spreadsheet, sending an email, querying a database, calling an API. This is what separates agents from plain chatbots.</p>
                     </div>
                     <div className="border-l-4 border-primary pl-6 bg-primary/5 p-4 rounded-r-lg">
                       <h4 className="text-base font-bold text-foreground mb-1">4. Observe</h4>
@@ -436,7 +436,7 @@ export default function WhatAreAIAgentsPage() {
                   </div>
 
                   <h2 className="text-3xl font-bold text-foreground mt-12 mb-4">AI Agents vs. AI Chatbots: What's the Difference?</h2>
-                  <p>Both involve AI and natural language — but they're fundamentally different in what they can do.</p>
+                  <p>Both involve AI and natural language, but they're fundamentally different in what they can do.</p>
                   <div className="my-8 overflow-x-auto">
                     <table className="w-full border-collapse border-2 border-border rounded-lg text-sm">
                       <thead>
@@ -470,7 +470,7 @@ export default function WhatAreAIAgentsPage() {
                         <tr>
                           <td className="border border-border p-4 font-semibold text-foreground">Handles exceptions</td>
                           <td className="border border-border p-4">No</td>
-                          <td className="border border-border p-4">Yes — can adapt when things don't go as planned</td>
+                          <td className="border border-border p-4">Yes, can adapt when things don't go as planned</td>
                         </tr>
                         <tr className="bg-muted/20">
                           <td className="border border-border p-4 font-semibold text-foreground">Example</td>
@@ -482,8 +482,8 @@ export default function WhatAreAIAgentsPage() {
                   </div>
 
                   <h2 className="text-3xl font-bold text-foreground mt-12 mb-4">AI Agents vs. Traditional Automation (Zapier, Make)</h2>
-                  <p>Traditional automation tools like Zapier, Make, or n8n work on fixed if/then rules. They're excellent for predictable, linear workflows — as long as every input fits the expected pattern, they work flawlessly.</p>
-                  <p>The problem is reality. Inputs aren't always clean. An exception happens — and the traditional automation stops, fails silently, or sends garbage data downstream.</p>
+                  <p>Traditional automation tools like Zapier, Make, or n8n work on fixed if/then rules. They're excellent for predictable, linear workflows, as long as every input fits the expected pattern, they work flawlessly.</p>
+                  <p>The problem is reality. Inputs aren't always clean. An exception happens, and the traditional automation stops, fails silently, or sends garbage data downstream.</p>
                   <p>AI agents handle the messy middle. They can read an email that doesn't fit a template, infer what the person meant, look up missing information, and proceed appropriately.</p>
 
                   <h2 className="text-3xl font-bold text-foreground mt-12 mb-4">The Four Types of AI Agents</h2>
@@ -517,7 +517,7 @@ export default function WhatAreAIAgentsPage() {
                     10-Question Quiz
                   </span>
                   <h2 className="text-2xl font-bold text-white mb-2">Test your knowledge</h2>
-                  <p className="text-white/50 text-sm">Questions cover everything above. Each answer comes with an explanation — useful even if you get it right.</p>
+                  <p className="text-white/50 text-sm">Questions cover everything above. Each answer comes with an explanation even if you get it right.</p>
                 </div>
                 <div className="px-5 pb-6">
                   <Quiz />
@@ -533,7 +533,7 @@ export default function WhatAreAIAgentsPage() {
                     <div className="space-y-4">
                       <div className="border-l-4 border-green-500 pl-5 py-1">
                         <h4 className="font-bold text-foreground mb-1">Lead qualification and follow-up</h4>
-                        <p className="text-sm">An agent monitors your inbound leads, scores them against your ICP, looks up company data, sends a personalised first message, and books a demo — all before your team has opened their laptop.</p>
+                        <p className="text-sm">An agent monitors your inbound leads, scores them against your ICP, looks up company data, sends a personalised first message, and books a demo - all before your team has opened their laptop.</p>
                       </div>
                       <div className="border-l-4 border-green-500 pl-5 py-1">
                         <h4 className="font-bold text-foreground mb-1">Customer support triage</h4>
@@ -541,18 +541,18 @@ export default function WhatAreAIAgentsPage() {
                       </div>
                       <div className="border-l-4 border-green-500 pl-5 py-1">
                         <h4 className="font-bold text-foreground mb-1">Internal reporting and data entry</h4>
-                        <p className="text-sm">Pulling data from multiple sources, updating your CRM from email conversations, syncing platforms that don't have native integrations — repetitive work that takes hours and produces no strategic value.</p>
+                        <p className="text-sm">Pulling data from multiple sources, updating your CRM from email conversations, syncing platforms that don't have native integrations - repetitive work that takes hours and produces no strategic value.</p>
                       </div>
                       <div className="border-l-4 border-green-500 pl-5 py-1">
                         <h4 className="font-bold text-foreground mb-1">Outbound prospecting</h4>
-                        <p className="text-sm">Research target accounts, identify the right contacts, personalise outreach based on recent signals, and send at optimal times — at scale, without a dedicated sales development team.</p>
+                        <p className="text-sm">Research target accounts, identify the right contacts, personalise outreach based on recent signals, and send at optimal times - at scale, without a dedicated sales development team.</p>
                       </div>
                     </div>
                   </div>
                   <div className="bg-muted/30 border-l-4 border-amber-400 p-5 rounded-r-lg space-y-3">
                     <p className="font-semibold text-foreground">Where AI agents fall short</p>
                     <p className="text-sm"><strong className="text-foreground">Strategy and high-stakes decisions.</strong> AI agents are executors, not strategists. Final decisions on pricing, hiring, or company direction require human judgement.</p>
-                    <p className="text-sm"><strong className="text-foreground">Relationship-critical interactions.</strong> A first call with an enterprise client, a difficult conversation about a product failure — these require human empathy and authority.</p>
+                    <p className="text-sm"><strong className="text-foreground">Relationship-critical interactions.</strong> A first call with an enterprise client, a difficult conversation about a product failure - these require human empathy and authority.</p>
                     <p className="text-sm"><strong className="text-foreground">Novel creative direction.</strong> Agents can execute creative tasks well, but generating a brand's creative direction from scratch still benefits from human creative leadership.</p>
                   </div>
 
@@ -564,7 +564,7 @@ export default function WhatAreAIAgentsPage() {
                     </div>
                     <div className="bg-white px-8 py-6">
                       <p className="text-foreground mb-5 leading-relaxed text-sm">
-                        Take our free AI Agent Readiness Audit. It scores your business across four dimensions — data, processes, team, and tooling — and tells you exactly where to start.
+                        Take our free AI Agent Readiness Audit. It scores your business across four dimensions: data, processes, team, and tooling. It then tells you exactly where to start.
                       </p>
                       <Link href="/free-guides/ai-agent-readiness-audit" className="inline-flex items-center gap-2 bg-linear-to-r from-primary to-violet-500 text-white font-semibold text-sm px-6 py-3 rounded-xl hover:opacity-90 transition-opacity">
                         Get the free audit →
@@ -576,11 +576,11 @@ export default function WhatAreAIAgentsPage() {
                   <div className="my-6 space-y-5">
                     <div>
                       <h3 className="text-lg font-bold text-foreground mb-2">Tool use</h3>
-                      <p className="text-sm">The ability of an AI agent to call external services — APIs, databases, web search, email, calendar, CRM. Without tools, an agent can only generate text. With tools, it can take real-world actions.</p>
+                      <p className="text-sm">The ability of an AI agent to call external services - APIs, databases, web search, email, calendar, CRM. Without tools, an agent can only generate text. With tools, it can take real-world actions.</p>
                     </div>
                     <div>
                       <h3 className="text-lg font-bold text-foreground mb-2">RAG (Retrieval-Augmented Generation)</h3>
-                      <p className="text-sm">A technique where the agent searches a specific knowledge base before generating a response — grounding its answers in your actual data and dramatically reducing hallucinations.</p>
+                      <p className="text-sm">A technique where the agent searches a specific knowledge base before generating a response - grounding its answers in your actual data and dramatically reducing hallucinations.</p>
                     </div>
                     <div>
                       <h3 className="text-lg font-bold text-foreground mb-2">Memory</h3>
@@ -592,7 +592,7 @@ export default function WhatAreAIAgentsPage() {
                     </div>
                     <div>
                       <h3 className="text-lg font-bold text-foreground mb-2">Agentic AI</h3>
-                      <p className="text-sm">"Agentic" describes AI systems that operate autonomously over extended periods and sequences of actions — with minimal human intervention.</p>
+                      <p className="text-sm">"Agentic" describes AI systems that operate autonomously over extended periods and sequences of actions, with minimal human intervention.</p>
                     </div>
                   </div>
 
@@ -608,11 +608,11 @@ export default function WhatAreAIAgentsPage() {
                     </div>
                     <div>
                       <h3 className="text-lg font-bold text-foreground mb-2">Are AI agents secure?</h3>
-                      <p className="text-sm">Security depends on how they're built. An agent should only have access to systems and data it needs — the principle of least privilege. Ask specifically about data handling if the agent processes customer PII.</p>
+                      <p className="text-sm">Security depends on how they're built. An agent should only have access to systems and data it needs, and asks specifically about data handling if the agent processes customer Personal information.</p>
                     </div>
                     <div>
                       <h3 className="text-lg font-bold text-foreground mb-2">Can AI agents make mistakes?</h3>
-                      <p className="text-sm">Yes. They can hallucinate information, take the wrong action, or get stuck in unexpected states. This is why human-in-the-loop patterns matter — especially for actions that are hard to reverse.</p>
+                      <p className="text-sm">Yes. They can hallucinate information, take the wrong action, or get stuck in unexpected states. This is why human-in-the-loop patterns matter - especially for actions that are hard to reverse.</p>
                     </div>
                     <div>
                       <h3 className="text-lg font-bold text-foreground mb-2">Which AI model powers AI agents?</h3>
@@ -622,7 +622,7 @@ export default function WhatAreAIAgentsPage() {
 
                   <h2 className="text-3xl font-bold text-foreground mt-12 mb-4">Summary</h2>
                   <p>
-                    AI agents are software systems that can perceive inputs, reason about them, take actions using real tools, and complete goals across multiple steps — without requiring a human to prompt them at each turn.
+                    AI agents are software systems that can perceive inputs, reason about them, take actions using real tools, and complete goals across multiple steps, without requiring a human to prompt them at each turn.
                   </p>
                   <p>
                     The best use cases today are high-volume, repetitive, logic-driven tasks: lead qualification, customer support triage, data entry and reporting, and outbound prospecting. Strategy, relationships, and physical-world tasks remain firmly in human territory.
