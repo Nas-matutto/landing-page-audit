@@ -403,7 +403,7 @@ export default function WhatAreAIAgentsPage() {
 
                   <h2 className="text-3xl font-bold text-foreground mt-12 mb-4">The Short Answer: What Is an AI Agent?</h2>
                   <p>
-                    An <strong>AI agent</strong> is a software system that can perceive its environment, reason about what it perceives, decide what to do, and then act - repeatedly, without requiring a human to prompt it at every step.
+                    An <strong>AI agent</strong> is, according to Open AI, a system that independently performs multi-step workflows or tasks on a user's behalf. Or essentially a software system that can perceive its environment, reason about what it perceives, decide what to do, and then act in a loop, without requiring a human to prompt it at every step.
                   </p>
                   <p>
                     The term comes from AI research, where an "agent" is defined as anything that can take actions in pursuit of a goal. What makes modern AI agents different from earlier rule-based systems is that they're powered by large language models (LLMs) - which means they can reason in natural language, handle ambiguity, and adapt to situations that weren't explicitly anticipated when they were built.
@@ -482,9 +482,9 @@ export default function WhatAreAIAgentsPage() {
                   </div>
 
                   <h2 className="text-3xl font-bold text-foreground mt-12 mb-4">AI Agents vs. Traditional Automation (Zapier, Make)</h2>
-                  <p>Traditional automation tools like Zapier, Make, or n8n work on fixed if/then rules. They're excellent for predictable, linear workflows, as long as every input fits the expected pattern, they work flawlessly.</p>
-                  <p>The problem is reality. Inputs aren't always clean. An exception happens, and the traditional automation stops, fails silently, or sends garbage data downstream.</p>
-                  <p>AI agents handle the messy middle. They can read an email that doesn't fit a template, infer what the person meant, look up missing information, and proceed appropriately.</p>
+                  <p>Traditional automation tools like Zapier, Make, or n8n work on fixed if/then rules, which makes them excellent for predictable, linear workflows, as long as every input fits the expected pattern, they work flawlessly.</p>
+                  <p>The problem is that in reality, inputs are often not clean and fixed automations can't adapt to changing workflows. So when a traditional automation stops, itfails silently or sends incorrect data downstream.</p>
+                  <p>AI agents handle the situations that traditional automations can't, by accessing tools, a model and custom instructions on how to act. They can, for example, read an email that doesn't fit a template, infer what the person meant, look up missing information, and proceed appropriately.</p>
 
                   <h2 className="text-3xl font-bold text-foreground mt-12 mb-4">The Four Types of AI Agents</h2>
                   <div className="my-6 space-y-5">
