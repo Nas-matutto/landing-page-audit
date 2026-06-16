@@ -155,6 +155,15 @@ type RouteHandlerConfig<Route extends AppRouteHandlerRoutes = AppRouteHandlerRou
   type __Unused = __Check
 }
 
+// Validate ../../app/blog/what-are-ai-agents/page.tsx
+{
+  type __IsExpected<Specific extends AppPageConfig<"/blog/what-are-ai-agents">> = Specific
+  const handler = {} as typeof import("../../app/blog/what-are-ai-agents/page.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
 // Validate ../../app/blog/yc-landing-page-optimization/page.tsx
 {
   type __IsExpected<Specific extends AppPageConfig<"/blog/yc-landing-page-optimization">> = Specific
@@ -320,6 +329,15 @@ type RouteHandlerConfig<Route extends AppRouteHandlerRoutes = AppRouteHandlerRou
 
 
 
+
+// Validate ../../app/blog/what-are-ai-agents/layout.tsx
+{
+  type __IsExpected<Specific extends LayoutConfig<"/blog/what-are-ai-agents">> = Specific
+  const handler = {} as typeof import("../../app/blog/what-are-ai-agents/layout.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
 
 // Validate ../../app/book-demo/layout.tsx
 {

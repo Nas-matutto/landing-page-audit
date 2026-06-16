@@ -154,6 +154,12 @@
       "namedRegex": "^/blog/website\\-checklist\\-how\\-to\\-build\\-landing\\-page\\-that\\-converts(?:/)?$"
     },
     {
+      "page": "/blog/what-are-ai-agents",
+      "regex": "^/blog/what\\-are\\-ai\\-agents(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/blog/what\\-are\\-ai\\-agents(?:/)?$"
+    },
+    {
       "page": "/blog/yc-landing-page-optimization",
       "regex": "^/blog/yc\\-landing\\-page\\-optimization(?:/)?$",
       "routeKeys": {},

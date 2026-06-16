@@ -68,6 +68,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
     // Blog posts
     {
+      url: `${baseUrl}/blog/what-are-ai-agents`,
+      lastModified: new Date('2026-06-16'),
+      changeFrequency: 'monthly',
+      priority: 0.85,
+    },
+    {
       url: `${baseUrl}/blog/ai-agents-for-small-business`,
       lastModified: new Date('2026-06-03'),
       changeFrequency: 'monthly',
