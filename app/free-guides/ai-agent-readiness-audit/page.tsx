@@ -148,7 +148,7 @@ export default function AIAgentReadinessAuditPage() {
           </h1>
           <p className="text-lg text-slate-500 mb-10 leading-relaxed max-w-2xl">
             Before you spend time or money on AI agents, you need to know if your business is actually ready for one.
-            This free audit scores your readiness across four areas and tells you exactly what to do next — whether
+            This free audit scores your readiness across four areas and tells you exactly what to do next, whether
             that's starting now or fixing something first.
           </p>
 
@@ -222,7 +222,7 @@ export default function AIAgentReadinessAuditPage() {
             </div>
             <div className="text-center">
               <p className="text-3xl font-bold text-slate-900 mb-1">100%</p>
-              <p className="text-xs text-slate-500 leading-snug">free — no upsell, no catch</p>
+              <p className="text-xs text-slate-500 leading-snug">free - no upsell, no catch</p>
             </div>
           </div>
 
@@ -231,12 +231,12 @@ export default function AIAgentReadinessAuditPage() {
             <h2 className="text-xl font-bold text-slate-900 mb-4">Who is this for?</h2>
             <p className="text-slate-500 leading-relaxed mb-4">
               This audit is for business owners and operators who are curious about AI agents but aren't sure
-              where they fit — or whether their business is even in the right shape to use them yet.
+              where they fit - or whether their business is even in the right shape to use them yet.
             </p>
             <p className="text-slate-500 leading-relaxed mb-4">
               If you've seen AI agents demoed and thought "that looks useful but I don't know where to start",
               this audit gives you a concrete answer. It looks at your current processes, data quality, team
-              capacity, and tooling — the four factors that determine whether an AI agent will actually work
+              capacity, and tooling, so the four factors that determine whether an AI agent will actually work
               for your business right now.
             </p>
             <p className="text-slate-500 leading-relaxed">
@@ -253,7 +253,7 @@ export default function AIAgentReadinessAuditPage() {
                 <Link href="/blog/ai-agents-for-small-business" className="group flex items-start gap-3">
                   <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 shrink-0" />
                   <span className="text-sm text-slate-600 group-hover:text-primary transition-colors leading-relaxed">
-                    AI Agents for Small Business — what they are and when to use one
+                    AI Agents for Small Business - what they are and when to use one
                   </span>
                 </Link>
               </li>
@@ -261,7 +261,7 @@ export default function AIAgentReadinessAuditPage() {
                 <Link href="/free-guides/business-automation-checklist" className="group flex items-start gap-3">
                   <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 shrink-0" />
                   <span className="text-sm text-slate-600 group-hover:text-primary transition-colors leading-relaxed">
-                    The Business Automation Checklist — identify what to automate first
+                    The Business Automation Checklist - identify what to automate first
                   </span>
                 </Link>
               </li>
@@ -283,7 +283,7 @@ export default function AIAgentReadinessAuditPage() {
               style={{ background: "linear-gradient(135deg, #185FA5, #2563eb, #7c3aed)" }}
             >
               <h2 className="text-xl font-bold text-white">Ready to find out where you stand?</h2>
-              <p className="text-white/75 text-sm mt-1">Get the free audit — no signup required, just your email.</p>
+              <p className="text-white/75 text-sm mt-1">Get the free audit - no signup required, just your email.</p>
             </div>
             <div className="bg-white px-8 py-7">
               <EmailForm />

@@ -24,6 +24,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.75,
     },
     {
+      url: `${baseUrl}/free-guides/business-automation-checklist`,
+      lastModified: new Date('2026-06-15'),
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/free-guides/ai-agent-readiness-audit`,
+      lastModified: new Date('2026-06-16'),
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
       url: `${baseUrl}/free-tools/calculator`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
