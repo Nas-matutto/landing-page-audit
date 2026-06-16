@@ -22,6 +22,14 @@ const guides = [
     href: "/free-guides/business-automation-checklist",
     cta: "Get the free checklist",
   },
+  {
+    tag: "Audit",
+    title: "The AI Agent Readiness Audit",
+    description:
+      "Not sure if your business is ready for AI agents? This free audit scores your readiness across four areas — data, processes, team, and tooling — and tells you exactly what to do next.",
+    href: "/free-guides/ai-agent-readiness-audit",
+    cta: "Get the free audit",
+  },
 ]
 
 export default function FreeGuidesPage() {

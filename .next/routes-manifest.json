@@ -64,6 +64,12 @@
       "namedRegex": "^/api/qualify\\-lead(?:/)?$"
     },
     {
+      "page": "/api/send-ai-agent-guide",
+      "regex": "^/api/send\\-ai\\-agent\\-guide(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/send\\-ai\\-agent\\-guide(?:/)?$"
+    },
+    {
       "page": "/api/send-guide",
       "regex": "^/api/send\\-guide(?:/)?$",
       "routeKeys": {},
@@ -164,6 +170,12 @@
       "regex": "^/free\\-guides(?:/)?$",
       "routeKeys": {},
       "namedRegex": "^/free\\-guides(?:/)?$"
+    },
+    {
+      "page": "/free-guides/ai-agent-readiness-audit",
+      "regex": "^/free\\-guides/ai\\-agent\\-readiness\\-audit(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/free\\-guides/ai\\-agent\\-readiness\\-audit(?:/)?$"
     },
     {
       "page": "/free-guides/business-automation-checklist",

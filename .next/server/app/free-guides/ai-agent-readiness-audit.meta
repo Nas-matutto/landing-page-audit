@@ -1,0 +1,16 @@
+{
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/free-guides/layout,_N_T_/free-guides/ai-agent-readiness-audit/layout,_N_T_/free-guides/ai-agent-readiness-audit/page,_N_T_/free-guides/ai-agent-readiness-audit"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/free-guides/ai-agent-readiness-audit/__PAGE__",
+    "/free-guides/ai-agent-readiness-audit",
+    "/free-guides",
+    "/_index",
+    "/_head"
+  ]
+}

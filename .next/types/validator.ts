@@ -173,6 +173,15 @@ type RouteHandlerConfig<Route extends AppRouteHandlerRoutes = AppRouteHandlerRou
   type __Unused = __Check
 }
 
+// Validate ../../app/free-guides/ai-agent-readiness-audit/page.tsx
+{
+  type __IsExpected<Specific extends AppPageConfig<"/free-guides/ai-agent-readiness-audit">> = Specific
+  const handler = {} as typeof import("../../app/free-guides/ai-agent-readiness-audit/page.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
 // Validate ../../app/free-guides/business-automation-checklist/page.tsx
 {
   type __IsExpected<Specific extends AppPageConfig<"/free-guides/business-automation-checklist">> = Specific
@@ -272,6 +281,15 @@ type RouteHandlerConfig<Route extends AppRouteHandlerRoutes = AppRouteHandlerRou
   type __Unused = __Check
 }
 
+// Validate ../../app/api/send-ai-agent-guide/route.ts
+{
+  type __IsExpected<Specific extends RouteHandlerConfig<"/api/send-ai-agent-guide">> = Specific
+  const handler = {} as typeof import("../../app/api/send-ai-agent-guide/route.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
 // Validate ../../app/api/send-guide/route.ts
 {
   type __IsExpected<Specific extends RouteHandlerConfig<"/api/send-guide">> = Specific
@@ -307,6 +325,15 @@ type RouteHandlerConfig<Route extends AppRouteHandlerRoutes = AppRouteHandlerRou
 {
   type __IsExpected<Specific extends LayoutConfig<"/book-demo">> = Specific
   const handler = {} as typeof import("../../app/book-demo/layout.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
+// Validate ../../app/free-guides/ai-agent-readiness-audit/layout.tsx
+{
+  type __IsExpected<Specific extends LayoutConfig<"/free-guides/ai-agent-readiness-audit">> = Specific
+  const handler = {} as typeof import("../../app/free-guides/ai-agent-readiness-audit/layout.js")
   type __Check = __IsExpected<typeof handler>
   // @ts-ignore
   type __Unused = __Check
