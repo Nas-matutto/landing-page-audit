@@ -13,18 +13,6 @@ export const metadata: Metadata = {
 
 const blogPosts = [
   {
-    slug: "what-are-ai-agents",
-    title: "What Are AI Agents? A Plain-English Guide for Business Owners",
-    excerpt:
-      "AI agents go far beyond chatbots. This guide explains what they are, how they work, the different types, and what they can realistically do for your business today — plus a 10-question quiz to test your knowledge.",
-    category: "AI Agents",
-    date: "June 16, 2026",
-    readTime: "14 min read",
-    image: "/blog/ai-agents-smb-cover.png",
-    author: "Nas",
-    featured: false,
-  },
-  {
     slug: "ai-agents-for-small-business",
     title: "AI Agents for Small Business: How SMBs Are Automating Operations Without a Tech Team",
     excerpt:
@@ -35,6 +23,18 @@ const blogPosts = [
     image: "/blog/ai-agents-smb-cover.png",
     author: "Nas",
     featured: true,
+  },
+  {
+    slug: "what-are-ai-agents",
+    title: "What Are AI Agents? A Plain-English Guide for Business Owners",
+    excerpt:
+      "AI agents go far beyond chatbots. This guide explains what they are, how they work, the different types, and what they can realistically do for your business today — plus a 10-question quiz to test your knowledge.",
+    category: "AI Agents",
+    date: "June 16, 2026",
+    readTime: "14 min read",
+    image: "/blog/ai-agents-smb-cover.png",
+    author: "Nas",
+    featured: false,
   },
   {
     slug: "how-to-build-ai-lead-finder-agent",
