@@ -11,7 +11,8 @@ export function Header() {
   const pathname = usePathname()
   const [scrolled, setScrolled] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-  const showAnnouncementBar = pathname === "/"
+  const [barDismissed, setBarDismissed] = useState(false)
+  const showAnnouncementBar = pathname === "/" && !barDismissed
 
   useEffect(() => {
     const handleScroll = () => {
@@ -34,14 +35,25 @@ export function Header() {
       }`}
     >
       {showAnnouncementBar && (
-        <Link
-          href="/free-guides/business-automation-checklist"
-          className="flex items-center justify-center gap-2 px-4 py-2 text-white text-xs sm:text-sm font-medium hover:opacity-90 transition-opacity"
+        <div
+          className="relative flex items-center justify-center px-10 py-2"
           style={{ background: "linear-gradient(90deg, #185FA5, #2563eb, #7c3aed)" }}
         >
-          <span>Download a Free Business Automation Checklist</span>
-          <ArrowRight className="w-3.5 h-3.5 shrink-0" />
-        </Link>
+          <Link
+            href="/free-guides/business-automation-checklist"
+            className="flex items-center gap-2 text-white text-xs sm:text-sm font-medium hover:opacity-90 transition-opacity"
+          >
+            <span>Download a Free Business Automation Checklist</span>
+            <ArrowRight className="w-3.5 h-3.5 shrink-0" />
+          </Link>
+          <button
+            onClick={() => setBarDismissed(true)}
+            aria-label="Dismiss"
+            className="absolute right-3 p-1 text-white/60 hover:text-white transition-colors cursor-pointer"
+          >
+            <X className="w-3.5 h-3.5" />
+          </button>
+        </div>
       )}
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 sm:h-20">
