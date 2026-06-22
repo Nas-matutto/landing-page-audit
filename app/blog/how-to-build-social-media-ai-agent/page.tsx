@@ -240,12 +240,12 @@ export default function SocialMediaAIAgentPage() {
                   <div className="bg-primary/8 border-l-4 border-primary p-6 my-8 rounded-r-lg">
                     <h3 className="text-xl font-bold text-foreground mb-3">TL;DR</h3>
                     <ul className="list-disc pl-6 space-y-2 text-foreground">
-                      <li>The agent scrapes your last 40 Instagram posts using Apify</li>
+                      <li>The agent scrapes your last 40 Instagram posts using <a href="https://apify.com" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Apify</a></li>
                       <li>Ranks them by views, then engagement rate, and identifies your top ~10 performers</li>
                       <li>Extracts the hooks and topics that keep appearing in your best content</li>
                       <li>Generates 10 new ideas, each with a ready-to-use hook and reasoning</li>
                       <li>Writes everything to a Google Sheet, deduplicating against existing rows</li>
-                      <li>Works with Claude (Pro or API) using Apify and Google Sheets integrations</li>
+                      <li>Works with <a href="https://claude.ai" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Claude</a> (Pro or API) using Apify and Google Sheets integrations</li>
                     </ul>
                   </div>
 
@@ -264,15 +264,15 @@ export default function SocialMediaAIAgentPage() {
                   <div className="my-6 space-y-4">
                     <div className="border border-border rounded-xl p-5">
                       <h4 className="font-bold text-foreground mb-1">Claude Pro or API access</h4>
-                      <p className="text-sm">The agent uses Claude with tool use enabled. Claude Pro (claude.ai) works if you connect the Apify and Google Sheets MCP integrations. API access works if you're building a more automated setup.</p>
+                      <p className="text-sm">The agent uses Claude with tool use enabled. <a href="https://claude.ai" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Claude Pro</a> works if you connect the Apify and Google Sheets MCP integrations. API access works if you're building a more automated setup.</p>
                     </div>
                     <div className="border border-border rounded-xl p-5">
                       <h4 className="font-bold text-foreground mb-1">An Apify account</h4>
-                      <p className="text-sm">Apify runs the Instagram scraper. They have a free tier ($5/month of compute credit) which covers many runs. The Instagram scraper actor is pre-built - you don't need to configure anything beyond the input fields the prompt specifies.</p>
+                      <p className="text-sm"><a href="https://apify.com" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Apify</a> runs the Instagram scraper. They have a free tier ($5/month of compute credit) which covers many runs. The <a href="https://apify.com/apify/instagram-scraper" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Instagram scraper actor</a> is pre-built — you don't need to configure anything beyond the input fields the prompt specifies.</p>
                     </div>
                     <div className="border border-border rounded-xl p-5">
                       <h4 className="font-bold text-foreground mb-1">A Google Sheet</h4>
-                      <p className="text-sm">Create a new spreadsheet and add a tab called "Content Analysis." The agent will create three blocks inside it: Top Performers, Winning Patterns, and New Ideas. Copy the Sheet ID from the URL (the long string between /d/ and /edit).</p>
+                      <p className="text-sm"><a href="https://sheets.new" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Create a new spreadsheet</a> and add a tab called "Content Analysis." The agent will create three blocks inside it: Top Performers, Winning Patterns, and New Ideas. Copy the Sheet ID from the URL (the long string between /d/ and /edit).</p>
                     </div>
                     <div className="border border-border rounded-xl p-5">
                       <h4 className="font-bold text-foreground mb-1">Your Instagram handle</h4>
@@ -283,7 +283,7 @@ export default function SocialMediaAIAgentPage() {
                   <div className="rounded-xl border-2 border-primary/20 bg-primary/5 p-5">
                     <p className="font-semibold text-foreground mb-1 text-sm">Don't want to set all of this up yourself?</p>
                     <p className="text-sm text-muted-foreground mb-3">
-                      Talk to Me Data builds and deploys agents like this for businesses — fully connected to your accounts, running on a schedule, with no API keys, integration config, or maintenance on your side.
+                      Talk to Me Data builds and deploys agents like this for businesses - fully connected to your accounts, running on a schedule, with no API keys, integration config, or maintenance on your side.
                     </p>
                     <Link href="/book-demo" className="inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:underline">
                       Book a free call to get it built for you →
@@ -295,16 +295,16 @@ export default function SocialMediaAIAgentPage() {
                   <div className="my-6 space-y-5">
                     <div className="border-l-4 border-primary pl-6 bg-primary/5 p-5 rounded-r-xl">
                       <h4 className="text-base font-bold text-foreground mb-2">Step 1 - Scrape your posts</h4>
-                      <p className="text-sm">The agent calls Apify's Instagram scraper with your handle and pulls your last 40 posts. For each post it retrieves the caption, post URL, publish date, view count, like count, and comment count. Reels and videos take priority in the analysis since they typically carry more distributable reach than static images.</p>
+                      <p className="text-sm">The agent calls the <a href="https://apify.com/apify/instagram-scraper" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Apify Instagram scraper</a> with your handle and pulls your last 40 posts. For each post it retrieves the caption, post URL, publish date, view count, like count, and comment count. Reels and videos take priority in the analysis since they typically carry more distributable reach than static images.</p>
                     </div>
                     <div className="border-l-4 border-primary pl-6 bg-primary/5 p-5 rounded-r-xl">
                       <h4 className="text-base font-bold text-foreground mb-2">Step 2 - Rank and analyze</h4>
                       <p className="text-sm">Posts are ranked by views first (reach), then by engagement rate - calculated as (likes + comments) / views. This two-tier ranking separates posts that were broadly distributed from those that generated genuine audience interaction. The top ~10 performers become the analysis set.</p>
-                      <p className="text-sm mt-2">For each top performer, the agent extracts the hook: the first line or first ~10 words of the caption. It can't see the video itself, but the hook is usually the most influential variable anyway — it's what determines whether someone stops scrolling. Patterns across hooks are identified: questions, numbers, "how to" frames, bold claims, contrarian angles.</p>
+                      <p className="text-sm mt-2">For each top performer, the agent extracts the hook: the first line or first ~10 words of the caption. It can't see the video itself, but the hook is usually the most influential variable anyway as it's what determines whether someone stops scrolling. Patterns across hooks are identified: questions, numbers, "how to" frames, bold claims, contrarian angles.</p>
                     </div>
                     <div className="border-l-4 border-primary pl-6 bg-primary/5 p-5 rounded-r-xl">
                       <h4 className="text-base font-bold text-foreground mb-2">Step 3 - Generate 10 new ideas</h4>
-                      <p className="text-sm">Using the winning patterns as a template, the agent generates 10 new content ideas. Each idea comes with a ready-to-use hook (written in the style of your top performers), the topic and angle, and a one-line explanation of which winning pattern it echoes and why it should work. These aren't generic suggestions — they're modeled on what your specific audience has responded to.</p>
+                      <p className="text-sm">Using the winning patterns as a template, the agent generates 10 new content ideas. Each idea comes with a ready-to-use hook (written in the style of your top performers), the topic and angle, and a one-line explanation of which winning pattern it echoes and why it should work. These aren't generic suggestions - they're modeled on what your specific audience has responded to.</p>
                     </div>
                     <div className="border-l-4 border-primary pl-6 bg-primary/5 p-5 rounded-r-xl">
                       <h4 className="text-base font-bold text-foreground mb-2">Step 4 - Log to Google Sheets</h4>
@@ -314,7 +314,7 @@ export default function SocialMediaAIAgentPage() {
 
                   <h2 className="text-3xl font-bold text-foreground mt-12 mb-4">The Prompt</h2>
                   <p>
-                    Paste this directly into Claude. Before running, replace <code className="bg-muted px-1.5 py-0.5 rounded text-sm font-mono">[YOUR_HANDLE]</code> with your Instagram username and <code className="bg-muted px-1.5 py-0.5 rounded text-sm font-mono">[YOUR_SHEET_ID]</code> with the ID from your Google Sheet URL. Make sure your Apify and Google Sheets integrations are connected in Claude's settings.
+                    Paste this directly into your AI Agent orchestration interface - whether it's Talk to Me Data or Claude Project. Before running, replace <code className="bg-muted px-1.5 py-0.5 rounded text-sm font-mono">[YOUR_HANDLE]</code> with your Instagram username and <code className="bg-muted px-1.5 py-0.5 rounded text-sm font-mono">[YOUR_SHEET_ID]</code> with the ID from your Google Sheet URL. Make sure your Apify and Google Sheets integrations are connected in Claude's settings.
                   </p>
 
                 </div>
@@ -331,10 +331,10 @@ export default function SocialMediaAIAgentPage() {
                   <div className="my-6">
                     <h3 className="text-xl font-bold text-foreground mb-3">Apify</h3>
                     <ol className="list-decimal pl-6 space-y-3 text-sm">
-                      <li>Create a free account at <strong>apify.com</strong></li>
+                      <li>Create a free account at <a href="https://apify.com" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">apify.com</a></li>
                       <li>Go to <strong>Settings → Integrations</strong> and copy your API token</li>
-                      <li>In Claude, go to <strong>Settings → Integrations → Apify</strong> and paste the token</li>
-                      <li>The agent will then be able to call the Instagram scraper actor directly</li>
+                      <li>In <a href="https://claude.ai" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Claude</a>, go to <strong>Settings → Integrations → Apify</strong> and paste the token</li>
+                      <li>The agent will then be able to call the <a href="https://apify.com/apify/instagram-scraper" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Instagram scraper actor</a> directly</li>
                     </ol>
                   </div>
 
@@ -388,7 +388,7 @@ export default function SocialMediaAIAgentPage() {
                   <div className="my-6 space-y-4">
                     <div className="border-l-4 border-slate-300 pl-5 py-1">
                       <h4 className="font-bold text-foreground mb-1">Change the platform</h4>
-                      <p className="text-sm">Apify has scrapers for TikTok (<code className="bg-muted px-1 rounded font-mono">clockworks/tiktok-scraper</code>), LinkedIn, YouTube, and most other platforms. Swap the actor ID in Step 1 and adjust field names in Steps 2 and 4 to match what each scraper returns.</p>
+                      <p className="text-sm">Apify has scrapers for <a href="https://apify.com/clockworks/tiktok-scraper" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">TikTok</a>, LinkedIn, YouTube, and most other platforms. Swap the actor ID in Step 1 and adjust field names in Steps 2 and 4 to match what each scraper returns.</p>
                     </div>
                     <div className="border-l-4 border-slate-300 pl-5 py-1">
                       <h4 className="font-bold text-foreground mb-1">Increase the post sample</h4>
@@ -396,7 +396,7 @@ export default function SocialMediaAIAgentPage() {
                     </div>
                     <div className="border-l-4 border-slate-300 pl-5 py-1">
                       <h4 className="font-bold text-foreground mb-1">Add competitor analysis</h4>
-                      <p className="text-sm">Add a second scrape call in Step 1 with a competitor's handle. In Step 2, instruct the agent to compare their top performers against yours and identify gaps — topics they're winning on that you haven't covered.</p>
+                      <p className="text-sm">Add a second scrape call in Step 1 with a competitor's handle. In Step 2, instruct the agent to compare their top performers against yours and identify gaps - topics they're winning on that you haven't covered.</p>
                     </div>
                     <div className="border-l-4 border-slate-300 pl-5 py-1">
                       <h4 className="font-bold text-foreground mb-1">Generate more ideas</h4>
@@ -438,7 +438,7 @@ export default function SocialMediaAIAgentPage() {
 
                   <h2 className="text-3xl font-bold text-foreground mt-12 mb-4">Summary</h2>
                   <p>
-                    A social media AI agent shifts content strategy from guesswork to data. Instead of generating ideas based on vague intuition about what your audience likes, you start from performance evidence — your actual top posts — and work outward from there.
+                    A social media AI agent shifts content strategy from guesswork to data. Instead of generating ideas based on vague intuition about what your audience likes, you start from performance evidence - your actual top posts - and work outward from there.
                   </p>
                   <p>
                     The agent handles the tedious parts: pulling data, ranking posts, identifying hook patterns, generating ideas, and logging everything to a Sheet. You get a structured, up-to-date content strategy document every time you run it, and a batch of ready-to-use hooks that are grounded in what's actually worked on your account.
