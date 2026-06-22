@@ -74,6 +74,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.85,
     },
     {
+      url: `${baseUrl}/blog/how-to-build-social-media-ai-agent`,
+      lastModified: new Date('2026-06-22'),
+      changeFrequency: 'monthly',
+      priority: 0.85,
+    },
+    {
       url: `${baseUrl}/blog/ai-agents-for-small-business`,
       lastModified: new Date('2026-06-03'),
       changeFrequency: 'monthly',

@@ -118,6 +118,12 @@
       "namedRegex": "^/blog/how\\-to\\-build\\-ai\\-voice\\-agent(?:/)?$"
     },
     {
+      "page": "/blog/how-to-build-social-media-ai-agent",
+      "regex": "^/blog/how\\-to\\-build\\-social\\-media\\-ai\\-agent(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/blog/how\\-to\\-build\\-social\\-media\\-ai\\-agent(?:/)?$"
+    },
+    {
       "page": "/blog/how-to-build-website-to-collect-leads",
       "regex": "^/blog/how\\-to\\-build\\-website\\-to\\-collect\\-leads(?:/)?$",
       "routeKeys": {},

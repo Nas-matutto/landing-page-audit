@@ -92,6 +92,15 @@ type RouteHandlerConfig<Route extends AppRouteHandlerRoutes = AppRouteHandlerRou
   type __Unused = __Check
 }
 
+// Validate ../../app/blog/how-to-build-social-media-ai-agent/page.tsx
+{
+  type __IsExpected<Specific extends AppPageConfig<"/blog/how-to-build-social-media-ai-agent">> = Specific
+  const handler = {} as typeof import("../../app/blog/how-to-build-social-media-ai-agent/page.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
 // Validate ../../app/blog/how-to-build-website-to-collect-leads/page.tsx
 {
   type __IsExpected<Specific extends AppPageConfig<"/blog/how-to-build-website-to-collect-leads">> = Specific
@@ -329,6 +338,15 @@ type RouteHandlerConfig<Route extends AppRouteHandlerRoutes = AppRouteHandlerRou
 
 
 
+
+// Validate ../../app/blog/how-to-build-social-media-ai-agent/layout.tsx
+{
+  type __IsExpected<Specific extends LayoutConfig<"/blog/how-to-build-social-media-ai-agent">> = Specific
+  const handler = {} as typeof import("../../app/blog/how-to-build-social-media-ai-agent/layout.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
 
 // Validate ../../app/blog/what-are-ai-agents/layout.tsx
 {

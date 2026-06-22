@@ -25,6 +25,18 @@ const blogPosts = [
     featured: true,
   },
   {
+    slug: "how-to-build-social-media-ai-agent",
+    title: "How to Build a Social Media AI Agent (With the Exact Prompt to Copy)",
+    excerpt:
+      "Build an AI agent that scrapes your Instagram, ranks your top-performing posts, extracts your winning hooks, and generates 10 new content ideas — all logged automatically to a Google Sheet. Includes the full prompt.",
+    category: "AI Agents",
+    date: "June 22, 2026",
+    readTime: "10 min read",
+    image: "/Instagram_AI_Agent.png",
+    author: "Nas",
+    featured: false,
+  },
+  {
     slug: "ai-agents-for-small-business",
     title: "AI Agents for Small Business: How SMBs Are Automating Operations Without a Tech Team",
     excerpt:
