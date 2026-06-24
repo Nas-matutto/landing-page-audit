@@ -260,6 +260,19 @@ export default function SocialMediaAIAgentPage() {
                     It also builds institutional knowledge. Every time the agent runs, your Google Sheet grows - your winning patterns get documented, your top hooks get archived, and new ideas get logged alongside the reasoning behind them. Over time, you end up with a living content strategy document that gets smarter every week.
                   </p>
 
+                  {/* YouTube embed */}
+                  <div className="my-10">
+                    <div className="relative w-full rounded-2xl overflow-hidden border border-slate-200 shadow-sm" style={{ paddingTop: "56.25%" }}>
+                      <iframe
+                        src="https://www.youtube.com/embed/bv9GAe_2uLs"
+                        title="How to Build a Social Media AI Agent"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowFullScreen
+                        className="absolute inset-0 w-full h-full"
+                      />
+                    </div>
+                  </div>
+
                   <h2 className="text-3xl font-bold text-foreground mt-12 mb-4">What You Need to Set It Up</h2>
                   <div className="my-6 space-y-4">
                     <div className="border border-border rounded-xl p-5">
