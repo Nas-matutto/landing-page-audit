@@ -32,7 +32,7 @@ const reassurances = [
   "Hosted & monitored for you",
 ]
 
-const gridCols = "grid grid-cols-1 md:grid-cols-[minmax(150px,0.8fr)_1fr_1fr]"
+const gridCols = "grid grid-cols-2 md:grid-cols-[minmax(150px,0.8fr)_1fr_1fr]"
 
 export function PainPointsSection() {
   return (
@@ -61,15 +61,15 @@ export function PainPointsSection() {
             transition={{ duration: 0.5 }}
             className="rounded-2xl border border-slate-200 shadow-sm overflow-hidden divide-y divide-slate-200 bg-white"
           >
-            {/* Header row (desktop only) */}
-            <div className={`${gridCols} hidden md:grid`}>
-              <div className="px-6 py-4" />
-              <div className="px-6 py-4">
+            {/* Header row */}
+            <div className={gridCols}>
+              <div className="hidden md:block px-6 py-4" />
+              <div className="px-4 sm:px-6 py-3 md:py-4">
                 <span className="text-sm font-semibold text-slate-500">Building it yourself</span>
               </div>
-              <div className="px-6 py-4 bg-primary/5 border-l border-primary/15 flex items-center justify-between gap-3">
+              <div className="px-4 sm:px-6 py-3 md:py-4 bg-primary/5 border-l border-primary/15 flex items-center justify-between gap-3">
                 <span className="text-sm font-semibold text-slate-800">With TTMD</span>
-                <span className="inline-flex items-center gap-1.5 rounded-full bg-primary/10 px-2.5 py-1 text-[11px] font-semibold text-primary">
+                <span className="hidden sm:inline-flex items-center gap-1.5 rounded-full bg-primary/10 px-2.5 py-1 text-[11px] font-semibold text-primary">
                   <Check className="w-3 h-3" />
                   Done for you
                 </span>
@@ -80,24 +80,18 @@ export function PainPointsSection() {
             {rows.map((row, i) => (
               <div key={i} className={gridCols}>
                 {/* Dimension label */}
-                <div className="px-6 pt-5 pb-2 md:py-5 flex items-center bg-slate-50/60">
+                <div className="col-span-2 md:col-span-1 px-4 sm:px-6 pt-3 pb-1.5 md:py-5 flex items-center bg-slate-50/60">
                   <span className="text-[11px] font-mono uppercase tracking-wider text-slate-400">{row.dim}</span>
                 </div>
 
                 {/* In-house */}
-                <div className="px-6 py-4 md:py-5 flex items-start gap-2.5">
-                  <span className="md:hidden text-[11px] font-semibold uppercase tracking-wider text-slate-400 w-full -mb-1 block">
-                    Building it yourself
-                  </span>
+                <div className="px-4 sm:px-6 py-4 md:py-5 flex items-start gap-2 sm:gap-2.5">
                   <X className="w-4 h-4 text-slate-300 mt-0.5 shrink-0" />
                   <span className="text-sm leading-relaxed text-slate-500">{row.cold}</span>
                 </div>
 
                 {/* TTMD */}
-                <div className="px-6 py-4 md:py-5 flex items-start gap-2.5 bg-primary/5 md:border-l md:border-primary/15">
-                  <span className="md:hidden text-[11px] font-semibold uppercase tracking-wider text-primary w-full -mb-1 block">
-                    With TTMD
-                  </span>
+                <div className="px-4 sm:px-6 py-4 md:py-5 flex items-start gap-2 sm:gap-2.5 bg-primary/5 border-l border-primary/15">
                   <Check className="w-4 h-4 text-primary mt-0.5 shrink-0" />
                   <span className="text-sm leading-relaxed text-slate-700 font-medium">{row.warm}</span>
                 </div>
@@ -106,20 +100,14 @@ export function PainPointsSection() {
 
             {/* Time-to-live footer row */}
             <div className={gridCols}>
-              <div className="px-6 pt-5 pb-2 md:py-6 flex items-center bg-slate-50/60">
+              <div className="col-span-2 md:col-span-1 px-4 sm:px-6 pt-3 pb-1.5 md:py-6 flex items-center bg-slate-50/60">
                 <span className="text-[11px] font-mono uppercase tracking-wider text-slate-400">Time to live</span>
               </div>
-              <div className="px-6 py-4 md:py-6 flex items-center gap-2.5">
-                <span className="md:hidden text-[11px] font-semibold uppercase tracking-wider text-slate-400 w-full -mb-1 block">
-                  Building it yourself
-                </span>
-                <span className="text-2xl font-bold text-slate-400">Months</span>
+              <div className="px-4 sm:px-6 py-4 md:py-6 flex items-center">
+                <span className="text-xl sm:text-2xl font-bold text-slate-400">Months</span>
               </div>
-              <div className="px-6 py-4 md:py-6 flex items-center gap-2.5 bg-primary/5 md:border-l md:border-primary/15">
-                <span className="md:hidden text-[11px] font-semibold uppercase tracking-wider text-primary w-full -mb-1 block">
-                  With TTMD
-                </span>
-                <span className="text-2xl font-bold bg-clip-text text-transparent bg-linear-to-r from-primary to-violet-500">
+              <div className="px-4 sm:px-6 py-4 md:py-6 flex items-center bg-primary/5 border-l border-primary/15">
+                <span className="text-xl sm:text-2xl font-bold bg-clip-text text-transparent bg-linear-to-r from-primary to-violet-500">
                   Days
                 </span>
               </div>
