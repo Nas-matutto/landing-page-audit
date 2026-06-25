@@ -53,6 +53,26 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'weekly',
       priority: 0.9,
     },
+
+    // Agent detail pages
+    {
+      url: `${baseUrl}/agents/customer-support`,
+      lastModified: new Date('2026-06-25'),
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/agents/lead-qualification`,
+      lastModified: new Date('2026-06-25'),
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/agents/booking-scheduling`,
+      lastModified: new Date('2026-06-25'),
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
     {
       url: `${baseUrl}/book-demo`,
       lastModified: new Date(),

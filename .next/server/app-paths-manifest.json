@@ -1,6 +1,7 @@
 {
   "/_global-error/page": "app/_global-error/page.js",
   "/_not-found/page": "app/_not-found/page.js",
+  "/agents/[slug]/page": "app/agents/[slug]/page.js",
   "/agents/page": "app/agents/page.js",
   "/api/analyze-store/route": "app/api/analyze-store/route.js",
   "/api/capture-lead/route": "app/api/capture-lead/route.js",
