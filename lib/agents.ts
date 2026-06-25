@@ -43,8 +43,205 @@ export type Agent = {
 // ─── Data ─────────────────────────────────────────────────────────────────────
 
 export const AGENTS: Agent[] = [
+  // ── New flagship agents (top 3) ──────────────────────────────────────────────
   {
     id: 1,
+    slug: "social-media",
+    icon: Megaphone,
+    title: "Social media",
+    tagline: "Content that posts itself — built around what works",
+    description:
+      "Analyzes your past content, finds the formats and topics that perform best, and drafts new posts for every channel — scheduled and ready to publish.",
+    gradient: "linear-gradient(135deg, #7c3aed 0%, #a855f7 55%, #f0abfc 100%)",
+    stat: "Typically 10+ posts drafted per week",
+    detail: {
+      metaTitle: "AI Social Media Agent — Built, Hosted & Managed | Talk to Me Data",
+      metaDescription:
+        "A custom AI social media agent that analyzes your best-performing content, drafts new posts for Instagram, LinkedIn, and more, and schedules them automatically. We build, host, and manage it. Live in days.",
+      keywords: [
+        "ai social media agent",
+        "social media automation",
+        "ai content creator",
+        "automate social media posts",
+        "ai instagram agent",
+        "ai linkedin agent",
+        "social media scheduling ai",
+      ],
+      publishedTime: "2026-06-25",
+      heroSubhead:
+        "An agent that studies your best-performing content, drafts on-brand posts for every channel, and schedules them — so your social presence runs without you having to run it.",
+      overview: [
+        "An AI social media agent analyzes your existing content to understand what formats, topics, and hooks get the most engagement. It uses those patterns to draft new posts that sound like you — not generic AI — across Instagram, LinkedIn, X, and any other channel you're active on.",
+        "It's built for founders, marketing teams, and service businesses who know they need to post consistently but can never find the time. Instead of starting from scratch every week, the agent does the drafting and scheduling — you spend a few minutes approving, not a few hours creating.",
+      ],
+      useCases: [
+        { title: "Content drafting", description: "Generates on-brand post drafts for each channel — copy, hooks, and formatting adapted per platform." },
+        { title: "Performance analysis", description: "Reviews your past posts to identify the formats and topics your audience responds to most." },
+        { title: "Scheduling", description: "Queues approved posts for the optimal time on each platform — no manual scheduling." },
+        { title: "Repurposing", description: "Turns blog posts, case studies, or long-form content into a week of social posts automatically." },
+        { title: "Trend monitoring", description: "Spots relevant industry conversations and suggests timely post ideas while they're still fresh." },
+        { title: "Caption & hashtag generation", description: "Writes captions and selects relevant hashtags tuned to each platform's norms." },
+      ],
+      howWeBuild: [
+        { title: "Discovery", description: "You share your channels, brand voice, and content goals in a short call — we handle the rest." },
+        { title: "Build & integrate", description: "We configure the agent, connect it to your channels and scheduling tool, and train it on your best-performing content." },
+        { title: "Deploy & host", description: "The agent runs on our infrastructure — drafting, analyzing, and queuing posts on a schedule you control." },
+        { title: "Monitor & improve", description: "We tune the output as your brand evolves and feed new performance data back into the agent." },
+      ],
+      impact: [
+        { stat: "10+ posts", label: "typically drafted per week, per channel" },
+        { stat: "Hours saved", label: "weekly on content creation and scheduling" },
+        { stat: "Days, not months", label: "from brief to a live social media agent" },
+      ],
+      whyUs: [
+        { title: "We handle the API costs", description: "Model usage is bundled and managed on our side — no AI accounts, no usage bills." },
+        { title: "Custom integrations included", description: "We connect it to your scheduling tools and channels — Buffer, Later, Instagram, LinkedIn, and more." },
+        { title: "Hosted & monitored for you", description: "It runs on our infrastructure around the clock, so posts keep flowing even when you're offline." },
+        { title: "Trained on your voice", description: "We tune the agent on your existing content so posts sound like your brand, not a generic template." },
+      ],
+      faqs: [
+        { q: "What is an AI social media agent?", a: "It's an AI agent that studies your existing content, learns what performs best, and automatically drafts and schedules new posts for your channels — adapted to each platform's format and your brand's voice." },
+        { q: "Which platforms does it support?", a: "Instagram, LinkedIn, X (Twitter), Facebook, and TikTok out of the box. We can connect it to any scheduling tool you already use, such as Buffer or Later." },
+        { q: "Will the posts sound like me?", a: "Yes — that's the main design goal. We train the agent on your existing content so it learns your tone, topics, and formatting style. You'll review drafts before they publish, and we tune the output over time based on your feedback." },
+        { q: "Do I still need to approve posts before they go live?", a: "That's your choice. The agent can queue posts for your review, or publish directly on a schedule you set — whichever fits your workflow." },
+        { q: "How long does it take to go live?", a: "Most social media agents are live within days. After a short discovery call, we build, integrate, and deploy it for you — nothing to install on your side." },
+        { q: "Do I need to manage AI accounts or API keys?", a: "No. We manage all model access and API costs on our infrastructure. You get a working agent — no DevOps and no usage bills." },
+      ],
+    },
+  },
+  {
+    id: 2,
+    slug: "lead-finder",
+    icon: Target,
+    title: "Lead finder",
+    tagline: "A pipeline that fills itself while you sleep",
+    description:
+      "Researches your ideal customer profile, finds matching companies and contacts, enriches their data, and delivers warm, verified leads into your CRM every day.",
+    gradient: "linear-gradient(135deg, #064e3b 0%, #059669 55%, #6ee7b7 100%)",
+    stat: "Typically 50–200 verified leads per week",
+    detail: {
+      metaTitle: "AI Lead Finder Agent — Built, Hosted & Managed | Talk to Me Data",
+      metaDescription:
+        "A custom AI lead finder agent that researches your ideal customer profile, finds matching companies and contacts, enriches their data, and delivers verified leads into your CRM automatically. We build, host, and manage it.",
+      keywords: [
+        "ai lead finder agent",
+        "automated lead generation",
+        "ai prospecting agent",
+        "b2b lead finder ai",
+        "ai lead research agent",
+        "automated outbound leads",
+        "ai agent for lead generation",
+      ],
+      publishedTime: "2026-06-25",
+      heroSubhead:
+        "An agent that researches your ideal customer, finds matching companies and contacts every day, and delivers enriched, verified leads straight into your CRM — no prospecting hours required.",
+      overview: [
+        "An AI lead finder agent starts with your ideal customer profile — the industries, company sizes, roles, and signals that indicate a strong fit — and then goes to work finding real companies and contacts that match. It enriches each lead with contact details, company context, and intent signals, and pushes them into your CRM ready for outreach.",
+        "It's built for B2B teams who know who they want to sell to but don't have the time to research and source prospects manually. Instead of SDRs spending hours on LinkedIn and data tools, the agent runs that process daily in the background, delivering a consistent stream of warm, verified leads.",
+      ],
+      useCases: [
+        { title: "ICP matching", description: "Finds companies that match your ideal customer profile by industry, size, tech stack, and growth signals." },
+        { title: "Contact discovery", description: "Identifies the right decision-makers at each company — with name, role, and verified contact details." },
+        { title: "Data enrichment", description: "Appends company context, LinkedIn URLs, firmographics, and intent signals to each lead automatically." },
+        { title: "CRM delivery", description: "Pushes enriched leads straight into HubSpot, Salesforce, or your pipeline — ready for outreach." },
+        { title: "Daily prospecting", description: "Runs on a schedule so new leads arrive in your CRM every day without manual work." },
+        { title: "List deduplication", description: "Checks against existing contacts so you never import a lead that's already in your pipeline." },
+      ],
+      howWeBuild: [
+        { title: "Discovery", description: "You describe your ideal customer — industry, size, role, and any signals that indicate fit — in a short call." },
+        { title: "Build & integrate", description: "We configure the agent's search criteria and connect it to your CRM and data sources." },
+        { title: "Deploy & host", description: "The agent runs on a daily schedule on our infrastructure, continuously finding and enriching leads." },
+        { title: "Monitor & improve", description: "We tune the ICP criteria as you learn which leads convert, so quality improves over time." },
+      ],
+      impact: [
+        { stat: "50–200", label: "verified leads typically delivered per week" },
+        { stat: "Hours saved", label: "weekly on manual prospecting and research" },
+        { stat: "Days, not months", label: "from brief to a live lead finder agent" },
+      ],
+      whyUs: [
+        { title: "We handle the API costs", description: "Data source access and model usage are bundled and managed on our side — no subscriptions or usage bills." },
+        { title: "Custom integrations included", description: "We connect the agent to your CRM and data sources — HubSpot, Salesforce, Apollo, and more." },
+        { title: "Hosted & monitored for you", description: "It runs on our infrastructure on a daily schedule, so your pipeline fills automatically." },
+        { title: "Tuned to your ICP", description: "We refine the search criteria as you learn which leads convert, so quality compounds over time." },
+      ],
+      faqs: [
+        { q: "What is an AI lead finder agent?", a: "It's an AI agent that researches your ideal customer profile, finds matching companies and contacts from across the web and data sources, enriches each lead with verified contact details and company context, and delivers them into your CRM automatically — every day." },
+        { q: "How does it find leads?", a: "We configure the agent with your ICP criteria — industry, company size, role, tech stack, and intent signals. It then searches across data sources and the web to find companies and contacts that match, enriches the data, deduplicates against your existing records, and pushes verified leads into your CRM." },
+        { q: "How is this different from buying a lead list?", a: "Lead lists are static, unverified, and shared with everyone. This agent finds leads specific to your exact ICP, enriches them with current data, deduplicates against your pipeline, and delivers a fresh set every day — so you always have current, relevant prospects." },
+        { q: "Which CRMs does it integrate with?", a: "HubSpot and Salesforce out of the box. We can connect it to most CRMs and outbound tools — including Apollo, Outreach, and Pipedrive." },
+        { q: "How long does it take to go live?", a: "Most lead finder agents are live within days. After a short discovery call, we build, integrate, and deploy it for you — nothing to install on your side." },
+        { q: "Do I need to manage AI accounts or data subscriptions?", a: "No. We bundle and manage all data source access and model costs on our infrastructure. You get a working agent and a pipeline that fills itself — no subscriptions to manage." },
+      ],
+    },
+  },
+  {
+    id: 3,
+    slug: "data-entry-reporting",
+    icon: BarChart3,
+    title: "Data entry & reporting",
+    tagline: "Accurate reports, zero manual data work",
+    description:
+      "Pulls data from your tools, cleans and structures it, and generates ready-to-share reports on a schedule — so your team spends time on decisions, not spreadsheets.",
+    gradient: "linear-gradient(135deg, #0c4a6e 0%, #0284c7 55%, #7dd3fc 100%)",
+    stat: "Typically saves 10+ hours of manual work per week",
+    detail: {
+      metaTitle: "AI Data Entry & Reporting Agent — Built, Hosted & Managed | Talk to Me Data",
+      metaDescription:
+        "A custom AI data entry and reporting agent that pulls data from your tools, cleans and structures it, and generates ready-to-share reports automatically. We build, host, and manage it. Live in days.",
+      keywords: [
+        "ai data entry agent",
+        "ai reporting agent",
+        "automate data entry",
+        "automated reporting ai",
+        "ai data automation",
+        "business intelligence automation",
+        "ai agent for reporting",
+      ],
+      publishedTime: "2026-06-25",
+      heroSubhead:
+        "An agent that pulls data from across your tools, cleans and structures it, and delivers accurate reports on a schedule — so your team spends time on decisions, not spreadsheets.",
+      overview: [
+        "An AI data entry and reporting agent connects to the tools your business already uses — your CRM, e-commerce platform, ad accounts, spreadsheets, and more — pulls the relevant data on a schedule, cleans and structures it, and generates formatted reports ready to share with your team or clients.",
+        "It's built for teams drowning in manual data work: agency owners compiling client reports, operations teams tracking KPIs across multiple platforms, or founders who want a weekly dashboard without hiring a data analyst. The agent does the extraction, transformation, and formatting automatically, so reporting is always up to date and never late.",
+      ],
+      useCases: [
+        { title: "Automated data extraction", description: "Pulls data from your CRM, ad platforms, e-commerce store, and spreadsheets on a set schedule." },
+        { title: "Data cleaning & structuring", description: "Normalises, deduplicates, and formats raw data so it's ready for analysis without manual cleanup." },
+        { title: "Report generation", description: "Produces formatted, ready-to-share reports — weekly summaries, monthly dashboards, client reports." },
+        { title: "Multi-source consolidation", description: "Combines data from different tools into a single view — no more copying between platforms." },
+        { title: "Scheduled delivery", description: "Sends reports to your inbox, Slack, or Google Drive automatically at the cadence you set." },
+        { title: "Data entry automation", description: "Moves structured data between systems — from forms to CRM, from orders to spreadsheets — without manual copying." },
+      ],
+      howWeBuild: [
+        { title: "Discovery", description: "You walk us through your current reporting workflow and the data sources you use — in one short call." },
+        { title: "Build & integrate", description: "We connect the agent to your tools and configure the data extraction, transformation, and report templates." },
+        { title: "Deploy & host", description: "The agent runs on a schedule on our infrastructure, pulling, processing, and delivering reports automatically." },
+        { title: "Monitor & improve", description: "We monitor data quality, add new sources as needed, and refine reports as your business evolves." },
+      ],
+      impact: [
+        { stat: "10+ hours", label: "typically saved per week on manual data work" },
+        { stat: "Always current", label: "reports delivered automatically on your schedule" },
+        { stat: "Days, not months", label: "from brief to a live reporting agent" },
+      ],
+      whyUs: [
+        { title: "We handle the API costs", description: "All data source connections and model usage are managed on our side — no subscriptions or API bills." },
+        { title: "Custom integrations included", description: "We connect the agent to your tools — Shopify, HubSpot, Google Sheets, Meta Ads, Stripe, and more." },
+        { title: "Hosted & monitored for you", description: "It runs on our infrastructure on your chosen schedule, with monitoring to catch any data issues." },
+        { title: "Built around your workflow", description: "Reports are structured and formatted the way your team already works — not a generic template." },
+      ],
+      faqs: [
+        { q: "What is an AI data entry and reporting agent?", a: "It's an AI agent that connects to your business tools, pulls data on a schedule, cleans and structures it, and generates formatted reports automatically — delivering them to your inbox, Slack, or Google Drive without manual work." },
+        { q: "Which tools can it connect to?", a: "We can connect it to most business tools: CRMs like HubSpot and Salesforce, e-commerce platforms like Shopify, ad platforms like Meta and Google Ads, payment tools like Stripe, spreadsheets, and more. We handle all the integrations." },
+        { q: "Can it replace manual data entry?", a: "Yes, for structured, repetitive data work. If your team currently copies data from forms, emails, or one platform into another, this agent can handle that automatically — including cleaning and formatting the data before it lands." },
+        { q: "What do the reports look like?", a: "We build them around your existing reporting format — weekly summaries, client-ready dashboards, KPI trackers. The output is a formatted document, spreadsheet, or message delivered wherever your team works." },
+        { q: "How long does it take to go live?", a: "Most data entry and reporting agents are live within days. After a short discovery call, we build, integrate, and deploy it for you — nothing to install on your side." },
+        { q: "Do I need to manage API connections or data tools?", a: "No. We manage all integrations, data source access, and model costs on our infrastructure. You get accurate reports delivered automatically — no technical setup required." },
+      ],
+    },
+  },
+  // ── Original flagship agents ─────────────────────────────────────────────────
+  {
+    id: 4,
     slug: "customer-support",
     icon: Headphones,
     title: "Customer support",
@@ -109,7 +306,7 @@ export const AGENTS: Agent[] = [
     },
   },
   {
-    id: 2,
+    id: 5,
     slug: "lead-qualification",
     icon: Users,
     title: "Lead qualification",
@@ -174,7 +371,7 @@ export const AGENTS: Agent[] = [
     },
   },
   {
-    id: 3,
+    id: 6,
     slug: "booking-scheduling",
     icon: Calendar,
     title: "Booking & scheduling",
@@ -240,39 +437,6 @@ export const AGENTS: Agent[] = [
   },
   {
     id: 4,
-    slug: "document-qa",
-    icon: FileText,
-    title: "Document Q&A",
-    tagline: "Instant answers from your own content",
-    description:
-      "Upload manuals, policies, or reports. Your agent answers staff or client questions accurately — grounded in your actual documents.",
-    gradient: "linear-gradient(135deg, #312e81 0%, #4f46e5 55%, #a5b4fc 100%)",
-    stat: "Replaces hours of search daily",
-  },
-  {
-    id: 5,
-    slug: "order-tracking",
-    icon: Package,
-    title: "Order tracking",
-    tagline: "Keep customers informed automatically",
-    description:
-      "Real-time order updates across any channel. Eliminates WISMO tickets before they're raised.",
-    gradient: "linear-gradient(135deg, #3730a3 0%, #6d28d9 55%, #c4b5fd 100%)",
-    stat: "Up to 80% fewer support tickets",
-  },
-  {
-    id: 6,
-    slug: "onboarding",
-    icon: UserCheck,
-    title: "Onboarding",
-    tagline: "Guide every user to their first win",
-    description:
-      "Walks new users through your product step by step, answers setup questions, and nudges them toward activation milestones.",
-    gradient: "linear-gradient(135deg, #4c1d95 0%, #7c3aed 55%, #c4b5fd 100%)",
-    stat: "Higher activation, less churn",
-  },
-  {
-    id: 7,
     slug: "invoice-processing",
     icon: Receipt,
     title: "Invoice processing",
@@ -283,7 +447,7 @@ export const AGENTS: Agent[] = [
     stat: "90% faster invoice processing",
   },
   {
-    id: 8,
+    id: 5,
     slug: "hr-helpdesk",
     icon: HelpCircle,
     title: "HR helpdesk",

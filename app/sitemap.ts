@@ -56,6 +56,24 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
     // Agent detail pages
     {
+      url: `${baseUrl}/agents/social-media`,
+      lastModified: new Date('2026-06-25'),
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/agents/lead-finder`,
+      lastModified: new Date('2026-06-25'),
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/agents/data-entry-reporting`,
+      lastModified: new Date('2026-06-25'),
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
       url: `${baseUrl}/agents/customer-support`,
       lastModified: new Date('2026-06-25'),
       changeFrequency: 'monthly',
