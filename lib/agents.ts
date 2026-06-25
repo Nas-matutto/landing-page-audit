@@ -1,6 +1,6 @@
 import {
-  Headphones, Users, Calendar, FileText, Package, UserCheck,
-  Receipt, HelpCircle,
+  Headphones, Users, Calendar, Receipt, HelpCircle,
+  Megaphone, Target, BarChart3,
 } from "lucide-react"
 
 // ─── Types ────────────────────────────────────────────────────────────────────
