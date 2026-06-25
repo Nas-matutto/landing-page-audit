@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation"
 import { useState, useEffect, useMemo } from "react"
 import Link from "next/link"
 import {
-  ArrowRight, Check,
+  ArrowRight, Check, Wand2,
   Server, KeyRound, Bot, Activity, RefreshCw, Plug, Shield, LayoutDashboard,
 } from "lucide-react"
 import { AGENTS, isAgentBuilt } from "@/lib/agents"
@@ -274,23 +274,40 @@ export function AgentsPageContent() {
                   </motion.div>
                 )
               })}
-            </div>
 
-            <motion.p
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.3 }}
-              className="text-center text-sm text-slate-400 mt-12"
-            >
-              Don&apos;t see your workflow?{" "}
-              <button
-                onClick={() => router.push("/book-demo")}
-                className="text-primary font-semibold hover:underline cursor-pointer"
+              {/* Custom Agent — inverted card */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: (AGENTS.length % 3) * 0.08 }}
               >
-                Tell us what you need →
-              </button>
-            </motion.p>
+                <Link
+                  href="/book-demo"
+                  className="group relative flex flex-col h-full rounded-2xl bg-foreground p-6 hover:shadow-xl hover:shadow-foreground/20 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 overflow-hidden"
+                >
+                  {/* subtle glow */}
+                  <div className="pointer-events-none absolute -top-12 -right-12 w-40 h-40 rounded-full bg-primary/20 blur-2xl" />
+
+                  <div className="flex items-start justify-between mb-5">
+                    <div className="w-12 h-12 rounded-2xl flex items-center justify-center ring-1 ring-white/10 shadow-sm bg-linear-to-br from-primary to-violet-500">
+                      <Wand2 className="w-6 h-6 text-white" />
+                    </div>
+                    <ArrowRight className="w-5 h-5 text-white/30 group-hover:text-white group-hover:translate-x-0.5 transition-all" />
+                  </div>
+
+                  <h3 className="text-lg font-bold text-white mb-1">Custom agent</h3>
+                  <p className="text-sm text-white/50 font-medium mb-4">Your workflow, built from scratch</p>
+
+                  <div className="mt-auto flex items-center justify-between pt-4 border-t border-white/10">
+                    <span className="text-xs font-semibold text-white/40">Any workflow, any complexity</span>
+                    <span className="text-xs font-bold text-primary opacity-0 group-hover:opacity-100 transition-opacity">
+                      Talk to us →
+                    </span>
+                  </div>
+                </Link>
+              </motion.div>
+            </div>
           </div>
         </div>
       </section>
