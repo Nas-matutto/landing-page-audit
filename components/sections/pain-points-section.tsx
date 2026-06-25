@@ -3,36 +3,43 @@
 import { motion } from "framer-motion"
 import { X, Check } from "lucide-react"
 
-const cold = [
-  "Hire expensive developers to build it",
-  "Wait months for something to go live",
-  "Manage infrastructure, bugs, and updates yourself",
-  "Still not sure if it actually works",
+const rows = [
+  {
+    dim: "Getting started",
+    cold: "Map your Agent and build it from the ground up",
+    warm: "Describe your workflow in plain language",
+  },
+  {
+    dim: "Custom integrations",
+    cold: "Wire up every tool and API connection yourself",
+    warm: "We build the integrations into your stack for you",
+  },
+  {
+    dim: "API costs",
+    cold: "You set up billing and watch rate limits and overages",
+    warm: "API costs are handled and bundled - nothing to manage",
+  },
+  {
+    dim: "Hosting & upkeep",
+    cold: "Host, scale, monitor, and patch it on your own",
+    warm: "Fully hosted and monitored on our platform",
+  },
 ]
 
-const warm = [
-  "Describe your workflow in plain language",
-  "We design, build, and configure your agent",
-  "Deployed and hosted — we monitor everything",
-  "Live in days, not months",
+const reassurances = [
+  "No API bills to manage",
+  "Custom integrations included",
+  "Hosted & monitored for you",
 ]
 
-const container = {
-  hidden: { opacity: 0 },
-  show: { opacity: 1, transition: { staggerChildren: 0.08 } },
-}
-
-const item = {
-  hidden: { opacity: 0, x: -12 },
-  show: { opacity: 1, x: 0 },
-}
+const gridCols = "grid grid-cols-1 md:grid-cols-[minmax(150px,0.8fr)_1fr_1fr]"
 
 export function PainPointsSection() {
   return (
     <section className="py-24 sm:py-32 bg-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-5xl mx-auto">
-          <div className="text-center mb-16">
+          <div className="text-center mb-14">
             <p className="text-xs font-semibold tracking-widest uppercase text-primary mb-4">The old way vs. the TTMD way</p>
             <h2 className="text-4xl sm:text-5xl font-bold tracking-tight text-balance">
               Building AI in-house is broken.{" "}
@@ -40,95 +47,101 @@ export function PainPointsSection() {
                 We fix it.
               </span>
             </h2>
+            <p className="mt-5 text-base sm:text-lg text-slate-500 max-w-2xl mx-auto leading-relaxed">
+              We don&apos;t just build the agent - we handle the API costs, the custom integrations, and the hosting.
+              You don&apos;t manage a single thing.
+            </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {/* Cold outreach card */}
-            <motion.div
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-              className="rounded-2xl border-2 border-red-100 bg-red-50/50 p-8"
-            >
-              <div className="flex items-center gap-3 mb-6">
-                <div className="w-8 h-8 rounded-full bg-red-100 flex items-center justify-center">
-                  <X className="w-4 h-4 text-red-500" />
-                </div>
-                <h3 className="font-bold text-lg text-slate-800">Building it yourself</h3>
+          {/* Comparison matrix */}
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="rounded-2xl border border-slate-200 shadow-sm overflow-hidden divide-y divide-slate-200 bg-white"
+          >
+            {/* Header row (desktop only) */}
+            <div className={`${gridCols} hidden md:grid`}>
+              <div className="px-6 py-4" />
+              <div className="px-6 py-4">
+                <span className="text-sm font-semibold text-slate-500">Building it yourself</span>
               </div>
-              <motion.ul
-                variants={container}
-                initial="hidden"
-                whileInView="show"
-                viewport={{ once: true }}
-                className="space-y-3"
-              >
-                {cold.map((text, i) => (
-                  <motion.li key={i} variants={item} className="flex items-start gap-3 text-slate-600">
-                    <X className="w-4 h-4 text-red-400 mt-0.5 shrink-0" />
-                    <span className="text-sm leading-relaxed">{text}</span>
-                  </motion.li>
-                ))}
-              </motion.ul>
-              <div className="mt-6 pt-6 border-t border-red-100">
-                <p className="text-2xl font-bold text-red-500">Months</p>
-                <p className="text-xs text-slate-500 mt-1">Typical time to deployment</p>
+              <div className="px-6 py-4 bg-primary/5 border-l border-primary/15 flex items-center justify-between gap-3">
+                <span className="text-sm font-semibold text-slate-800">With TTMD</span>
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-primary/10 px-2.5 py-1 text-[11px] font-semibold text-primary">
+                  <Check className="w-3 h-3" />
+                  Done for you
+                </span>
               </div>
-            </motion.div>
+            </div>
 
-            {/* Signal-based card */}
-            <motion.div
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.15 }}
-              className="rounded-2xl border-2 border-primary/20 bg-primary/5 p-8"
-            >
-              <div className="flex items-center gap-3 mb-6">
-                <div className="w-8 h-8 rounded-full bg-primary/15 flex items-center justify-center">
-                  <Check className="w-4 h-4 text-primary" />
+            {/* Comparison rows */}
+            {rows.map((row, i) => (
+              <div key={i} className={gridCols}>
+                {/* Dimension label */}
+                <div className="px-6 pt-5 pb-2 md:py-5 flex items-center bg-slate-50/60">
+                  <span className="text-[11px] font-mono uppercase tracking-wider text-slate-400">{row.dim}</span>
                 </div>
-                <h3 className="font-bold text-lg text-slate-800">The TTMD way</h3>
-              </div>
-              <motion.ul
-                variants={container}
-                initial="hidden"
-                whileInView="show"
-                viewport={{ once: true }}
-                className="space-y-3"
-              >
-                {warm.map((text, i) => (
-                  <motion.li key={i} variants={item} className="flex items-start gap-3 text-slate-700">
-                    <Check className="w-4 h-4 text-primary mt-0.5 shrink-0" />
-                    <span className="text-sm leading-relaxed">{text}</span>
-                  </motion.li>
-                ))}
-              </motion.ul>
-              <div className="mt-6 pt-6 border-t border-primary/15">
-                <p className="text-2xl font-bold text-primary">24 hours</p>
-                <p className="text-xs text-slate-500 mt-1">Average time from brief to live agent</p>
-              </div>
-            </motion.div>
-          </div>
 
-          {/* Stat bar */}
+                {/* In-house */}
+                <div className="px-6 py-4 md:py-5 flex items-start gap-2.5">
+                  <span className="md:hidden text-[11px] font-semibold uppercase tracking-wider text-slate-400 w-full -mb-1 block">
+                    Building it yourself
+                  </span>
+                  <X className="w-4 h-4 text-slate-300 mt-0.5 shrink-0" />
+                  <span className="text-sm leading-relaxed text-slate-500">{row.cold}</span>
+                </div>
+
+                {/* TTMD */}
+                <div className="px-6 py-4 md:py-5 flex items-start gap-2.5 bg-primary/5 md:border-l md:border-primary/15">
+                  <span className="md:hidden text-[11px] font-semibold uppercase tracking-wider text-primary w-full -mb-1 block">
+                    With TTMD
+                  </span>
+                  <Check className="w-4 h-4 text-primary mt-0.5 shrink-0" />
+                  <span className="text-sm leading-relaxed text-slate-700 font-medium">{row.warm}</span>
+                </div>
+              </div>
+            ))}
+
+            {/* Time-to-live footer row */}
+            <div className={gridCols}>
+              <div className="px-6 pt-5 pb-2 md:py-6 flex items-center bg-slate-50/60">
+                <span className="text-[11px] font-mono uppercase tracking-wider text-slate-400">Time to live</span>
+              </div>
+              <div className="px-6 py-4 md:py-6 flex items-center gap-2.5">
+                <span className="md:hidden text-[11px] font-semibold uppercase tracking-wider text-slate-400 w-full -mb-1 block">
+                  Building it yourself
+                </span>
+                <span className="text-2xl font-bold text-slate-400">Months</span>
+              </div>
+              <div className="px-6 py-4 md:py-6 flex items-center gap-2.5 bg-primary/5 md:border-l md:border-primary/15">
+                <span className="md:hidden text-[11px] font-semibold uppercase tracking-wider text-primary w-full -mb-1 block">
+                  With TTMD
+                </span>
+                <span className="text-2xl font-bold bg-clip-text text-transparent bg-linear-to-r from-primary to-violet-500">
+                  Days
+                </span>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Reassurance strip */}
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-            className="mt-10 grid grid-cols-3 divide-x divide-slate-200 border border-slate-200 rounded-2xl overflow-hidden bg-slate-50"
+            transition={{ duration: 0.5, delay: 0.15 }}
+            className="mt-8 flex flex-wrap items-center justify-center gap-3"
           >
-            {[
-              { stat: "24 hours", label: "Brief to live agent" },
-              { stat: "Zero code", label: "Required from you" },
-              { stat: "100%", label: "Managed & hosted" },
-            ].map(({ stat, label }, i) => (
-              <div key={i} className="py-4 sm:py-6 px-2 text-center">
-                <p className="text-base sm:text-2xl md:text-3xl font-bold text-foreground leading-tight">{stat}</p>
-                <p className="text-[10px] sm:text-xs text-slate-500 mt-0.5 sm:mt-1 leading-snug">{label}</p>
-              </div>
+            {reassurances.map((text, i) => (
+              <span
+                key={i}
+                className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-slate-50 px-4 py-2 text-sm font-medium text-slate-600"
+              >
+                <Check className="w-4 h-4 text-primary shrink-0" />
+                {text}
+              </span>
             ))}
           </motion.div>
         </div>
