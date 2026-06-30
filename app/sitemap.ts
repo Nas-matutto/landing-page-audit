@@ -92,6 +92,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
     {
+      url: `${baseUrl}/agents/invoice-processing`,
+      lastModified: new Date('2026-06-30'),
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
       url: `${baseUrl}/book-demo`,
       lastModified: new Date(),
       changeFrequency: 'monthly',

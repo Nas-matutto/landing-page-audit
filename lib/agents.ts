@@ -444,7 +444,61 @@ export const AGENTS: Agent[] = [
     description:
       "Reads incoming invoices, extracts data, matches against POs, and routes for approval — no spreadsheet required.",
     gradient: "linear-gradient(135deg, #1e3a8a 0%, #3730a3 55%, #6366f1 100%)",
-    stat: "90% faster invoice processing",
+    stat: "Up to 90% faster invoice processing",
+    detail: {
+      metaTitle: "AI Invoice Processing Agent — Built, Hosted & Managed | Talk to Me Data",
+      metaDescription:
+        "A custom AI invoice processing agent that reads incoming invoices, extracts data, matches against POs, flags discrepancies, and routes for approval — automatically. We build, host, and manage it. Live in days.",
+      keywords: [
+        "ai invoice processing agent",
+        "automate invoice processing",
+        "ai accounts payable automation",
+        "invoice data extraction ai",
+        "automated invoice approval",
+        "ai agent for invoices",
+        "purchase order matching automation",
+      ],
+      publishedTime: "2026-06-30",
+      heroSubhead:
+        "An agent that reads every incoming invoice, extracts the data, matches it against your purchase orders, flags discrepancies, and routes it for approval — fully built, hosted, and managed by us.",
+      overview: [
+        "An AI invoice processing agent reads incoming invoices in any format — PDF, email attachment, or scanned document — extracts the key data fields, cross-references them against your purchase orders and supplier records, and routes each invoice through your approval workflow automatically. Exceptions and mismatches get flagged before they become problems.",
+        "It's built for finance and operations teams spending hours every week on manual data entry, chasing approvals, and reconciling supplier statements. Whether you process tens or hundreds of invoices a month, the agent handles the repetitive work so your team focuses on the exceptions that actually need human judgement.",
+      ],
+      useCases: [
+        { title: "Data extraction", description: "Reads invoices in any format — PDF, email, scan — and extracts vendor name, invoice number, line items, amounts, and due dates." },
+        { title: "PO matching", description: "Cross-references extracted data against your purchase orders and flags mismatches in quantity, price, or supplier details before they're paid." },
+        { title: "Approval routing", description: "Routes invoices to the right approver based on amount, department, or supplier — no manual forwarding required." },
+        { title: "Discrepancy flagging", description: "Catches duplicate invoices, missing POs, and price variances automatically and holds them for review." },
+        { title: "ERP & accounting sync", description: "Pushes validated invoice data into your accounting system or ERP — QuickBooks, Xero, NetSuite, and more." },
+        { title: "Supplier communication", description: "Sends automated acknowledgements and status updates to suppliers so they're not chasing your team for payment confirmations." },
+      ],
+      howWeBuild: [
+        { title: "Discovery", description: "You walk us through your current invoice flow — formats, approval rules, and the systems you use — in one short call." },
+        { title: "Build & integrate", description: "We configure the agent's extraction and matching logic, then connect it to your email inbox, ERP, and accounting tools." },
+        { title: "Deploy & host", description: "The agent runs on our infrastructure, processing invoices as they arrive — nothing to install or maintain on your end." },
+        { title: "Monitor & improve", description: "We monitor extraction accuracy, tune the matching rules, and add new suppliers or formats as your business evolves." },
+      ],
+      impact: [
+        { stat: "Up to 90%", label: "faster end-to-end invoice processing" },
+        { stat: "Near-zero", label: "manual data entry for standard invoices" },
+        { stat: "Days, not months", label: "from brief to a live invoice processing agent" },
+      ],
+      whyUs: [
+        { title: "We handle the API costs", description: "Document processing and model usage are bundled and managed on our side — no AI accounts or usage bills." },
+        { title: "Custom integrations included", description: "We connect the agent to your inbox, ERP, and accounting tools — QuickBooks, Xero, NetSuite, SAP, and more." },
+        { title: "Hosted & monitored for you", description: "It runs on our infrastructure with continuous monitoring, so every invoice gets processed reliably." },
+        { title: "Tuned to your approval rules", description: "We configure routing logic to match your real workflow — by amount, supplier, department, or any other rule." },
+      ],
+      faqs: [
+        { q: "What is an AI invoice processing agent?", a: "It's an AI agent that reads incoming invoices in any format, extracts the key data fields, matches them against your purchase orders, flags discrepancies, and routes each invoice through your approval workflow automatically — with no manual data entry." },
+        { q: "What invoice formats does it handle?", a: "PDF attachments, scanned documents, and email-based invoices. The agent reads structured and unstructured layouts — you don't need suppliers to send invoices in a specific template." },
+        { q: "How does PO matching work?", a: "Once the agent extracts the invoice data, it compares the vendor, line items, quantities, and amounts against your existing purchase orders. Matches are routed for approval; mismatches are flagged and held for a human to review before any payment is made." },
+        { q: "Which accounting systems and ERPs does it connect to?", a: "We can integrate it with QuickBooks, Xero, NetSuite, SAP, and most other accounting tools and ERPs. We handle the integration — you don't need to configure any APIs." },
+        { q: "How long does it take to go live?", a: "Most invoice processing agents are live within days. After a short discovery call to understand your formats and approval rules, we build, integrate, and deploy it for you." },
+        { q: "Do I need to manage AI accounts or API keys?", a: "No. We manage all model access, document processing costs, and infrastructure on our side. You get a working agent — no DevOps and no usage bills." },
+      ],
+    },
   },
   {
     id: 5,
