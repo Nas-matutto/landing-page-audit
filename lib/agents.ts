@@ -72,6 +72,8 @@ export const AGENTS: Agent[] = [
         "social media scheduling ai",
       ],
       publishedTime: "2026-06-25",
+      hideBreadcrumb: true,
+      hideHeroStats: true,
       heroSubhead:
         "An agent that studies your best-performing content, drafts on-brand posts for every channel, and schedules them — so your social presence runs without you having to run it.",
       overview: [
@@ -124,7 +126,7 @@ export const AGENTS: Agent[] = [
     gradient: "linear-gradient(135deg, #064e3b 0%, #059669 55%, #6ee7b7 100%)",
     stat: "Typically 50–200 verified leads per week",
     detail: {
-      metaTitle: "AI Lead Finder Agent — Built, Hosted & Managed | Talk to Me Data",
+      metaTitle: "AI Lead Finder Agent - Built, Hosted & Managed | Talk to Me Data",
       metaDescription:
         "A custom AI lead finder agent that researches your ideal customer profile, finds matching companies and contacts, enriches their data, and delivers verified leads into your CRM automatically. We build, host, and manage it.",
       keywords: [
@@ -137,6 +139,8 @@ export const AGENTS: Agent[] = [
         "ai agent for lead generation",
       ],
       publishedTime: "2026-06-25",
+      hideBreadcrumb: true,
+      hideHeroStats: true,
       heroSubhead:
         "An agent that researches your ideal customer, finds matching companies and contacts every day, and delivers enriched, verified leads straight into your CRM — no prospecting hours required.",
       overview: [
@@ -202,6 +206,8 @@ export const AGENTS: Agent[] = [
         "ai agent for reporting",
       ],
       publishedTime: "2026-06-25",
+      hideBreadcrumb: true,
+      hideHeroStats: true,
       heroSubhead:
         "An agent that pulls data from across your tools, cleans and structures it, and delivers accurate reports on a schedule — so your team spends time on decisions, not spreadsheets.",
       overview: [
@@ -268,6 +274,8 @@ export const AGENTS: Agent[] = [
         "support ticket automation",
       ],
       publishedTime: "2026-06-25",
+      hideBreadcrumb: true,
+      hideHeroStats: true,
       heroSubhead:
         "An always-on support agent that resolves the repetitive tickets instantly and hands the rest to your team — fully built, hosted, and managed by us.",
       overview: [
@@ -333,6 +341,8 @@ export const AGENTS: Agent[] = [
         "ai agent for sales",
       ],
       publishedTime: "2026-06-25",
+      hideBreadcrumb: true,
+      hideHeroStats: true,
       heroSubhead:
         "An agent that replies to every inbound lead in seconds, qualifies them on the spot, and routes the hot ones straight to your team — fully built, hosted, and managed by us.",
       overview: [
@@ -398,6 +408,8 @@ export const AGENTS: Agent[] = [
         "reduce no-shows automation",
       ],
       publishedTime: "2026-06-25",
+      hideBreadcrumb: true,
+      hideHeroStats: true,
       heroSubhead:
         "An agent that books, reschedules, and reminds — in a natural conversation, synced to your calendar — fully built, hosted, and managed by us.",
       overview: [
@@ -466,9 +478,9 @@ export const AGENTS: Agent[] = [
       hideBreadcrumb: true,
       hideHeroStats: true,
       heroSubhead:
-        "An agent that reads every incoming invoice, extracts the data, matches it against your purchase orders, flags discrepancies, and routes it for approval — fully built, hosted, and managed by us.",
+        "An agent that reads every incoming invoice, extracts the data and adds it to your Accounting software - fully built, hosted, and managed by us.",
       overview: [
-        "An AI invoice processing agent reads incoming invoices in any format — PDF, email attachment, or scanned document — extracts the key data fields, cross-references them against your purchase orders and supplier records, and routes each invoice through your approval workflow automatically. Exceptions and mismatches get flagged before they become problems.",
+        "An AI invoice processing agent reads incoming invoices in any format - PDF, email attachment, or scanned document - extracts the key data fields, cross-references them against your purchase orders and supplier records, and routes each invoice through your approval workflow automatically. Exceptions and mismatches get flagged before they become problems.",
         "It's built for finance and operations teams spending hours every week on manual data entry, chasing approvals, and reconciling supplier statements. Whether you process tens or hundreds of invoices a month, the agent handles the repetitive work so your team focuses on the exceptions that actually need human judgement.",
       ],
       useCases: [

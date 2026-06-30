@@ -1,13 +1,24 @@
 import Link from "next/link"
-import { ArrowRight, Check, ChevronDown, Sparkles, Camera, ScanLine, Database } from "lucide-react"
-import { SiQuickbooks, SiXero, SiSage, SiZoho } from "react-icons/si"
+import {
+  ArrowRight, Check, ChevronDown, Sparkles,
+  Camera, ScanLine, Database,
+  BarChart2, PenLine, CalendarClock,
+  Target, Search,
+  Plug, Layers, FileBarChart,
+  MessageSquare, Bot, CheckCircle,
+  UserPlus, Send,
+  CalendarCheck, Bell,
+} from "lucide-react"
+import {
+  SiQuickbooks, SiXero, SiSage, SiZoho,
+  SiInstagram, SiTiktok, SiBuffer,
+  SiHubspot, SiSalesforce,
+  SiShopify, SiGooglesheets, SiStripe,
+  SiZendesk, SiWhatsapp, SiIntercom,
+  SiSlack, SiGooglecalendar,
+} from "react-icons/si"
 import type { Agent, AgentDetail } from "@/lib/agents"
 import { InvoiceSavingsCalculator } from "@/components/invoice-savings-calculator"
-
-// Server component — no client interactivity. FAQ uses native <details> so the
-// page stays fully static and SEO/GEO-friendly.
-// InvoiceSavingsCalculator is a client component imported here — Next.js handles
-// the server/client boundary automatically.
 
 function CtaButton({ children, className = "" }: { children: React.ReactNode; className?: string }) {
   return (
@@ -21,37 +32,32 @@ function CtaButton({ children, className = "" }: { children: React.ReactNode; cl
   )
 }
 
-// ── Invoice-specific: visual agentic workflow ─────────────────────────────────
+// ── Shared workflow section ───────────────────────────────────────────────────
 
-const ACCOUNTING_LOGOS = [
-  { Icon: SiQuickbooks, color: "#2CA01C", label: "QuickBooks" },
-  { Icon: SiXero,       color: "#13B5EA", label: "Xero" },
-  { Icon: SiSage,       color: "#00D639", label: "Sage" },
-  { Icon: SiZoho,       color: "#E42527", label: "Zoho Books" },
-]
+type WStep = {
+  Icon: React.ComponentType<{ className?: string }>
+  step: string
+  title: string
+  description: string
+}
 
-function InvoiceWorkflow() {
-  const steps = [
-    {
-      Icon: Camera,
-      step: "01",
-      title: "Take a photo",
-      description: "Snap the invoice on your phone or forward the PDF to a dedicated email address.",
-    },
-    {
-      Icon: ScanLine,
-      step: "02",
-      title: "AI reads & extracts",
-      description: "The agent reads the invoice in seconds — vendor, line items, amounts, due date — no matter the format.",
-    },
-    {
-      Icon: Database,
-      step: "03",
-      title: "Added to your system",
-      description: "The extracted data is pushed directly into your accounting software, ready for approval.",
-    },
-  ]
+type WLogo = {
+  Icon: React.ComponentType<{ className?: string; style?: React.CSSProperties }>
+  color: string
+  label: string
+}
 
+function WorkflowSection({
+  heading,
+  steps,
+  logos,
+  logoSuffix = "+ any other tool",
+}: {
+  heading: string
+  steps: WStep[]
+  logos: WLogo[]
+  logoSuffix?: string
+}) {
   return (
     <section className="py-20 sm:py-24 bg-slate-50">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -59,22 +65,22 @@ function InvoiceWorkflow() {
           <div className="text-center mb-14">
             <p className="text-xs font-semibold tracking-widest uppercase text-primary mb-4">How it works</p>
             <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-slate-900 text-balance">
-              Photo to system in under 30 seconds
+              {heading}
             </h2>
           </div>
 
-          {/* Steps */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
             {steps.map((s, i) => (
               <div key={i} className="relative">
-                {/* Connector arrow — desktop only */}
                 {i < steps.length - 1 && (
-                  <div className="hidden md:flex absolute top-10 left-full z-10 items-center" style={{ width: "calc(100% - 5rem)", left: "calc(100% - 2.5rem)" }}>
+                  <div
+                    className="hidden md:flex absolute top-10 z-10 items-center"
+                    style={{ left: "calc(100% - 2.5rem)", width: "calc(100% - 5rem)" }}
+                  >
                     <div className="flex-1 h-px bg-linear-to-r from-primary/30 to-primary/10" />
                     <ArrowRight className="w-4 h-4 text-primary/30 shrink-0" />
                   </div>
                 )}
-
                 <div className="bg-white rounded-2xl border border-slate-200 p-7 shadow-sm h-full flex flex-col">
                   <div className="flex items-center gap-4 mb-5">
                     <span className="text-3xl font-black text-slate-100 leading-none select-none">{s.step}</span>
@@ -89,17 +95,16 @@ function InvoiceWorkflow() {
             ))}
           </div>
 
-          {/* "Works with" logos */}
           <div className="bg-white rounded-2xl border border-slate-200 px-8 py-7 flex flex-col sm:flex-row items-center gap-6 shadow-sm">
             <p className="text-xs font-semibold uppercase tracking-widest text-slate-400 shrink-0">Works with</p>
             <div className="flex flex-wrap items-center justify-center sm:justify-start gap-5">
-              {ACCOUNTING_LOGOS.map(({ Icon, color, label }) => (
+              {logos.map(({ Icon, color, label }) => (
                 <div key={label} className="flex items-center gap-2">
                   <Icon style={{ color }} className="w-6 h-6 shrink-0" />
                   <span className="text-sm font-semibold text-slate-600">{label}</span>
                 </div>
               ))}
-              <span className="text-sm text-slate-400">+ any ERP or accounting tool</span>
+              {logoSuffix && <span className="text-sm text-slate-400">{logoSuffix}</span>}
             </div>
           </div>
         </div>
@@ -108,24 +113,256 @@ function InvoiceWorkflow() {
   )
 }
 
+// ── Per-agent workflow data ───────────────────────────────────────────────────
+
+const WORKFLOWS: Record<string, Parameters<typeof WorkflowSection>[0]> = {
+  "social-media": {
+    heading: "Your social presence — on autopilot",
+    steps: [
+      {
+        Icon: BarChart2,
+        step: "01",
+        title: "Analyze what works",
+        description:
+          "The agent scans your past content to find the formats, topics, and hooks that drive the most engagement on each platform.",
+      },
+      {
+        Icon: PenLine,
+        step: "02",
+        title: "Draft on-brand posts",
+        description:
+          "New posts are written in your voice and adapted for each platform — Instagram, LinkedIn, TikTok, and more.",
+      },
+      {
+        Icon: CalendarClock,
+        step: "03",
+        title: "Schedule & publish",
+        description:
+          "Approved posts are queued at the best time for each channel and published automatically — no manual scheduling needed.",
+      },
+    ],
+    logos: [
+      { Icon: SiInstagram, color: "#E1306C", label: "Instagram" },
+      { Icon: SiTiktok, color: "#000000", label: "TikTok" },
+      { Icon: SiBuffer, color: "#2C4BFF", label: "Buffer" },
+    ],
+    logoSuffix: "+ LinkedIn, X & more",
+  },
+
+  "lead-finder": {
+    heading: "A pipeline that fills itself",
+    steps: [
+      {
+        Icon: Target,
+        step: "01",
+        title: "Define your ICP",
+        description:
+          "We configure the agent with your ideal customer profile — industry, company size, role, tech stack, and buying intent signals.",
+      },
+      {
+        Icon: Search,
+        step: "02",
+        title: "Research & find matches",
+        description:
+          "The agent searches across data sources and the web, identifying companies and contacts that match your criteria daily.",
+      },
+      {
+        Icon: Database,
+        step: "03",
+        title: "Enrich & deliver to CRM",
+        description:
+          "Leads are enriched with verified contact details and company context, then pushed into your CRM ready for outreach.",
+      },
+    ],
+    logos: [
+      { Icon: SiHubspot, color: "#FF7A59", label: "HubSpot" },
+      { Icon: SiSalesforce, color: "#00A1E0", label: "Salesforce" },
+    ],
+    logoSuffix: "+ any CRM or outbound tool",
+  },
+
+  "data-entry-reporting": {
+    heading: "Accurate data, zero manual work",
+    steps: [
+      {
+        Icon: Plug,
+        step: "01",
+        title: "Connect your tools",
+        description:
+          "The agent pulls data from your CRM, ad platforms, e-commerce store, and spreadsheets automatically on a set schedule.",
+      },
+      {
+        Icon: Layers,
+        step: "02",
+        title: "Clean & structure",
+        description:
+          "Raw data is normalised, deduplicated, and formatted — ready for analysis without any manual cleanup.",
+      },
+      {
+        Icon: FileBarChart,
+        step: "03",
+        title: "Generate & deliver",
+        description:
+          "Formatted reports land in your inbox, Slack channel, or Google Drive automatically at the cadence you set.",
+      },
+    ],
+    logos: [
+      { Icon: SiShopify, color: "#96BF48", label: "Shopify" },
+      { Icon: SiGooglesheets, color: "#34A853", label: "Google Sheets" },
+      { Icon: SiHubspot, color: "#FF7A59", label: "HubSpot" },
+      { Icon: SiStripe, color: "#635BFF", label: "Stripe" },
+    ],
+    logoSuffix: "+ most business tools",
+  },
+
+  "customer-support": {
+    heading: "Tickets resolved before your team sees them",
+    steps: [
+      {
+        Icon: MessageSquare,
+        step: "01",
+        title: "Message arrives",
+        description:
+          "A customer sends a question via email, live chat, or WhatsApp — at any hour, any day of the week.",
+      },
+      {
+        Icon: Bot,
+        step: "02",
+        title: "AI reads & responds",
+        description:
+          "The agent reads the message, pulls from your help docs and order data, and sends an accurate reply in seconds.",
+      },
+      {
+        Icon: CheckCircle,
+        step: "03",
+        title: "Resolved or escalated",
+        description:
+          "Routine tickets are closed end-to-end. Complex cases are handed to your team with full conversation context attached.",
+      },
+    ],
+    logos: [
+      { Icon: SiZendesk, color: "#03363D", label: "Zendesk" },
+      { Icon: SiWhatsapp, color: "#25D366", label: "WhatsApp" },
+      { Icon: SiIntercom, color: "#1F8DED", label: "Intercom" },
+    ],
+    logoSuffix: "+ email, chat & more",
+  },
+
+  "lead-qualification": {
+    heading: "Every lead qualified in seconds",
+    steps: [
+      {
+        Icon: UserPlus,
+        step: "01",
+        title: "Lead arrives",
+        description:
+          "A form fill, chat message, or DM comes in — the agent responds in seconds, before the lead goes cold.",
+      },
+      {
+        Icon: MessageSquare,
+        step: "02",
+        title: "AI qualifies on the spot",
+        description:
+          "It asks your qualifying questions naturally, collects budget, timeline, and use case, and scores intent automatically.",
+      },
+      {
+        Icon: Send,
+        step: "03",
+        title: "Hot leads routed instantly",
+        description:
+          "Qualified leads are pushed into your CRM with scores and notes attached — or booked onto a rep's calendar directly.",
+      },
+    ],
+    logos: [
+      { Icon: SiHubspot, color: "#FF7A59", label: "HubSpot" },
+      { Icon: SiSalesforce, color: "#00A1E0", label: "Salesforce" },
+      { Icon: SiSlack, color: "#4A154B", label: "Slack" },
+    ],
+    logoSuffix: "+ any CRM or calendar",
+  },
+
+  "booking-scheduling": {
+    heading: "Booked, confirmed, and reminded — automatically",
+    steps: [
+      {
+        Icon: MessageSquare,
+        step: "01",
+        title: "Client starts a chat",
+        description:
+          "Clients book through a natural conversation on your site, WhatsApp, or chat — no forms, no phone tag.",
+      },
+      {
+        Icon: CalendarCheck,
+        step: "02",
+        title: "Agent checks availability",
+        description:
+          "Real availability is checked in real time and the booking is written to your calendar instantly — no double-booking possible.",
+      },
+      {
+        Icon: Bell,
+        step: "03",
+        title: "Confirmed & reminded",
+        description:
+          "Confirmations go out immediately and automatic reminders cut no-shows before they happen.",
+      },
+    ],
+    logos: [
+      { Icon: SiGooglecalendar, color: "#4285F4", label: "Google Calendar" },
+      { Icon: SiWhatsapp, color: "#25D366", label: "WhatsApp" },
+      { Icon: SiSlack, color: "#4A154B", label: "Slack" },
+    ],
+    logoSuffix: "+ any scheduling tool",
+  },
+}
+
+// ── Invoice-specific workflow (reuses WorkflowSection) ────────────────────────
+
+const INVOICE_STEPS: WStep[] = [
+  {
+    Icon: Camera,
+    step: "01",
+    title: "Take a photo",
+    description: "Snap the invoice on your phone or forward the PDF to a dedicated email address.",
+  },
+  {
+    Icon: ScanLine,
+    step: "02",
+    title: "AI reads & extracts",
+    description: "The agent reads the invoice in seconds — vendor, line items, amounts, due date — no matter the format.",
+  },
+  {
+    Icon: Database,
+    step: "03",
+    title: "Added to your system",
+    description: "The extracted data is pushed directly into your accounting software, ready for approval.",
+  },
+]
+
+const INVOICE_LOGOS: WLogo[] = [
+  { Icon: SiQuickbooks, color: "#2CA01C", label: "QuickBooks" },
+  { Icon: SiXero,       color: "#13B5EA", label: "Xero" },
+  { Icon: SiSage,       color: "#00D639", label: "Sage" },
+  { Icon: SiZoho,       color: "#E42527", label: "Zoho Books" },
+]
+
 // ── Main template ─────────────────────────────────────────────────────────────
 
 export function AgentDetailContent({ agent }: { agent: Agent & { detail: AgentDetail } }) {
   const { detail } = agent
   const Icon = agent.icon
-  const isInvoice = agent.slug === "invoice-processing"
 
   return (
     <>
       {/* ── Hero ── */}
       <section className="relative pt-32 pb-16 bg-white overflow-hidden">
-        {/* soft gradient glow */}
         <div className="pointer-events-none absolute inset-0">
-          <div className="absolute -top-24 left-1/2 -translate-x-1/2 w-[40rem] h-[40rem] rounded-full blur-3xl opacity-10" style={{ background: agent.gradient }} />
+          <div
+            className="absolute -top-24 left-1/2 -translate-x-1/2 w-160 h-160 rounded-full blur-3xl opacity-10"
+            style={{ background: agent.gradient }}
+          />
         </div>
 
         <div className="relative max-w-4xl mx-auto px-4 sm:px-6 text-center">
-          {/* Breadcrumb — hidden when detail.hideBreadcrumb is set */}
           {!detail.hideBreadcrumb && (
             <nav aria-label="Breadcrumb" className="mb-8">
               <ol className="flex items-center justify-center gap-2 text-sm text-slate-400">
@@ -157,7 +394,6 @@ export function AgentDetailContent({ agent }: { agent: Agent & { detail: AgentDe
             <p className="text-sm text-slate-400">20-minute call · Live in days</p>
           </div>
 
-          {/* Stat chips — hidden when detail.hideHeroStats is set */}
           {!detail.hideHeroStats && (
             <div className="flex flex-wrap items-center justify-center gap-3">
               {detail.impact.map((m, i) => (
@@ -188,9 +424,16 @@ export function AgentDetailContent({ agent }: { agent: Agent & { detail: AgentDe
         </div>
       </section>
 
-      {/* ── Use cases / Invoice workflow ── */}
-      {isInvoice ? (
-        <InvoiceWorkflow />
+      {/* ── Workflow ── */}
+      {agent.slug === "invoice-processing" ? (
+        <WorkflowSection
+          heading="Photo to system in under 30 seconds"
+          steps={INVOICE_STEPS}
+          logos={INVOICE_LOGOS}
+          logoSuffix="+ any ERP or accounting tool"
+        />
+      ) : WORKFLOWS[agent.slug] ? (
+        <WorkflowSection {...WORKFLOWS[agent.slug]} />
       ) : (
         <section className="py-20 sm:py-24 bg-slate-50">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -201,7 +444,6 @@ export function AgentDetailContent({ agent }: { agent: Agent & { detail: AgentDe
                   What your {agent.title.toLowerCase()} agent handles
                 </h2>
               </div>
-
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
                 {detail.useCases.map((uc, i) => (
                   <div key={i} className="rounded-2xl border border-slate-200 bg-white p-6 hover:shadow-md hover:border-primary/20 transition-all">
@@ -228,7 +470,6 @@ export function AgentDetailContent({ agent }: { agent: Agent & { detail: AgentDe
                 From brief to live agent — done for you
               </h2>
             </div>
-
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
               {detail.howWeBuild.map((step, i) => (
                 <div key={i} className="relative bg-white rounded-2xl border border-slate-200 p-6 shadow-sm">
@@ -244,8 +485,8 @@ export function AgentDetailContent({ agent }: { agent: Agent & { detail: AgentDe
         </div>
       </section>
 
-      {/* ── What it saves / Invoice savings calculator ── */}
-      {isInvoice ? (
+      {/* ── What it saves ── */}
+      {agent.slug === "invoice-processing" ? (
         <section className="py-20 sm:py-24 bg-slate-50">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-14">
@@ -266,9 +507,10 @@ export function AgentDetailContent({ agent }: { agent: Agent & { detail: AgentDe
                 <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-slate-900 text-balance">
                   The impact, in practice
                 </h2>
-                <p className="mt-4 text-sm text-slate-400">Illustrative outcomes — your results depend on your volume and workflow.</p>
+                <p className="mt-4 text-sm text-slate-400">
+                  Illustrative outcomes — your results depend on your volume and workflow.
+                </p>
               </div>
-
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
                 {detail.impact.map((m, i) => (
                   <div key={i} className="rounded-2xl border border-slate-200 bg-white p-8 text-center">
@@ -294,7 +536,6 @@ export function AgentDetailContent({ agent }: { agent: Agent & { detail: AgentDe
                 You don&apos;t manage a single thing
               </h2>
             </div>
-
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
               {detail.whyUs.map((w, i) => (
                 <div key={i} className="flex items-start gap-4 rounded-2xl border border-slate-200 bg-white p-6">
@@ -321,7 +562,6 @@ export function AgentDetailContent({ agent }: { agent: Agent & { detail: AgentDe
               Common questions
             </h2>
           </div>
-
           <div className="space-y-3">
             {detail.faqs.map((faq, i) => (
               <details key={i} className="group rounded-2xl border border-slate-200 bg-white px-6 py-1 [&_svg]:open:rotate-180">
