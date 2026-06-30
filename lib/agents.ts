@@ -13,6 +13,10 @@ export type AgentDetail = {
   publishedTime: string
   /** Hero */
   heroSubhead: string
+  /** Hide breadcrumb nav above hero */
+  hideBreadcrumb?: true
+  /** Hide impact stat chips below the hero CTA */
+  hideHeroStats?: true
   /** Overview — 1–2 short paragraphs */
   overview: string[]
   /** Use cases — concrete scenarios */
@@ -459,6 +463,8 @@ export const AGENTS: Agent[] = [
         "purchase order matching automation",
       ],
       publishedTime: "2026-06-30",
+      hideBreadcrumb: true,
+      hideHeroStats: true,
       heroSubhead:
         "An agent that reads every incoming invoice, extracts the data, matches it against your purchase orders, flags discrepancies, and routes it for approval — fully built, hosted, and managed by us.",
       overview: [
