@@ -12,7 +12,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Valid email is required' }, { status: 400 })
     }
 
-    // Brevo — add contact to list 2
+    // Brevo — add contact to list 5
     const brevoKey = process.env.BREVO_API_KEY?.trim()
     if (!brevoKey) {
       console.warn('BREVO_API_KEY is not set')
@@ -26,7 +26,7 @@ export async function POST(request: NextRequest) {
         body: JSON.stringify({
           email,
           updateEnabled: true,
-          listIds: [2],
+          listIds: [5],
           attributes: { SOURCE: 'guide_ai_agent_readiness' },
         }),
       })
