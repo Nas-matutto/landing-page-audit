@@ -2,10 +2,9 @@
 
 import { motion } from "framer-motion"
 import Link from "next/link"
-import { CheckCircle2, ChevronLeft, Play } from "lucide-react"
+import { ArrowRight, CalendarDays, CheckCircle2, ChevronLeft, Play } from "lucide-react"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
-import { GoogleCalendarButton } from "@/components/google-calendar-button"
 
 const BENEFITS = [
   "Tell us the workflow you want to automate",
@@ -81,7 +80,19 @@ export default function BookDemoPage() {
                   Choose a slot directly in our calendar. The call is free, 20 minutes, and no preparation needed.
                 </p>
 
-                <GoogleCalendarButton />
+                <a
+                  href="https://calendar.google.com/calendar/appointments/schedules/AcZssZ2GEdSIRiXNGs2UjuxM8qmbJ4KKwq0PU1-veJzukFJumxcOjPgTr-_HHhIt1C9SMqhzZPqllK5k?gv=true"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="relative overflow-hidden group inline-flex items-center justify-center gap-2 w-full bg-linear-to-r from-primary to-violet-500 text-white font-bold text-base px-8 py-4 rounded-xl shadow-lg shadow-primary/30 hover:shadow-primary/50 transition-all"
+                >
+                  <span className="absolute inset-0 bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-in-out" />
+                  <span className="relative flex items-center gap-2">
+                    <CalendarDays className="w-4 h-4" />
+                    Book a free call
+                    <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+                  </span>
+                </a>
 
                 <p className="text-center text-xs text-slate-400 mt-8">
                   You'll receive a calendar invite with a video call link right after booking.

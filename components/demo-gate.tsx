@@ -5,7 +5,7 @@ import Link from "next/link"
 import { ArrowRight, ChevronLeft, Mail } from "lucide-react"
 
 const DEMO_VIDEO_URL =
-  process.env.NEXT_PUBLIC_DEMO_VIDEO_URL ?? "https://www.youtube.com/embed/husaiR18Fec"
+  process.env.NEXT_PUBLIC_DEMO_VIDEO_URL ?? "https://www.youtube.com/embed/vM5USyYEK1g"
 
 type Question = {
   id: string
