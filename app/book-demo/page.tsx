@@ -87,14 +87,17 @@ export default function BookDemoPage() {
                   You'll receive a calendar invite with a video call link right after booking.
                 </p>
 
-                <div className="mt-6 pt-6 border-t border-slate-100 text-center">
-                  <p className="text-sm text-slate-400 mb-3">Not ready to book yet?</p>
+                <div className="mt-6 pt-6 border-t border-slate-100">
+                  <p className="text-sm text-slate-500 mb-3 text-center font-medium">Want to watch a video Demo first?</p>
                   <Link
                     href="/watch-demo"
-                    className="inline-flex items-center gap-2 text-primary font-semibold text-sm hover:underline"
+                    className="relative overflow-hidden group inline-flex items-center justify-center gap-2 w-full bg-linear-to-r from-primary to-violet-500 text-white font-semibold text-sm px-6 py-3 rounded-xl shadow-md shadow-primary/25 hover:shadow-primary/40 transition-all"
                   >
-                    <Play className="w-4 h-4" />
-                    Watch the 2-minute demo first
+                    <span className="absolute inset-0 bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-in-out" />
+                    <span className="relative flex items-center gap-2">
+                      <Play className="w-4 h-4" />
+                      Watch Demo
+                    </span>
                   </Link>
                 </div>
               </motion.div>

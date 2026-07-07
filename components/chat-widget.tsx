@@ -13,26 +13,19 @@ const STEPS = [
       "Data entry & reporting",
       "Lead management",
       "Scheduling & admin",
+      "Social media content",
       "Something else",
     ],
-  },
-  {
-    message: "Got it. How big is your team?",
-    options: ["Just me", "2–10 people", "11–50 people", "50+ people"],
-  },
-  {
-    message: "And when are you looking to get started?",
-    options: ["Ready now", "1–3 months", "Just exploring"],
   },
 ]
 
 const CUSTOM_INTENT_MSG = "What are you trying to automate?"
-const EMAIL_STEP = 3
-const SUCCESS_STEP = 4
+const EMAIL_STEP = 1
+const SUCCESS_STEP = 2
 const EMAIL_MSG =
-  "Last one - are you interested in learning how an AI Agent can help you, with no strings attached? Drop your work email below 👇"
+  "Nice! Want to see a 1-minute video of Talk to Me Data's AI Agent Platform at work? Drop your email below and I'll send you the link 👇"
 const SUCCESS_MSG =
-  "This experience was delivered with an AI Agent. Want to speak to us on how you can implement it in your business?"
+  "Perfect — your spot's saved! Click below to watch the 1-minute demo, or book a call if you're ready to talk."
 const TYPING_DELAY = 700
 
 // ─── Sub-components ───────────────────────────────────────────────────────────
@@ -431,16 +424,22 @@ export function ChatWidget() {
                     animate={{ opacity: 1, y: 0 }}
                     className="space-y-2"
                   >
+                    <a
+                      href="/watch-demo"
+                      className="flex items-center justify-center gap-2 w-full py-3 text-sm font-semibold text-white rounded-xl bg-linear-to-r from-primary to-violet-500 hover:opacity-90 transition-opacity"
+                    >
+                      Watch 1-min demo
+                      <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.347a1.125 1.125 0 0 1 0 1.972l-11.54 6.347a1.125 1.125 0 0 1-1.667-.986V5.653Z" />
+                      </svg>
+                    </a>
                     <button
                       onClick={() => {
                         window.open(CALENDAR_URL, 'calendar', 'width=640,height=700,left=200,top=100,resizable=yes,scrollbars=yes')
                       }}
-                      className="flex items-center justify-center gap-2 w-full py-3 text-sm font-semibold text-white rounded-xl bg-linear-to-r from-primary to-violet-500 hover:opacity-90 transition-opacity cursor-pointer"
+                      className="flex items-center justify-center gap-2 w-full py-2.5 text-sm font-semibold text-slate-600 border border-slate-200 rounded-xl hover:border-primary hover:text-primary transition-all cursor-pointer"
                     >
                       Book a free call
-                      <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-                      </svg>
                     </button>
                     <button
                       onClick={handleClose}

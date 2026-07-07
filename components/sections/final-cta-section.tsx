@@ -44,7 +44,7 @@ export function FinalCTASection() {
               </button>
               <button
                 onClick={() => router.push("/watch-demo")}
-                className="inline-flex items-center gap-2 text-white/80 hover:text-white font-semibold text-sm transition-colors cursor-pointer"
+                className="inline-flex items-center gap-2 border border-white/40 bg-white/10 hover:bg-white/20 text-white font-semibold text-sm px-6 py-3.5 rounded-xl transition-all cursor-pointer backdrop-blur-sm"
               >
                 <Play className="w-4 h-4" />
                 Watch Demo
