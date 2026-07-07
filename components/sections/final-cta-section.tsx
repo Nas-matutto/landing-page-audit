@@ -1,7 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { ArrowRight, CalendarDays } from "lucide-react"
+import { ArrowRight, CalendarDays, Play } from "lucide-react"
 import { useRouter } from "next/navigation"
 
 export function FinalCTASection() {
@@ -30,17 +30,26 @@ export function FinalCTASection() {
               Book a free 20-minute call. We'll tell you exactly what's possible for your business, and what it'll take to get your first agent live.
             </p>
 
-            <button
-              onClick={goToDemo}
-              className="relative overflow-hidden group inline-flex items-center gap-2 bg-white text-primary font-bold px-8 py-4 rounded-xl text-base shadow-2xl shadow-black/20 hover:shadow-black/30 transition-all cursor-pointer"
-            >
-              <span className="absolute inset-0 bg-linear-to-r from-transparent via-primary/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-in-out" />
-              <span className="relative flex items-center gap-2">
-                <CalendarDays className="w-4 h-4" />
-                Book a free call
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
-              </span>
-            </button>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <button
+                onClick={goToDemo}
+                className="relative overflow-hidden group inline-flex items-center gap-2 bg-white text-primary font-bold px-8 py-4 rounded-xl text-base shadow-2xl shadow-black/20 hover:shadow-black/30 transition-all cursor-pointer"
+              >
+                <span className="absolute inset-0 bg-linear-to-r from-transparent via-primary/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-in-out" />
+                <span className="relative flex items-center gap-2">
+                  <CalendarDays className="w-4 h-4" />
+                  Book a free call
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+                </span>
+              </button>
+              <button
+                onClick={() => router.push("/watch-demo")}
+                className="inline-flex items-center gap-2 text-white/80 hover:text-white font-semibold text-sm transition-colors cursor-pointer"
+              >
+                <Play className="w-4 h-4" />
+                Watch Demo
+              </button>
+            </div>
 
             <p className="text-white/40 text-sm mt-5">
               Free 20-minute call · No commitment · Live in days if it's a fit

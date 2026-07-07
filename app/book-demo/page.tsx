@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion"
 import Link from "next/link"
-import { CheckCircle2, ChevronLeft } from "lucide-react"
+import { CheckCircle2, ChevronLeft, Play } from "lucide-react"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { GoogleCalendarButton } from "@/components/google-calendar-button"
@@ -86,6 +86,17 @@ export default function BookDemoPage() {
                 <p className="text-center text-xs text-slate-400 mt-8">
                   You'll receive a calendar invite with a video call link right after booking.
                 </p>
+
+                <div className="mt-6 pt-6 border-t border-slate-100 text-center">
+                  <p className="text-sm text-slate-400 mb-3">Not ready to book yet?</p>
+                  <Link
+                    href="/watch-demo"
+                    className="inline-flex items-center gap-2 text-primary font-semibold text-sm hover:underline"
+                  >
+                    <Play className="w-4 h-4" />
+                    Watch the 2-minute demo first
+                  </Link>
+                </div>
               </motion.div>
             </div>
           </div>
