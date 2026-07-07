@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useRef } from "react"
+import { useState, useRef, useEffect } from "react"
 import Link from "next/link"
 import { ArrowRight, ChevronLeft, Mail } from "lucide-react"
 
@@ -60,6 +60,15 @@ export function DemoGate() {
   const [submitting, setSubmitting] = useState(false)
   const [unlocked, setUnlocked] = useState(false)
   const videoRef = useRef<HTMLDivElement>(null)
+
+  // Skip the gate if the chatbot already qualified the visitor
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search)
+    if (params.get("unlocked") === "1") {
+      setUnlocked(true)
+      window.history.replaceState({}, "", "/watch-demo")
+    }
+  }, [])
 
   function goBack() {
     setPendingOther(null)

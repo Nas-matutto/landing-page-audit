@@ -4,7 +4,7 @@ import { google } from 'googleapis'
 const SCORE_MAP = {
   role:      { 'Founder / CEO': 3, 'Operations or Finance': 2, 'Marketing or Sales': 2, 'IT / Developer': 1, 'Other': 0 } as Record<string, number>,
   teamSize:  { 'Just me': 0, '2–10 people': 1, '1–10 people': 1, '11–50 people': 2, '51–200 people': 1, '50+ people': 3, '200+ people': 1 } as Record<string, number>,
-  challenge: { 'Too much manual admin': 2, 'Slow lead follow-up': 2, 'Customer support volume': 2, 'Reporting & analytics': 2, 'Other': 1 } as Record<string, number>,
+  challenge: { 'Too much manual admin': 2, 'Slow lead follow-up': 2, 'Customer support volume': 2, 'Reporting & analytics': 2, 'Social media content': 2, 'Other': 1 } as Record<string, number>,
   timeline:  { 'Just exploring': 0, '1–3 months': 1, 'Within 3 months': 1, 'Ready now': 3 } as Record<string, number>,
   budget:    { 'Under $500 / mo': 0, '$500–$2,000 / mo': 2, '$2,000+ / mo': 3, 'Not sure yet': 1 } as Record<string, number>,
 }
@@ -49,7 +49,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Valid email required' }, { status: 400 })
     }
 
-    const isDemoGate = page === 'demo_gate'
+    const isDemoGate = page === 'demo_gate' || page === 'chatbot'
     const timestamp = new Date().toISOString()
     let row: string[]
     let score: number
@@ -88,7 +88,7 @@ export async function POST(request: NextRequest) {
           distinct_id: email,
           properties: {
             email,
-            source: isDemoGate ? 'demo_gate' : 'chat_widget',
+            source: page ?? 'chat_widget',
             ...(isDemoGate ? { role, team_size: teamSize, challenge, timeline, budget } : { intent: answers[0], team_size: teamSize, timeline }),
             score,
             $set: { email, lead_source: isDemoGate ? 'demo_gate' : 'chat_widget' },
@@ -107,7 +107,7 @@ export async function POST(request: NextRequest) {
         body: JSON.stringify({
           email,
           updateEnabled: true,
-          attributes: { SOURCE: isDemoGate ? 'demo_gate' : 'chat_widget' },
+          attributes: { SOURCE: page ?? 'chat_widget' },
           ...(brevoListId && !isNaN(brevoListId) ? { listIds: [brevoListId] } : {}),
         }),
       })

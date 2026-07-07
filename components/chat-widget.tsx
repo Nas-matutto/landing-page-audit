@@ -7,25 +7,38 @@ import { AnimatePresence, motion } from "framer-motion"
 
 const STEPS = [
   {
-    message: "👋 Hey there! What are you trying to automate? Maybe I can help.",
+    message: "👋 Hey there! What's your role?",
+    options: ["Founder / CEO", "Operations or Finance", "Marketing or Sales", "IT / Developer", "Other"],
+  },
+  {
+    message: "Got it. How big is your team?",
+    options: ["1–10 people", "11–50 people", "51–200 people", "200+ people"],
+  },
+  {
+    message: "What's your biggest bottleneck right now?",
     options: [
-      "Customer support & email",
-      "Data entry & reporting",
-      "Lead management",
-      "Scheduling & admin",
+      "Too much manual admin",
+      "Slow lead follow-up",
+      "Customer support volume",
+      "Reporting & analytics",
       "Social media content",
-      "Something else",
+      "Other",
     ],
+  },
+  {
+    message: "When are you looking to get started?",
+    options: ["Ready now", "Within 3 months", "Just exploring"],
+  },
+  {
+    message: "And what's your monthly budget for automation tools?",
+    options: ["Under $500 / mo", "$500–$2,000 / mo", "$2,000+ / mo"],
   },
 ]
 
-const CUSTOM_INTENT_MSG = "What are you trying to automate?"
-const EMAIL_STEP = 1
-const SUCCESS_STEP = 2
+const CUSTOM_INTENT_MSG = "Can you tell us a bit more?"
+const EMAIL_STEP = 5
 const EMAIL_MSG =
-  "Nice! Want to see a 1-minute video of Talk to Me Data's AI Agent Platform at work? Drop your email below and I'll send you the link 👇"
-const SUCCESS_MSG =
-  "Perfect — your spot's saved! Click below to watch the 1-minute demo, or book a call if you're ready to talk."
+  "Almost there! Drop your email below and I'll unlock a 1-minute video of Talk to Me Data's AI Agent Platform at work 👇"
 const TYPING_DELAY = 700
 
 // ─── Sub-components ───────────────────────────────────────────────────────────
@@ -87,7 +100,6 @@ export function ChatWidget() {
   const [pulsing, setPulsing] = useState(true)
   const [step, setStep] = useState(0)
   const [answers, setAnswers] = useState<string[]>([])
-  // "Something else" branch: collect free-text intent before resuming normal flow
   const [customIntentMode, setCustomIntentMode] = useState(false)
   const [customIntentText, setCustomIntentText] = useState("")
   const [showTyping, setShowTyping] = useState(false)
@@ -107,14 +119,12 @@ export function ChatWidget() {
       setPulsing(false)
     }
 
-    // Button always shows after 3 s so user can re-open manually
     const buttonTimer = setTimeout(() => setShowButton(true), 3_000)
 
     if (alreadyDismissed) {
       return () => clearTimeout(buttonTimer)
     }
 
-    // Use the stable state-setter functions directly — avoids stale-closure issues
     const openTimer = setTimeout(() => {
       if (!dismissedRef.current) {
         setIsOpen(true)
@@ -154,9 +164,8 @@ export function ChatWidget() {
   }
 
   const handleOption = (option: string) => {
-    if (step === 0 && option === "Something else") {
-      // Store "Something else" so it shows as a user chip, then ask for detail
-      setAnswers(prev => [...prev, "Something else"])
+    if (option === "Other") {
+      setAnswers(prev => [...prev, "Other"])
       setShowTyping(true)
       setTimeout(() => {
         setShowTyping(false)
@@ -172,15 +181,15 @@ export function ChatWidget() {
     e.preventDefault()
     const text = customIntentText.trim()
     if (!text) return
-    // Replace the placeholder "Something else" with the actual typed intent
+    const currentStep = step
     setAnswers(prev => {
       const updated = [...prev]
-      updated[0] = text
+      updated[currentStep] = text
       return updated
     })
     setCustomIntentMode(false)
     setCustomIntentText("")
-    advanceWithTyping(1)
+    advanceWithTyping(currentStep + 1)
   }
 
   const handleEmailSubmit = async (e: React.FormEvent) => {
@@ -195,13 +204,13 @@ export function ChatWidget() {
       await fetch("/api/qualify-lead", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ answers, email, page: window.location.pathname }),
+        body: JSON.stringify({ answers, email, page: "chatbot" }),
       })
     } catch {
       // non-blocking
     }
-    setSubmitting(false)
-    advanceWithTyping(SUCCESS_STEP)
+    // Navigate to watch-demo — the page detects the param and skips the gate
+    window.location.href = "/watch-demo?unlocked=1"
   }
 
   const handleClose = () => {
@@ -217,34 +226,23 @@ export function ChatWidget() {
   // Greeting always visible
   renderedMessages.push(<AgentBubble key="msg-0" text={STEPS[0].message} />)
 
-  // "Something else" branch (still on step 0)
-  if (step === 0 && answers.length > 0) {
-    renderedMessages.push(<UserChip key="ans-something-else" text="Something else" />)
-    if (!showTyping && customIntentMode) {
-      renderedMessages.push(
-        <AgentBubble key="msg-custom" text={CUSTOM_INTENT_MSG} />
-      )
-    }
-  }
-
-  // Normal Q&A pairs for completed steps (step 1+)
+  // Q&A pairs for completed steps
   for (let i = 0; i < Math.min(step, STEPS.length); i++) {
     if (answers[i]) {
       renderedMessages.push(<UserChip key={`ans-${i}`} text={answers[i]} />)
     }
     if (i + 1 <= step) {
-      const nextMsg =
-        i + 1 < STEPS.length
-          ? STEPS[i + 1].message
-          : EMAIL_MSG
+      const nextMsg = i + 1 < STEPS.length ? STEPS[i + 1].message : EMAIL_MSG
       renderedMessages.push(<AgentBubble key={`msg-${i + 1}`} text={nextMsg} />)
     }
   }
 
-  // Success: show submitted email + final agent message
-  if (step === SUCCESS_STEP) {
-    renderedMessages.push(<UserChip key="ans-email" text={email} />)
-    renderedMessages.push(<AgentBubble key="msg-success" text={SUCCESS_MSG} />)
+  // "Other" free-text mode — works for any step
+  if (customIntentMode) {
+    renderedMessages.push(<UserChip key={`ans-other-${step}`} text="Other" />)
+    if (!showTyping) {
+      renderedMessages.push(<AgentBubble key="msg-custom" text={CUSTOM_INTENT_MSG} />)
+    }
   }
 
   // ── Render ──────────────────────────────────────────────────────────────────
@@ -338,10 +336,10 @@ export function ChatWidget() {
             <div className="bg-white border-t border-slate-100 px-4 py-3 shrink-0">
               <AnimatePresence mode="wait">
 
-                {/* Custom intent text input — after "Something else" on step 0 */}
-                {step === 0 && customIntentMode && !showTyping && (
+                {/* "Other" free-text input — any step */}
+                {customIntentMode && !showTyping && (
                   <motion.form
-                    key="custom-intent-form"
+                    key={`other-form-${step}`}
                     initial={{ opacity: 0, y: 4 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0 }}
@@ -352,7 +350,7 @@ export function ChatWidget() {
                       type="text"
                       value={customIntentText}
                       onChange={e => setCustomIntentText(e.target.value)}
-                      placeholder="e.g. Automate order tracking notifications…"
+                      placeholder="Tell us a bit more…"
                       autoFocus
                       className="w-full px-3 py-2.5 text-sm border border-slate-200 rounded-xl focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary"
                     />
@@ -360,12 +358,12 @@ export function ChatWidget() {
                       type="submit"
                       className="w-full py-2.5 text-sm font-semibold text-white rounded-xl bg-linear-to-r from-primary to-violet-500 hover:opacity-90 transition-opacity cursor-pointer"
                     >
-                      Send →
+                      Continue →
                     </button>
                   </motion.form>
                 )}
 
-                {/* Answer chips for normal steps 0–2 */}
+                {/* Answer chips for steps 0–4 */}
                 {step < EMAIL_STEP && !customIntentMode && !showTyping && (
                   <motion.div
                     key={`chips-${step}`}
@@ -410,44 +408,9 @@ export function ChatWidget() {
                       disabled={submitting}
                       className="w-full py-2.5 text-sm font-semibold text-white rounded-xl bg-linear-to-r from-primary to-violet-500 hover:opacity-90 transition-opacity cursor-pointer disabled:opacity-60"
                     >
-                      {submitting ? "Sending…" : "Send →"}
+                      {submitting ? "Opening demo…" : "Watch the demo →"}
                     </button>
-                    <p className="text-xs text-slate-400 text-center">No spam. Unsubscribe anytime.</p>
                   </motion.form>
-                )}
-
-                {/* Success CTA */}
-                {step === SUCCESS_STEP && !showTyping && (
-                  <motion.div
-                    key="success"
-                    initial={{ opacity: 0, y: 4 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    className="space-y-2"
-                  >
-                    <a
-                      href="/watch-demo"
-                      className="flex items-center justify-center gap-2 w-full py-3 text-sm font-semibold text-white rounded-xl bg-linear-to-r from-primary to-violet-500 hover:opacity-90 transition-opacity"
-                    >
-                      Watch 1-min demo
-                      <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.347a1.125 1.125 0 0 1 0 1.972l-11.54 6.347a1.125 1.125 0 0 1-1.667-.986V5.653Z" />
-                      </svg>
-                    </a>
-                    <button
-                      onClick={() => {
-                        window.open(CALENDAR_URL, 'calendar', 'width=640,height=700,left=200,top=100,resizable=yes,scrollbars=yes')
-                      }}
-                      className="flex items-center justify-center gap-2 w-full py-2.5 text-sm font-semibold text-slate-600 border border-slate-200 rounded-xl hover:border-primary hover:text-primary transition-all cursor-pointer"
-                    >
-                      Book a free call
-                    </button>
-                    <button
-                      onClick={handleClose}
-                      className="w-full py-2 text-xs text-slate-400 hover:text-slate-600 transition-colors cursor-pointer"
-                    >
-                      Maybe later
-                    </button>
-                  </motion.div>
                 )}
 
                 {showTyping && <motion.div key="typing-placeholder" className="h-8" />}
@@ -457,7 +420,6 @@ export function ChatWidget() {
           </motion.div>
         )}
       </AnimatePresence>
-
     </>
   )
 }
