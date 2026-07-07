@@ -150,10 +150,10 @@ export function HeroSection() {
               </span>
             </button>
             <button
-              onClick={() => router.push("/agents")}
+              onClick={() => router.push("/watch-demo")}
               className="inline-flex items-center justify-center gap-2 border border-slate-200 bg-white text-slate-700 font-semibold text-sm px-6 py-3 rounded-xl hover:border-primary/40 hover:text-primary transition-all cursor-pointer"
             >
-              Explore Agents
+              Watch Demo
             </button>
           </div>
 

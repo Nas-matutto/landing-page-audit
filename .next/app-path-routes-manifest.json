@@ -35,5 +35,6 @@
   "/privacy-policy/page": "/privacy-policy",
   "/robots.txt/route": "/robots.txt",
   "/sitemap.xml/route": "/sitemap.xml",
-  "/terms-of-service/page": "/terms-of-service"
+  "/terms-of-service/page": "/terms-of-service",
+  "/watch-demo/page": "/watch-demo"
 }

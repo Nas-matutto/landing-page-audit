@@ -245,6 +245,12 @@
       "regex": "^/terms\\-of\\-service(?:/)?$",
       "routeKeys": {},
       "namedRegex": "^/terms\\-of\\-service(?:/)?$"
+    },
+    {
+      "page": "/watch-demo",
+      "regex": "^/watch\\-demo(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/watch\\-demo(?:/)?$"
     }
   ],
   "dataRoutes": [],

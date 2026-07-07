@@ -281,6 +281,15 @@ type RouteHandlerConfig<Route extends AppRouteHandlerRoutes = AppRouteHandlerRou
   type __Unused = __Check
 }
 
+// Validate ../../app/watch-demo/page.tsx
+{
+  type __IsExpected<Specific extends AppPageConfig<"/watch-demo">> = Specific
+  const handler = {} as typeof import("../../app/watch-demo/page.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
 // Validate ../../app/api/analyze-store/route.ts
 {
   type __IsExpected<Specific extends RouteHandlerConfig<"/api/analyze-store">> = Specific
