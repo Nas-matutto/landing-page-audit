@@ -2,12 +2,11 @@
 
 import { useState, useEffect } from "react"
 import Link from "next/link"
-import { useRouter, usePathname } from "next/navigation"
+import { usePathname } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Menu, X, ArrowRight } from "lucide-react"
 
 export function Header() {
-  const router = useRouter()
   const pathname = usePathname()
   const [scrolled, setScrolled] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -25,8 +24,6 @@ export function Header() {
   const handleLogin = () => {
     window.open('https://app.talktomedata.com/login', '_blank')
   }
-
-  const handleBookDemo = () => router.push("/book-demo")
 
   return (
     <header
@@ -71,27 +68,27 @@ export function Header() {
               How it works
             </Link>
             <Link
-              href="/#use-cases"
-              className="text-sm font-medium text-foreground hover:text-primary transition-colors"
-            >
-              Use cases
-            </Link>
-            <Link
               href="/agents"
               className="text-sm font-medium text-foreground hover:text-primary transition-colors"
             >
               Agents
             </Link>
+            <Link
+              href="/free-tools"
+              className="text-sm font-medium text-foreground hover:text-primary transition-colors"
+            >
+              Free Tools
+            </Link>
           </nav>
 
           <div className="hidden md:flex items-center gap-4">
-            <button
-              onClick={handleBookDemo}
+            <Link
+              href="/book-demo"
               className="relative overflow-hidden group bg-linear-to-r from-primary to-violet-500 text-white text-sm font-semibold px-5 py-2 rounded-lg shadow-md shadow-primary/25 hover:shadow-primary/40 hover:shadow-lg transition-all cursor-pointer"
             >
               <span className="absolute inset-0 bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-in-out" />
               <span className="relative">Book Demo</span>
-            </button>
+            </Link>
           </div>
 
           <button
@@ -114,27 +111,28 @@ export function Header() {
                 How it works
               </Link>
               <Link
-                href="/#use-cases"
-                className="text-sm font-medium text-foreground hover:text-primary transition-colors py-2"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                Use cases
-              </Link>
-              <Link
                 href="/agents"
                 className="text-sm font-medium text-foreground hover:text-primary transition-colors py-2"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 Agents
               </Link>
+              <Link
+                href="/free-tools"
+                className="text-sm font-medium text-foreground hover:text-primary transition-colors py-2"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Free Tools
+              </Link>
               <div className="flex flex-col gap-2 pt-2 border-t border-border">
-                <button
-                  onClick={() => { handleBookDemo(); setMobileMenuOpen(false) }}
-                  className="relative overflow-hidden group w-full bg-linear-to-r from-primary to-violet-500 text-white text-sm font-semibold py-2.5 rounded-lg shadow-md shadow-primary/20 cursor-pointer"
+                <Link
+                  href="/book-demo"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="relative overflow-hidden group w-full bg-linear-to-r from-primary to-violet-500 text-white text-sm font-semibold py-2.5 rounded-lg shadow-md shadow-primary/20 cursor-pointer text-center"
                 >
                   <span className="absolute inset-0 bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-in-out" />
                   <span className="relative">Book Demo</span>
-                </button>
+                </Link>
               </div>
             </nav>
           </div>

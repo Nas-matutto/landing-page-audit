@@ -55,6 +55,25 @@ const jsonLd = {
       "logo": "https://talktomedata.com/favicon-96x96.png",
       "sameAs": [],
     },
+    // Primary navigation — signals preferred sitelinks to search engines
+    {
+      "@type": "SiteNavigationElement",
+      "@id": "https://talktomedata.com/#nav-agents",
+      "name": "Agents",
+      "url": "https://talktomedata.com/agents",
+    },
+    {
+      "@type": "SiteNavigationElement",
+      "@id": "https://talktomedata.com/#nav-book-demo",
+      "name": "Book a Demo",
+      "url": "https://talktomedata.com/book-demo",
+    },
+    {
+      "@type": "SiteNavigationElement",
+      "@id": "https://talktomedata.com/#nav-free-tools",
+      "name": "Free Tools",
+      "url": "https://talktomedata.com/free-tools",
+    },
   ],
 }
 
