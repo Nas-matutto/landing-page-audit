@@ -424,6 +424,29 @@ export function AgentDetailContent({ agent }: { agent: Agent & { detail: AgentDe
         </div>
       </section>
 
+      {/* ── Demo Video (invoice-processing only) ── */}
+      {agent.slug === "invoice-processing" && (
+        <section className="py-20 sm:py-24 bg-white border-t border-slate-100">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6">
+            <div className="text-center mb-10">
+              <p className="text-xs font-semibold tracking-widest uppercase text-primary mb-4">Demo</p>
+              <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-slate-900 text-balance">
+                Watch 45 seconds Demo
+              </h2>
+            </div>
+            <div className="w-full aspect-video rounded-2xl overflow-hidden shadow-2xl shadow-slate-200 border border-slate-200">
+              <iframe
+                src="https://www.youtube.com/embed/FKCW-EJV29Q?rel=0"
+                title="Invoice Processing AI Agent — 45 Second Demo"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                className="w-full h-full"
+              />
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* ── Workflow ── */}
       {agent.slug === "invoice-processing" ? (
         <WorkflowSection
