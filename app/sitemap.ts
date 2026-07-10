@@ -118,6 +118,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
     // Blog posts
     {
+      url: `${baseUrl}/blog/how-to-automate-invoices-into-accounting-software`,
+      lastModified: new Date('2026-07-10'),
+      changeFrequency: 'monthly',
+      priority: 0.85,
+    },
+    {
       url: `${baseUrl}/blog/what-are-ai-agents`,
       lastModified: new Date('2026-06-16'),
       changeFrequency: 'monthly',

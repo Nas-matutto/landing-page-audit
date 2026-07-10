@@ -25,6 +25,18 @@ const blogPosts = [
     featured: true,
   },
   {
+    slug: "how-to-automate-invoices-into-accounting-software",
+    title: "How to Automate Invoices Into Your Accounting Software (With the Exact Prompt)",
+    excerpt:
+      "An AI agent that scans PDF invoices, extracts the vendor, line items, and pricing, and auto-populates them into QuickBooks — or any other accounting software. Includes the full prompt to copy.",
+    category: "AI Agents",
+    date: "July 10, 2026",
+    readTime: "9 min read",
+    image: "/Invoice_AI_Agent.png",
+    author: "Nas",
+    featured: false,
+  },
+  {
     slug: "how-to-build-social-media-ai-agent",
     title: "How to Build a Social Media AI Agent (With the Exact Prompt to Copy)",
     excerpt:
