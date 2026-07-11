@@ -9,19 +9,19 @@ import Link from "next/link"
 
 const AGENT_PROMPT = `You turn a photographed paper invoice into a QuickBooks invoice. The user uploads an image with their message.
 
-STEP 1 — READ THE IMAGE
+STEP 1 - READ THE IMAGE
 Extract: the customer/client name, invoice date, due date if shown, and every line item (description, quantity, unit price).
 
-STEP 2 — CREATE THE INVOICE
+STEP 2 - CREATE THE INVOICE
 Call quickbooks_create_invoice with the customer name and the line items (description, quantity, unit_price), plus invoice_date/due_date if present.
 
-STEP 3 — CONFIRM
+STEP 3 - CONFIRM
 Report the new QuickBooks invoice number, the total, and the view link. If anything on the invoice was unclear, say what you assumed.`
 
 const faqs = [
   {
-    q: "Which accounting software does the invoice agent work with?",
-    a: "We use QuickBooks in this guide because it's the most popular choice among small and mid-sized businesses, but the agent is software-agnostic. The same approach works with Xero, Sage, Zoho Books, NetSuite, FreshBooks, and most other accounting or ERP systems — only the final integration step changes.",
+    q: "Which accounting software does the AI invoice agent work with?",
+    a: "We used QuickBooks in this guide because it's the most popular choice among small and mid-sized businesses, but the agent is software-agnostic. The same approach works with Xero, Sage, Zoho Books, NetSuite, FreshBooks, and most other accounting or ERP systems.",
   },
   {
     q: "What invoice formats can it read?",
@@ -29,7 +29,7 @@ const faqs = [
   },
   {
     q: "Does it extract line items or just the total?",
-    a: "It extracts everything the invoice contains: vendor or customer name, invoice date, due date, and every individual line item with its description, quantity, and unit price — then it recalculates and verifies the total before syncing.",
+    a: "It extracts everything the invoice contains: vendor or customer name, invoice date, due date, and every individual line item with its description, quantity, and unit price - then it recalculates and verifies the total before syncing.",
   },
   {
     q: "How accurate is the data extraction?",
@@ -37,11 +37,11 @@ const faqs = [
   },
   {
     q: "Can Talk to Me Data build and host this agent for me?",
-    a: "Yes. We build, connect, and host the agent on our infrastructure — including the QuickBooks (or other accounting) integration, the model access, and monitoring — so there are no API keys or setup on your side. Book a demo and we'll get you onboarded.",
+    a: "Yes. We build, connect, and host the agent on our infrastructure - including the QuickBooks (or other accounting) integration, the model access, and monitoring, so there are no API keys or setup on your side. Book a demo and we'll get you onboarded.",
   },
   {
     q: "Is this different from the OCR built into my accounting tool?",
-    a: "Yes. Traditional OCR reads text but doesn't understand it, so it struggles with varied layouts and rarely maps fields correctly on its own. An AI agent reads the invoice, understands which value is the quantity versus the unit price versus the total, matches the vendor, and takes the action of creating the record — end to end.",
+    a: "Yes. Traditional OCR reads text but doesn't understand it, so it struggles with varied layouts and rarely maps fields correctly on its own. An AI agent reads the invoice, understands which value is the quantity versus the unit price versus the total, matches the vendor, and takes the action of creating the record - end to end.",
   },
 ]
 
@@ -217,7 +217,7 @@ export default function AutomateInvoicesPage() {
                     Every business receives invoices, and almost every business still types them in by hand. Someone opens the PDF, reads the vendor name, copies each line item, retypes the quantities and prices into <a href="https://quickbooks.intuit.com" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">QuickBooks</a>, double-checks the total, and moves on to the next one. It's slow, it's repetitive, and it's exactly the kind of work that quietly eats hours out of every week.
                   </p>
                   <p>
-                    This guide shows you how to automate that entire flow with an AI agent. You upload or forward an invoice, the agent reads it, extracts the vendor, line items, dates, and pricing, and creates the record directly in your accounting software — no manual data entry. We use QuickBooks throughout because it's the most popular choice, but the same agent fits <a href="https://www.xero.com" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Xero</a>, <a href="https://www.sage.com" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Sage</a>, Zoho Books, NetSuite, and virtually any other tool.
+                    This guide shows you how to automate that entire flow with an AI agent. You upload or forward an invoice, the agent reads it, extracts the vendor, line items, dates, and pricing, and creates the record directly in your accounting software - no manual data entry. We use QuickBooks throughout because it's the most popular choice, but the same agent fits <a href="https://www.xero.com" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Xero</a>, <a href="https://www.sage.com" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Sage</a>, Zoho Books, NetSuite, and virtually any other tool.
                   </p>
 
                   {/* TL;DR */}
@@ -229,7 +229,7 @@ export default function AutomateInvoicesPage() {
                       <li>It calls your accounting software's API to create the invoice automatically</li>
                       <li>It confirms back the new invoice number, the total, and a link to view it</li>
                       <li>We use <strong>QuickBooks</strong> as the example, but it works with any accounting or ERP system</li>
-                      <li>The full agent prompt is included below — ready to copy</li>
+                      <li>The full agent prompt is included below - ready to copy</li>
                     </ul>
                   </div>
 
@@ -264,7 +264,7 @@ export default function AutomateInvoicesPage() {
                     </div>
                   </div>
 
-                  <h2 className="text-3xl font-bold text-foreground mt-12 mb-4">Why QuickBooks — and Why It Doesn&apos;t Matter</h2>
+                  <h2 className="text-3xl font-bold text-foreground mt-12 mb-4">Why QuickBooks - and Why It Doesn&apos;t Matter</h2>
                   <p>
                     We built the example around <a href="https://quickbooks.intuit.com" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">QuickBooks</a> because it's the accounting software most small and mid-sized businesses already run, so the fewest people have to translate the steps. But nothing about the approach is QuickBooks-specific.
                   </p>
@@ -274,7 +274,7 @@ export default function AutomateInvoicesPage() {
 
                   <h2 className="text-3xl font-bold text-foreground mt-12 mb-4">The Prompt</h2>
                   <p>
-                    Here's the exact prompt behind the agent. Paste it into your AI agent orchestration interface — whether that's Talk to Me Data or a Claude Project with your accounting integration connected. If you're using a different accounting tool, replace the QuickBooks action name in Step 2 with your platform's create-invoice action.
+                    Here's the exact prompt behind the agent. Paste it into your AI agent orchestration interface, whether that's Talk to Me Data or a Claude Project with your accounting integration connected. If you're using a different accounting tool, replace the QuickBooks action name in Step 2 with your platform's create-invoice action.
                   </p>
 
                 </div>
@@ -305,7 +305,7 @@ export default function AutomateInvoicesPage() {
                   <div className="rounded-xl border-2 border-primary/20 bg-primary/5 p-5">
                     <p className="font-semibold text-foreground mb-1 text-sm">Don&apos;t want to wire up API keys and integrations yourself?</p>
                     <p className="text-sm text-muted-foreground mb-3">
-                      Talk to Me Data builds, connects, and hosts this agent for you — including the QuickBooks (or other accounting) integration, model access, and monitoring. Nothing to configure or maintain on your side.
+                      Talk to Me Data builds, connects, and hosts this agent for you - including the QuickBooks (or other accounting) integration, model access, and monitoring. Nothing to configure or maintain on your side.
                     </p>
                     <Link href="/agents/invoice-processing" className="inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:underline">
                       See the invoice processing agent →
