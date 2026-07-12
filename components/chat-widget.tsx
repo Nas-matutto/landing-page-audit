@@ -7,7 +7,7 @@ import { AnimatePresence, motion } from "framer-motion"
 
 const STEPS = [
   {
-    message: "👋 Hey there! What's your role?",
+    message: "👋 Are you looking to automate a workflow and would like to see how we can help? Answer a few questions and we'll show you",
     options: ["Founder / CEO", "Operations or Finance", "Marketing or Sales", "IT / Developer", "Other"],
   },
   {
