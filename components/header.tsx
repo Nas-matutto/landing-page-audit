@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react"
 import Link from "next/link"
+import Image from "next/image"
 import { usePathname } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Menu, X, ArrowRight } from "lucide-react"
@@ -55,9 +56,14 @@ export function Header() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 sm:h-20">
           <Link href="/" className="flex items-center gap-2">
-            <span className="text-xl sm:text-2xl font-bold bg-linear-to-r from-primary to-violet-500 bg-clip-text text-transparent">
-              TTMD
-            </span>
+            <Image
+              src="/android-chrome-192x192.png"
+              alt="Talk to Me Data"
+              width={192}
+              height={192}
+              priority
+              className="h-9 w-9 sm:h-10 sm:w-10"
+            />
           </Link>
 
           <nav className="hidden md:flex items-center gap-8">
