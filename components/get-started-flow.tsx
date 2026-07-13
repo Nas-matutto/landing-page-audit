@@ -2,7 +2,7 @@
 
 import { useState, useRef } from "react"
 import Link from "next/link"
-import { ArrowRight, ChevronLeft, Mail, Check } from "lucide-react"
+import { ArrowRight, ChevronLeft, Mail, Check, X, Plus, CalendarDays } from "lucide-react"
 import { FaSlack, FaWhatsapp, FaGoogle } from "react-icons/fa"
 import {
   SiNotion, SiSalesforce, SiHubspot, SiShopify, SiStripe,
@@ -11,6 +11,9 @@ import {
 
 const DEMO_VIDEO_URL =
   process.env.NEXT_PUBLIC_DEMO_VIDEO_URL ?? "https://www.youtube.com/embed/vM5USyYEK1g"
+
+const ONBOARDING_CALENDAR_URL =
+  "https://calendar.google.com/calendar/appointments/schedules/AcZssZ2GEdSIRiXNGs2UjuxM8qmbJ4KKwq0PU1-veJzukFJumxcOjPgTr-_HHhIt1C9SMqhzZPqllK5k?gv=true"
 
 type Question = {
   id: string
@@ -168,7 +171,8 @@ export function GetStartedFlow() {
 
   function toggleTool(option: string) {
     if (option === "Other") {
-      setPendingOther("tools")
+      // Toggle the free-text input open/closed
+      setPendingOther(prev => (prev === "tools" ? null : "tools"))
       setOtherInput("")
       return
     }
@@ -180,8 +184,9 @@ export function GetStartedFlow() {
   function addOtherTool() {
     const value = otherInput.trim()
     if (value) setTools(prev => (prev.includes(value) ? prev : [...prev, value]))
-    setPendingOther(null)
     setOtherInput("")
+    // Keep the input open (pendingOther stays "tools") so several tools can be added;
+    // each addition appears immediately as a chip above for confirmation.
   }
 
   async function finish(finalAnswers: Record<string, string> = answers) {
@@ -223,6 +228,13 @@ export function GetStartedFlow() {
   const currentQuestion =
     step >= 1 && step <= QUESTIONS.length ? QUESTIONS[questionIndex] : null
   const isLastQuestion = questionIndex === QUESTIONS.length - 1
+
+  // For the tools step: the preset chips (minus "Other") plus any custom tools the
+  // visitor typed, so every selection stays visible and toggleable.
+  const toolBaseOptions = currentQuestion?.multi
+    ? currentQuestion.options.filter(o => o !== "Other")
+    : []
+  const customTools = tools.filter(t => !toolBaseOptions.includes(t))
 
   return (
     <div className="flex flex-col items-center px-4 sm:px-6 pb-24">
@@ -319,10 +331,9 @@ export function GetStartedFlow() {
               {currentQuestion.multi ? (
                 <div>
                   <div className="flex flex-wrap justify-center gap-3">
-                    {currentQuestion.options.map(option => {
+                    {toolBaseOptions.map(option => {
                       const selected = tools.includes(option)
                       const brand = TOOL_ICONS[option]
-                      const isOtherChip = option === "Other"
                       return (
                         <button
                           key={option}
@@ -336,35 +347,71 @@ export function GetStartedFlow() {
                           {brand ? (
                             <brand.Icon className="w-4 h-4 shrink-0" style={{ color: brand.color }} />
                           ) : null}
-                          {isOtherChip ? "Other…" : option}
+                          {option}
                           {selected && <Check className="w-4 h-4 shrink-0 text-primary" />}
                         </button>
                       )
                     })}
+
+                    {/* Custom tools the visitor typed — shown as selected, removable chips */}
+                    {customTools.map(tool => (
+                      <button
+                        key={tool}
+                        onClick={() => toggleTool(tool)}
+                        className="group inline-flex items-center gap-2 rounded-full border border-primary bg-primary/5 text-primary px-5 py-3 text-sm font-medium transition-all shadow-sm"
+                      >
+                        {tool}
+                        <X className="w-3.5 h-3.5 shrink-0 text-primary/70 group-hover:text-primary" />
+                      </button>
+                    ))}
+
+                    {/* "Other" chip — toggles the free-text input */}
+                    <button
+                      onClick={() => toggleTool("Other")}
+                      className={`group inline-flex items-center gap-2 rounded-full border px-5 py-3 text-sm font-medium transition-all shadow-sm ${
+                        pendingOther === "tools"
+                          ? "border-primary bg-primary/5 text-primary"
+                          : "border-slate-200 bg-white text-slate-700 hover:border-primary hover:bg-primary/5 hover:text-primary"
+                      }`}
+                    >
+                      <Plus className="w-4 h-4 shrink-0" />
+                      Other…
+                    </button>
                   </div>
 
-                  {/* "Other" free-text for tools */}
+                  {/* "Other" free-text for tools — stays open so several can be added */}
                   {pendingOther === "tools" && (
-                    <div className="max-w-md mx-auto space-y-3 pt-6">
-                      <input
-                        type="text"
-                        placeholder="Name the tool…"
-                        value={otherInput}
-                        onChange={e => setOtherInput(e.target.value)}
-                        onKeyDown={e => e.key === "Enter" && addOtherTool()}
-                        autoFocus
-                        className="w-full px-4 py-3.5 rounded-xl border border-primary/30 bg-white text-slate-800 placeholder-slate-400 text-base focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary transition-all shadow-sm"
-                      />
-                      <button
-                        onClick={addOtherTool}
-                        className="w-full inline-flex items-center justify-center gap-2 bg-primary text-white font-semibold text-sm px-6 py-3 rounded-xl hover:bg-primary/90 transition-all"
-                      >
-                        Add tool <ArrowRight className="w-4 h-4" />
-                      </button>
+                    <div className="max-w-md mx-auto space-y-2 pt-6">
+                      <div className="flex gap-2">
+                        <input
+                          type="text"
+                          placeholder="Name the tool…"
+                          value={otherInput}
+                          onChange={e => setOtherInput(e.target.value)}
+                          onKeyDown={e => e.key === "Enter" && (e.preventDefault(), addOtherTool())}
+                          autoFocus
+                          className="flex-1 px-4 py-3.5 rounded-xl border border-primary/30 bg-white text-slate-800 placeholder-slate-400 text-base focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary transition-all shadow-sm"
+                        />
+                        <button
+                          onClick={addOtherTool}
+                          disabled={!otherInput.trim()}
+                          className="inline-flex items-center justify-center gap-2 bg-primary text-white font-semibold text-sm px-5 py-3 rounded-xl hover:bg-primary/90 transition-all disabled:opacity-40"
+                        >
+                          Add
+                        </button>
+                      </div>
+                      <p className="text-xs text-slate-400">Press Add or Enter to include it — you can add several.</p>
                     </div>
                   )}
 
-                  {/* Selected custom tools chips summary already reflected above via tools state */}
+                  {/* Running confirmation of everything selected */}
+                  {tools.length > 0 && (
+                    <p className="mt-6 text-center text-sm text-primary font-medium">
+                      <Check className="inline w-4 h-4 mr-1 align-text-bottom" />
+                      {tools.length} tool{tools.length > 1 ? "s" : ""} added: {tools.join(", ")}
+                    </p>
+                  )}
+
                   <div className="mt-10 flex flex-col items-center gap-3">
                     <button
                       onClick={() => setStep(s => s + 1)}
@@ -444,11 +491,25 @@ export function GetStartedFlow() {
       {/* ── Result: demo video + Book Demo (everyone) ── */}
       {done && (
         <div ref={videoRef} className="w-full max-w-4xl pt-20 sm:pt-28 animate-in fade-in duration-500">
-          <div className="text-center mb-10">
+          <div className="text-center mb-8">
             <p className="text-xs font-semibold tracking-widest uppercase text-primary mb-3">Your agent, in action</p>
-            <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 text-balance">
+            <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 text-balance mb-6">
               Here's what we can build for you
             </h2>
+            <a
+              href={ONBOARDING_CALENDAR_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="relative overflow-hidden group inline-flex items-center justify-center gap-2 bg-linear-to-r from-primary to-violet-500 text-white font-semibold text-base px-8 py-4 rounded-2xl shadow-lg shadow-primary/30 hover:shadow-primary/50 transition-all"
+            >
+              <span className="absolute inset-0 bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-in-out" />
+              <span className="relative flex items-center gap-2">
+                <CalendarDays className="w-5 h-5" />
+                Book your onboarding call
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+              </span>
+            </a>
+            <p className="mt-3 text-sm text-slate-400">Or watch the 90-second demo below first</p>
           </div>
 
           {/* 16:9 iframe */}

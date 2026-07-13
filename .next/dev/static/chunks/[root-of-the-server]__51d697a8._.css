@@ -1145,6 +1145,10 @@
     margin-top: auto;
   }
 
+  .mr-1 {
+    margin-right: calc(var(--spacing) * 1);
+  }
+
   .mb-0\.5 {
     margin-bottom: calc(var(--spacing) * .5);
   }
@@ -3916,6 +3920,10 @@
     vertical-align: middle;
   }
 
+  .align-text-bottom {
+    vertical-align: text-bottom;
+  }
+
   .font-mono {
     font-family: Geist Mono, Geist Mono Fallback;
   }
@@ -4216,6 +4224,16 @@
   @supports (color: color-mix(in lab, red, red)) {
     .text-primary\/30 {
       color: color-mix(in oklab, var(--primary) 30%, transparent);
+    }
+  }
+
+  .text-primary\/70 {
+    color: var(--primary);
+  }
+
+  @supports (color: color-mix(in lab, red, red)) {
+    .text-primary\/70 {
+      color: color-mix(in oklab, var(--primary) 70%, transparent);
     }
   }
 
@@ -6260,6 +6278,10 @@
 
   .disabled\:cursor-not-allowed:disabled {
     cursor: not-allowed;
+  }
+
+  .disabled\:opacity-40:disabled {
+    opacity: .4;
   }
 
   .disabled\:opacity-50:disabled {
