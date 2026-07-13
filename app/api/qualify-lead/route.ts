@@ -4,7 +4,13 @@ import { google } from 'googleapis'
 const SCORE_MAP = {
   role:      { 'Founder / CEO': 3, 'Operations or Finance': 2, 'Marketing or Sales': 2, 'IT / Developer': 1, 'Other': 0 } as Record<string, number>,
   teamSize:  { 'Just me': 0, '2–10 people': 1, '1–10 people': 1, '11–50 people': 2, '51–200 people': 1, '50+ people': 3, '200+ people': 1 } as Record<string, number>,
-  challenge: { 'Too much manual admin': 2, 'Slow lead follow-up': 2, 'Customer support volume': 2, 'Reporting & analytics': 2, 'Social media content': 2, 'Other': 1 } as Record<string, number>,
+  challenge: {
+    // Legacy demo-gate bottleneck labels
+    'Too much manual admin': 2, 'Slow lead follow-up': 2, 'Customer support volume': 2, 'Reporting & analytics': 2, 'Social media content': 2,
+    // "What do you want to automate?" labels from the /get-started flow
+    'Customer support': 2, 'Lead qualification & follow-up': 2, 'Booking & scheduling': 2, 'Invoice / document processing': 2, 'Data entry & reporting': 2,
+    'Other': 1,
+  } as Record<string, number>,
   timeline:  { 'Just exploring': 0, '1–3 months': 1, 'Within 3 months': 1, 'Ready now': 3 } as Record<string, number>,
   budget:    { 'Under $500 / mo': 0, '$500–$2,000 / mo': 2, '$2,000+ / mo': 3, 'Not sure yet': 1 } as Record<string, number>,
 }
@@ -30,7 +36,7 @@ async function appendToSheet(row: string[]) {
 
   await sheets.spreadsheets.values.append({
     spreadsheetId: sheetId,
-    range: 'Sheet1!A:I',
+    range: 'Sheet1!A:J',
     valueInputOption: 'USER_ENTERED',
     requestBody: { values: [row] },
   })
@@ -39,23 +45,25 @@ async function appendToSheet(row: string[]) {
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json()
-    const { answers, email, page } = body as {
+    const { answers, email, page, tools } = body as {
       answers: string[]
       email: string
       page: string
+      tools?: string[]
     }
 
     if (!email || !email.includes('@')) {
       return NextResponse.json({ error: 'Valid email required' }, { status: 400 })
     }
 
-    const isDemoGate = page === 'demo_gate' || page === 'chatbot'
+    const toolsStr = Array.isArray(tools) ? tools.join(', ') : ''
+    const isDemoGate = page === 'demo_gate' || page === 'chatbot' || page === 'get_started'
     const timestamp = new Date().toISOString()
     let row: string[]
     let score: number
 
     if (isDemoGate) {
-      // 5-answer demo gate: [role, teamSize, challenge, timeline, budget]
+      // 5-answer demo gate / get-started: [role, teamSize, challenge, timeline, budget]
       const [role = '', teamSize = '', challenge = '', timeline = '', budget = ''] = answers
       score =
         (SCORE_MAP.role[role] ?? 0) +
@@ -63,14 +71,14 @@ export async function POST(request: NextRequest) {
         (SCORE_MAP.challenge[challenge] ?? 0) +
         (SCORE_MAP.timeline[timeline] ?? 0) +
         (SCORE_MAP.budget[budget] ?? 0)
-      row = [timestamp, email, role, teamSize, challenge, timeline, budget, String(score), page]
+      row = [timestamp, email, role, teamSize, challenge, timeline, budget, String(score), page, toolsStr]
     } else {
       // Legacy 3-answer chat widget: [intent, teamSize, timeline]
       const [intent = '', teamSize = '', timeline = ''] = answers
       score =
         (SCORE_MAP.teamSize[teamSize] ?? 0) +
         (SCORE_MAP.timeline[timeline] ?? 0)
-      row = [timestamp, email, intent, teamSize, '', timeline, '', String(score), page ?? 'chat_widget']
+      row = [timestamp, email, intent, teamSize, '', timeline, '', String(score), page ?? 'chat_widget', toolsStr]
     }
 
     await appendToSheet(row).catch(err => console.error('Sheets error:', err))
@@ -90,8 +98,9 @@ export async function POST(request: NextRequest) {
             email,
             source: page ?? 'chat_widget',
             ...(isDemoGate ? { role, team_size: teamSize, challenge, timeline, budget } : { intent: answers[0], team_size: teamSize, timeline }),
+            ...(toolsStr ? { tools: toolsStr } : {}),
             score,
-            $set: { email, lead_source: isDemoGate ? 'demo_gate' : 'chat_widget' },
+            $set: { email, lead_source: page ?? (isDemoGate ? 'demo_gate' : 'chat_widget') },
           },
         }),
       }).catch(err => console.error('PostHog error:', err))
@@ -107,7 +116,10 @@ export async function POST(request: NextRequest) {
         body: JSON.stringify({
           email,
           updateEnabled: true,
-          attributes: { SOURCE: page ?? 'chat_widget' },
+          attributes: {
+            SOURCE: page ?? 'chat_widget',
+            ...(toolsStr ? { TOOLS: toolsStr } : {}),
+          },
           ...(brevoListId && !isNaN(brevoListId) ? { listIds: [brevoListId] } : {}),
         }),
       })

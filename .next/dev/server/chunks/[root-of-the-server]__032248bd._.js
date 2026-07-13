@@ -1,0 +1,363 @@
+module.exports = [
+"[externals]/next/dist/compiled/next-server/app-route-turbo.runtime.dev.js [external] (next/dist/compiled/next-server/app-route-turbo.runtime.dev.js, cjs)", ((__turbopack_context__, module, exports) => {
+
+const mod = __turbopack_context__.x("next/dist/compiled/next-server/app-route-turbo.runtime.dev.js", () => require("next/dist/compiled/next-server/app-route-turbo.runtime.dev.js"));
+
+module.exports = mod;
+}),
+"[externals]/next/dist/compiled/@opentelemetry/api [external] (next/dist/compiled/@opentelemetry/api, cjs)", ((__turbopack_context__, module, exports) => {
+
+const mod = __turbopack_context__.x("next/dist/compiled/@opentelemetry/api", () => require("next/dist/compiled/@opentelemetry/api"));
+
+module.exports = mod;
+}),
+"[externals]/next/dist/compiled/next-server/app-page-turbo.runtime.dev.js [external] (next/dist/compiled/next-server/app-page-turbo.runtime.dev.js, cjs)", ((__turbopack_context__, module, exports) => {
+
+const mod = __turbopack_context__.x("next/dist/compiled/next-server/app-page-turbo.runtime.dev.js", () => require("next/dist/compiled/next-server/app-page-turbo.runtime.dev.js"));
+
+module.exports = mod;
+}),
+"[externals]/next/dist/server/app-render/work-unit-async-storage.external.js [external] (next/dist/server/app-render/work-unit-async-storage.external.js, cjs)", ((__turbopack_context__, module, exports) => {
+
+const mod = __turbopack_context__.x("next/dist/server/app-render/work-unit-async-storage.external.js", () => require("next/dist/server/app-render/work-unit-async-storage.external.js"));
+
+module.exports = mod;
+}),
+"[externals]/next/dist/server/app-render/work-async-storage.external.js [external] (next/dist/server/app-render/work-async-storage.external.js, cjs)", ((__turbopack_context__, module, exports) => {
+
+const mod = __turbopack_context__.x("next/dist/server/app-render/work-async-storage.external.js", () => require("next/dist/server/app-render/work-async-storage.external.js"));
+
+module.exports = mod;
+}),
+"[externals]/next/dist/shared/lib/no-fallback-error.external.js [external] (next/dist/shared/lib/no-fallback-error.external.js, cjs)", ((__turbopack_context__, module, exports) => {
+
+const mod = __turbopack_context__.x("next/dist/shared/lib/no-fallback-error.external.js", () => require("next/dist/shared/lib/no-fallback-error.external.js"));
+
+module.exports = mod;
+}),
+"[externals]/next/dist/server/app-render/after-task-async-storage.external.js [external] (next/dist/server/app-render/after-task-async-storage.external.js, cjs)", ((__turbopack_context__, module, exports) => {
+
+const mod = __turbopack_context__.x("next/dist/server/app-render/after-task-async-storage.external.js", () => require("next/dist/server/app-render/after-task-async-storage.external.js"));
+
+module.exports = mod;
+}),
+"[externals]/child_process [external] (child_process, cjs)", ((__turbopack_context__, module, exports) => {
+
+const mod = __turbopack_context__.x("child_process", () => require("child_process"));
+
+module.exports = mod;
+}),
+"[externals]/fs [external] (fs, cjs)", ((__turbopack_context__, module, exports) => {
+
+const mod = __turbopack_context__.x("fs", () => require("fs"));
+
+module.exports = mod;
+}),
+"[externals]/https [external] (https, cjs)", ((__turbopack_context__, module, exports) => {
+
+const mod = __turbopack_context__.x("https", () => require("https"));
+
+module.exports = mod;
+}),
+"[externals]/stream [external] (stream, cjs)", ((__turbopack_context__, module, exports) => {
+
+const mod = __turbopack_context__.x("stream", () => require("stream"));
+
+module.exports = mod;
+}),
+"[externals]/os [external] (os, cjs)", ((__turbopack_context__, module, exports) => {
+
+const mod = __turbopack_context__.x("os", () => require("os"));
+
+module.exports = mod;
+}),
+"[externals]/events [external] (events, cjs)", ((__turbopack_context__, module, exports) => {
+
+const mod = __turbopack_context__.x("events", () => require("events"));
+
+module.exports = mod;
+}),
+"[externals]/process [external] (process, cjs)", ((__turbopack_context__, module, exports) => {
+
+const mod = __turbopack_context__.x("process", () => require("process"));
+
+module.exports = mod;
+}),
+"[externals]/util [external] (util, cjs)", ((__turbopack_context__, module, exports) => {
+
+const mod = __turbopack_context__.x("util", () => require("util"));
+
+module.exports = mod;
+}),
+"[externals]/path [external] (path, cjs)", ((__turbopack_context__, module, exports) => {
+
+const mod = __turbopack_context__.x("path", () => require("path"));
+
+module.exports = mod;
+}),
+"[externals]/crypto [external] (crypto, cjs)", ((__turbopack_context__, module, exports) => {
+
+const mod = __turbopack_context__.x("crypto", () => require("crypto"));
+
+module.exports = mod;
+}),
+"[externals]/querystring [external] (querystring, cjs)", ((__turbopack_context__, module, exports) => {
+
+const mod = __turbopack_context__.x("querystring", () => require("querystring"));
+
+module.exports = mod;
+}),
+"[externals]/buffer [external] (buffer, cjs)", ((__turbopack_context__, module, exports) => {
+
+const mod = __turbopack_context__.x("buffer", () => require("buffer"));
+
+module.exports = mod;
+}),
+"[externals]/http2 [external] (http2, cjs)", ((__turbopack_context__, module, exports) => {
+
+const mod = __turbopack_context__.x("http2", () => require("http2"));
+
+module.exports = mod;
+}),
+"[externals]/zlib [external] (zlib, cjs)", ((__turbopack_context__, module, exports) => {
+
+const mod = __turbopack_context__.x("zlib", () => require("zlib"));
+
+module.exports = mod;
+}),
+"[externals]/url [external] (url, cjs)", ((__turbopack_context__, module, exports) => {
+
+const mod = __turbopack_context__.x("url", () => require("url"));
+
+module.exports = mod;
+}),
+"[project]/app/api/qualify-lead/route.ts [app-route] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "POST",
+    ()=>POST
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$7_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/.pnpm/next@16.0.7_react-dom@19.2.0_react@19.2.0__react@19.2.0/node_modules/next/server.js [app-route] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$googleapis$40$173$2e$0$2e$0$2f$node_modules$2f$googleapis$2f$build$2f$src$2f$index$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/.pnpm/googleapis@173.0.0/node_modules/googleapis/build/src/index.js [app-route] (ecmascript)");
+;
+;
+const SCORE_MAP = {
+    role: {
+        'Founder / CEO': 3,
+        'Operations or Finance': 2,
+        'Marketing or Sales': 2,
+        'IT / Developer': 1,
+        'Other': 0
+    },
+    teamSize: {
+        'Just me': 0,
+        '2–10 people': 1,
+        '1–10 people': 1,
+        '11–50 people': 2,
+        '51–200 people': 1,
+        '50+ people': 3,
+        '200+ people': 1
+    },
+    challenge: {
+        // Legacy demo-gate bottleneck labels
+        'Too much manual admin': 2,
+        'Slow lead follow-up': 2,
+        'Customer support volume': 2,
+        'Reporting & analytics': 2,
+        'Social media content': 2,
+        // "What do you want to automate?" labels from the /get-started flow
+        'Customer support': 2,
+        'Lead qualification & follow-up': 2,
+        'Booking & scheduling': 2,
+        'Invoice / document processing': 2,
+        'Data entry & reporting': 2,
+        'Other': 1
+    },
+    timeline: {
+        'Just exploring': 0,
+        '1–3 months': 1,
+        'Within 3 months': 1,
+        'Ready now': 3
+    },
+    budget: {
+        'Under $500 / mo': 0,
+        '$500–$2,000 / mo': 2,
+        '$2,000+ / mo': 3,
+        'Not sure yet': 1
+    }
+};
+async function appendToSheet(row) {
+    const email = process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL;
+    const privateKey = process.env.GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY?.replace(/\\n/g, '\n')?.replace(/^["']|["']$/g, '');
+    const sheetId = process.env.GOOGLE_SHEETS_SPREADSHEET_ID;
+    if (!email || !privateKey || !sheetId) {
+        console.warn('Google Sheets env vars not set — skipping sheet write');
+        return;
+    }
+    const auth = new __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$googleapis$40$173$2e$0$2e$0$2f$node_modules$2f$googleapis$2f$build$2f$src$2f$index$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["google"].auth.GoogleAuth({
+        credentials: {
+            client_email: email,
+            private_key: privateKey
+        },
+        scopes: [
+            'https://www.googleapis.com/auth/spreadsheets'
+        ]
+    });
+    const sheets = __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$googleapis$40$173$2e$0$2e$0$2f$node_modules$2f$googleapis$2f$build$2f$src$2f$index$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["google"].sheets({
+        version: 'v4',
+        auth
+    });
+    await sheets.spreadsheets.values.append({
+        spreadsheetId: sheetId,
+        range: 'Sheet1!A:J',
+        valueInputOption: 'USER_ENTERED',
+        requestBody: {
+            values: [
+                row
+            ]
+        }
+    });
+}
+async function POST(request) {
+    try {
+        const body = await request.json();
+        const { answers, email, page, tools } = body;
+        if (!email || !email.includes('@')) {
+            return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$7_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
+                error: 'Valid email required'
+            }, {
+                status: 400
+            });
+        }
+        const toolsStr = Array.isArray(tools) ? tools.join(', ') : '';
+        const isDemoGate = page === 'demo_gate' || page === 'chatbot' || page === 'get_started';
+        const timestamp = new Date().toISOString();
+        let row;
+        let score;
+        if (isDemoGate) {
+            // 5-answer demo gate / get-started: [role, teamSize, challenge, timeline, budget]
+            const [role = '', teamSize = '', challenge = '', timeline = '', budget = ''] = answers;
+            score = (SCORE_MAP.role[role] ?? 0) + (SCORE_MAP.teamSize[teamSize] ?? 0) + (SCORE_MAP.challenge[challenge] ?? 0) + (SCORE_MAP.timeline[timeline] ?? 0) + (SCORE_MAP.budget[budget] ?? 0);
+            row = [
+                timestamp,
+                email,
+                role,
+                teamSize,
+                challenge,
+                timeline,
+                budget,
+                String(score),
+                page,
+                toolsStr
+            ];
+        } else {
+            // Legacy 3-answer chat widget: [intent, teamSize, timeline]
+            const [intent = '', teamSize = '', timeline = ''] = answers;
+            score = (SCORE_MAP.teamSize[teamSize] ?? 0) + (SCORE_MAP.timeline[timeline] ?? 0);
+            row = [
+                timestamp,
+                email,
+                intent,
+                teamSize,
+                '',
+                timeline,
+                '',
+                String(score),
+                page ?? 'chat_widget',
+                toolsStr
+            ];
+        }
+        await appendToSheet(row).catch((err)=>console.error('Sheets error:', err));
+        // PostHog
+        const posthogKey = ("TURBOPACK compile-time value", "phc_NXhL4VK71R6dJZ67ZSfGtcll14n4WARnvpfd1gWHgY");
+        if ("TURBOPACK compile-time truthy", 1) {
+            const [role, teamSize, challenge, timeline, budget] = isDemoGate ? answers : [
+                '',
+                answers[1],
+                '',
+                answers[2],
+                ''
+            ];
+            fetch('https://app.posthog.com/capture/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    api_key: posthogKey,
+                    event: isDemoGate ? 'demo_lead_captured' : 'lead_captured',
+                    distinct_id: email,
+                    properties: {
+                        email,
+                        source: page ?? 'chat_widget',
+                        ...isDemoGate ? {
+                            role,
+                            team_size: teamSize,
+                            challenge,
+                            timeline,
+                            budget
+                        } : {
+                            intent: answers[0],
+                            team_size: teamSize,
+                            timeline
+                        },
+                        ...toolsStr ? {
+                            tools: toolsStr
+                        } : {},
+                        score,
+                        $set: {
+                            email,
+                            lead_source: page ?? (isDemoGate ? 'demo_gate' : 'chat_widget')
+                        }
+                    }
+                })
+            }).catch((err)=>console.error('PostHog error:', err));
+        }
+        // Brevo
+        const brevoKey = process.env.BREVO_API_KEY?.trim();
+        const brevoListId = process.env.BREVO_LIST_ID ? parseInt(process.env.BREVO_LIST_ID.trim(), 10) : null;
+        if (brevoKey) {
+            const brevoRes = await fetch('https://api.brevo.com/v3/contacts', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'api-key': brevoKey
+                },
+                body: JSON.stringify({
+                    email,
+                    updateEnabled: true,
+                    attributes: {
+                        SOURCE: page ?? 'chat_widget',
+                        ...toolsStr ? {
+                            TOOLS: toolsStr
+                        } : {}
+                    },
+                    ...brevoListId && !isNaN(brevoListId) ? {
+                        listIds: [
+                            brevoListId
+                        ]
+                    } : {}
+                })
+            });
+            if (!brevoRes.ok) {
+                const errText = await brevoRes.text();
+                console.error(`Brevo error ${brevoRes.status}:`, errText);
+            }
+        }
+        return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$7_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
+            success: true
+        });
+    } catch (err) {
+        console.error('qualify-lead error:', err);
+        return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$7_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
+            error: 'Failed to save lead'
+        }, {
+            status: 500
+        });
+    }
+}
+}),
+];
+
+//# sourceMappingURL=%5Broot-of-the-server%5D__032248bd._.js.map

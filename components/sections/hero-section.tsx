@@ -141,12 +141,12 @@ export function HeroSection() {
 
           <div className="flex flex-col sm:flex-row gap-3">
             <button
-              onClick={() => router.push("/book-demo")}
+              onClick={() => router.push("/get-started")}
               className="relative overflow-hidden group inline-flex items-center justify-center gap-2 bg-linear-to-r from-primary to-violet-500 text-white font-semibold text-sm px-6 py-3 rounded-xl shadow-lg shadow-primary/30 hover:shadow-primary/50 transition-all cursor-pointer"
             >
               <span className="absolute inset-0 bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-in-out" />
               <span className="relative flex items-center gap-2">
-                Book a Demo <ArrowRight className="w-4 h-4" />
+                Get Started <ArrowRight className="w-4 h-4" />
               </span>
             </button>
             <button
