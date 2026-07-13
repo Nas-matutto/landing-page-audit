@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { Resend } from 'resend'
 import fs from 'fs'
 import path from 'path'
+import { appendLeadRow, buildLeadRow } from '@/lib/leads-sheet'
 
 export async function POST(request: NextRequest) {
   try {
@@ -36,6 +37,11 @@ export async function POST(request: NextRequest) {
         console.error(`Brevo error ${brevoRes.status}:`, errText)
       }
     }
+
+    // Google Sheets — add to the Leads sheet, noting which guide they downloaded
+    await appendLeadRow(
+      buildLeadRow({ email, page: 'guide - Business Automation Checklist' })
+    ).catch(err => console.error('Sheets error (guide):', err))
 
     // Resend — send email with PDF attached
     const resendKey = process.env.RESEND_API_KEY?.trim()

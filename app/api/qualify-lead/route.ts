@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { google, sheets_v4 } from 'googleapis'
+import { appendLeadRow, updateLeadRow, buildLeadRow } from '@/lib/leads-sheet'
 
 const SCORE_MAP = {
   role:      { 'Founder / CEO': 3, 'Operations or Finance': 2, 'Marketing or Sales': 2, 'IT / Developer': 1, 'Other': 0 } as Record<string, number>,
@@ -15,51 +15,16 @@ const SCORE_MAP = {
   budget:    { 'Under $500 / mo': 0, '$500–$2,000 / mo': 2, '$2,000+ / mo': 3, 'Not sure yet': 1 } as Record<string, number>,
 }
 
-function getSheets(): { sheets: sheets_v4.Sheets; sheetId: string } | null {
-  const email = process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL
-  const privateKey = process.env.GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY
-    ?.replace(/\\n/g, '\n')
-    ?.replace(/^["']|["']$/g, '')
-  const sheetId = process.env.GOOGLE_SHEETS_SPREADSHEET_ID
+// Highest possible raw total for each flow, derived from SCORE_MAP so it stays
+// correct if the weights above change.
+const maxOf = (m: Record<string, number>) => Math.max(0, ...Object.values(m))
+const DEMO_MAX = maxOf(SCORE_MAP.role) + maxOf(SCORE_MAP.teamSize) + maxOf(SCORE_MAP.challenge) + maxOf(SCORE_MAP.timeline) + maxOf(SCORE_MAP.budget)
+const CHAT_MAX = maxOf(SCORE_MAP.teamSize) + maxOf(SCORE_MAP.timeline)
 
-  if (!email || !privateKey || !sheetId) {
-    console.warn('Google Sheets env vars not set — skipping sheet write')
-    return null
-  }
-
-  const auth = new google.auth.GoogleAuth({
-    credentials: { client_email: email, private_key: privateKey },
-    scopes: ['https://www.googleapis.com/auth/spreadsheets'],
-  })
-
-  return { sheets: google.sheets({ version: 'v4', auth }), sheetId }
-}
-
-// Appends a row and returns the A1 range it landed in (e.g. "Sheet1!A7:J7"),
-// so a later "complete" submission can update that same row in place.
-async function appendToSheet(row: string[]): Promise<string | undefined> {
-  const client = getSheets()
-  if (!client) return undefined
-
-  const res = await client.sheets.spreadsheets.values.append({
-    spreadsheetId: client.sheetId,
-    range: 'Sheet1!A:J',
-    valueInputOption: 'USER_ENTERED',
-    requestBody: { values: [row] },
-  })
-  return res.data.updates?.updatedRange ?? undefined
-}
-
-async function updateSheetRow(range: string, row: string[]) {
-  const client = getSheets()
-  if (!client) return
-
-  await client.sheets.spreadsheets.values.update({
-    spreadsheetId: client.sheetId,
-    range,
-    valueInputOption: 'USER_ENTERED',
-    requestBody: { values: [row] },
-  })
+// Normalise a raw score onto a 1–10 scale: 1 = least important lead, 10 = highest.
+function to10(raw: number, max: number): number {
+  if (max <= 0) return 1
+  return Math.max(1, Math.min(10, Math.round(1 + (raw / max) * 9)))
 }
 
 async function addToBrevo(email: string, source: string, toolsStr: string) {
@@ -122,9 +87,8 @@ export async function POST(request: NextRequest) {
     // ── Partial (email-first) — save the email now so a drop-off is still captured.
     // Writes a stub row (blank answers) and returns its range for later completion.
     if (stage === 'partial') {
-      const timestamp = new Date().toISOString()
-      const stubRow = [timestamp, email, '', '', '', '', '', '', source, '']
-      const range = await appendToSheet(stubRow).catch(err => {
+      const stubRow = buildLeadRow({ email, page: source })
+      const range = await appendLeadRow(stubRow).catch(err => {
         console.error('Sheets error (partial):', err)
         return undefined
       })
@@ -137,37 +101,39 @@ export async function POST(request: NextRequest) {
     const safeAnswers = Array.isArray(answers) ? answers : []
     const toolsStr = Array.isArray(tools) ? tools.join(', ') : ''
     const isDemoGate = page === 'demo_gate' || page === 'chatbot' || page === 'get_started'
-    const timestamp = new Date().toISOString()
     let row: string[]
     let score: number
 
     if (isDemoGate) {
       // 5-answer demo gate / get-started: [role, teamSize, challenge, timeline, budget]
       const [role = '', teamSize = '', challenge = '', timeline = '', budget = ''] = safeAnswers
-      score =
+      const raw =
         (SCORE_MAP.role[role] ?? 0) +
         (SCORE_MAP.teamSize[teamSize] ?? 0) +
         (SCORE_MAP.challenge[challenge] ?? 0) +
         (SCORE_MAP.timeline[timeline] ?? 0) +
         (SCORE_MAP.budget[budget] ?? 0)
-      row = [timestamp, email, role, teamSize, challenge, timeline, budget, String(score), source, toolsStr]
+      score = to10(raw, DEMO_MAX)
+      row = buildLeadRow({ email, role, teamSize, challenge, timeline, budget, score, page: source, tools: toolsStr })
     } else {
       // Legacy 3-answer chat widget: [intent, teamSize, timeline]
       const [intent = '', teamSize = '', timeline = ''] = safeAnswers
-      score =
+      const raw =
         (SCORE_MAP.teamSize[teamSize] ?? 0) +
         (SCORE_MAP.timeline[timeline] ?? 0)
-      row = [timestamp, email, intent, teamSize, '', timeline, '', String(score), source, toolsStr]
+      score = to10(raw, CHAT_MAX)
+      // Legacy layout kept intent in the role column (C).
+      row = buildLeadRow({ email, role: intent, teamSize, timeline, score, page: source, tools: toolsStr })
     }
 
     // Update the partial row in place if we have its range; otherwise append a fresh row.
     if (rowRange) {
-      await updateSheetRow(rowRange, row).catch(err => {
+      await updateLeadRow(rowRange, row).catch(err => {
         console.error('Sheets update error — appending instead:', err)
-        return appendToSheet(row).catch(e => console.error('Sheets append fallback error:', e))
+        return appendLeadRow(row).catch(e => console.error('Sheets append fallback error:', e))
       })
     } else {
-      await appendToSheet(row).catch(err => console.error('Sheets error:', err))
+      await appendLeadRow(row).catch(err => console.error('Sheets error:', err))
     }
 
     // PostHog
