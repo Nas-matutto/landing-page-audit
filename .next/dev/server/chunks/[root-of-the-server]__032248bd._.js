@@ -187,13 +187,13 @@ const SCORE_MAP = {
         'Not sure yet': 1
     }
 };
-async function appendToSheet(row) {
+function getSheets() {
     const email = process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL;
     const privateKey = process.env.GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY?.replace(/\\n/g, '\n')?.replace(/^["']|["']$/g, '');
     const sheetId = process.env.GOOGLE_SHEETS_SPREADSHEET_ID;
     if (!email || !privateKey || !sheetId) {
         console.warn('Google Sheets env vars not set — skipping sheet write');
-        return;
+        return null;
     }
     const auth = new __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$googleapis$40$173$2e$0$2e$0$2f$node_modules$2f$googleapis$2f$build$2f$src$2f$index$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["google"].auth.GoogleAuth({
         credentials: {
@@ -204,12 +204,21 @@ async function appendToSheet(row) {
             'https://www.googleapis.com/auth/spreadsheets'
         ]
     });
-    const sheets = __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$googleapis$40$173$2e$0$2e$0$2f$node_modules$2f$googleapis$2f$build$2f$src$2f$index$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["google"].sheets({
-        version: 'v4',
-        auth
-    });
-    await sheets.spreadsheets.values.append({
-        spreadsheetId: sheetId,
+    return {
+        sheets: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$googleapis$40$173$2e$0$2e$0$2f$node_modules$2f$googleapis$2f$build$2f$src$2f$index$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["google"].sheets({
+            version: 'v4',
+            auth
+        }),
+        sheetId
+    };
+}
+// Appends a row and returns the A1 range it landed in (e.g. "Sheet1!A7:J7"),
+// so a later "complete" submission can update that same row in place.
+async function appendToSheet(row) {
+    const client = getSheets();
+    if (!client) return undefined;
+    const res = await client.sheets.spreadsheets.values.append({
+        spreadsheetId: client.sheetId,
         range: 'Sheet1!A:J',
         valueInputOption: 'USER_ENTERED',
         requestBody: {
@@ -218,11 +227,77 @@ async function appendToSheet(row) {
             ]
         }
     });
+    return res.data.updates?.updatedRange ?? undefined;
+}
+async function updateSheetRow(range, row) {
+    const client = getSheets();
+    if (!client) return;
+    await client.sheets.spreadsheets.values.update({
+        spreadsheetId: client.sheetId,
+        range,
+        valueInputOption: 'USER_ENTERED',
+        requestBody: {
+            values: [
+                row
+            ]
+        }
+    });
+}
+async function addToBrevo(email, source, toolsStr) {
+    const brevoKey = process.env.BREVO_API_KEY?.trim();
+    const brevoListId = process.env.BREVO_LIST_ID ? parseInt(process.env.BREVO_LIST_ID.trim(), 10) : null;
+    if (!brevoKey) return;
+    const brevoRes = await fetch('https://api.brevo.com/v3/contacts', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'api-key': brevoKey
+        },
+        body: JSON.stringify({
+            email,
+            updateEnabled: true,
+            attributes: {
+                SOURCE: source,
+                ...toolsStr ? {
+                    TOOLS: toolsStr
+                } : {}
+            },
+            ...brevoListId && !isNaN(brevoListId) ? {
+                listIds: [
+                    brevoListId
+                ]
+            } : {}
+        })
+    });
+    if (!brevoRes.ok) {
+        const errText = await brevoRes.text();
+        console.error(`Brevo error ${brevoRes.status}:`, errText);
+    }
+}
+function capturePosthog(event, email, properties) {
+    const posthogKey = ("TURBOPACK compile-time value", "phc_NXhL4VK71R6dJZ67ZSfGtcll14n4WARnvpfd1gWHgY");
+    if ("TURBOPACK compile-time falsy", 0) //TURBOPACK unreachable
+    ;
+    fetch('https://app.posthog.com/capture/', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            api_key: posthogKey,
+            event,
+            distinct_id: email,
+            properties: {
+                email,
+                ...properties
+            }
+        })
+    }).catch((err)=>console.error('PostHog error:', err));
 }
 async function POST(request) {
     try {
         const body = await request.json();
-        const { answers, email, page, tools } = body;
+        const { answers, email, page, tools, stage, rowRange } = body;
         if (!email || !email.includes('@')) {
             return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$7_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
                 error: 'Valid email required'
@@ -230,6 +305,42 @@ async function POST(request) {
                 status: 400
             });
         }
+        const source = page ?? 'chat_widget';
+        // ── Partial (email-first) — save the email now so a drop-off is still captured.
+        // Writes a stub row (blank answers) and returns its range for later completion.
+        if (stage === 'partial') {
+            const timestamp = new Date().toISOString();
+            const stubRow = [
+                timestamp,
+                email,
+                '',
+                '',
+                '',
+                '',
+                '',
+                '',
+                source,
+                ''
+            ];
+            const range = await appendToSheet(stubRow).catch((err)=>{
+                console.error('Sheets error (partial):', err);
+                return undefined;
+            });
+            await addToBrevo(email, source, '');
+            capturePosthog('lead_started', email, {
+                source,
+                $set: {
+                    email,
+                    lead_source: source
+                }
+            });
+            return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$7_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
+                success: true,
+                rowRange: range
+            });
+        }
+        // ── Complete — full qualification payload.
+        const safeAnswers = Array.isArray(answers) ? answers : [];
         const toolsStr = Array.isArray(tools) ? tools.join(', ') : '';
         const isDemoGate = page === 'demo_gate' || page === 'chatbot' || page === 'get_started';
         const timestamp = new Date().toISOString();
@@ -237,7 +348,7 @@ async function POST(request) {
         let score;
         if (isDemoGate) {
             // 5-answer demo gate / get-started: [role, teamSize, challenge, timeline, budget]
-            const [role = '', teamSize = '', challenge = '', timeline = '', budget = ''] = answers;
+            const [role = '', teamSize = '', challenge = '', timeline = '', budget = ''] = safeAnswers;
             score = (SCORE_MAP.role[role] ?? 0) + (SCORE_MAP.teamSize[teamSize] ?? 0) + (SCORE_MAP.challenge[challenge] ?? 0) + (SCORE_MAP.timeline[timeline] ?? 0) + (SCORE_MAP.budget[budget] ?? 0);
             row = [
                 timestamp,
@@ -248,12 +359,12 @@ async function POST(request) {
                 timeline,
                 budget,
                 String(score),
-                page,
+                source,
                 toolsStr
             ];
         } else {
             // Legacy 3-answer chat widget: [intent, teamSize, timeline]
-            const [intent = '', teamSize = '', timeline = ''] = answers;
+            const [intent = '', teamSize = '', timeline = ''] = safeAnswers;
             score = (SCORE_MAP.teamSize[teamSize] ?? 0) + (SCORE_MAP.timeline[timeline] ?? 0);
             row = [
                 timestamp,
@@ -264,87 +375,50 @@ async function POST(request) {
                 timeline,
                 '',
                 String(score),
-                page ?? 'chat_widget',
+                source,
                 toolsStr
             ];
         }
-        await appendToSheet(row).catch((err)=>console.error('Sheets error:', err));
-        // PostHog
-        const posthogKey = ("TURBOPACK compile-time value", "phc_NXhL4VK71R6dJZ67ZSfGtcll14n4WARnvpfd1gWHgY");
-        if ("TURBOPACK compile-time truthy", 1) {
-            const [role, teamSize, challenge, timeline, budget] = isDemoGate ? answers : [
-                '',
-                answers[1],
-                '',
-                answers[2],
-                ''
-            ];
-            fetch('https://app.posthog.com/capture/', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    api_key: posthogKey,
-                    event: isDemoGate ? 'demo_lead_captured' : 'lead_captured',
-                    distinct_id: email,
-                    properties: {
-                        email,
-                        source: page ?? 'chat_widget',
-                        ...isDemoGate ? {
-                            role,
-                            team_size: teamSize,
-                            challenge,
-                            timeline,
-                            budget
-                        } : {
-                            intent: answers[0],
-                            team_size: teamSize,
-                            timeline
-                        },
-                        ...toolsStr ? {
-                            tools: toolsStr
-                        } : {},
-                        score,
-                        $set: {
-                            email,
-                            lead_source: page ?? (isDemoGate ? 'demo_gate' : 'chat_widget')
-                        }
-                    }
-                })
-            }).catch((err)=>console.error('PostHog error:', err));
-        }
-        // Brevo
-        const brevoKey = process.env.BREVO_API_KEY?.trim();
-        const brevoListId = process.env.BREVO_LIST_ID ? parseInt(process.env.BREVO_LIST_ID.trim(), 10) : null;
-        if (brevoKey) {
-            const brevoRes = await fetch('https://api.brevo.com/v3/contacts', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'api-key': brevoKey
-                },
-                body: JSON.stringify({
-                    email,
-                    updateEnabled: true,
-                    attributes: {
-                        SOURCE: page ?? 'chat_widget',
-                        ...toolsStr ? {
-                            TOOLS: toolsStr
-                        } : {}
-                    },
-                    ...brevoListId && !isNaN(brevoListId) ? {
-                        listIds: [
-                            brevoListId
-                        ]
-                    } : {}
-                })
+        // Update the partial row in place if we have its range; otherwise append a fresh row.
+        if (rowRange) {
+            await updateSheetRow(rowRange, row).catch((err)=>{
+                console.error('Sheets update error — appending instead:', err);
+                return appendToSheet(row).catch((e)=>console.error('Sheets append fallback error:', e));
             });
-            if (!brevoRes.ok) {
-                const errText = await brevoRes.text();
-                console.error(`Brevo error ${brevoRes.status}:`, errText);
-            }
+        } else {
+            await appendToSheet(row).catch((err)=>console.error('Sheets error:', err));
         }
+        // PostHog
+        const [role, teamSize, challenge, timeline, budget] = isDemoGate ? safeAnswers : [
+            '',
+            safeAnswers[1],
+            '',
+            safeAnswers[2],
+            ''
+        ];
+        capturePosthog(isDemoGate ? 'demo_lead_captured' : 'lead_captured', email, {
+            source,
+            ...isDemoGate ? {
+                role,
+                team_size: teamSize,
+                challenge,
+                timeline,
+                budget
+            } : {
+                intent: safeAnswers[0],
+                team_size: teamSize,
+                timeline
+            },
+            ...toolsStr ? {
+                tools: toolsStr
+            } : {},
+            score,
+            $set: {
+                email,
+                lead_source: source
+            }
+        });
+        await addToBrevo(email, source, toolsStr);
         return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$7_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
             success: true
         });

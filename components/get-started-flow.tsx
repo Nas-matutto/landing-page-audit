@@ -100,6 +100,7 @@ export function GetStartedFlow() {
   const [otherInput, setOtherInput] = useState("")
   const [submitting, setSubmitting] = useState(false)
   const [done, setDone] = useState(false)
+  const [rowRange, setRowRange] = useState<string | null>(null)
   const videoRef = useRef<HTMLDivElement>(null)
 
   function goBack() {
@@ -117,13 +118,17 @@ export function GetStartedFlow() {
     setEmailError("")
     setEmailSubmitting(true)
 
-    // Partial capture — save the lead before they answer anything (non-blocking).
+    // Partial capture — save the email now (Google Sheet stub row + Brevo) so a
+    // drop-off is still recorded. The returned row range lets us fill in the same
+    // row when they complete the flow. Non-blocking: advance regardless.
     try {
-      await fetch("/api/capture-lead", {
+      const res = await fetch("/api/qualify-lead", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, source: "get_started" }),
+        body: JSON.stringify({ email, page: "get_started", stage: "partial" }),
       })
+      const data = await res.json().catch(() => null)
+      if (data?.rowRange) setRowRange(data.rowRange)
     } catch {
       // ignore — advance regardless
     }
@@ -199,6 +204,8 @@ export function GetStartedFlow() {
           answers: orderedAnswers,
           tools,
           page: "get_started",
+          stage: "complete",
+          ...(rowRange ? { rowRange } : {}),
         }),
       })
     } catch {

@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { google } from 'googleapis'
+import { google, sheets_v4 } from 'googleapis'
 
 const SCORE_MAP = {
   role:      { 'Founder / CEO': 3, 'Operations or Finance': 2, 'Marketing or Sales': 2, 'IT / Developer': 1, 'Other': 0 } as Record<string, number>,
@@ -15,7 +15,7 @@ const SCORE_MAP = {
   budget:    { 'Under $500 / mo': 0, '$500–$2,000 / mo': 2, '$2,000+ / mo': 3, 'Not sure yet': 1 } as Record<string, number>,
 }
 
-async function appendToSheet(row: string[]) {
+function getSheets(): { sheets: sheets_v4.Sheets; sheetId: string } | null {
   const email = process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL
   const privateKey = process.env.GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY
     ?.replace(/\\n/g, '\n')
@@ -24,7 +24,7 @@ async function appendToSheet(row: string[]) {
 
   if (!email || !privateKey || !sheetId) {
     console.warn('Google Sheets env vars not set — skipping sheet write')
-    return
+    return null
   }
 
   const auth = new google.auth.GoogleAuth({
@@ -32,30 +32,109 @@ async function appendToSheet(row: string[]) {
     scopes: ['https://www.googleapis.com/auth/spreadsheets'],
   })
 
-  const sheets = google.sheets({ version: 'v4', auth })
+  return { sheets: google.sheets({ version: 'v4', auth }), sheetId }
+}
 
-  await sheets.spreadsheets.values.append({
-    spreadsheetId: sheetId,
+// Appends a row and returns the A1 range it landed in (e.g. "Sheet1!A7:J7"),
+// so a later "complete" submission can update that same row in place.
+async function appendToSheet(row: string[]): Promise<string | undefined> {
+  const client = getSheets()
+  if (!client) return undefined
+
+  const res = await client.sheets.spreadsheets.values.append({
+    spreadsheetId: client.sheetId,
     range: 'Sheet1!A:J',
+    valueInputOption: 'USER_ENTERED',
+    requestBody: { values: [row] },
+  })
+  return res.data.updates?.updatedRange ?? undefined
+}
+
+async function updateSheetRow(range: string, row: string[]) {
+  const client = getSheets()
+  if (!client) return
+
+  await client.sheets.spreadsheets.values.update({
+    spreadsheetId: client.sheetId,
+    range,
     valueInputOption: 'USER_ENTERED',
     requestBody: { values: [row] },
   })
 }
 
+async function addToBrevo(email: string, source: string, toolsStr: string) {
+  const brevoKey = process.env.BREVO_API_KEY?.trim()
+  const brevoListId = process.env.BREVO_LIST_ID ? parseInt(process.env.BREVO_LIST_ID.trim(), 10) : null
+  if (!brevoKey) return
+
+  const brevoRes = await fetch('https://api.brevo.com/v3/contacts', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'api-key': brevoKey },
+    body: JSON.stringify({
+      email,
+      updateEnabled: true,
+      attributes: {
+        SOURCE: source,
+        ...(toolsStr ? { TOOLS: toolsStr } : {}),
+      },
+      ...(brevoListId && !isNaN(brevoListId) ? { listIds: [brevoListId] } : {}),
+    }),
+  })
+  if (!brevoRes.ok) {
+    const errText = await brevoRes.text()
+    console.error(`Brevo error ${brevoRes.status}:`, errText)
+  }
+}
+
+function capturePosthog(event: string, email: string, properties: Record<string, unknown>) {
+  const posthogKey = process.env.NEXT_PUBLIC_POSTHOG_KEY
+  if (!posthogKey) return
+  fetch('https://app.posthog.com/capture/', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      api_key: posthogKey,
+      event,
+      distinct_id: email,
+      properties: { email, ...properties },
+    }),
+  }).catch(err => console.error('PostHog error:', err))
+}
+
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json()
-    const { answers, email, page, tools } = body as {
-      answers: string[]
+    const { answers, email, page, tools, stage, rowRange } = body as {
+      answers?: string[]
       email: string
       page: string
       tools?: string[]
+      stage?: 'partial' | 'complete'
+      rowRange?: string
     }
 
     if (!email || !email.includes('@')) {
       return NextResponse.json({ error: 'Valid email required' }, { status: 400 })
     }
 
+    const source = page ?? 'chat_widget'
+
+    // ── Partial (email-first) — save the email now so a drop-off is still captured.
+    // Writes a stub row (blank answers) and returns its range for later completion.
+    if (stage === 'partial') {
+      const timestamp = new Date().toISOString()
+      const stubRow = [timestamp, email, '', '', '', '', '', '', source, '']
+      const range = await appendToSheet(stubRow).catch(err => {
+        console.error('Sheets error (partial):', err)
+        return undefined
+      })
+      await addToBrevo(email, source, '')
+      capturePosthog('lead_started', email, { source, $set: { email, lead_source: source } })
+      return NextResponse.json({ success: true, rowRange: range })
+    }
+
+    // ── Complete — full qualification payload.
+    const safeAnswers = Array.isArray(answers) ? answers : []
     const toolsStr = Array.isArray(tools) ? tools.join(', ') : ''
     const isDemoGate = page === 'demo_gate' || page === 'chatbot' || page === 'get_started'
     const timestamp = new Date().toISOString()
@@ -64,70 +143,46 @@ export async function POST(request: NextRequest) {
 
     if (isDemoGate) {
       // 5-answer demo gate / get-started: [role, teamSize, challenge, timeline, budget]
-      const [role = '', teamSize = '', challenge = '', timeline = '', budget = ''] = answers
+      const [role = '', teamSize = '', challenge = '', timeline = '', budget = ''] = safeAnswers
       score =
         (SCORE_MAP.role[role] ?? 0) +
         (SCORE_MAP.teamSize[teamSize] ?? 0) +
         (SCORE_MAP.challenge[challenge] ?? 0) +
         (SCORE_MAP.timeline[timeline] ?? 0) +
         (SCORE_MAP.budget[budget] ?? 0)
-      row = [timestamp, email, role, teamSize, challenge, timeline, budget, String(score), page, toolsStr]
+      row = [timestamp, email, role, teamSize, challenge, timeline, budget, String(score), source, toolsStr]
     } else {
       // Legacy 3-answer chat widget: [intent, teamSize, timeline]
-      const [intent = '', teamSize = '', timeline = ''] = answers
+      const [intent = '', teamSize = '', timeline = ''] = safeAnswers
       score =
         (SCORE_MAP.teamSize[teamSize] ?? 0) +
         (SCORE_MAP.timeline[timeline] ?? 0)
-      row = [timestamp, email, intent, teamSize, '', timeline, '', String(score), page ?? 'chat_widget', toolsStr]
+      row = [timestamp, email, intent, teamSize, '', timeline, '', String(score), source, toolsStr]
     }
 
-    await appendToSheet(row).catch(err => console.error('Sheets error:', err))
+    // Update the partial row in place if we have its range; otherwise append a fresh row.
+    if (rowRange) {
+      await updateSheetRow(rowRange, row).catch(err => {
+        console.error('Sheets update error — appending instead:', err)
+        return appendToSheet(row).catch(e => console.error('Sheets append fallback error:', e))
+      })
+    } else {
+      await appendToSheet(row).catch(err => console.error('Sheets error:', err))
+    }
 
     // PostHog
-    const posthogKey = process.env.NEXT_PUBLIC_POSTHOG_KEY
-    if (posthogKey) {
-      const [role, teamSize, challenge, timeline, budget] = isDemoGate ? answers : ['', answers[1], '', answers[2], '']
-      fetch('https://app.posthog.com/capture/', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          api_key: posthogKey,
-          event: isDemoGate ? 'demo_lead_captured' : 'lead_captured',
-          distinct_id: email,
-          properties: {
-            email,
-            source: page ?? 'chat_widget',
-            ...(isDemoGate ? { role, team_size: teamSize, challenge, timeline, budget } : { intent: answers[0], team_size: teamSize, timeline }),
-            ...(toolsStr ? { tools: toolsStr } : {}),
-            score,
-            $set: { email, lead_source: page ?? (isDemoGate ? 'demo_gate' : 'chat_widget') },
-          },
-        }),
-      }).catch(err => console.error('PostHog error:', err))
-    }
+    const [role, teamSize, challenge, timeline, budget] = isDemoGate
+      ? safeAnswers
+      : ['', safeAnswers[1], '', safeAnswers[2], '']
+    capturePosthog(isDemoGate ? 'demo_lead_captured' : 'lead_captured', email, {
+      source,
+      ...(isDemoGate ? { role, team_size: teamSize, challenge, timeline, budget } : { intent: safeAnswers[0], team_size: teamSize, timeline }),
+      ...(toolsStr ? { tools: toolsStr } : {}),
+      score,
+      $set: { email, lead_source: source },
+    })
 
-    // Brevo
-    const brevoKey = process.env.BREVO_API_KEY?.trim()
-    const brevoListId = process.env.BREVO_LIST_ID ? parseInt(process.env.BREVO_LIST_ID.trim(), 10) : null
-    if (brevoKey) {
-      const brevoRes = await fetch('https://api.brevo.com/v3/contacts', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'api-key': brevoKey },
-        body: JSON.stringify({
-          email,
-          updateEnabled: true,
-          attributes: {
-            SOURCE: page ?? 'chat_widget',
-            ...(toolsStr ? { TOOLS: toolsStr } : {}),
-          },
-          ...(brevoListId && !isNaN(brevoListId) ? { listIds: [brevoListId] } : {}),
-        }),
-      })
-      if (!brevoRes.ok) {
-        const errText = await brevoRes.text()
-        console.error(`Brevo error ${brevoRes.status}:`, errText)
-      }
-    }
+    await addToBrevo(email, source, toolsStr)
 
     return NextResponse.json({ success: true })
   } catch (err) {

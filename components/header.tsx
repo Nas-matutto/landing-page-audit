@@ -89,11 +89,11 @@ export function Header() {
 
           <div className="hidden md:flex items-center gap-4">
             <Link
-              href="/book-demo"
+              href="/get-started"
               className="relative overflow-hidden group bg-linear-to-r from-primary to-violet-500 text-white text-sm font-semibold px-5 py-2 rounded-lg shadow-md shadow-primary/25 hover:shadow-primary/40 hover:shadow-lg transition-all cursor-pointer"
             >
               <span className="absolute inset-0 bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-in-out" />
-              <span className="relative">Book Demo</span>
+              <span className="relative">Get Started</span>
             </Link>
           </div>
 
@@ -132,12 +132,12 @@ export function Header() {
               </Link>
               <div className="flex flex-col gap-2 pt-2 border-t border-border">
                 <Link
-                  href="/book-demo"
+                  href="/get-started"
                   onClick={() => setMobileMenuOpen(false)}
                   className="relative overflow-hidden group w-full bg-linear-to-r from-primary to-violet-500 text-white text-sm font-semibold py-2.5 rounded-lg shadow-md shadow-primary/20 cursor-pointer text-center"
                 >
                   <span className="absolute inset-0 bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-in-out" />
-                  <span className="relative">Book Demo</span>
+                  <span className="relative">Get Started</span>
                 </Link>
               </div>
             </nav>
