@@ -36,6 +36,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
     {
+      url: `${baseUrl}/free-guides/how-to-build-ai-agents`,
+      lastModified: new Date('2026-07-14'),
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
       url: `${baseUrl}/free-tools/calculator`,
       lastModified: new Date(),
       changeFrequency: 'monthly',

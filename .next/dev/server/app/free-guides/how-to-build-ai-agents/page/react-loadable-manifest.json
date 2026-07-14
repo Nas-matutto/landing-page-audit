@@ -1,0 +1,10 @@
+{
+  "[project]/components/chat-widget.tsx [app-client] (ecmascript, next/dynamic entry)": {
+    "id": "[project]/components/chat-widget.tsx [app-client] (ecmascript, next/dynamic entry)",
+    "files": [
+      "static/chunks/node_modules__pnpm_d98fa204._.js",
+      "static/chunks/components_chat-widget_tsx_1e42fa9a._.js",
+      "static/chunks/components_chat-widget_tsx_832a60a7._.js"
+    ]
+  }
+}

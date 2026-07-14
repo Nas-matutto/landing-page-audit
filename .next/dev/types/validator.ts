@@ -281,6 +281,15 @@ type RouteHandlerConfig<Route extends AppRouteHandlerRoutes = AppRouteHandlerRou
   type __Unused = __Check
 }
 
+// Validate ../../../app/free-guides/how-to-build-ai-agents/page.tsx
+{
+  type __IsExpected<Specific extends AppPageConfig<"/free-guides/how-to-build-ai-agents">> = Specific
+  const handler = {} as typeof import("../../../app/free-guides/how-to-build-ai-agents/page.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
 // Validate ../../../app/free-guides/page.tsx
 {
   type __IsExpected<Specific extends AppPageConfig<"/free-guides">> = Specific
@@ -398,6 +407,15 @@ type RouteHandlerConfig<Route extends AppRouteHandlerRoutes = AppRouteHandlerRou
   type __Unused = __Check
 }
 
+// Validate ../../../app/api/send-build-ai-agents-guide/route.ts
+{
+  type __IsExpected<Specific extends RouteHandlerConfig<"/api/send-build-ai-agents-guide">> = Specific
+  const handler = {} as typeof import("../../../app/api/send-build-ai-agents-guide/route.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
 // Validate ../../../app/api/send-guide/route.ts
 {
   type __IsExpected<Specific extends RouteHandlerConfig<"/api/send-guide">> = Specific
@@ -478,6 +496,15 @@ type RouteHandlerConfig<Route extends AppRouteHandlerRoutes = AppRouteHandlerRou
 {
   type __IsExpected<Specific extends LayoutConfig<"/free-guides/business-automation-checklist">> = Specific
   const handler = {} as typeof import("../../../app/free-guides/business-automation-checklist/layout.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
+// Validate ../../../app/free-guides/how-to-build-ai-agents/layout.tsx
+{
+  type __IsExpected<Specific extends LayoutConfig<"/free-guides/how-to-build-ai-agents">> = Specific
+  const handler = {} as typeof import("../../../app/free-guides/how-to-build-ai-agents/layout.js")
   type __Check = __IsExpected<typeof handler>
   // @ts-ignore
   type __Unused = __Check

@@ -2,7 +2,7 @@ import type { Metadata } from "next"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import Link from "next/link"
-import { ArrowRight, Zap, Bot } from "lucide-react"
+import { ArrowRight, Zap, Bot, Wrench } from "lucide-react"
 
 export const metadata: Metadata = {
   title: "Free Guides — Talk to me Data",
@@ -51,6 +51,25 @@ const guides = [
     iconBg: "bg-violet-100",
     iconColor: "text-violet-600",
     tagColor: "bg-violet-100 text-violet-700",
+  },
+  {
+    icon: Wrench,
+    tag: "Free Guide",
+    title: "How to Build AI Agents",
+    description:
+      "A practical walkthrough of automating your manual work with AI agents — the tasks worth automating, how to build your first agent in Claude, the honest limits of the DIY path, and the done-for-you alternative.",
+    stats: [
+      { value: "2 paths", label: "DIY or done-for-you" },
+      { value: "8", label: "workflows covered" },
+      { value: "100%", label: "free" },
+    ],
+    href: "/free-guides/how-to-build-ai-agents",
+    cta: "Get the free guide",
+    gradient: "linear-gradient(135deg, #0f766e, #14b8a6)",
+    lightBg: "bg-teal-50",
+    iconBg: "bg-teal-100",
+    iconColor: "text-teal-600",
+    tagColor: "bg-teal-100 text-teal-700",
   },
 ]
 
