@@ -234,80 +234,90 @@ export function AgentsPageContent() {
               </p>
             </motion.div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-              {AGENTS.map((agent, i) => {
+            {/* Connected hairline grid — shared 1px dividers read as one engineered
+                surface rather than scattered cards. gap-px over a slate bg draws the rules. */}
+            <motion.div
+              initial={{ opacity: 0, y: 12 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px overflow-hidden rounded-2xl border border-slate-200 bg-slate-200"
+            >
+              {AGENTS.map((agent) => {
                 const built = isAgentBuilt(agent)
                 const href = built ? `/agents/${agent.slug}` : "/book-demo"
                 const Icon = agent.icon
                 return (
-                  <motion.div
+                  <Link
                     key={agent.id}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.4, delay: (i % 3) * 0.08 }}
+                    href={href}
+                    className="group relative flex flex-col bg-white p-6 sm:p-7 transition-colors hover:bg-slate-50/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary"
                   >
-                    <Link
-                      href={href}
-                      className="group relative flex flex-col h-full rounded-2xl border border-slate-200 bg-white p-6 hover:shadow-lg hover:border-primary/30 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
-                    >
-                      <div className="flex items-start justify-between mb-5">
-                        <div
-                          className="w-12 h-12 rounded-2xl flex items-center justify-center ring-1 ring-white/10 shadow-sm"
-                          style={{ background: agent.gradient }}
-                        >
-                          <Icon className="w-6 h-6 text-white" />
-                        </div>
-                        <ArrowRight className="w-5 h-5 text-slate-300 group-hover:text-primary group-hover:translate-x-0.5 transition-all" />
+                    {/* Header: quiet monochrome mark that warms to brand blue on hover */}
+                    <div className="flex items-center justify-between">
+                      <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-slate-100 text-slate-600 ring-1 ring-inset ring-slate-200/70 transition-colors group-hover:bg-primary/10 group-hover:text-primary group-hover:ring-primary/20">
+                        <Icon className="h-5 w-5" />
                       </div>
-
-                      <h3 className="text-lg font-bold text-slate-900 mb-1">{agent.title}</h3>
-                      <p className="text-sm text-slate-500 font-medium mb-4">{agent.tagline}</p>
-
-                      <div className="mt-auto flex items-center justify-between pt-4 border-t border-slate-100">
-                        <span className="text-xs font-semibold text-slate-600">{agent.stat}</span>
-                        <span className="text-xs font-bold text-primary opacity-0 group-hover:opacity-100 transition-opacity">
-                          {built ? "Learn more →" : "Talk to us →"}
+                      {!built && (
+                        <span className="rounded-full border border-slate-200 bg-white px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-slate-400">
+                          On request
                         </span>
+                      )}
+                    </div>
+
+                    <h3 className="mt-5 text-base font-semibold text-slate-900">{agent.title}</h3>
+                    <p className="mt-1.5 text-sm leading-relaxed text-slate-500 line-clamp-3">{agent.description}</p>
+
+                    {/* Outcome readout — the proof the card is built around */}
+                    <div className="mt-auto flex items-end justify-between border-t border-slate-100 pt-5">
+                      <div>
+                        <p className="text-[10px] font-semibold uppercase tracking-widest text-slate-400">Typical result</p>
+                        <p className="mt-1.5 flex items-baseline gap-1.5">
+                          <span className="text-xl font-bold tabular-nums tracking-tight text-slate-900 transition-colors group-hover:text-primary">
+                            {agent.metricValue}
+                          </span>
+                          <span className="text-xs font-medium text-slate-500">{agent.metricLabel}</span>
+                        </p>
                       </div>
-                    </Link>
-                  </motion.div>
+                      <span className="flex items-center gap-1 pb-0.5 text-xs font-semibold text-slate-400 transition-colors group-hover:text-primary">
+                        {built ? "Details" : "Talk to us"}
+                        <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
+                      </span>
+                    </div>
+                  </Link>
                 )
               })}
 
-              {/* Custom Agent — inverted card */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: (AGENTS.length % 3) * 0.08 }}
+              {/* Custom Agent — the one dark cell; its gradient mark is the section's single bold accent */}
+              <Link
+                href="/book-demo"
+                className="group relative flex flex-col overflow-hidden bg-slate-900 p-6 sm:p-7 transition-colors hover:bg-slate-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary"
               >
-                <Link
-                  href="/book-demo"
-                  className="group relative flex flex-col h-full rounded-2xl bg-foreground p-6 hover:shadow-xl hover:shadow-foreground/20 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 overflow-hidden"
-                >
-                  {/* subtle glow */}
-                  <div className="pointer-events-none absolute -top-12 -right-12 w-40 h-40 rounded-full bg-primary/20 blur-2xl" />
+                <div className="pointer-events-none absolute -top-12 -right-12 h-40 w-40 rounded-full bg-primary/25 blur-3xl" />
 
-                  <div className="flex items-start justify-between mb-5">
-                    <div className="w-12 h-12 rounded-2xl flex items-center justify-center ring-1 ring-white/10 shadow-sm bg-linear-to-br from-primary to-violet-500">
-                      <Wand2 className="w-6 h-6 text-white" />
-                    </div>
-                    <ArrowRight className="w-5 h-5 text-white/30 group-hover:text-white group-hover:translate-x-0.5 transition-all" />
+                <div className="relative flex items-center justify-between">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-linear-to-br from-primary to-violet-500 text-white shadow-sm ring-1 ring-inset ring-white/10">
+                    <Wand2 className="h-5 w-5" />
                   </div>
+                </div>
 
-                  <h3 className="text-lg font-bold text-white mb-1">Custom agent</h3>
-                  <p className="text-sm text-white/50 font-medium mb-4">Your workflow, built from scratch</p>
+                <h3 className="relative mt-5 text-base font-semibold text-white">Custom agent</h3>
+                <p className="relative mt-1.5 text-sm leading-relaxed text-white/60 line-clamp-3">
+                  Something not on this list? Describe any workflow in plain language and we&apos;ll build, host, and manage a bespoke agent around it.
+                </p>
 
-                  <div className="mt-auto flex items-center justify-between pt-4 border-t border-white/10">
-                    <span className="text-xs font-semibold text-white/40">Any workflow, any complexity</span>
-                    <span className="text-xs font-bold text-primary opacity-0 group-hover:opacity-100 transition-opacity">
-                      Talk to us →
-                    </span>
+                <div className="relative mt-auto flex items-end justify-between border-t border-white/10 pt-5">
+                  <div>
+                    <p className="text-[10px] font-semibold uppercase tracking-widest text-white/40">Scope</p>
+                    <p className="mt-1.5 text-sm font-medium text-white/80">Any workflow, any complexity</p>
                   </div>
-                </Link>
-              </motion.div>
-            </div>
+                  <span className="flex items-center gap-1 pb-0.5 text-xs font-semibold text-white/70 transition-colors group-hover:text-white">
+                    Talk to us
+                    <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
+                  </span>
+                </div>
+              </Link>
+            </motion.div>
           </div>
         </div>
       </section>
