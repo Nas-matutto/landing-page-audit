@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { HeroSection } from "@/components/sections/hero-section"
+import { WorkflowVsAgentsSection } from "@/components/sections/workflow-vs-agents-section"
 import { PainPointsSection } from "@/components/sections/pain-points-section"
 import { HowItWorksSection } from "@/components/sections/how-it-works-section"
 import { WhatWeAnalyzeSection } from "@/components/sections/what-we-analyze-section"
@@ -45,10 +46,11 @@ export default function HomePage() {
       <Header />
       <main>
         <HeroSection />
+        <WorkflowVsAgentsSection />
         <PainPointsSection />
         <HowItWorksSection />
-        <WhatWeAnalyzeSection />
         <AgentHostingSection />
+        <WhatWeAnalyzeSection />
         <FAQSection />
         <FinalCTASection />
       </main>
