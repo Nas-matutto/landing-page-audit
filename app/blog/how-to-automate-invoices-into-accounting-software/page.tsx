@@ -357,13 +357,31 @@ export default function AutomateInvoicesPage() {
                         Prefer to see it before you build anything? Watch a short demo of the agent scanning an invoice and populating the accounting software in seconds — or book a free call and we&apos;ll build it for your stack.
                       </p>
                       <div className="flex flex-col sm:flex-row gap-3">
-                        <Link href="/watch-demo" className="inline-flex items-center justify-center gap-2 bg-linear-to-r from-primary to-violet-500 text-white font-semibold text-sm px-6 py-3 rounded-xl hover:opacity-90 transition-opacity">
+                        <Link href="/agents/invoice-processing" className="inline-flex items-center justify-center gap-2 bg-linear-to-r from-primary to-violet-500 text-white font-semibold text-sm px-6 py-3 rounded-xl hover:opacity-90 transition-opacity">
                           <Play className="w-4 h-4" /> Watch the demo
                         </Link>
                         <Link href="/book-demo" className="inline-flex items-center justify-center gap-2 border border-slate-300 text-foreground font-semibold text-sm px-6 py-3 rounded-xl hover:border-primary hover:text-primary transition-colors">
                           Book a free call →
                         </Link>
                       </div>
+                    </div>
+                  </div>
+
+                  {/* Step-by-step video */}
+                  <div className="my-12">
+                    <h2 className="text-3xl font-bold text-foreground mb-4">Watch the step-by-step guide</h2>
+                    <p className="mb-5">
+                      Prefer to follow along? This short walkthrough shows the invoice agent reading a PDF and creating the record in the accounting software, end to end.
+                    </p>
+                    <div className="relative aspect-video w-full overflow-hidden rounded-2xl border border-slate-200 shadow-sm">
+                      <iframe
+                        className="absolute inset-0 h-full w-full"
+                        src="https://www.youtube.com/embed/TdBnadO2BJU"
+                        title="How to automate invoices into your accounting software — step-by-step guide"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerPolicy="strict-origin-when-cross-origin"
+                        allowFullScreen
+                      />
                     </div>
                   </div>
 
@@ -405,7 +423,7 @@ export default function AutomateInvoicesPage() {
                         <Link href="/book-demo" className="inline-flex items-center justify-center gap-2 bg-white text-primary font-semibold text-sm px-6 py-3 rounded-xl hover:bg-white/90 transition-colors">
                           Book a free call →
                         </Link>
-                        <Link href="/watch-demo" className="inline-flex items-center justify-center gap-2 border border-white/40 bg-white/10 text-white font-semibold text-sm px-6 py-3 rounded-xl hover:bg-white/20 transition-colors backdrop-blur-sm">
+                        <Link href="/agents/invoice-processing" className="inline-flex items-center justify-center gap-2 border border-white/40 bg-white/10 text-white font-semibold text-sm px-6 py-3 rounded-xl hover:bg-white/20 transition-colors backdrop-blur-sm">
                           <Play className="w-4 h-4" /> Watch a demo
                         </Link>
                       </div>
