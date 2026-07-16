@@ -1,17 +1,21 @@
 import type { Metadata } from "next"
-import { Bot, CheckCircle, Headphones, MessageSquare } from "lucide-react"
-import { SiIntercom, SiWhatsapp, SiZendesk } from "react-icons/si"
+import { Bot, CheckCircle, Headphones, MessageSquare, Package, RotateCcw, HelpCircle, CreditCard, ArrowUpRight, Moon } from "lucide-react"
+import { SiIntercom, SiWhatsapp, SiZendesk, SiGmail, SiShopify, SiSlack } from "react-icons/si"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { AgentHeroSection } from "@/components/sections/agent-detail/agent-hero-section"
+import { AgentTrustBand } from "@/components/sections/agent-detail/agent-trust-band"
+import { AgentIntegrationsSection } from "@/components/sections/agent-detail/agent-integrations-section"
 import { AgentOverviewSection } from "@/components/sections/agent-detail/agent-overview-section"
 import { AgentWorkflowSection } from "@/components/sections/agent-detail/agent-workflow-section"
 import { AgentUseCasesSection } from "@/components/sections/agent-detail/agent-use-cases-section"
 import { AgentHowWeBuildSection } from "@/components/sections/agent-detail/agent-how-we-build-section"
-import { AgentImpactSection } from "@/components/sections/agent-detail/agent-impact-section"
+import { AgentTestimonialsSection, type Testimonial } from "@/components/sections/agent-detail/agent-testimonials-section"
 import { AgentWhyUsSection } from "@/components/sections/agent-detail/agent-why-us-section"
 import { AgentFaqSection } from "@/components/sections/agent-detail/agent-faq-section"
 import { AgentCtaSection } from "@/components/sections/agent-detail/agent-cta-section"
+import { AgentSavingsCalculator } from "@/components/agent-savings-calculator"
+import { DashboardMock, ListMock, ChatMock, SyncMock } from "@/components/sections/agent-detail/mockups/agent-mocks"
 
 const BASE_URL = "https://talktomedata.com"
 const PAGE_URL = `${BASE_URL}/agents/customer-support`
@@ -57,6 +61,22 @@ const IMPACT = [
   { stat: "Days, not months", label: "from brief to a live support agent" },
 ]
 
+const TRUST_STATS = [
+  { value: "Up to 90%", label: "tickets auto-resolved" },
+  { value: "< 1 min", label: "first response, 24/7" },
+  { value: "Days", label: "from brief to live" },
+  { value: "Any channel", label: "email, chat & WhatsApp" },
+]
+
+const INTEGRATIONS = [
+  { Icon: SiZendesk, color: "#03363D", label: "Zendesk" },
+  { Icon: SiIntercom, color: "#1F8DED", label: "Intercom" },
+  { Icon: SiWhatsapp, color: "#25D366", label: "WhatsApp" },
+  { Icon: SiGmail, color: "#EA4335", label: "Gmail" },
+  { Icon: SiShopify, color: "#96BF48", label: "Shopify" },
+  { Icon: SiSlack, color: "#4A154B", label: "Slack" },
+]
+
 const OVERVIEW = [
   "An AI customer support agent is a software agent that reads incoming customer messages, understands what's being asked, and replies with accurate answers drawn from your help docs, policies, and order data. It works across the channels your customers already use — email, live chat, and WhatsApp — and it works around the clock.",
   "It's a fit for any team drowning in repetitive questions: e-commerce stores fielding \"where's my order?\", SaaS teams answering the same setup questions, or service businesses handling booking and billing queries. The agent clears the predictable volume so your people spend their time on the conversations that actually need a human.",
@@ -68,18 +88,55 @@ const WORKFLOW_STEPS = [
     step: "01",
     title: "Message arrives",
     description: "A customer sends a question via email, live chat, or WhatsApp — at any hour, any day of the week.",
+    mockup: (
+      <ListMock
+        title="Incoming"
+        Icon={MessageSquare}
+        count="3 new"
+        items={[
+          { title: "Emma Watson", sub: "Where's my order #4821?", badge: "WhatsApp", badgeTone: "green" },
+          { title: "Liam Carter", sub: "Refund request", badge: "Email", badgeTone: "blue" },
+          { title: "Sofia Rossi", sub: "Damaged item", badge: "Chat", badgeTone: "violet" },
+        ]}
+      />
+    ),
   },
   {
     Icon: Bot,
     step: "02",
     title: "AI reads & responds",
     description: "The agent reads the message, pulls from your help docs and order data, and sends an accurate reply in seconds.",
+    mockup: (
+      <ChatMock
+        title="Live chat"
+        messages={[
+          { from: "them", text: "Hi, where's my order #4821?" },
+          { from: "agent", text: "Hi Emma! Order #4821 shipped today and arrives Thursday. Here's your tracking link 📦" },
+          { from: "them", text: "Amazing, thank you!" },
+        ]}
+        footer="Resolved in 12 seconds"
+      />
+    ),
   },
   {
     Icon: CheckCircle,
     step: "03",
     title: "Resolved or escalated",
     description: "Routine tickets are closed end-to-end. Complex cases are handed to your team with full conversation context attached.",
+    mockup: (
+      <SyncMock
+        ToolIcon={SiZendesk}
+        toolColor="#03363D"
+        toolLabel="Logged in Zendesk"
+        note="1 escalated"
+        rows={[
+          { name: "Emma Watson", sub: "Order status · Resolved" },
+          { name: "Liam Carter", sub: "Refund · Resolved" },
+        ]}
+        footerLabel="Resolved this week"
+        footerValue="1,240"
+      />
+    ),
   },
 ]
 
@@ -90,12 +147,12 @@ const WORKFLOW_LOGOS = [
 ]
 
 const USE_CASES = [
-  { title: "Order status & tracking", description: "Answers \"where's my order?\" instantly by pulling live data from your store or shipping provider." },
-  { title: "Returns & refunds", description: "Walks customers through your returns policy and kicks off refunds or replacements within your rules." },
-  { title: "Product & FAQ answers", description: "Replies to questions about sizing, features, pricing, and availability — grounded in your real content." },
-  { title: "Account & billing help", description: "Handles password resets, plan changes, and invoice questions without a human in the loop." },
-  { title: "Smart escalation", description: "Recognises angry, complex, or high-value cases and hands them to your team with full context attached." },
-  { title: "After-hours coverage", description: "Keeps responding overnight and on weekends, so customers never wait for business hours." },
+  { Icon: Package, title: "Order status & tracking", description: "Answers \"where's my order?\" instantly by pulling live data from your store or shipping provider." },
+  { Icon: RotateCcw, title: "Returns & refunds", description: "Walks customers through your returns policy and kicks off refunds or replacements within your rules." },
+  { Icon: HelpCircle, title: "Product & FAQ answers", description: "Replies to questions about sizing, features, pricing, and availability — grounded in your real content." },
+  { Icon: CreditCard, title: "Account & billing help", description: "Handles password resets, plan changes, and invoice questions without a human in the loop." },
+  { Icon: ArrowUpRight, title: "Smart escalation", description: "Recognises angry, complex, or high-value cases and hands them to your team with full context attached." },
+  { Icon: Moon, title: "After-hours coverage", description: "Keeps responding overnight and on weekends, so customers never wait for business hours." },
 ]
 
 const HOW_WE_BUILD = [
@@ -111,6 +168,9 @@ const WHY_US = [
   { title: "Hosted & monitored for you", description: "It runs on our infrastructure with 24/7 monitoring. If something breaks, we catch and fix it before you notice." },
   { title: "Tuned to your brand voice", description: "Answers sound like your team, follow your policies, and escalate exactly where you tell them to." },
 ]
+
+// SCAFFOLD: add real customer quotes here and the section renders automatically.
+const TESTIMONIALS: Testimonial[] = []
 
 const FAQS = [
   { q: "What is an AI customer support agent?", a: "It's an AI software agent that reads customer messages, understands the request, and replies with accurate answers from your help docs, policies, and order data — across email, chat, and WhatsApp. It resolves routine questions automatically and escalates anything complex to your team." },
@@ -169,11 +229,31 @@ export default function CustomerSupportPage() {
           title="Customer support"
           gradient={GRADIENT}
           Icon={Headphones}
+          tag="AI Agents managed for you"
           heroSubhead="An always-on support agent that resolves the repetitive tickets instantly and hands the rest to your team — fully built, hosted, and managed by us."
           impact={IMPACT}
           showBreadcrumb={false}
           showHeroStats={false}
+          visual={
+            <DashboardMock
+              browser="app.talktomedata.com/support"
+              title="Support inbox"
+              subtitle="Answered across email, chat & WhatsApp"
+              badge={{ label: "18 resolved today", tone: "green" }}
+              rows={[
+                { name: "Emma Watson", sub: "Where's my order? · WhatsApp", status: "Resolved", tone: "green" },
+                { name: "Liam Carter", sub: "Refund request · Email", status: "Resolved", tone: "green" },
+                { name: "Sofia Rossi", sub: "Damaged item · Chat", status: "Escalated", tone: "amber" },
+                { name: "Noah Kim", sub: "Change address · WhatsApp", status: "Resolved", tone: "green" },
+              ]}
+            />
+          }
+          ctaLabel="Get started"
+          ctaHref="/get-started"
+          ctaNote="Takes 2 minutes · Live in days"
         />
+        <AgentTrustBand stats={TRUST_STATS} />
+        <AgentIntegrationsSection logos={INTEGRATIONS} suffix="+ email, chat & more" />
         <AgentOverviewSection paragraphs={OVERVIEW} />
         <AgentWorkflowSection
           heading="Tickets resolved before your team sees them"
@@ -182,11 +262,50 @@ export default function CustomerSupportPage() {
           logoSuffix="+ email, chat & more"
         />
         <AgentUseCasesSection agentTitle="Customer support" useCases={USE_CASES} />
+        <AgentCtaSection
+          agentTitle="customer support"
+          heading="Ready to clear your support queue?"
+          subheading="Tell us the tickets you want handled — we'll build a support agent that resolves them across every channel, 24/7."
+          ctaLabel="Get started"
+          ctaHref="/get-started"
+          note="Takes 2 minutes · No commitment"
+        />
         <AgentHowWeBuildSection steps={HOW_WE_BUILD} />
-        <AgentImpactSection stats={IMPACT} />
+        <section className="py-20 sm:py-24 bg-slate-50">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-14">
+              <p className="text-xs font-semibold tracking-widest uppercase text-primary mb-4">What it saves</p>
+              <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-slate-900 text-balance">
+                See how many hours you&apos;ll get back
+              </h2>
+            </div>
+            <AgentSavingsCalculator
+              question="How many support tickets do you handle per month?"
+              unitLabel="tickets"
+              min={100}
+              max={5000}
+              step={50}
+              defaultValue={800}
+              period="month"
+              manualMinsPer={6}
+              aiSecsPer={40}
+              manualNote="Handling each ticket by hand at ~6 min"
+              aiNote="The agent resolves the routine ones — you handle exceptions"
+              savedNoun="of support time"
+              disclaimer="Based on ~6 min manual handling per ticket vs the agent auto-resolving routine volume. Actual results vary by ticket mix."
+            />
+          </div>
+        </section>
+        <AgentTestimonialsSection testimonials={TESTIMONIALS} />
         <AgentWhyUsSection items={WHY_US} />
         <AgentFaqSection faqs={FAQS} />
-        <AgentCtaSection agentTitle="customer support" />
+        <AgentCtaSection
+          agentTitle="customer support"
+          subheading="Tell us what you want to automate and we'll show you exactly what your support agent can do — built, hosted, and managed for you."
+          ctaLabel="Get started"
+          ctaHref="/get-started"
+          note="Takes 2 minutes · No commitment"
+        />
       </main>
       <Footer />
     </div>

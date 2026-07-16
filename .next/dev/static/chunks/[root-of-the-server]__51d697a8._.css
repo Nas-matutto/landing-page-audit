@@ -232,6 +232,7 @@
     --color-red-500: #fb2c36;
     --color-red-600: #e40014;
     --color-orange-600: #f05100;
+    --color-amber-50: #fffbeb;
     --color-amber-100: #fef3c6;
     --color-amber-300: #ffd236;
     --color-amber-400: #fcbb00;
@@ -365,6 +366,7 @@
       --color-red-500: lab(55.4814% 75.0732 48.8528);
       --color-red-600: lab(48.4493% 77.4328 61.5452);
       --color-orange-600: lab(57.1026% 64.2584 89.8886);
+      --color-amber-50: lab(98.6252% -.635922 8.42309);
       --color-amber-100: lab(95.916% -1.21653 23.111);
       --color-amber-300: lab(86.4156% 6.13147 78.3961);
       --color-amber-400: lab(80.1641% 16.6016 99.2089);
@@ -1824,6 +1826,10 @@
     max-width: var(--container-7xl);
   }
 
+  .max-w-\[80\%\] {
+    max-width: 80%;
+  }
+
   .max-w-\[260px\] {
     max-width: 260px;
   }
@@ -2460,6 +2466,14 @@
     border-top-right-radius: calc(var(--radius)  - 4px);
   }
 
+  .rounded-br-sm {
+    border-bottom-right-radius: calc(var(--radius)  - 4px);
+  }
+
+  .rounded-bl-sm {
+    border-bottom-left-radius: calc(var(--radius)  - 4px);
+  }
+
   .border {
     border-style: var(--tw-border-style);
     border-width: 1px;
@@ -2798,6 +2812,10 @@
     .bg-accent\/20 {
       background-color: color-mix(in oklab, var(--accent) 20%, transparent);
     }
+  }
+
+  .bg-amber-50 {
+    background-color: var(--color-amber-50);
   }
 
   .bg-amber-100 {
@@ -3822,6 +3840,10 @@
     padding-inline: calc(var(--spacing) * 3);
   }
 
+  .px-3\.5 {
+    padding-inline: calc(var(--spacing) * 3.5);
+  }
+
   .px-4 {
     padding-inline: calc(var(--spacing) * 4);
   }
@@ -4823,6 +4845,16 @@
     }
   }
 
+  .ring-amber-600\/20 {
+    --tw-ring-color: #dd740033;
+  }
+
+  @supports (color: color-mix(in lab, red, red)) {
+    .ring-amber-600\/20 {
+      --tw-ring-color: color-mix(in oklab, var(--color-amber-600) 20%, transparent);
+    }
+  }
+
   .ring-blue-600\/20 {
     --tw-ring-color: #155dfc33;
   }
@@ -4896,6 +4928,16 @@
   @supports (color: color-mix(in lab, red, red)) {
     .ring-slate-200\/70 {
       --tw-ring-color: color-mix(in oklab, var(--color-slate-200) 70%, transparent);
+    }
+  }
+
+  .ring-slate-500\/20 {
+    --tw-ring-color: #62748e33;
+  }
+
+  @supports (color: color-mix(in lab, red, red)) {
+    .ring-slate-500\/20 {
+      --tw-ring-color: color-mix(in oklab, var(--color-slate-500) 20%, transparent);
     }
   }
 
@@ -7690,6 +7732,12 @@
   @media (min-width: 40rem) {
     .sm\:items-center {
       align-items: center;
+    }
+  }
+
+  @media (min-width: 40rem) {
+    .sm\:items-start {
+      align-items: flex-start;
     }
   }
 
