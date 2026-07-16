@@ -1,5 +1,4 @@
 {
-  "/agents/customer-support/page": "app/agents/customer-support/page.js",
-  "/agents/lead-finder/page": "app/agents/lead-finder/page.js",
-  "/agents/page": "app/agents/page.js"
+  "/agents/invoice-processing/page": "app/agents/invoice-processing/page.js",
+  "/agents/lead-finder/page": "app/agents/lead-finder/page.js"
 }

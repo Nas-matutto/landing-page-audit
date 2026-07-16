@@ -11,8 +11,8 @@ import { AgentOverviewSection } from "@/components/sections/agent-detail/agent-o
 import { AgentWorkflowSection } from "@/components/sections/agent-detail/agent-workflow-section"
 import { AgentUseCasesSection } from "@/components/sections/agent-detail/agent-use-cases-section"
 import { AgentHowWeBuildSection } from "@/components/sections/agent-detail/agent-how-we-build-section"
-import { AgentImpactSection } from "@/components/sections/agent-detail/agent-impact-section"
 import { AgentTestimonialsSection, type Testimonial } from "@/components/sections/agent-detail/agent-testimonials-section"
+import { LeadFinderSavingsCalculator } from "@/components/lead-finder-savings-calculator"
 import { AgentWhyUsSection } from "@/components/sections/agent-detail/agent-why-us-section"
 import { AgentFaqSection } from "@/components/sections/agent-detail/agent-faq-section"
 import { AgentCtaSection } from "@/components/sections/agent-detail/agent-cta-section"
@@ -57,17 +57,17 @@ export const metadata: Metadata = {
 const GRADIENT = "linear-gradient(135deg, #064e3b 0%, #059669 55%, #6ee7b7 100%)"
 
 const IMPACT = [
-  { stat: "50–200", label: "verified leads typically delivered per week" },
+  { stat: "200–1k", label: "verified leads typically delivered per week" },
   { stat: "Hours saved", label: "weekly on manual prospecting and research" },
   { stat: "Days, not months", label: "from brief to a live lead finder agent" },
 ]
 
 // Factual trust band — honest, defensible stats only (no fabricated counts/ratings).
 const TRUST_STATS = [
-  { value: "50–200", label: "verified leads / week" },
+  { value: "200–1k", label: "verified leads / week" },
   { value: "Days", label: "from brief to live" },
   { value: "Fully managed", label: "hosted & monitored for you" },
-  { value: "2+ CRMs", label: "HubSpot, Salesforce & more" },
+  { value: "Any CRM", label: "connects to your CRM & tools" },
 ]
 
 const INTEGRATIONS = [
@@ -198,11 +198,15 @@ export default function LeadFinderPage() {
           title="Lead finder"
           gradient={GRADIENT}
           Icon={Target}
+          tag="AI Agents managed for you"
           heroSubhead="An agent that researches your ideal customer, finds matching companies and contacts every day, and delivers enriched, verified leads straight into your CRM — no prospecting hours required."
           impact={IMPACT}
           showBreadcrumb={false}
           showHeroStats={false}
           visual={<LeadsDashboardMock />}
+          ctaLabel="Get started"
+          ctaHref="/get-started"
+          ctaNote="Takes 2 minutes · Live in days"
         />
         <AgentTrustBand stats={TRUST_STATS} />
         <AgentIntegrationsSection logos={INTEGRATIONS} suffix="+ any CRM or outbound tool" />
@@ -214,12 +218,36 @@ export default function LeadFinderPage() {
           logoSuffix="+ any CRM or outbound tool"
         />
         <AgentUseCasesSection agentTitle="Lead finder" useCases={USE_CASES} />
+        <AgentCtaSection
+          agentTitle="lead finder"
+          heading="Ready to fill your pipeline?"
+          subheading="Tell us who you want to reach — we'll build a lead finder agent that delivers verified prospects into your CRM every day."
+          ctaLabel="Get started"
+          ctaHref="/get-started"
+          note="Takes 2 minutes · No commitment"
+        />
         <AgentHowWeBuildSection steps={HOW_WE_BUILD} />
-        <AgentImpactSection stats={IMPACT} />
+        <section className="py-20 sm:py-24 bg-slate-50">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-14">
+              <p className="text-xs font-semibold tracking-widest uppercase text-primary mb-4">What it saves</p>
+              <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-slate-900 text-balance">
+                See how many hours you&apos;ll get back
+              </h2>
+            </div>
+            <LeadFinderSavingsCalculator />
+          </div>
+        </section>
         <AgentTestimonialsSection testimonials={TESTIMONIALS} />
         <AgentWhyUsSection items={WHY_US} />
         <AgentFaqSection faqs={FAQS} />
-        <AgentCtaSection agentTitle="lead finder" />
+        <AgentCtaSection
+          agentTitle="lead finder"
+          subheading="Tell us what you want to automate and we'll show you exactly what your lead finder agent can do — built, hosted, and managed for you."
+          ctaLabel="Get started"
+          ctaHref="/get-started"
+          note="Takes 2 minutes · No commitment"
+        />
       </main>
       <Footer />
     </div>

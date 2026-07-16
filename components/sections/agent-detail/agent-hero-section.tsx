@@ -11,6 +11,11 @@ type Props = {
   showHeroStats?: boolean
   /** Optional product mockup rendered in a panel below the hero copy. */
   visual?: React.ReactNode
+  /** When set, a small pill is shown above the title instead of the gradient icon. */
+  tag?: string
+  ctaLabel?: string
+  ctaHref?: string
+  ctaNote?: string
 }
 
 export function AgentHeroSection({
@@ -22,6 +27,10 @@ export function AgentHeroSection({
   showBreadcrumb = true,
   showHeroStats = true,
   visual,
+  tag,
+  ctaLabel = "Book a free call",
+  ctaHref = "/book-demo",
+  ctaNote = "20-minute call · Live in days",
 }: Props) {
   return (
     <section className="relative pt-32 pb-16 bg-white overflow-hidden">
@@ -47,12 +56,21 @@ export function AgentHeroSection({
           </nav>
         )}
 
-        <div
-          className="w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-6 ring-1 ring-white/20 shadow-lg"
-          style={{ background: gradient }}
-        >
-          <Icon className="w-8 h-8 text-white" />
-        </div>
+        {tag ? (
+          <div className="mb-6">
+            <span className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-primary">
+              <span className="w-1.5 h-1.5 rounded-full bg-primary" />
+              {tag}
+            </span>
+          </div>
+        ) : (
+          <div
+            className="w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-6 ring-1 ring-white/20 shadow-lg"
+            style={{ background: gradient }}
+          >
+            <Icon className="w-8 h-8 text-white" />
+          </div>
+        )}
 
         <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-slate-900 leading-tight mb-5 text-balance">
           {title}{" "}
@@ -67,15 +85,15 @@ export function AgentHeroSection({
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
           <Link
-            href="/book-demo"
+            href={ctaHref}
             className="relative overflow-hidden group inline-flex items-center gap-2 bg-linear-to-r from-primary to-violet-500 text-white font-semibold text-sm px-7 py-3.5 rounded-xl shadow-lg shadow-primary/30 hover:shadow-primary/50 transition-all"
           >
             <span className="absolute inset-0 bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-in-out" />
             <span className="relative flex items-center gap-2">
-              Book a free call <ArrowRight className="w-4 h-4" />
+              {ctaLabel} <ArrowRight className="w-4 h-4" />
             </span>
           </Link>
-          <p className="text-sm text-slate-400">20-minute call · Live in days</p>
+          <p className="text-sm text-slate-400">{ctaNote}</p>
         </div>
 
         {showHeroStats && (
