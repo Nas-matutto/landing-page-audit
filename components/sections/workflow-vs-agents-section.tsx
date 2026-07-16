@@ -2,12 +2,10 @@
 
 import { motion } from "framer-motion"
 import Link from "next/link"
+import Image from "next/image"
 import {
-  ChevronRight, X, Check, AlertTriangle, Wrench, Sparkles, ArrowRight, CornerDownRight,
+  X, Check, AlertTriangle, Wrench, Sparkles, ArrowRight, CornerDownRight,
 } from "lucide-react"
-
-// The brittle chain a builder wires by hand in Zapier / n8n / Make
-const WORKFLOW_STEPS = ["Trigger", "Filter", "Format", "If / else", "API call", "Handle error", "Update CRM"]
 
 const BUILDER_POINTS = [
   "Drag, connect, and map every field by hand",
@@ -60,19 +58,18 @@ export function WorkflowVsAgentsSection() {
               </div>
               <h3 className="text-xl font-bold text-slate-800 mb-6">Building workflows by hand</h3>
 
-              {/* Brittle node chain */}
-              <div className="rounded-xl border border-dashed border-slate-300 bg-slate-50/70 p-4 mb-6">
-                <div className="flex flex-wrap items-center gap-x-1.5 gap-y-2">
-                  {WORKFLOW_STEPS.map((step, i) => (
-                    <div key={step} className="flex items-center gap-1.5">
-                      <span className="rounded-md border border-slate-200 bg-white px-2.5 py-1 text-xs font-medium text-slate-500 shadow-sm">
-                        {step}
-                      </span>
-                      {i < WORKFLOW_STEPS.length - 1 && <ChevronRight className="h-3.5 w-3.5 text-slate-300 shrink-0" />}
-                    </div>
-                  ))}
+              {/* A real hand-built workflow */}
+              <div className="rounded-xl border border-dashed border-slate-300 bg-slate-50/70 p-2 mb-6">
+                <div className="overflow-hidden rounded-lg ring-1 ring-slate-200">
+                  <Image
+                    src="/n8n-workflow-daily-github-trending.png"
+                    alt="A tangled n8n workflow wired by hand — dozens of nodes for triggers, filters, API calls and error handling"
+                    width={1986}
+                    height={1247}
+                    className="w-full h-auto"
+                  />
                 </div>
-                <div className="mt-4 flex items-center gap-1.5 text-xs font-medium text-amber-600">
+                <div className="mt-3 flex items-center gap-1.5 px-1 pb-1 text-xs font-medium text-amber-600">
                   <AlertTriangle className="h-3.5 w-3.5 shrink-0" />
                   Breaks when a field or tool changes
                 </div>
