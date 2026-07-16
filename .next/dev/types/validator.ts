@@ -110,6 +110,15 @@ type RouteHandlerConfig<Route extends AppRouteHandlerRoutes = AppRouteHandlerRou
   type __Unused = __Check
 }
 
+// Validate ../../../app/agents/seo-geo/page.tsx
+{
+  type __IsExpected<Specific extends AppPageConfig<"/agents/seo-geo">> = Specific
+  const handler = {} as typeof import("../../../app/agents/seo-geo/page.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
 // Validate ../../../app/agents/social-media/page.tsx
 {
   type __IsExpected<Specific extends AppPageConfig<"/agents/social-media">> = Specific

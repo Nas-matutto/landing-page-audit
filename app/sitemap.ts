@@ -104,6 +104,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
     {
+      url: `${baseUrl}/agents/seo-geo`,
+      lastModified: new Date('2026-07-16'),
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
       url: `${baseUrl}/watch-demo`,
       lastModified: new Date(),
       changeFrequency: 'monthly',

@@ -1,5 +1,5 @@
 import {
-  Headphones, Users, Calendar, Receipt, HelpCircle,
+  Headphones, Users, Calendar, Receipt, Search,
   Megaphone, Target, BarChart3,
 } from "lucide-react"
 
@@ -115,16 +115,16 @@ export const AGENTS: Agent[] = [
   },
   {
     id: 8,
-    slug: "hr-helpdesk",
-    icon: HelpCircle,
-    title: "HR helpdesk",
-    tagline: "Answer HR questions without involving HR",
+    slug: "seo-geo",
+    icon: Search,
+    title: "SEO & GEO",
+    tagline: "Pages that rank on Google and in AI answers",
     description:
-      "Gives employees instant answers on leave, benefits, payroll, and procedures — drawn from your internal documentation.",
-    gradient: "linear-gradient(135deg, #0f172a 0%, #1e40af 55%, #3b82f6 100%)",
-    stat: "~70% of HR queries resolved automatically",
-    metricValue: "70%",
-    metricLabel: "HR queries resolved",
+      "Researches what your buyers search on Google and ask AI, writes SEO-ready pages engineered to rank in both, and publishes them to your site automatically.",
+    gradient: "linear-gradient(135deg, #9a3412 0%, #ea580c 55%, #fdba74 100%)",
+    stat: "10+ SEO + GEO pages published per month",
+    metricValue: "10+ pages",
+    metricLabel: "SEO + GEO, per month",
   },
 ]
 
@@ -138,6 +138,7 @@ const BUILT_SLUGS = new Set([
   "lead-qualification",
   "booking-scheduling",
   "invoice-processing",
+  "seo-geo",
 ])
 
 export function getAgentBySlug(slug: string): Agent | undefined {
