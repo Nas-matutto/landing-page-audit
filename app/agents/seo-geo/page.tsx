@@ -1,5 +1,5 @@
 import type { Metadata } from "next"
-import { Search, FileText, Sparkles, UploadCloud, Link2, TrendingUp } from "lucide-react"
+import { Search, FileText, Sparkles, UploadCloud, Link2, TrendingUp, BarChart3 } from "lucide-react"
 import { SiWordpress, SiWebflow, SiShopify, SiGhost, SiNotion } from "react-icons/si"
 import { FaGoogle } from "react-icons/fa"
 import { Header } from "@/components/header"
@@ -80,7 +80,7 @@ const INTEGRATIONS = [
 ]
 
 const OVERVIEW = [
-  "An SEO & GEO agent researches the keywords and questions your customers actually search — on Google and in AI assistants like ChatGPT, Perplexity, and Google's AI Overviews — then writes and publishes pages engineered to rank in both. Every page is structured for classic SEO (titles, headings, schema, internal links) and for Generative Engine Optimization, so LLMs can find, understand, and cite your content.",
+  "An SEO & GEO agent connects to your Google Search Console to see exactly what you already rank for, researches the keywords and questions your customers search — on Google and in AI assistants like ChatGPT, Claude, and Perplexity — then writes and publishes pages engineered to rank in both. Every page is structured for classic SEO (titles, headings, schema, internal links) and for Generative Engine Optimization, so LLMs can find, understand, and cite your content.",
   "It's built for founders and marketing teams who know content drives growth but can't keep up with the pace — or with the new reality that buyers now ask AI, not just Google. Instead of briefing writers and wrestling with a CMS, you get a steady stream of ranking-ready pages published to your site automatically.",
 ]
 
@@ -88,11 +88,11 @@ const WORKFLOW_STEPS = [
   {
     Icon: Search,
     step: "01",
-    title: "Find what people search",
-    description: "The agent researches the keywords, questions, and AI prompts your buyers use — and the gaps your competitors are missing.",
+    title: "Pull from Search Console & research",
+    description: "The agent connects to your Google Search Console, sees what you already rank for, and finds the keywords, questions, and AI prompts you're closest to winning.",
     mockup: (
       <ListMock
-        title="Keyword opportunities"
+        title="From Google Search Console"
         Icon={Search}
         count="42 found"
         items={[
@@ -150,9 +150,9 @@ const WORKFLOW_LOGOS = [
 ]
 
 const USE_CASES = [
-  { Icon: Search, title: "Keyword & question research", description: "Finds the terms and questions your buyers search on Google and ask AI assistants — and the gaps worth winning." },
+  { Icon: BarChart3, title: "Google Search Console data", description: "Pulls your real impressions, clicks, and positions from Search Console to target quick-win keywords and refresh slipping pages." },
   { Icon: FileText, title: "SEO page writing", description: "Writes optimized pages — titles, headings, schema, internal links — built to rank in classic search." },
-  { Icon: Sparkles, title: "GEO optimization", description: "Structures content so LLMs like ChatGPT and Perplexity can find, understand, and cite it in their answers." },
+  { Icon: Sparkles, title: "GEO optimization", description: "Structures content so LLMs like ChatGPT, Claude, and Perplexity can find, understand, and cite it in their answers." },
   { Icon: UploadCloud, title: "Auto-publishing", description: "Publishes finished pages straight to your CMS — WordPress, Webflow, Shopify, and more — no copy-paste." },
   { Icon: Link2, title: "Internal linking", description: "Builds a smart internal link structure across your site automatically as new pages go live." },
   { Icon: TrendingUp, title: "Rank & citation tracking", description: "Monitors your positions in Google and citations in AI answers, and refreshes pages that start to slip." },
@@ -177,7 +177,9 @@ const TESTIMONIALS: Testimonial[] = []
 
 const FAQS = [
   { q: "What is an SEO & GEO agent?", a: "It's an AI agent that researches what your audience searches on Google and asks AI assistants, writes pages optimized for both classic SEO and Generative Engine Optimization (GEO), and publishes them to your site automatically — then tracks how they rank." },
-  { q: "What is GEO (Generative Engine Optimization)?", a: "GEO is optimizing your content so it gets surfaced and cited by AI systems like ChatGPT, Perplexity, and Google's AI Overviews. As more buyers ask AI instead of searching, GEO makes sure your business is the answer they're given — not a competitor." },
+  { q: "What is GEO (Generative Engine Optimization)?", a: "GEO is optimizing your content so it gets surfaced and cited by AI systems like ChatGPT, Claude, Perplexity, and Google's AI Overviews. As more buyers ask AI instead of searching, GEO makes sure your business is the answer they're given — not a competitor." },
+  { q: "Does it use my Google Search Console data?", a: "Yes. We connect the agent to Google Search Console so it can see the keywords you already rank for, your impressions and click-through rates, and the pages losing positions. It uses that real performance data to prioritise quick-win keywords and refresh pages that are slipping." },
+  { q: "Can it really help me rank inside ChatGPT and Claude?", a: "That's the GEO half of the agent. It structures your pages — clear answers, schema, citations, and authoritative sourcing — the way large language models parse and quote content, so assistants like ChatGPT, Claude, Perplexity, and Google's AI Overviews are more likely to surface and cite your business." },
   { q: "How is this different from a normal SEO tool?", a: "Most tools help you research or draft — you still write, optimize, publish, and track. This agent does the full loop: research, write SEO + GEO-ready pages, publish to your CMS, and monitor rankings — and it's built, hosted, and managed for you." },
   { q: "Which CMS platforms does it publish to?", a: "WordPress, Webflow, Shopify, Ghost, and most modern CMSs. We handle the integration so pages go live automatically — nothing to copy and paste." },
   { q: "Will the content sound like AI spam?", a: "No. We train it on your voice and topics, and every page is structured for real readers first — clear, accurate, and genuinely useful. That's exactly what ranks in both Google and AI answers today." },
@@ -258,6 +260,75 @@ export default function SeoGeoPage() {
         <AgentTrustBand stats={TRUST_STATS} />
         <AgentIntegrationsSection logos={INTEGRATIONS} suffix="+ any CMS or analytics tool" />
         <AgentOverviewSection paragraphs={OVERVIEW} />
+
+        {/* ── Highlights: the two things that set it apart ── */}
+        <section className="py-20 sm:py-24 bg-white">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="max-w-6xl mx-auto">
+              <div className="text-center mb-14">
+                <p className="text-xs font-semibold tracking-widest uppercase text-primary mb-4">What sets it apart</p>
+                <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-slate-900 text-balance">
+                  Two things most SEO tools can&apos;t do
+                </h2>
+              </div>
+
+              <div className="grid md:grid-cols-2 gap-6">
+                {/* Google Search Console */}
+                <div className="flex flex-col rounded-2xl border border-slate-200 bg-white p-8 shadow-sm">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/10 text-primary mb-5">
+                    <BarChart3 className="h-6 w-6" />
+                  </div>
+                  <h3 className="text-xl font-bold text-slate-900 mb-2.5 text-balance">
+                    Optimized with your Google Search Console data
+                  </h3>
+                  <p className="text-slate-500 leading-relaxed mb-6">
+                    The agent connects directly to Google Search Console and reads your real impressions, clicks, and
+                    average positions — so it targets the keywords you&apos;re already close to winning and refreshes the
+                    pages that are starting to slip.
+                  </p>
+                  <div className="mt-auto grid grid-cols-3 gap-3">
+                    {[
+                      { v: "128k", l: "Impressions" },
+                      { v: "4.2k", l: "Clicks" },
+                      { v: "8.3 ↑", l: "Avg position" },
+                    ].map(s => (
+                      <div key={s.l} className="rounded-xl border border-slate-100 bg-slate-50/60 px-3 py-4 text-center">
+                        <p className="text-lg font-bold text-slate-900 tabular-nums leading-none">{s.v}</p>
+                        <p className="text-[11px] text-slate-400 mt-1.5">{s.l}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* LLMs / GEO */}
+                <div className="flex flex-col rounded-2xl border border-primary/20 bg-primary/5 p-8 shadow-sm">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-linear-to-br from-primary to-violet-500 text-white mb-5 shadow-sm">
+                    <Sparkles className="h-6 w-6" />
+                  </div>
+                  <h3 className="text-xl font-bold text-slate-900 mb-2.5 text-balance">
+                    Ranks you directly inside ChatGPT, Claude &amp; other LLMs
+                  </h3>
+                  <p className="text-slate-500 leading-relaxed mb-6">
+                    Buyers now ask AI, not just Google. The agent structures every page for Generative Engine
+                    Optimization (GEO) so assistants surface and cite your business as the answer — not a competitor.
+                  </p>
+                  <div className="mt-auto flex flex-wrap gap-2">
+                    {["ChatGPT", "Claude", "Perplexity", "Gemini", "AI Overviews"].map(n => (
+                      <span
+                        key={n}
+                        className="inline-flex items-center gap-1.5 rounded-full border border-slate-200 bg-white px-3 py-1.5 text-sm font-semibold text-slate-700"
+                      >
+                        <span className="h-1.5 w-1.5 rounded-full bg-primary" />
+                        {n}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
         <AgentWorkflowSection
           heading="Ranking-ready pages, published on autopilot"
           steps={WORKFLOW_STEPS}

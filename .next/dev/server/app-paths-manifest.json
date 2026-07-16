@@ -1,5 +1,3 @@
 {
-  "/_not-found/page": "app/_not-found/page.js",
-  "/agents/page": "app/agents/page.js",
   "/agents/seo-geo/page": "app/agents/seo-geo/page.js"
 }
