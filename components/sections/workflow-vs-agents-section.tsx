@@ -106,17 +106,20 @@ export function WorkflowVsAgentsSection() {
               </div>
               <h3 className="text-xl font-bold text-slate-900 mb-6">Prompting an AI agent</h3>
 
-              {/* Plain-language prompt → outcome */}
-              <div className="rounded-xl border border-primary/15 bg-white p-4 mb-6 shadow-sm">
-                <p className="text-[11px] font-semibold uppercase tracking-wider text-slate-400 mb-1.5">You say</p>
-                <p className="text-sm leading-relaxed text-slate-700 font-medium">
-                  &ldquo;When a new lead fills out the form, qualify them against our ICP, and book a call if they&apos;re a fit.&rdquo;
-                </p>
-                <div className="mt-3 flex items-start gap-2 border-t border-slate-100 pt-3">
-                  <CornerDownRight className="h-4 w-4 text-primary mt-0.5 shrink-0" />
-                  <p className="text-sm leading-relaxed text-slate-600">
-                    The agent handles it end to end — and asks you when it&apos;s genuinely unsure.
-                  </p>
+              {/* Plain-language prompt → agent → done */}
+              <div className="rounded-xl border border-primary/15 bg-white p-2 mb-6 shadow-sm">
+                <div className="overflow-hidden rounded-lg ring-1 ring-primary/10">
+                  <Image
+                    src="/prompting-ai-agent.png"
+                    alt="You describe the outcome in plain English, and the AI agent qualifies the lead, books the call, and handles it end to end"
+                    width={1986}
+                    height={1247}
+                    className="w-full h-auto"
+                  />
+                </div>
+                <div className="mt-3 flex items-center gap-1.5 px-1 pb-1 text-xs font-medium text-primary">
+                  <CornerDownRight className="h-3.5 w-3.5 shrink-0" />
+                  Handled end to end from one plain-English brief
                 </div>
               </div>
 
