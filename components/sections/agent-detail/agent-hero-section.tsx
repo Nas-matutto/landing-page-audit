@@ -9,6 +9,8 @@ type Props = {
   impact: { stat: string; label: string }[]
   showBreadcrumb?: boolean
   showHeroStats?: boolean
+  /** Optional product mockup rendered in a panel below the hero copy. */
+  visual?: React.ReactNode
 }
 
 export function AgentHeroSection({
@@ -19,6 +21,7 @@ export function AgentHeroSection({
   impact,
   showBreadcrumb = true,
   showHeroStats = true,
+  visual,
 }: Props) {
   return (
     <section className="relative pt-32 pb-16 bg-white overflow-hidden">
@@ -91,6 +94,12 @@ export function AgentHeroSection({
           </div>
         )}
       </div>
+
+      {visual && (
+        <div className="relative mt-14 sm:mt-16 max-w-5xl mx-auto px-4 sm:px-6">
+          {visual}
+        </div>
+      )}
     </section>
   )
 }

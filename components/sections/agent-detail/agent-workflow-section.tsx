@@ -5,6 +5,8 @@ export type WorkflowStep = {
   step: string
   title: string
   description: string
+  /** Optional product mockup; when any step has one, steps render as alternating rows. */
+  mockup?: React.ReactNode
 }
 
 export type WorkflowLogo = {
@@ -21,6 +23,8 @@ type Props = {
 }
 
 export function AgentWorkflowSection({ heading, steps, logos, logoSuffix = "+ any other tool" }: Props) {
+  const hasMockups = steps.some(s => s.mockup)
+
   return (
     <section className="py-20 sm:py-24 bg-slate-50">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -32,31 +36,55 @@ export function AgentWorkflowSection({ heading, steps, logos, logoSuffix = "+ an
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-            {steps.map((s, i) => (
-              <div key={i} className="relative">
-                {i < steps.length - 1 && (
-                  <div
-                    className="hidden md:flex absolute top-10 z-10 items-center"
-                    style={{ left: "calc(100% - 2.5rem)", width: "calc(100% - 5rem)" }}
-                  >
-                    <div className="flex-1 h-px bg-linear-to-r from-primary/30 to-primary/10" />
-                    <ArrowRight className="w-4 h-4 text-primary/30 shrink-0" />
-                  </div>
-                )}
-                <div className="bg-white rounded-2xl border border-slate-200 p-7 shadow-sm h-full flex flex-col">
-                  <div className="flex items-center gap-4 mb-5">
-                    <span className="text-3xl font-black text-slate-100 leading-none select-none">{s.step}</span>
-                    <div className="w-11 h-11 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
-                      <s.Icon className="w-5 h-5 text-primary" />
+          {hasMockups ? (
+            /* Alternating rows — each step paired with a product mockup */
+            <div className="space-y-14 sm:space-y-20 mb-14">
+              {steps.map((s, i) => {
+                const flip = i % 2 === 1
+                return (
+                  <div key={i} className="grid lg:grid-cols-2 gap-8 lg:gap-14 items-center">
+                    <div className={flip ? "lg:order-2" : ""}>
+                      <div className="flex items-center gap-4 mb-4">
+                        <span className="text-4xl font-black text-slate-200 leading-none select-none">{s.step}</span>
+                        <div className="w-11 h-11 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
+                          <s.Icon className="w-5 h-5 text-primary" />
+                        </div>
+                      </div>
+                      <h3 className="text-xl sm:text-2xl font-bold text-slate-900 mb-2.5 text-balance">{s.title}</h3>
+                      <p className="text-base text-slate-500 leading-relaxed">{s.description}</p>
                     </div>
+                    <div className={flip ? "lg:order-1" : ""}>{s.mockup}</div>
                   </div>
-                  <h3 className="text-base font-bold text-slate-800 mb-2">{s.title}</h3>
-                  <p className="text-sm text-slate-500 leading-relaxed">{s.description}</p>
+                )
+              })}
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+              {steps.map((s, i) => (
+                <div key={i} className="relative">
+                  {i < steps.length - 1 && (
+                    <div
+                      className="hidden md:flex absolute top-10 z-10 items-center"
+                      style={{ left: "calc(100% - 2.5rem)", width: "calc(100% - 5rem)" }}
+                    >
+                      <div className="flex-1 h-px bg-linear-to-r from-primary/30 to-primary/10" />
+                      <ArrowRight className="w-4 h-4 text-primary/30 shrink-0" />
+                    </div>
+                  )}
+                  <div className="bg-white rounded-2xl border border-slate-200 p-7 shadow-sm h-full flex flex-col">
+                    <div className="flex items-center gap-4 mb-5">
+                      <span className="text-3xl font-black text-slate-100 leading-none select-none">{s.step}</span>
+                      <div className="w-11 h-11 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
+                        <s.Icon className="w-5 h-5 text-primary" />
+                      </div>
+                    </div>
+                    <h3 className="text-base font-bold text-slate-800 mb-2">{s.title}</h3>
+                    <p className="text-sm text-slate-500 leading-relaxed">{s.description}</p>
+                  </div>
                 </div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          )}
 
           <div className="bg-white rounded-2xl border border-slate-200 px-8 py-7 flex flex-col sm:flex-row items-center gap-6 shadow-sm">
             <p className="text-xs font-semibold uppercase tracking-widest text-slate-400 shrink-0">Works with</p>

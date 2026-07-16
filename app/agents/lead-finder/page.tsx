@@ -1,17 +1,22 @@
 import type { Metadata } from "next"
-import { Database, Search, Target } from "lucide-react"
-import { SiHubspot, SiSalesforce } from "react-icons/si"
+import { Database, Search, Target, Users, Sparkles, Send, Repeat, Filter } from "lucide-react"
+import { SiHubspot, SiSalesforce, SiGmail, SiAirtable, SiNotion } from "react-icons/si"
+import { FaLinkedin, FaSlack } from "react-icons/fa"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { AgentHeroSection } from "@/components/sections/agent-detail/agent-hero-section"
+import { AgentTrustBand } from "@/components/sections/agent-detail/agent-trust-band"
+import { AgentIntegrationsSection } from "@/components/sections/agent-detail/agent-integrations-section"
 import { AgentOverviewSection } from "@/components/sections/agent-detail/agent-overview-section"
 import { AgentWorkflowSection } from "@/components/sections/agent-detail/agent-workflow-section"
 import { AgentUseCasesSection } from "@/components/sections/agent-detail/agent-use-cases-section"
 import { AgentHowWeBuildSection } from "@/components/sections/agent-detail/agent-how-we-build-section"
 import { AgentImpactSection } from "@/components/sections/agent-detail/agent-impact-section"
+import { AgentTestimonialsSection, type Testimonial } from "@/components/sections/agent-detail/agent-testimonials-section"
 import { AgentWhyUsSection } from "@/components/sections/agent-detail/agent-why-us-section"
 import { AgentFaqSection } from "@/components/sections/agent-detail/agent-faq-section"
 import { AgentCtaSection } from "@/components/sections/agent-detail/agent-cta-section"
+import { LeadsDashboardMock, IcpConfigMock, MatchesListMock, CrmSyncMock } from "@/components/sections/agent-detail/mockups/lead-finder-mocks"
 
 const BASE_URL = "https://talktomedata.com"
 const PAGE_URL = `${BASE_URL}/agents/lead-finder`
@@ -57,6 +62,24 @@ const IMPACT = [
   { stat: "Days, not months", label: "from brief to a live lead finder agent" },
 ]
 
+// Factual trust band — honest, defensible stats only (no fabricated counts/ratings).
+const TRUST_STATS = [
+  { value: "50–200", label: "verified leads / week" },
+  { value: "Days", label: "from brief to live" },
+  { value: "Fully managed", label: "hosted & monitored for you" },
+  { value: "2+ CRMs", label: "HubSpot, Salesforce & more" },
+]
+
+const INTEGRATIONS = [
+  { Icon: SiHubspot, color: "#FF7A59", label: "HubSpot" },
+  { Icon: SiSalesforce, color: "#00A1E0", label: "Salesforce" },
+  { Icon: SiGmail, color: "#EA4335", label: "Gmail" },
+  { Icon: FaLinkedin, color: "#0A66C2", label: "LinkedIn" },
+  { Icon: FaSlack, color: "#4A154B", label: "Slack" },
+  { Icon: SiAirtable, color: "#18BFFF", label: "Airtable" },
+  { Icon: SiNotion, color: "#374151", label: "Notion" },
+]
+
 const OVERVIEW = [
   "An AI lead finder agent starts with your ideal customer profile — the industries, company sizes, roles, and signals that indicate a strong fit — and then goes to work finding real companies and contacts that match. It enriches each lead with contact details, company context, and intent signals, and pushes them into your CRM ready for outreach.",
   "It's built for B2B teams who know who they want to sell to but don't have the time to research and source prospects manually. Instead of SDRs spending hours on LinkedIn and data tools, the agent runs that process daily in the background, delivering a consistent stream of warm, verified leads.",
@@ -68,18 +91,21 @@ const WORKFLOW_STEPS = [
     step: "01",
     title: "Define your ICP",
     description: "We configure the agent with your ideal customer profile — industry, company size, role, tech stack, and buying intent signals.",
+    mockup: <IcpConfigMock />,
   },
   {
     Icon: Search,
     step: "02",
     title: "Research & find matches",
     description: "The agent searches across data sources and the web, identifying companies and contacts that match your criteria daily.",
+    mockup: <MatchesListMock />,
   },
   {
     Icon: Database,
     step: "03",
     title: "Enrich & deliver to CRM",
     description: "Leads are enriched with verified contact details and company context, then pushed into your CRM ready for outreach.",
+    mockup: <CrmSyncMock />,
   },
 ]
 
@@ -89,12 +115,12 @@ const WORKFLOW_LOGOS = [
 ]
 
 const USE_CASES = [
-  { title: "ICP matching", description: "Finds companies that match your ideal customer profile by industry, size, tech stack, and growth signals." },
-  { title: "Contact discovery", description: "Identifies the right decision-makers at each company — with name, role, and verified contact details." },
-  { title: "Data enrichment", description: "Appends company context, LinkedIn URLs, firmographics, and intent signals to each lead automatically." },
-  { title: "CRM delivery", description: "Pushes enriched leads straight into HubSpot, Salesforce, or your pipeline — ready for outreach." },
-  { title: "Daily prospecting", description: "Runs on a schedule so new leads arrive in your CRM every day without manual work." },
-  { title: "List deduplication", description: "Checks against existing contacts so you never import a lead that's already in your pipeline." },
+  { Icon: Target, title: "ICP matching", description: "Finds companies that match your ideal customer profile by industry, size, tech stack, and growth signals." },
+  { Icon: Users, title: "Contact discovery", description: "Identifies the right decision-makers at each company — with name, role, and verified contact details." },
+  { Icon: Sparkles, title: "Data enrichment", description: "Appends company context, LinkedIn URLs, firmographics, and intent signals to each lead automatically." },
+  { Icon: Send, title: "CRM delivery", description: "Pushes enriched leads straight into HubSpot, Salesforce, or your pipeline — ready for outreach." },
+  { Icon: Repeat, title: "Daily prospecting", description: "Runs on a schedule so new leads arrive in your CRM every day without manual work." },
+  { Icon: Filter, title: "List deduplication", description: "Checks against existing contacts so you never import a lead that's already in your pipeline." },
 ]
 
 const HOW_WE_BUILD = [
@@ -110,6 +136,10 @@ const WHY_US = [
   { title: "Hosted & monitored for you", description: "It runs on our infrastructure on a daily schedule, so your pipeline fills automatically." },
   { title: "Tuned to your ICP", description: "We refine the search criteria as you learn which leads convert, so quality compounds over time." },
 ]
+
+// SCAFFOLD: no fabricated testimonials. Add real customer quotes here and the
+// section renders automatically; empty means it renders nothing.
+const TESTIMONIALS: Testimonial[] = []
 
 const FAQS = [
   { q: "What is an AI lead finder agent?", a: "It's an AI agent that researches your ideal customer profile, finds matching companies and contacts from across the web and data sources, enriches each lead with verified contact details and company context, and delivers them into your CRM automatically — every day." },
@@ -172,7 +202,10 @@ export default function LeadFinderPage() {
           impact={IMPACT}
           showBreadcrumb={false}
           showHeroStats={false}
+          visual={<LeadsDashboardMock />}
         />
+        <AgentTrustBand stats={TRUST_STATS} />
+        <AgentIntegrationsSection logos={INTEGRATIONS} suffix="+ any CRM or outbound tool" />
         <AgentOverviewSection paragraphs={OVERVIEW} />
         <AgentWorkflowSection
           heading="A pipeline that fills itself"
@@ -183,6 +216,7 @@ export default function LeadFinderPage() {
         <AgentUseCasesSection agentTitle="Lead finder" useCases={USE_CASES} />
         <AgentHowWeBuildSection steps={HOW_WE_BUILD} />
         <AgentImpactSection stats={IMPACT} />
+        <AgentTestimonialsSection testimonials={TESTIMONIALS} />
         <AgentWhyUsSection items={WHY_US} />
         <AgentFaqSection faqs={FAQS} />
         <AgentCtaSection agentTitle="lead finder" />

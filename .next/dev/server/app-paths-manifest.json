@@ -1,4 +1,5 @@
 {
-  "/free-guides/how-to-build-ai-agents/page": "app/free-guides/how-to-build-ai-agents/page.js",
-  "/free-guides/page": "app/free-guides/page.js"
+  "/agents/customer-support/page": "app/agents/customer-support/page.js",
+  "/agents/lead-finder/page": "app/agents/lead-finder/page.js",
+  "/agents/page": "app/agents/page.js"
 }

@@ -1,8 +1,14 @@
 import { Check } from "lucide-react"
 
+type UseCase = {
+  title: string
+  description: string
+  Icon?: React.ComponentType<{ className?: string }>
+}
+
 type Props = {
   agentTitle: string
-  useCases: { title: string; description: string }[]
+  useCases: UseCase[]
 }
 
 export function AgentUseCasesSection({ agentTitle, useCases }: Props) {
@@ -17,18 +23,21 @@ export function AgentUseCasesSection({ agentTitle, useCases }: Props) {
             </h2>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {useCases.map((uc, i) => (
-              <div
-                key={i}
-                className="rounded-2xl border border-slate-200 bg-white p-6 hover:shadow-md hover:border-primary/20 transition-all"
-              >
-                <div className="w-9 h-9 rounded-xl bg-primary/10 flex items-center justify-center mb-4">
-                  <Check className="w-4 h-4 text-primary" />
+            {useCases.map((uc, i) => {
+              const Icon = uc.Icon ?? Check
+              return (
+                <div
+                  key={i}
+                  className="rounded-2xl border border-slate-200 bg-white p-6 hover:shadow-md hover:border-primary/20 transition-all"
+                >
+                  <div className="w-9 h-9 rounded-xl bg-primary/10 flex items-center justify-center mb-4">
+                    <Icon className="w-4 h-4 text-primary" />
+                  </div>
+                  <h3 className="text-base font-bold text-slate-800 mb-1.5">{uc.title}</h3>
+                  <p className="text-sm text-slate-500 leading-relaxed">{uc.description}</p>
                 </div>
-                <h3 className="text-base font-bold text-slate-800 mb-1.5">{uc.title}</h3>
-                <p className="text-sm text-slate-500 leading-relaxed">{uc.description}</p>
-              </div>
-            ))}
+              )
+            })}
           </div>
         </div>
       </div>

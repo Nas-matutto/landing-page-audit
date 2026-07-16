@@ -1,10 +1,14 @@
 {
   "app": {
-    "[project]/app/free-guides/how-to-build-ai-agents/page": [
+    "[project]/app/agents/customer-support/page": [
       "static/media/caa3a2e1cccd8315-s.p.3b6cae6d.woff2",
       "static/media/797e433ab948586e-s.p.29207c2f.woff2"
     ],
-    "[project]/app/free-guides/page": [
+    "[project]/app/agents/lead-finder/page": [
+      "static/media/caa3a2e1cccd8315-s.p.3b6cae6d.woff2",
+      "static/media/797e433ab948586e-s.p.29207c2f.woff2"
+    ],
+    "[project]/app/agents/page": [
       "static/media/caa3a2e1cccd8315-s.p.3b6cae6d.woff2",
       "static/media/797e433ab948586e-s.p.29207c2f.woff2"
     ]
