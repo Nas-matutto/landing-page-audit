@@ -130,6 +130,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
     // Blog posts
     {
+      url: `${baseUrl}/blog/how-to-automate-seo-and-geo-growth-with-ai-agent`,
+      lastModified: new Date('2026-07-17'),
+      changeFrequency: 'monthly',
+      priority: 0.85,
+    },
+    {
       url: `${baseUrl}/blog/how-to-automate-invoices-into-accounting-software`,
       lastModified: new Date('2026-07-10'),
       changeFrequency: 'monthly',

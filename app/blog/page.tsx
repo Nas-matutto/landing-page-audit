@@ -25,6 +25,18 @@ const blogPosts = [
     featured: true,
   },
   {
+    slug: "how-to-automate-seo-and-geo-growth-with-ai-agent",
+    title: "How to Automate SEO and GEO Growth With an AI Agent",
+    excerpt:
+      "An AI agent that reads your Google Search Console data, finds the keywords you can rank higher for, and writes and publishes SEO- and GEO-optimized content on autopilot — on request or automatically every week.",
+    category: "AI Agents",
+    date: "July 17, 2026",
+    readTime: "11 min read",
+    image: "/blog/Google_Search_Console_Ggraph_GEO.png",
+    author: "Nas",
+    featured: false,
+  },
+  {
     slug: "how-to-automate-invoices-into-accounting-software",
     title: "How to Automate Invoices Into Your Accounting Software (With the Exact Prompt)",
     excerpt:
