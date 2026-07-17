@@ -259,8 +259,8 @@ export default function AutomateInvoicesPage() {
                       <p className="text-sm">The agent calls your accounting software's "create invoice" action, passing the customer name and the structured line items, plus the invoice and due dates. In our example that action is <code className="bg-muted px-1.5 py-0.5 rounded text-xs font-mono">quickbooks_create_invoice</code>, but the equivalent exists for Xero, Sage, Zoho, and others. The record is created natively in your system, exactly as if a person had typed it.</p>
                     </div>
                     <div className="border-l-4 border-primary pl-6 bg-primary/5 p-5 rounded-r-xl">
-                      <h4 className="text-base font-bold text-foreground mb-2">Step 3 — Confirm and verify</h4>
-                      <p className="text-sm">The agent reports back the new invoice number, the calculated total, and a link to view it in your accounting tool. Crucially, if anything on the invoice was unclear or ambiguous, it says what it assumed, so you get a clean audit trail and a chance to review edge cases instead of silent errors.</p>
+                      <h4 className="text-base font-bold text-foreground mb-2">Step 3 — Review and submit</h4>
+                      <p className="text-sm">The final check is yours. You go into your accounting software, verify the details the agent filled in — the vendor, dates, line items, and total — and, once everything looks right, simply hit Submit. The agent also flags anything it was unsure about, so you know exactly where to look instead of re-checking every field.</p>
                     </div>
                   </div>
 
@@ -271,6 +271,24 @@ export default function AutomateInvoicesPage() {
                   <p>
                     The agent's job is always the same: read the invoice, structure the data, and call a "create invoice" action. The only thing that changes between platforms is that final integration. Swap <code className="bg-muted px-1.5 py-0.5 rounded text-xs font-mono">quickbooks_create_invoice</code> for your platform's equivalent and everything else in the prompt stays identical. That's why the same agent comfortably serves teams on QuickBooks, Xero, Sage, Zoho Books, FreshBooks, or a full ERP like NetSuite.
                   </p>
+
+                  {/* Step-by-step video */}
+                  <div className="my-12">
+                    <h2 className="text-3xl font-bold text-foreground mb-4">Watch the step-by-step guide</h2>
+                    <p className="mb-5">
+                      Prefer to follow along? This short walkthrough shows the invoice agent reading a PDF and creating the record in the accounting software, end to end.
+                    </p>
+                    <div className="relative aspect-video w-full overflow-hidden rounded-2xl border border-slate-200 shadow-sm">
+                      <iframe
+                        className="absolute inset-0 h-full w-full"
+                        src="https://www.youtube.com/embed/TdBnadO2BJU"
+                        title="How to automate invoices into your accounting software — step-by-step guide"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerPolicy="strict-origin-when-cross-origin"
+                        allowFullScreen
+                      />
+                    </div>
+                  </div>
 
                   <h2 className="text-3xl font-bold text-foreground mt-12 mb-4">The Prompt</h2>
                   <p>
@@ -367,21 +385,39 @@ export default function AutomateInvoicesPage() {
                     </div>
                   </div>
 
-                  {/* Step-by-step video */}
+                  {/* Photo-to-system keyword section + CTAs */}
                   <div className="my-12">
-                    <h2 className="text-3xl font-bold text-foreground mb-4">Watch the step-by-step guide</h2>
-                    <p className="mb-5">
-                      Prefer to follow along? This short walkthrough shows the invoice agent reading a PDF and creating the record in the accounting software, end to end.
+                    <h2 className="text-3xl font-bold text-foreground mb-4">How to automatically have your invoice data in the system by just taking a photo of it</h2>
+                    <p className="mb-6">
+                      That is the whole promise: to automatically have your invoice data in the system by just taking a photo of it. Snap a picture of any invoice on your phone and the agent reads it, structures every field, and sends the data straight into your accounting software — no manual typing, no rigid template, no OCR cleanup. You take the photo, the agent prepares the record, and all that is left for you to do is review and submit. It is the fastest way to get from a paper or PDF invoice to a clean entry in QuickBooks, Xero, Sage, or whatever you run.
                     </p>
-                    <div className="relative aspect-video w-full overflow-hidden rounded-2xl border border-slate-200 shadow-sm">
-                      <iframe
-                        className="absolute inset-0 h-full w-full"
-                        src="https://www.youtube.com/embed/TdBnadO2BJU"
-                        title="How to automate invoices into your accounting software — step-by-step guide"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                        referrerPolicy="strict-origin-when-cross-origin"
-                        allowFullScreen
-                      />
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 not-prose">
+                      <Link
+                        href="/agents/invoice-processing"
+                        className="group flex flex-col justify-between rounded-2xl border border-slate-200 bg-white p-6 shadow-sm hover:border-primary/40 hover:shadow-md transition-all no-underline"
+                      >
+                        <div>
+                          <p className="text-xs font-semibold uppercase tracking-widest text-primary mb-2">See the agent</p>
+                          <h3 className="text-lg font-bold text-foreground mb-1.5">Learn More</h3>
+                          <p className="text-sm text-muted-foreground">See exactly how the AI invoice processing agent works, what it connects to, and how we build it for your stack.</p>
+                        </div>
+                        <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-primary">
+                          Explore the invoice agent →
+                        </span>
+                      </Link>
+                      <Link
+                        href="/get-started"
+                        className="group flex flex-col justify-between rounded-2xl bg-linear-to-br from-primary to-violet-500 p-6 shadow-sm hover:opacity-95 transition-opacity no-underline"
+                      >
+                        <div>
+                          <p className="text-xs font-semibold uppercase tracking-widest text-white/70 mb-2">Ready to go</p>
+                          <h3 className="text-lg font-bold text-white mb-1.5">Get Started</h3>
+                          <p className="text-sm text-white/80">Tell us your accounting software and we&apos;ll build, connect, and host your invoice agent — live in days.</p>
+                        </div>
+                        <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-white">
+                          Start now →
+                        </span>
+                      </Link>
                     </div>
                   </div>
 
