@@ -8,6 +8,7 @@ import { AgentHeroSection } from "@/components/sections/agent-detail/agent-hero-
 import { AgentTrustBand } from "@/components/sections/agent-detail/agent-trust-band"
 import { AgentIntegrationsSection } from "@/components/sections/agent-detail/agent-integrations-section"
 import { AgentOverviewSection } from "@/components/sections/agent-detail/agent-overview-section"
+import { AgentDemoVideoSection } from "@/components/sections/agent-detail/agent-demo-video-section"
 import { AgentWorkflowSection } from "@/components/sections/agent-detail/agent-workflow-section"
 import { AgentUseCasesSection } from "@/components/sections/agent-detail/agent-use-cases-section"
 import { AgentHowWeBuildSection } from "@/components/sections/agent-detail/agent-how-we-build-section"
@@ -260,6 +261,11 @@ export default function SeoGeoPage() {
         <AgentTrustBand stats={TRUST_STATS} />
         <AgentIntegrationsSection logos={INTEGRATIONS} suffix="+ any CMS or analytics tool" />
         <AgentOverviewSection paragraphs={OVERVIEW} />
+        <AgentDemoVideoSection
+          youtubeEmbedUrl="https://www.youtube.com/embed/oWzmccGbtlk?rel=0"
+          title="SEO & GEO Growth AI Agent — Demo"
+          heading="Watch 60 seconds Demo"
+        />
 
         {/* ── Highlights: the two things that set it apart ── */}
         <section className="py-20 sm:py-24 bg-white">

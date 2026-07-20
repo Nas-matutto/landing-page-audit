@@ -141,6 +141,8 @@ __turbopack_context__.s([
     ()=>appendLeadRow,
     "buildLeadRow",
     ()=>buildLeadRow,
+    "findLeadRowByEmail",
+    ()=>findLeadRowByEmail,
     "updateLeadRow",
     ()=>updateLeadRow
 ]);
@@ -201,6 +203,25 @@ async function appendLeadRow(row) {
         }
     });
     return res.data.updates?.updatedRange ?? undefined;
+}
+async function findLeadRowByEmail(email) {
+    const client = getSheets();
+    if (!client) return undefined;
+    const target = email.trim().toLowerCase();
+    const res = await client.sheets.spreadsheets.values.get({
+        spreadsheetId: client.sheetId,
+        range: 'Sheet1!B:B'
+    });
+    const rows = res.data.values ?? [];
+    // rows[0] is the header; rows[i] maps to sheet row i+1. Search bottom-up so we
+    // match the most recent occurrence.
+    for(let i = rows.length - 1; i >= 1; i--){
+        if ((rows[i]?.[0] ?? '').trim().toLowerCase() === target) {
+            const rowNumber = i + 1;
+            return `Sheet1!A${rowNumber}:J${rowNumber}`;
+        }
+    }
+    return undefined;
 }
 async function updateLeadRow(range, row) {
     const client = getSheets();
@@ -346,17 +367,11 @@ async function POST(request) {
             });
         }
         const source = page ?? 'chat_widget';
-        // ── Partial (email-first) — save the email now so a drop-off is still captured.
-        // Writes a stub row (blank answers) and returns its range for later completion.
+        // ── Partial (email-first) — add the email to Brevo/PostHog immediately so we
+        // can still follow up with people who drop off, but do NOT write to the sheet.
+        // Only completed leads (who reach the demo page) are saved there, keeping it
+        // free of drop-off noise and duplicate email-only rows.
         if (stage === 'partial') {
-            const stubRow = (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$leads$2d$sheet$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["buildLeadRow"])({
-                email,
-                page: source
-            });
-            const range = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$leads$2d$sheet$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["appendLeadRow"])(stubRow).catch((err)=>{
-                console.error('Sheets error (partial):', err);
-                return undefined;
-            });
             await addToBrevo(email, source, '');
             capturePosthog('lead_started', email, {
                 source,
@@ -366,8 +381,7 @@ async function POST(request) {
                 }
             });
             return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$7_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
-                success: true,
-                rowRange: range
+                success: true
             });
         }
         // ── Complete — full qualification payload.
@@ -408,9 +422,12 @@ async function POST(request) {
                 tools: toolsStr
             });
         }
-        // Update the partial row in place if we have its range; otherwise append a fresh row.
-        if (rowRange) {
-            await (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$leads$2d$sheet$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["updateLeadRow"])(rowRange, row).catch((err)=>{
+        // Dedupe by email: update the visitor's existing row in place if they already
+        // have one, otherwise append a fresh row. Only completed flows reach the sheet,
+        // so a returning visitor never creates a second row.
+        const existing = rowRange ?? await (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$leads$2d$sheet$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["findLeadRowByEmail"])(email).catch(()=>undefined);
+        if (existing) {
+            await (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$leads$2d$sheet$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["updateLeadRow"])(existing, row).catch((err)=>{
                 console.error('Sheets update error — appending instead:', err);
                 return (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$leads$2d$sheet$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["appendLeadRow"])(row).catch((e)=>console.error('Sheets append fallback error:', e));
             });

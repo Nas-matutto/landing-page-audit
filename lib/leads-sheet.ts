@@ -70,6 +70,30 @@ export async function appendLeadRow(row: string[]): Promise<string | undefined> 
   return res.data.updates?.updatedRange ?? undefined
 }
 
+// Returns the A1 range (e.g. "Sheet1!A57:J57") of the latest row whose email
+// (column B) matches, or undefined if none. Lets a returning visitor update
+// their existing row instead of adding a duplicate.
+export async function findLeadRowByEmail(email: string): Promise<string | undefined> {
+  const client = getSheets()
+  if (!client) return undefined
+
+  const target = email.trim().toLowerCase()
+  const res = await client.sheets.spreadsheets.values.get({
+    spreadsheetId: client.sheetId,
+    range: 'Sheet1!B:B',
+  })
+  const rows = res.data.values ?? []
+  // rows[0] is the header; rows[i] maps to sheet row i+1. Search bottom-up so we
+  // match the most recent occurrence.
+  for (let i = rows.length - 1; i >= 1; i--) {
+    if ((rows[i]?.[0] ?? '').trim().toLowerCase() === target) {
+      const rowNumber = i + 1
+      return `Sheet1!A${rowNumber}:J${rowNumber}`
+    }
+  }
+  return undefined
+}
+
 export async function updateLeadRow(range: string, row: string[]) {
   const client = getSheets()
   if (!client) return

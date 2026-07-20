@@ -8,6 +8,7 @@ import { AgentHeroSection } from "@/components/sections/agent-detail/agent-hero-
 import { AgentTrustBand } from "@/components/sections/agent-detail/agent-trust-band"
 import { AgentIntegrationsSection } from "@/components/sections/agent-detail/agent-integrations-section"
 import { AgentOverviewSection } from "@/components/sections/agent-detail/agent-overview-section"
+import { AgentDemoVideoSection } from "@/components/sections/agent-detail/agent-demo-video-section"
 import { AgentWorkflowSection } from "@/components/sections/agent-detail/agent-workflow-section"
 import { AgentUseCasesSection } from "@/components/sections/agent-detail/agent-use-cases-section"
 import { AgentHowWeBuildSection } from "@/components/sections/agent-detail/agent-how-we-build-section"
@@ -211,6 +212,10 @@ export default function LeadFinderPage() {
         <AgentTrustBand stats={TRUST_STATS} />
         <AgentIntegrationsSection logos={INTEGRATIONS} suffix="+ any CRM or outbound tool" />
         <AgentOverviewSection paragraphs={OVERVIEW} />
+        <AgentDemoVideoSection
+          youtubeEmbedUrl="https://www.youtube.com/embed/VuuO47J3ql8?rel=0"
+          title="AI Lead Finder Agent — Demo"
+        />
         <AgentWorkflowSection
           heading="A pipeline that fills itself"
           steps={WORKFLOW_STEPS}

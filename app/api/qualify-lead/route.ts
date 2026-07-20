@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { appendLeadRow, updateLeadRow, buildLeadRow } from '@/lib/leads-sheet'
+import { appendLeadRow, updateLeadRow, buildLeadRow, findLeadRowByEmail } from '@/lib/leads-sheet'
 
 const SCORE_MAP = {
   role:      { 'Founder / CEO': 3, 'Operations or Finance': 2, 'Marketing or Sales': 2, 'IT / Developer': 1, 'Other': 0 } as Record<string, number>,
@@ -84,17 +84,14 @@ export async function POST(request: NextRequest) {
 
     const source = page ?? 'chat_widget'
 
-    // ── Partial (email-first) — save the email now so a drop-off is still captured.
-    // Writes a stub row (blank answers) and returns its range for later completion.
+    // ── Partial (email-first) — add the email to Brevo/PostHog immediately so we
+    // can still follow up with people who drop off, but do NOT write to the sheet.
+    // Only completed leads (who reach the demo page) are saved there, keeping it
+    // free of drop-off noise and duplicate email-only rows.
     if (stage === 'partial') {
-      const stubRow = buildLeadRow({ email, page: source })
-      const range = await appendLeadRow(stubRow).catch(err => {
-        console.error('Sheets error (partial):', err)
-        return undefined
-      })
       await addToBrevo(email, source, '')
       capturePosthog('lead_started', email, { source, $set: { email, lead_source: source } })
-      return NextResponse.json({ success: true, rowRange: range })
+      return NextResponse.json({ success: true })
     }
 
     // ── Complete — full qualification payload.
@@ -126,9 +123,12 @@ export async function POST(request: NextRequest) {
       row = buildLeadRow({ email, role: intent, teamSize, timeline, score, page: source, tools: toolsStr })
     }
 
-    // Update the partial row in place if we have its range; otherwise append a fresh row.
-    if (rowRange) {
-      await updateLeadRow(rowRange, row).catch(err => {
+    // Dedupe by email: update the visitor's existing row in place if they already
+    // have one, otherwise append a fresh row. Only completed flows reach the sheet,
+    // so a returning visitor never creates a second row.
+    const existing = rowRange ?? await findLeadRowByEmail(email).catch(() => undefined)
+    if (existing) {
+      await updateLeadRow(existing, row).catch(err => {
         console.error('Sheets update error — appending instead:', err)
         return appendLeadRow(row).catch(e => console.error('Sheets append fallback error:', e))
       })

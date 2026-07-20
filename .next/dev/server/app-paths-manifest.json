@@ -1,3 +1,4 @@
 {
-  "/agents/seo-geo/page": "app/agents/seo-geo/page.js"
+  "/agents/seo-geo/page": "app/agents/seo-geo/page.js",
+  "/agents/social-media/page": "app/agents/social-media/page.js"
 }

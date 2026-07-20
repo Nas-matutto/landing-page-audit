@@ -155,6 +155,15 @@ type RouteHandlerConfig<Route extends AppRouteHandlerRoutes = AppRouteHandlerRou
   type __Unused = __Check
 }
 
+// Validate ../../../app/blog/how-to-automate-seo-and-geo-growth-with-ai-agent/page.tsx
+{
+  type __IsExpected<Specific extends AppPageConfig<"/blog/how-to-automate-seo-and-geo-growth-with-ai-agent">> = Specific
+  const handler = {} as typeof import("../../../app/blog/how-to-automate-seo-and-geo-growth-with-ai-agent/page.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
 // Validate ../../../app/blog/how-to-build-ai-lead-finder-agent/page.tsx
 {
   type __IsExpected<Specific extends AppPageConfig<"/blog/how-to-build-ai-lead-finder-agent">> = Specific
@@ -460,6 +469,15 @@ type RouteHandlerConfig<Route extends AppRouteHandlerRoutes = AppRouteHandlerRou
 {
   type __IsExpected<Specific extends LayoutConfig<"/blog/how-to-automate-invoices-into-accounting-software">> = Specific
   const handler = {} as typeof import("../../../app/blog/how-to-automate-invoices-into-accounting-software/layout.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
+// Validate ../../../app/blog/how-to-automate-seo-and-geo-growth-with-ai-agent/layout.tsx
+{
+  type __IsExpected<Specific extends LayoutConfig<"/blog/how-to-automate-seo-and-geo-growth-with-ai-agent">> = Specific
+  const handler = {} as typeof import("../../../app/blog/how-to-automate-seo-and-geo-growth-with-ai-agent/layout.js")
   type __Check = __IsExpected<typeof handler>
   // @ts-ignore
   type __Unused = __Check
