@@ -27,6 +27,29 @@ function to10(raw: number, max: number): number {
   return Math.max(1, Math.min(10, Math.round(1 + (raw / max) * 9)))
 }
 
+// A single field reads as machine-random if it's long, unbroken (no space),
+// vowel-starved, and sprinkled with internal capitals — e.g. "XWZUMpVddXigHXzpI".
+// Thresholds are deliberately conservative so real names (even long or unusual
+// ones like "Konstantinos" or "McDonald") pass through.
+function looksRandom(s?: string): boolean {
+  if (!s) return false
+  const v = s.trim()
+  if (v.length < 12 || v.includes(' ')) return false
+  const letters = v.replace(/[^a-zA-Z]/g, '')
+  if (letters.length < 12) return false
+  const vowels = (v.match(/[aeiouAEIOU]/g) || []).length
+  const vowelRatio = vowels / letters.length
+  const internalCaps = (v.slice(1).match(/[A-Z]/g) || []).length
+  return vowelRatio < 0.25 && internalCaps >= 2
+}
+
+// hp = honeypot: a hidden form field. A human leaves it empty; bots that fill
+// every input give themselves away.
+function isLikelyBot(hp?: string, firstName?: string, lastName?: string): boolean {
+  if (typeof hp === 'string' && hp.trim() !== '') return true
+  return looksRandom(firstName) || looksRandom(lastName)
+}
+
 async function addToBrevo(
   email: string,
   source: string,
@@ -78,7 +101,7 @@ function capturePosthog(event: string, email: string, properties: Record<string,
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json()
-    const { answers, email, page, tools, stage, rowRange, firstName, lastName, hours } = body as {
+    const { answers, email, page, tools, stage, rowRange, firstName, lastName, hours, hp } = body as {
       answers?: string[]
       email: string
       page: string
@@ -88,10 +111,21 @@ export async function POST(request: NextRequest) {
       firstName?: string
       lastName?: string
       hours?: string
+      hp?: string
     }
 
     if (!email || !email.includes('@')) {
       return NextResponse.json({ error: 'Valid email required' }, { status: 400 })
+    }
+
+    // ── Bot filter ────────────────────────────────────────────────────────────
+    // Automated crawlers (email link scanners, form-spam bots) render the page,
+    // fill every field with random strings, and submit — polluting the sheet with
+    // rows like "XWZUMpVddXigHXzpI". Two signals catch them: a hidden honeypot
+    // field a human never sees, and names that read as machine-random. We accept
+    // the request (200, so the bot doesn't retry) but write nothing anywhere.
+    if (isLikelyBot(hp, firstName, lastName)) {
+      return NextResponse.json({ success: true })
     }
 
     const source = page ?? 'chat_widget'

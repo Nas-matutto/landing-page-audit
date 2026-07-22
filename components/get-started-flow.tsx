@@ -97,6 +97,8 @@ export function GetStartedFlow({ onInFlowChange }: { onInFlowChange?: (inFlow: b
   const [firstName, setFirstName] = useState("")
   const [lastName, setLastName] = useState("")
   const [email, setEmail] = useState("")
+  // Honeypot — hidden from humans, filled by form-spam bots. Sent as `hp`.
+  const [botField, setBotField] = useState("")
   const [emailError, setEmailError] = useState("")
   const [emailSubmitting, setEmailSubmitting] = useState(false)
   const [answers, setAnswers] = useState<Record<string, string>>({})
@@ -174,6 +176,7 @@ export function GetStartedFlow({ onInFlowChange }: { onInFlowChange?: (inFlow: b
           email,
           firstName: firstName.trim(),
           lastName: lastName.trim(),
+          hp: botField,
           page: "get_started",
           stage: "partial",
         }),
@@ -256,6 +259,7 @@ export function GetStartedFlow({ onInFlowChange }: { onInFlowChange?: (inFlow: b
           email,
           firstName: firstName.trim(),
           lastName: lastName.trim(),
+          hp: botField,
           answers: orderedAnswers,
           hours: finalAnswers.hours ?? "",
           tools,
@@ -334,6 +338,18 @@ export function GetStartedFlow({ onInFlowChange }: { onInFlowChange?: (inFlow: b
                 Answer a few quick questions and we'll show you exactly what your agent can do. Where should we send the details?
               </p>
               <form onSubmit={handleEmailSubmit} className="space-y-4">
+                {/* Honeypot: positioned off-screen and hidden from assistive tech.
+                    Real users never see or fill it; bots that fill every field do. */}
+                <div aria-hidden="true" style={{ position: "absolute", left: "-9999px", width: 1, height: 1, overflow: "hidden" }}>
+                  <input
+                    type="text"
+                    name="company_website"
+                    tabIndex={-1}
+                    autoComplete="off"
+                    value={botField}
+                    onChange={e => setBotField(e.target.value)}
+                  />
+                </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="relative">
                     <User className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />

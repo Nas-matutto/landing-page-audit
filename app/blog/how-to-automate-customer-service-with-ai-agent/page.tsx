@@ -27,7 +27,7 @@ Tell the customer what happens next and the expected timeframe. Be warm and conc
 const faqs = [
   {
     q: "Which channels can the AI customer support agent work in?",
-    a: "It starts in the chat bubble on your website, where most requests come in, but the same agent works across email, WhatsApp, Instagram DMs, and helpdesk tools like Zendesk or Intercom. The logic — answer, log, rank, recommend — stays identical; only the channel it listens on changes.",
+    a: "It starts in the chat bubble on your website, where most requests come in, but the same agent works across email, WhatsApp, Instagram DMs, and helpdesk tools like Zendesk or Intercom. The logic - answer, log, rank, recommend - stays identical; only the channel it listens on changes.",
   },
   {
     q: "How does the agent decide which requests are most important?",
@@ -35,7 +35,7 @@ const faqs = [
   },
   {
     q: "Does it reply to customers automatically, or draft answers for a human?",
-    a: "Both, and you choose the line. Common, low-risk questions (order status, store hours, return policy) can be answered instantly and autonomously. For anything sensitive — refunds, account changes, angry customers — the agent captures the details, drafts a recommended resolution, and hands it to a human to approve and send.",
+    a: "Both, and you choose the line. Common, low-risk questions (order status, store hours, return policy) can be answered instantly and autonomously. For anything sensitive - refunds, account changes, angry customers — the agent captures the details, drafts a recommended resolution, and hands it to a human to approve and send.",
   },
   {
     q: "What does it log to Google Sheets?",
@@ -47,7 +47,7 @@ const faqs = [
   },
   {
     q: "Can Talk to Me Data build and host this agent for me?",
-    a: "Yes. We build, connect, and host the agent on our infrastructure — the chat widget, the model, the Google Sheets (or helpdesk) integration, and the monitoring — so there's nothing to configure or maintain on your side. Book a demo and we'll get you onboarded in days.",
+    a: "Yes. We build, connect, and host the agent on our infrastructure - the chat widget, the model, the Google Sheets (or helpdesk) integration, and the monitoring — so there's nothing to configure or maintain on your side. Book a demo and we'll get you onboarded in days.",
   },
 ]
 
@@ -247,7 +247,7 @@ export default function AutomateCustomerServicePage() {
                     Two things break at once. First, <strong>response time</strong>: when everything is first-in-first-out, urgent issues sit behind trivial ones. Second, <strong>prioritisation</strong>: a human skim-reading an inbox has no consistent way to rank by importance, so triage is guesswork that changes with whoever is on shift. The result is slow replies on the tickets that matter most and burned-out agents doing copy-paste work on the ones that don&apos;t.
                   </p>
                   <p>
-                    The usual &quot;fix&quot; — a rigid rules-based chatbot with buttons and decision trees — frustrates customers because it can&apos;t understand a question phrased in a way the script didn&apos;t anticipate. An AI agent is different: it reads the message the way a person would, understands intent and tone, answers what it can, and <em>takes the action</em> of logging, ranking, and drafting a resolution for everything else. For a broader look at how this applies across a business, see our guide on <Link href="/blog/ai-agents-for-small-business" className="text-primary hover:underline">AI agents for small business</Link>.
+                    The usual &quot;fix&quot; - a rigid rules-based chatbot with buttons and decision trees - frustrates customers because it can&apos;t understand a question phrased in a way the script didn&apos;t anticipate. An AI agent is different: it reads the message the way a person would, understands intent and tone, answers what it can, and <em>takes the action</em> of logging, ranking, and drafting a resolution for everything else. For a broader look at how this applies across a business, see our guide on <Link href="/blog/ai-agents-for-small-business" className="text-primary hover:underline">AI agents for small business</Link>.
                   </p>
 
                   <h2 className="text-3xl font-bold text-foreground mt-12 mb-4">How the Customer Support Agent Works</h2>
@@ -257,26 +257,26 @@ export default function AutomateCustomerServicePage() {
 
                   <div className="my-6 space-y-5">
                     <div className="border-l-4 border-primary pl-6 bg-primary/5 p-5 rounded-r-xl">
-                      <h4 className="text-base font-bold text-foreground mb-2">Step 1 — Understand &amp; categorise</h4>
+                      <h4 className="text-base font-bold text-foreground mb-2">Step 1: Understand &amp; categorise</h4>
                       <p className="text-sm">A customer types into the chat bubble on your site. The agent reads the message, sorts it into a category (order status, returns &amp; refunds, billing, technical, product question, or other), and reads the sentiment — calm, frustrated, or angry. This is what a rules-based bot can&apos;t do: it understands a question no matter how it&apos;s phrased.</p>
                     </div>
                     <div className="border-l-4 border-primary pl-6 bg-primary/5 p-5 rounded-r-xl">
-                      <h4 className="text-base font-bold text-foreground mb-2">Step 2 — Resolve or capture</h4>
+                      <h4 className="text-base font-bold text-foreground mb-2">Step 2: Resolve or capture</h4>
                       <p className="text-sm">If it&apos;s a common question with a known answer, the agent responds instantly and warmly from your knowledge base — no waiting, any hour of the day. If it needs a human, account access, or an action the agent shouldn&apos;t take on its own, it collects the details the team will need (order number, email, a one-line summary) so the customer never has to repeat themselves.</p>
                     </div>
                     <div className="border-l-4 border-primary pl-6 bg-primary/5 p-5 rounded-r-xl">
-                      <h4 className="text-base font-bold text-foreground mb-2">Step 3 — Log &amp; rank in Google Sheets</h4>
+                      <h4 className="text-base font-bold text-foreground mb-2">Step 3: Log &amp; rank in Google Sheets</h4>
                       <p className="text-sm">The agent appends a row to your support queue in Google Sheets: timestamp, email, category, one-line summary, full message, sentiment, and a priority score from 1 (low) to 5 (urgent). Urgency is scored on impact, sentiment, and customer value together — so an angry paying customer who can&apos;t log in floats to the top and a general product question settles near the bottom.</p>
                     </div>
                     <div className="border-l-4 border-primary pl-6 bg-primary/5 p-5 rounded-r-xl">
-                      <h4 className="text-base font-bold text-foreground mb-2">Step 4 — Draft a recommended solution</h4>
+                      <h4 className="text-base font-bold text-foreground mb-2">Step 4: Draft a recommended solution</h4>
                       <p className="text-sm">For every logged request, the agent writes a recommended resolution into the sheet: the likely cause, a ready-to-send reply, and any action to take (refund, replacement, escalation). Your team opens a queue that&apos;s already sorted by urgency and pre-solved — approve, tweak, send. Minutes of thinking per ticket become seconds of reviewing.</p>
                     </div>
                   </div>
 
                   <h2 className="text-3xl font-bold text-foreground mt-12 mb-4">Why the Chat Bubble Is the Right Place to Start</h2>
                   <p>
-                    You could point this agent at email or a helpdesk like <a href="https://www.zendesk.com" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Zendesk</a> or <a href="https://www.intercom.com" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Intercom</a> — and eventually you probably will. But the chat bubble is the highest-leverage place to begin, because it&apos;s where intent is freshest: the customer is on your site, in the moment, with a specific question. Answering there deflects the ticket before it ever becomes an email, and captures the ones that do need a human while the context is still rich.
+                    You could point this agent at email or a helpdesk like <a href="https://www.zendesk.com" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Zendesk</a> or <a href="https://www.intercom.com" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Intercom</a> - and eventually you probably will. But the chat bubble is the highest-leverage place to begin, because it&apos;s where intent is freshest: the customer is on your site, in the moment, with a specific question. Answering there deflects the ticket before it ever becomes an email, and captures the ones that do need a human while the context is still rich.
                   </p>
                   <p>
                     The best part is that the underlying logic doesn&apos;t change when you add channels. Whether the message arrives via chat, email, or <a href="https://business.whatsapp.com" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">WhatsApp</a>, the agent still answers, logs, ranks, and recommends into the same Google Sheet. You build the brain once and plug in new channels over time.
@@ -284,7 +284,7 @@ export default function AutomateCustomerServicePage() {
 
                   <h2 className="text-3xl font-bold text-foreground mt-12 mb-4">The Prompt</h2>
                   <p>
-                    Here&apos;s the exact prompt behind the agent. Paste it into your AI agent orchestration interface — whether that&apos;s Talk to Me Data or a <a href="https://claude.ai" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Claude</a> project with your chat widget and Google Sheets connected. Swap <code className="bg-muted px-1.5 py-0.5 rounded text-xs font-mono">[Company]</code> for your business name and point <code className="bg-muted px-1.5 py-0.5 rounded text-xs font-mono">sheets_append_row</code> at your support-queue sheet.
+                    Here&apos;s the exact prompt behind the agent. Paste it into your AI agent orchestration interface, whether that&apos;s Talk to Me Data or a <a href="https://claude.ai" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Claude</a> project with your chat widget and Google Sheets connected. Swap <code className="bg-muted px-1.5 py-0.5 rounded text-xs font-mono">[Company]</code> for your business name and point <code className="bg-muted px-1.5 py-0.5 rounded text-xs font-mono">sheets_append_row</code> at your support-queue sheet.
                   </p>
 
                 </div>
@@ -300,7 +300,7 @@ export default function AutomateCustomerServicePage() {
                   <div className="my-6 space-y-4">
                     <div className="border border-border rounded-xl p-5">
                       <h4 className="font-bold text-foreground mb-1">A chat widget on your site</h4>
-                      <p className="text-sm">The bubble your customers type into. It&apos;s the front door of the agent — the place requests come in and instant answers go out. The same agent can later listen on email, WhatsApp, or a helpdesk, but the website chat is where you get the fastest wins.</p>
+                      <p className="text-sm">The bubble your customers type into. It&apos;s the front door of the agent - the place requests come in and instant answers go out. The same agent can later listen on email, WhatsApp, or a helpdesk, but the website chat is where you get the fastest wins.</p>
                     </div>
                     <div className="border border-border rounded-xl p-5">
                       <h4 className="font-bold text-foreground mb-1">A capable model with your knowledge base</h4>
@@ -308,7 +308,7 @@ export default function AutomateCustomerServicePage() {
                     </div>
                     <div className="border border-border rounded-xl p-5">
                       <h4 className="font-bold text-foreground mb-1">A Google Sheets connection</h4>
-                      <p className="text-sm">A link to <a href="https://www.google.com/sheets/about/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Google Sheets</a> so the agent can append each request to your ranked support queue. This is the shared source of truth your whole team works from — the <code className="bg-muted px-1 rounded font-mono">sheets_append_row</code> action the prompt calls.</p>
+                      <p className="text-sm">A link to <a href="https://www.google.com/sheets/about/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Google Sheets</a> so the agent can append each request to your ranked support queue. This is the shared source of truth your whole team works from - the <code className="bg-muted px-1 rounded font-mono">sheets_append_row</code> action the prompt calls.</p>
                     </div>
                   </div>
 
