@@ -1,5 +1,4 @@
 import type { Metadata } from "next"
-import Link from "next/link"
 import { ArrowRight, CalendarDays, Mail } from "lucide-react"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
@@ -17,6 +16,9 @@ const DEMO_VIDEO_URL =
 
 const ONBOARDING_CALENDAR_URL =
   "https://calendar.google.com/calendar/appointments/schedules/AcZssZ2GEdSIRiXNGs2UjuxM8qmbJ4KKwq0PU1-veJzukFJumxcOjPgTr-_HHhIt1C9SMqhzZPqllK5k?gv=true"
+
+// Bottom "Book a free call" CTA — opens the booking calendar in a new tab.
+const BOOK_CALL_CALENDAR_URL = "https://calendar.app.google/GSeoPp4MKBQC9Xn77"
 
 export default function GetStartedOnboardingPage() {
   return (
@@ -70,15 +72,17 @@ export default function GetStartedOnboardingPage() {
                 Book a free 20-minute call and we'll tell you exactly what your agent can do — API costs, integrations, and hosting included.
               </p>
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                <Link
-                  href="/book-demo"
+                <a
+                  href={BOOK_CALL_CALENDAR_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="relative overflow-hidden group inline-flex items-center gap-2 bg-white text-primary font-bold px-8 py-4 rounded-xl text-base shadow-2xl shadow-black/20 hover:shadow-black/30 transition-all"
                 >
                   <span className="absolute inset-0 bg-linear-to-r from-transparent via-primary/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-in-out" />
                   <span className="relative flex items-center gap-2">
                     Book a free call <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
                   </span>
-                </Link>
+                </a>
                 <a
                   href="mailto:nas@talktomedata.com"
                   className="inline-flex items-center gap-2 text-white/80 hover:text-white font-semibold text-sm transition-colors"

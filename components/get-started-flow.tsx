@@ -68,7 +68,7 @@ const QUESTIONS: Question[] = [
   {
     id: "budget",
     question: "If this ran on autopilot, what would that be worth to your business per month?",
-    options: ["I don't have budget", "$99–$500 / mo", "$500–$2,000 / mo", "$2,000+ / mo"],
+    options: ["$99–$500 / mo", "$500–$2,000 / mo", "$2,000+ / mo"],
   },
 ]
 
