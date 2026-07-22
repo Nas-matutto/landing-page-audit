@@ -1,22 +1,23 @@
-import type { Metadata } from "next"
+"use client"
+
+import { useState } from "react"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { GetStartedFlow } from "@/components/get-started-flow"
 
-export const metadata: Metadata = {
-  title: "Get Started — Build Your AI Agent | Talk to Me Data",
-  description:
-    "Tell us what you want to automate and which tools your agent should connect to. We'll show you exactly what your custom AI agent can do — in under 2 minutes.",
-}
-
 export default function GetStartedPage() {
+  // True while the visitor is actively answering questions. We strip the header
+  // nav and hide the footer during this window so an accidental tap (or an
+  // errant back-swipe onto a nav link) can't bounce them out of the funnel.
+  const [inFlow, setInFlow] = useState(false)
+
   return (
     <div className="min-h-screen bg-white flex flex-col">
-      <Header />
+      <Header minimal={inFlow} />
       <main className="flex-1">
-        <GetStartedFlow />
+        <GetStartedFlow onInFlowChange={setInFlow} />
       </main>
-      <Footer />
+      {!inFlow && <Footer />}
     </div>
   )
 }

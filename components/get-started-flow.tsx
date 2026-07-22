@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useRef } from "react"
+import { useState, useRef, useEffect } from "react"
 import Link from "next/link"
 import { ArrowRight, ChevronLeft, Mail, Check, X, Plus, CalendarDays } from "lucide-react"
 import { FaSlack, FaWhatsapp, FaGoogle } from "react-icons/fa"
@@ -69,7 +69,7 @@ const QUESTIONS: Question[] = [
   {
     id: "budget",
     question: "What's your monthly budget for automation?",
-    options: ["Under $500 / mo", "$500–$2,000 / mo", "$2,000+ / mo", "Not sure yet"],
+    options: ["I don't have budget", "$99–$500 / mo", "$500–$2,000 / mo", "$2,000+ / mo"],
   },
 ]
 
@@ -92,7 +92,7 @@ const TOOL_ICONS: Record<string, { Icon: React.ComponentType<{ className?: strin
 
 const TOTAL_STEPS = QUESTIONS.length + 1 // email + questions
 
-export function GetStartedFlow() {
+export function GetStartedFlow({ onInFlowChange }: { onInFlowChange?: (inFlow: boolean) => void } = {}) {
   const [step, setStep] = useState(0) // step 0 = email
   const [email, setEmail] = useState("")
   const [emailError, setEmailError] = useState("")
@@ -104,6 +104,51 @@ export function GetStartedFlow() {
   const [submitting, setSubmitting] = useState(false)
   const [done, setDone] = useState(false)
   const videoRef = useRef<HTMLDivElement>(null)
+
+  // ── Resume guard ──────────────────────────────────────────────────────────
+  // A lot of visitors leave the flow mid-way (accidental back-swipe on mobile,
+  // a mis-tap on the top-nav "Free Tools" link on tablet-width screens, etc.)
+  // and their answers used to reset to the email step. We snapshot progress to
+  // sessionStorage so that if they come back they pick up exactly where they
+  // left off instead of dropping out of the funnel entirely.
+  const STORAGE_KEY = "ttmd_get_started_v1"
+
+  useEffect(() => {
+    try {
+      const raw = sessionStorage.getItem(STORAGE_KEY)
+      if (!raw) return
+      const saved = JSON.parse(raw)
+      if (!saved || typeof saved !== "object") return
+      if (typeof saved.email === "string") setEmail(saved.email)
+      if (saved.answers && typeof saved.answers === "object") setAnswers(saved.answers)
+      if (Array.isArray(saved.tools)) setTools(saved.tools)
+      if (typeof saved.step === "number" && saved.step > 0 && saved.step <= QUESTIONS.length) {
+        setStep(saved.step)
+      }
+    } catch {
+      // ignore — start fresh
+    }
+  }, [])
+
+  useEffect(() => {
+    try {
+      if (done) {
+        sessionStorage.removeItem(STORAGE_KEY)
+        return
+      }
+      // Nothing worth saving until they've at least entered an email.
+      if (step === 0 && !email) return
+      sessionStorage.setItem(STORAGE_KEY, JSON.stringify({ email, answers, tools, step }))
+    } catch {
+      // ignore — persistence is best-effort
+    }
+  }, [email, answers, tools, step, done])
+
+  // Let the page know when the visitor is actively in a question step so it can
+  // strip the nav chrome. Email step (0) and the final demo screen keep full nav.
+  useEffect(() => {
+    onInFlowChange?.(step >= 1 && !done)
+  }, [step, done, onInFlowChange])
 
   function goBack() {
     setPendingOther(null)

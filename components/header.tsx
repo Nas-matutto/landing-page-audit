@@ -7,7 +7,7 @@ import { usePathname } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Menu, X, ArrowRight } from "lucide-react"
 
-export function Header() {
+export function Header({ minimal = false }: { minimal?: boolean }) {
   const pathname = usePathname()
   const [scrolled, setScrolled] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -66,47 +66,56 @@ export function Header() {
             />
           </Link>
 
-          <nav className="hidden md:flex items-center gap-8">
-            <Link
-              href="/#how-it-works"
-              className="text-sm font-medium text-foreground hover:text-primary transition-colors"
-            >
-              How it works
-            </Link>
-            <Link
-              href="/agents"
-              className="text-sm font-medium text-foreground hover:text-primary transition-colors"
-            >
-              Agents
-            </Link>
-            <Link
-              href="/free-tools"
-              className="text-sm font-medium text-foreground hover:text-primary transition-colors"
-            >
-              Free Tools
-            </Link>
-          </nav>
+          {/* Nav, CTA and mobile menu are hidden in `minimal` mode (e.g. mid-way
+              through the /get-started flow) so visitors can't accidentally tap
+              out of the funnel. Only the logo stays. */}
+          {!minimal && (
+            <nav className="hidden md:flex items-center gap-8">
+              <Link
+                href="/#how-it-works"
+                className="text-sm font-medium text-foreground hover:text-primary transition-colors"
+              >
+                How it works
+              </Link>
+              <Link
+                href="/agents"
+                className="text-sm font-medium text-foreground hover:text-primary transition-colors"
+              >
+                Agents
+              </Link>
+              <Link
+                href="/free-tools"
+                className="text-sm font-medium text-foreground hover:text-primary transition-colors"
+              >
+                Free Tools
+              </Link>
+            </nav>
+          )}
 
-          <div className="hidden md:flex items-center gap-4">
-            <Link
-              href="/get-started"
-              className="relative overflow-hidden group bg-linear-to-r from-primary to-violet-500 text-white text-sm font-semibold px-5 py-2 rounded-lg shadow-md shadow-primary/25 hover:shadow-primary/40 hover:shadow-lg transition-all cursor-pointer"
-            >
-              <span className="absolute inset-0 bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-in-out" />
-              <span className="relative">Get Started</span>
-            </Link>
-          </div>
+          {!minimal && (
+            <div className="hidden md:flex items-center gap-4">
+              <Link
+                href="/get-started"
+                className="relative overflow-hidden group bg-linear-to-r from-primary to-violet-500 text-white text-sm font-semibold px-5 py-2 rounded-lg shadow-md shadow-primary/25 hover:shadow-primary/40 hover:shadow-lg transition-all cursor-pointer"
+              >
+                <span className="absolute inset-0 bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-in-out" />
+                <span className="relative">Get Started</span>
+              </Link>
+            </div>
+          )}
 
-          <button
-            className="md:hidden p-2 text-foreground hover:text-primary transition-colors cursor-pointer"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            aria-label="Toggle menu"
-          >
-            {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-          </button>
+          {!minimal && (
+            <button
+              className="md:hidden p-2 text-foreground hover:text-primary transition-colors cursor-pointer"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              aria-label="Toggle menu"
+            >
+              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            </button>
+          )}
         </div>
 
-        {mobileMenuOpen && (
+        {!minimal && mobileMenuOpen && (
           <div className="md:hidden py-4 border-t border-border bg-white">
             <nav className="flex flex-col gap-4">
               <Link

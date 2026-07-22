@@ -12,7 +12,7 @@ const SCORE_MAP = {
     'Other': 1,
   } as Record<string, number>,
   timeline:  { 'Just exploring': 0, '1–3 months': 1, 'Within 3 months': 1, 'Ready now': 3 } as Record<string, number>,
-  budget:    { 'Under $500 / mo': 0, '$500–$2,000 / mo': 2, '$2,000+ / mo': 3, 'Not sure yet': 1 } as Record<string, number>,
+  budget:    { "I don't have budget": 0, '$99–$500 / mo': 1, 'Under $500 / mo': 0, '$500–$2,000 / mo': 2, '$2,000+ / mo': 3, 'Not sure yet': 1 } as Record<string, number>,
 }
 
 // Highest possible raw total for each flow, derived from SCORE_MAP so it stays
@@ -91,6 +91,20 @@ export async function POST(request: NextRequest) {
     if (stage === 'partial') {
       await addToBrevo(email, source, '')
       capturePosthog('lead_started', email, { source, $set: { email, lead_source: source } })
+      // Also drop a placeholder row into the sheet so email-only drop-offs are
+      // visible there, not just in Brevo/PostHog. Only append when the visitor
+      // has no row yet — never overwrite an existing (possibly completed) row
+      // with a blank partial. When they later finish, the `complete` branch
+      // below finds this same row by email and fills it in (no duplicate).
+      try {
+        const existingPartial = await findLeadRowByEmail(email).catch(() => undefined)
+        if (!existingPartial) {
+          await appendLeadRow(buildLeadRow({ email, page: `${source} (partial)` }))
+            .catch(err => console.error('Sheets partial append error:', err))
+        }
+      } catch (err) {
+        console.error('Sheets partial error:', err)
+      }
       return NextResponse.json({ success: true })
     }
 
