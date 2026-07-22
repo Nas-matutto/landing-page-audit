@@ -25,6 +25,18 @@ const blogPosts = [
     featured: true,
   },
   {
+    slug: "how-to-automate-customer-service-with-ai-agent",
+    title: "How to Automate Customer Service With an AI Agent (With the Exact Prompt)",
+    excerpt:
+      "An AI agent that lives in your website chat bubble, answers common questions instantly, logs every request to Google Sheets, ranks them by urgency, and drafts a recommended solution for your team. Includes the full prompt to copy.",
+    category: "AI Agents",
+    date: "July 22, 2026",
+    readTime: "10 min read",
+    image: "/Customer_support_example.png",
+    author: "Nas",
+    featured: false,
+  },
+  {
     slug: "how-to-automate-seo-and-geo-growth-with-ai-agent",
     title: "How to Automate SEO and GEO Growth With an AI Agent",
     excerpt:
