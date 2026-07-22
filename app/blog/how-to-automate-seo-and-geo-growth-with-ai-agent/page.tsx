@@ -359,6 +359,18 @@ export default function AutomateSeoGeoPage() {
                     GEO is how you earn those citations: clear answers near the top of the page, well-structured headings, factual and sourced claims, and formatting an AI can lift cleanly and attribute. Because the agent is trained on both disciplines, every piece it writes is built to do double duty - rank in classic search and get quoted by the answer engines - so you compound visibility on both surfaces at once.
                   </p>
 
+                  <div className="my-8 overflow-hidden rounded-2xl border border-border shadow-sm">
+                    <div className="relative w-full" style={{ paddingBottom: "56.25%" }}>
+                      <iframe
+                        className="absolute inset-0 h-full w-full"
+                        src="https://www.youtube.com/embed/aT3CD-h4TsE"
+                        title="How to automate SEO and GEO growth with an AI agent"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowFullScreen
+                      />
+                    </div>
+                  </div>
+
                   <h2 className="text-3xl font-bold text-foreground mt-12 mb-4">Want to build it yourself?</h2>
                   <p>
                     Here is an example of a system prompt you can give your AI SEO/GEO agent. It tells the agent how to read your Search Console, report week-on-week performance, find the highest-ROI opportunities, write build-ready and GEO-optimized briefs, and keep everything in one running Google Doc as a permanent log. Copy it, swap in your own property and document IDs, and you have the brain of the agent.
