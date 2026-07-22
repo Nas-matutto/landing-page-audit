@@ -27,7 +27,13 @@ function to10(raw: number, max: number): number {
   return Math.max(1, Math.min(10, Math.round(1 + (raw / max) * 9)))
 }
 
-async function addToBrevo(email: string, source: string, toolsStr: string) {
+async function addToBrevo(
+  email: string,
+  source: string,
+  toolsStr: string,
+  firstName?: string,
+  lastName?: string,
+) {
   const brevoKey = process.env.BREVO_API_KEY?.trim()
   const brevoListId = process.env.BREVO_LIST_ID ? parseInt(process.env.BREVO_LIST_ID.trim(), 10) : null
   if (!brevoKey) return
@@ -40,6 +46,9 @@ async function addToBrevo(email: string, source: string, toolsStr: string) {
       updateEnabled: true,
       attributes: {
         SOURCE: source,
+        // Brevo's default contact attributes for name personalisation.
+        ...(firstName ? { FIRSTNAME: firstName } : {}),
+        ...(lastName ? { LASTNAME: lastName } : {}),
         ...(toolsStr ? { TOOLS: toolsStr } : {}),
       },
       ...(brevoListId && !isNaN(brevoListId) ? { listIds: [brevoListId] } : {}),
@@ -69,13 +78,16 @@ function capturePosthog(event: string, email: string, properties: Record<string,
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json()
-    const { answers, email, page, tools, stage, rowRange } = body as {
+    const { answers, email, page, tools, stage, rowRange, firstName, lastName, hours } = body as {
       answers?: string[]
       email: string
       page: string
       tools?: string[]
       stage?: 'partial' | 'complete'
       rowRange?: string
+      firstName?: string
+      lastName?: string
+      hours?: string
     }
 
     if (!email || !email.includes('@')) {
@@ -89,8 +101,13 @@ export async function POST(request: NextRequest) {
     // Only completed leads (who reach the demo page) are saved there, keeping it
     // free of drop-off noise and duplicate email-only rows.
     if (stage === 'partial') {
-      await addToBrevo(email, source, '')
-      capturePosthog('lead_started', email, { source, $set: { email, lead_source: source } })
+      await addToBrevo(email, source, '', firstName, lastName)
+      capturePosthog('lead_started', email, {
+        source,
+        ...(firstName ? { first_name: firstName } : {}),
+        ...(lastName ? { last_name: lastName } : {}),
+        $set: { email, lead_source: source, ...(firstName ? { first_name: firstName } : {}), ...(lastName ? { last_name: lastName } : {}) },
+      })
       // Also drop a placeholder row into the sheet so email-only drop-offs are
       // visible there, not just in Brevo/PostHog. Only append when the visitor
       // has no row yet — never overwrite an existing (possibly completed) row
@@ -99,7 +116,7 @@ export async function POST(request: NextRequest) {
       try {
         const existingPartial = await findLeadRowByEmail(email).catch(() => undefined)
         if (!existingPartial) {
-          await appendLeadRow(buildLeadRow({ email, page: `${source} (partial)` }))
+          await appendLeadRow(buildLeadRow({ email, page: `${source} (partial)`, firstName, lastName }))
             .catch(err => console.error('Sheets partial append error:', err))
         }
       } catch (err) {
@@ -125,7 +142,7 @@ export async function POST(request: NextRequest) {
         (SCORE_MAP.timeline[timeline] ?? 0) +
         (SCORE_MAP.budget[budget] ?? 0)
       score = to10(raw, DEMO_MAX)
-      row = buildLeadRow({ email, role, teamSize, challenge, timeline, budget, score, page: source, tools: toolsStr })
+      row = buildLeadRow({ email, role, teamSize, challenge, timeline, budget, score, page: source, tools: toolsStr, firstName, lastName, hours })
     } else {
       // Legacy 3-answer chat widget: [intent, teamSize, timeline]
       const [intent = '', teamSize = '', timeline = ''] = safeAnswers
@@ -158,11 +175,14 @@ export async function POST(request: NextRequest) {
       source,
       ...(isDemoGate ? { role, team_size: teamSize, challenge, timeline, budget } : { intent: safeAnswers[0], team_size: teamSize, timeline }),
       ...(toolsStr ? { tools: toolsStr } : {}),
+      ...(hours ? { hours } : {}),
+      ...(firstName ? { first_name: firstName } : {}),
+      ...(lastName ? { last_name: lastName } : {}),
       score,
-      $set: { email, lead_source: source },
+      $set: { email, lead_source: source, ...(firstName ? { first_name: firstName } : {}), ...(lastName ? { last_name: lastName } : {}) },
     })
 
-    await addToBrevo(email, source, toolsStr)
+    await addToBrevo(email, source, toolsStr, firstName, lastName)
 
     return NextResponse.json({ success: true })
   } catch (err) {

@@ -1,19 +1,18 @@
 "use client"
 
-import { useState, useRef, useEffect } from "react"
-import Link from "next/link"
-import { ArrowRight, ChevronLeft, Mail, Check, X, Plus, CalendarDays } from "lucide-react"
+import { useState, useEffect } from "react"
+import { useRouter } from "next/navigation"
+import { ArrowRight, ChevronLeft, Mail, User, Check, X, Plus } from "lucide-react"
 import { FaSlack, FaWhatsapp, FaGoogle } from "react-icons/fa"
 import {
   SiNotion, SiSalesforce, SiHubspot, SiShopify, SiStripe,
   SiZendesk, SiGmail, SiAirtable, SiMailchimp, SiIntercom,
 } from "react-icons/si"
 
-const DEMO_VIDEO_URL =
-  process.env.NEXT_PUBLIC_DEMO_VIDEO_URL ?? "https://www.youtube.com/embed/vM5USyYEK1g"
-
-const ONBOARDING_CALENDAR_URL =
-  "https://calendar.google.com/calendar/appointments/schedules/AcZssZ2GEdSIRiXNGs2UjuxM8qmbJ4KKwq0PU1-veJzukFJumxcOjPgTr-_HHhIt1C9SMqhzZPqllK5k?gv=true"
+// Where the flow sends people once they complete it. A real route (rather than a
+// toggled in-page view) so reaching the end fires a genuine GA + PostHog pageview
+// we can build a funnel-completion metric on.
+const ONBOARDING_PATH = "/get-started-onboarding"
 
 type Question = {
   id: string
@@ -24,7 +23,7 @@ type Question = {
 }
 
 // Order after the email step. IDs map to the qualify-lead answer slots:
-// challenge, role, teamSize, timeline, budget. `tools` is sent separately.
+// challenge, role, timeline, budget. `tools` and `hours` are sent separately.
 const QUESTIONS: Question[] = [
   {
     id: "challenge",
@@ -57,18 +56,18 @@ const QUESTIONS: Question[] = [
     options: ["Founder / CEO", "Operations or Finance", "Marketing or Sales", "IT / Developer", "Other"],
   },
   {
-    id: "teamSize",
-    question: "How big is your team?",
-    options: ["1–10 people", "11–50 people", "51–200 people", "200+ people"],
-  },
-  {
     id: "timeline",
     question: "When are you looking to get started?",
     options: ["Ready now", "Within 3 months", "Just exploring"],
   },
   {
+    id: "hours",
+    question: "How many hours a week does this task currently take you or your team?",
+    options: ["Less than 5 hours", "5 to 10 hours", "10 to 20 hours", "20+ hours"],
+  },
+  {
     id: "budget",
-    question: "What's your monthly budget for automation?",
+    question: "If this ran on autopilot, what would that be worth to your business per month?",
     options: ["I don't have budget", "$99–$500 / mo", "$500–$2,000 / mo", "$2,000+ / mo"],
   },
 ]
@@ -93,7 +92,10 @@ const TOOL_ICONS: Record<string, { Icon: React.ComponentType<{ className?: strin
 const TOTAL_STEPS = QUESTIONS.length + 1 // email + questions
 
 export function GetStartedFlow({ onInFlowChange }: { onInFlowChange?: (inFlow: boolean) => void } = {}) {
+  const router = useRouter()
   const [step, setStep] = useState(0) // step 0 = email
+  const [firstName, setFirstName] = useState("")
+  const [lastName, setLastName] = useState("")
   const [email, setEmail] = useState("")
   const [emailError, setEmailError] = useState("")
   const [emailSubmitting, setEmailSubmitting] = useState(false)
@@ -102,8 +104,6 @@ export function GetStartedFlow({ onInFlowChange }: { onInFlowChange?: (inFlow: b
   const [pendingOther, setPendingOther] = useState<string | null>(null)
   const [otherInput, setOtherInput] = useState("")
   const [submitting, setSubmitting] = useState(false)
-  const [done, setDone] = useState(false)
-  const videoRef = useRef<HTMLDivElement>(null)
 
   // ── Resume guard ──────────────────────────────────────────────────────────
   // A lot of visitors leave the flow mid-way (accidental back-swipe on mobile,
@@ -119,6 +119,8 @@ export function GetStartedFlow({ onInFlowChange }: { onInFlowChange?: (inFlow: b
       if (!raw) return
       const saved = JSON.parse(raw)
       if (!saved || typeof saved !== "object") return
+      if (typeof saved.firstName === "string") setFirstName(saved.firstName)
+      if (typeof saved.lastName === "string") setLastName(saved.lastName)
       if (typeof saved.email === "string") setEmail(saved.email)
       if (saved.answers && typeof saved.answers === "object") setAnswers(saved.answers)
       if (Array.isArray(saved.tools)) setTools(saved.tools)
@@ -132,23 +134,19 @@ export function GetStartedFlow({ onInFlowChange }: { onInFlowChange?: (inFlow: b
 
   useEffect(() => {
     try {
-      if (done) {
-        sessionStorage.removeItem(STORAGE_KEY)
-        return
-      }
       // Nothing worth saving until they've at least entered an email.
       if (step === 0 && !email) return
-      sessionStorage.setItem(STORAGE_KEY, JSON.stringify({ email, answers, tools, step }))
+      sessionStorage.setItem(STORAGE_KEY, JSON.stringify({ firstName, lastName, email, answers, tools, step }))
     } catch {
       // ignore — persistence is best-effort
     }
-  }, [email, answers, tools, step, done])
+  }, [firstName, lastName, email, answers, tools, step])
 
   // Let the page know when the visitor is actively in a question step so it can
-  // strip the nav chrome. Email step (0) and the final demo screen keep full nav.
+  // strip the nav chrome. The email step (0) keeps full nav.
   useEffect(() => {
-    onInFlowChange?.(step >= 1 && !done)
-  }, [step, done, onInFlowChange])
+    onInFlowChange?.(step >= 1)
+  }, [step, onInFlowChange])
 
   function goBack() {
     setPendingOther(null)
@@ -172,7 +170,13 @@ export function GetStartedFlow({ onInFlowChange }: { onInFlowChange?: (inFlow: b
       await fetch("/api/qualify-lead", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, page: "get_started", stage: "partial" }),
+        body: JSON.stringify({
+          email,
+          firstName: firstName.trim(),
+          lastName: lastName.trim(),
+          page: "get_started",
+          stage: "partial",
+        }),
       })
     } catch {
       // ignore — advance regardless
@@ -234,9 +238,11 @@ export function GetStartedFlow({ onInFlowChange }: { onInFlowChange?: (inFlow: b
   async function finish(finalAnswers: Record<string, string> = answers) {
     setSubmitting(true)
 
+    // teamSize is no longer collected in this flow — its slot stays blank so the
+    // shared qualify-lead API (also used by the legacy demo gate) keeps working.
     const orderedAnswers = [
       finalAnswers.role ?? "",
-      finalAnswers.teamSize ?? "",
+      "",
       finalAnswers.challenge ?? "",
       finalAnswers.timeline ?? "",
       finalAnswers.budget ?? "",
@@ -248,21 +254,28 @@ export function GetStartedFlow({ onInFlowChange }: { onInFlowChange?: (inFlow: b
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           email,
+          firstName: firstName.trim(),
+          lastName: lastName.trim(),
           answers: orderedAnswers,
+          hours: finalAnswers.hours ?? "",
           tools,
           page: "get_started",
           stage: "complete",
         }),
       })
     } catch {
-      // non-blocking — reveal the demo regardless
+      // non-blocking — send them to the onboarding page regardless
     }
 
-    setDone(true)
-    setSubmitting(false)
-    setTimeout(() => {
-      videoRef.current?.scrollIntoView({ behavior: "smooth", block: "start" })
-    }, 100)
+    // Clear the resume snapshot so a completed visitor doesn't get dropped back
+    // into a half-finished flow, then hand off to the real onboarding page (this
+    // navigation is what registers a funnel-completion pageview).
+    try {
+      sessionStorage.removeItem(STORAGE_KEY)
+    } catch {
+      // ignore
+    }
+    router.push(ONBOARDING_PATH)
   }
 
   const questionIndex = step - 1 // step 1 => QUESTIONS[0]
@@ -280,8 +293,7 @@ export function GetStartedFlow({ onInFlowChange }: { onInFlowChange?: (inFlow: b
   return (
     <div className="flex flex-col items-center px-4 sm:px-6 pb-24">
       {/* ── Flow ── */}
-      {!done && (
-        <div className="w-full max-w-2xl pt-20 sm:pt-28">
+      <div className="w-full max-w-2xl pt-20 sm:pt-28">
           {/* Back button */}
           {step > 0 && (
             <button
@@ -322,10 +334,37 @@ export function GetStartedFlow({ onInFlowChange }: { onInFlowChange?: (inFlow: b
                 Answer a few quick questions and we'll show you exactly what your agent can do. Where should we send the details?
               </p>
               <form onSubmit={handleEmailSubmit} className="space-y-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="relative">
+                    <User className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+                    <input
+                      type="text"
+                      autoComplete="given-name"
+                      placeholder="First name"
+                      value={firstName}
+                      onChange={e => setFirstName(e.target.value)}
+                      className="w-full pl-11 pr-4 py-4 rounded-2xl border border-slate-200 bg-white text-slate-800 placeholder-slate-400 text-base focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary transition-all shadow-sm"
+                      required
+                    />
+                  </div>
+                  <div className="relative">
+                    <User className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+                    <input
+                      type="text"
+                      autoComplete="family-name"
+                      placeholder="Surname"
+                      value={lastName}
+                      onChange={e => setLastName(e.target.value)}
+                      className="w-full pl-11 pr-4 py-4 rounded-2xl border border-slate-200 bg-white text-slate-800 placeholder-slate-400 text-base focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary transition-all shadow-sm"
+                      required
+                    />
+                  </div>
+                </div>
                 <div className="relative">
                   <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
                   <input
                     type="email"
+                    autoComplete="email"
                     placeholder="you@company.com"
                     value={email}
                     onChange={e => setEmail(e.target.value)}
@@ -526,80 +565,7 @@ export function GetStartedFlow({ onInFlowChange }: { onInFlowChange?: (inFlow: b
               )}
             </div>
           )}
-        </div>
-      )}
-
-      {/* ── Result: demo video + Book Demo (everyone) ── */}
-      {done && (
-        <div ref={videoRef} className="w-full max-w-4xl pt-20 sm:pt-28 animate-in fade-in duration-500">
-          <div className="text-center mb-8">
-            <p className="text-xs font-semibold tracking-widest uppercase text-primary mb-3">Your agent, in action</p>
-            <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 text-balance mb-6">
-              Here's what we can build for you
-            </h2>
-            <a
-              href={ONBOARDING_CALENDAR_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="relative overflow-hidden group inline-flex items-center justify-center gap-2 bg-linear-to-r from-primary to-violet-500 text-white font-semibold text-base px-8 py-4 rounded-2xl shadow-lg shadow-primary/30 hover:shadow-primary/50 transition-all"
-            >
-              <span className="absolute inset-0 bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-in-out" />
-              <span className="relative flex items-center gap-2">
-                <CalendarDays className="w-5 h-5" />
-                Book your onboarding call
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
-              </span>
-            </a>
-            <p className="mt-3 text-sm text-slate-400">Or watch the 90-second demo below first</p>
-          </div>
-
-          {/* 16:9 iframe */}
-          <div className="w-full aspect-video rounded-2xl overflow-hidden shadow-2xl shadow-slate-200 border border-slate-200">
-            <iframe
-              src={`${DEMO_VIDEO_URL}?autoplay=1&rel=0`}
-              title="Talk to Me Data — Product Demo"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-              className="w-full h-full"
-            />
-          </div>
-
-          {/* Post-video CTAs */}
-          <div className="mt-16 rounded-3xl bg-linear-to-br from-primary via-blue-600 to-violet-600 relative overflow-hidden px-8 py-14 text-center">
-            <div className="absolute inset-0 pointer-events-none">
-              <div className="absolute -top-16 -right-16 w-64 h-64 bg-violet-400/20 rounded-full blur-3xl" />
-              <div className="absolute -bottom-16 -left-16 w-64 h-64 bg-blue-300/15 rounded-full blur-3xl" />
-            </div>
-            <div className="relative">
-              <h3 className="text-2xl sm:text-3xl font-bold text-white mb-3 text-balance">
-                Ready to talk about your workflow?
-              </h3>
-              <p className="text-white/70 mb-8 max-w-md mx-auto">
-                Book a free 20-minute call and we'll tell you exactly what your agent can do — API costs, integrations, and hosting included.
-              </p>
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                <Link
-                  href="/book-demo"
-                  className="relative overflow-hidden group inline-flex items-center gap-2 bg-white text-primary font-bold px-8 py-4 rounded-xl text-base shadow-2xl shadow-black/20 hover:shadow-black/30 transition-all"
-                >
-                  <span className="absolute inset-0 bg-linear-to-r from-transparent via-primary/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-in-out" />
-                  <span className="relative flex items-center gap-2">
-                    Book a free call <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
-                  </span>
-                </Link>
-                <a
-                  href="mailto:nas@talktomedata.com"
-                  className="inline-flex items-center gap-2 text-white/80 hover:text-white font-semibold text-sm transition-colors"
-                >
-                  <Mail className="w-4 h-4" />
-                  Email a question
-                </a>
-              </div>
-              <p className="text-white/40 text-xs mt-6">Free call · No commitment · Built for you</p>
-            </div>
-          </div>
-        </div>
-      )}
+      </div>
     </div>
   )
 }

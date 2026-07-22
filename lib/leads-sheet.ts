@@ -1,9 +1,11 @@
 import { google, sheets_v4 } from 'googleapis'
 
-// Leads live in Sheet1, columns A–J:
+// Leads live in Sheet1, columns A–M:
 // A timestamp · B email · C role · D teamSize · E challenge · F timeline
 // G budget · H score (1–10) · I page/source · J tools
-export const LEADS_RANGE = 'Sheet1!A:J'
+// K firstName · L lastName · M hoursPerWeek
+// (K–M were appended so existing A–J columns/formulas stay put.)
+export const LEADS_RANGE = 'Sheet1!A:M'
 
 export type LeadFields = {
   email: string
@@ -15,9 +17,12 @@ export type LeadFields = {
   score?: number | string
   page: string
   tools?: string
+  firstName?: string
+  lastName?: string
+  hours?: string
 }
 
-// Builds a full A–J row (with an ISO timestamp) from named fields, leaving any
+// Builds a full A–M row (with an ISO timestamp) from named fields, leaving any
 // omitted column blank. Keeps the column order in one place for every caller.
 export function buildLeadRow(f: LeadFields): string[] {
   const score = f.score === undefined || f.score === '' ? '' : String(f.score)
@@ -32,6 +37,9 @@ export function buildLeadRow(f: LeadFields): string[] {
     score,
     f.page,
     f.tools ?? '',
+    f.firstName ?? '',
+    f.lastName ?? '',
+    f.hours ?? '',
   ]
 }
 
@@ -88,7 +96,7 @@ export async function findLeadRowByEmail(email: string): Promise<string | undefi
   for (let i = rows.length - 1; i >= 1; i--) {
     if ((rows[i]?.[0] ?? '').trim().toLowerCase() === target) {
       const rowNumber = i + 1
-      return `Sheet1!A${rowNumber}:J${rowNumber}`
+      return `Sheet1!A${rowNumber}:M${rowNumber}`
     }
   }
   return undefined
