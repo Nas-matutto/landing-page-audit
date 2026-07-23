@@ -7,39 +7,38 @@ import { ContainerScroll, CardSticky } from "@/components/ui/cards-stack"
 const USE_CASES = [
   {
     id: "uc-1",
-    title: "Customer Support Agent",
+    title: "AI Social Media Agent",
     description:
-      "Handles FAQs, tracks orders, and escalates complex issues — without a support team on call. Available 24/7 across every channel your customers use.",
+      "Plans, writes, and posts content on your behalf — studying what performs, generating on-brand ideas, and keeping your feed active without you lifting a finger.",
+    href: "/agents/social-media",
   },
   {
     id: "uc-2",
-    title: "Lead Qualification Agent",
+    title: "Lead Finder Agent",
     description:
-      "Engages visitors, asks qualifying questions, and routes hot leads directly to your inbox. Your sales team only speaks to prospects who are ready to buy.",
+      "Finds companies that match your ideal customer, researches each one, and hands your sales team a steady stream of qualified, ready-to-contact prospects — no cold lists.",
+    href: "/agents/lead-finder",
   },
   {
     id: "uc-3",
-    title: "Booking & Scheduling Agent",
+    title: "SEO & GEO Agent",
     description:
-      "Lets clients self-book, reschedule, and get reminders — synced to your calendar automatically. No back-and-forth, no missed appointments.",
+      "Reads your Search Console, spots the keywords you can win, and writes and publishes content that ranks on Google and gets cited by AI answer engines — on autopilot.",
+    href: "/agents/seo-geo",
   },
   {
     id: "uc-4",
-    title: "Document Q&A Agent",
+    title: "Invoice Processing Agent",
     description:
-      "Upload your manuals, policies, or reports. Your agent answers staff or client questions instantly — always grounded in your actual documents.",
+      "Reads any invoice — PDF, scan, or photo — extracts every line item, and enters it straight into your accounting software. You just review and approve.",
+    href: "/agents/invoice-processing",
   },
   {
     id: "uc-5",
-    title: "Order Tracking Agent",
+    title: "Customize to Any Workflow",
     description:
-      "Gives customers real-time order status, shipping updates, and return instructions automatically — reducing support tickets and keeping customers informed.",
-  },
-  {
-    id: "uc-6",
-    title: "Something Else? We'll Build It.",
-    description:
-      "Every business has workflows that don't fit a template. Tell us what you need to automate and we'll design a custom agent built specifically around your process.",
+      "Every business has workflows that don't fit a template. Tell us what you want to automate and we'll design a custom agent built around your exact process.",
+    href: "/get-started",
   },
 ]
 
@@ -61,7 +60,7 @@ export function WhatWeAnalyzeSection() {
               <span className="bg-linear-to-r from-primary to-violet-500 bg-clip-text text-transparent">use it for</span>
             </h2>
             <p className="text-slate-500 text-base leading-relaxed max-w-sm mb-8">
-              From answering customer questions to qualifying leads — any repetitive workflow is a candidate for an AI agent.
+              From planning your social content to finding new customers — these are agents we already build, and any workflow can become one.
             </p>
             <button
               onClick={() => router.push("/agents")}
@@ -81,10 +80,11 @@ export function WhatWeAnalyzeSection() {
                 key={uc.id}
                 index={index + 7}
                 incrementY={14}
-                className="rounded-2xl border border-slate-200 bg-white p-8 shadow-sm"
+                onClick={() => router.push(uc.href)}
+                className="group/card cursor-pointer rounded-2xl border border-slate-200 bg-white p-8 shadow-sm transition-all hover:border-primary/40 hover:shadow-md"
               >
                 <div className="flex items-start justify-between gap-4 mb-4">
-                  <h3 className="text-xl font-bold tracking-tight text-slate-900">
+                  <h3 className="text-xl font-bold tracking-tight text-slate-900 group-hover/card:text-primary transition-colors">
                     {uc.title}
                   </h3>
                   <span className="text-2xl font-bold text-primary/30 shrink-0">
@@ -94,13 +94,10 @@ export function WhatWeAnalyzeSection() {
                 <p className="text-slate-500 text-sm leading-relaxed mb-6">
                   {uc.description}
                 </p>
-                <button
-                  onClick={() => router.push("/book-demo")}
-                  className="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:text-primary/80 transition-colors group"
-                >
-                  Learn more
-                  <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
-                </button>
+                <span className="inline-flex items-center gap-2 text-sm font-semibold text-primary group-hover/card:gap-3 transition-all">
+                  {uc.href === "/get-started" ? "Build yours" : "See the agent"}
+                  <ArrowRight className="w-4 h-4" />
+                </span>
               </CardSticky>
             ))}
           </ContainerScroll>
