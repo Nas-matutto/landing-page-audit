@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { appendLeadRow, updateLeadRow, buildLeadRow, findLeadRowByEmail } from '@/lib/leads-sheet'
+import { isLikelyBot } from '@/lib/bot-filter'
 
 const SCORE_MAP = {
   role:      { 'Founder / CEO': 3, 'Operations or Finance': 2, 'Marketing or Sales': 2, 'IT / Developer': 1, 'Other': 0 } as Record<string, number>,
@@ -25,29 +26,6 @@ const CHAT_MAX = maxOf(SCORE_MAP.teamSize) + maxOf(SCORE_MAP.timeline)
 function to10(raw: number, max: number): number {
   if (max <= 0) return 1
   return Math.max(1, Math.min(10, Math.round(1 + (raw / max) * 9)))
-}
-
-// A single field reads as machine-random if it's long, unbroken (no space),
-// vowel-starved, and sprinkled with internal capitals — e.g. "XWZUMpVddXigHXzpI".
-// Thresholds are deliberately conservative so real names (even long or unusual
-// ones like "Konstantinos" or "McDonald") pass through.
-function looksRandom(s?: string): boolean {
-  if (!s) return false
-  const v = s.trim()
-  if (v.length < 12 || v.includes(' ')) return false
-  const letters = v.replace(/[^a-zA-Z]/g, '')
-  if (letters.length < 12) return false
-  const vowels = (v.match(/[aeiouAEIOU]/g) || []).length
-  const vowelRatio = vowels / letters.length
-  const internalCaps = (v.slice(1).match(/[A-Z]/g) || []).length
-  return vowelRatio < 0.25 && internalCaps >= 2
-}
-
-// hp = honeypot: a hidden form field. A human leaves it empty; bots that fill
-// every input give themselves away.
-function isLikelyBot(hp?: string, firstName?: string, lastName?: string): boolean {
-  if (typeof hp === 'string' && hp.trim() !== '') return true
-  return looksRandom(firstName) || looksRandom(lastName)
 }
 
 async function addToBrevo(

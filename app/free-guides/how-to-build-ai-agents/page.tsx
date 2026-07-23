@@ -41,6 +41,9 @@ const areas = [
 ]
 
 function EmailForm() {
+  const [firstName, setFirstName] = useState("")
+  const [lastName, setLastName] = useState("")
+  const [botField, setBotField] = useState("") // honeypot
   const [email, setEmail] = useState("")
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle")
   const [errorMsg, setErrorMsg] = useState("")
@@ -56,7 +59,7 @@ function EmailForm() {
       const res = await fetch("/api/send-build-ai-agents-guide", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email }),
+        body: JSON.stringify({ email, firstName: firstName.trim(), lastName: lastName.trim(), hp: botField }),
       })
 
       const data = await res.json()
@@ -91,7 +94,39 @@ function EmailForm() {
 
   return (
     <>
-      <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3">
+      <form onSubmit={handleSubmit} className="flex flex-col gap-3">
+        {/* Honeypot — hidden from humans; bots that fill every field give themselves away. */}
+        <div aria-hidden="true" style={{ position: "absolute", left: "-9999px", width: 1, height: 1, overflow: "hidden" }}>
+          <input
+            type="text"
+            name="company_website"
+            tabIndex={-1}
+            autoComplete="off"
+            value={botField}
+            onChange={(e) => setBotField(e.target.value)}
+          />
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <input
+            type="text"
+            required
+            autoComplete="given-name"
+            placeholder="First name"
+            value={firstName}
+            onChange={(e) => setFirstName(e.target.value)}
+            className="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm text-slate-800 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition"
+          />
+          <input
+            type="text"
+            required
+            autoComplete="family-name"
+            placeholder="Surname"
+            value={lastName}
+            onChange={(e) => setLastName(e.target.value)}
+            className="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm text-slate-800 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition"
+          />
+        </div>
+        <div className="flex flex-col sm:flex-row gap-3">
         <input
           type="email"
           required
@@ -108,6 +143,7 @@ function EmailForm() {
         >
           {status === "loading" ? "Sending…" : "Send me the guide →"}
         </button>
+        </div>
       </form>
       {status === "error" && (
         <p className="text-red-500 text-sm mt-3">{errorMsg}</p>

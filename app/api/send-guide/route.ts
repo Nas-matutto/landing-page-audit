@@ -3,14 +3,21 @@ import { Resend } from 'resend'
 import fs from 'fs'
 import path from 'path'
 import { appendLeadRow, buildLeadRow } from '@/lib/leads-sheet'
+import { isLikelyBot } from '@/lib/bot-filter'
 
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json()
-    const { email } = body
+    const { email, firstName, lastName, hp } = body
 
     if (!email || !email.includes('@')) {
       return NextResponse.json({ error: 'Valid email is required' }, { status: 400 })
+    }
+
+    // Bot filter — a filled honeypot or machine-random name means a crawler.
+    // Accept (200) so it doesn't retry, but send no email and write nothing.
+    if (isLikelyBot(hp, firstName, lastName)) {
+      return NextResponse.json({ success: true })
     }
 
     // Brevo — add contact to list 5
@@ -28,7 +35,11 @@ export async function POST(request: NextRequest) {
           email,
           updateEnabled: true,
           listIds: [5],
-          attributes: { SOURCE: 'guide_automation_checklist' },
+          attributes: {
+            SOURCE: 'guide_automation_checklist',
+            ...(firstName ? { FIRSTNAME: firstName } : {}),
+            ...(lastName ? { LASTNAME: lastName } : {}),
+          },
         }),
       })
 
@@ -40,7 +51,7 @@ export async function POST(request: NextRequest) {
 
     // Google Sheets — add to the Leads sheet, noting which guide they downloaded
     await appendLeadRow(
-      buildLeadRow({ email, page: 'guide - Business Automation Checklist' })
+      buildLeadRow({ email, firstName, lastName, page: 'guide - Business Automation Checklist' })
     ).catch(err => console.error('Sheets error (guide):', err))
 
     // Resend — send email with PDF attached
