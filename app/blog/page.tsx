@@ -25,6 +25,18 @@ const blogPosts = [
     featured: true,
   },
   {
+    slug: "how-to-automate-data-entry-and-reporting-with-ai-agent",
+    title: "How to Automate Data Entry and Reporting With an AI Agent (With the Exact Prompt)",
+    excerpt:
+      "An AI agent that pulls data from your tools, cleans and structures it, enters it into Google Sheets or your CRM, and generates ready-to-share reports on a schedule. Includes the full prompt to copy.",
+    category: "AI Agents",
+    date: "July 23, 2026",
+    readTime: "10 min read",
+    image: "/Data_entry_and_reporting.png",
+    author: "Nas",
+    featured: false,
+  },
+  {
     slug: "how-to-automate-customer-service-with-ai-agent",
     title: "How to Automate Customer Service With an AI Agent (With the Exact Prompt)",
     excerpt:
