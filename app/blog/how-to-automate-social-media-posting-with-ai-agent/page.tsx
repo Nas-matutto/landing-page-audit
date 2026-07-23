@@ -7,7 +7,7 @@ import { Calendar, Clock, ArrowLeft, Copy, Check, CheckCircle2, ChevronDown, Bot
 import Image from "next/image"
 import Link from "next/link"
 
-const AGENT_PROMPT = `You are the autonomous social media agent for [Company]. You run the entire content cycle end to end — analyse, plan, create, and deliver — without needing a human to prompt each step.
+const AGENT_PROMPT = `You are the autonomous social media agent for [Company]. You run the entire content cycle end to end - analyse, plan, create, and deliver - without needing a human to prompt each step.
 
 STEP 1 - CONNECT & ANALYSE YOUR CHANNELS
 Read the connected accounts (Instagram, TikTok, LinkedIn, YouTube, X, Facebook). Learn the brand voice, the best-performing formats and hooks, the posting cadence, and which topics drive reach, saves, and engagement.
@@ -25,12 +25,12 @@ STEP 5 - DELIVER TO THE FOLDER
 Save every finished asset and caption into the shared folder (e.g. Google Drive), organised by platform and date, so all that is left for a human to do is hit post. Nothing is published without approval.
 
 STEP 6 - LEARN & REFINE
-After posts go live, read the results, compare them against the plan, and update your understanding of what works. Each cycle sharpens the plan — better hooks, better timing, better formats — so performance compounds over time.`
+After posts go live, read the results, compare them against the plan, and update your understanding of what works. EThe agent gets progressively better at writting hooks, it gets better timing, better formats, etc, making performance compounds over time.`
 
 const faqs = [
   {
     q: "Which platforms does the social media agent support?",
-    a: "All the major ones — Instagram, TikTok, LinkedIn, YouTube, X (Twitter), and Facebook. It adapts each post to the platform's native format and aspect ratio, so a short-form video, a carousel, and a thread are each built the way that platform expects rather than copy-pasted across all of them.",
+    a: "All the major ones, including Instagram, TikTok, LinkedIn, YouTube, X (Twitter), and Facebook. It adapts each post to the platform's native format and aspect ratio, so a short-form video, a carousel, and a thread are each built the way that platform expects rather than copy-pasted across all of them.",
   },
   {
     q: "Does it actually create the images and videos, or just the text?",
@@ -38,7 +38,7 @@ const faqs = [
   },
   {
     q: "Does it post automatically, or do I stay in control?",
-    a: "By default it does everything up to the moment of publishing and saves the finished posts into your folder, so a human just reviews and hits post. If you'd rather it publish directly on a schedule, it can — you choose how much control to keep.",
+    a: "By default it does everything up to the moment of publishing and saves the finished posts into your folder, so a human just reviews and hits post. If you'd rather it publish directly on a schedule, it can - you choose how much control to keep.",
   },
   {
     q: "How does it know what content will perform?",
@@ -50,7 +50,7 @@ const faqs = [
   },
   {
     q: "Can Talk to Me Data build and host this agent for me?",
-    a: "Yes. We build, connect, and host the agent on our infrastructure — the channel connections, the model, the content generation, and the delivery to your folder — so there's nothing to configure or maintain on your side. Book a demo and we'll get you onboarded in days.",
+    a: "Yes. We build, connect, and host the agent on our infrastructure, including the channel connections, the model, the content generation, and the delivery to your folder - so there's nothing to configure or maintain on your side. Book a demo and we'll get you onboarded in days.",
   },
 ]
 
@@ -230,7 +230,7 @@ export default function AutomateSocialMediaPostingPage() {
                   </p>
                   <p>
                     This guide shows you how to automate social media posting with an AI agent that runs the entire
-                    content cycle — end to end, and largely on its own. It connects to your channels and studies them,
+                    content cycle - end to end, and largely on its own. It connects to your channels and studies them,
                     analyses your competitors, builds a data-driven content plan, creates the actual posts (images,
                     videos, and captions) for every platform, and drops the finished work into a folder so all you do is
                     hit publish. Then it watches what happens and gets better. If you&apos;re new to the concept, our
@@ -244,9 +244,9 @@ export default function AutomateSocialMediaPostingPage() {
                     <ul className="list-disc pl-6 space-y-2 text-foreground">
                       <li>The agent connects to your channels and learns your voice, formats, and what already performs</li>
                       <li>It analyses competitors and the niche to find winning hooks, formats, and content gaps</li>
-                      <li>It produces a <strong>data-driven content plan</strong> — themes, formats, and a schedule per platform</li>
+                      <li>It produces a <strong>data-driven content plan</strong> - themes, formats, and a schedule per platform</li>
                       <li>It <strong>creates the posts</strong>: images, videos, and text with ready-to-use captions, tailored to each platform</li>
-                      <li>It saves everything to <strong>your folder of choice</strong> — you just review and post</li>
+                      <li>It saves everything to <strong>your folder of choice</strong> - you just review and post</li>
                       <li>It <strong>learns as it goes</strong>, refining the plan every cycle so results compound</li>
                       <li>It runs <strong>independently, with no human intervention</strong> needed between steps</li>
                     </ul>
@@ -254,7 +254,7 @@ export default function AutomateSocialMediaPostingPage() {
 
                   <h2 className="text-3xl font-bold text-foreground mt-12 mb-4">The Problem With Doing Social Media Manually</h2>
                   <p>
-                    Manual social media isn&apos;t hard because any single post is hard — it&apos;s hard because it never
+                    Manual social media isn&apos;t hard because any single post is hard - it&apos;s hard because it never
                     ends. Every week resets the pressure to come up with fresh ideas, research what&apos;s trending,
                     design the visuals, shoot or edit the video, write captions that actually hook, and then remember to
                     post it all at the right time on the right platform. Miss a week and the algorithm punishes you;
@@ -267,24 +267,24 @@ export default function AutomateSocialMediaPostingPage() {
                     one overstretched person does all five badly, or the work simply doesn&apos;t happen.
                   </p>
                   <p>
-                    The usual &quot;automation&quot; — a scheduling tool — only solves the smallest part of the problem.
+                    The usual &quot;automation&quot; (like a scheduling tool) only solves the smallest part of the problem.
                     It queues posts you still have to invent, design, and write yourself. An AI agent is different: it
-                    doesn&apos;t just schedule the work, it <em>does</em> the work — the research, the plan, the creation,
-                    and the learning — and it does it continuously without waiting to be told. For the wider picture of
+                    doesn&apos;t just schedule the work, it <em>does</em> the work - the research, the plan, the creation,
+                    and the learning - and it does it continuously without waiting to be told. For the wider picture of
                     what that unlocks, see our guide on <Link href="/blog/ai-agents-for-small-business" className="text-primary hover:underline">AI agents for small business</Link>.
                   </p>
 
                   <h2 className="text-3xl font-bold text-foreground mt-12 mb-4">How the Social Media Agent Works, End to End</h2>
                   <p>
                     The agent behind <Link href="/agents/social-media" className="text-primary hover:underline">Talk to Me Data&apos;s social media automation</Link> runs a full, repeating cycle. It moves through six stages on its own — analysing, planning, creating,
-                    delivering, and learning — and comes back around sharper each time. Here is exactly what happens at
+                    delivering, and learning - and comes back around sharper each time. Here is exactly what happens at
                     each stage.
                   </p>
 
                   {/* Step 1 */}
-                  <h3 className="text-2xl font-bold text-foreground mt-10 mb-3">Step 1 — It connects to your channels and analyses them</h3>
+                  <h3 className="text-2xl font-bold text-foreground mt-10 mb-3">Step 1: It connects to your channels and analyses them</h3>
                   <p>
-                    First, the agent is given access to your social accounts — Instagram, TikTok, LinkedIn, YouTube, X,
+                    First, the agent is given access to your social accounts - Instagram, TikTok, LinkedIn, YouTube, X,
                     Facebook, or whichever you use. Before it creates anything, it studies what you already have. It
                     reads your history to understand your brand voice and visual style, and it looks at the numbers to
                     learn what genuinely works for <em>your</em> audience.
@@ -302,10 +302,10 @@ export default function AutomateSocialMediaPostingPage() {
                   </p>
 
                   {/* Step 2 */}
-                  <h3 className="text-2xl font-bold text-foreground mt-10 mb-3">Step 2 — It analyses your competitors&apos; pages and top-performing posts</h3>
+                  <h3 className="text-2xl font-bold text-foreground mt-10 mb-3">Step 2: It analyses your competitors&apos; pages and top-performing posts</h3>
                   <p>
                     Next, the agent looks outward. It studies competitor and adjacent accounts in your niche to see
-                    what&apos;s working beyond your own feed — because the fastest way to know what will land is to see
+                    what&apos;s working beyond your own feed - because the fastest way to know what will land is to see
                     what already has. It surfaces their best-performing posts and reverse-engineers <em>why</em> they
                     worked: the hook, the format, the pacing, the topic.
                   </p>
@@ -317,15 +317,15 @@ export default function AutomateSocialMediaPostingPage() {
                     <li>benchmarks for what &quot;good&quot; looks like in your category.</li>
                   </ul>
                   <p>
-                    The result is a picture of the whole playing field — your strengths plus the opportunities around you
-                    — rather than a feed built in a vacuum.
+                    The result is a picture of the whole playing field - your strengths plus the opportunities around you
+                    - rather than a feed built in a vacuum.
                   </p>
 
                   {/* Step 3 */}
-                  <h3 className="text-2xl font-bold text-foreground mt-10 mb-3">Step 3 — It provides a data-driven content plan</h3>
+                  <h3 className="text-2xl font-bold text-foreground mt-10 mb-3">Step 3: It provides a data-driven content plan</h3>
                   <p>
                     With both reads in hand, the agent turns insight into a concrete plan for the period ahead. This
-                    isn&apos;t a vague list of ideas — it&apos;s a real calendar with a rationale behind every slot. For
+                    isn&apos;t a vague list of ideas - it&apos;s a real calendar with a rationale behind every slot. For
                     each post it decides the theme, the format, the platform, the timing, and the goal, and it can tell
                     you why each choice was made based on the data.
                   </p>
@@ -334,7 +334,7 @@ export default function AutomateSocialMediaPostingPage() {
                     <li>the topic and angle, mapped to a theme that&apos;s proven to perform;</li>
                     <li>the format and platform it&apos;s built for, and why;</li>
                     <li>the day and time to post it;</li>
-                    <li>the objective — reach, saves, engagement, clicks, or conversions.</li>
+                    <li>the objective is reach, saves, engagement, clicks, or conversions.</li>
                   </ul>
                   <p>
                     You get a coherent, defensible strategy for the weeks ahead in minutes, instead of staring at a blank
@@ -342,7 +342,7 @@ export default function AutomateSocialMediaPostingPage() {
                   </p>
 
                   {/* Step 4 */}
-                  <h3 className="text-2xl font-bold text-foreground mt-10 mb-3">Step 4 — It builds the posts: images, videos, text, and captions for every platform</h3>
+                  <h3 className="text-2xl font-bold text-foreground mt-10 mb-3">Step 4: It builds the posts: images, videos, text, and captions for every platform</h3>
                   <p>
                     This is where most tools stop and the agent keeps going. It doesn&apos;t hand you a plan and wish you
                     luck — it produces the finished content. For every item in the plan it creates the actual assets, and
@@ -357,15 +357,15 @@ export default function AutomateSocialMediaPostingPage() {
                     <li><strong>Platform-native variants</strong> — the same idea adapted to each platform&apos;s format and aspect ratio.</li>
                   </ul>
                   <p>
-                    What you end up with is a set of complete, publish-ready posts — not a brief, not a mood board, but
+                    What you end up with is a set of complete, publish-ready posts. Not a brief, not a mood board, but
                     the real thing, captioned and ready to go.
                   </p>
 
                   {/* Step 5 */}
-                  <h3 className="text-2xl font-bold text-foreground mt-10 mb-3">Step 5 — It saves the posts to your folder — you just post</h3>
+                  <h3 className="text-2xl font-bold text-foreground mt-10 mb-3">Step 5: It saves the posts to your folder — you just post</h3>
                   <p>
-                    Every finished asset and caption is saved directly into the folder of your choice — a Google Drive
-                    folder, for example — neatly organised by platform and date. Nothing goes out without your say-so, so
+                    Every finished asset and caption is saved directly into the folder of your choice - a Google Drive
+                    folder, for example - neatly organised by platform and date. Nothing goes out without your say-so, so
                     you keep full editorial control while skipping every step that came before it. When you sit down to
                     post, the work is simply <em>there</em>, done.
                   </p>
@@ -376,7 +376,7 @@ export default function AutomateSocialMediaPostingPage() {
                   </p>
 
                   {/* Step 6 */}
-                  <h3 className="text-2xl font-bold text-foreground mt-10 mb-3">Step 6 — It keeps learning and refines the plan as it goes</h3>
+                  <h3 className="text-2xl font-bold text-foreground mt-10 mb-3">Step 6: It keeps learning and refines the plan as it goes</h3>
                   <p>
                     The cycle doesn&apos;t end at publishing — that&apos;s where the agent gets smarter. Once posts are
                     live, it reads the results, compares them against what the plan predicted, and updates its model of
@@ -396,12 +396,12 @@ export default function AutomateSocialMediaPostingPage() {
                         <Bot className="w-5 h-5" />
                       </div>
                       <div>
-                        <h4 className="text-base font-bold text-foreground mb-1.5">It runs independently — no human in the loop</h4>
+                        <h4 className="text-base font-bold text-foreground mb-1.5">It runs independently - no human in the loop</h4>
                         <p className="text-sm text-muted-foreground leading-relaxed">
                           The defining feature of this agent is autonomy. It moves from analysing your channels, to
                           studying competitors, to planning, to creating, to delivering, and back to learning
                           <strong className="text-foreground"> without a person prompting each step</strong>. You&apos;re
-                          not feeding it briefs or nudging it along — it drives the whole cycle itself and simply hands
+                          not feeding it briefs or nudging it along - it drives the whole cycle itself and simply hands
                           you finished posts. The only human touch required is the final approval before publishing, and
                           even that is optional.
                         </p>
@@ -444,7 +444,7 @@ export default function AutomateSocialMediaPostingPage() {
                   <div className="rounded-xl border-2 border-primary/20 bg-primary/5 p-5">
                     <p className="font-semibold text-foreground mb-1 text-sm">Don&apos;t want to wire up the channels, model, and delivery yourself?</p>
                     <p className="text-sm text-muted-foreground mb-3">
-                      Talk to Me Data builds, connects, and hosts this agent for you — the channel connections, the model, the content generation, and the delivery to your folder. Nothing to configure or maintain on your side.
+                      Talk to Me Data builds, connects, and hosts this agent for you - the channel connections, the model, the content generation, and the delivery to your folder. Nothing to configure or maintain on your side.
                     </p>
                     <Link href="/agents/social-media" className="inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:underline">
                       See the social media agent →

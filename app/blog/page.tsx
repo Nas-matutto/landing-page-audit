@@ -230,7 +230,6 @@ const blogPosts = [
   },
 ]
 
-const categories = ["All", "AI Agents", "Sales Intelligence", "Lead Generation", "Conversion", "Performance", "AI & Conversion", "Website Optimization"]
 
 export default function BlogPage() {
   return (
@@ -250,22 +249,6 @@ export default function BlogPage() {
             <p className="text-lg sm:text-xl text-slate-500 text-pretty leading-relaxed">
               Practical guides on building, deploying and automating AI agents for your business.
             </p>
-          </div>
-
-          {/* Category Filter */}
-          <div className="flex flex-wrap justify-center gap-2 mb-12">
-            {categories.map((category) => (
-              <button
-                key={category}
-                className={`px-4 py-2 rounded-full text-sm font-medium transition-all cursor-pointer ${
-                  category === "All"
-                    ? "bg-primary text-white shadow-sm shadow-primary/30"
-                    : "bg-slate-100 text-slate-600 hover:bg-slate-200"
-                }`}
-              >
-                {category}
-              </button>
-            ))}
           </div>
 
           {/* Featured Post */}

@@ -101,7 +101,7 @@ export default function BookDemoPage() {
                 <div className="mt-6 pt-6 border-t border-slate-100">
                   <p className="text-sm text-slate-500 mb-3 text-center font-medium">Want to watch a video Demo first?</p>
                   <Link
-                    href="/watch-demo"
+                    href="/get-started"
                     className="relative overflow-hidden group inline-flex items-center justify-center gap-2 w-full bg-linear-to-r from-primary to-violet-500 text-white font-semibold text-sm px-6 py-3 rounded-xl shadow-md shadow-primary/25 hover:shadow-primary/40 transition-all"
                   >
                     <span className="absolute inset-0 bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-in-out" />

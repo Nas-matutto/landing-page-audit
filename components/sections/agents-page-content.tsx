@@ -367,7 +367,7 @@ export function AgentsPageContent() {
                 </div>
 
                 <button
-                  onClick={() => router.push("/book-demo")}
+                  onClick={() => router.push("/get-started")}
                   className="relative overflow-hidden group mt-8 flex items-center gap-2 bg-linear-to-r from-primary to-violet-500 text-white font-semibold text-sm px-6 py-3 rounded-xl shadow-md shadow-primary/25 hover:shadow-primary/40 hover:shadow-lg transition-all cursor-pointer"
                 >
                   <span className="absolute inset-0 bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-in-out" />
