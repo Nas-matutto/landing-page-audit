@@ -25,6 +25,18 @@ const blogPosts = [
     featured: true,
   },
   {
+    slug: "how-to-automate-social-media-posting-with-ai-agent",
+    title: "How to Automate Social Media Posting with an AI Agent",
+    excerpt:
+      "A step-by-step guide to an AI agent that analyzes your channels and competitors, builds a data-driven content plan, and creates the images, videos, and captions for every platform — then saves them to your folder. Runs independently, no human intervention.",
+    category: "AI Agents",
+    date: "July 23, 2026",
+    readTime: "13 min read",
+    image: "/blog/social-media-ai-agent-cover.png",
+    author: "Nas",
+    featured: false,
+  },
+  {
     slug: "how-to-automate-data-entry-and-reporting-with-ai-agent",
     title: "How to Automate Data Entry and Reporting With an AI Agent (With the Exact Prompt)",
     excerpt:

@@ -130,6 +130,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
     // Blog posts
     {
+      url: `${baseUrl}/blog/how-to-automate-social-media-posting-with-ai-agent`,
+      lastModified: new Date('2026-07-23'),
+      changeFrequency: 'monthly',
+      priority: 0.85,
+    },
+    {
       url: `${baseUrl}/blog/how-to-automate-data-entry-and-reporting-with-ai-agent`,
       lastModified: new Date('2026-07-23'),
       changeFrequency: 'monthly',
