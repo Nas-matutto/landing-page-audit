@@ -97,6 +97,7 @@ export default function BrandGuidelinesPage() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const headingFileRef = useRef<HTMLInputElement>(null)
   const bodyFileRef = useRef<HTMLInputElement>(null)
+  const logoFileRef = useRef<HTMLInputElement>(null)
 
   const [phase, setPhase] = useState<Phase>("form")
 
@@ -115,6 +116,10 @@ export default function BrandGuidelinesPage() {
   const [bodyFont, setBodyFont] = useState("Inter")
   const [bodyName, setBodyName] = useState("Inter")
   const [bodyCustom, setBodyCustom] = useState(false)
+
+  // Logo (optional) — stored as a loaded image (its .src is a data URL, so the
+  // canvas stays untainted and exports/downloads work).
+  const [logoImg, setLogoImg] = useState<HTMLImageElement | null>(null)
 
   // Colors
   const [primaryHex, setPrimaryHex] = useState("#185FA5")
@@ -174,6 +179,17 @@ export default function BrandGuidelinesPage() {
     }
   }
 
+  function handleLogoUpload(file: File) {
+    const reader = new FileReader()
+    reader.onload = () => {
+      const img = new Image()
+      img.onload = () => setLogoImg(img)
+      img.onerror = () => alert("Sorry — that image couldn't be loaded. Try a PNG or JPG.")
+      img.src = reader.result as string
+    }
+    reader.readAsDataURL(file)
+  }
+
   const onFontSelect = (value: string, which: "heading" | "body") => {
     if (value === "__upload__") { (which === "heading" ? headingFileRef : bodyFileRef).current?.click(); return }
     if (which === "heading") { setHeadingFont(value); setHeadingName(value); setHeadingCustom(false) }
@@ -198,6 +214,23 @@ export default function BrandGuidelinesPage() {
     const hg = ctx.createLinearGradient(0, 0, CW, 248)
     hg.addColorStop(0, pr); hg.addColorStop(1, se)
     ctx.fillStyle = hg; ctx.fillRect(0, 0, CW, 248)
+
+    // Logo (optional) — white card, top-right. Reserves space so the brand name
+    // never runs underneath it.
+    let nameMaxW = contentW
+    if (logoImg && logoImg.width > 0 && logoImg.height > 0) {
+      const maxW = 200, maxH = 74
+      const ar = logoImg.width / logoImg.height
+      let lw = maxW, lh = lw / ar
+      if (lh > maxH) { lh = maxH; lw = lh * ar }
+      const padX = 18, padY = 16
+      const cardW = lw + padX * 2, cardH = lh + padY * 2
+      const cardX = CW - M - cardW, cardY = 40
+      roundRect(ctx, cardX, cardY, cardW, cardH, 14); ctx.fillStyle = "#ffffff"; ctx.fill()
+      ctx.drawImage(logoImg, cardX + padX, cardY + padY, lw, lh)
+      nameMaxW = cardX - M - 24
+    }
+
     ctx.textAlign = "left"; ctx.textBaseline = "alphabetic"
     ctx.fillStyle = "rgba(255,255,255,0.82)"; ctx.font = "700 13px system-ui,sans-serif"
     if ("letterSpacing" in ctx) (ctx as unknown as { letterSpacing: string }).letterSpacing = "3px"
@@ -205,9 +238,9 @@ export default function BrandGuidelinesPage() {
     if ("letterSpacing" in ctx) (ctx as unknown as { letterSpacing: string }).letterSpacing = "0px"
     let fs = 64
     ctx.font = `800 ${fs}px ${headF}`
-    while (ctx.measureText(brandName || "Your Brand").width > contentW && fs > 34) { fs -= 2; ctx.font = `800 ${fs}px ${headF}` }
-    ctx.fillStyle = "#ffffff"; ctx.fillText(ellipsize(ctx, brandName || "Your Brand", contentW), M, 152)
-    if (tagline) { ctx.font = `500 20px ${bodyF}`; ctx.fillStyle = "rgba(255,255,255,0.92)"; ctx.fillText(ellipsize(ctx, tagline, contentW), M, 196) }
+    while (ctx.measureText(brandName || "Your Brand").width > nameMaxW && fs > 32) { fs -= 2; ctx.font = `800 ${fs}px ${headF}` }
+    ctx.fillStyle = "#ffffff"; ctx.fillText(ellipsize(ctx, brandName || "Your Brand", nameMaxW), M, 152)
+    if (tagline) { ctx.font = `500 20px ${bodyF}`; ctx.fillStyle = "rgba(255,255,255,0.92)"; ctx.fillText(ellipsize(ctx, tagline, nameMaxW), M, 196) }
 
     const label = (y: number, t: string) => { ctx.font = "800 13px system-ui,sans-serif"; ctx.fillStyle = pr; ctx.textAlign = "left"; ctx.fillText(t.toUpperCase(), M, y) }
 
@@ -464,6 +497,28 @@ export default function BrandGuidelinesPage() {
                   <div>
                     <label className={labelCls}>What does your brand do? <span className="text-slate-300 font-normal">(optional — used as your body-copy sample)</span></label>
                     <input type="text" value={mission} onChange={e => setMission(e.target.value)} placeholder="We build websites that turn visitors into customers." className={inputCls} />
+                  </div>
+
+                  {/* Logo */}
+                  <div>
+                    <label className={labelCls}>Logo <span className="text-slate-300 font-normal">(optional — PNG or JPG works best)</span></label>
+                    {logoImg ? (
+                      <div className="flex items-center gap-3">
+                        <div className="w-24 h-16 rounded-lg border border-slate-200 bg-slate-50 flex items-center justify-center overflow-hidden shrink-0">
+                          {/* eslint-disable-next-line @next/next/no-img-element */}
+                          <img src={logoImg.src} alt="Your logo preview" className="max-w-full max-h-full object-contain" />
+                        </div>
+                        <button type="button" onClick={() => logoFileRef.current?.click()} className="text-sm font-semibold text-primary hover:underline cursor-pointer">Replace</button>
+                        <button type="button" onClick={() => setLogoImg(null)} className="text-sm text-slate-400 hover:text-red-400 transition-colors cursor-pointer">Remove</button>
+                      </div>
+                    ) : (
+                      <button type="button" onClick={() => logoFileRef.current?.click()}
+                        className="w-full flex items-center justify-center gap-2 px-4 py-4 border-2 border-dashed border-slate-200 rounded-lg text-sm text-slate-500 hover:border-primary hover:text-primary transition-colors cursor-pointer">
+                        <Upload className="w-4 h-4" /> Upload your logo
+                      </button>
+                    )}
+                    <input ref={logoFileRef} type="file" accept="image/png,image/jpeg,image/svg+xml,image/*" className="hidden"
+                      onChange={e => { const f = e.target.files?.[0]; if (f) handleLogoUpload(f); e.target.value = "" }} />
                   </div>
 
                   {/* Fonts */}
