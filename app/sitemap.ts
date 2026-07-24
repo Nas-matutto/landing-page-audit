@@ -54,6 +54,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.75,
     },
     {
+      url: `${baseUrl}/free-tools/brand-guidelines`,
+      lastModified: new Date('2026-07-24'),
+      changeFrequency: 'monthly',
+      priority: 0.75,
+    },
+    {
       url: `${baseUrl}/agents`,
       lastModified: new Date(),
       changeFrequency: 'weekly',
