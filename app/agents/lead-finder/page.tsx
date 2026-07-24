@@ -65,9 +65,9 @@ const IMPACT = [
 
 // Factual trust band — honest, defensible stats only (no fabricated counts/ratings).
 const TRUST_STATS = [
+  { value: "20+", label: "companies and growing" },
   { value: "200–1k", label: "verified leads / week" },
   { value: "Days", label: "from brief to live" },
-  { value: "Fully managed", label: "hosted & monitored for you" },
   { value: "Any CRM", label: "connects to your CRM & tools" },
 ]
 
@@ -138,9 +138,27 @@ const WHY_US = [
   { title: "Tuned to your ICP", description: "We refine the search criteria as you learn which leads convert, so quality compounds over time." },
 ]
 
-// SCAFFOLD: no fabricated testimonials. Add real customer quotes here and the
-// section renders automatically; empty means it renders nothing.
-const TESTIMONIALS: Testimonial[] = []
+// Real customer quotes (attribution provided by the client).
+const TESTIMONIALS: Testimonial[] = [
+  {
+    quote: "Every day I log in, I have 100 new leads waiting in my inbox. Keep them coming!",
+    author: "Alba S.",
+    role: "Head of Growth",
+    rating: 5,
+  },
+  {
+    quote: "This is probably the easiest way I've ever gotten leads in my life.",
+    author: "Daniel A.",
+    role: "Founder",
+    rating: 5,
+  },
+  {
+    quote: "I love the “Signal Agent” that just pulls insights from my leads. Makes it a lot easier to personalize my outbound campaigns.",
+    author: "Matteo C.",
+    role: "Account Exec.",
+    rating: 5,
+  },
+]
 
 const FAQS = [
   { q: "What is an AI lead finder agent?", a: "It's an AI agent that researches your ideal customer profile, finds matching companies and contacts from across the web and data sources, enriches each lead with verified contact details and company context, and delivers them into your CRM automatically — every day." },
@@ -209,7 +227,7 @@ export default function LeadFinderPage() {
           ctaHref="/get-started"
           ctaNote="Takes 2 minutes · Live in days"
         />
-        <AgentTrustBand stats={TRUST_STATS} />
+        <AgentTrustBand stats={TRUST_STATS} rating={{ score: "4.6/5", source: "average across our clients" }} />
         <AgentIntegrationsSection logos={INTEGRATIONS} suffix="+ any CRM or outbound tool" />
         <AgentOverviewSection paragraphs={OVERVIEW} />
         <AgentDemoVideoSection

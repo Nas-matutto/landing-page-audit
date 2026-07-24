@@ -64,10 +64,10 @@ const IMPACT = [
 ]
 
 const TRUST_STATS = [
-  { value: "10+ posts", label: "drafted / week" },
-  { value: "Every channel", label: "IG, LinkedIn, TikTok & more" },
+  { value: "20+", label: "companies and growing" },
+  { value: "8+ hrs", label: "won back every week" },
+  { value: "10+ posts", label: "drafted for you weekly" },
   { value: "Days", label: "from brief to live" },
-  { value: "On-brand", label: "trained on your voice" },
 ]
 
 const INTEGRATIONS = [
@@ -80,8 +80,8 @@ const INTEGRATIONS = [
 ]
 
 const OVERVIEW = [
-  "An AI social media agent analyzes your existing content to understand what formats, topics, and hooks get the most engagement. It uses those patterns to draft new posts that sound like you — not generic AI — across Instagram, LinkedIn, X, and any other channel you're active on.",
-  "It's built for founders, marketing teams, and service businesses who know they need to post consistently but can never find the time. Instead of starting from scratch every week, the agent does the drafting and scheduling — you spend a few minutes approving, not a few hours creating.",
+  "Consistency is what grows an audience — and it's exactly what busy teams can't sustain. This agent keeps you posting every week without the weekly scramble. It studies what already works for you, then drafts new posts that sound like you — not generic AI — across Instagram, LinkedIn, X, and every other channel you're active on.",
+  "It's built for founders, marketing teams, and service businesses who know they should be posting but can never find the time. Instead of starting from a blank page every week, you spend a few minutes approving drafts — not a few hours creating them — and your social presence keeps running whether you're at your desk or not.",
 ]
 
 const WORKFLOW_STEPS = [
@@ -232,8 +232,8 @@ export default function SocialMediaPage() {
           title="Social media"
           gradient={GRADIENT}
           Icon={Megaphone}
-          tag="AI Agents managed for you"
-          heroSubhead="An agent that studies your best-performing content, drafts on-brand posts for every channel, and schedules them — so your social presence runs without you having to run it."
+          tag="Your content, on autopilot"
+          heroSubhead="Show up consistently on every channel, grow your audience, and win back 8+ hours a week — with an AI agent that learns your voice, drafts your posts, and schedules them for you. You just hit approve."
           impact={IMPACT}
           showBreadcrumb={false}
           showHeroStats={false}
@@ -255,7 +255,7 @@ export default function SocialMediaPage() {
           ctaHref="/get-started"
           ctaNote="Takes 2 minutes · Live in days"
         />
-        <AgentTrustBand stats={TRUST_STATS} />
+        <AgentTrustBand stats={TRUST_STATS} rating={{ score: "4.6/5", source: "average across our clients" }} />
         <AgentIntegrationsSection logos={INTEGRATIONS} suffix="+ LinkedIn, X & more" />
         <AgentOverviewSection paragraphs={OVERVIEW} />
         <AgentDemoVideoSection
