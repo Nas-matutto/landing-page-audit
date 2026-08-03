@@ -1,1 +1,4 @@
-[00:00:00.583] Server  LOG      ✓ Ready in 408ms
+[00:00:00.456] Server  LOG      ✓ Ready in 297ms
+[00:00:28.491] Server  WARN    [cal-webhook] Rejected request with invalid signature
+[00:00:28.507] Server  WARN    [cal-webhook] Rejected request with invalid signature
+[00:00:29.294] Server  LOG     [cal-webhook] Sent Schedule to Meta for booking tst_local_verify_001

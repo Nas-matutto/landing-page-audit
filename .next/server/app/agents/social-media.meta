@@ -2,13 +2,13 @@
   "headers": {
     "x-nextjs-stale-time": "300",
     "x-nextjs-prerender": "1",
-    "x-next-cache-tags": "_N_T_/layout,_N_T_/agents/layout,_N_T_/agents/[slug]/layout,_N_T_/agents/[slug]/page,_N_T_/agents/social-media"
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/agents/layout,_N_T_/agents/social-media/layout,_N_T_/agents/social-media/page,_N_T_/agents/social-media"
   },
   "segmentPaths": [
     "/_tree",
     "/_full",
-    "/agents/$d$slug/__PAGE__",
-    "/agents/$d$slug",
+    "/agents/social-media/__PAGE__",
+    "/agents/social-media",
     "/agents",
     "/_index",
     "/_head"

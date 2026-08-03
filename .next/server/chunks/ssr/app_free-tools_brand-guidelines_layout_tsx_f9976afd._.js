@@ -1,0 +1,3 @@
+module.exports=[94236,a=>{"use strict";var b=a.i(26806);function c({children:a}){return(0,b.jsx)(b.Fragment,{children:a})}a.s(["default",()=>c,"metadata",0,{title:"Brand Guidelines Generator — Free Tools | Talk to me Data",description:"Create a one-page brand guidelines document to feed into your AI agent. Pick fonts, primary and secondary colors, and tone of voice, then download it as a PNG and get it emailed to you.",alternates:{canonical:"https://talktomedata.com/free-tools/brand-guidelines"}}])}];
+
+//# sourceMappingURL=app_free-tools_brand-guidelines_layout_tsx_f9976afd._.js.map

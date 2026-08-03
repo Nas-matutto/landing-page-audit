@@ -65,7 +65,7 @@
         }
       ],
       "initialRevalidateSeconds": false,
-      "srcRoute": "/agents/[slug]",
+      "srcRoute": "/agents/booking-scheduling",
       "dataRoute": "/agents/booking-scheduling.rsc",
       "prefetchDataRoute": null,
       "allowHeader": [
@@ -90,7 +90,7 @@
         }
       ],
       "initialRevalidateSeconds": false,
-      "srcRoute": "/agents/[slug]",
+      "srcRoute": "/agents/customer-support",
       "dataRoute": "/agents/customer-support.rsc",
       "prefetchDataRoute": null,
       "allowHeader": [
@@ -115,7 +115,7 @@
         }
       ],
       "initialRevalidateSeconds": false,
-      "srcRoute": "/agents/[slug]",
+      "srcRoute": "/agents/data-entry-reporting",
       "dataRoute": "/agents/data-entry-reporting.rsc",
       "prefetchDataRoute": null,
       "allowHeader": [
@@ -140,7 +140,7 @@
         }
       ],
       "initialRevalidateSeconds": false,
-      "srcRoute": "/agents/[slug]",
+      "srcRoute": "/agents/invoice-processing",
       "dataRoute": "/agents/invoice-processing.rsc",
       "prefetchDataRoute": null,
       "allowHeader": [
@@ -165,7 +165,7 @@
         }
       ],
       "initialRevalidateSeconds": false,
-      "srcRoute": "/agents/[slug]",
+      "srcRoute": "/agents/lead-finder",
       "dataRoute": "/agents/lead-finder.rsc",
       "prefetchDataRoute": null,
       "allowHeader": [
@@ -190,33 +190,8 @@
         }
       ],
       "initialRevalidateSeconds": false,
-      "srcRoute": "/agents/[slug]",
+      "srcRoute": "/agents/lead-qualification",
       "dataRoute": "/agents/lead-qualification.rsc",
-      "prefetchDataRoute": null,
-      "allowHeader": [
-        "host",
-        "x-matched-path",
-        "x-prerender-revalidate",
-        "x-prerender-revalidate-if-generated",
-        "x-next-revalidated-tags",
-        "x-next-revalidate-tag-token"
-      ]
-    },
-    "/agents/social-media": {
-      "experimentalBypassFor": [
-        {
-          "type": "header",
-          "key": "next-action"
-        },
-        {
-          "type": "header",
-          "key": "content-type",
-          "value": "multipart/form-data;.*"
-        }
-      ],
-      "initialRevalidateSeconds": false,
-      "srcRoute": "/agents/[slug]",
-      "dataRoute": "/agents/social-media.rsc",
       "prefetchDataRoute": null,
       "allowHeader": [
         "host",
@@ -242,6 +217,56 @@
       "initialRevalidateSeconds": false,
       "srcRoute": "/agents",
       "dataRoute": "/agents.rsc",
+      "prefetchDataRoute": null,
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/agents/seo-geo": {
+      "experimentalBypassFor": [
+        {
+          "type": "header",
+          "key": "next-action"
+        },
+        {
+          "type": "header",
+          "key": "content-type",
+          "value": "multipart/form-data;.*"
+        }
+      ],
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/agents/seo-geo",
+      "dataRoute": "/agents/seo-geo.rsc",
+      "prefetchDataRoute": null,
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/agents/social-media": {
+      "experimentalBypassFor": [
+        {
+          "type": "header",
+          "key": "next-action"
+        },
+        {
+          "type": "header",
+          "key": "content-type",
+          "value": "multipart/form-data;.*"
+        }
+      ],
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/agents/social-media",
+      "dataRoute": "/agents/social-media.rsc",
       "prefetchDataRoute": null,
       "allowHeader": [
         "host",
@@ -292,6 +317,131 @@
       "initialRevalidateSeconds": false,
       "srcRoute": "/blog/how-to-analyze-website-conversion-issues",
       "dataRoute": "/blog/how-to-analyze-website-conversion-issues.rsc",
+      "prefetchDataRoute": null,
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/blog/how-to-automate-customer-service-with-ai-agent": {
+      "experimentalBypassFor": [
+        {
+          "type": "header",
+          "key": "next-action"
+        },
+        {
+          "type": "header",
+          "key": "content-type",
+          "value": "multipart/form-data;.*"
+        }
+      ],
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/blog/how-to-automate-customer-service-with-ai-agent",
+      "dataRoute": "/blog/how-to-automate-customer-service-with-ai-agent.rsc",
+      "prefetchDataRoute": null,
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/blog/how-to-automate-data-entry-and-reporting-with-ai-agent": {
+      "experimentalBypassFor": [
+        {
+          "type": "header",
+          "key": "next-action"
+        },
+        {
+          "type": "header",
+          "key": "content-type",
+          "value": "multipart/form-data;.*"
+        }
+      ],
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/blog/how-to-automate-data-entry-and-reporting-with-ai-agent",
+      "dataRoute": "/blog/how-to-automate-data-entry-and-reporting-with-ai-agent.rsc",
+      "prefetchDataRoute": null,
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/blog/how-to-automate-invoices-into-accounting-software": {
+      "experimentalBypassFor": [
+        {
+          "type": "header",
+          "key": "next-action"
+        },
+        {
+          "type": "header",
+          "key": "content-type",
+          "value": "multipart/form-data;.*"
+        }
+      ],
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/blog/how-to-automate-invoices-into-accounting-software",
+      "dataRoute": "/blog/how-to-automate-invoices-into-accounting-software.rsc",
+      "prefetchDataRoute": null,
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/blog/how-to-automate-seo-and-geo-growth-with-ai-agent": {
+      "experimentalBypassFor": [
+        {
+          "type": "header",
+          "key": "next-action"
+        },
+        {
+          "type": "header",
+          "key": "content-type",
+          "value": "multipart/form-data;.*"
+        }
+      ],
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/blog/how-to-automate-seo-and-geo-growth-with-ai-agent",
+      "dataRoute": "/blog/how-to-automate-seo-and-geo-growth-with-ai-agent.rsc",
+      "prefetchDataRoute": null,
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/blog/how-to-automate-social-media-posting-with-ai-agent": {
+      "experimentalBypassFor": [
+        {
+          "type": "header",
+          "key": "next-action"
+        },
+        {
+          "type": "header",
+          "key": "content-type",
+          "value": "multipart/form-data;.*"
+        }
+      ],
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/blog/how-to-automate-social-media-posting-with-ai-agent",
+      "dataRoute": "/blog/how-to-automate-social-media-posting-with-ai-agent.rsc",
       "prefetchDataRoute": null,
       "allowHeader": [
         "host",
@@ -627,6 +777,31 @@
         "x-next-revalidate-tag-token"
       ]
     },
+    "/booking-confirmed": {
+      "experimentalBypassFor": [
+        {
+          "type": "header",
+          "key": "next-action"
+        },
+        {
+          "type": "header",
+          "key": "content-type",
+          "value": "multipart/form-data;.*"
+        }
+      ],
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/booking-confirmed",
+      "dataRoute": "/booking-confirmed.rsc",
+      "prefetchDataRoute": null,
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
     "/free-guides/ai-agent-readiness-audit": {
       "experimentalBypassFor": [
         {
@@ -677,6 +852,31 @@
         "x-next-revalidate-tag-token"
       ]
     },
+    "/free-guides/how-to-build-ai-agents": {
+      "experimentalBypassFor": [
+        {
+          "type": "header",
+          "key": "next-action"
+        },
+        {
+          "type": "header",
+          "key": "content-type",
+          "value": "multipart/form-data;.*"
+        }
+      ],
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/free-guides/how-to-build-ai-agents",
+      "dataRoute": "/free-guides/how-to-build-ai-agents.rsc",
+      "prefetchDataRoute": null,
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
     "/free-guides": {
       "experimentalBypassFor": [
         {
@@ -692,6 +892,31 @@
       "initialRevalidateSeconds": false,
       "srcRoute": "/free-guides",
       "dataRoute": "/free-guides.rsc",
+      "prefetchDataRoute": null,
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/free-tools/brand-guidelines": {
+      "experimentalBypassFor": [
+        {
+          "type": "header",
+          "key": "next-action"
+        },
+        {
+          "type": "header",
+          "key": "content-type",
+          "value": "multipart/form-data;.*"
+        }
+      ],
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/free-tools/brand-guidelines",
+      "dataRoute": "/free-tools/brand-guidelines.rsc",
       "prefetchDataRoute": null,
       "allowHeader": [
         "host",
@@ -767,6 +992,56 @@
       "initialRevalidateSeconds": false,
       "srcRoute": "/free-tools/workflow-mapper",
       "dataRoute": "/free-tools/workflow-mapper.rsc",
+      "prefetchDataRoute": null,
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/get-started-onboarding": {
+      "experimentalBypassFor": [
+        {
+          "type": "header",
+          "key": "next-action"
+        },
+        {
+          "type": "header",
+          "key": "content-type",
+          "value": "multipart/form-data;.*"
+        }
+      ],
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/get-started-onboarding",
+      "dataRoute": "/get-started-onboarding.rsc",
+      "prefetchDataRoute": null,
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/get-started": {
+      "experimentalBypassFor": [
+        {
+          "type": "header",
+          "key": "next-action"
+        },
+        {
+          "type": "header",
+          "key": "content-type",
+          "value": "multipart/form-data;.*"
+        }
+      ],
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/get-started",
+      "dataRoute": "/get-started.rsc",
       "prefetchDataRoute": null,
       "allowHeader": [
         "host",
@@ -938,39 +1213,11 @@
       ]
     }
   },
-  "dynamicRoutes": {
-    "/agents/[slug]": {
-      "experimentalBypassFor": [
-        {
-          "type": "header",
-          "key": "next-action"
-        },
-        {
-          "type": "header",
-          "key": "content-type",
-          "value": "multipart/form-data;.*"
-        }
-      ],
-      "routeRegex": "^/agents/([^/]+?)(?:/)?$",
-      "dataRoute": "/agents/[slug].rsc",
-      "fallback": false,
-      "fallbackRouteParams": [],
-      "dataRouteRegex": "^/agents/([^/]+?)\\.rsc$",
-      "prefetchDataRoute": null,
-      "allowHeader": [
-        "host",
-        "x-matched-path",
-        "x-prerender-revalidate",
-        "x-prerender-revalidate-if-generated",
-        "x-next-revalidated-tags",
-        "x-next-revalidate-tag-token"
-      ]
-    }
-  },
+  "dynamicRoutes": {},
   "notFoundRoutes": [],
   "preview": {
-    "previewModeId": "539ff1f90d047d425350278b06753bef",
-    "previewModeSigningKey": "7a376c3aa26f1f023813399dd92f2049a43ea98405e3c850f4e02bc4897f1aa8",
-    "previewModeEncryptionKey": "6aca9b88d032299e27f7a3a410dc5854cec3b619a607940741015146e07d6730"
+    "previewModeId": "4a9cdcc0eec96aaa482574de06969bcb",
+    "previewModeSigningKey": "edecea3a399547428367bcca15b546f1307f23473639bc8d55ad647aac246ce4",
+    "previewModeEncryptionKey": "99736ce88062d3008841cc85160c8e3198e7df546b50c2357f7a6ab4aff475d7"
   }
 }

@@ -19,16 +19,7 @@
     "afterFiles": [],
     "fallback": []
   },
-  "dynamicRoutes": [
-    {
-      "page": "/agents/[slug]",
-      "regex": "^/agents/([^/]+?)(?:/)?$",
-      "routeKeys": {
-        "nxtPslug": "nxtPslug"
-      },
-      "namedRegex": "^/agents/(?<nxtPslug>[^/]+?)(?:/)?$"
-    }
-  ],
+  "dynamicRoutes": [],
   "staticRoutes": [
     {
       "page": "/",
@@ -55,10 +46,64 @@
       "namedRegex": "^/agents(?:/)?$"
     },
     {
+      "page": "/agents/booking-scheduling",
+      "regex": "^/agents/booking\\-scheduling(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/agents/booking\\-scheduling(?:/)?$"
+    },
+    {
+      "page": "/agents/customer-support",
+      "regex": "^/agents/customer\\-support(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/agents/customer\\-support(?:/)?$"
+    },
+    {
+      "page": "/agents/data-entry-reporting",
+      "regex": "^/agents/data\\-entry\\-reporting(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/agents/data\\-entry\\-reporting(?:/)?$"
+    },
+    {
+      "page": "/agents/invoice-processing",
+      "regex": "^/agents/invoice\\-processing(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/agents/invoice\\-processing(?:/)?$"
+    },
+    {
+      "page": "/agents/lead-finder",
+      "regex": "^/agents/lead\\-finder(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/agents/lead\\-finder(?:/)?$"
+    },
+    {
+      "page": "/agents/lead-qualification",
+      "regex": "^/agents/lead\\-qualification(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/agents/lead\\-qualification(?:/)?$"
+    },
+    {
+      "page": "/agents/seo-geo",
+      "regex": "^/agents/seo\\-geo(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/agents/seo\\-geo(?:/)?$"
+    },
+    {
+      "page": "/agents/social-media",
+      "regex": "^/agents/social\\-media(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/agents/social\\-media(?:/)?$"
+    },
+    {
       "page": "/api/analyze-store",
       "regex": "^/api/analyze\\-store(?:/)?$",
       "routeKeys": {},
       "namedRegex": "^/api/analyze\\-store(?:/)?$"
+    },
+    {
+      "page": "/api/cal-webhook",
+      "regex": "^/api/cal\\-webhook(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/cal\\-webhook(?:/)?$"
     },
     {
       "page": "/api/capture-lead",
@@ -77,6 +122,18 @@
       "regex": "^/api/send\\-ai\\-agent\\-guide(?:/)?$",
       "routeKeys": {},
       "namedRegex": "^/api/send\\-ai\\-agent\\-guide(?:/)?$"
+    },
+    {
+      "page": "/api/send-brand-guidelines",
+      "regex": "^/api/send\\-brand\\-guidelines(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/send\\-brand\\-guidelines(?:/)?$"
+    },
+    {
+      "page": "/api/send-build-ai-agents-guide",
+      "regex": "^/api/send\\-build\\-ai\\-agents\\-guide(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/send\\-build\\-ai\\-agents\\-guide(?:/)?$"
     },
     {
       "page": "/api/send-guide",
@@ -113,6 +170,36 @@
       "regex": "^/blog/how\\-to\\-analyze\\-website\\-conversion\\-issues(?:/)?$",
       "routeKeys": {},
       "namedRegex": "^/blog/how\\-to\\-analyze\\-website\\-conversion\\-issues(?:/)?$"
+    },
+    {
+      "page": "/blog/how-to-automate-customer-service-with-ai-agent",
+      "regex": "^/blog/how\\-to\\-automate\\-customer\\-service\\-with\\-ai\\-agent(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/blog/how\\-to\\-automate\\-customer\\-service\\-with\\-ai\\-agent(?:/)?$"
+    },
+    {
+      "page": "/blog/how-to-automate-data-entry-and-reporting-with-ai-agent",
+      "regex": "^/blog/how\\-to\\-automate\\-data\\-entry\\-and\\-reporting\\-with\\-ai\\-agent(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/blog/how\\-to\\-automate\\-data\\-entry\\-and\\-reporting\\-with\\-ai\\-agent(?:/)?$"
+    },
+    {
+      "page": "/blog/how-to-automate-invoices-into-accounting-software",
+      "regex": "^/blog/how\\-to\\-automate\\-invoices\\-into\\-accounting\\-software(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/blog/how\\-to\\-automate\\-invoices\\-into\\-accounting\\-software(?:/)?$"
+    },
+    {
+      "page": "/blog/how-to-automate-seo-and-geo-growth-with-ai-agent",
+      "regex": "^/blog/how\\-to\\-automate\\-seo\\-and\\-geo\\-growth\\-with\\-ai\\-agent(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/blog/how\\-to\\-automate\\-seo\\-and\\-geo\\-growth\\-with\\-ai\\-agent(?:/)?$"
+    },
+    {
+      "page": "/blog/how-to-automate-social-media-posting-with-ai-agent",
+      "regex": "^/blog/how\\-to\\-automate\\-social\\-media\\-posting\\-with\\-ai\\-agent(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/blog/how\\-to\\-automate\\-social\\-media\\-posting\\-with\\-ai\\-agent(?:/)?$"
     },
     {
       "page": "/blog/how-to-build-ai-lead-finder-agent",
@@ -187,6 +274,12 @@
       "namedRegex": "^/book\\-demo(?:/)?$"
     },
     {
+      "page": "/booking-confirmed",
+      "regex": "^/booking\\-confirmed(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/booking\\-confirmed(?:/)?$"
+    },
+    {
       "page": "/free-guides",
       "regex": "^/free\\-guides(?:/)?$",
       "routeKeys": {},
@@ -205,10 +298,22 @@
       "namedRegex": "^/free\\-guides/business\\-automation\\-checklist(?:/)?$"
     },
     {
+      "page": "/free-guides/how-to-build-ai-agents",
+      "regex": "^/free\\-guides/how\\-to\\-build\\-ai\\-agents(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/free\\-guides/how\\-to\\-build\\-ai\\-agents(?:/)?$"
+    },
+    {
       "page": "/free-tools",
       "regex": "^/free\\-tools(?:/)?$",
       "routeKeys": {},
       "namedRegex": "^/free\\-tools(?:/)?$"
+    },
+    {
+      "page": "/free-tools/brand-guidelines",
+      "regex": "^/free\\-tools/brand\\-guidelines(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/free\\-tools/brand\\-guidelines(?:/)?$"
     },
     {
       "page": "/free-tools/calculator",
@@ -221,6 +326,18 @@
       "regex": "^/free\\-tools/workflow\\-mapper(?:/)?$",
       "routeKeys": {},
       "namedRegex": "^/free\\-tools/workflow\\-mapper(?:/)?$"
+    },
+    {
+      "page": "/get-started",
+      "regex": "^/get\\-started(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/get\\-started(?:/)?$"
+    },
+    {
+      "page": "/get-started-onboarding",
+      "regex": "^/get\\-started\\-onboarding(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/get\\-started\\-onboarding(?:/)?$"
     },
     {
       "page": "/privacy-policy",

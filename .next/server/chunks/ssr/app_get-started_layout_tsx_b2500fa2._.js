@@ -1,0 +1,3 @@
+module.exports=[67352,a=>{"use strict";function b({children:a}){return a}a.s(["default",()=>b,"metadata",0,{title:"Get Started — Build Your AI Agent | Talk to Me Data",description:"Tell us what you want to automate and which tools your agent should connect to. We'll show you exactly what your custom AI agent can do — in under 2 minutes."}])}];
+
+//# sourceMappingURL=app_get-started_layout_tsx_b2500fa2._.js.map

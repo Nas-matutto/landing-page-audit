@@ -1,4 +1,4 @@
 {
-  "/agents/seo-geo/page": "app/agents/seo-geo/page.js",
-  "/agents/social-media/page": "app/agents/social-media/page.js"
+  "/api/cal-webhook/route": "app/api/cal-webhook/route.js",
+  "/book-demo/page": "app/book-demo/page.js"
 }

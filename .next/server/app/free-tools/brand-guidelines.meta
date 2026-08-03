@@ -1,0 +1,16 @@
+{
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/free-tools/layout,_N_T_/free-tools/brand-guidelines/layout,_N_T_/free-tools/brand-guidelines/page,_N_T_/free-tools/brand-guidelines"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/free-tools/brand-guidelines/__PAGE__",
+    "/free-tools/brand-guidelines",
+    "/free-tools",
+    "/_index",
+    "/_head"
+  ]
+}

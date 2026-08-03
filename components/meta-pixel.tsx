@@ -2,6 +2,20 @@
 
 import Script from 'next/script'
 
+declare global {
+  interface Window {
+    // Injected by the pixel snippet below. Optional because it is undefined until
+    // the script loads (and stays undefined if a blocker kills it) — always call
+    // it as `window.fbq?.(...)`.
+    fbq?: (
+      command: 'track' | 'trackCustom' | 'init',
+      eventName: string,
+      params?: Record<string, unknown>,
+      options?: { eventID?: string },
+    ) => void
+  }
+}
+
 export function MetaPixel() {
   return (
     <>

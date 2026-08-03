@@ -2,13 +2,13 @@
   "headers": {
     "x-nextjs-stale-time": "300",
     "x-nextjs-prerender": "1",
-    "x-next-cache-tags": "_N_T_/layout,_N_T_/agents/layout,_N_T_/agents/[slug]/layout,_N_T_/agents/[slug]/page,_N_T_/agents/data-entry-reporting"
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/agents/layout,_N_T_/agents/data-entry-reporting/layout,_N_T_/agents/data-entry-reporting/page,_N_T_/agents/data-entry-reporting"
   },
   "segmentPaths": [
     "/_tree",
     "/_full",
-    "/agents/$d$slug/__PAGE__",
-    "/agents/$d$slug",
+    "/agents/data-entry-reporting/__PAGE__",
+    "/agents/data-entry-reporting",
     "/agents",
     "/_index",
     "/_head"

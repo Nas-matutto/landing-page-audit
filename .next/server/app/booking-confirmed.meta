@@ -1,0 +1,15 @@
+{
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/booking-confirmed/layout,_N_T_/booking-confirmed/page,_N_T_/booking-confirmed"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/booking-confirmed/__PAGE__",
+    "/booking-confirmed",
+    "/_index",
+    "/_head"
+  ]
+}

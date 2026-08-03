@@ -1,0 +1,3 @@
+module.exports=[80557,(a,b,c)=>{"use strict";b.exports=a.r(54608).vendored["react-ssr"].ReactServerDOMTurbopackClient},55344,a=>{"use strict";var b=a.i(2295),c=a.i(41602);function d(){let a=(0,c.useSearchParams)().get("uid");return(0,b.useEffect)(()=>{let b=`schedule-tracked:${a??"no-uid"}`;sessionStorage.getItem(b)||(sessionStorage.setItem(b,"1"),window.fbq?.("track","Schedule",{content_name:"Talk to Me Data demo call"},a?{eventID:a}:void 0))},[a]),null}a.s(["BookingConfirmedTracker",()=>d])}];
+
+//# sourceMappingURL=_7ac32b00._.js.map

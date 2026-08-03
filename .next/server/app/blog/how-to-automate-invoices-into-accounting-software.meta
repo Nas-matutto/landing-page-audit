@@ -1,0 +1,16 @@
+{
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/blog/layout,_N_T_/blog/how-to-automate-invoices-into-accounting-software/layout,_N_T_/blog/how-to-automate-invoices-into-accounting-software/page,_N_T_/blog/how-to-automate-invoices-into-accounting-software"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/blog/how-to-automate-invoices-into-accounting-software/__PAGE__",
+    "/blog/how-to-automate-invoices-into-accounting-software",
+    "/blog",
+    "/_index",
+    "/_head"
+  ]
+}

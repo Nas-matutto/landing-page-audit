@@ -1,5 +1,6 @@
 "use client"
 
+import { useEffect, useState } from "react"
 import { motion } from "framer-motion"
 import Link from "next/link"
 import { ArrowRight, CalendarDays, CheckCircle2, ChevronLeft, Play } from "lucide-react"
@@ -13,7 +14,49 @@ const BENEFITS = [
   "Ask questions before committing to anything",
 ]
 
+// Cal.com booking page — opens in a new tab. The booked-call conversion itself is
+// tracked on /booking-confirmed, which Cal.com redirects to after a successful booking.
+const CAL_BOOKING_URL = "https://cal.com/nas-mansurali/talk-to-me-data-demo"
+
+// Upper-funnel signal only (not the optimisation event): who opened the calendar.
+function trackBookCallClick() {
+  window.fbq?.("trackCustom", "BookCallClick", { source: "book-demo" })
+}
+
+function readCookie(name: string): string | undefined {
+  return document.cookie
+    .split("; ")
+    .find((c) => c.startsWith(`${name}=`))
+    ?.split("=")[1]
+}
+
+/**
+ * Carries the Meta click/browser cookies into the Cal.com booking so the server-side
+ * Conversions API event (app/api/cal-webhook) can attribute the booking to the ad
+ * that produced it. Cal.com stores `metadata[key]` query params on the booking and
+ * hands them back in the webhook payload.
+ */
+function useCalBookingUrl() {
+  const [url, setUrl] = useState(CAL_BOOKING_URL)
+
+  useEffect(() => {
+    // Cookies are only readable client-side, and _fbp is set by the pixel after
+    // hydration — so build the enriched URL in an effect, not during render.
+    const params = new URLSearchParams()
+    const fbp = readCookie("_fbp")
+    if (fbp) params.set("metadata[fbp]", fbp)
+    const fbc = readCookie("_fbc")
+    if (fbc) params.set("metadata[fbc]", fbc)
+
+    if (params.size > 0) setUrl(`${CAL_BOOKING_URL}?${params.toString()}`)
+  }, [])
+
+  return url
+}
+
 export default function BookDemoPage() {
+  const calBookingUrl = useCalBookingUrl()
+
   return (
     <div className="min-h-screen bg-white flex flex-col">
       <Header />
@@ -81,9 +124,10 @@ export default function BookDemoPage() {
                 </p>
 
                 <a
-                  href="https://calendar.google.com/calendar/appointments/schedules/AcZssZ2GEdSIRiXNGs2UjuxM8qmbJ4KKwq0PU1-veJzukFJumxcOjPgTr-_HHhIt1C9SMqhzZPqllK5k?gv=true"
+                  href={calBookingUrl}
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={trackBookCallClick}
                   className="relative overflow-hidden group inline-flex items-center justify-center gap-2 w-full bg-linear-to-r from-primary to-violet-500 text-white font-bold text-base px-8 py-4 rounded-xl shadow-lg shadow-primary/30 hover:shadow-primary/50 transition-all"
                 >
                   <span className="absolute inset-0 bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-in-out" />
