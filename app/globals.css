@@ -221,6 +221,29 @@
   color: var(--quiet);
 }
 
+/* Integration marquee — two rows drifting in opposite directions. The tracks
+   hold 6 copies of the set, so translating one half loops seamlessly. */
+@keyframes integ-scroll-left {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+@keyframes integ-scroll-right {
+  from { transform: translateX(-50%); }
+  to   { transform: translateX(0); }
+}
+
+.integ-scroll-left  { animation: integ-scroll-left  60s linear infinite; }
+.integ-scroll-right { animation: integ-scroll-right 60s linear infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  .integ-scroll-left,
+  .integ-scroll-right {
+    animation: none !important;
+    transform: translateX(-25%);
+  }
+}
+
 /* Keyboard focus has to stay visible against both the white ground and the
    ink surfaces, so it is drawn as an offset ring rather than a border. */
 :where(a, button, [role="button"], summary):focus-visible {

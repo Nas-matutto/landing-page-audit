@@ -1,7 +1,6 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { useRouter } from "next/navigation"
 import { useState, useEffect, useMemo } from "react"
 import Link from "next/link"
 import {
@@ -10,13 +9,7 @@ import {
 } from "lucide-react"
 import { AGENTS, isAgentBuilt } from "@/lib/agents"
 import { SIGNUP_URL } from "@/lib/links"
-import { InfiniteGridBackground } from "@/components/ui/the-infinite-grid"
-import { FaSlack, FaWhatsapp, FaGoogle } from "react-icons/fa"
-import {
-  SiNotion, SiSalesforce, SiHubspot, SiShopify, SiStripe,
-  SiZendesk, SiGmail, SiAirtable, SiMailchimp, SiAsana,
-  SiTrello, SiIntercom, SiJira,
-} from "react-icons/si"
+import { IntegrationMarquee } from "@/components/ui/integration-marquee"
 
 // ─── Rotating hero words ─────────────────────────────────────────────────────
 
@@ -36,7 +29,7 @@ function RotatingWord() {
       {titles.map((word, i) => (
         <motion.span
           key={word}
-          className="absolute font-bold bg-clip-text text-transparent bg-linear-to-r from-primary to-violet-500"
+          className="display absolute"
           initial={{ opacity: 0, y: 60 }}
           animate={index === i ? { opacity: 1, y: 0 } : { opacity: 0, y: index > i ? -60 : 60 }}
           transition={{ type: "spring", stiffness: 80, damping: 18 }}
@@ -61,156 +54,50 @@ const WE_HANDLE = [
   { icon: LayoutDashboard, title: "Unified dashboard", body: "See all your agents, their activity, and status in one place — no logins to multiple tools." },
 ]
 
-// ─── Integrations strip ───────────────────────────────────────────────────────
-
-type IntegrationIcon = {
-  Icon: React.ComponentType<{ className?: string; style?: React.CSSProperties }>
-  color: string
-  label: string
-}
-
-const ROW_1: IntegrationIcon[] = [
-  { Icon: FaSlack, color: "#4A154B", label: "Slack" },
-  { Icon: SiHubspot, color: "#FF7A59", label: "HubSpot" },
-  { Icon: FaWhatsapp, color: "#25D366", label: "WhatsApp" },
-  { Icon: SiSalesforce, color: "#00A1E0", label: "Salesforce" },
-  { Icon: FaGoogle, color: "#4285F4", label: "Google" },
-  { Icon: SiNotion, color: "#374151", label: "Notion" },
-  { Icon: SiGmail, color: "#EA4335", label: "Gmail" },
-  { Icon: SiShopify, color: "#7AB55C", label: "Shopify" },
-]
-
-const ROW_2: IntegrationIcon[] = [
-  { Icon: SiStripe, color: "#635BFF", label: "Stripe" },
-  { Icon: SiZendesk, color: "#03363D", label: "Zendesk" },
-  { Icon: SiAirtable, color: "#18BFFF", label: "Airtable" },
-  { Icon: SiMailchimp, color: "#e8a825", label: "Mailchimp" },
-  { Icon: SiIntercom, color: "#1F8DED", label: "Intercom" },
-  { Icon: SiJira, color: "#0052CC", label: "Jira" },
-  { Icon: SiAsana, color: "#F06A6A", label: "Asana" },
-  { Icon: SiTrello, color: "#0079BF", label: "Trello" },
-]
-
-function repeat<T>(arr: T[], times = 4): T[] {
-  return Array.from({ length: times }).flatMap(() => arr)
-}
-
-function IntegrationsSection() {
-  return (
-    <section className="py-24 bg-white overflow-hidden">
-      {/* CSS keyframes injected inline — avoids modifying globals.css */}
-      <style>{`
-        @keyframes scroll-left {
-          0%   { transform: translateX(0); }
-          100% { transform: translateX(-50%); }
-        }
-        @keyframes scroll-right {
-          0%   { transform: translateX(-50%); }
-          100% { transform: translateX(0); }
-        }
-        .integ-scroll-left  { animation: scroll-left  35s linear infinite; }
-        .integ-scroll-right { animation: scroll-right 35s linear infinite; }
-      `}</style>
-
-      <div className="max-w-4xl mx-auto px-6 text-center mb-12">
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-        >
-          <span className="inline-flex items-center gap-1.5 px-3 py-1 mb-5 text-xs font-semibold rounded-full border border-primary/20 bg-primary/5 text-primary tracking-widest uppercase">
-            ⚡ Integrations
-          </span>
-          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-slate-900 mb-4">
-            Works with your existing tools
-          </h2>
-          <p className="text-lg text-slate-500 max-w-xl mx-auto">
-            Your agents connect to the platforms you already use — no migrations, no new logins. We wire everything up for you.
-          </p>
-        </motion.div>
-      </div>
-
-      {/* Scrolling rows */}
-      <div className="relative">
-        {/* Row 1 — scrolls left */}
-        <div className="flex gap-6 whitespace-nowrap integ-scroll-left mb-6">
-          {repeat(ROW_1).map((item, i) => (
-            <div
-              key={`r1-${i}`}
-              title={item.label}
-              className="shrink-0 w-16 h-16 rounded-2xl bg-white border border-slate-100 shadow-sm flex items-center justify-center hover:shadow-md hover:border-slate-200 transition-shadow"
-            >
-              <item.Icon className="w-7 h-7" style={{ color: item.color }} />
-            </div>
-          ))}
-        </div>
-
-        {/* Row 2 — scrolls right */}
-        <div className="flex gap-6 whitespace-nowrap integ-scroll-right">
-          {repeat(ROW_2).map((item, i) => (
-            <div
-              key={`r2-${i}`}
-              title={item.label}
-              className="shrink-0 w-16 h-16 rounded-2xl bg-white border border-slate-100 shadow-sm flex items-center justify-center hover:shadow-md hover:border-slate-200 transition-shadow"
-            >
-              <item.Icon className="w-7 h-7" style={{ color: item.color }} />
-            </div>
-          ))}
-        </div>
-
-        {/* Fade overlays */}
-        <div className="pointer-events-none absolute inset-y-0 left-0 w-32 bg-linear-to-r from-white to-transparent" />
-        <div className="pointer-events-none absolute inset-y-0 right-0 w-32 bg-linear-to-l from-white to-transparent" />
-      </div>
-    </section>
-  )
-}
-
 // ─── Main component ───────────────────────────────────────────────────────────
 
 export function AgentsPageContent() {
-  const router = useRouter()
-
   return (
     <>
-      {/* ── Hero ── infinite grid background */}
-      <section className="relative pt-32 pb-20 bg-white overflow-hidden">
-        <InfiniteGridBackground />
-
+      {/* ── Hero ── */}
+      <section className="relative overflow-hidden bg-white pb-20 pt-36 sm:pt-44">
         <motion.div
-          initial={{ opacity: 0, y: 24 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 text-center"
+          className="relative z-10 mx-auto max-w-4xl px-4 text-center sm:px-6"
         >
-          <div className="inline-flex items-center gap-2 mb-8 px-4 py-1.5 rounded-full border border-primary/20 bg-primary/5 text-primary text-xs font-semibold tracking-widest uppercase">
-            <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
-            Fully managed · Deployed in 24 hours
+          <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-hairline px-4 py-1.5">
+            <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-ink" />
+            <span className="eyebrow">Fully managed · Deployed in 24 hours</span>
           </div>
 
-          <h1 className="text-5xl sm:text-6xl md:text-7xl font-bold tracking-tight text-slate-900 leading-tight mb-4">
-            AI agents built for
-          </h1>
-          <div className="text-5xl sm:text-6xl md:text-7xl font-bold tracking-tight leading-tight mb-8">
+          <h1 className="display text-[clamp(2.5rem,6.5vw,4.5rem)]">AI agents built for</h1>
+          <div className="mb-8 mt-1 text-[clamp(2.5rem,6.5vw,4.5rem)]">
             <RotatingWord />
           </div>
 
-          <p className="text-lg text-slate-500 leading-relaxed max-w-2xl mx-auto mb-10">
-            We build, deploy, and host custom AI agents on our infrastructure. Tell us your workflow — your agent is live within 24 hours.
+          <p className="lede mx-auto mb-10 max-w-2xl text-lg">
+            We build, deploy, and host custom AI agents on our infrastructure. Tell us your workflow — your agent is
+            live within 24 hours.
           </p>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <button
-              onClick={() => router.push("/book-demo")}
-              className="relative overflow-hidden group flex items-center gap-2 bg-linear-to-r from-primary to-violet-500 text-white font-semibold text-sm px-7 py-3.5 rounded-xl shadow-lg shadow-primary/30 hover:shadow-primary/50 transition-all cursor-pointer"
+          <div className="flex flex-col items-center justify-center gap-3 sm:flex-row">
+            <a
+              href={SIGNUP_URL}
+              className="group relative inline-flex w-full items-center justify-center gap-2 overflow-hidden rounded-full bg-ink px-5 py-3 text-[15px] font-semibold tracking-[0.2px] text-white transition-opacity hover:opacity-85 sm:w-auto"
             >
-              <span className="absolute inset-0 bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-in-out" />
+              <span className="absolute inset-0 -translate-x-full bg-linear-to-r from-transparent via-white/25 to-transparent transition-transform duration-700 ease-in-out group-hover:translate-x-full" />
               <span className="relative flex items-center gap-2">
-                Book a free call <ArrowRight className="w-4 h-4" />
+                Get Started <ArrowRight className="h-4 w-4" />
               </span>
-            </button>
-            <p className="text-sm text-slate-400">20-minute call · No commitment</p>
+            </a>
+            <Link
+              href="/book-demo"
+              className="inline-flex w-full items-center justify-center rounded-full border border-hairline px-5 py-3 text-[15px] font-semibold tracking-[0.2px] text-ink transition-colors hover:bg-mist sm:w-auto"
+            >
+              Book a free call
+            </Link>
           </div>
         </motion.div>
       </section>
@@ -226,23 +113,23 @@ export function AgentsPageContent() {
               transition={{ duration: 0.5 }}
               className="text-center mb-14"
             >
-              <p className="text-xs font-semibold tracking-widest uppercase text-primary mb-4">Explore agents</p>
-              <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-slate-900 mb-4 text-balance">
+              <p className="eyebrow mb-5">Explore agents</p>
+              <h2 className="display mb-4 text-[clamp(1.75rem,4vw,2.75rem)]">
                 Agents we build for every team
               </h2>
-              <p className="text-lg text-slate-500 max-w-xl mx-auto">
+              <p className="lede mx-auto max-w-xl text-lg">
                 Pick the workflow you want to automate. Each agent is fully built, hosted, and managed by us.
               </p>
             </motion.div>
 
             {/* Connected hairline grid — shared 1px dividers read as one engineered
-                surface rather than scattered cards. gap-px over a slate bg draws the rules. */}
+                surface rather than scattered cards. gap-px over a hairline bg draws the rules. */}
             <motion.div
               initial={{ opacity: 0, y: 12 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
-              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px overflow-hidden rounded-2xl border border-slate-200 bg-slate-200"
+              className="grid grid-cols-1 gap-px overflow-hidden rounded-3xl border border-hairline bg-hairline sm:grid-cols-2 lg:grid-cols-3"
             >
               {AGENTS.map((agent) => {
                 const built = isAgentBuilt(agent)
@@ -252,35 +139,34 @@ export function AgentsPageContent() {
                   <Link
                     key={agent.id}
                     href={href}
-                    className="group relative flex flex-col bg-white p-6 sm:p-7 transition-colors hover:bg-slate-50/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary"
+                    className="group relative flex flex-col bg-white p-6 transition-colors hover:bg-mist sm:p-7"
                   >
-                    {/* Header: quiet monochrome mark that warms to brand blue on hover */}
                     <div className="flex items-center justify-between">
-                      <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-slate-100 text-slate-600 ring-1 ring-inset ring-slate-200/70 transition-colors group-hover:bg-primary/10 group-hover:text-primary group-hover:ring-primary/20">
+                      <div className="flex h-10 w-10 items-center justify-center rounded-full border border-hairline text-ink">
                         <Icon className="h-5 w-5" />
                       </div>
                       {!built && (
-                        <span className="rounded-full border border-slate-200 bg-white px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-slate-400">
+                        <span className="rounded-full border border-hairline px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-faint">
                           On request
                         </span>
                       )}
                     </div>
 
-                    <h3 className="mt-5 text-base font-semibold text-slate-900">{agent.title}</h3>
-                    <p className="mt-1.5 text-sm leading-relaxed text-slate-500 line-clamp-3">{agent.description}</p>
+                    <h3 className="mt-5 text-base font-semibold tracking-[-0.01em] text-ink">{agent.title}</h3>
+                    <p className="mt-1.5 line-clamp-3 text-sm leading-relaxed text-quiet">{agent.description}</p>
 
                     {/* Outcome readout — the proof the card is built around */}
-                    <div className="mt-auto flex items-end justify-between border-t border-slate-100 pt-5">
+                    <div className="mt-auto flex items-end justify-between border-t border-hairline pt-5">
                       <div>
-                        <p className="text-[10px] font-semibold uppercase tracking-widest text-slate-400">Typical result</p>
+                        <p className="eyebrow">Typical result</p>
                         <p className="mt-1.5 flex items-baseline gap-1.5">
-                          <span className="text-xl font-bold tabular-nums tracking-tight text-slate-900 transition-colors group-hover:text-primary">
+                          <span className="text-xl font-semibold tabular-nums tracking-[-0.02em] text-ink">
                             {agent.metricValue}
                           </span>
-                          <span className="text-xs font-medium text-slate-500">{agent.metricLabel}</span>
+                          <span className="text-xs font-medium text-quiet">{agent.metricLabel}</span>
                         </p>
                       </div>
-                      <span className="flex items-center gap-1 pb-0.5 text-xs font-semibold text-slate-400 transition-colors group-hover:text-primary">
+                      <span className="flex items-center gap-1 pb-0.5 text-xs font-semibold text-quiet transition-colors group-hover:text-ink">
                         {built ? "Details" : "Talk to us"}
                         <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
                       </span>
@@ -292,24 +178,22 @@ export function AgentsPageContent() {
               {/* Custom Agent — the one dark cell; its gradient mark is the section's single bold accent */}
               <Link
                 href="/book-demo"
-                className="group relative flex flex-col overflow-hidden bg-slate-900 p-6 sm:p-7 transition-colors hover:bg-slate-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary"
+                className="group relative flex flex-col overflow-hidden bg-ink p-6 transition-opacity hover:opacity-90 sm:p-7"
               >
-                <div className="pointer-events-none absolute -top-12 -right-12 h-40 w-40 rounded-full bg-primary/25 blur-3xl" />
-
                 <div className="relative flex items-center justify-between">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-linear-to-br from-primary to-violet-500 text-white shadow-sm ring-1 ring-inset ring-white/10">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-full border border-white/25 text-white">
                     <Wand2 className="h-5 w-5" />
                   </div>
                 </div>
 
-                <h3 className="relative mt-5 text-base font-semibold text-white">Custom agent</h3>
-                <p className="relative mt-1.5 text-sm leading-relaxed text-white/60 line-clamp-3">
+                <h3 className="relative mt-5 text-base font-semibold tracking-[-0.01em] text-white">Custom agent</h3>
+                <p className="relative mt-1.5 line-clamp-3 text-sm leading-relaxed text-white/60">
                   Something not on this list? Describe any workflow in plain language and we&apos;ll build, host, and manage a bespoke agent around it.
                 </p>
 
-                <div className="relative mt-auto flex items-end justify-between border-t border-white/10 pt-5">
+                <div className="relative mt-auto flex items-end justify-between border-t border-white/15 pt-5">
                   <div>
-                    <p className="text-[10px] font-semibold uppercase tracking-widest text-white/40">Scope</p>
+                    <p className="eyebrow text-white/50">Scope</p>
                     <p className="mt-1.5 text-sm font-medium text-white/80">Any workflow, any complexity</p>
                   </div>
                   <span className="flex items-center gap-1 pb-0.5 text-xs font-semibold text-white/70 transition-colors group-hover:text-white">
@@ -324,7 +208,7 @@ export function AgentsPageContent() {
       </section>
 
       {/* ── AI Agents on Demand ── */}
-      <section className="py-24 sm:py-32 bg-slate-50">
+      <section className="border-y border-hairline bg-mist py-24 sm:py-32">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-6xl mx-auto">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
@@ -337,20 +221,17 @@ export function AgentsPageContent() {
                 transition={{ duration: 0.5 }}
                 className="lg:sticky lg:top-32"
               >
-                <p className="text-xs font-semibold tracking-widest uppercase text-primary mb-4">AI Agents on Demand</p>
-                <h2 className="text-4xl sm:text-5xl font-bold tracking-tight text-slate-900 mb-6 text-balance">
-                  Plug and play.{" "}
-                  <span className="bg-clip-text text-transparent bg-linear-to-r from-primary to-violet-500">
-                    We handle everything.
-                  </span>
+                <p className="eyebrow mb-5">AI Agents on Demand</p>
+                <h2 className="display mb-6 text-[clamp(2rem,4.5vw,3.25rem)]">
+                  Plug and play. We handle everything.
                 </h2>
-                <p className="text-lg text-slate-500 leading-relaxed mb-8">
+                <p className="lede mb-8 text-lg">
                   You don't need a server, an OpenAI account, or a developer on your team. Give us a brief — we handle every layer of the stack and hand you back a working agent.
                 </p>
 
                 {/* What you do */}
-                <div className="rounded-2xl border border-slate-200 bg-white p-6">
-                  <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-4">What you do</p>
+                <div className="rounded-3xl border border-hairline bg-white p-6">
+                  <p className="eyebrow mb-4">What you do</p>
                   <ul className="space-y-3">
                     {[
                       "Describe your workflow in plain language (once)",
@@ -358,10 +239,10 @@ export function AgentsPageContent() {
                       "Use your live agent — request changes anytime",
                     ].map((step, i) => (
                       <li key={i} className="flex items-start gap-3">
-                        <div className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center shrink-0 mt-0.5">
-                          <Check className="w-3.5 h-3.5 text-primary" />
+                        <div className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-hairline">
+                          <Check className="h-3.5 w-3.5 text-ink" />
                         </div>
-                        <span className="text-sm text-slate-700 leading-relaxed">{step}</span>
+                        <span className="text-sm leading-relaxed text-quiet">{step}</span>
                       </li>
                     ))}
                   </ul>
@@ -369,18 +250,18 @@ export function AgentsPageContent() {
 
                 <a
                   href={SIGNUP_URL}
-                  className="relative overflow-hidden group mt-8 flex items-center gap-2 bg-linear-to-r from-primary to-violet-500 text-white font-semibold text-sm px-6 py-3 rounded-xl shadow-md shadow-primary/25 hover:shadow-primary/40 hover:shadow-lg transition-all cursor-pointer"
+                  className="group relative mt-8 inline-flex cursor-pointer items-center gap-2 self-start overflow-hidden rounded-full bg-ink px-5 py-3 text-[15px] font-semibold tracking-[0.2px] text-white transition-opacity hover:opacity-85"
                 >
-                  <span className="absolute inset-0 bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-in-out" />
+                  <span className="absolute inset-0 -translate-x-full bg-linear-to-r from-transparent via-white/25 to-transparent transition-transform duration-700 ease-in-out group-hover:translate-x-full" />
                   <span className="relative flex items-center gap-2">
-                    Get started <ArrowRight className="w-4 h-4" />
+                    Get started <ArrowRight className="h-4 w-4" />
                   </span>
                 </a>
               </motion.div>
 
               {/* Right: what we handle grid */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <p className="text-xs font-bold text-slate-400 uppercase tracking-widest col-span-full mb-2">What we handle</p>
+                <p className="eyebrow col-span-full mb-2">What we handle</p>
                 {WE_HANDLE.map((item, i) => (
                   <motion.div
                     key={i}
@@ -388,13 +269,13 @@ export function AgentsPageContent() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.4, delay: i * 0.06 }}
-                    className="rounded-2xl border border-slate-200 bg-white p-5 hover:shadow-md hover:border-primary/20 transition-all"
+                    className="rounded-3xl border border-hairline bg-white p-5 transition-colors hover:border-ink"
                   >
-                    <div className="w-9 h-9 rounded-xl bg-primary/10 flex items-center justify-center mb-3">
-                      <item.icon className="w-4 h-4 text-primary" />
+                    <div className="mb-3 flex h-9 w-9 items-center justify-center rounded-full border border-hairline">
+                      <item.icon className="h-4 w-4 text-ink" />
                     </div>
-                    <h3 className="text-sm font-bold text-slate-800 mb-1.5">{item.title}</h3>
-                    <p className="text-xs text-slate-500 leading-relaxed">{item.body}</p>
+                    <h3 className="mb-1.5 text-sm font-semibold text-ink">{item.title}</h3>
+                    <p className="text-xs leading-relaxed text-quiet">{item.body}</p>
                   </motion.div>
                 ))}
               </div>
@@ -405,37 +286,63 @@ export function AgentsPageContent() {
       </section>
 
       {/* ── Integrations ── */}
-      <IntegrationsSection />
+      <section className="overflow-hidden bg-white py-24">
+        <div className="mx-auto mb-12 max-w-4xl px-6 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+          >
+            <p className="eyebrow mb-5">Integrations</p>
+            <h2 className="display mb-4 text-[clamp(1.75rem,4vw,2.75rem)]">
+              Works with your existing tools
+            </h2>
+            <p className="lede mx-auto max-w-xl text-lg">
+              Your agents connect to the platforms you already use — no migrations, no new logins. We wire everything
+              up for you.
+            </p>
+          </motion.div>
+        </div>
+
+        <IntegrationMarquee />
+      </section>
 
       {/* ── Bottom CTA ── */}
-      <section className="py-24 bg-linear-to-br from-primary via-blue-600 to-violet-600 relative overflow-hidden">
-        <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute -top-24 -right-24 w-80 h-80 bg-violet-400/20 rounded-full blur-3xl" />
-          <div className="absolute -bottom-24 -left-24 w-80 h-80 bg-blue-300/15 rounded-full blur-3xl" />
-        </div>
-        <div className="relative container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <section className="border-t border-hairline bg-mist py-24 sm:py-32">
+        <div className="container relative mx-auto px-4 text-center sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <h2 className="text-3xl sm:text-4xl font-bold text-white text-balance mb-4">
+            <h2 className="display text-[clamp(2rem,4.5vw,3.25rem)]">
               Ready to automate your first workflow?
             </h2>
-            <p className="text-white/70 text-lg mb-8 max-w-xl mx-auto">
-              Book a free 20-minute call. We'll tell you exactly what your agent can do and get it live within 24 hours.
+            <p className="lede mx-auto mt-6 max-w-xl text-lg">
+              Book a free 20-minute call. We&apos;ll tell you exactly what your agent can do and get it live within 24
+              hours.
             </p>
-            <button
-              onClick={() => router.push("/book-demo")}
-              className="relative overflow-hidden group inline-flex items-center gap-2 bg-white text-primary font-bold px-8 py-4 rounded-xl text-base shadow-2xl shadow-black/20 hover:shadow-black/30 transition-all cursor-pointer"
-            >
-              <span className="absolute inset-0 bg-linear-to-r from-transparent via-primary/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-in-out" />
-              <span className="relative flex items-center gap-2">
-                Book a free call <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
-              </span>
-            </button>
-            <p className="text-white/40 text-sm mt-5">Free call · No commitment · Live in 24h if it's a fit</p>
+            <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
+              <Link
+                href="/book-demo"
+                className="group relative inline-flex w-full items-center justify-center gap-2 overflow-hidden rounded-full bg-ink px-5 py-3 text-[15px] font-semibold tracking-[0.2px] text-white transition-opacity hover:opacity-85 sm:w-auto"
+              >
+                <span className="absolute inset-0 -translate-x-full bg-linear-to-r from-transparent via-white/25 to-transparent transition-transform duration-700 ease-in-out group-hover:translate-x-full" />
+                <span className="relative flex items-center gap-2">
+                  Book a free call
+                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+                </span>
+              </Link>
+              <a
+                href={SIGNUP_URL}
+                className="inline-flex w-full items-center justify-center rounded-full border border-hairline bg-white px-5 py-3 text-[15px] font-semibold tracking-[0.2px] text-ink transition-colors hover:bg-mist sm:w-auto"
+              >
+                Get Started
+              </a>
+            </div>
+            <p className="mt-6 text-[13px] text-faint">Free call · No commitment · Live in 24h if it&apos;s a fit</p>
           </motion.div>
         </div>
       </section>
