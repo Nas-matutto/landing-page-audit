@@ -1,159 +1,125 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { usePathname } from "next/navigation"
-import { Button } from "@/components/ui/button"
 import { Menu, X, ArrowRight } from "lucide-react"
-import { SIGNUP_URL, LOGIN_URL } from "@/lib/links"
+import { SIGNUP_URL } from "@/lib/links"
+
+const NAV_LINKS = [
+  { href: "/#how-it-works", label: "How it works" },
+  { href: "/agents", label: "Agents" },
+  { href: "/free-tools", label: "Free Tools" },
+]
 
 export function Header({ minimal = false }: { minimal?: boolean }) {
   const pathname = usePathname()
-  const [scrolled, setScrolled] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [barDismissed, setBarDismissed] = useState(false)
   const showAnnouncementBar = pathname === "/" && !barDismissed
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 20)
-    }
-    window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
-
-  const handleLogin = () => {
-    window.open(LOGIN_URL, '_blank')
-  }
-
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? "liquid-glass-opaque shadow-sm" : "bg-transparent"
-      }`}
-    >
+    <>
       {showAnnouncementBar && (
-        <div
-          className="relative flex items-center justify-center px-10 py-2"
-          style={{ background: "linear-gradient(90deg, #185FA5, #2563eb, #7c3aed)" }}
-        >
+        <div className="fixed top-0 left-0 right-0 z-50 flex items-center justify-center bg-ink px-10 py-2">
           <Link
             href="/free-guides/business-automation-checklist"
-            className="flex items-center gap-2 text-white text-xs sm:text-sm font-medium hover:opacity-90 transition-opacity"
+            className="flex items-center gap-2 text-xs font-medium text-white/80 transition-colors hover:text-white sm:text-[13px]"
           >
-            <span>Download a Free Business Automation Checklist</span>
-            <ArrowRight className="w-3.5 h-3.5 shrink-0" />
+            <span>Download a free business automation checklist</span>
+            <ArrowRight className="h-3.5 w-3.5 shrink-0" />
           </Link>
           <button
             onClick={() => setBarDismissed(true)}
             aria-label="Dismiss"
-            className="absolute right-3 p-1 text-white/60 hover:text-white transition-colors cursor-pointer"
+            className="absolute right-3 cursor-pointer p-1 text-white/40 transition-colors hover:text-white"
           >
-            <X className="w-3.5 h-3.5" />
+            <X className="h-3.5 w-3.5" />
           </button>
         </div>
       )}
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 sm:h-20">
-          <Link href="/" className="flex items-center gap-2">
+
+      {/* Floating island: detached from the top edge, centered, and sized to its
+          contents rather than spanning the viewport. */}
+      <header
+        className={`fixed left-0 right-0 z-40 px-4 pt-2 sm:px-6 sm:pt-6 ${
+          showAnnouncementBar ? "top-9" : "top-0"
+        }`}
+      >
+        <nav className="nav-glass mx-auto flex w-full max-w-[640px] items-center justify-between gap-4 rounded-[30px] border border-hairline px-5 py-3 sm:px-6">
+          <Link href="/" className="flex shrink-0 items-center" aria-label="Talk to Me Data — home">
             <Image
               src="/android-chrome-192x192.png"
               alt="Talk to Me Data"
               width={192}
               height={192}
               priority
-              className="h-9 w-9 sm:h-10 sm:w-10"
+              className="h-8 w-8"
             />
           </Link>
 
-          {/* Nav, CTA and mobile menu are hidden in `minimal` mode (e.g. mid-way
-              through the /get-started flow) so visitors can't accidentally tap
-              out of the funnel. Only the logo stays. */}
           {!minimal && (
-            <nav className="hidden md:flex items-center gap-8">
-              <Link
-                href="/#how-it-works"
-                className="text-sm font-medium text-foreground hover:text-primary transition-colors"
-              >
-                How it works
-              </Link>
-              <Link
-                href="/agents"
-                className="text-sm font-medium text-foreground hover:text-primary transition-colors"
-              >
-                Agents
-              </Link>
-              <Link
-                href="/free-tools"
-                className="text-sm font-medium text-foreground hover:text-primary transition-colors"
-              >
-                Free Tools
-              </Link>
-            </nav>
-          )}
+            <>
+              {/* Nav, CTA and mobile menu are hidden in `minimal` mode (e.g. mid-way
+                  through the /get-started flow) so visitors can't accidentally tap
+                  out of the funnel. Only the logo stays. */}
+              <div className="hidden items-center gap-6 md:flex">
+                {NAV_LINKS.map((link) => (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    className="text-[15px] font-semibold tracking-[0.2px] text-ink transition-opacity hover:opacity-60"
+                  >
+                    {link.label}
+                  </Link>
+                ))}
+              </div>
 
-          {!minimal && (
-            <div className="hidden md:flex items-center gap-4">
               <a
                 href={SIGNUP_URL}
-                className="relative overflow-hidden group bg-linear-to-r from-primary to-violet-500 text-white text-sm font-semibold px-5 py-2 rounded-lg shadow-md shadow-primary/25 hover:shadow-primary/40 hover:shadow-lg transition-all cursor-pointer"
+                className="group relative hidden shrink-0 overflow-hidden rounded-full bg-ink px-4 py-2.5 text-[15px] font-semibold tracking-[0.2px] text-white transition-opacity hover:opacity-85 md:inline-flex"
               >
-                <span className="absolute inset-0 bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-in-out" />
+                <span className="absolute inset-0 -translate-x-full bg-linear-to-r from-transparent via-white/25 to-transparent transition-transform duration-700 ease-in-out group-hover:translate-x-full" />
                 <span className="relative">Get Started</span>
               </a>
-            </div>
-          )}
 
-          {!minimal && (
-            <button
-              className="md:hidden p-2 text-foreground hover:text-primary transition-colors cursor-pointer"
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              aria-label="Toggle menu"
-            >
-              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-            </button>
+              <button
+                className="cursor-pointer p-1 text-ink md:hidden"
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                aria-label="Toggle menu"
+                aria-expanded={mobileMenuOpen}
+              >
+                {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+              </button>
+            </>
           )}
-        </div>
+        </nav>
 
         {!minimal && mobileMenuOpen && (
-          <div className="md:hidden py-4 border-t border-border bg-white">
+          <div className="nav-glass mx-auto mt-2 w-full max-w-[640px] rounded-3xl border border-hairline p-5 md:hidden">
             <nav className="flex flex-col gap-4">
-              <Link
-                href="/#how-it-works"
-                className="text-sm font-medium text-foreground hover:text-primary transition-colors py-2"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                How it works
-              </Link>
-              <Link
-                href="/agents"
-                className="text-sm font-medium text-foreground hover:text-primary transition-colors py-2"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                Agents
-              </Link>
-              <Link
-                href="/free-tools"
-                className="text-sm font-medium text-foreground hover:text-primary transition-colors py-2"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                Free Tools
-              </Link>
-              <div className="flex flex-col gap-2 pt-2 border-t border-border">
-                <a
-                  href={SIGNUP_URL}
+              {NAV_LINKS.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className="text-[15px] font-semibold tracking-[0.2px] text-ink"
                   onClick={() => setMobileMenuOpen(false)}
-                  className="relative overflow-hidden group w-full bg-linear-to-r from-primary to-violet-500 text-white text-sm font-semibold py-2.5 rounded-lg shadow-md shadow-primary/20 cursor-pointer text-center"
                 >
-                  <span className="absolute inset-0 bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-in-out" />
-                  <span className="relative">Get Started</span>
-                </a>
-              </div>
+                  {link.label}
+                </Link>
+              ))}
+              <a
+                href={SIGNUP_URL}
+                onClick={() => setMobileMenuOpen(false)}
+                className="mt-1 inline-flex items-center justify-center rounded-full bg-ink px-4 py-3 text-[15px] font-semibold tracking-[0.2px] text-white"
+              >
+                Get Started
+              </a>
             </nav>
           </div>
         )}
-      </div>
-    </header>
+      </header>
+    </>
   )
 }

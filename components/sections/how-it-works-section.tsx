@@ -52,12 +52,12 @@ const steps = [
 
 export function HowItWorksSection() {
   return (
-    <section id="how-it-works" className="py-24 sm:py-32 bg-slate-50">
+    <section id="how-it-works" className="border-y border-hairline bg-mist py-24 sm:py-32">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <p className="text-xs font-semibold tracking-widest uppercase text-primary mb-4">How it works</p>
-            <h2 className="text-4xl sm:text-5xl font-bold tracking-tight text-balance">
+        <div className="mx-auto max-w-6xl">
+          <div className="mb-16 text-center">
+            <p className="eyebrow mb-5">How it works</p>
+            <h2 className="display text-[clamp(2rem,4.5vw,3.25rem)]">
               Three steps to your first AI agent
             </h2>
           </div>
@@ -72,43 +72,44 @@ export function HowItWorksSection() {
                 transition={{ duration: 0.5, delay: i * 0.12 }}
                 className="relative"
               >
-                {/* Connector line */}
+                {/* Connector line — the steps are a real sequence, so the rule
+                    between them carries order rather than decoration. */}
                 {i < steps.length - 1 && (
-                  <div className="hidden lg:block absolute top-8 left-full w-full h-px bg-linear-to-r from-primary/30 to-transparent -translate-y-1/2 z-0" style={{ width: "calc(100% - 4rem)", left: "calc(100% - 2rem)" }} />
+                  <div className="absolute top-8 z-0 hidden h-px w-full -translate-y-1/2 bg-hairline lg:block" style={{ width: "calc(100% - 4rem)", left: "calc(100% - 2rem)" }} />
                 )}
 
-                <div className="relative z-10 bg-white rounded-2xl border border-slate-200 p-6 h-full flex flex-col shadow-sm hover:shadow-md transition-shadow">
+                <div className="relative z-10 flex h-full flex-col rounded-3xl border border-hairline bg-white p-6">
                   {/* Step number + icon */}
-                  <div className="flex items-center gap-3 mb-5">
-                    <span className="text-4xl font-black text-slate-100 leading-none select-none">{step.number}</span>
-                    <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
-                      <step.icon className="w-5 h-5 text-primary" />
+                  <div className="mb-5 flex items-center gap-3">
+                    <span className="select-none font-mono text-2xl font-medium leading-none text-faint">{step.number}</span>
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-hairline">
+                      <step.icon className="h-4.5 w-4.5 text-ink" />
                     </div>
                   </div>
 
-                  <h3 className="text-lg font-bold text-slate-800 mb-2">{step.title}</h3>
-                  <p className="text-sm text-slate-500 leading-relaxed mb-5">{step.description}</p>
+                  <h3 className="mb-2 text-lg font-semibold tracking-[-0.01em] text-ink">{step.title}</h3>
+                  <p className="mb-5 text-sm leading-relaxed text-quiet">{step.description}</p>
 
                   {/* Terminal preview */}
-                  <div className="mt-auto rounded-xl bg-slate-900 p-4 font-mono text-xs overflow-hidden">
-                    <div className="flex gap-1.5 mb-3">
-                      <div className="w-2.5 h-2.5 rounded-full bg-red-500/70" />
-                      <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/70" />
-                      <div className="w-2.5 h-2.5 rounded-full bg-green-500/70" />
+                  <div className="mt-auto overflow-hidden rounded-2xl bg-ink p-4 font-mono text-xs">
+                    <div className="mb-3 flex gap-1.5">
+                      <div className="h-2.5 w-2.5 rounded-full bg-white/20" />
+                      <div className="h-2.5 w-2.5 rounded-full bg-white/20" />
+                      <div className="h-2.5 w-2.5 rounded-full bg-white/20" />
                     </div>
                     {step.terminal.map((line, j) => (
                       <div key={j} className="leading-relaxed">
                         {"prompt" in line ? (
                           <span>
-                            <span className="text-green-400">{line.prompt} </span>
-                            <span className="text-slate-200">{line.cmd}</span>
+                            <span className="text-white/40">{line.prompt} </span>
+                            <span className="text-white">{line.cmd}</span>
                           </span>
                         ) : (
-                          <span className="text-slate-400">{line.out || " "}</span>
+                          <span className="text-white/55">{line.out || " "}</span>
                         )}
                       </div>
                     ))}
-                    <span className="inline-block w-1.5 h-3.5 bg-slate-400 ml-0.5 animate-pulse" />
+                    <span className="ml-0.5 inline-block h-3.5 w-1.5 animate-pulse bg-white/50" />
                   </div>
                 </div>
               </motion.div>

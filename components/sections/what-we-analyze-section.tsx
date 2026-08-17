@@ -46,29 +46,26 @@ export function WhatWeAnalyzeSection() {
   const router = useRouter()
 
   return (
-    <section id="use-cases" className="bg-slate-50 px-6 xl:px-12">
+    <section id="use-cases" className="border-y border-hairline bg-mist px-6 xl:px-12">
       <div className="container mx-auto max-w-6xl">
         <div className="grid md:grid-cols-2 md:gap-8 xl:gap-16">
 
           {/* Left — sticky */}
           <div className="left-0 top-0 md:sticky md:h-svh md:py-24 flex flex-col justify-center py-16">
-            <p className="text-xs font-semibold tracking-widest uppercase text-primary mb-4">
-              Use cases
-            </p>
-            <h2 className="text-4xl sm:text-5xl font-bold tracking-tight text-slate-900 leading-[1.1] mb-6">
-              What businesses{" "}
-              <span className="bg-linear-to-r from-primary to-violet-500 bg-clip-text text-transparent">use it for</span>
+            <p className="eyebrow mb-5">Use cases</p>
+            <h2 className="display mb-6 text-[clamp(2rem,4.5vw,3.25rem)]">
+              What businesses use it for
             </h2>
-            <p className="text-slate-500 text-base leading-relaxed max-w-sm mb-8">
+            <p className="lede mb-8 max-w-sm text-base">
               From planning your social content to finding new customers — these are agents we already build, and any workflow can become one.
             </p>
             <button
               onClick={() => router.push("/agents")}
-              className="relative overflow-hidden group self-start inline-flex items-center gap-2 bg-linear-to-r from-primary to-violet-500 text-white font-semibold text-sm px-6 py-3 rounded-xl shadow-md shadow-primary/25 hover:shadow-lg hover:shadow-primary/35 transition-all cursor-pointer"
+              className="group relative inline-flex cursor-pointer items-center gap-2 self-start overflow-hidden rounded-full bg-ink px-5 py-3 text-[15px] font-semibold tracking-[0.2px] text-white transition-opacity hover:opacity-85"
             >
-              <span className="absolute inset-0 bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-in-out" />
+              <span className="absolute inset-0 -translate-x-full bg-linear-to-r from-transparent via-white/25 to-transparent transition-transform duration-700 ease-in-out group-hover:translate-x-full" />
               <span className="relative flex items-center gap-2">
-                Explore Agents <ArrowRight className="w-4 h-4" />
+                Explore Agents <ArrowRight className="h-4 w-4" />
               </span>
             </button>
           </div>
@@ -81,22 +78,22 @@ export function WhatWeAnalyzeSection() {
                 index={index + 7}
                 incrementY={14}
                 onClick={() => router.push(uc.href)}
-                className="group/card cursor-pointer rounded-2xl border border-slate-200 bg-white p-8 shadow-sm transition-all hover:border-primary/40 hover:shadow-md"
+                className="group/card cursor-pointer rounded-3xl border border-hairline bg-white p-8 transition-colors hover:border-ink"
               >
-                <div className="flex items-start justify-between gap-4 mb-4">
-                  <h3 className="text-xl font-bold tracking-tight text-slate-900 group-hover/card:text-primary transition-colors">
+                <div className="mb-4 flex items-start justify-between gap-4">
+                  <h3 className="text-xl font-semibold tracking-[-0.01em] text-ink">
                     {uc.title}
                   </h3>
-                  <span className="text-2xl font-bold text-primary/30 shrink-0">
+                  <span className="shrink-0 font-mono text-lg font-medium text-faint">
                     {String(index + 1).padStart(2, "0")}
                   </span>
                 </div>
-                <p className="text-slate-500 text-sm leading-relaxed mb-6">
+                <p className="mb-6 text-sm leading-relaxed text-quiet">
                   {uc.description}
                 </p>
-                <span className="inline-flex items-center gap-2 text-sm font-semibold text-primary group-hover/card:gap-3 transition-all">
+                <span className="inline-flex items-center gap-2 text-sm font-semibold text-ink transition-all group-hover/card:gap-3">
                   {uc.href === "/get-started" ? "Build yours" : "See the agent"}
-                  <ArrowRight className="w-4 h-4" />
+                  <ArrowRight className="h-4 w-4" />
                 </span>
               </CardSticky>
             ))}

@@ -8,8 +8,8 @@ import { MetaPixel } from "@/components/meta-pixel"
 import { ChatWidgetLoader } from "@/components/chat-widget-loader"
 import "./globals.css"
 
-const _geist = Geist({ subsets: ["latin"] })
-const _geistMono = Geist_Mono({ subsets: ["latin"] })
+const geist = Geist({ subsets: ["latin"], variable: "--font-geist-sans", display: "swap" })
+const geistMono = Geist_Mono({ subsets: ["latin"], variable: "--font-geist-mono", display: "swap" })
 
 export const metadata: Metadata = {
   title: "Talk to me Data — Sales Intelligence Powered by Real Signals",
@@ -83,7 +83,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className={`${geist.variable} ${geistMono.variable}`}>
       <head>
         <script
           type="application/ld+json"

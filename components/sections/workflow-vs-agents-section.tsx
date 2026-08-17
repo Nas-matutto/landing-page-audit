@@ -27,15 +27,12 @@ export function WorkflowVsAgentsSection() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto">
           {/* Heading */}
-          <div className="text-center mb-14">
-            <p className="text-xs font-semibold tracking-widest uppercase text-primary mb-4">A smarter way to automate</p>
-            <h2 className="text-4xl sm:text-5xl font-bold tracking-tight text-balance">
-              Don&apos;t build workflows.{" "}
-              <span className="bg-clip-text text-transparent bg-linear-to-r from-primary to-violet-500">
-                Just tell your agent what to do.
-              </span>
+          <div className="mb-14 text-center">
+            <p className="eyebrow mb-5">A smarter way to automate</p>
+            <h2 className="display mx-auto max-w-3xl text-[clamp(2rem,4.5vw,3.25rem)]">
+              Don&apos;t build workflows. Just tell your agent what to do.
             </h2>
-            <p className="mt-5 text-base sm:text-lg text-slate-500 max-w-2xl mx-auto leading-relaxed">
+            <p className="lede mx-auto mt-6 max-w-2xl text-base sm:text-lg">
               Tools like Zapier and n8n make you wire every step by hand — then rebuild it the moment something
               changes. An AI agent works from a plain-language brief and adapts on its own.
             </p>
@@ -48,19 +45,19 @@ export function WorkflowVsAgentsSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
-              className="flex flex-col rounded-2xl border border-slate-200 bg-white p-7 sm:p-8"
+              className="flex flex-col rounded-3xl border border-hairline bg-white p-7 sm:p-8"
             >
-              <div className="flex items-center gap-2.5 mb-1">
-                <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-slate-100 text-slate-500 ring-1 ring-inset ring-slate-200">
+              <div className="mb-2 flex items-center gap-2.5">
+                <div className="flex h-8 w-8 items-center justify-center rounded-full border border-hairline text-quiet">
                   <Wrench className="h-4 w-4" />
                 </div>
-                <span className="text-[11px] font-mono uppercase tracking-wider text-slate-400">Zapier · n8n · Make</span>
+                <span className="eyebrow">Zapier · n8n · Make</span>
               </div>
-              <h3 className="text-xl font-bold text-slate-800 mb-6">Building workflows by hand</h3>
+              <h3 className="mb-6 text-xl font-semibold tracking-[-0.01em] text-ink">Building workflows by hand</h3>
 
               {/* A real hand-built workflow */}
-              <div className="rounded-xl border border-dashed border-slate-300 bg-slate-50/70 p-2 mb-6">
-                <div className="overflow-hidden rounded-lg ring-1 ring-slate-200">
+              <div className="mb-6 rounded-[18px] border border-hairline bg-mist p-2">
+                <div className="overflow-hidden rounded-xl border border-hairline">
                   <Image
                     src="/n8n-workflow-daily-github-trending.png"
                     alt="A tangled n8n workflow wired by hand — dozens of nodes for triggers, filters, API calls and error handling"
@@ -69,17 +66,17 @@ export function WorkflowVsAgentsSection() {
                     className="w-full h-auto"
                   />
                 </div>
-                <div className="mt-3 flex items-center gap-1.5 px-1 pb-1 text-xs font-medium text-amber-600">
+                <div className="mt-3 flex items-center gap-1.5 px-1 pb-1 text-xs font-medium text-quiet">
                   <AlertTriangle className="h-3.5 w-3.5 shrink-0" />
                   Breaks when a field or tool changes
                 </div>
               </div>
 
-              <ul className="space-y-3 mt-auto">
+              <ul className="mt-auto space-y-3">
                 {BUILDER_POINTS.map((point) => (
                   <li key={point} className="flex items-start gap-2.5">
-                    <X className="h-4 w-4 text-slate-300 mt-0.5 shrink-0" />
-                    <span className="text-sm leading-relaxed text-slate-500">{point}</span>
+                    <X className="mt-0.5 h-4 w-4 shrink-0 text-faint" />
+                    <span className="text-sm leading-relaxed text-quiet">{point}</span>
                   </li>
                 ))}
               </ul>
@@ -91,24 +88,24 @@ export function WorkflowVsAgentsSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.1 }}
-              className="relative flex flex-col rounded-2xl border border-primary/20 bg-primary/5 p-7 sm:p-8 shadow-sm"
+              className="relative flex flex-col rounded-3xl bg-ink p-7 sm:p-8"
             >
-              <span className="absolute right-6 top-7 sm:top-8 inline-flex items-center gap-1.5 rounded-full bg-primary/10 px-2.5 py-1 text-[11px] font-semibold text-primary">
+              <span className="absolute right-6 top-7 inline-flex items-center gap-1.5 rounded-full border border-white/20 px-2.5 py-1 text-[11px] font-semibold text-white sm:top-8">
                 <Check className="h-3 w-3" />
                 The TTMD way
               </span>
 
-              <div className="flex items-center gap-2.5 mb-1">
-                <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-linear-to-br from-primary to-violet-500 text-white shadow-sm">
+              <div className="mb-2 flex items-center gap-2.5">
+                <div className="flex h-8 w-8 items-center justify-center rounded-full border border-white/20 text-white">
                   <Sparkles className="h-4 w-4" />
                 </div>
-                <span className="text-[11px] font-mono uppercase tracking-wider text-primary/70">Your AI agent</span>
+                <span className="eyebrow text-white/50">Your AI agent</span>
               </div>
-              <h3 className="text-xl font-bold text-slate-900 mb-6">Prompting an AI agent</h3>
+              <h3 className="mb-6 text-xl font-semibold tracking-[-0.01em] text-white">Prompting an AI agent</h3>
 
               {/* Plain-language prompt → agent → done */}
-              <div className="rounded-xl border border-primary/15 bg-white p-2 mb-6 shadow-sm">
-                <div className="overflow-hidden rounded-lg ring-1 ring-primary/10">
+              <div className="mb-6 rounded-[18px] border border-white/15 bg-white/5 p-2">
+                <div className="overflow-hidden rounded-xl">
                   <Image
                     src="/prompting-ai-agent.png"
                     alt="You describe the outcome in plain English, and the AI agent qualifies the lead, books the call, and handles it end to end"
@@ -117,17 +114,17 @@ export function WorkflowVsAgentsSection() {
                     className="w-full h-auto"
                   />
                 </div>
-                <div className="mt-3 flex items-center gap-1.5 px-1 pb-1 text-xs font-medium text-primary">
+                <div className="mt-3 flex items-center gap-1.5 px-1 pb-1 text-xs font-medium text-white/60">
                   <CornerDownRight className="h-3.5 w-3.5 shrink-0" />
                   Handled end to end from one plain-English brief
                 </div>
               </div>
 
-              <ul className="space-y-3 mt-auto">
+              <ul className="mt-auto space-y-3">
                 {AGENT_POINTS.map((point) => (
                   <li key={point} className="flex items-start gap-2.5">
-                    <Check className="h-4 w-4 text-primary mt-0.5 shrink-0" />
-                    <span className="text-sm leading-relaxed text-slate-700 font-medium">{point}</span>
+                    <Check className="mt-0.5 h-4 w-4 shrink-0 text-white" />
+                    <span className="text-sm leading-relaxed text-white/80">{point}</span>
                   </li>
                 ))}
               </ul>
@@ -144,14 +141,14 @@ export function WorkflowVsAgentsSection() {
           >
             <Link
               href="/get-started"
-              className="relative overflow-hidden group inline-flex items-center gap-2 bg-linear-to-r from-primary to-violet-500 text-white font-semibold text-sm px-6 py-3 rounded-xl shadow-lg shadow-primary/30 hover:shadow-primary/50 transition-all"
+              className="group relative inline-flex items-center gap-2 overflow-hidden rounded-full bg-ink px-5 py-3 text-[15px] font-semibold tracking-[0.2px] text-white transition-opacity hover:opacity-85"
             >
-              <span className="absolute inset-0 bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-in-out" />
+              <span className="absolute inset-0 -translate-x-full bg-linear-to-r from-transparent via-white/25 to-transparent transition-transform duration-700 ease-in-out group-hover:translate-x-full" />
               <span className="relative flex items-center gap-2">
                 Describe your workflow <ArrowRight className="h-4 w-4" />
               </span>
             </Link>
-            <p className="text-sm text-slate-400">No nodes to wire · Live in 24 hours</p>
+            <p className="text-sm text-faint">No nodes to wire · Live in 24 hours</p>
           </motion.div>
         </div>
       </div>

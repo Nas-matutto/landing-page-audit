@@ -13,6 +13,17 @@
 }
 
 :root {
+  /* ── Surface theme ────────────────────────────────────────────────────────
+     Near-monochrome system: near-black type on white, hairline rules instead
+     of shadows, pill geometry, and one accent used sparingly. Values measured
+     off the reference design. */
+  --ink: #141414;        /* display type, primary buttons, dark surfaces */
+  --quiet: #717171;      /* body copy */
+  --faint: #adadad;      /* captions, disabled */
+  --mist: #fafafa;       /* alternating section ground */
+  --hairline: rgba(65, 65, 65, 0.16); /* every border on the page */
+  --glass: rgba(237, 237, 237, 0.64); /* floating nav fill */
+
   /* Aurora component color aliases */
   --white: #ffffff;
   --black: #000000;
@@ -111,9 +122,17 @@
 @theme inline {
   --animate-aurora: aurora 60s linear infinite;
 
-  /* optional: --font-sans, --font-serif, --font-mono if they are applied in the layout.tsx */
-  --font-sans: "Geist", "Geist Fallback";
-  --font-mono: "Geist Mono", "Geist Mono Fallback";
+  /* Wired to next/font in app/layout.tsx via the html element's class */
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+
+  /* Surface theme, exposed as Tailwind utilities:
+     bg-ink / text-quiet / border-hairline / bg-mist / text-faint */
+  --color-ink: var(--ink);
+  --color-quiet: var(--quiet);
+  --color-faint: var(--faint);
+  --color-mist: var(--mist);
+  --color-hairline: var(--hairline);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -158,6 +177,70 @@
   }
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+/* Floating nav island — translucent gray over whatever scrolls beneath it.
+   Kept as a class because the blur + fallback pair repeats across breakpoints. */
+.nav-glass {
+  background-color: var(--glass);
+  backdrop-filter: blur(48px);
+  -webkit-backdrop-filter: blur(48px);
+}
+
+@supports not (backdrop-filter: blur(1px)) {
+  .nav-glass {
+    background-color: rgba(245, 245, 245, 0.96);
+  }
+}
+
+/* Display type: set tight, near-black, and balanced. Line-height 1.0 is the
+   point of the treatment — do not loosen it. */
+.display {
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.022em;
+  color: var(--ink);
+  text-wrap: balance;
+}
+
+/* Lede copy runs Light, which is what keeps the page feeling quiet next to
+   the heavy display sizes. */
+.lede {
+  font-weight: 300;
+  color: var(--quiet);
+  line-height: 1.35;
+}
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--quiet);
+}
+
+/* Keyboard focus has to stay visible against both the white ground and the
+   ink surfaces, so it is drawn as an offset ring rather than a border. */
+:where(a, button, [role="button"], summary):focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 2px;
+  border-radius: 999px;
+}
+
+.bg-ink :where(a, button):focus-visible {
+  outline-color: #ffffff;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }
 

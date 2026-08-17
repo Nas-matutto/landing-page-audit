@@ -40,15 +40,12 @@ export function PainPointsSection() {
     <section className="py-24 sm:py-32 bg-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-4 lg:px-8">
         <div className="max-w-5xl mx-auto">
-          <div className="text-center mb-14">
-            <p className="text-xs font-semibold tracking-widest uppercase text-primary mb-4">The old way vs. the TTMD way</p>
-            <h2 className="text-4xl sm:text-5xl font-bold tracking-tight text-balance">
-              Building AI in-house is broken.{" "}
-              <span className="bg-clip-text text-transparent bg-linear-to-r from-primary to-violet-500">
-                We fix it.
-              </span>
+          <div className="mb-14 text-center">
+            <p className="eyebrow mb-5">The old way vs. the TTMD way</p>
+            <h2 className="display mx-auto max-w-3xl text-[clamp(2rem,4.5vw,3.25rem)]">
+              Building AI in-house is broken. We fix it.
             </h2>
-            <p className="mt-5 text-base sm:text-lg text-slate-500 max-w-2xl mx-auto leading-relaxed">
+            <p className="lede mx-auto mt-6 max-w-2xl text-base sm:text-lg">
               We don&apos;t just build the agent - we handle the API costs, the custom integrations, and the hosting.
               You don&apos;t manage a single thing.
             </p>
@@ -60,18 +57,18 @@ export function PainPointsSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="rounded-2xl border border-slate-200 shadow-sm overflow-hidden divide-y divide-slate-200 bg-white"
+            className="divide-y divide-hairline overflow-hidden rounded-3xl border border-hairline bg-white"
           >
             {/* Header row */}
             <div className={gridCols}>
-              <div className="hidden md:block px-6 py-4" />
-              <div className="px-4 sm:px-6 lg:px-4 py-3 md:py-4">
-                <span className="text-sm font-semibold text-slate-500">Building it yourself</span>
+              <div className="hidden px-6 py-4 md:block" />
+              <div className="px-4 py-3 sm:px-6 md:py-4 lg:px-4">
+                <span className="text-sm font-semibold text-quiet">Building it yourself</span>
               </div>
-              <div className="px-4 sm:px-6 lg:px-4 py-3 md:py-4 bg-primary/5 border-l border-primary/15 flex items-center justify-between gap-3">
-                <span className="text-sm font-semibold text-slate-800">With TTMD</span>
-                <span className="hidden sm:inline-flex items-center gap-1.5 rounded-full bg-primary/10 px-2.5 py-1 text-[11px] font-semibold text-primary">
-                  <Check className="w-3 h-3" />
+              <div className="flex items-center justify-between gap-3 border-l border-hairline bg-mist px-4 py-3 sm:px-6 md:py-4 lg:px-4">
+                <span className="text-sm font-semibold text-ink">With TTMD</span>
+                <span className="hidden items-center gap-1.5 rounded-full bg-ink px-2.5 py-1 text-[11px] font-semibold text-white sm:inline-flex">
+                  <Check className="h-3 w-3" />
                   Done for you
                 </span>
               </div>
@@ -81,36 +78,34 @@ export function PainPointsSection() {
             {rows.map((row, i) => (
               <div key={i} className={gridCols}>
                 {/* Dimension label */}
-                <div className="col-span-2 md:col-span-1 px-4 sm:px-6 lg:px-4 pt-3 pb-1.5 md:py-5 flex items-center bg-slate-50/60">
-                  <span className="text-[11px] font-mono uppercase tracking-wider text-slate-400">{row.dim}</span>
+                <div className="col-span-2 flex items-center bg-mist px-4 pb-1.5 pt-3 sm:px-6 md:col-span-1 md:py-5 lg:px-4">
+                  <span className="eyebrow">{row.dim}</span>
                 </div>
 
                 {/* In-house */}
-                <div className="px-4 sm:px-6 lg:px-4 py-4 md:py-5 flex items-start gap-2 sm:gap-2.5">
-                  <X className="w-4 h-4 text-slate-300 mt-0.5 shrink-0" />
-                  <span className="text-sm lg:text-[13px] leading-relaxed text-slate-500">{row.cold}</span>
+                <div className="flex items-start gap-2 px-4 py-4 sm:gap-2.5 sm:px-6 md:py-5 lg:px-4">
+                  <X className="mt-0.5 h-4 w-4 shrink-0 text-faint" />
+                  <span className="text-sm leading-relaxed text-quiet lg:text-[13px]">{row.cold}</span>
                 </div>
 
                 {/* TTMD */}
-                <div className="px-4 sm:px-6 lg:px-4 py-4 md:py-5 flex items-start gap-2 sm:gap-2.5 bg-primary/5 border-l border-primary/15">
-                  <Check className="w-4 h-4 text-primary mt-0.5 shrink-0" />
-                  <span className="text-sm lg:text-[13px] leading-relaxed text-slate-700 font-medium">{row.warm}</span>
+                <div className="flex items-start gap-2 border-l border-hairline bg-mist px-4 py-4 sm:gap-2.5 sm:px-6 md:py-5 lg:px-4">
+                  <Check className="mt-0.5 h-4 w-4 shrink-0 text-ink" />
+                  <span className="text-sm font-medium leading-relaxed text-ink lg:text-[13px]">{row.warm}</span>
                 </div>
               </div>
             ))}
 
             {/* Time-to-live footer row */}
             <div className={gridCols}>
-              <div className="col-span-2 md:col-span-1 px-4 sm:px-6 lg:px-4 pt-3 pb-1.5 md:py-6 flex items-center bg-slate-50/60">
-                <span className="text-[11px] font-mono uppercase tracking-wider text-slate-400">Time to live</span>
+              <div className="col-span-2 flex items-center bg-mist px-4 pb-1.5 pt-3 sm:px-6 md:col-span-1 md:py-6 lg:px-4">
+                <span className="eyebrow">Time to live</span>
               </div>
-              <div className="px-4 sm:px-6 lg:px-4 py-4 md:py-6 flex items-center">
-                <span className="text-xl sm:text-2xl font-bold text-slate-400">Months</span>
+              <div className="flex items-center px-4 py-4 sm:px-6 md:py-6 lg:px-4">
+                <span className="text-xl font-semibold tracking-[-0.01em] text-faint sm:text-2xl">Months</span>
               </div>
-              <div className="px-4 sm:px-6 lg:px-4 py-4 md:py-6 flex items-center bg-primary/5 border-l border-primary/15">
-                <span className="text-xl sm:text-2xl font-bold bg-clip-text text-transparent bg-linear-to-r from-primary to-violet-500">
-                  Days
-                </span>
+              <div className="flex items-center border-l border-hairline bg-mist px-4 py-4 sm:px-6 md:py-6 lg:px-4">
+                <span className="text-xl font-semibold tracking-[-0.01em] text-ink sm:text-2xl">Days</span>
               </div>
             </div>
           </motion.div>
@@ -126,9 +121,9 @@ export function PainPointsSection() {
             {reassurances.map((text, i) => (
               <span
                 key={i}
-                className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-slate-50 px-4 py-2 text-sm font-medium text-slate-600"
+                className="inline-flex items-center gap-2 rounded-full border border-hairline px-4 py-2 text-sm font-medium text-quiet"
               >
-                <Check className="w-4 h-4 text-primary shrink-0" />
+                <Check className="h-4 w-4 shrink-0 text-ink" />
                 {text}
               </span>
             ))}

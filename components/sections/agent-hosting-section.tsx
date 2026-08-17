@@ -38,7 +38,7 @@ const HOSTING_FEATURES = [
 
 export function AgentHostingSection() {
   return (
-    <section className="py-24 sm:py-32 bg-slate-50">
+    <section className="bg-white py-24 sm:py-32">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
@@ -50,22 +50,19 @@ export function AgentHostingSection() {
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
             >
-              <p className="text-xs font-semibold tracking-widest uppercase text-primary mb-4">Managed hosting</p>
-              <h2 className="text-4xl sm:text-5xl font-bold tracking-tight text-balance mb-6">
-                Your agents run on{" "}
-                <span className="bg-clip-text text-transparent bg-linear-to-r from-primary to-violet-500">
-                  our infrastructure
-                </span>
+              <p className="eyebrow mb-5">Managed hosting</p>
+              <h2 className="display mb-6 text-[clamp(2rem,4.5vw,3.25rem)]">
+                Your agents run on our infrastructure
               </h2>
-              <p className="text-lg text-slate-500 leading-relaxed mb-8">
+              <p className="lede mb-8 text-lg">
                 You don't need a server, a developer, or an IT team. Once your agent is live, we handle everything - hosting, monitoring, updates, and support. You just use it.
               </p>
 
               {/* Platform preview card */}
-              <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-                <div className="flex items-center justify-between mb-5">
-                  <span className="text-sm font-bold text-slate-800">Your agents</span>
-                  <span className="text-xs text-slate-400">Live</span>
+              <div className="rounded-3xl border border-hairline bg-white p-6">
+                <div className="mb-5 flex items-center justify-between">
+                  <span className="text-sm font-semibold text-ink">Your agents</span>
+                  <span className="eyebrow">Live</span>
                 </div>
                 <div className="space-y-3">
                   {[
@@ -73,21 +70,21 @@ export function AgentHostingSection() {
                     { name: "Lead qualification agent", status: "Active", handled: "38 leads scored today" },
                     { name: "Booking agent", status: "Active", handled: "17 appointments booked" },
                   ].map((agent, i) => (
-                    <div key={i} className="flex items-center justify-between rounded-xl bg-slate-50 px-4 py-3">
+                    <div key={i} className="flex items-center justify-between rounded-2xl bg-mist px-4 py-3">
                       <div>
-                        <p className="text-xs font-semibold text-slate-700">{agent.name}</p>
-                        <p className="text-[11px] text-slate-400 mt-0.5">{agent.handled}</p>
+                        <p className="text-xs font-semibold text-ink">{agent.name}</p>
+                        <p className="mt-0.5 text-[11px] text-faint">{agent.handled}</p>
                       </div>
-                      <span className="flex items-center gap-1.5 text-[11px] font-semibold text-emerald-600">
-                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                      <span className="flex items-center gap-1.5 text-[11px] font-semibold text-quiet">
+                        <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-ink" />
                         {agent.status}
                       </span>
                     </div>
                   ))}
                 </div>
-                <div className="mt-4 pt-4 border-t border-slate-100 flex items-center justify-between">
-                  <span className="text-xs text-slate-400">All agents monitored 24/7</span>
-                  <span className="text-xs font-semibold text-primary">Uptime: 99.9%</span>
+                <div className="mt-4 flex items-center justify-between border-t border-hairline pt-4">
+                  <span className="text-xs text-faint">All agents monitored 24/7</span>
+                  <span className="text-xs font-semibold text-ink">Uptime: 99.9%</span>
                 </div>
               </div>
             </motion.div>
@@ -101,13 +98,13 @@ export function AgentHostingSection() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: i * 0.08 }}
-                  className="rounded-2xl border border-slate-200 bg-white p-5 hover:shadow-md transition-shadow"
+                  className="rounded-3xl border border-hairline bg-white p-5 transition-colors hover:bg-mist"
                 >
-                  <div className="w-9 h-9 rounded-xl bg-primary/10 flex items-center justify-center mb-3">
-                    <feature.icon className="w-4.5 h-4.5 text-primary" />
+                  <div className="mb-3 flex h-9 w-9 items-center justify-center rounded-full border border-hairline">
+                    <feature.icon className="h-4 w-4 text-ink" />
                   </div>
-                  <h3 className="text-sm font-bold text-slate-800 mb-1.5">{feature.title}</h3>
-                  <p className="text-xs text-slate-500 leading-relaxed">{feature.description}</p>
+                  <h3 className="mb-1.5 text-sm font-semibold text-ink">{feature.title}</h3>
+                  <p className="text-xs leading-relaxed text-quiet">{feature.description}</p>
                 </motion.div>
               ))}
             </div>

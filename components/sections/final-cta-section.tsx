@@ -2,67 +2,63 @@
 
 import { motion } from "framer-motion"
 import { ArrowRight, Play } from "lucide-react"
-import { useRouter } from "next/navigation"
+import Link from "next/link"
 import { SIGNUP_URL } from "@/lib/links"
 
+const STATS = [
+  { stat: "24 hours", label: "Average time to go live" },
+  { stat: "Zero code", label: "Required from you" },
+  { stat: "100%", label: "Managed & monitored" },
+]
+
 export function FinalCTASection() {
-  const router = useRouter()
-
   return (
-    <section className="py-24 sm:py-32 bg-linear-to-br from-primary via-blue-600 to-violet-600 relative overflow-hidden">
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute -top-24 -right-24 w-80 h-80 bg-violet-400/20 rounded-full blur-3xl" />
-        <div className="absolute -bottom-24 -left-24 w-80 h-80 bg-blue-300/15 rounded-full blur-3xl" />
-      </div>
-
-      <div className="relative container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="max-w-3xl mx-auto text-center">
+    <section className="bg-white py-24 sm:py-32">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-3xl text-center">
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-white text-balance mb-6">
+            <h2 className="display text-[clamp(2.25rem,5.5vw,4rem)]">
               Ready to automate your first workflow?
             </h2>
-            <p className="text-lg text-white/70 mb-10 max-w-xl mx-auto leading-relaxed">
-              Book a free 20-minute call. We'll tell you exactly what's possible for your business, and what it'll take to get your first agent live.
+            <p className="lede mx-auto mt-6 max-w-xl text-lg">
+              Start free and describe what you want to automate. We&apos;ll tell you exactly what&apos;s possible for
+              your business, and what it&apos;ll take to get your first agent live.
             </p>
 
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
               <a
                 href={SIGNUP_URL}
-                className="relative overflow-hidden group inline-flex items-center gap-2 bg-white text-primary font-bold px-8 py-4 rounded-xl text-base shadow-2xl shadow-black/20 hover:shadow-black/30 transition-all cursor-pointer"
+                className="group relative inline-flex w-full items-center justify-center gap-2 overflow-hidden rounded-full bg-ink px-5 py-3 text-[15px] font-semibold tracking-[0.2px] text-white transition-opacity hover:opacity-85 sm:w-auto"
               >
-                <span className="absolute inset-0 bg-linear-to-r from-transparent via-primary/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-in-out" />
+                <span className="absolute inset-0 -translate-x-full bg-linear-to-r from-transparent via-white/25 to-transparent transition-transform duration-700 ease-in-out group-hover:translate-x-full" />
                 <span className="relative flex items-center gap-2">
                   Get Started
-                  <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
                 </span>
               </a>
-              <button
-                onClick={() => router.push("/watch-demo")}
-                className="inline-flex items-center gap-2 border border-white/40 bg-white/10 hover:bg-white/20 text-white font-semibold text-sm px-6 py-3.5 rounded-xl transition-all cursor-pointer backdrop-blur-sm"
+              <Link
+                href="/watch-demo"
+                className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-hairline px-5 py-3 text-[15px] font-semibold tracking-[0.2px] text-ink transition-colors hover:bg-mist sm:w-auto"
               >
-                <Play className="w-4 h-4" />
+                <Play className="h-4 w-4" />
                 Watch Demo
-              </button>
+              </Link>
             </div>
 
-            <p className="text-white/40 text-sm mt-5">
-              Free 20-minute call · No commitment · Live in days if it's a fit
+            <p className="mt-6 text-[13px] text-faint">
+              Free to start · No commitment · Live in days if it&apos;s a fit
             </p>
 
-            <div className="mt-14 pt-10 border-t border-white/15 grid grid-cols-3 gap-6 sm:gap-8 max-w-xl mx-auto">
-              {[
-                { stat: "24 hours", label: "Average time to go live" },
-                { stat: "Zero code", label: "Required from you" },
-                { stat: "100%", label: "Managed & monitored" },
-              ].map(({ stat, label }, i) => (
-                <div key={i} className="text-center">
-                  <p className="text-xl sm:text-2xl font-black text-white">{stat}</p>
-                  <p className="text-xs text-white/50 mt-1">{label}</p>
+            <div className="mx-auto mt-14 grid max-w-xl grid-cols-3 gap-6 border-t border-hairline pt-10 sm:gap-8">
+              {STATS.map(({ stat, label }) => (
+                <div key={stat} className="text-center">
+                  <p className="text-xl font-semibold tracking-[-0.02em] text-ink sm:text-2xl">{stat}</p>
+                  <p className="mt-1 text-xs text-faint">{label}</p>
                 </div>
               ))}
             </div>

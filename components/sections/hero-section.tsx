@@ -1,6 +1,6 @@
 "use client"
 
-import { useRouter } from "next/navigation"
+import Link from "next/link"
 import { ArrowRight, Bot } from "lucide-react"
 import { motion } from "framer-motion"
 import { FaSlack, FaWhatsapp, FaGoogle } from "react-icons/fa"
@@ -57,7 +57,7 @@ const ORBITS: { icons: OrbitIcon[]; durationS: number; sizeRem: number }[] = [
 function OrbitRing({ icons, durationS, sizeRem }: typeof ORBITS[0]) {
   return (
     <motion.div
-      className="absolute rounded-full border border-dashed border-slate-200"
+      className="absolute rounded-full border border-hairline"
       style={{ width: `${sizeRem}rem`, height: `${sizeRem}rem` }}
       animate={{ rotate: 360 }}
       transition={{ duration: durationS, repeat: Infinity, ease: "linear" }}
@@ -74,11 +74,13 @@ function OrbitRing({ icons, durationS, sizeRem }: typeof ORBITS[0]) {
             animate={{ rotate: -360 }}
             transition={{ duration: durationS, repeat: Infinity, ease: "linear" }}
           >
+            {/* The integration marks are the only saturated colour in the hero —
+                everything framing them stays monochrome. */}
             <div
-              className="w-10 h-10 bg-white rounded-full shadow-md flex items-center justify-center ring-1 ring-slate-100"
+              className="flex h-11 w-11 items-center justify-center rounded-full border border-hairline bg-white"
               title={item.label}
             >
-              <item.Icon className="w-5 h-5" style={{ color: item.color }} />
+              <item.Icon className="h-5 w-5" style={{ color: item.color }} />
             </div>
           </motion.div>
         )
@@ -92,8 +94,8 @@ function OrbitCanvas() {
   return (
     <div className="relative flex items-center justify-center" style={{ width: "36rem", height: "36rem" }}>
       {/* Center icon */}
-      <div className="relative z-10 w-20 h-20 rounded-full bg-linear-to-br from-primary to-violet-500 flex items-center justify-center shadow-xl shadow-primary/30">
-        <Bot className="w-10 h-10 text-white" />
+      <div className="relative z-10 flex h-20 w-20 items-center justify-center rounded-full bg-ink">
+        <Bot className="h-9 w-9 text-white" />
       </div>
       {ORBITS.map((orbit, i) => (
         <div key={i} className="absolute inset-0 flex items-center justify-center">
@@ -105,81 +107,60 @@ function OrbitCanvas() {
 }
 
 export function HeroSection() {
-  const router = useRouter()
-
   return (
-    <section className="relative w-full bg-white overflow-hidden pt-32">
-      {/* Dot grid background */}
-      <div
-        className="pointer-events-none absolute inset-0"
-        style={{
-          backgroundImage: "radial-gradient(circle, #e2e8f0 1px, transparent 1px)",
-          backgroundSize: "28px 28px",
-        }}
-      />
-      <div className="pointer-events-none absolute inset-0 bg-linear-to-r from-white via-transparent to-white" />
-      <div className="pointer-events-none absolute inset-0 bg-linear-to-b from-white via-transparent to-white" />
-
-      <div className="relative w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-16">
-        {/* ── Text block ── */}
+    <section className="relative w-full overflow-hidden bg-white pt-36 sm:pt-44">
+      <div className="relative mx-auto w-full max-w-4xl px-6 text-center">
         <motion.div
-          initial={{ opacity: 0, y: 28 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
-          className="w-full lg:w-1/2 z-10 pt-10 pb-6 lg:py-32"
         >
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight leading-[1.08] mb-6 text-slate-900 text-balance">
-            Your AI agents,{" "}
-            <span className="bg-clip-text text-transparent bg-linear-to-r from-primary via-blue-400 to-violet-500">
-              built and running
-            </span>{" "}
-            in days - not months.
+          <h1 className="display text-[clamp(2.75rem,7.5vw,5rem)]">
+            Build and launch an AI Agent in minutes
           </h1>
 
-          <p className="text-lg text-slate-500 leading-relaxed max-w-xl mb-8">
-            Tell us what you need to automate. We build, deploy, and host your custom AI agent - you just use it.
+          <p className="lede mx-auto mt-6 max-w-lg text-lg sm:text-xl">
+            Automate any task with prompting. Start for free today.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-3">
+          <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <a
               href={SIGNUP_URL}
-              className="relative overflow-hidden group inline-flex items-center justify-center gap-2 bg-linear-to-r from-primary to-violet-500 text-white font-semibold text-sm px-6 py-3 rounded-xl shadow-lg shadow-primary/30 hover:shadow-primary/50 transition-all cursor-pointer"
+              className="group relative inline-flex w-full items-center justify-center gap-2 overflow-hidden rounded-full bg-ink px-5 py-3 text-[15px] font-semibold tracking-[0.2px] text-white transition-opacity hover:opacity-85 sm:w-auto"
             >
-              <span className="absolute inset-0 bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-in-out" />
+              <span className="absolute inset-0 -translate-x-full bg-linear-to-r from-transparent via-white/25 to-transparent transition-transform duration-700 ease-in-out group-hover:translate-x-full" />
               <span className="relative flex items-center gap-2">
-                Get Started <ArrowRight className="w-4 h-4" />
+                Get Started <ArrowRight className="h-4 w-4" />
               </span>
             </a>
-            <button
-              onClick={() => router.push("/book-demo")}
-              className="inline-flex items-center justify-center gap-2 border border-slate-200 bg-white text-slate-700 font-semibold text-sm px-6 py-3 rounded-xl hover:border-primary/40 hover:text-primary transition-all cursor-pointer"
+            <Link
+              href="/book-demo"
+              className="inline-flex w-full items-center justify-center rounded-full border border-hairline px-5 py-3 text-[15px] font-semibold tracking-[0.2px] text-ink transition-colors hover:bg-mist sm:w-auto"
             >
               Book Demo
-            </button>
+            </Link>
           </div>
 
-          <p className="mt-6 text-xs text-slate-400 leading-relaxed">
+          <p className="mt-7 text-[13px] text-faint">
             Customer support · Lead qualification · Booking · Document Q&A · and more
           </p>
         </motion.div>
-
-        {/* ── Mobile orbit — below text ── */}
-        <div className="lg:hidden flex justify-center items-center overflow-hidden pb-12" style={{ height: "300px" }}>
-          <div style={{ transform: "scale(0.46)", transformOrigin: "center center" }}>
-            <OrbitCanvas />
-          </div>
-        </div>
-
-        {/* ── Desktop orbit — right half, absolute ── */}
-        <div className="hidden lg:block absolute right-0 top-0 bottom-0 w-1/2 overflow-hidden">
-          <div
-            className="absolute inset-0 flex items-center justify-center"
-            style={{ transform: "translateX(22%)" }}
-          >
-            <OrbitCanvas />
-          </div>
-        </div>
       </div>
+
+      {/* The integration orbit sits below the fold-line as the hero's visual,
+          bled to the full page width and faded into the section edges. */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+        className="relative mt-16 flex justify-center overflow-hidden sm:mt-20"
+        style={{ height: "clamp(300px, 42vw, 460px)" }}
+      >
+        <div className="absolute top-0 origin-top scale-[0.5] sm:scale-[0.7] lg:scale-[0.85]">
+          <OrbitCanvas />
+        </div>
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-linear-to-t from-white to-transparent" />
+      </motion.div>
     </section>
   )
 }

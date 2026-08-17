@@ -38,9 +38,9 @@ export function FAQSection() {
     <section className="py-24 sm:py-32 bg-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl mx-auto">
-          <div className="text-center mb-16">
-            <p className="text-xs font-semibold tracking-widest uppercase text-primary mb-4">FAQ</p>
-            <h2 className="text-4xl sm:text-5xl font-bold tracking-tight text-balance">
+          <div className="mb-16 text-center">
+            <p className="eyebrow mb-5">FAQ</p>
+            <h2 className="display text-[clamp(2rem,4.5vw,3.25rem)]">
               Questions we get a lot
             </h2>
           </div>
@@ -49,17 +49,18 @@ export function FAQSection() {
             {faqs.map((faq, i) => (
               <div
                 key={i}
-                className={`rounded-2xl border transition-all duration-200 overflow-hidden ${
-                  openIndex === i ? "border-primary/30 bg-primary/3" : "border-slate-200 bg-white hover:border-slate-300"
+                className={`overflow-hidden rounded-3xl border transition-colors duration-200 ${
+                  openIndex === i ? "border-ink bg-white" : "border-hairline bg-white hover:bg-mist"
                 }`}
               >
                 <button
                   onClick={() => setOpenIndex(openIndex === i ? null : i)}
-                  className="w-full flex items-center justify-between gap-4 px-6 py-5 text-left cursor-pointer"
+                  aria-expanded={openIndex === i}
+                  className="flex w-full cursor-pointer items-center justify-between gap-4 px-6 py-5 text-left"
                 >
-                  <span className="font-semibold text-slate-800 text-sm sm:text-base">{faq.question}</span>
+                  <span className="text-sm font-semibold text-ink sm:text-base">{faq.question}</span>
                   <ChevronDown
-                    className={`w-4 h-4 text-primary shrink-0 transition-transform duration-200 ${openIndex === i ? "rotate-180" : ""}`}
+                    className={`h-4 w-4 shrink-0 text-quiet transition-transform duration-200 ${openIndex === i ? "rotate-180" : ""}`}
                   />
                 </button>
                 <AnimatePresence>
@@ -70,7 +71,7 @@ export function FAQSection() {
                       exit={{ height: 0, opacity: 0 }}
                       transition={{ duration: 0.2, ease: "easeInOut" }}
                     >
-                      <div className="px-6 pb-5 text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-4">
+                      <div className="border-t border-hairline px-6 pb-5 pt-4 text-sm leading-relaxed text-quiet">
                         {faq.answer}
                       </div>
                     </motion.div>
