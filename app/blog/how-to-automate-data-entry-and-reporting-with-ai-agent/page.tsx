@@ -6,6 +6,7 @@ import { Footer } from "@/components/footer"
 import { Calendar, Clock, ArrowLeft, Copy, Check, CheckCircle2, ChevronDown, Play } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
+import { SIGNUP_URL } from "@/lib/links"
 
 const AGENT_PROMPT = `You are the data entry and reporting agent for [Company]. You collect data from wherever it lives, keep the master records clean and up to date, and turn those records into a ready-to-share report on a schedule.
 
@@ -433,7 +434,7 @@ export default function AutomateDataEntryReportingPage() {
                         </span>
                       </Link>
                       <Link
-                        href="/get-started"
+                        href={SIGNUP_URL}
                         className="group flex flex-col justify-between rounded-2xl bg-linear-to-br from-primary to-violet-500 p-6 shadow-sm hover:opacity-95 transition-opacity no-underline"
                       >
                         <div>
@@ -488,7 +489,7 @@ export default function AutomateDataEntryReportingPage() {
                         We build, deploy, and host AI agents connected to your spreadsheets, CRM, ad accounts, and payment tools. Book a free 20-minute call, or start building yours now.
                       </p>
                       <div className="flex flex-col sm:flex-row gap-3">
-                        <Link href="/get-started" className="inline-flex items-center justify-center gap-2 bg-white text-primary font-semibold text-sm px-6 py-3 rounded-xl hover:bg-white/90 transition-colors">
+                        <Link href={SIGNUP_URL} className="inline-flex items-center justify-center gap-2 bg-white text-primary font-semibold text-sm px-6 py-3 rounded-xl hover:bg-white/90 transition-colors">
                           Get started →
                         </Link>
                         <Link href="/book-demo" className="inline-flex items-center justify-center gap-2 border border-white/40 bg-white/10 text-white font-semibold text-sm px-6 py-3 rounded-xl hover:bg-white/20 transition-colors backdrop-blur-sm">

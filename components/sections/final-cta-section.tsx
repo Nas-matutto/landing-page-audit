@@ -1,12 +1,12 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { ArrowRight, CalendarDays, Play } from "lucide-react"
+import { ArrowRight, Play } from "lucide-react"
 import { useRouter } from "next/navigation"
+import { SIGNUP_URL } from "@/lib/links"
 
 export function FinalCTASection() {
   const router = useRouter()
-  const goToDemo = () => router.push("/book-demo")
 
   return (
     <section className="py-24 sm:py-32 bg-linear-to-br from-primary via-blue-600 to-violet-600 relative overflow-hidden">
@@ -31,17 +31,16 @@ export function FinalCTASection() {
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <button
-                onClick={goToDemo}
+              <a
+                href={SIGNUP_URL}
                 className="relative overflow-hidden group inline-flex items-center gap-2 bg-white text-primary font-bold px-8 py-4 rounded-xl text-base shadow-2xl shadow-black/20 hover:shadow-black/30 transition-all cursor-pointer"
               >
                 <span className="absolute inset-0 bg-linear-to-r from-transparent via-primary/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-in-out" />
                 <span className="relative flex items-center gap-2">
-                  <CalendarDays className="w-4 h-4" />
-                  Book a free call
+                  Get Started
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
                 </span>
-              </button>
+              </a>
               <button
                 onClick={() => router.push("/watch-demo")}
                 className="inline-flex items-center gap-2 border border-white/40 bg-white/10 hover:bg-white/20 text-white font-semibold text-sm px-6 py-3.5 rounded-xl transition-all cursor-pointer backdrop-blur-sm"

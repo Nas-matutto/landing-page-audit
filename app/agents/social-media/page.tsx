@@ -18,6 +18,7 @@ import { AgentFaqSection } from "@/components/sections/agent-detail/agent-faq-se
 import { AgentCtaSection } from "@/components/sections/agent-detail/agent-cta-section"
 import { AgentSavingsCalculator } from "@/components/agent-savings-calculator"
 import { DashboardMock, ListMock, SyncMock } from "@/components/sections/agent-detail/mockups/agent-mocks"
+import { SIGNUP_URL } from "@/lib/links"
 
 const BASE_URL = "https://talktomedata.com"
 const PAGE_URL = `${BASE_URL}/agents/social-media`
@@ -252,7 +253,7 @@ export default function SocialMediaPage() {
             />
           }
           ctaLabel="Get started"
-          ctaHref="/get-started"
+          ctaHref={SIGNUP_URL}
           ctaNote="Takes 2 minutes · Live in days"
         />
         <AgentTrustBand stats={TRUST_STATS} rating={{ score: "4.6/5", source: "average across our clients" }} />
@@ -274,7 +275,7 @@ export default function SocialMediaPage() {
           heading="Ready to post consistently — without the work?"
           subheading="Tell us your channels and voice — we'll build a social agent that drafts and schedules on-brand posts every week."
           ctaLabel="Get started"
-          ctaHref="/get-started"
+          ctaHref={SIGNUP_URL}
           note="Takes 2 minutes · No commitment"
         />
         <AgentHowWeBuildSection steps={HOW_WE_BUILD} />
@@ -310,7 +311,7 @@ export default function SocialMediaPage() {
           agentTitle="social media"
           subheading="Tell us what you want to automate and we'll show you exactly what your social media agent can do — built, hosted, and managed for you."
           ctaLabel="Get started"
-          ctaHref="/get-started"
+          ctaHref={SIGNUP_URL}
           note="Takes 2 minutes · No commitment"
         />
       </main>

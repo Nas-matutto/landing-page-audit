@@ -9,6 +9,7 @@ import {
   Server, KeyRound, Bot, Activity, RefreshCw, Plug, Shield, LayoutDashboard,
 } from "lucide-react"
 import { AGENTS, isAgentBuilt } from "@/lib/agents"
+import { SIGNUP_URL } from "@/lib/links"
 import { InfiniteGridBackground } from "@/components/ui/the-infinite-grid"
 import { FaSlack, FaWhatsapp, FaGoogle } from "react-icons/fa"
 import {
@@ -366,15 +367,15 @@ export function AgentsPageContent() {
                   </ul>
                 </div>
 
-                <button
-                  onClick={() => router.push("/get-started")}
+                <a
+                  href={SIGNUP_URL}
                   className="relative overflow-hidden group mt-8 flex items-center gap-2 bg-linear-to-r from-primary to-violet-500 text-white font-semibold text-sm px-6 py-3 rounded-xl shadow-md shadow-primary/25 hover:shadow-primary/40 hover:shadow-lg transition-all cursor-pointer"
                 >
                   <span className="absolute inset-0 bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-in-out" />
                   <span className="relative flex items-center gap-2">
                     Get started <ArrowRight className="w-4 h-4" />
                   </span>
-                </button>
+                </a>
               </motion.div>
 
               {/* Right: what we handle grid */}

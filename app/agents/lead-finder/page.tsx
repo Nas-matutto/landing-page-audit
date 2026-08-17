@@ -18,6 +18,7 @@ import { AgentWhyUsSection } from "@/components/sections/agent-detail/agent-why-
 import { AgentFaqSection } from "@/components/sections/agent-detail/agent-faq-section"
 import { AgentCtaSection } from "@/components/sections/agent-detail/agent-cta-section"
 import { LeadsDashboardMock, IcpConfigMock, MatchesListMock, CrmSyncMock } from "@/components/sections/agent-detail/mockups/lead-finder-mocks"
+import { SIGNUP_URL } from "@/lib/links"
 
 const BASE_URL = "https://talktomedata.com"
 const PAGE_URL = `${BASE_URL}/agents/lead-finder`
@@ -224,7 +225,7 @@ export default function LeadFinderPage() {
           showHeroStats={false}
           visual={<LeadsDashboardMock />}
           ctaLabel="Get started"
-          ctaHref="/get-started"
+          ctaHref={SIGNUP_URL}
           ctaNote="Takes 2 minutes · Live in days"
         />
         <AgentTrustBand stats={TRUST_STATS} rating={{ score: "4.6/5", source: "average across our clients" }} />
@@ -246,7 +247,7 @@ export default function LeadFinderPage() {
           heading="Ready to fill your pipeline?"
           subheading="Tell us who you want to reach — we'll build a lead finder agent that delivers verified prospects into your CRM every day."
           ctaLabel="Get started"
-          ctaHref="/get-started"
+          ctaHref={SIGNUP_URL}
           note="Takes 2 minutes · No commitment"
         />
         <AgentHowWeBuildSection steps={HOW_WE_BUILD} />
@@ -268,7 +269,7 @@ export default function LeadFinderPage() {
           agentTitle="lead finder"
           subheading="Tell us what you want to automate and we'll show you exactly what your lead finder agent can do — built, hosted, and managed for you."
           ctaLabel="Get started"
-          ctaHref="/get-started"
+          ctaHref={SIGNUP_URL}
           note="Takes 2 minutes · No commitment"
         />
       </main>

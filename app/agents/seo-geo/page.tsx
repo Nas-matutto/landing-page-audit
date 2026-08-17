@@ -18,6 +18,7 @@ import { AgentFaqSection } from "@/components/sections/agent-detail/agent-faq-se
 import { AgentCtaSection } from "@/components/sections/agent-detail/agent-cta-section"
 import { AgentSavingsCalculator } from "@/components/agent-savings-calculator"
 import { DashboardMock, ListMock, SyncMock } from "@/components/sections/agent-detail/mockups/agent-mocks"
+import { SIGNUP_URL } from "@/lib/links"
 
 const BASE_URL = "https://talktomedata.com"
 const PAGE_URL = `${BASE_URL}/agents/seo-geo`
@@ -255,7 +256,7 @@ export default function SeoGeoPage() {
             />
           }
           ctaLabel="Get started"
-          ctaHref="/get-started"
+          ctaHref={SIGNUP_URL}
           ctaNote="Takes 2 minutes · Live in days"
         />
         <AgentTrustBand stats={TRUST_STATS} />
@@ -347,7 +348,7 @@ export default function SeoGeoPage() {
           heading="Ready to rank on Google and in AI answers?"
           subheading="Tell us your topics and target searches — we'll build an agent that writes and publishes SEO + GEO pages for you."
           ctaLabel="Get started"
-          ctaHref="/get-started"
+          ctaHref={SIGNUP_URL}
           note="Takes 2 minutes · No commitment"
         />
         <AgentHowWeBuildSection steps={HOW_WE_BUILD} />
@@ -383,7 +384,7 @@ export default function SeoGeoPage() {
           agentTitle="SEO & GEO"
           subheading="Tell us what you want to rank for and we'll show you exactly what your SEO & GEO agent can do — built, hosted, and managed for you."
           ctaLabel="Get started"
-          ctaHref="/get-started"
+          ctaHref={SIGNUP_URL}
           note="Takes 2 minutes · No commitment"
         />
       </main>

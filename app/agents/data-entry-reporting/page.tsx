@@ -16,6 +16,7 @@ import { AgentFaqSection } from "@/components/sections/agent-detail/agent-faq-se
 import { AgentCtaSection } from "@/components/sections/agent-detail/agent-cta-section"
 import { AgentSavingsCalculator } from "@/components/agent-savings-calculator"
 import { DashboardMock, ConfigMock, ListMock, SyncMock } from "@/components/sections/agent-detail/mockups/agent-mocks"
+import { SIGNUP_URL } from "@/lib/links"
 
 const BASE_URL = "https://talktomedata.com"
 const PAGE_URL = `${BASE_URL}/agents/data-entry-reporting`
@@ -251,7 +252,7 @@ export default function DataEntryReportingPage() {
             />
           }
           ctaLabel="Get started"
-          ctaHref="/get-started"
+          ctaHref={SIGNUP_URL}
           ctaNote="Takes 2 minutes · Live in days"
         />
         <AgentTrustBand stats={TRUST_STATS} />
@@ -269,7 +270,7 @@ export default function DataEntryReportingPage() {
           heading="Ready to stop building reports by hand?"
           subheading="Tell us your data sources and format — we'll build an agent that compiles and delivers your reports automatically."
           ctaLabel="Get started"
-          ctaHref="/get-started"
+          ctaHref={SIGNUP_URL}
           note="Takes 2 minutes · No commitment"
         />
         <AgentHowWeBuildSection steps={HOW_WE_BUILD} />
@@ -305,7 +306,7 @@ export default function DataEntryReportingPage() {
           agentTitle="data entry & reporting"
           subheading="Tell us what you want to automate and we'll show you exactly what your reporting agent can do — built, hosted, and managed for you."
           ctaLabel="Get started"
-          ctaHref="/get-started"
+          ctaHref={SIGNUP_URL}
           note="Takes 2 minutes · No commitment"
         />
       </main>

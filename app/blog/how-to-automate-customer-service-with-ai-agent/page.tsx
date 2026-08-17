@@ -6,6 +6,7 @@ import { Footer } from "@/components/footer"
 import { Calendar, Clock, ArrowLeft, Copy, Check, CheckCircle2, ChevronDown, Play } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
+import { SIGNUP_URL } from "@/lib/links"
 
 const AGENT_PROMPT = `You are the front-line customer support agent in the chat bubble on [Company]'s website. You answer common questions instantly, and for anything you can't fully resolve you log a clean, ranked ticket with a recommended solution for the human team.
 
@@ -398,7 +399,7 @@ export default function AutomateCustomerServicePage() {
                         </span>
                       </Link>
                       <Link
-                        href="/get-started"
+                        href={SIGNUP_URL}
                         className="group flex flex-col justify-between rounded-2xl bg-linear-to-br from-primary to-violet-500 p-6 shadow-sm hover:opacity-95 transition-opacity no-underline"
                       >
                         <div>
@@ -448,7 +449,7 @@ export default function AutomateCustomerServicePage() {
                         We build, deploy, and host AI agents connected to your chat widget, Google Sheets, and helpdesk tools like Zendesk and Intercom. Book a free 20-minute call, or start building yours now.
                       </p>
                       <div className="flex flex-col sm:flex-row gap-3">
-                        <Link href="/get-started" className="inline-flex items-center justify-center gap-2 bg-white text-primary font-semibold text-sm px-6 py-3 rounded-xl hover:bg-white/90 transition-colors">
+                        <Link href={SIGNUP_URL} className="inline-flex items-center justify-center gap-2 bg-white text-primary font-semibold text-sm px-6 py-3 rounded-xl hover:bg-white/90 transition-colors">
                           Get started →
                         </Link>
                         <Link href="/book-demo" className="inline-flex items-center justify-center gap-2 border border-white/40 bg-white/10 text-white font-semibold text-sm px-6 py-3 rounded-xl hover:bg-white/20 transition-colors backdrop-blur-sm">

@@ -9,6 +9,7 @@ import {
   SiZendesk, SiGmail, SiAirtable, SiMailchimp, SiAsana,
   SiTrello, SiIntercom, SiJira,
 } from "react-icons/si"
+import { SIGNUP_URL } from "@/lib/links"
 
 type OrbitIcon = {
   Icon: React.ComponentType<{ className?: string; style?: React.CSSProperties }>
@@ -140,15 +141,15 @@ export function HeroSection() {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-3">
-            <button
-              onClick={() => router.push("/get-started")}
+            <a
+              href={SIGNUP_URL}
               className="relative overflow-hidden group inline-flex items-center justify-center gap-2 bg-linear-to-r from-primary to-violet-500 text-white font-semibold text-sm px-6 py-3 rounded-xl shadow-lg shadow-primary/30 hover:shadow-primary/50 transition-all cursor-pointer"
             >
               <span className="absolute inset-0 bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-in-out" />
               <span className="relative flex items-center gap-2">
                 Get Started <ArrowRight className="w-4 h-4" />
               </span>
-            </button>
+            </a>
             <button
               onClick={() => router.push("/book-demo")}
               className="inline-flex items-center justify-center gap-2 border border-slate-200 bg-white text-slate-700 font-semibold text-sm px-6 py-3 rounded-xl hover:border-primary/40 hover:text-primary transition-all cursor-pointer"

@@ -6,6 +6,7 @@ import { Footer } from "@/components/footer"
 import { Calendar, Clock, ArrowLeft, Copy, Check, CheckCircle2, ChevronDown, Play } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
+import { SIGNUP_URL } from "@/lib/links"
 
 const AGENT_PROMPT = `You turn a photographed paper invoice into a QuickBooks invoice. The user uploads an image with their message.
 
@@ -406,7 +407,7 @@ export default function AutomateInvoicesPage() {
                         </span>
                       </Link>
                       <Link
-                        href="/get-started"
+                        href={SIGNUP_URL}
                         className="group flex flex-col justify-between rounded-2xl bg-linear-to-br from-primary to-violet-500 p-6 shadow-sm hover:opacity-95 transition-opacity no-underline"
                       >
                         <div>

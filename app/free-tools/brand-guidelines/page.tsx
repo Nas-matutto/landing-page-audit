@@ -5,6 +5,7 @@ import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { ArrowRight, ArrowLeft, CheckCircle2, Download, Copy, Check, Upload } from "lucide-react"
 import Link from "next/link"
+import { SIGNUP_URL } from "@/lib/links"
 
 // ─── Preset fonts (Google Fonts — loaded client-side, free) ───────────────────
 
@@ -678,7 +679,7 @@ export default function BrandGuidelinesPage() {
                     <h3 className="text-xl font-bold text-white mb-2">Want an AI agent that uses these guidelines automatically?</h3>
                     <p className="text-white/80 text-sm mb-5 max-w-lg">We build, deploy, and host custom AI agents that write and design on-brand every time. Tell us about your workflow and we&apos;ll build it — live in days.</p>
                     <div className="flex flex-col sm:flex-row gap-3">
-                      <Link href="/get-started" className="inline-flex items-center gap-2 bg-white text-primary font-semibold text-sm px-6 py-3 rounded-xl hover:bg-white/90 transition-colors">
+                      <Link href={SIGNUP_URL} className="inline-flex items-center gap-2 bg-white text-primary font-semibold text-sm px-6 py-3 rounded-xl hover:bg-white/90 transition-colors">
                         Get started <ArrowRight className="w-4 h-4" />
                       </Link>
                       <Link href="/agents/social-media" className="inline-flex items-center gap-2 border border-white/40 bg-white/10 text-white font-semibold text-sm px-6 py-3 rounded-xl hover:bg-white/20 transition-colors backdrop-blur-sm">

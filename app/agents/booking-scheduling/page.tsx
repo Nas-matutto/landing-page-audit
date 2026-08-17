@@ -16,6 +16,7 @@ import { AgentFaqSection } from "@/components/sections/agent-detail/agent-faq-se
 import { AgentCtaSection } from "@/components/sections/agent-detail/agent-cta-section"
 import { AgentSavingsCalculator } from "@/components/agent-savings-calculator"
 import { DashboardMock, ListMock, ChatMock, SyncMock } from "@/components/sections/agent-detail/mockups/agent-mocks"
+import { SIGNUP_URL } from "@/lib/links"
 
 const BASE_URL = "https://talktomedata.com"
 const PAGE_URL = `${BASE_URL}/agents/booking-scheduling`
@@ -249,7 +250,7 @@ export default function BookingSchedulingPage() {
             />
           }
           ctaLabel="Get started"
-          ctaHref="/get-started"
+          ctaHref={SIGNUP_URL}
           ctaNote="Takes 2 minutes · Live in days"
         />
         <AgentTrustBand stats={TRUST_STATS} />
@@ -267,7 +268,7 @@ export default function BookingSchedulingPage() {
           heading="Ready to fill your calendar without the admin?"
           subheading="Tell us your services and rules — we'll build a booking agent that schedules, reschedules, and reminds for you."
           ctaLabel="Get started"
-          ctaHref="/get-started"
+          ctaHref={SIGNUP_URL}
           note="Takes 2 minutes · No commitment"
         />
         <AgentHowWeBuildSection steps={HOW_WE_BUILD} />
@@ -303,7 +304,7 @@ export default function BookingSchedulingPage() {
           agentTitle="booking & scheduling"
           subheading="Tell us what you want to automate and we'll show you exactly what your booking agent can do — built, hosted, and managed for you."
           ctaLabel="Get started"
-          ctaHref="/get-started"
+          ctaHref={SIGNUP_URL}
           note="Takes 2 minutes · No commitment"
         />
       </main>

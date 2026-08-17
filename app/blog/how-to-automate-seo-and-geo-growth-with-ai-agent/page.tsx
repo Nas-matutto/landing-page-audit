@@ -6,6 +6,7 @@ import { Footer } from "@/components/footer"
 import { Calendar, Clock, ArrowLeft, ArrowRight, ChevronDown, Search, TrendingUp, Sparkles, Repeat, Copy, Check, Cpu, Plug } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
+import { SIGNUP_URL } from "@/lib/links"
 
 const faqs = [
   {
@@ -184,7 +185,7 @@ function CtaButtons({ variant = "light" }: { variant?: "light" | "dark" }) {
   if (variant === "dark") {
     return (
       <div className="flex flex-col sm:flex-row gap-3">
-        <Link href="/get-started" className="inline-flex items-center justify-center gap-2 bg-white text-primary font-semibold text-sm px-6 py-3 rounded-xl hover:bg-white/90 transition-colors">
+        <Link href={SIGNUP_URL} className="inline-flex items-center justify-center gap-2 bg-white text-primary font-semibold text-sm px-6 py-3 rounded-xl hover:bg-white/90 transition-colors">
           Get Started <ArrowRight className="w-4 h-4" />
         </Link>
         <Link href="/agents/seo-geo" className="inline-flex items-center justify-center gap-2 border border-white/40 bg-white/10 text-white font-semibold text-sm px-6 py-3 rounded-xl hover:bg-white/20 transition-colors backdrop-blur-sm">
@@ -195,7 +196,7 @@ function CtaButtons({ variant = "light" }: { variant?: "light" | "dark" }) {
   }
   return (
     <div className="flex flex-col sm:flex-row gap-3">
-      <Link href="/get-started" className="inline-flex items-center justify-center gap-2 bg-linear-to-r from-primary to-violet-500 text-white font-semibold text-sm px-6 py-3 rounded-xl hover:opacity-90 transition-opacity">
+      <Link href={SIGNUP_URL} className="inline-flex items-center justify-center gap-2 bg-linear-to-r from-primary to-violet-500 text-white font-semibold text-sm px-6 py-3 rounded-xl hover:opacity-90 transition-opacity">
         Get Started <ArrowRight className="w-4 h-4" />
       </Link>
       <Link href="/agents/seo-geo" className="inline-flex items-center justify-center gap-2 border border-slate-300 text-foreground font-semibold text-sm px-6 py-3 rounded-xl hover:border-primary hover:text-primary transition-colors">

@@ -16,6 +16,7 @@ import { AgentWhyUsSection } from "@/components/sections/agent-detail/agent-why-
 import { AgentFaqSection } from "@/components/sections/agent-detail/agent-faq-section"
 import { AgentCtaSection } from "@/components/sections/agent-detail/agent-cta-section"
 import { DashboardMock, ListMock, ConfigMock, SyncMock } from "@/components/sections/agent-detail/mockups/agent-mocks"
+import { SIGNUP_URL } from "@/lib/links"
 
 const BASE_URL = "https://talktomedata.com"
 const PAGE_URL = `${BASE_URL}/agents/invoice-processing`
@@ -243,7 +244,7 @@ export default function InvoiceProcessingPage() {
             />
           }
           ctaLabel="Get started"
-          ctaHref="/get-started"
+          ctaHref={SIGNUP_URL}
           ctaNote="Takes 2 minutes · Live in days"
         />
         <AgentTrustBand stats={TRUST_STATS} />
@@ -276,7 +277,7 @@ export default function InvoiceProcessingPage() {
           heading="Ready to stop keying in invoices?"
           subheading="Tell us your formats and approval rules — we'll build an agent that reads, matches, and posts every invoice for you."
           ctaLabel="Get started"
-          ctaHref="/get-started"
+          ctaHref={SIGNUP_URL}
           note="Takes 2 minutes · No commitment"
         />
         <AgentTestimonialsSection testimonials={TESTIMONIALS} />
@@ -286,7 +287,7 @@ export default function InvoiceProcessingPage() {
           agentTitle="invoice processing"
           subheading="Tell us what you want to automate and we'll show you exactly what your invoice processing agent can do — built, hosted, and managed for you."
           ctaLabel="Get started"
-          ctaHref="/get-started"
+          ctaHref={SIGNUP_URL}
           note="Takes 2 minutes · No commitment"
         />
       </main>
