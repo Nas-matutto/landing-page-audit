@@ -387,8 +387,14 @@ export default function BlogPage() {
           <div className="mt-16 flex justify-center">
             <div data-quizzings="reviews" />
           </div>
+          {/* www, not the apex — the apex 308s to www and the redirect carries no
+              Access-Control-Allow-Origin, so the browser refuses to follow it.
+              The script pins its own API origin now, so this only affects the
+              script fetch itself, but www is what the docs specify. Polling for
+              new reviews is built in (data-refresh, 60s default): do not add a
+              refresh loop on top of it. */}
           <Script
-            src="https://quizzings.com/widget.js"
+            src="https://www.quizzings.com/widget.js"
             data-site="88fed68f-06dc-4f7d-b600-4901330bef19"
             data-layout="badge"
             strategy="afterInteractive"
