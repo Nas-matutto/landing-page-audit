@@ -4,6 +4,7 @@ import { Footer } from "@/components/footer"
 import { Calendar, Clock, ArrowRight } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
+import Script from "next/script"
 
 export const metadata: Metadata = {
   title: "AI Agents & Automation Guides | Talk to me Data",
@@ -378,6 +379,20 @@ export default function BlogPage() {
               <p className="text-slate-400 text-lg">No blog posts yet. Check back soon!</p>
             </div>
           )}
+
+          {/* Quizzings reviews — mt-16 matches the mb-16 rhythm the header and
+              featured post use. The widget renders into a shadow root and only
+              inherits font-family and color, so it picks up Geist from <body>
+              without any styles here. */}
+          <div className="mt-16 flex justify-center">
+            <div data-quizzings="reviews" />
+          </div>
+          <Script
+            src="https://quizzings.com/widget.js"
+            data-site="88fed68f-06dc-4f7d-b600-4901330bef19"
+            data-layout="badge"
+            strategy="afterInteractive"
+          />
         </div>
       </main>
       <Footer />
