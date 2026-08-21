@@ -121,8 +121,11 @@ export function HowItWorksSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.36 }}
-            className="mt-8 overflow-hidden rounded-3xl border border-hairline bg-white"
+            className="relative mx-auto mt-20 w-full max-w-xl overflow-hidden rounded-3xl border border-hairline bg-white"
           >
+            <span className="absolute left-4 top-4 z-10 rounded-full bg-ink/80 px-3 py-1.5 text-xs font-medium text-white backdrop-blur-sm">
+              Get a sneak peak of Talk to Me Data
+            </span>
             <video
               className="block h-auto w-full"
               src="/videos/final-ttmd-demo.webm"
