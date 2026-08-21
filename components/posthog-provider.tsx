@@ -36,6 +36,7 @@ export function PostHogProvider({ children }: { children: React.ReactNode }) {
         },
         capture_pageview: false, // We'll capture manually
         capture_pageleave: true,
+        cross_subdomain_cookie: true, // Share anonymous ID with app.talktomedata.com
       })
     }
   }, [])
