@@ -115,6 +115,25 @@ export function HowItWorksSection() {
               </motion.div>
             ))}
           </div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.36 }}
+            className="mt-8 overflow-hidden rounded-3xl border border-hairline bg-white"
+          >
+            <video
+              className="block h-auto w-full"
+              src="/videos/final-ttmd-demo.webm"
+              autoPlay
+              loop
+              muted
+              playsInline
+              controls={false}
+              preload="auto"
+            />
+          </motion.div>
         </div>
       </div>
     </section>
