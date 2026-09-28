@@ -3,6 +3,7 @@
 import { motion } from "framer-motion"
 import { useState, useEffect, useMemo } from "react"
 import Link from "next/link"
+import Image from "next/image"
 import {
   ArrowRight, Check, Wand2,
   Server, KeyRound, Bot, Activity, RefreshCw, Plug, Shield, LayoutDashboard,
@@ -15,7 +16,7 @@ import { IntegrationMarquee } from "@/components/ui/integration-marquee"
 
 const ROTATING_WORDS = ["Customer Service", "Marketing", "Sales", "HR", "Finance", "Operations"]
 
-function RotatingWord() {
+function RotatingWord({ className = "" }: { className?: string }) {
   const [index, setIndex] = useState(0)
   const titles = useMemo(() => ROTATING_WORDS, [])
 
@@ -25,7 +26,7 @@ function RotatingWord() {
   }, [index, titles])
 
   return (
-    <span className="relative inline-flex justify-center w-full overflow-hidden" style={{ height: "1.15em" }}>
+    <span className={`relative inline-flex justify-center w-full overflow-hidden ${className}`} style={{ height: "1.15em" }}>
       {titles.map((word, i) => (
         <motion.span
           key={word}
@@ -60,46 +61,75 @@ export function AgentsPageContent() {
   return (
     <>
       {/* ── Hero ── */}
-      <section className="relative overflow-hidden bg-white pb-20 pt-36 sm:pt-44">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="relative z-10 mx-auto max-w-4xl px-4 text-center sm:px-6"
-        >
-          <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-hairline px-4 py-1.5">
-            <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-ink" />
-            <span className="eyebrow">Fully managed · Deployed in 24 hours</span>
-          </div>
+      <section className="relative overflow-hidden bg-white pb-20 pt-36 sm:pt-44 lg:pb-24 lg:pt-40">
+        <div className="relative z-10 mx-auto grid max-w-6xl items-center gap-12 px-4 sm:px-6 lg:grid-cols-[minmax(0,1fr)_auto] lg:gap-10 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-center lg:text-left"
+          >
+            <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-hairline px-4 py-1.5">
+              <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-ink" />
+              <span className="eyebrow">Fully managed · Deployed in 24 hours</span>
+            </div>
 
-          <h1 className="display text-[clamp(2.5rem,6.5vw,4.5rem)]">AI agents built for</h1>
-          <div className="mb-8 mt-1 text-[clamp(2.5rem,6.5vw,4.5rem)]">
-            <RotatingWord />
-          </div>
+            <h1 className="display text-[clamp(2.5rem,6.5vw,4.5rem)]">AI agents built for</h1>
+            <div className="mb-8 mt-1 text-[clamp(2.5rem,6.5vw,4.5rem)]">
+              <RotatingWord className="lg:justify-start" />
+            </div>
 
-          <p className="lede mx-auto mb-10 max-w-2xl text-lg">
-            We build, deploy, and host custom AI agents on our infrastructure. Tell us your workflow — your agent is
-            live within 24 hours.
-          </p>
+            <p className="lede mx-auto mb-10 max-w-2xl text-lg lg:mx-0 lg:max-w-xl">
+              We build, deploy, and host custom AI agents on our infrastructure. Tell us your workflow — your agent is
+              live within 24 hours.
+            </p>
 
-          <div className="flex flex-col items-center justify-center gap-3 sm:flex-row">
-            <a
-              href={SIGNUP_URL}
-              className="group relative inline-flex w-full items-center justify-center gap-2 overflow-hidden rounded-full bg-ink px-5 py-3 text-[15px] font-semibold tracking-[0.2px] text-white transition-opacity hover:opacity-85 sm:w-auto"
+            <div className="flex flex-col items-center justify-center gap-3 sm:flex-row lg:justify-start">
+              <a
+                href={SIGNUP_URL}
+                className="group relative inline-flex w-full items-center justify-center gap-2 overflow-hidden rounded-full bg-ink px-5 py-3 text-[15px] font-semibold tracking-[0.2px] text-white transition-opacity hover:opacity-85 sm:w-auto"
+              >
+                <span className="absolute inset-0 -translate-x-full bg-linear-to-r from-transparent via-white/25 to-transparent transition-transform duration-700 ease-in-out group-hover:translate-x-full" />
+                <span className="relative flex items-center gap-2">
+                  Get Started <ArrowRight className="h-4 w-4" />
+                </span>
+              </a>
+              <Link
+                href="/book-demo"
+                className="inline-flex w-full items-center justify-center rounded-full border border-hairline px-5 py-3 text-[15px] font-semibold tracking-[0.2px] text-ink transition-colors hover:bg-mist sm:w-auto"
+              >
+                Book a free call
+              </Link>
+            </div>
+          </motion.div>
+
+          {/* Brand ambassador — waves hello beside the headline; stacks under the CTAs on mobile */}
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.15 }}
+            className="relative mx-auto w-[180px] sm:w-[210px] lg:w-[250px] xl:w-[270px]"
+          >
+            <div
+              aria-hidden
+              className="absolute -bottom-2 left-1/2 h-5 w-[78%] -translate-x-1/2 rounded-[50%] bg-ink/10 blur-md"
+            />
+            <motion.div
+              animate={{ y: [0, -8, 0] }}
+              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
             >
-              <span className="absolute inset-0 -translate-x-full bg-linear-to-r from-transparent via-white/25 to-transparent transition-transform duration-700 ease-in-out group-hover:translate-x-full" />
-              <span className="relative flex items-center gap-2">
-                Get Started <ArrowRight className="h-4 w-4" />
-              </span>
-            </a>
-            <Link
-              href="/book-demo"
-              className="inline-flex w-full items-center justify-center rounded-full border border-hairline px-5 py-3 text-[15px] font-semibold tracking-[0.2px] text-ink transition-colors hover:bg-mist sm:w-auto"
-            >
-              Book a free call
-            </Link>
-          </div>
-        </motion.div>
+              <Image
+                src="/agent_ambassador.webp"
+                alt="Talk to me Data's AI agent ambassador waving hello"
+                width={444}
+                height={880}
+                priority
+                className="relative h-auto w-full select-none"
+                draggable={false}
+              />
+            </motion.div>
+          </motion.div>
+        </div>
       </section>
 
       {/* ── Explore Agents: clickable grid ── */}
