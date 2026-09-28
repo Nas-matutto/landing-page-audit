@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>AI Quest</title>
+<meta name="description" content="A small top-down pixel RPG where every duel is an AI trivia battle. Free to play in your browser.">
+
+<!-- Inline so the page stays self-contained and never requests /favicon.ico. -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' fill='%23161a26'/%3E%3Ccircle cx='8' cy='8' r='6' fill='%23e8b23f'/%3E%3Ccircle cx='8' cy='5' r='1.6' fill='%232e2742'/%3E%3Ccircle cx='5' cy='10' r='1.6' fill='%232e2742'/%3E%3Ccircle cx='11' cy='10' r='1.6' fill='%232e2742'/%3E%3C/svg%3E">
+
+<style>
+  /* Every path on this page is relative, so the folder works from any URL
+     (e.g. yoursite.com/blog/ai-quest/) without touching the code. */
+  @font-face {
+    font-family: 'Silkscreen';
+    font-style: normal;
+    font-weight: 400;
+    font-display: block;
+    src: url('assets/fonts/silkscreen-regular.woff2') format('woff2');
+  }
+  @font-face {
+    font-family: 'Silkscreen';
+    font-style: normal;
+    font-weight: 700;
+    font-display: block;
+    src: url('assets/fonts/silkscreen-bold.woff2') format('woff2');
+  }
+
+  :root {
+    --bg: #f6f3ea;
+    --border: #ddd5bd;
+    --text-dim: #6b6555;
+    --accent-strong: #8a5a0c;
+    --shadow: rgba(60, 50, 20, 0.12);
+    --body-font: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0d0f18;
+      --border: #333a55;
+      --text-dim: #98a3c4;
+      --accent-strong: #ffd977;
+      --shadow: rgba(0, 0, 0, 0.45);
+    }
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text-dim);
+    font-family: var(--body-font);
+    line-height: 1.6;
+  }
+
+  .game-page {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 32px 20px 40px;
+    text-align: center;
+  }
+
+  .game-page h1 {
+    font-family: 'Silkscreen', 'Courier New', monospace;
+    font-size: clamp(24px, 4vw, 34px);
+    color: var(--accent-strong);
+    letter-spacing: 0.5px;
+  }
+
+  .lede {
+    max-width: 46ch;
+    margin: 12px auto 0;
+    font-size: 16px;
+  }
+
+  .game-frame {
+    position: relative;
+    width: min(720px, 100%);
+    aspect-ratio: 320 / 180;
+    margin: 28px auto 0;
+    background: #0d0f18; /* the game canvas is always dark, regardless of page theme */
+    border: 2px solid var(--border);
+    box-shadow: 0 10px 40px var(--shadow);
+    overflow: hidden;
+  }
+
+  #game {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* Stop the browser turning D-pad drags into scrolls, pull-to-refresh or
+       double-tap zoom inside the game frame. */
+    touch-action: none;
+    overscroll-behavior: none;
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  #game canvas {
+    /* Keep the upscaled pixel art crisp rather than smoothed. */
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+    display: block;
+  }
+
+  /* Shown until BootScene reports the game is up. */
+  #boot {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 12px;
+    background: #0d0f18;
+    color: #8d9ab8;
+    font-family: 'Silkscreen', monospace;
+    font-size: 12px;
+    text-align: center;
+    padding: 24px;
+    line-height: 1.8;
+    z-index: 2;
+  }
+  #boot.hidden { display: none; }
+  #boot .err { color: #d9534f; max-width: 40ch; }
+
+  .how-to { margin-top: 14px; font-size: 13px; }
+
+  /*
+   * On a phone: full width, edge-to-edge, and a bit taller than 16:9. The
+   * game uses Phaser's Scale.ENVELOP (crop-to-fill), so the extra height is
+   * shown by cropping a few pixels off the left/right instead of adding
+   * black bars. Kept modest so the HUD near the edges isn't clipped.
+   */
+  @media (max-width: 640px) {
+    .game-page { padding-top: 20px; }
+    .game-page h1 { font-size: 22px; }
+    .lede { font-size: 14px; margin-top: 8px; }
+
+    .game-frame {
+      width: 100vw;
+      aspect-ratio: 8 / 5;
+      margin-top: 18px;
+      margin-left: calc(50% - 50vw);
+      margin-right: calc(50% - 50vw);
+      border-left: 0;
+      border-right: 0;
+    }
+  }
+
+  /* ---------- Mobile controls (DOM, not Phaser) ---------- */
+
+  /*
+   * A D-pad/A/B deck below the screen, shown for touch input only via
+   * `(pointer: coarse)`; `?touch=1` forces it on for testing on desktop.
+   * Every button dispatches the real keyboard event it stands in for - see
+   * the wiring at the bottom of this file.
+   */
+  .mobile-controls {
+    display: none;
+    align-items: center;
+    justify-content: space-between;
+    width: min(680px, calc(100% - 24px));
+    margin: 14px auto 0;
+    padding: 22px 30px;
+    background: linear-gradient(165deg, #232841 0%, #12141f 65%);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
+    box-shadow: 0 14px 30px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  }
+  @media (pointer: coarse) { .mobile-controls { display: flex; } }
+  html.force-touch .mobile-controls { display: flex; }
+
+  /* --- D-pad: analog-stick-styled base + nub, plain rect tap zones --- */
+
+  .dpad { position: relative; width: 126px; height: 126px; flex: none; }
+
+  .dpad-base {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: radial-gradient(circle at 34% 28%, #3a4166 0%, #1b1f33 60%, #14172a 100%);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.5), inset 0 2px 4px rgba(255, 255, 255, 0.08), inset 0 -6px 10px rgba(0, 0, 0, 0.4);
+  }
+
+  .dpad-glyphs {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    align-items: center;
+    justify-items: center;
+    color: rgba(228, 232, 245, 0.5);
+    font-size: 13px;
+    pointer-events: none;
+  }
+  .dpad-glyphs span:nth-child(1) { grid-column: 2; grid-row: 1; }
+  .dpad-glyphs span:nth-child(2) { grid-column: 1; grid-row: 2; }
+  .dpad-glyphs span:nth-child(3) { grid-column: 3; grid-row: 2; }
+  .dpad-glyphs span:nth-child(4) { grid-column: 2; grid-row: 3; }
+
+  .dpad-nub {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 46px;
+    height: 46px;
+    margin: -23px 0 0 -23px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 38% 32%, #5a6390 0%, #2b3050 65%, #20243d 100%);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5), inset 0 1px 2px rgba(255, 255, 255, 0.25);
+    transition: transform 0.09s ease, background 0.09s ease;
+    pointer-events: none;
+  }
+  .dpad-nub.tilt-up { transform: translate(0, -20px); }
+  .dpad-nub.tilt-down { transform: translate(0, 20px); }
+  .dpad-nub.tilt-left { transform: translate(-20px, 0); }
+  .dpad-nub.tilt-right { transform: translate(20px, 0); }
+  .dpad-nub.pressed { background: radial-gradient(circle at 38% 32%, #ffe6a3 0%, #f2b53c 65%, #c98f24 100%); }
+
+  .dpad-btn {
+    position: absolute;
+    background: transparent;
+    border: 0;
+    padding: 0;
+    touch-action: none;
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    cursor: pointer;
+  }
+  .dpad-up { top: 0; left: 33%; width: 34%; height: 40%; }
+  .dpad-down { bottom: 0; left: 33%; width: 34%; height: 40%; }
+  .dpad-left { left: 0; top: 33%; width: 40%; height: 34%; }
+  .dpad-right { right: 0; top: 33%; width: 40%; height: 34%; }
+
+  /* --- A/B: glossy concave face buttons --- */
+
+  .ab-pad { position: relative; width: 116px; height: 92px; flex: none; }
+  .ab-btn {
+    position: absolute;
+    width: 58px;
+    height: 58px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 30%, #3c436a 0%, #1c2036 70%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.5), inset 0 2px 3px rgba(255, 255, 255, 0.15), inset 0 -8px 12px rgba(0, 0, 0, 0.35);
+    color: #e4e8f5;
+    font-family: 'Silkscreen', monospace;
+    font-size: 15px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    touch-action: none;
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    cursor: pointer;
+    transition: transform 0.07s ease;
+  }
+  .ab-btn.pressed {
+    transform: scale(0.94);
+    background: radial-gradient(circle at 35% 30%, #ffe6a3 0%, #f2b53c 70%);
+    color: #171208;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5), inset 0 2px 3px rgba(255, 255, 255, 0.3);
+  }
+  .ab-a { right: 0; top: 0; }
+  .ab-a::after {
+    content: '';
+    position: absolute; inset: -3px;
+    border-radius: 50%;
+    border: 1px solid rgba(242, 181, 60, 0.5);
+    pointer-events: none;
+  }
+  .ab-b { left: 0; bottom: 0; }
+</style>
+</head>
+<body>
+
+<main class="game-page">
+  <h1>AI QUEST</h1>
+  <p class="lede">Think Pok&eacute;mon, but every battle teaches you AI. Explore a pixel world and pick up real AI concepts, one duel at a time.</p>
+
+  <div class="game-frame">
+    <div id="game"></div>
+    <div id="boot">
+      <div>AI QUEST</div>
+      <div id="boot-msg">loading...</div>
+    </div>
+  </div>
+
+  <div class="mobile-controls" id="mobile-controls">
+    <div class="dpad">
+      <div class="dpad-base"></div>
+      <div class="dpad-glyphs" aria-hidden="true">
+        <span>&#9650;</span><span>&#9664;</span><span>&#9654;</span><span>&#9660;</span>
+      </div>
+      <div class="dpad-nub" id="dpad-nub"></div>
+      <button type="button" class="dpad-btn dpad-up" data-dir="up" aria-label="Up"></button>
+      <button type="button" class="dpad-btn dpad-left" data-dir="left" aria-label="Left"></button>
+      <button type="button" class="dpad-btn dpad-right" data-dir="right" aria-label="Right"></button>
+      <button type="button" class="dpad-btn dpad-down" data-dir="down" aria-label="Down"></button>
+    </div>
+    <div class="ab-pad">
+      <button type="button" class="ab-btn ab-b" data-code="Escape" aria-label="Menu (B button)">B</button>
+      <button type="button" class="ab-btn ab-a" data-code="Space" aria-label="Confirm (A button)">A</button>
+    </div>
+  </div>
+
+  <p class="how-to">Arrows/WASD to walk, Space to talk. Progress saves in your browser.</p>
+</main>
+
+<!-- Phaser 3.90.0, vendored locally: no CDN, no build step. -->
+<script src="vendor/phaser.min.js"></script>
+
+<script type="module">
+  import { pressDirection, releaseDirection } from './src/systems/touchInput.js';
+
+  // ---------- Mobile D-pad / A / B ----------
+  // `?touch=1` forces the panel on for testing from a desktop browser.
+  if (new URLSearchParams(location.search).get('touch') === '1') {
+    document.documentElement.classList.add('force-touch');
+  }
+
+  /**
+   * A/B dispatch the exact keydown/keyup a keyboard would send, on `window`
+   * (Phaser's default keyboard capture target), so the game reads them
+   * exactly as Space/Escape.
+   */
+  function bindKeyButton(el) {
+    const code = el.dataset.code;
+    let active = false;
+
+    const press = (e) => {
+      e.preventDefault();
+      if (active) return;
+      active = true;
+      el.classList.add('pressed');
+      window.dispatchEvent(new KeyboardEvent('keydown', { code, bubbles: true }));
+    };
+    const release = () => {
+      if (!active) return;
+      active = false;
+      el.classList.remove('pressed');
+      window.dispatchEvent(new KeyboardEvent('keyup', { code, bubbles: true }));
+    };
+
+    el.addEventListener('pointerdown', press);
+    el.addEventListener('pointerup', release);
+    el.addEventListener('pointercancel', release);
+    el.addEventListener('pointerleave', release);
+  }
+
+  /**
+   * The D-pad sends the same synthetic keydown (for menus/battle answers) and
+   * also calls pressDirection()/releaseDirection() for held movement in town -
+   * see src/systems/touchInput.js for why a synthetic event alone isn't enough.
+   */
+  const ARROW_CODE = { up: 'ArrowUp', down: 'ArrowDown', left: 'ArrowLeft', right: 'ArrowRight' };
+  const dpadNub = document.getElementById('dpad-nub');
+
+  function bindDirectionButton(el) {
+    const dir = el.dataset.dir;
+    let active = false;
+
+    const press = (e) => {
+      e.preventDefault();
+      if (active) return;
+      active = true;
+      el.classList.add('pressed');
+      dpadNub?.classList.add('pressed', `tilt-${dir}`);
+      pressDirection(dir);
+      window.dispatchEvent(new KeyboardEvent('keydown', { code: ARROW_CODE[dir], bubbles: true }));
+    };
+    const release = () => {
+      if (!active) return;
+      active = false;
+      el.classList.remove('pressed');
+      dpadNub?.classList.remove('pressed', `tilt-${dir}`);
+      releaseDirection(dir);
+    };
+
+    el.addEventListener('pointerdown', press);
+    el.addEventListener('pointerup', release);
+    el.addEventListener('pointercancel', release);
+    el.addEventListener('pointerleave', release);
+  }
+
+  document.querySelectorAll('.ab-btn').forEach(bindKeyButton);
+  document.querySelectorAll('.dpad-btn').forEach(bindDirectionButton);
+
+  // ---------- Game boot ----------
+  const msg = document.getElementById('boot-msg');
+  window.addEventListener('error', (e) => {
+    msg.className = 'err';
+    msg.textContent = 'Failed to start: ' + (e.message || 'unknown error');
+  });
+
+  if (!window.Phaser) {
+    msg.className = 'err';
+    msg.textContent = 'vendor/phaser.min.js did not load.';
+  } else {
+    import('./src/main.js').catch((err) => {
+      msg.className = 'err';
+      msg.textContent = 'Failed to start: ' + err.message;
+    });
+  }
+</script>
+
+</body>
+</html>
