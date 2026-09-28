@@ -121,7 +121,7 @@ export function AgentsPageContent() {
               <Image
                 src="/agent_ambassador.webp"
                 alt="Talk to me Data's AI agent ambassador waving hello"
-                width={444}
+                width={445}
                 height={880}
                 priority
                 className="relative h-auto w-full select-none"
