@@ -1,0 +1,16 @@
+{
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/free-tools/layout,_N_T_/free-tools/ai-learning-game/layout,_N_T_/free-tools/ai-learning-game/page,_N_T_/free-tools/ai-learning-game"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/free-tools/ai-learning-game/__PAGE__",
+    "/free-tools/ai-learning-game",
+    "/free-tools",
+    "/_index",
+    "/_head"
+  ]
+}

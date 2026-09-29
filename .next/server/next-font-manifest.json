@@ -124,6 +124,10 @@
       "static/media/caa3a2e1cccd8315-s.p.3b6cae6d.woff2",
       "static/media/797e433ab948586e-s.p.29207c2f.woff2"
     ],
+    "[project]/app/data-deletion/page": [
+      "static/media/caa3a2e1cccd8315-s.p.3b6cae6d.woff2",
+      "static/media/797e433ab948586e-s.p.29207c2f.woff2"
+    ],
     "[project]/app/free-guides/ai-agent-readiness-audit/page": [
       "static/media/caa3a2e1cccd8315-s.p.3b6cae6d.woff2",
       "static/media/797e433ab948586e-s.p.29207c2f.woff2"
@@ -137,6 +141,10 @@
       "static/media/797e433ab948586e-s.p.29207c2f.woff2"
     ],
     "[project]/app/free-guides/page": [
+      "static/media/caa3a2e1cccd8315-s.p.3b6cae6d.woff2",
+      "static/media/797e433ab948586e-s.p.29207c2f.woff2"
+    ],
+    "[project]/app/free-tools/ai-learning-game/page": [
       "static/media/caa3a2e1cccd8315-s.p.3b6cae6d.woff2",
       "static/media/797e433ab948586e-s.p.29207c2f.woff2"
     ],

@@ -3,9 +3,7 @@ import type { Metadata } from "next"
 import { Geist, Geist_Mono } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import { PostHogProvider } from "@/components/posthog-provider"
-import { GoogleAnalytics } from "@/components/google-analytics"
-import { MetaPixel } from "@/components/meta-pixel"
-import { ChatWidgetLoader } from "@/components/chat-widget-loader"
+import { CookieBanner, ConsentedScripts } from "@/components/cookie-consent"
 import "./globals.css"
 
 const geist = Geist({ subsets: ["latin"], variable: "--font-geist-sans", display: "swap" })
@@ -94,9 +92,8 @@ export default function RootLayout({
         <PostHogProvider>
           {children}
         </PostHogProvider>
-        <ChatWidgetLoader />
-        <GoogleAnalytics />
-        <MetaPixel />
+        <CookieBanner />
+        <ConsentedScripts />
         <Analytics />
       </body>
     </html>

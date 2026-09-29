@@ -1,556 +1,308 @@
 import type { Metadata } from "next"
-import { Header } from "@/components/header"
-import { Footer } from "@/components/footer"
-
-const COMPANY = "Talk to Me Data"
-const EFFECTIVE_DATE = "July 23, 2026"
-const CONTACT_EMAIL = "nas@talktomedata.com"
-const LEGAL_ENTITY = "MATUTTO FZ-LLC"
-// TODO (legal): fill in the governing law / arbitration forum / seat before publishing.
-// Left as visible placeholders for now (jurisdiction intentionally not stated yet).
-const GOVERNING_LAW = "[GOVERNING LAW — TO BE CONFIRMED]"
-const ARBITRATION_FORUM = "[ARBITRATION FORUM — TO BE CONFIRMED]"
-const ARBITRATION_SEAT = "[SEAT OF ARBITRATION — TO BE CONFIRMED]"
+import Link from "next/link"
+import { Email, ExternalLink, LegalPage, legal } from "@/components/legal-page"
 
 export const metadata: Metadata = {
   title: "Terms of Service | Talk to Me Data",
   description:
-    "The Terms of Service governing access to and use of Talk to Me Data's website, AI agents, automation, and related services.",
+    "The agreement between you and Talk to Me Data for using our website, app and AI agents: plans, payment, cancelling, acceptable use and liability.",
   alternates: { canonical: "https://talktomedata.com/terms-of-service" },
 }
 
+const COMPANY = {
+  legalName: "MATUTTO LTD",
+  number: "12558540",
+  address: "106 Cranston Court, 56 Bloemfontein Road, London W12 2FG",
+}
+
+const { h2, p, ul, link } = legal
+
 export default function TermsOfServicePage() {
   return (
-    <div className="min-h-screen">
-      <Header />
-      <main className="pt-32 sm:pt-40 pb-16 sm:pb-24">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-4xl mx-auto">
-            {/* Header */}
-            <div className="text-center mb-12">
-              <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-balance mb-6">
-                Terms of Service
-              </h1>
-              <p className="text-lg text-muted-foreground">Last updated: {EFFECTIVE_DATE}</p>
-            </div>
+    <LegalPage title="Terms of Service" lastUpdated="29 September 2026">
+      <section>
+        <p className={p}>
+          These terms are the agreement between you and us for your use of Talk to Me Data. Please read them carefully. By creating an account or using the Service, you agree to them. If you don&rsquo;t agree, please don&rsquo;t use the Service.
+        </p>
+      </section>
 
-            {/* Content */}
-            <div className="prose prose-lg max-w-none">
-              <div className="space-y-8">
+      {/* 1 */}
+      <section>
+        <h2 className={h2}>1. About us</h2>
+        <p className={p}>
+          Talk to Me Data is a trading name of <strong>{COMPANY.legalName}</strong>, a company registered in England and Wales (company number <strong>{COMPANY.number}</strong>), registered office <strong>{COMPANY.address}</strong>.
+        </p>
+        <p className={p}>
+          &ldquo;We&rdquo;, &ldquo;us&rdquo; and &ldquo;our&rdquo; mean {COMPANY.legalName}. &ldquo;You&rdquo; means the person using the Service or, if you use it for a business, that business. The &ldquo;Service&rdquo; means our website at talktomedata.com, our app at app.talktomedata.com, and the AI agents we provide.
+        </p>
+        <p className={p}>
+          <strong>Contact:</strong> <Email />
+        </p>
+      </section>
 
-                {/* Important notice */}
-                <section className="not-prose rounded-2xl border-2 border-primary/30 bg-primary/5 p-6">
-                  <h2 className="text-xl font-bold mb-3">Important Notice — Please Read Carefully</h2>
-                  <p className="text-muted-foreground leading-relaxed mb-3">
-                    These Terms of Service (the &quot;Terms&quot;) are a binding legal agreement. By accessing or using the
-                    Services, you accept all of these Terms. They contain provisions that significantly affect your legal
-                    rights, including:
-                  </p>
-                  <ul className="list-disc pl-6 space-y-2 text-muted-foreground">
-                    <li>
-                      a <strong>binding individual arbitration</strong> requirement and a <strong>waiver of class
-                      actions and jury trials</strong> (see &quot;Dispute Resolution&quot;);
-                    </li>
-                    <li>
-                      broad <strong>disclaimers of warranties</strong> and a <strong>cap on our total liability</strong>
-                      {" "}(see &quot;Disclaimers&quot; and &quot;Limitation of Liability&quot;);
-                    </li>
-                    <li>
-                      your obligation to <strong>indemnify and defend us</strong>, and your <strong>assumption of all
-                      risk</strong> arising from your use of the Services and any AI-generated output;
-                    </li>
-                    <li>
-                      a <strong>shortened time limit</strong> within which claims must be brought.
-                    </li>
-                  </ul>
-                  <p className="text-muted-foreground leading-relaxed mt-3">
-                    If you do not agree to these Terms, you must not access or use the Services. Nothing in these Terms
-                    excludes, restricts, or modifies any right or remedy, or any guarantee, warranty, or other term or
-                    condition, that applicable law says cannot be excluded, restricted, or modified.
-                  </p>
-                </section>
+      {/* 2 */}
+      <section>
+        <h2 className={h2}>2. Business customers and consumers</h2>
+        <p className={p}>Most of our customers use the Service for their business. Some people use it for a personal brand.</p>
+        <ul className={ul}>
+          <li>
+            <strong>If you use the Service for your trade, business, craft or profession</strong> (including as a sole trader or creator earning from your content), you are a <strong>business customer</strong>. If you accept these terms for an organisation, you confirm you have authority to bind it.
+          </li>
+          <li>
+            <strong>If you use the Service wholly or mainly outside your trade or business</strong>, you are a <strong>consumer</strong>. Some sections apply differently to consumers, and they say so. Nothing in these terms affects your legal rights as a consumer.
+          </li>
+        </ul>
+      </section>
 
-                {/* 1. Agreement */}
-                <section>
-                  <h2 className="text-2xl font-bold mb-4">1. Agreement to These Terms</h2>
-                  <p className="text-muted-foreground leading-relaxed mb-4">
-                    These Terms govern your access to and use of the websites, applications, application programming
-                    interfaces, AI agents, automations, integrations, content, and other products and services made
-                    available by {LEGAL_ENTITY} and its affiliates (collectively, &quot;{COMPANY},&quot; &quot;we,&quot;
-                    &quot;us,&quot; or &quot;our&quot;) (collectively, the &quot;Services&quot;). By accessing, browsing,
-                    registering for, or using the Services in any manner, or by clicking to accept these Terms where that
-                    option is made available, you (&quot;you,&quot; &quot;your,&quot; the &quot;Customer,&quot; or the
-                    &quot;User&quot;) agree to be bound by these Terms and by all policies, guidelines, and documents
-                    incorporated by reference, including our Privacy Policy.
-                  </p>
-                  <p className="text-muted-foreground leading-relaxed">
-                    These Terms apply to the fullest extent permitted by applicable law in every jurisdiction from which
-                    you access or use the Services, including without limitation the United States, the United Kingdom,
-                    the European Economic Area, the United Arab Emirates, and the wider Middle East. If any additional
-                    order form, statement of work, subscription plan, or written agreement is executed between you and us,
-                    it forms part of these Terms; in the event of a conflict, the more specific executed document controls
-                    for the subject matter it addresses, and these Terms otherwise apply.
-                  </p>
-                </section>
+      {/* 3 */}
+      <section>
+        <h2 className={h2}>3. Your account</h2>
+        <ul className={ul}>
+          <li>You must be at least <strong>18</strong> to use the Service.</li>
+          <li>Give us accurate information and keep it up to date.</li>
+          <li>Keep your login details secure. You are responsible for everything that happens under your account. Tell us straight away at <Email /> if you think someone else has accessed it.</li>
+          <li>One person or business per account unless we agree otherwise.</li>
+        </ul>
+      </section>
 
-                {/* 2. Definitions */}
-                <section>
-                  <h2 className="text-2xl font-bold mb-4">2. Definitions</h2>
-                  <ul className="list-disc pl-6 space-y-2 text-muted-foreground">
-                    <li><strong>&quot;AI Output&quot;</strong> means any content, text, code, classification, ranking, recommendation, message, or other result generated, drafted, suggested, or produced by or through the Services, including by any AI agent, model, or automation.</li>
-                    <li><strong>&quot;Customer Data&quot;</strong> means any data, content, materials, credentials, prompts, instructions, URLs, files, or information that you or your end users submit to, connect to, or process through the Services.</li>
-                    <li><strong>&quot;Third-Party Services&quot;</strong> means any third-party product, platform, model provider, API, integration, or service that interoperates with, is accessed through, or is used to deliver the Services.</li>
-                    <li><strong>&quot;Applicable Law&quot;</strong> means all laws, regulations, and rules applicable to a party.</li>
-                    <li><strong>&quot;including&quot;</strong> means &quot;including without limitation,&quot; and lists are illustrative and non-exhaustive.</li>
-                  </ul>
-                </section>
+      {/* 4 */}
+      <section>
+        <h2 className={h2}>4. What the Service does</h2>
+        <p className={p}>Talk to Me Data provides AI agents that work across the tools you use. Depending on your plan, this includes:</p>
+        <ul className={ul}>
+          <li><strong>General agents</strong> that can read and act on data in tools you connect (for example Gmail, Google Calendar, Google Sheets, Slack, Notion and others), on request or on a schedule you set.</li>
+          <li><strong>The Social Media Manager</strong>, which analyses public social media data for your accounts and competitors, suggests content, helps you design posts and, if you connect your accounts, publishes them to Instagram, Facebook or TikTok at the time you choose.</li>
+          <li><strong>The Property Leads agent</strong>, which uses US public property records to help you find potential leads.</li>
+          <li><strong>Custom agents</strong>, which we build for you after a kickoff call. Any extra terms for custom work will be agreed with you in writing.</li>
+        </ul>
+        <p className={p}>
+          We keep improving the Service, so features may change. If we remove a feature that is a significant part of what you pay for, we will tell you in advance and, if you are on a paid plan, you may cancel and get a pro-rata refund for the rest of your current billing period.
+        </p>
+        <p className={p}>
+          Some features may be labelled <strong>beta</strong> or <strong>preview</strong>. They are provided as they are, may change or be removed, and may be less reliable.
+        </p>
+      </section>
 
-                {/* 3. Description of Services */}
-                <section>
-                  <h2 className="text-2xl font-bold mb-4">3. Description of the Services</h2>
-                  <p className="text-muted-foreground leading-relaxed mb-3">
-                    {COMPANY} designs, builds, hosts, and operates AI agents and automations and provides related
-                    analysis, advisory, and software services, which may include:
-                  </p>
-                  <ul className="list-disc pl-6 space-y-2 text-muted-foreground">
-                    <li>building, configuring, deploying, hosting, and maintaining AI agents and automated workflows;</li>
-                    <li>customer support, lead generation and qualification, booking and scheduling, invoice and document processing, data entry and reporting, social media, SEO/GEO, and similar automations;</li>
-                    <li>website, conversion, SEO, UX, messaging, and performance analysis and recommendations;</li>
-                    <li>integrations with Third-Party Services and connectors selected or approved by you.</li>
-                  </ul>
-                  <p className="text-muted-foreground leading-relaxed mt-3">
-                    The Services are provided for business and professional use. The specific scope, features, models,
-                    integrations, and availability of the Services may be added to, changed, limited, suspended, or
-                    discontinued by us at any time, with or without notice, in our sole discretion, to the maximum extent
-                    permitted by Applicable Law.
-                  </p>
-                </section>
+      {/* 5 */}
+      <section>
+        <h2 className={h2}>5. Plans, actions and payment</h2>
+        <ul className={ul}>
+          <li><strong>Plans.</strong> We offer a free Starter plan and paid plans. The current plans, prices and what each one includes (number of agents, monthly actions and other limits) are shown on our pricing and billing pages when you sign up or upgrade.</li>
+          <li><strong>Actions.</strong> Most things an agent does use &ldquo;actions&rdquo;, for example a data pull, a tool call or a piece of AI writing. Each plan includes a monthly allowance of actions that resets on the 1st of each calendar month. Unused actions don&rsquo;t carry over. When you run out, agents pause until the allowance resets or you upgrade. Because the allowance is checked before a task starts, one task in progress may finish slightly over the limit. We won&rsquo;t charge you for that.</li>
+          <li><strong>Billing.</strong> Paid plans are billed <strong>monthly in advance</strong> and <strong>renew automatically</strong> each month until you cancel. Payments are taken by our payment provider, Stripe. Prices are in the currency shown at checkout and include or exclude VAT as stated there.</li>
+          <li><strong>Free trials and promotional offers.</strong> If we give you a free month or other offer, we&rsquo;ll tell you the terms when you claim it, including when paid billing starts and how to cancel before it does.</li>
+          <li><strong>Failed payments.</strong> If a payment fails, we&rsquo;ll let you know and may retry it. If it still hasn&rsquo;t been paid after 14 days, we may downgrade your account to the free plan.</li>
+          <li><strong>Price changes.</strong> We may change our prices. We will give you at least <strong>30 days&rsquo; notice</strong> by email before a new price applies to you. The new price will apply from your next billing period after the notice ends. If you don&rsquo;t want to pay it, you can cancel before then.</li>
+        </ul>
+      </section>
 
-                {/* 4. AI Output */}
-                <section>
-                  <h2 className="text-2xl font-bold mb-4">4. Artificial Intelligence — No Reliance</h2>
-                  <p className="text-muted-foreground leading-relaxed mb-3">
-                    You understand and expressly acknowledge that the Services rely on artificial intelligence, machine
-                    learning, probabilistic models, and Third-Party Services, and that AI Output:
-                  </p>
-                  <ul className="list-disc pl-6 space-y-2 text-muted-foreground">
-                    <li>may be inaccurate, incomplete, outdated, biased, offensive, or otherwise wrong, and may &quot;hallucinate&quot; or fabricate information;</li>
-                    <li>is generated automatically, is not reviewed by us for accuracy, legality, or fitness, and does not represent our advice, opinion, endorsement, or a statement of fact;</li>
-                    <li>must be independently reviewed, verified, and approved by you and by a suitably qualified human before it is relied upon, published, sent to any third party, or used to make any decision.</li>
-                  </ul>
-                  <p className="text-muted-foreground leading-relaxed mt-3">
-                    The Services and all AI Output are provided for informational purposes only and do not constitute
-                    legal, financial, tax, accounting, medical, employment, or other professional advice. You are solely
-                    and exclusively responsible for any use of, reliance on, decision made from, or communication of AI
-                    Output, and for all resulting outcomes. To the maximum extent permitted by Applicable Law, you assume
-                    all risk arising from AI Output and its use.
-                  </p>
-                </section>
+      {/* 6 */}
+      <section>
+        <h2 className={h2}>6. Cancelling</h2>
+        <p className={p}>
+          <strong>Anyone can cancel at any time</strong> from the Billing page in the app (via &ldquo;Manage billing&rdquo;) or by emailing <Email />. Your paid plan stays active until the end of the billing period you&rsquo;ve paid for, then your account moves to the free plan. We don&rsquo;t refund part-used billing periods, except as set out in this section or where the law requires it.
+        </p>
+        <p className={p}>
+          <strong>Consumers: your 14-day right to cancel.</strong> If you are a consumer, you have a legal right to cancel a paid subscription within <strong>14 days</strong> of the day you first buy it, without giving a reason. Because the Service starts straight away, when you subscribe you ask us to start providing it during that 14-day period. If you then cancel within the 14 days, we will refund what you paid <strong>minus a proportionate amount for the Service provided up to the day you told us you were cancelling</strong>. To cancel, email <Email /> or use the Billing page. We will refund you within 14 days of your cancellation, using the payment method you used.
+        </p>
+      </section>
 
-                {/* 5. Eligibility & Accounts */}
-                <section>
-                  <h2 className="text-2xl font-bold mb-4">5. Eligibility, Authority, and Accounts</h2>
-                  <p className="text-muted-foreground leading-relaxed mb-3">
-                    By using the Services, you represent and warrant that you are at least 18 years old (or the age of
-                    majority in your jurisdiction), have the legal capacity and, where you act on behalf of an entity, the
-                    authority to bind that entity to these Terms, and are not barred from using the Services under any
-                    Applicable Law. You are responsible for:
-                  </p>
-                  <ul className="list-disc pl-6 space-y-2 text-muted-foreground">
-                    <li>providing accurate, current, and complete information and keeping it up to date;</li>
-                    <li>maintaining the confidentiality and security of your account credentials and any connected accounts, keys, or tokens;</li>
-                    <li>all activities, instructions, and transactions that occur under your account or through your integrations, whether or not authorized by you;</li>
-                    <li>promptly notifying us of any suspected unauthorized access or security incident.</li>
-                  </ul>
-                  <p className="text-muted-foreground leading-relaxed mt-3">
-                    We may refuse, suspend, or terminate any account and may reclaim any identifier at our sole discretion,
-                    to the maximum extent permitted by Applicable Law.
-                  </p>
-                </section>
+      {/* 7 */}
+      <section>
+        <h2 className={h2}>7. Connecting your tools and social media accounts</h2>
+        <ul className={ul}>
+          <li>When you connect a tool or social media account, you authorise us to access it and take the actions you ask for (or schedule) on your behalf, within the permissions you approved.</li>
+          <li>You must only connect accounts you own or are authorised to use.</li>
+          <li>
+            You remain responsible for your use of those tools and platforms, and must follow their terms. These include the{" "}
+            <ExternalLink href="https://help.instagram.com/581066165581870">Instagram Terms of Use</ExternalLink>,{" "}
+            <ExternalLink href="https://www.facebook.com/terms.php">Meta&rsquo;s Terms</ExternalLink>,{" "}
+            <ExternalLink href="https://www.tiktok.com/legal/terms-of-service">TikTok&rsquo;s Terms of Service</ExternalLink>, and Google&rsquo;s terms.
+          </li>
+          <li>
+            <strong>YouTube.</strong> The Social Media Manager uses YouTube API Services. By using its YouTube features, you agree to be bound by the{" "}
+            <ExternalLink href="https://www.youtube.com/t/terms">YouTube Terms of Service</ExternalLink>. See also the{" "}
+            <ExternalLink href="https://policies.google.com/privacy">Google Privacy Policy</ExternalLink>.
+          </li>
+          <li>
+            <strong>Publishing.</strong> We only publish a post when you choose &ldquo;Post now&rdquo; or schedule it to be posted automatically. <strong>You are responsible for reviewing every post before it is published</strong>, including any AI-generated text or images, and for any disclosures the platform or law requires (for example, marking paid partnerships or ads).
+          </li>
+          <li>Platforms can change or restrict their APIs, suspend our access, or reject posts at any time. We will tell you if a post fails, but we are not responsible for a platform&rsquo;s decisions or outages.</li>
+          <li>You can disconnect any tool or account at any time in the app.</li>
+        </ul>
+      </section>
 
-                {/* 6. Customer responsibilities */}
-                <section>
-                  <h2 className="text-2xl font-bold mb-4">6. Customer Responsibilities, Warranties, and Assumption of Risk</h2>
-                  <p className="text-muted-foreground leading-relaxed mb-3">
-                    You bear sole responsibility for your business, your use of the Services, your Customer Data, your
-                    configurations and instructions, your end users and customers, and all results and consequences of the
-                    foregoing. To the maximum extent permitted by Applicable Law, you represent, warrant, and covenant that:
-                  </p>
-                  <ul className="list-disc pl-6 space-y-2 text-muted-foreground">
-                    <li>you have all rights, consents, licenses, and lawful bases necessary to submit and process the Customer Data and to connect any Third-Party Services, including all data-protection consents and notices required for any personal data;</li>
-                    <li>your use of the Services, the Customer Data, and the AI Output complies with all Applicable Laws, including data protection, privacy, marketing, consumer protection, advertising, intellectual property, export, sanctions, and anti-spam laws;</li>
-                    <li>you are responsible for reviewing, testing, monitoring, and approving all AI agents, automations, and AI Output before and during use, and for implementing appropriate human oversight, backups, and safeguards;</li>
-                    <li>you will not use the Services in any high-risk context where failure, error, or inaccuracy could lead to death, personal injury, or environmental, financial, or property damage, and you assume all risk if you do;</li>
-                    <li>you are solely responsible for all communications, transactions, decisions, and content produced, sent, or actioned by or through your agents, including to and with your own customers and third parties.</li>
-                  </ul>
-                  <p className="text-muted-foreground leading-relaxed mt-3">
-                    You knowingly and voluntarily assume all risks associated with your access to and use of the Services
-                    and the AI Output, whether known or unknown.
-                  </p>
-                </section>
+      {/* 8 */}
+      <section>
+        <h2 className={h2}>8. AI-generated content</h2>
+        <ul className={ul}>
+          <li>Our agents use AI models to analyse data and produce text, images and suggestions (&ldquo;Output&rdquo;). AI Output can be <strong>inaccurate, incomplete or out of date</strong>, and similar Output may be given to other users.</li>
+          <li><strong>Check Output before you rely on it or share it</strong>, especially for anything with legal, financial or reputational consequences. The Service does not give professional (legal, financial, tax or property) advice.</li>
+          <li>Subject to these terms, <strong>you own the Output created for you</strong>, as far as the law allows, and you can use it for any lawful purpose. We don&rsquo;t claim ownership of it.</li>
+        </ul>
+      </section>
 
-                {/* 7. Customer data & data protection */}
-                <section>
-                  <h2 className="text-2xl font-bold mb-4">7. Customer Data, Licenses, and Data Protection</h2>
-                  <p className="text-muted-foreground leading-relaxed mb-3">
-                    As between the parties, you retain all ownership rights in your Customer Data. You grant us and our
-                    subprocessors a worldwide, non-exclusive, royalty-free license to host, copy, transmit, display,
-                    process, and otherwise use the Customer Data and derived data to provide, secure, maintain, and improve
-                    the Services and to comply with law. You are responsible for the accuracy, quality, legality, and
-                    backup of your Customer Data.
-                  </p>
-                  <p className="text-muted-foreground leading-relaxed">
-                    Where we process personal data on your behalf, we act as processor and you act as controller (as those
-                    terms are used under the EU/UK GDPR and comparable laws), and such processing is governed by our Data
-                    Processing Addendum, which is incorporated by reference and available on request. You are solely
-                    responsible, as controller, for the lawfulness of the personal data you provide and instruct us to
-                    process. Our collection and use of information is further described in our Privacy Policy.
-                  </p>
-                </section>
+      {/* 9 */}
+      <section>
+        <h2 className={h2}>9. Property Leads</h2>
+        <ul className={ul}>
+          <li>Property Leads uses public records from US local government sources. These records may contain errors or be out of date, and we don&rsquo;t guarantee their accuracy or completeness.</li>
+          <li>If you use the Service to contact property owners, <strong>you are responsible for following all laws that apply to you</strong>. For US contacts, these include telemarketing and do-not-call rules, anti-spam laws and fair housing laws.</li>
+          <li>If you upload contact lists, you confirm you have the right to share them with us for matching. For that data we act as your processor (see section 12).</li>
+        </ul>
+      </section>
 
-                {/* 8. Third-party */}
-                <section>
-                  <h2 className="text-2xl font-bold mb-4">8. Third-Party Services and Integrations</h2>
-                  <p className="text-muted-foreground leading-relaxed">
-                    The Services may rely on, link to, or interoperate with Third-Party Services (for example, AI model
-                    providers, cloud hosting, messaging platforms, spreadsheets, CRMs, and payment processors). We do not
-                    control and are not responsible or liable for Third-Party Services, their availability, changes,
-                    pricing, terms, acts, omissions, or content, and your use of them is at your own risk and subject to
-                    their own terms. Any suspension, deprecation, rate-limiting, or failure of a Third-Party Service is not
-                    our responsibility, and we may modify or remove integrations at any time.
-                  </p>
-                </section>
+      {/* 10 */}
+      <section>
+        <h2 className={h2}>10. Acceptable use</h2>
+        <p className="text-muted-foreground leading-relaxed mb-2">You must not use the Service to:</p>
+        <ul className={ul}>
+          <li>break any law, or infringe anyone&rsquo;s rights (including intellectual property and privacy rights);</li>
+          <li>send spam or unsolicited marketing, or harass, threaten or discriminate against anyone;</li>
+          <li>publish content that is illegal, misleading, hateful, sexually explicit involving minors, or that breaks the rules of the platform it is posted to;</li>
+          <li>collect or use personal data without a lawful basis;</li>
+          <li>build a competing product, or copy, reverse engineer or resell the Service without our written permission;</li>
+          <li>get around usage limits, access controls or security measures, or access another customer&rsquo;s data;</li>
+          <li>overload, disrupt or attack the Service or its providers; or</li>
+          <li>use automated means to create accounts or access the Service, other than through features we provide.</li>
+        </ul>
+      </section>
 
-                {/* 9. Acceptable use */}
-                <section>
-                  <h2 className="text-2xl font-bold mb-4">9. Acceptable Use</h2>
-                  <p className="text-muted-foreground leading-relaxed mb-3">You agree not to, and not to permit anyone to:</p>
-                  <ul className="list-disc pl-6 space-y-2 text-muted-foreground">
-                    <li>violate any Applicable Law or third-party right, or use the Services for any unlawful, harmful, deceptive, fraudulent, or infringing purpose;</li>
-                    <li>generate, send, or facilitate spam, unsolicited communications, malware, or unlawful, harassing, defamatory, or harmful content;</li>
-                    <li>attempt to gain unauthorized access to, probe, scan, disrupt, overload, or interfere with the Services or related systems, or circumvent any security or usage limit;</li>
-                    <li>reverse engineer, decompile, disassemble, scrape, or attempt to derive source code, models, or trade secrets, except to the extent this restriction is prohibited by Applicable Law;</li>
-                    <li>use the Services to build a competing product, or resell, sublicense, or provide the Services to third parties except as expressly authorized;</li>
-                    <li>use the Services on websites, data, or accounts you do not own or lack authorization to use;</li>
-                    <li>use output to train a competing AI model, or misrepresent AI Output as human-generated where prohibited.</li>
-                  </ul>
-                  <p className="text-muted-foreground leading-relaxed mt-3">
-                    We may investigate and take any action we deem appropriate, including suspension or termination and
-                    cooperation with authorities, for any actual or suspected violation.
-                  </p>
-                </section>
+      {/* 11 */}
+      <section>
+        <h2 className={h2}>11. Your content</h2>
+        <ul className={ul}>
+          <li>&ldquo;Your Content&rdquo; means everything you or your connected tools give us: instructions, files, brand assets, contact lists and data from connected accounts.</li>
+          <li>You keep ownership of Your Content. You give us a non-exclusive, worldwide, royalty-free licence to host, copy, process and transmit it <strong>only as needed to provide and improve the Service</strong> for you. When we say &ldquo;improve&rdquo;, we don&rsquo;t mean training AI models on it: we don&rsquo;t do that.</li>
+          <li>You confirm you have the rights you need in Your Content and that using it with the Service won&rsquo;t break any law or anyone&rsquo;s rights.</li>
+          <li>
+            Our{" "}
+            <Link href="/privacy-policy" className={link}>
+              Privacy Policy
+            </Link>{" "}
+            explains how we handle personal data.
+          </li>
+        </ul>
+      </section>
 
-                {/* 10. Fees */}
-                <section>
-                  <h2 className="text-2xl font-bold mb-4">10. Fees, Billing, Taxes, and Renewals</h2>
-                  <ul className="list-disc pl-6 space-y-2 text-muted-foreground">
-                    <li>You agree to pay all fees for the Services in accordance with the applicable plan, order form, or quote, in advance and in the currency stated.</li>
-                    <li>Unless required by Applicable Law, all fees are non-cancellable and <strong>non-refundable</strong>, and payments are not contingent on any future functionality or output.</li>
-                    <li>Fees are exclusive of taxes, duties, and levies, which are your responsibility; where we are required to collect them, they will be added to your invoice.</li>
-                    <li>Subscriptions <strong>automatically renew</strong> for successive periods at the then-current rates unless cancelled before the renewal date; you authorize recurring charges to your payment method.</li>
-                    <li>We may change pricing prospectively; late or failed payments may result in suspension, and you are responsible for costs of collection.</li>
-                    <li>Payments are processed by third-party processors, and you are responsible for the accuracy of the payment information you provide.</li>
-                  </ul>
-                </section>
+      {/* 12 */}
+      <section>
+        <h2 className={h2}>12. Data protection (for business customers)</h2>
+        <p className={p}>
+          When our agents process personal data contained in Your Content on your behalf (for example emails or contacts), <strong>you are the controller and we are your processor</strong>. For that processing, we will:
+        </p>
+        <ul className={ul}>
+          <li>process the data only on your documented instructions (these terms and your use of the Service) unless the law requires otherwise;</li>
+          <li>make sure anyone we authorise to process it is bound by confidentiality;</li>
+          <li>take appropriate technical and organisational security measures;</li>
+          <li>only use the sub-processors listed in our Privacy Policy. We will tell you about any new sub-processor in advance, and you may object. If we can&rsquo;t resolve your objection, you may cancel and get a pro-rata refund of prepaid fees. We will put data protection terms in place with every sub-processor that are at least as protective as these;</li>
+          <li>only transfer the data outside the UK with appropriate safeguards;</li>
+          <li>help you respond to requests from people exercising their data rights, and with security, breach notification, impact assessments and consultations with the ICO, taking into account the nature of the processing;</li>
+          <li>notify you without undue delay after becoming aware of a personal data breach affecting that data;</li>
+          <li>delete or return the data when you close your account, unless the law requires us to keep it; and</li>
+          <li>give you the information you reasonably need to show compliance with Article 28 of the UK GDPR, and allow for and contribute to reasonable audits on reasonable notice.</li>
+        </ul>
+        <p className={p}>
+          The subject matter is providing the Service. The duration is the life of your account. The data types and people concerned depend on what you connect and upload.
+        </p>
+      </section>
 
-                {/* 11. IP */}
-                <section>
-                  <h2 className="text-2xl font-bold mb-4">11. Intellectual Property</h2>
-                  <p className="text-muted-foreground leading-relaxed mb-3">
-                    The Services, including all software, models, prompts, workflows, designs, content, and documentation,
-                    and all intellectual property rights therein, are and remain the exclusive property of {COMPANY} and
-                    its licensors, and are protected by copyright, trademark, patent, trade secret, and other laws. Subject
-                    to your compliance with these Terms and payment of applicable fees, we grant you a limited,
-                    non-exclusive, non-transferable, non-sublicensable, revocable license to access and use the Services
-                    for your internal business purposes during your subscription term. All rights not expressly granted are
-                    reserved.
-                  </p>
-                  <p className="text-muted-foreground leading-relaxed">
-                    <strong>Feedback.</strong> If you provide suggestions, ideas, or feedback, you grant us a perpetual,
-                    irrevocable, worldwide, royalty-free license to use and exploit them without restriction or
-                    compensation.
-                  </p>
-                </section>
+      {/* 13 */}
+      <section>
+        <h2 className={h2}>13. Our intellectual property</h2>
+        <p className={p}>
+          We (and our licensors) own the Service, including its software, design, templates, the agent mascot and our trade marks. We give you a limited, non-exclusive, non-transferable right to use the Service during your subscription for your own business or personal purposes, in line with these terms. If you send us feedback or ideas, we can use them freely without paying you.
+        </p>
+      </section>
 
-                {/* 12. Confidentiality */}
-                <section>
-                  <h2 className="text-2xl font-bold mb-4">12. Confidentiality</h2>
-                  <p className="text-muted-foreground leading-relaxed">
-                    Each party may access the other&apos;s confidential information. The receiving party will use it only to
-                    perform under these Terms, protect it with reasonable care, and not disclose it except to personnel and
-                    advisers who need to know and are bound by confidentiality. This section does not apply to information
-                    that is public, independently developed, or rightfully received from a third party, and does not
-                    prevent disclosure required by law.
-                  </p>
-                </section>
+      {/* 14 */}
+      <section>
+        <h2 className={h2}>14. Third-party services</h2>
+        <p className={p}>
+          The Service relies on and connects to third-party services (such as Google, Meta, TikTok, Slack and Stripe). We don&rsquo;t control them and aren&rsquo;t responsible for them. Your use of them is governed by their own terms and privacy policies.
+        </p>
+      </section>
 
-                {/* 13. Availability */}
-                <section>
-                  <h2 className="text-2xl font-bold mb-4">13. Availability, Changes, and Beta Features</h2>
-                  <p className="text-muted-foreground leading-relaxed mb-3">
-                    We do not warrant that the Services will be uninterrupted, timely, secure, error-free, or that results
-                    or AI Output will be accurate or reliable. We may modify, update, suspend, throttle, or discontinue any
-                    part of the Services, and may perform maintenance, at any time. Any pre-release, trial, or &quot;beta&quot;
-                    features are provided &quot;as is,&quot; may be changed or withdrawn, and are used at your own risk.
-                  </p>
-                </section>
+      {/* 15 */}
+      <section>
+        <h2 className={h2}>15. Availability</h2>
+        <p className={p}>
+          We work hard to keep the Service running, but we don&rsquo;t promise it will always be available, uninterrupted or error-free. We may need to suspend it for maintenance, security or reasons outside our control. We&rsquo;ll try to give notice of planned downtime.
+        </p>
+      </section>
 
-                {/* 14. Termination */}
-                <section>
-                  <h2 className="text-2xl font-bold mb-4">14. Suspension and Termination</h2>
-                  <p className="text-muted-foreground leading-relaxed mb-3">
-                    We may suspend or terminate your access to all or part of the Services immediately, with or without
-                    notice, for any reason or no reason, including any actual or suspected breach of these Terms, risk to
-                    the Services or others, non-payment, or as required by law. You may stop using the Services and cancel
-                    in accordance with your plan.
-                  </p>
-                  <p className="text-muted-foreground leading-relaxed">
-                    Upon termination, your license and right to use the Services cease immediately. We may delete Customer
-                    Data after termination, and you are responsible for exporting it beforehand. All provisions that by
-                    their nature should survive termination will survive, including Sections on AI Output, Customer
-                    Responsibilities, Intellectual Property, Fees, Disclaimers, Limitation of Liability, Indemnification,
-                    Release, Dispute Resolution, and these general provisions.
-                  </p>
-                </section>
+      {/* 16 */}
+      <section>
+        <h2 className={h2}>16. Suspension and termination</h2>
+        <ul className={ul}>
+          <li>
+            <strong>By you:</strong> you can stop using the Service and close your account at any time. See our{" "}
+            <Link href="/data-deletion" className={link}>
+              Data Deletion Instructions
+            </Link>
+            .
+          </li>
+          <li>
+            <strong>By us:</strong> we may suspend or close your account if you seriously or repeatedly break these terms, don&rsquo;t pay, or if we must do so by law, or to protect the Service or other users. Where reasonable, we&rsquo;ll warn you first and give you a chance to fix the problem. We may also close the Service or a free account on at least <strong>30 days&rsquo; notice</strong>. If we close a paid account for a reason other than your breach, we&rsquo;ll refund any prepaid fees for the unused period.
+          </li>
+          <li>After your account closes, we delete your data as described in our Privacy Policy. Please export anything you want to keep before then.</li>
+          <li>Sections that by their nature should continue (including 8, 11, 12, 13, 17, 18 and 20) continue after the agreement ends.</li>
+        </ul>
+      </section>
 
-                {/* 15. Disclaimers */}
-                <section>
-                  <h2 className="text-2xl font-bold mb-4">15. Disclaimer of Warranties</h2>
-                  <p className="text-muted-foreground leading-relaxed mb-3">
-                    TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, THE SERVICES, ALL AI OUTPUT, AND ALL RELATED
-                    MATERIALS ARE PROVIDED &quot;AS IS&quot; AND &quot;AS AVAILABLE,&quot; WITH ALL FAULTS AND WITHOUT
-                    WARRANTIES OF ANY KIND, WHETHER EXPRESS, IMPLIED, STATUTORY, OR OTHERWISE, INCLUDING ANY IMPLIED
-                    WARRANTIES OR CONDITIONS OF MERCHANTABILITY, SATISFACTORY QUALITY, FITNESS FOR A PARTICULAR PURPOSE,
-                    TITLE, ACCURACY, AND NON-INFRINGEMENT, AND ANY WARRANTIES ARISING FROM COURSE OF DEALING OR USAGE OF
-                    TRADE.
-                  </p>
-                  <p className="text-muted-foreground leading-relaxed">
-                    WE DO NOT WARRANT THAT THE SERVICES WILL MEET YOUR REQUIREMENTS, THAT AI OUTPUT WILL BE ACCURATE,
-                    LAWFUL, OR FIT FOR ANY PURPOSE, OR THAT THE SERVICES WILL BE UNINTERRUPTED, SECURE, OR ERROR-FREE. SOME
-                    JURISDICTIONS DO NOT ALLOW THE EXCLUSION OF CERTAIN WARRANTIES, SO SOME OF THE ABOVE EXCLUSIONS MAY NOT
-                    APPLY TO YOU; IN THAT CASE, SUCH WARRANTIES ARE LIMITED TO THE MINIMUM SCOPE AND DURATION REQUIRED BY
-                    APPLICABLE LAW.
-                  </p>
-                </section>
+      {/* 17 */}
+      <section>
+        <h2 className={h2}>17. Our responsibility for loss or damage</h2>
+        <p className="text-muted-foreground leading-relaxed mb-2"><strong>For everyone:</strong></p>
+        <ul className={ul}>
+          <li>Nothing in these terms limits or excludes our liability for death or personal injury caused by our negligence, for fraud or fraudulent misrepresentation, or for anything else that cannot be limited or excluded by law.</li>
+        </ul>
+        <p className="text-muted-foreground leading-relaxed mb-2"><strong>If you are a consumer:</strong></p>
+        <ul className={ul}>
+          <li>We are responsible for loss or damage you suffer that is a foreseeable result of us breaking these terms or failing to use reasonable care and skill. We are not responsible for loss or damage that is not foreseeable.</li>
+          <li>We provide the Service for domestic and private use. If you use it for any commercial or business purpose, we have no liability to you for any loss of profit, loss of business, business interruption or loss of business opportunity.</li>
+          <li>If digital content we provide damages a device or digital content belonging to you because we failed to use reasonable care and skill, we will either repair the damage or pay you compensation.</li>
+          <li>Your legal rights under the Consumer Rights Act 2015 are not affected. For example, digital services must be provided with reasonable care and skill. Citizens Advice can give you more information.</li>
+        </ul>
+        <p className="text-muted-foreground leading-relaxed mb-2"><strong>If you are a business customer:</strong></p>
+        <ul className={ul}>
+          <li>The Service is provided &ldquo;as is&rdquo;. To the extent the law allows, we exclude all implied terms and warranties, including those of satisfactory quality and fitness for a particular purpose.</li>
+          <li>We are not liable for any loss of profits, revenue, business, goodwill, anticipated savings or data, or for any indirect or consequential loss.</li>
+          <li>We are not liable for the content of AI Output, for posts published at your instruction, for the actions of third-party platforms, or for your use of property records.</li>
+          <li>Our total liability to you arising out of or in connection with these terms, whether in contract, tort (including negligence) or otherwise, is limited to the <strong>greater of £100 and the total fees you paid us in the 12 months before the event giving rise to the claim</strong>.</li>
+        </ul>
+      </section>
 
-                {/* 16. Limitation of liability */}
-                <section>
-                  <h2 className="text-2xl font-bold mb-4">16. Limitation of Liability</h2>
-                  <p className="text-muted-foreground leading-relaxed mb-3">
-                    TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, IN NO EVENT WILL {COMPANY.toUpperCase()}, ITS
-                    AFFILIATES, OR THEIR RESPECTIVE OFFICERS, DIRECTORS, EMPLOYEES, CONTRACTORS, AGENTS, LICENSORS, OR
-                    SUPPLIERS BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, EXEMPLARY, OR PUNITIVE
-                    DAMAGES, OR FOR ANY LOSS OF PROFITS, REVENUE, GOODWILL, BUSINESS, ANTICIPATED SAVINGS, DATA, OR USE,
-                    OR FOR BUSINESS INTERRUPTION OR THE COST OF SUBSTITUTE SERVICES, ARISING OUT OF OR RELATED TO THE
-                    SERVICES, THE AI OUTPUT, OR THESE TERMS, WHETHER IN CONTRACT, TORT (INCLUDING NEGLIGENCE), STRICT
-                    LIABILITY, OR OTHERWISE, AND WHETHER OR NOT WE WERE ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
-                  </p>
-                  <p className="text-muted-foreground leading-relaxed mb-3">
-                    TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, OUR TOTAL AGGREGATE LIABILITY FOR ALL CLAIMS ARISING
-                    OUT OF OR RELATED TO THE SERVICES OR THESE TERMS WILL NOT EXCEED THE GREATER OF (A) THE TOTAL AMOUNTS
-                    YOU ACTUALLY PAID TO US FOR THE SERVICES IN THE THREE (3) MONTHS IMMEDIATELY PRECEDING THE EVENT GIVING
-                    RISE TO THE CLAIM, OR (B) ONE HUNDRED U.S. DOLLARS (US$100). THESE LIMITATIONS ARE AN ESSENTIAL BASIS
-                    OF THE BARGAIN AND APPLY EVEN IF A REMEDY FAILS OF ITS ESSENTIAL PURPOSE.
-                  </p>
-                  <p className="text-muted-foreground leading-relaxed">
-                    Nothing in these Terms limits or excludes liability that cannot be limited or excluded under Applicable
-                    Law, such as, in certain jurisdictions, liability for death or personal injury caused by negligence,
-                    for fraud or fraudulent misrepresentation, or for a party&apos;s gross negligence or wilful misconduct.
-                    Where liability cannot lawfully be excluded but may be limited, our liability is limited to the maximum
-                    extent permitted by Applicable Law. Some jurisdictions do not allow certain limitations, so parts of
-                    this section may not apply to you.
-                  </p>
-                </section>
+      {/* 18 */}
+      <section>
+        <h2 className={h2}>18. Indemnity (business customers only)</h2>
+        <p className={p}>
+          If you are a business customer, you will be responsible for any claims, losses and reasonable costs we suffer as a result of Your Content, posts published at your instruction, or your breach of sections 7, 9 or 10.
+        </p>
+      </section>
 
-                {/* 17. Indemnification */}
-                <section>
-                  <h2 className="text-2xl font-bold mb-4">17. Indemnification</h2>
-                  <p className="text-muted-foreground leading-relaxed">
-                    To the maximum extent permitted by Applicable Law, you will defend, indemnify, and hold harmless
-                    {" "}{COMPANY} and its affiliates and their respective officers, directors, employees, contractors,
-                    agents, licensors, and suppliers (the &quot;Indemnified Parties&quot;) from and against any and all
-                    claims, demands, actions, investigations, liabilities, damages, penalties, fines, losses, costs, and
-                    expenses (including reasonable legal fees) arising out of or related to: (a) your access to or use of
-                    the Services; (b) your Customer Data or Third-Party Services; (c) any AI Output you use, publish,
-                    transmit, or rely upon; (d) your products, services, or communications, including to your own
-                    customers and end users; (e) your violation of these Terms or any Applicable Law or third-party right;
-                    or (f) your negligence or misconduct. We may, at our option, control the defense of any matter subject
-                    to indemnification, and you will cooperate; you will not settle any matter in a way that imposes any
-                    obligation or admission on an Indemnified Party without our prior written consent.
-                  </p>
-                </section>
+      {/* 19 */}
+      <section>
+        <h2 className={h2}>19. Changes to these terms</h2>
+        <p className={p}>
+          We may update these terms, for example to reflect changes in the law or the Service. We&rsquo;ll change the &ldquo;Last updated&rdquo; date, and if the changes materially affect you we&rsquo;ll give you at least <strong>30 days&rsquo; notice</strong> by email or in the app. If you don&rsquo;t agree to the changes, you can cancel before they take effect. If you&rsquo;re on a paid plan and the change is to your significant disadvantage, you&rsquo;ll get a pro-rata refund of any prepaid fees.
+        </p>
+      </section>
 
-                {/* 18. Release & covenant not to sue */}
-                <section>
-                  <h2 className="text-2xl font-bold mb-4">18. Release and Covenant Not to Sue</h2>
-                  <p className="text-muted-foreground leading-relaxed mb-3">
-                    To the maximum extent permitted by Applicable Law, you release and forever discharge the Indemnified
-                    Parties from any and all claims, damages, and disputes arising out of or related to the Services or the
-                    acts or omissions of any third party, and you agree not to bring, assert, or participate in any claim
-                    against the Indemnified Parties except strictly in accordance with the &quot;Dispute Resolution&quot;
-                    section below. Any claim brought other than as permitted by these Terms may be dismissed, and you agree
-                    to be responsible for the resulting costs to the maximum extent permitted by Applicable Law.
-                  </p>
-                  <p className="text-muted-foreground leading-relaxed">
-                    If you are a California resident, you waive California Civil Code Section 1542, which states: &quot;A
-                    general release does not extend to claims that the creditor or releasing party does not know or suspect
-                    to exist in his or her favor at the time of executing the release, and that, if known by him or her,
-                    would have materially affected his or her settlement with the debtor or released party.&quot; You waive
-                    any comparable provision of any other jurisdiction to the extent permitted by law.
-                  </p>
-                </section>
-
-                {/* 19. Time limit */}
-                <section>
-                  <h2 className="text-2xl font-bold mb-4">19. Time Limitation on Claims</h2>
-                  <p className="text-muted-foreground leading-relaxed">
-                    To the maximum extent permitted by Applicable Law, any claim or cause of action arising out of or
-                    related to the Services or these Terms must be commenced within twelve (12) months after the claim or
-                    cause of action arose; otherwise, it is permanently barred. Where such a limitation is not permitted,
-                    the shortest period permitted by Applicable Law applies.
-                  </p>
-                </section>
-
-                {/* 20. Force majeure */}
-                <section>
-                  <h2 className="text-2xl font-bold mb-4">20. Force Majeure</h2>
-                  <p className="text-muted-foreground leading-relaxed">
-                    We will not be liable for any delay or failure to perform resulting from causes beyond our reasonable
-                    control, including acts of God, natural disasters, epidemics or pandemics, war, terrorism, civil
-                    unrest, government action, sanctions, labor disputes, internet or utility failures, cyber-attacks, or
-                    the failure, change, or unavailability of any Third-Party Service, model provider, or hosting provider.
-                  </p>
-                </section>
-
-                {/* 21. Dispute resolution */}
-                <section>
-                  <h2 className="text-2xl font-bold mb-4">21. Governing Law and Dispute Resolution</h2>
-
-                  <h3 className="text-xl font-semibold mb-3 mt-6">Governing Law</h3>
-                  <p className="text-muted-foreground leading-relaxed">
-                    These Terms and any dispute arising out of or related to them or the Services are governed by the laws
-                    of {GOVERNING_LAW}, without regard to conflict-of-laws principles, and excluding the United Nations
-                    Convention on Contracts for the International Sale of Goods, except where mandatory local consumer-
-                    protection law of your place of residence requires otherwise.
-                  </p>
-
-                  <h3 className="text-xl font-semibold mb-3 mt-6">Binding Arbitration</h3>
-                  <p className="text-muted-foreground leading-relaxed">
-                    Except as set out below, any dispute, controversy, or claim arising out of or in connection with the
-                    Services or these Terms, including their existence, validity, interpretation, performance, breach, or
-                    termination, will be finally and exclusively resolved by binding arbitration administered by
-                    {" "}{ARBITRATION_FORUM} under its rules then in force, which rules are deemed incorporated by
-                    reference. The seat of arbitration will be {ARBITRATION_SEAT}; the tribunal will consist of one
-                    arbitrator; and the language will be English. Judgment on the award may be entered in any court of
-                    competent jurisdiction.
-                  </p>
-
-                  <h3 className="text-xl font-semibold mb-3 mt-6">Class Action and Jury Trial Waiver</h3>
-                  <p className="text-muted-foreground leading-relaxed">
-                    To the maximum extent permitted by Applicable Law, all disputes will be conducted only on an
-                    individual basis and not as a plaintiff or class member in any purported class, consolidated,
-                    representative, or collective proceeding, and the arbitrator may not consolidate more than one
-                    person&apos;s claims. TO THE EXTENT ANY DISPUTE PROCEEDS IN COURT, EACH PARTY WAIVES ANY RIGHT TO A
-                    JURY TRIAL. If this class-action waiver is found unenforceable as to a particular claim, that claim
-                    (and only that claim) will be severed and may proceed in court.
-                  </p>
-
-                  <h3 className="text-xl font-semibold mb-3 mt-6">Exceptions and Injunctive Relief</h3>
-                  <p className="text-muted-foreground leading-relaxed">
-                    Either party may bring an action in a court of competent jurisdiction solely to seek injunctive or
-                    equitable relief to protect its intellectual property or confidential information, or to collect
-                    amounts due. Nothing in this section prevents you from bringing an issue to the attention of a
-                    government authority, or deprives you of any right to a mandatory forum or remedy that Applicable Law
-                    provides and that cannot be waived.
-                  </p>
-                </section>
-
-                {/* 22. Regional */}
-                <section>
-                  <h2 className="text-2xl font-bold mb-4">22. Region-Specific Provisions</h2>
-                  <p className="text-muted-foreground leading-relaxed mb-4">
-                    The following provisions apply where you access or use the Services from the relevant region and, to
-                    the extent of any conflict with the rest of these Terms, control for that region.
-                  </p>
-
-                  <h3 className="text-xl font-semibold mb-3 mt-6">United States</h3>
-                  <p className="text-muted-foreground leading-relaxed">
-                    The Federal Arbitration Act governs the interpretation and enforcement of the arbitration provisions.
-                    The Services are a &quot;commercial item&quot; and any U.S. government use is subject to restricted
-                    rights. You represent that you are not on any U.S. sanctions list and are not located in an embargoed
-                    territory. Consumer protections that cannot be waived under the law of your state of residence remain
-                    available to you.
-                  </p>
-
-                  <h3 className="text-xl font-semibold mb-3 mt-6">European Economic Area, United Kingdom, and Switzerland</h3>
-                  <p className="text-muted-foreground leading-relaxed mb-3">
-                    Nothing in these Terms affects your mandatory statutory rights as a consumer that cannot be excluded or
-                    limited by contract, and no term applies to the extent it is an &quot;unfair term&quot; under
-                    Applicable Law. If you are a consumer, you may rely on the mandatory consumer-protection laws of your
-                    country of residence, and you may be entitled to bring proceedings in your local courts. Where the
-                    GDPR or UK GDPR applies, our Data Processing Addendum and Privacy Policy govern personal-data
-                    processing. Limitations of liability in these Terms do not exclude or limit liability for death or
-                    personal injury caused by negligence, for fraud, or for any other liability that cannot lawfully be
-                    excluded.
-                  </p>
-
-                  <h3 className="text-xl font-semibold mb-3 mt-6">United Arab Emirates and the Middle East</h3>
-                  <p className="text-muted-foreground leading-relaxed">
-                    Where you access the Services from the UAE or another Middle East jurisdiction, you agree that the
-                    governing law and arbitration provisions above apply to the maximum extent permitted, and that where
-                    mandatory local law (including applicable consumer-protection, e-commerce, and public-order rules)
-                    requires, such local law applies to that extent only. You are responsible for ensuring that your use
-                    of the Services and any AI Output complies with local content, cultural, licensing, and regulatory
-                    requirements in your jurisdiction.
-                  </p>
-                </section>
-
-                {/* 23. Export & sanctions */}
-                <section>
-                  <h2 className="text-2xl font-bold mb-4">23. Export Controls and Sanctions</h2>
-                  <p className="text-muted-foreground leading-relaxed">
-                    You must comply with all applicable export, re-export, and sanctions laws and regulations. You
-                    represent that you are not located in, and will not use the Services in or for the benefit of, any
-                    country or party subject to comprehensive sanctions or embargoes, and that you are not a restricted or
-                    denied party. You are responsible for any breach of this section.
-                  </p>
-                </section>
-
-                {/* 24. General */}
-                <section>
-                  <h2 className="text-2xl font-bold mb-4">24. General Provisions</h2>
-                  <ul className="list-disc pl-6 space-y-2 text-muted-foreground">
-                    <li><strong>Changes to the Terms.</strong> We may modify these Terms at any time. Material changes will be notified by posting the updated Terms with a new &quot;Last updated&quot; date or by other reasonable means. Your continued use after changes take effect constitutes acceptance, to the extent permitted by Applicable Law.</li>
-                    <li><strong>Assignment.</strong> You may not assign or transfer these Terms without our prior written consent; we may assign them freely, including in connection with a merger, acquisition, or sale of assets.</li>
-                    <li><strong>Notices.</strong> We may provide notices by email, through the Services, or by posting on our website; you consent to receiving communications electronically.</li>
-                    <li><strong>No waiver.</strong> Our failure to enforce any provision is not a waiver, and no waiver is effective unless in writing.</li>
-                    <li><strong>Severability.</strong> If any provision is held invalid or unenforceable, it will be modified to the minimum extent necessary or severed, and the remaining provisions will remain in full force and effect.</li>
-                    <li><strong>Entire agreement.</strong> These Terms, together with any order form, our Privacy Policy, and documents incorporated by reference, are the entire agreement between you and us regarding the Services and supersede all prior understandings.</li>
-                    <li><strong>No third-party beneficiaries.</strong> Except for the Indemnified Parties, there are no third-party beneficiaries to these Terms.</li>
-                    <li><strong>Independent contractors.</strong> The parties are independent contractors; these Terms create no agency, partnership, or joint venture.</li>
-                    <li><strong>Survival and headings.</strong> Provisions that should survive termination will survive. Headings are for convenience only. In the event of any conflict between translations, the English version controls to the extent permitted by Applicable Law.</li>
-                  </ul>
-                </section>
-
-                {/* 25. Contact */}
-                <section>
-                  <h2 className="text-2xl font-bold mb-4">25. Contact</h2>
-                  <p className="text-muted-foreground leading-relaxed mb-3">
-                    Questions about these Terms may be directed to:
-                  </p>
-                  <div className="bg-muted/30 rounded-lg p-6 space-y-2">
-                    <p className="font-semibold">{COMPANY}</p>
-                    <p className="text-muted-foreground">Email: {CONTACT_EMAIL}</p>
-                    <p className="text-muted-foreground">Website: https://talktomedata.com</p>
-                  </div>
-                </section>
-
-              </div>
-            </div>
-          </div>
-        </div>
-      </main>
-      <Footer />
-    </div>
+      {/* 20 */}
+      <section>
+        <h2 className={h2}>20. General</h2>
+        <ul className={ul}>
+          <li><strong>Complaints.</strong> If you have a problem, email <Email /> and we&rsquo;ll try to resolve it quickly.</li>
+          <li><strong>Transfer.</strong> We may transfer our rights and obligations under these terms to another organisation, and will tell you if we do. If you are a consumer and unhappy with the transfer, you may cancel and get a refund of any prepaid fees. You may only transfer your rights with our written consent.</li>
+          <li><strong>No third-party rights.</strong> Nobody else has any rights under these terms, except anyone we transfer our rights to.</li>
+          <li><strong>Severability.</strong> If a court decides any part of these terms is unlawful, the rest stays in force.</li>
+          <li><strong>No waiver.</strong> If we don&rsquo;t enforce a right straight away, we can still enforce it later.</li>
+          <li><strong>Entire agreement.</strong> These terms, our Privacy Policy and anything we agree in writing for custom agents are the whole agreement between us.</li>
+          <li><strong>Events outside our control.</strong> We are not responsible for delays or failures caused by events outside our reasonable control, including outages at our providers or platforms.</li>
+          <li><strong>Governing law.</strong> These terms are governed by the law of <strong>England and Wales</strong>. The courts of England and Wales have exclusive jurisdiction, except that if you&rsquo;re a consumer living in Scotland or Northern Ireland, you can bring proceedings in your local courts, and the laws of your part of the UK that protect consumers still apply to you.</li>
+        </ul>
+      </section>
+    </LegalPage>
   )
 }

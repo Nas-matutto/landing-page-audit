@@ -99,7 +99,7 @@
         "transform": "lodash/{{member}}"
       }
     },
-    "outputFileTracingRoot": "/Users/nas/Documents/Tech Work/landing-page-audit",
+    "outputFileTracingRoot": "/Users/nas/Documents/Tech Work/TTMD_pre_login",
     "cacheComponents": false,
     "cacheLife": {
       "default": {
@@ -289,11 +289,11 @@
     "bundlePagesRouterDependencies": false,
     "configFileName": "next.config.mjs",
     "turbopack": {
-      "root": "/Users/nas/Documents/Tech Work/landing-page-audit"
+      "root": "/Users/nas/Documents/Tech Work/TTMD_pre_login"
     },
     "distDirRoot": ".next"
   },
-  "appDir": "/Users/nas/Documents/Tech Work/landing-page-audit",
+  "appDir": "/Users/nas/Documents/Tech Work/TTMD_pre_login",
   "relativeAppDir": "",
   "files": [
     ".next/routes-manifest.json",

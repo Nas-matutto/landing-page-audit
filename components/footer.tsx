@@ -1,5 +1,6 @@
 import Link from "next/link"
 import { CalendarDays } from "lucide-react"
+import { CookieSettingsButton } from "@/components/cookie-consent"
 
 export function Footer() {
   return (
@@ -83,9 +84,17 @@ export function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href="/data-deletion" className="text-white/60 transition-colors hover:text-white">
+                  Data Deletion
+                </Link>
+              </li>
+              <li>
                 <Link href="/terms-of-service" className="text-white/60 transition-colors hover:text-white">
                   Terms of Service
                 </Link>
+              </li>
+              <li>
+                <CookieSettingsButton className="text-white/60 transition-colors hover:text-white" />
               </li>
             </ul>
           </div>

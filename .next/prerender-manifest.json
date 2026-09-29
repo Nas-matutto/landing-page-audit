@@ -802,6 +802,31 @@
         "x-next-revalidate-tag-token"
       ]
     },
+    "/data-deletion": {
+      "experimentalBypassFor": [
+        {
+          "type": "header",
+          "key": "next-action"
+        },
+        {
+          "type": "header",
+          "key": "content-type",
+          "value": "multipart/form-data;.*"
+        }
+      ],
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/data-deletion",
+      "dataRoute": "/data-deletion.rsc",
+      "prefetchDataRoute": null,
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
     "/free-guides/ai-agent-readiness-audit": {
       "experimentalBypassFor": [
         {
@@ -892,6 +917,31 @@
       "initialRevalidateSeconds": false,
       "srcRoute": "/free-guides",
       "dataRoute": "/free-guides.rsc",
+      "prefetchDataRoute": null,
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/free-tools/ai-learning-game": {
+      "experimentalBypassFor": [
+        {
+          "type": "header",
+          "key": "next-action"
+        },
+        {
+          "type": "header",
+          "key": "content-type",
+          "value": "multipart/form-data;.*"
+        }
+      ],
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/free-tools/ai-learning-game",
+      "dataRoute": "/free-tools/ai-learning-game.rsc",
       "prefetchDataRoute": null,
       "allowHeader": [
         "host",
@@ -1216,8 +1266,8 @@
   "dynamicRoutes": {},
   "notFoundRoutes": [],
   "preview": {
-    "previewModeId": "ef492831be9613fc3bb21f96066c6993",
-    "previewModeSigningKey": "7e184310ac29b9bb74f7bf12d014c94f4ef7e08fcc58f9c04bf599721ac780c3",
-    "previewModeEncryptionKey": "fdb6ee9f092b329f3e93902f309ed4d479a429d11b3cb6cfd9853ac700651515"
+    "previewModeId": "d98759b4f8a56b3a7fa69376ccedfdde",
+    "previewModeSigningKey": "48cbec462d6335934f9a03df34443499493a85276a49cec3251530cc8955b8e6",
+    "previewModeEncryptionKey": "335b762b7d16641825a56c78f53fe722e6729a926a54d104373770c7d233c05b"
   }
 }

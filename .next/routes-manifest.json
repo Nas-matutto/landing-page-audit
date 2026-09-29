@@ -280,6 +280,12 @@
       "namedRegex": "^/booking\\-confirmed(?:/)?$"
     },
     {
+      "page": "/data-deletion",
+      "regex": "^/data\\-deletion(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/data\\-deletion(?:/)?$"
+    },
+    {
       "page": "/free-guides",
       "regex": "^/free\\-guides(?:/)?$",
       "routeKeys": {},
@@ -308,6 +314,12 @@
       "regex": "^/free\\-tools(?:/)?$",
       "routeKeys": {},
       "namedRegex": "^/free\\-tools(?:/)?$"
+    },
+    {
+      "page": "/free-tools/ai-learning-game",
+      "regex": "^/free\\-tools/ai\\-learning\\-game(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/free\\-tools/ai\\-learning\\-game(?:/)?$"
     },
     {
       "page": "/free-tools/brand-guidelines",
