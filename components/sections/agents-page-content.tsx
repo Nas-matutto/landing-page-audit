@@ -119,10 +119,10 @@ export function AgentsPageContent() {
               transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
             >
               <Image
-                src="/agent_ambassador.webp"
+                src="/agent_ambassador_v3.webp"
                 alt="Talk to me Data's AI agent ambassador waving hello"
-                width={445}
-                height={880}
+                width={519}
+                height={1013}
                 priority
                 className="relative h-auto w-full select-none"
                 draggable={false}

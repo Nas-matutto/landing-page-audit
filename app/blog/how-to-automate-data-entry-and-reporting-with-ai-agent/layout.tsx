@@ -83,7 +83,7 @@ const jsonLd = {
         "@type": "Organization",
         name: "Talk to Me Data",
         url: "https://talktomedata.com",
-        logo: { "@type": "ImageObject", url: "https://talktomedata.com/favicon-96x96.png" },
+        logo: { "@type": "ImageObject", url: "https://talktomedata.com/android-chrome-512x512.png" },
       },
       mainEntityOfPage: { "@type": "WebPage", "@id": URL },
     },

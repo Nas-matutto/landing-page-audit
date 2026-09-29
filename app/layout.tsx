@@ -50,7 +50,7 @@ const jsonLd = {
       "@id": "https://talktomedata.com/#organization",
       "name": "Talk to me Data",
       "url": "https://talktomedata.com",
-      "logo": "https://talktomedata.com/favicon-96x96.png",
+      "logo": "https://talktomedata.com/android-chrome-512x512.png",
       "sameAs": [],
     },
     // Primary navigation — signals preferred sitelinks to search engines
