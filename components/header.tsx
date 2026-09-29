@@ -40,15 +40,15 @@ export function Header({ minimal = false }: { minimal?: boolean }) {
         </div>
       )}
 
-      {/* Floating island: detached from the top edge, centered, and sized to its
-          contents rather than spanning the viewport. */}
+      {/* Floating island: detached from the top edge and spanning the viewport,
+          with a margin to the screen edges. */}
       <header
-        className={`fixed left-0 right-0 z-40 px-4 pt-2 sm:px-6 sm:pt-6 ${
+        className={`fixed left-0 right-0 z-40 px-4 pt-2 sm:px-6 sm:pt-6 lg:px-8 ${
           showAnnouncementBar ? "top-9" : "top-0"
         }`}
       >
-        <nav className="nav-glass mx-auto flex w-full max-w-[640px] items-center justify-between gap-4 rounded-[30px] border border-hairline px-5 py-3 sm:px-6">
-          <Link href="/" className="flex shrink-0 items-center" aria-label="Talk to Me Data — home">
+        <nav className="nav-glass flex w-full items-center justify-between gap-4 rounded-[30px] border border-hairline px-5 py-3 sm:px-6 md:grid md:grid-cols-[1fr_auto_1fr]">
+          <Link href="/" className="flex shrink-0 items-center gap-2.5" aria-label="Talk to Me Data — home">
             <Image
               src="/android-chrome-192x192.png"
               alt="Talk to Me Data"
@@ -57,6 +57,7 @@ export function Header({ minimal = false }: { minimal?: boolean }) {
               priority
               className="h-8 w-8"
             />
+            <span className="text-[17px] font-bold tracking-[0.5px] text-ink">TTMD</span>
           </Link>
 
           {!minimal && (
@@ -78,7 +79,7 @@ export function Header({ minimal = false }: { minimal?: boolean }) {
 
               <a
                 href={SIGNUP_URL}
-                className="group relative hidden shrink-0 overflow-hidden rounded-full bg-ink px-4 py-2.5 text-[15px] font-semibold tracking-[0.2px] text-white transition-opacity hover:opacity-85 md:inline-flex"
+                className="group relative hidden shrink-0 overflow-hidden justify-self-end rounded-full bg-ink px-4 py-2.5 text-[15px] font-semibold tracking-[0.2px] text-white transition-opacity hover:opacity-85 md:inline-flex"
               >
                 <span className="absolute inset-0 -translate-x-full bg-linear-to-r from-transparent via-white/25 to-transparent transition-transform duration-700 ease-in-out group-hover:translate-x-full" />
                 <span className="relative">Get Started</span>
@@ -97,7 +98,7 @@ export function Header({ minimal = false }: { minimal?: boolean }) {
         </nav>
 
         {!minimal && mobileMenuOpen && (
-          <div className="nav-glass mx-auto mt-2 w-full max-w-[640px] rounded-3xl border border-hairline p-5 md:hidden">
+          <div className="nav-glass mt-2 w-full rounded-3xl border border-hairline p-5 md:hidden">
             <nav className="flex flex-col gap-4">
               {NAV_LINKS.map((link) => (
                 <Link

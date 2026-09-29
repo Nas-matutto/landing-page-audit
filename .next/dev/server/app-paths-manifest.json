@@ -1,4 +1,3 @@
 {
-  "/api/cal-webhook/route": "app/api/cal-webhook/route.js",
-  "/book-demo/page": "app/book-demo/page.js"
+  "/page": "app/page.js"
 }

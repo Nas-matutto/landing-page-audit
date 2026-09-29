@@ -317,6 +317,15 @@ type RouteHandlerConfig<Route extends AppRouteHandlerRoutes = AppRouteHandlerRou
   type __Unused = __Check
 }
 
+// Validate ../../../app/data-deletion/page.tsx
+{
+  type __IsExpected<Specific extends AppPageConfig<"/data-deletion">> = Specific
+  const handler = {} as typeof import("../../../app/data-deletion/page.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
 // Validate ../../../app/free-guides/ai-agent-readiness-audit/page.tsx
 {
   type __IsExpected<Specific extends AppPageConfig<"/free-guides/ai-agent-readiness-audit">> = Specific
@@ -348,6 +357,15 @@ type RouteHandlerConfig<Route extends AppRouteHandlerRoutes = AppRouteHandlerRou
 {
   type __IsExpected<Specific extends AppPageConfig<"/free-guides">> = Specific
   const handler = {} as typeof import("../../../app/free-guides/page.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
+// Validate ../../../app/free-tools/ai-learning-game/page.tsx
+{
+  type __IsExpected<Specific extends AppPageConfig<"/free-tools/ai-learning-game">> = Specific
+  const handler = {} as typeof import("../../../app/free-tools/ai-learning-game/page.js")
   type __Check = __IsExpected<typeof handler>
   // @ts-ignore
   type __Unused = __Check
@@ -631,6 +649,15 @@ type RouteHandlerConfig<Route extends AppRouteHandlerRoutes = AppRouteHandlerRou
 {
   type __IsExpected<Specific extends LayoutConfig<"/free-guides/how-to-build-ai-agents">> = Specific
   const handler = {} as typeof import("../../../app/free-guides/how-to-build-ai-agents/layout.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
+// Validate ../../../app/free-tools/ai-learning-game/layout.tsx
+{
+  type __IsExpected<Specific extends LayoutConfig<"/free-tools/ai-learning-game">> = Specific
+  const handler = {} as typeof import("../../../app/free-tools/ai-learning-game/layout.js")
   type __Check = __IsExpected<typeof handler>
   // @ts-ignore
   type __Unused = __Check

@@ -1,4 +1,11 @@
-[00:00:00.456] Server  LOG      ✓ Ready in 297ms
-[00:00:28.491] Server  WARN    [cal-webhook] Rejected request with invalid signature
-[00:00:28.507] Server  WARN    [cal-webhook] Rejected request with invalid signature
-[00:00:29.294] Server  LOG     [cal-webhook] Sent Schedule to Meta for booking tst_local_verify_001
+[00:00:00.672] Server  LOG      ✓ Ready in 477ms
+[00:00:15.052] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:00:15.631] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[00:00:15.631] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/","route":"/"}
+[00:00:15.631] Browser LOG     %c[Vercel Web Analytics]%c [view] http://localhost:3123/ color: rgb(120, 120, 120) color: inherit {"dp":"/","o":"http://localhost:3123/","r":"","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1790701797180} /_vercel/insights/view
+[00:02:20.148] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:02:58.192] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:02:58.201] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:02:58.217] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:03:57.123] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:03:57.141] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
