@@ -4,48 +4,21 @@ import { useState } from "react"
 import { ChevronDown } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
 
-const faqs = [
-  {
-    question: "Do I need any technical knowledge to get started?",
-    answer: "None at all. You describe what you want to automate in plain language and we handle all the technical work. No code, no configuration files, no developer required on your side.",
-  },
-  {
-    question: "How long does it take to get my agent live?",
-    answer: "Most agents are live between 24 hours and 3 business days of our initial call. Complex workflows with multiple integrations may take up to a week. We'll give you a clear timeline at the end of your free call.",
-  },
-  {
-    question: "What tools and platforms can my agent connect to?",
-    answer: "We integrate with most popular business tools - Gmail, Outlook, Slack, Zendesk, HubSpot, Pipedrive, Calendly, Google Sheets, Notion, and more. If you use a tool that isn't on this list, let us know and we'll check if it's possible.",
-  },
-  {
-    question: "Who hosts and monitors the agent after it goes live?",
-    answer: "We do. Your agent runs on our infrastructure and we monitor it around the clock. If something breaks or behaves unexpectedly, we fix it - you don't have to manage anything.",
-  },
-  {
-    question: "Can I make changes to my agent after it's deployed?",
-    answer: "Yes. If your workflow changes or you want to expand what the agent does, just let us know. We handle all updates and redeployments as part of your plan.",
-  },
-  {
-    question: "Is my data safe?",
-    answer: "Yes. We follow standard data security practices and only access the tools and data sources required to run your agent.",
-  },
-]
-
 export interface FAQItem {
   question: string
   answer: string
 }
 
-/** Defaults are the homepage's; other pages pass their own questions. */
+/** Each page passes its own questions. */
 export function FAQSection({
   eyebrow = "FAQ",
   heading = "Questions we get a lot",
-  items = faqs,
+  items,
 }: {
   eyebrow?: string
   heading?: string
-  items?: FAQItem[]
-} = {}) {
+  items: FAQItem[]
+}) {
   const [openIndex, setOpenIndex] = useState<number | null>(null)
 
   return (

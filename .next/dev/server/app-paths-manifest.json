@@ -1,3 +1,4 @@
 {
+  "/agents/social-media/page": "app/agents/social-media/page.js",
   "/page": "app/page.js"
 }

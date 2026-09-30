@@ -1,14 +1,14 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { ArrowRight, Play } from "lucide-react"
+import { ArrowRight } from "lucide-react"
 import Link from "next/link"
 import { SIGNUP_URL } from "@/lib/links"
 
 const STATS = [
-  { stat: "24 hours", label: "Average time to go live" },
-  { stat: "Zero code", label: "Required from you" },
-  { stat: "100%", label: "Managed & monitored" },
+  { stat: "Free", label: "To get started" },
+  { stat: "Minutes", label: "To your first analysis" },
+  { stat: "Zero code", label: "Just plain English" },
 ]
 
 export function FinalCTASection() {
@@ -23,11 +23,11 @@ export function FinalCTASection() {
             transition={{ duration: 0.6 }}
           >
             <h2 className="display text-[clamp(2.25rem,5.5vw,4rem)]">
-              Ready to automate your first workflow?
+              Put your first agent to work today
             </h2>
             <p className="lede mx-auto mt-6 max-w-xl text-lg">
-              Start free and describe what you want to automate. We&apos;ll tell you exactly what&apos;s possible for
-              your business, and what it&apos;ll take to get your first agent live.
+              Start free with a ready-made agent for social media or SEO. Or tell us the job you want off your plate,
+              and we&apos;ll build an agent for it.
             </p>
 
             <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
@@ -42,16 +42,15 @@ export function FinalCTASection() {
                 </span>
               </a>
               <Link
-                href="/watch-demo"
+                href="/book-demo"
                 className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-hairline px-5 py-3 text-[15px] font-semibold tracking-[0.2px] text-ink transition-colors hover:bg-mist sm:w-auto"
               >
-                <Play className="h-4 w-4" />
-                Watch Demo
+                Book Demo
               </Link>
             </div>
 
             <p className="mt-6 text-[13px] text-faint">
-              Free to start · No commitment · Live in days if it&apos;s a fit
+              Free to start · No code · You stay in control
             </p>
 
             <div className="mx-auto mt-14 grid max-w-xl grid-cols-3 gap-6 border-t border-hairline pt-10 sm:gap-8">

@@ -281,33 +281,7 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$fr
 ;
 ;
 ;
-const faqs = [
-    {
-        question: "Do I need any technical knowledge to get started?",
-        answer: "None at all. You describe what you want to automate in plain language and we handle all the technical work. No code, no configuration files, no developer required on your side."
-    },
-    {
-        question: "How long does it take to get my agent live?",
-        answer: "Most agents are live between 24 hours and 3 business days of our initial call. Complex workflows with multiple integrations may take up to a week. We'll give you a clear timeline at the end of your free call."
-    },
-    {
-        question: "What tools and platforms can my agent connect to?",
-        answer: "We integrate with most popular business tools - Gmail, Outlook, Slack, Zendesk, HubSpot, Pipedrive, Calendly, Google Sheets, Notion, and more. If you use a tool that isn't on this list, let us know and we'll check if it's possible."
-    },
-    {
-        question: "Who hosts and monitors the agent after it goes live?",
-        answer: "We do. Your agent runs on our infrastructure and we monitor it around the clock. If something breaks or behaves unexpectedly, we fix it - you don't have to manage anything."
-    },
-    {
-        question: "Can I make changes to my agent after it's deployed?",
-        answer: "Yes. If your workflow changes or you want to expand what the agent does, just let us know. We handle all updates and redeployments as part of your plan."
-    },
-    {
-        question: "Is my data safe?",
-        answer: "Yes. We follow standard data security practices and only access the tools and data sources required to run your agent."
-    }
-];
-function FAQSection({ eyebrow = "FAQ", heading = "Questions we get a lot", items = faqs } = {}) {
+function FAQSection({ eyebrow = "FAQ", heading = "Questions we get a lot", items }) {
     const [openIndex, setOpenIndex] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$7_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(null);
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$7_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
         className: "py-24 sm:py-32 bg-white",
@@ -324,7 +298,7 @@ function FAQSection({ eyebrow = "FAQ", heading = "Questions we get a lot", items
                                 children: eyebrow
                             }, void 0, false, {
                                 fileName: "[project]/components/sections/faq-section.tsx",
-                                lineNumber: 56,
+                                lineNumber: 29,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$7_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
@@ -332,13 +306,13 @@ function FAQSection({ eyebrow = "FAQ", heading = "Questions we get a lot", items
                                 children: heading
                             }, void 0, false, {
                                 fileName: "[project]/components/sections/faq-section.tsx",
-                                lineNumber: 57,
+                                lineNumber: 30,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/sections/faq-section.tsx",
-                        lineNumber: 55,
+                        lineNumber: 28,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$7_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -356,20 +330,20 @@ function FAQSection({ eyebrow = "FAQ", heading = "Questions we get a lot", items
                                                 children: faq.question
                                             }, void 0, false, {
                                                 fileName: "[project]/components/sections/faq-section.tsx",
-                                                lineNumber: 75,
+                                                lineNumber: 48,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$7_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$lucide$2d$react$40$0$2e$454$2e$0_react$40$19$2e$2$2e$0$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$chevron$2d$down$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__ChevronDown$3e$__["ChevronDown"], {
                                                 className: `h-4 w-4 shrink-0 text-quiet transition-transform duration-200 ${openIndex === i ? "rotate-180" : ""}`
                                             }, void 0, false, {
                                                 fileName: "[project]/components/sections/faq-section.tsx",
-                                                lineNumber: 76,
+                                                lineNumber: 49,
                                                 columnNumber: 19
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/sections/faq-section.tsx",
-                                        lineNumber: 70,
+                                        lineNumber: 43,
                                         columnNumber: 17
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$0$2e$7_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$framer$2d$motion$40$12$2e$38$2e$0_react$2d$dom$40$19$2e$2$2e$0_react$40$19$2e$2$2e$0_$5f$react$40$19$2e$2$2e$0$2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$components$2f$AnimatePresence$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["AnimatePresence"], {
@@ -395,44 +369,44 @@ function FAQSection({ eyebrow = "FAQ", heading = "Questions we get a lot", items
                                                 children: faq.answer
                                             }, void 0, false, {
                                                 fileName: "[project]/components/sections/faq-section.tsx",
-                                                lineNumber: 88,
+                                                lineNumber: 61,
                                                 columnNumber: 23
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/components/sections/faq-section.tsx",
-                                            lineNumber: 82,
+                                            lineNumber: 55,
                                             columnNumber: 21
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/components/sections/faq-section.tsx",
-                                        lineNumber: 80,
+                                        lineNumber: 53,
                                         columnNumber: 17
                                     }, this)
                                 ]
                             }, i, true, {
                                 fileName: "[project]/components/sections/faq-section.tsx",
-                                lineNumber: 64,
+                                lineNumber: 37,
                                 columnNumber: 15
                             }, this))
                     }, void 0, false, {
                         fileName: "[project]/components/sections/faq-section.tsx",
-                        lineNumber: 62,
+                        lineNumber: 35,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/sections/faq-section.tsx",
-                lineNumber: 54,
+                lineNumber: 27,
                 columnNumber: 9
             }, this)
         }, void 0, false, {
             fileName: "[project]/components/sections/faq-section.tsx",
-            lineNumber: 53,
+            lineNumber: 26,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "[project]/components/sections/faq-section.tsx",
-        lineNumber: 52,
+        lineNumber: 25,
         columnNumber: 5
     }, this);
 }
