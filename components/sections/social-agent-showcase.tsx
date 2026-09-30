@@ -1,12 +1,13 @@
 "use client"
 
-import { useId, useState } from "react"
+import { useEffect, useId, useRef, useState } from "react"
 import Link from "next/link"
 import { AnimatePresence, MotionConfig, motion } from "framer-motion"
-import { ArrowRight, ArrowUpRight, Check, Send, Sparkles } from "lucide-react"
+import { ArrowRight, ArrowUp, ArrowUpRight, Check, Loader2, Send, Sparkles } from "lucide-react"
 import { SiInstagram, SiTiktok, SiYoutube } from "react-icons/si"
 import type { IconType } from "react-icons"
 import { Bricolage_Grotesque } from "next/font/google"
+import { Ambassador, type AmbassadorPose } from "@/components/ui/ambassador"
 import { SIGNUP_URL } from "@/lib/links"
 import { cn } from "@/lib/utils"
 
@@ -148,13 +149,113 @@ const TABS: { id: TabId; label: string }[] = [
 const FEATURES = [
   "See how every post performed",
   "Find the formats and hooks that work",
-  "Get a week of on-brand posts planned for you",
+  "Tell it what to do in plain English and it does it",
 ]
+
+const SUGGESTIONS = ["Plan my next week", "Which hooks work best?", "Post it for me"]
+
+type Phase = "idle" | "typing" | "working" | "done"
+type Intent = "overview" | "hooks" | "plan" | "publish"
+
+/** Reads a typed request and decides which of the agent's jobs it is. */
+function intentOf(text: string): Intent | null {
+  const t = text.toLowerCase()
+  if (/hook|opening|scroll/.test(t)) return "hooks"
+  if (/perform|stat|number|views|engagement|analy|report|how did|how am/.test(t)) return "overview"
+  if (/post|publish|approve|schedule|send/.test(t)) return "publish"
+  if (/plan|week|calendar|next|idea|content/.test(t)) return "plan"
+  return null
+}
+
+const WORKING_STEPS: Record<Intent, [string, string]> = {
+  overview: ["Reading your latest posts…", "Comparing them with your median…"],
+  hooks: ["Reading how your posts open…", "Scoring each hook against your median…"],
+  plan: ["Checking your best days and times…", "Drafting on-brand posts…"],
+  publish: ["Planning your week…", "Scheduling it to post…"],
+}
+
+const DONE_LINES: Record<Intent, string> = {
+  overview: "Here's how you're doing. Carousels are pulling ahead.",
+  hooks: "These openings work best for you. I'll use them next.",
+  plan: "Your week is planned. Approve it when you're happy.",
+  publish: "Done. It's scheduled and will post on its own.",
+}
+
+const POSE_FOR: Record<Phase, AmbassadorPose> = { idle: "wave", typing: "wave", working: "working", done: "thumbs-up" }
 
 export function SocialAgentShowcase() {
   const [platformId, setPlatformId] = useState<PlatformId>("instagram")
   const [tab, setTab] = useState<TabId>("overview")
   const platform = PLATFORMS[platformId]
+
+  const [approved, setApproved] = useState(false)
+  const [phase, setPhase] = useState<Phase>("idle")
+  const [command, setCommand] = useState("")
+  const [line, setLine] = useState("")
+  const timers = useRef<number[]>([])
+
+  const clearTimers = () => {
+    timers.current.forEach((t) => window.clearTimeout(t))
+    timers.current = []
+  }
+  useEffect(() => clearTimers, [])
+
+  const later = (fn: () => void, ms: number) => {
+    timers.current.push(window.setTimeout(fn, ms))
+  }
+
+  function choosePlatform(id: PlatformId) {
+    clearTimers()
+    setPlatformId(id)
+    setApproved(false)
+    setPhase("idle")
+    setLine("")
+  }
+
+  /** The agent takes the request: reads, works through two steps, then the dashboard changes. */
+  function execute(text: string) {
+    const intent = intentOf(text)
+    clearTimers()
+    if (!intent) {
+      setPhase("done")
+      setLine("I'd do that in the app too. Try one of the ideas below.")
+      return
+    }
+    setPhase("working")
+    setLine(WORKING_STEPS[intent][0])
+    later(() => setLine(WORKING_STEPS[intent][1]), 800)
+    later(() => {
+      setTab(intent === "publish" ? "plan" : intent)
+      setApproved(intent === "publish")
+      setPhase("done")
+      setLine(DONE_LINES[intent])
+    }, 1700)
+  }
+
+  /** Suggestion chips type themselves into the bar first, so it reads as a person asking. */
+  function suggest(text: string) {
+    clearTimers()
+    setPhase("typing")
+    setLine("Got it…")
+    setCommand("")
+    const step = 28
+    for (let i = 1; i <= text.length; i++) later(() => setCommand(text.slice(0, i)), i * step)
+    later(() => {
+      setCommand("")
+      execute(text)
+    }, text.length * step + 350)
+  }
+
+  function submit(e: React.FormEvent) {
+    e.preventDefault()
+    const text = command.trim()
+    if (!text || phase === "working" || phase === "typing") return
+    setCommand("")
+    execute(text)
+  }
+
+  const busy = phase === "working" || phase === "typing"
+  const bubble = phase === "idle" ? "Just tell me what to do, and I'll take care of it." : line
 
   return (
     <MotionConfig reducedMotion="user">
@@ -189,7 +290,7 @@ export function SocialAgentShowcase() {
                       key={id}
                       type="button"
                       aria-pressed={active}
-                      onClick={() => setPlatformId(id)}
+                      onClick={() => choosePlatform(id)}
                       className={cn(
                         "inline-flex cursor-pointer items-center gap-1.5 rounded-full px-3.5 py-2 text-xs font-semibold transition-all",
                         active
@@ -235,6 +336,19 @@ export function SocialAgentShowcase() {
 
           {/* Mini dashboard */}
           <div className="min-w-0 self-center">
+            {/* The ambassador leans over the top of the window and answers what you ask */}
+            <div className="flex items-end justify-end gap-2 pr-3 sm:gap-3 sm:pr-8">
+              <div
+                aria-live="polite"
+                className="relative mb-3 max-w-[15rem] rounded-2xl rounded-br-sm bg-white px-3.5 py-2.5 text-xs font-medium leading-snug text-zinc-800 shadow-lg shadow-black/20 sm:max-w-xs sm:text-[13px]"
+              >
+                {busy && <Loader2 className="mr-1.5 inline h-3 w-3 animate-spin align-[-1px] text-zinc-500" />}
+                {bubble}
+                <span aria-hidden className="absolute -right-1.5 bottom-3 h-3 w-3 rotate-45 bg-white" />
+              </div>
+              <Ambassador pose={POSE_FOR[phase]} sizes="140px" className="h-[104px] w-24 shrink-0 sm:h-[124px] sm:w-28" />
+            </div>
+
             <div className="overflow-hidden rounded-2xl bg-zinc-50 text-zinc-900 shadow-2xl ring-1 ring-white/20">
               {/* Account header */}
               <div className="flex items-center gap-3 border-b border-zinc-200/80 bg-white px-4 py-3 sm:px-5">
@@ -304,10 +418,45 @@ export function SocialAgentShowcase() {
                       <OverviewPanel platform={platform} onPlan={() => setTab("plan")} />
                     )}
                     {tab === "hooks" && <HooksPanel platform={platform} />}
-                    {tab === "plan" && <PlanPanel key={platformId} platform={platform} />}
+                    {tab === "plan" && <PlanPanel platform={platform} approved={approved} onToggle={() => setApproved((a) => !a)} />}
                   </motion.div>
                 </AnimatePresence>
               </div>
+            </div>
+
+            {/* Command bar: type a request, or tap an idea */}
+            <form onSubmit={submit} className="mt-3 flex items-center gap-2 rounded-full bg-white/10 py-1.5 pl-4 pr-1.5 ring-1 ring-white/20 backdrop-blur focus-within:ring-white/50">
+              <Sparkles className="h-4 w-4 shrink-0 text-white/60" />
+              <input
+                value={command}
+                onChange={(e) => setCommand(e.target.value)}
+                readOnly={phase === "typing"}
+                disabled={phase === "working"}
+                aria-label="Tell your agent what to do"
+                placeholder="Tell your agent what to do…"
+                className="min-w-0 flex-1 bg-transparent text-sm text-white outline-none placeholder:text-white/45"
+              />
+              <button
+                type="submit"
+                aria-label="Send to your agent"
+                disabled={!command.trim() || busy}
+                className="flex h-8 w-8 shrink-0 cursor-pointer items-center justify-center rounded-full bg-white text-zinc-950 transition-opacity disabled:cursor-default disabled:opacity-40"
+              >
+                <ArrowUp className="h-4 w-4" />
+              </button>
+            </form>
+            <div className="mt-2.5 flex flex-wrap gap-2">
+              {SUGGESTIONS.map((sug) => (
+                <button
+                  key={sug}
+                  type="button"
+                  disabled={busy}
+                  onClick={() => suggest(sug)}
+                  className="cursor-pointer rounded-full bg-white/10 px-3 py-1.5 text-xs font-medium text-white/85 ring-1 ring-white/15 transition-colors hover:bg-white/20 disabled:cursor-default disabled:opacity-50"
+                >
+                  {sug}
+                </button>
+              ))}
             </div>
           </div>
         </div>
@@ -462,8 +611,7 @@ function HooksPanel({ platform }: { platform: PlatformData }) {
   )
 }
 
-function PlanPanel({ platform }: { platform: PlatformData }) {
-  const [approved, setApproved] = useState(false)
+function PlanPanel({ platform, approved, onToggle }: { platform: PlatformData; approved: boolean; onToggle: () => void }) {
   const formatColor = (kind: string) => platform.formats.find((f) => f.label === kind)?.color ?? platform.primary
 
   return (
@@ -520,7 +668,7 @@ function PlanPanel({ platform }: { platform: PlatformData }) {
         </div>
         <button
           type="button"
-          onClick={() => setApproved((a) => !a)}
+          onClick={onToggle}
           className={cn(
             "inline-flex cursor-pointer items-center gap-1.5 rounded-lg px-3 py-1.5 text-[11px] font-semibold transition-colors",
             approved ? "bg-emerald-600 text-white hover:bg-emerald-700" : "bg-zinc-900 text-white hover:bg-black",
