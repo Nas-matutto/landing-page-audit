@@ -8,7 +8,6 @@ import { SeoAgentFeatures } from "@/components/sections/seo-agent/features"
 import {
   DoesNotSupport,
   EngineStrip,
-  SeoDemoVideo,
   SeoFinalCta,
   SeoHowItWorks,
 } from "@/components/sections/seo-agent/sections"
@@ -143,7 +142,6 @@ export default function SeoGeoPage() {
         <SeoAgentDemo />
         <SeoAgentFeatures />
         <SeoHowItWorks />
-        <SeoDemoVideo />
         <FAQSection eyebrow="FAQ" heading="Questions about the SEO & GEO agent" items={FAQS} />
         <SeoFinalCta />
       </main>

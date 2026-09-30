@@ -207,17 +207,12 @@ export function WhatWeAnalyzeSection() {
 
 function PartHeader({ number, label, title, aside }: { number: string; label: string; title: string; aside: string }) {
   return (
-    <motion.div
-      {...fadeUp}
-      className="mb-8 flex flex-col gap-4 border-b border-hairline pb-6 md:flex-row md:items-end md:justify-between md:gap-12"
-    >
-      <div>
-        <p className="eyebrow mb-3">
-          <span className="text-ink">{number}</span> · {label}
-        </p>
-        <h3 className="max-w-xl text-2xl font-semibold tracking-[-0.02em] text-ink sm:text-3xl">{title}</h3>
-      </div>
-      <p className="max-w-xs text-sm leading-relaxed text-quiet md:text-right">{aside}</p>
+    <motion.div {...fadeUp} className="mb-8 border-b border-hairline pb-6">
+      <p className="eyebrow mb-3">
+        <span className="text-ink">{number}</span> · {label}
+      </p>
+      <h3 className="text-2xl font-semibold tracking-[-0.02em] text-ink sm:text-3xl lg:whitespace-nowrap">{title}</h3>
+      <p className="mt-2 max-w-2xl text-sm leading-relaxed text-quiet">{aside}</p>
     </motion.div>
   )
 }

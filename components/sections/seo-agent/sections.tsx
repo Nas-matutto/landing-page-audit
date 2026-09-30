@@ -116,7 +116,7 @@ const STEPS = [
 
 export function SeoHowItWorks() {
   return (
-    <section className="bg-white px-6 py-20 sm:py-28 lg:px-8">
+    <section className="border-y border-hairline bg-mist px-6 py-20 sm:py-28 lg:px-8">
       <div className="mx-auto max-w-6xl">
         <Reveal className="mb-12 text-center">
           <p className="eyebrow mb-5">How it works</p>
@@ -131,34 +131,6 @@ export function SeoHowItWorks() {
             </Reveal>
           ))}
         </div>
-      </div>
-    </section>
-  )
-}
-
-// ── Demo video ──────────────────────────────────────────────────────────────
-
-export function SeoDemoVideo() {
-  return (
-    <section className="border-y border-hairline bg-mist px-6 py-20 sm:py-28 lg:px-8">
-      <div className="mx-auto max-w-5xl">
-        <Reveal className="mb-12 text-center">
-          <p className="eyebrow mb-5">Watch it work</p>
-          <h2 className="display mx-auto max-w-2xl text-[clamp(2rem,4.5vw,3.25rem)]">The agent, start to finish, in 60 seconds</h2>
-          <p className="lede mx-auto mt-6 max-w-xl text-base sm:text-lg">From reading Search Console to a published page.</p>
-        </Reveal>
-        <Reveal className="rounded-[26px] border border-hairline bg-white p-2">
-          <div className="relative aspect-video overflow-hidden rounded-[18px] border border-hairline bg-ink">
-            <iframe
-              className="absolute inset-0 h-full w-full"
-              src="https://www.youtube.com/embed/oWzmccGbtlk?rel=0"
-              title="SEO & GEO AI Agent demo"
-              loading="lazy"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowFullScreen
-            />
-          </div>
-        </Reveal>
       </div>
     </section>
   )
