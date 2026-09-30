@@ -18,7 +18,7 @@ const { h2, h3, p, ul, ol } = legal
 
 export default function PrivacyPolicyPage() {
   return (
-    <LegalPage title="Privacy Policy" lastUpdated="29 September 2026">
+    <LegalPage title="Privacy Policy" lastUpdated="30 September 2026">
       {/* Intro */}
       <section>
         <p className={p}>
@@ -77,6 +77,9 @@ export default function PrivacyPolicyPage() {
         <p className={p}>
           The content our agents read (for example an email thread or a spreadsheet) is processed to complete the task and is stored only as part of that agent&rsquo;s conversation history, so you can see what it did.
         </p>
+        <p className={p}>
+          If you connect Google Search Console to the SEO &amp; GEO Manager, we read, read-only, the search performance data for the websites you choose: the searches people used to find your site, the pages they landed on, clicks, impressions, average position, and splits by device and country. We connect to Google directly for this (not through Composio) and store the access tokens ourselves, encrypted.
+        </p>
 
         <h3 className={h3}>3.3 Information from social media platforms</h3>
         <p className={p}>
@@ -130,6 +133,11 @@ export default function PrivacyPolicyPage() {
         <p className={p}>
           Payments are handled by Stripe. We receive your name, email, billing address, the last four digits of your card, the card brand and expiry, and your payment history. We never see or store your full card number.
         </p>
+
+        <h3 className={h3}>3.6 Information from the website you add</h3>
+        <p className={p}>
+          When you add a website to the SEO &amp; GEO Manager, we visit its publicly available pages the way a search engine does (page titles, descriptions, headings, structured data, robots.txt, llms.txt and sitemap), and run Google&rsquo;s PageSpeed Insights test on it. We only read pages anyone can see without logging in.
+        </p>
       </section>
 
       {/* 4 */}
@@ -165,16 +173,23 @@ export default function PrivacyPolicyPage() {
       <section>
         <h2 className={h2}>5. Google and YouTube data</h2>
         <p className={p}>
-          <strong>Google user data.</strong> Talk to Me Data&rsquo;s use and transfer of information received from Google APIs to any other app will adhere to the{" "}
+          <strong>Google user data.</strong> Talk to Me Data&rsquo;s use and transfer to any other app of information received from Google APIs will adhere to the{" "}
           <ExternalLink href="https://developers.google.com/terms/api-services-user-data-policy">Google API Services User Data Policy</ExternalLink>, including the Limited Use requirements. In particular:
         </p>
         <ul className={ul}>
-          <li>we only use Google user data (for example Gmail, Calendar, Drive, Docs or Sheets data) to provide the features you asked for;</li>
+          <li>we only use Google user data (for example Gmail, Calendar, Drive, Docs, Sheets or Google Search Console data) to provide the features you asked for;</li>
           <li>we do not use it for advertising;</li>
           <li>we do not sell it or transfer it to others, except to provide the Service, to comply with the law, or as part of a merger or acquisition with notice to you;</li>
           <li>no person at Talk to Me Data reads it unless you ask us to (for example for support), it is needed for security or to comply with the law, or it has been aggregated and anonymised; and</li>
           <li>we do not use it to train general-purpose AI or machine-learning models.</li>
         </ul>
+        <p className={p}>
+          We do not allow humans to read Google user data unless you ask us to (for example for support), it is needed for security or to comply with the law, or it is aggregated and anonymised for our internal operations. We do not use Google user data to develop, improve or train generalised AI or machine-learning models. To produce your analysis and suggested fixes, we send the relevant Search Console figures to our AI provider Anthropic, under terms that prevent it from training on them.
+        </p>
+        <p className={p}>
+          When you disconnect Search Console (or remove the website), we revoke our access at Google and immediately delete the tokens and all Search Console data we pulled. You can also remove our access at any time at{" "}
+          <ExternalLink href="https://myaccount.google.com/permissions">myaccount.google.com/permissions</ExternalLink>.
+        </p>
         <p className={p}>
           <strong>YouTube.</strong> The Social Media Manager uses YouTube API Services to show public data about YouTube channels. By using those features you agree to be bound by the{" "}
           <ExternalLink href="https://www.youtube.com/t/terms">YouTube Terms of Service</ExternalLink>, and Google&rsquo;s use of data is covered by the{" "}
