@@ -3,15 +3,10 @@
 import { useRouter } from "next/navigation"
 import { ArrowRight } from "lucide-react"
 import { ContainerScroll, CardSticky } from "@/components/ui/cards-stack"
+import { SocialAgentShowcase } from "@/components/sections/social-agent-showcase"
 
+// The Social Media Agent has its own showcase below the stack.
 const USE_CASES = [
-  {
-    id: "uc-1",
-    title: "AI Social Media Agent",
-    description:
-      "Plans, writes, and posts content on your behalf — studying what performs, generating on-brand ideas, and keeping your feed active without you lifting a finger.",
-    href: "/agents/social-media",
-  },
   {
     id: "uc-2",
     title: "Lead Finder Agent",
@@ -99,6 +94,11 @@ export function WhatWeAnalyzeSection() {
             ))}
           </ContainerScroll>
 
+        </div>
+
+        {/* Featured — the social media agent, with a live mini preview */}
+        <div className="pb-16 md:pb-24">
+          <SocialAgentShowcase />
         </div>
       </div>
     </section>
