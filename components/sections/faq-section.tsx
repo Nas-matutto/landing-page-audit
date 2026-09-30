@@ -31,7 +31,21 @@ const faqs = [
   },
 ]
 
-export function FAQSection() {
+export interface FAQItem {
+  question: string
+  answer: string
+}
+
+/** Defaults are the homepage's; other pages pass their own questions. */
+export function FAQSection({
+  eyebrow = "FAQ",
+  heading = "Questions we get a lot",
+  items = faqs,
+}: {
+  eyebrow?: string
+  heading?: string
+  items?: FAQItem[]
+} = {}) {
   const [openIndex, setOpenIndex] = useState<number | null>(null)
 
   return (
@@ -39,14 +53,14 @@ export function FAQSection() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl mx-auto">
           <div className="mb-16 text-center">
-            <p className="eyebrow mb-5">FAQ</p>
+            <p className="eyebrow mb-5">{eyebrow}</p>
             <h2 className="display text-[clamp(2rem,4.5vw,3.25rem)]">
-              Questions we get a lot
+              {heading}
             </h2>
           </div>
 
           <div className="space-y-3">
-            {faqs.map((faq, i) => (
+            {items.map((faq, i) => (
               <div
                 key={i}
                 className={`overflow-hidden rounded-3xl border transition-colors duration-200 ${
