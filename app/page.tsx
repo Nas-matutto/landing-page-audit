@@ -3,7 +3,6 @@ import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { HeroSection } from "@/components/sections/hero-section"
 import { WorkflowVsAgentsSection } from "@/components/sections/workflow-vs-agents-section"
-import { PainPointsSection } from "@/components/sections/pain-points-section"
 import { HowItWorksSection } from "@/components/sections/how-it-works-section"
 import { WhatWeAnalyzeSection } from "@/components/sections/what-we-analyze-section"
 import { FAQSection } from "@/components/sections/faq-section"
@@ -104,8 +103,8 @@ const jsonLd = {
 }
 
 // ── Page ──────────────────────────────────────────────────────────────────────
-// The story runs: the pain, the agents that fix it, why agents beat workflow
-// builders, how to start, then the objections and the ask.
+// The story runs: how it works, the agents you can start with, why agents beat
+// workflow builders, then the objections and the ask.
 
 export default function HomePage() {
   return (
@@ -114,10 +113,9 @@ export default function HomePage() {
       <Header />
       <main>
         <HeroSection />
-        <PainPointsSection />
+        <HowItWorksSection />
         <WhatWeAnalyzeSection />
         <WorkflowVsAgentsSection />
-        <HowItWorksSection />
         <FAQSection items={FAQS} />
         <FinalCTASection />
       </main>

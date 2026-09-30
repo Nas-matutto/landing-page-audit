@@ -202,13 +202,16 @@ export default function PrivacyPolicyPage() {
       <section>
         <h2 className={h2}>6. How we use AI</h2>
         <p className={p}>
-          Our agents are powered by large language models from <strong>Anthropic</strong> (Claude) and <strong>Google</strong> (Gemini, including for generating images). When an agent works on a task, we send the relevant content (your instructions, and data from your connected tools or social accounts) to these providers so they can produce a response.
+          Our agents are powered by large language models from <strong>Anthropic</strong> (Claude), <strong>Google</strong> (Gemini, including for generating images) and <strong>OpenAI</strong> (ChatGPT). When an agent works on a task, we send the relevant content (your instructions, and data from your connected tools or social accounts) to these providers so they can produce a response.
         </p>
         <ul className={ul}>
           <li>We use their paid, commercial API services. Under those terms, <strong>they do not use our data to train their models</strong>, and they keep it only for a limited period for safety and abuse monitoring.</li>
           <li>We do not use your data to train AI models of our own.</li>
           <li>AI can make mistakes. Please check important outputs before relying on them.</li>
         </ul>
+        <p className={p}>
+          <strong>AI visibility checks.</strong> To show whether AI assistants recommend your business, we ask ChatGPT (OpenAI), Gemini (Google) and Claude (Anthropic) questions a customer might ask about what you offer, with their web search switched on, and record their answers, the sources they cite and the businesses they name. The questions may be based on the searches that bring people to your site, and we send your website address and brand name with them so we can find mentions of you. We don&rsquo;t send your Search Console figures to OpenAI or Gemini for these checks.
+        </p>
         <p className={p}>
           <strong>Automated decision-making.</strong> The Service analyses public post performance and generates suggestions, but we do not make any decisions based solely on automated processing that have a legal or similarly significant effect on you.
         </p>
@@ -250,13 +253,14 @@ export default function PrivacyPolicyPage() {
               ["Supabase", "Database, sign-in and file storage", "US (North Virginia)"],
               ["Vercel", "Hosting the website and app, and cookie-free page-view statistics", "US and EU"],
               ["Anthropic", "AI models (Claude)", "US"],
-              ["Google", "AI models (Gemini), Google sign-in, YouTube Data API, Google Sheets (our record of website enquiries), and Google Analytics (only with your consent)", "US and worldwide"],
+              ["OpenAI", "AI models (ChatGPT), used for AI visibility checks", "US"],
+              ["Google", "AI models (Gemini), Google sign-in, YouTube Data API, Google Search Console API (only if you connect it), PageSpeed Insights, Google Sheets (our record of website enquiries), and Google Analytics (only with your consent)", "US and worldwide"],
               ["Meta", "Measuring our ads with the Meta Pixel (only with your consent)", "US and worldwide"],
               ["Brevo", "Our mailing list and marketing emails", "EU (France)"],
               ["Composio", "Securely connecting the third-party tools you choose", "US"],
               ["Apify", "Collecting public social media data", "EU (Czech Republic) and US"],
               ["Stripe", "Payments and subscriptions", "US and EU (Ireland)"],
-              ["Resend", "Sending emails", "US"],
+              ["Resend", "Sending emails, including your agents’ reminders, alerts and weekly summaries", "US"],
               ["PostHog", "Product analytics (with cookies only if you consent, otherwise anonymous and cookieless) and a record of forms submitted on our website", "US"],
               ["Cloudflare", "Bot protection at sign-up (Turnstile)", "US and worldwide"],
               ["Cal.com", "Booking calls with us", "US"],
@@ -300,7 +304,10 @@ export default function PrivacyPolicyPage() {
               ["Agent chats and results", "While your account is open, unless you ask us to delete them sooner"],
               ["Tokens for connected tools", "Until you disconnect the tool or close your account"],
               ["Instagram, Facebook and TikTok posting tokens", "Deleted immediately when you disconnect the account or remove it from your dashboard, or when you close your account"],
+              ["Google Search Console tokens", "Revoked and deleted immediately when you disconnect Search Console, remove the website, or close your account"],
               ["Social media data (profiles, posts, metrics, images)", "While that account is in your dashboard (the number of posts kept depends on your plan). Deleted when you remove the account"],
+              ["Search Console data (searches, pages, clicks, impressions, positions)", "While the website is on your dashboard, up to your plan’s history limit (3 months on Starter, up to 10 years on paid plans). Deleted immediately when you disconnect Search Console or remove the website"],
+              ["Website check results and AI visibility answers", "While the website is on your dashboard. Deleted when you remove it"],
               ["Brand kit, designs and uploaded images", "Until you delete them or close your account"],
               ["Uploaded contact lists", "Until you delete or replace the list, or close your account"],
               ["Invoices and payment records", "6 years after the end of the financial year they relate to (required by UK tax law)"],

@@ -74,7 +74,7 @@ export function HowItWorksSection() {
   }
 
   return (
-    <section id="how-it-works" className="border-y border-hairline bg-mist py-24 sm:py-32">
+    <section id="how-it-works" className="bg-white py-24 sm:py-32">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-6xl">
           <div className="mb-14 text-center sm:mb-16">
@@ -101,7 +101,7 @@ export function HowItWorksSection() {
                       aria-controls="how-it-works-stage"
                       className={cn(
                         "relative w-full cursor-pointer overflow-hidden rounded-3xl border p-6 text-left transition-colors",
-                        on ? "border-ink bg-white" : "border-hairline bg-transparent hover:bg-white",
+                        on ? "border-ink bg-white" : "border-hairline bg-transparent hover:bg-mist",
                       )}
                     >
                       <span className="flex items-center gap-3">
