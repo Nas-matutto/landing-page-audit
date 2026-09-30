@@ -11,16 +11,33 @@ import { cn } from "@/lib/utils"
 // the agent really does on a sample account ("Studio Nova"): analysis in chat,
 // post kits, brand-kit carousels and auto-posting through its own actions.
 
-interface Command {
+export interface Command {
   id: string
   prompt: string
   Icon: typeof Sparkles
   steps: string[]
   reply: React.ReactNode
-  slides?: boolean
+  /** Shown under the reply, e.g. the finished carousel. */
+  attachment?: React.ReactNode
 }
 
-const B = ({ children }: { children: React.ReactNode }) => <strong className="font-semibold text-ink">{children}</strong>
+export const B = ({ children }: { children: React.ReactNode }) => <strong className="font-semibold text-ink">{children}</strong>
+
+const SLIDES = (
+  <div className="flex gap-2 overflow-x-auto pb-1">
+    {[1, 2, 3, 4, 5].map((n) => (
+      <Image
+        key={n}
+        src={`/social-agent/slide-${n}.webp`}
+        alt={`Slide ${n} of the carousel, designed in the brand kit`}
+        width={480}
+        height={600}
+        sizes="110px"
+        className="h-36 w-auto shrink-0 rounded-lg border border-hairline"
+      />
+    ))}
+  </div>
+)
 
 const COMMANDS: Command[] = [
   {
@@ -84,7 +101,7 @@ const COMMANDS: Command[] = [
     prompt: "Make a carousel from my best topic",
     Icon: Images,
     steps: ["Picking the topic your audience likes most", "Writing 5 slides", "Designing them in your brand kit"],
-    slides: true,
+    attachment: SLIDES,
     reply: (
       <p>
         Done. <B>5 slides</B> in your brand kit: your colours, your font, your handle. Edit any slide, or send it straight to your plan.
@@ -109,7 +126,8 @@ const TYPE_MS = 26
 
 type Phase = "idle" | "typing" | "working" | "done"
 
-export function AgentDemo() {
+/** Other agent pages pass their own requests; the first run starts on `startIndex`. */
+export function AgentDemo({ commands = COMMANDS, startIndex = 2 }: { commands?: Command[]; startIndex?: number }) {
   const ref = useRef<HTMLDivElement>(null)
   const inView = useInView(ref, { once: true, amount: 0.35 })
   const [cmd, setCmd] = useState<Command | null>(null)
@@ -149,7 +167,7 @@ export function AgentDemo() {
   useEffect(() => {
     if (!inView || started.current) return
     started.current = true
-    later(() => run(COMMANDS[2]), 500)
+    later(() => run(commands[startIndex]), 500)
   }, [inView])
 
   const busy = phase === "typing" || phase === "working"
@@ -177,7 +195,7 @@ export function AgentDemo() {
               </p>
 
               <div role="group" aria-label="Requests to try" className="mt-7 flex flex-col gap-2">
-                {COMMANDS.map((c) => {
+                {commands.map((c) => {
                   const active = cmd?.id === c.id
                   return (
                     <button
@@ -249,21 +267,7 @@ export function AgentDemo() {
                               Used {cmd.steps.length} tools
                             </span>
                             <div className="text-ink">{cmd.reply}</div>
-                            {cmd.slides && (
-                              <div className="flex gap-2 overflow-x-auto pb-1">
-                                {[1, 2, 3, 4, 5].map((n) => (
-                                  <Image
-                                    key={n}
-                                    src={`/social-agent/slide-${n}.webp`}
-                                    alt={`Slide ${n} of the carousel, designed in the brand kit`}
-                                    width={480}
-                                    height={600}
-                                    sizes="110px"
-                                    className="h-36 w-auto shrink-0 rounded-lg border border-hairline"
-                                  />
-                                ))}
-                              </div>
-                            )}
+                            {cmd.attachment}
                           </motion.div>
                         )}
                       </motion.div>
