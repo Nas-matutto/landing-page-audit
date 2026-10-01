@@ -3,6 +3,7 @@
 import { useState } from "react"
 import { ArrowRight, Check, Hammer, Infinity as InfinityIcon, Instagram, Plug, Users, Zap } from "lucide-react"
 import { PrimaryCta, Reveal } from "@/components/sections/social-agent/parts"
+import { PlanFinder } from "@/components/sections/pricing/plan-finder"
 import { SIGNUP_URL } from "@/lib/links"
 import {
   ACTION_GUIDE,
@@ -10,9 +11,7 @@ import {
   LENS_PLANS,
   LENSES,
   PLANS,
-  SAMPLE_MONTHS,
   type Lens,
-  type PlanId,
 } from "@/lib/pricing"
 import { cn } from "@/lib/utils"
 
@@ -33,9 +32,6 @@ const ACTION_FACTS = [
   { title: "Running low? Nothing breaks", body: "If you use them all, your agents pause until the 1st or until you upgrade. A job that has already started always finishes." },
   { title: "No surprise charges", body: "You're never billed for extra actions. The price on the card is the price you pay." },
 ]
-
-/** Bar shades for a sample month, darkest first. */
-const SEGMENT_SHADES = ["bg-ink", "bg-quiet", "bg-faint"]
 
 export function PricingContent() {
   const [lens, setLens] = useState<Lens>("social")
@@ -179,6 +175,8 @@ export function PricingContent() {
         </div>
       </section>
 
+      <PlanFinder lens={lens} setLens={setLens} />
+
       {/* What counts as an action */}
       <section id="actions" className="border-y border-hairline bg-mist px-4 py-20 sm:px-6 sm:py-28 lg:px-8">
         <div className="mx-auto max-w-6xl">
@@ -228,50 +226,6 @@ export function PricingContent() {
                 </div>
               </Reveal>
             ))}
-          </div>
-
-          {/* A month on each plan */}
-          <Reveal className="mt-16">
-            <h3 className="text-2xl font-semibold tracking-tight text-ink">What a month looks like</h3>
-            <p className="mt-2 max-w-2xl text-[15px] leading-relaxed text-quiet">
-              A typical month for the {current.title} on each paid plan. Every plan leaves room for questions and one-off jobs.
-            </p>
-          </Reveal>
-          <div className="mt-6 space-y-4">
-            {PLANS.filter((p) => p.id !== "starter").map((plan) => {
-              const parts = SAMPLE_MONTHS[lens][plan.id as Exclude<PlanId, "starter">]
-              const used = parts.reduce((n, p) => n + p.actions, 0)
-              const left = Math.max(0, plan.actions - used)
-              return (
-                <Reveal key={plan.id}>
-                  <div className="rounded-3xl border border-hairline bg-white p-6">
-                    <div className="flex flex-wrap items-baseline justify-between gap-2">
-                      <p className="text-base font-semibold text-ink">
-                        {plan.name} <span className="font-normal text-quiet">· ${plan.price}/month</span>
-                      </p>
-                      <p className="text-sm font-semibold tabular-nums text-ink">{plan.actions.toLocaleString("en-US")} actions</p>
-                    </div>
-                    <div className="mt-4 flex h-3 overflow-hidden rounded-full border border-hairline bg-mist">
-                      {parts.map((p, i) => (
-                        <div key={p.label} className={SEGMENT_SHADES[i]} style={{ width: `${(p.actions / plan.actions) * 100}%` }} />
-                      ))}
-                    </div>
-                    <ul className="mt-4 flex flex-wrap gap-x-6 gap-y-2 text-sm">
-                      {parts.map((p, i) => (
-                        <li key={p.label} className="flex items-center gap-2 text-ink/80">
-                          <span className={cn("h-2.5 w-2.5 rounded-full", SEGMENT_SHADES[i])} />
-                          {p.label} <span className="tabular-nums text-quiet">~{p.actions}</span>
-                        </li>
-                      ))}
-                      <li className="flex items-center gap-2 text-ink/80">
-                        <span className="h-2.5 w-2.5 rounded-full border border-hairline bg-mist" />
-                        Left for questions and extra jobs <span className="tabular-nums text-quiet">~{left}</span>
-                      </li>
-                    </ul>
-                  </div>
-                </Reveal>
-              )
-            })}
           </div>
 
           {/* The rules */}

@@ -191,56 +191,94 @@ export const ACTION_GUIDE: Record<Lens, { free: ActionExample[]; small: ActionEx
   },
 }
 
+// ── Plan finder ─────────────────────────────────────────────────────────────
+
+/** The limits the plan finder checks against (app-TTDM lib/constants.ts). null = no cap beyond actions. */
+export const PLAN_LIMITS: Record<
+  PlanId,
+  { socialAccounts: number; postsBuilt: number; autoPosts: number | null; websites: number; aiChecks: number; customAgents: number; scheduled: boolean; trafficAlerts: boolean }
+> = {
+  starter: { socialAccounts: 1, postsBuilt: 0, autoPosts: 0, websites: 1, aiChecks: 0, customAgents: 0, scheduled: false, trafficAlerts: false },
+  solo: { socialAccounts: 4, postsBuilt: 10, autoPosts: 5, websites: 1, aiChecks: 90, customAgents: 1, scheduled: false, trafficAlerts: false },
+  grow: { socialAccounts: 6, postsBuilt: 20, autoPosts: null, websites: 1, aiChecks: 180, customAgents: 2, scheduled: true, trafficAlerts: true },
+  scale: { socialAccounts: 10, postsBuilt: 40, autoPosts: null, websites: 3, aiChecks: 360, customAgents: 4, scheduled: true, trafficAlerts: true },
+}
+
 /**
- * A typical month on each paid plan, as shares of its actions. The numbers
- * use the typical costs above (a finished post ~12, a weekly analysis ~30 an
- * account a month, an AI-visibility search 15 × 2 checks a month, a fix ~5,
- * a blog post ~15); whatever is left is "left over".
+ * Typical actions, rounded up from the costs above: a finished post ~12, a
+ * weekly analysis ~30 an account a month, a fix or page ~8 (fixes ~5, blog
+ * posts 10–20), a custom-agent task ~10. AI-visibility checks are per plan
+ * (PLAN_LIMITS.aiChecks: its searches × 15 actions × 2 checks a month).
  */
-export const SAMPLE_MONTHS: Record<Lens, Record<Exclude<PlanId, "starter">, { label: string; actions: number }[]>> = {
-  social: {
-    solo: [
-      { label: "10 posts designed", actions: 120 },
-      { label: "Weekly analysis, 1 account", actions: 30 },
-    ],
-    grow: [
-      { label: "20 posts built and posted", actions: 240 },
-      { label: "Weekly analysis, 2 accounts", actions: 60 },
-    ],
-    scale: [
-      { label: "40 posts built and posted", actions: 480 },
-      { label: "Weekly analysis, 4 accounts", actions: 120 },
-    ],
-  },
-  seo: {
-    solo: [
-      { label: "AI-visibility checks", actions: 90 },
-      { label: "10 ready-to-paste fixes", actions: 50 },
-      { label: "2 blog posts", actions: 30 },
-    ],
-    grow: [
-      { label: "AI-visibility checks", actions: 180 },
-      { label: "10 ready-to-paste fixes", actions: 50 },
-      { label: "2 blog posts", actions: 30 },
-    ],
-    scale: [
-      { label: "AI-visibility checks, 3 sites", actions: 360 },
-      { label: "20 ready-to-paste fixes", actions: 100 },
-      { label: "6 blog posts", actions: 90 },
-    ],
-  },
-  custom: {
-    solo: [
-      { label: "12 jobs you hand it", actions: 120 },
-      { label: "40 quick questions", actions: 80 },
-    ],
-    grow: [
-      { label: "A scheduled job every day", actions: 300 },
-      { label: "50 quick questions", actions: 100 },
-    ],
-    scale: [
-      { label: "2 scheduled jobs every day", actions: 600 },
-      { label: "100 quick questions", actions: 200 },
-    ],
-  },
+export const TYPICAL = { post: 12, analysis: 30, fix: 8, task: 10 }
+
+export interface FinderInput {
+  social: { posts: number; accounts: number; autopost: boolean }
+  seo: { websites: number; fixes: number; alerts: boolean }
+  custom: { agents: number; tasks: number; scheduled: boolean }
+}
+
+export const FINDER_DEFAULTS: FinderInput = {
+  social: { posts: 0, accounts: 1, autopost: false },
+  seo: { websites: 1, fixes: 0, alerts: false },
+  custom: { agents: 0, tasks: 0, scheduled: false },
+}
+
+export interface Recommendation {
+  /** null = more than Scale covers: AI Native. */
+  plan: Plan | null
+  /** Typical actions this month on the recommended plan. */
+  used: number
+  /** What the plan gives, against what was asked for. */
+  covers: string[]
+}
+
+/** Typical monthly actions for these needs on a plan. */
+function usage(lens: Lens, input: FinderInput, id: PlanId): number {
+  if (lens === "social") return input.social.posts * TYPICAL.post + input.social.accounts * TYPICAL.analysis
+  if (lens === "seo") return PLAN_LIMITS[id].aiChecks + input.seo.fixes * TYPICAL.fix
+  return input.custom.tasks * TYPICAL.task
+}
+
+function fits(lens: Lens, input: FinderInput, id: PlanId): boolean {
+  const l = PLAN_LIMITS[id]
+  const plan = PLANS.find((p) => p.id === id)!
+  if (usage(lens, input, id) > plan.actions) return false
+  if (lens === "social") {
+    const { posts, accounts, autopost } = input.social
+    return accounts <= l.socialAccounts && posts <= l.postsBuilt && (!autopost || posts === 0 || l.autoPosts === null || posts <= l.autoPosts)
+  }
+  if (lens === "seo") {
+    const { websites, fixes, alerts } = input.seo
+    return websites <= l.websites && (fixes === 0 || id !== "starter") && (!alerts || l.trafficAlerts)
+  }
+  const { agents, tasks, scheduled } = input.custom
+  return agents <= l.customAgents && (tasks === 0 || agents > 0) && (!scheduled || l.scheduled)
+}
+
+function covers(lens: Lens, input: FinderInput, id: PlanId): string[] {
+  const l = PLAN_LIMITS[id]
+  if (lens === "social") {
+    const lines = [`${l.socialAccounts} social ${l.socialAccounts === 1 ? "account" : "accounts"}`]
+    if (l.postsBuilt > 0) lines.unshift(`Up to ${l.postsBuilt} posts a month`)
+    if (input.social.autopost && l.autoPosts !== 0) lines.push(l.autoPosts === null ? "Posts every one to Instagram for you" : `Posts ${l.autoPosts} a month to Instagram for you`)
+    if (l.postsBuilt === 0) lines.push("Your agent's analysis and what to post next")
+    return lines
+  }
+  if (lens === "seo") {
+    const lines = [l.websites === 1 ? "1 website" : `Up to ${l.websites} websites`]
+    lines.push(id === "starter" ? "Search Console and site checks" : "Ready-to-paste fixes, published when you say go")
+    if (l.trafficAlerts) lines.push("Traffic-drop alerts and a weekly email")
+    return lines
+  }
+  if (id === "starter") return ["A ready-made Social or SEO agent", "Upgrade to Solo for a custom agent"]
+  return [`${l.customAgents === 1 ? "1 custom agent" : `Up to ${l.customAgents} custom agents`}`, l.scheduled ? "Runs on its own schedule" : "Runs whenever you ask"]
+}
+
+/** The cheapest plan that covers these needs, or AI Native. */
+export function recommend(lens: Lens, input: FinderInput): Recommendation {
+  for (const plan of PLANS) {
+    if (fits(lens, input, plan.id)) return { plan, used: usage(lens, input, plan.id), covers: covers(lens, input, plan.id) }
+  }
+  return { plan: null, used: usage(lens, input, "scale"), covers: ["Unlimited agents and actions", "Custom integrations", "A dedicated AI team"] }
 }
