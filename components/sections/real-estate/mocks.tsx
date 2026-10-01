@@ -3,8 +3,8 @@ import { Frame } from "@/components/sections/seo-agent/mocks"
 import { cn } from "@/lib/utils"
 
 // Panels in the style of the agent's workspace, filled with SAMPLE data:
-// made-up addresses and initials, never real owners. The real agent reads
-// Cook County Assessor and City of Chicago public records.
+// made-up addresses and initials, never real owners. The real agent reads the
+// public property records for the client's market.
 
 const SELLERS = [
   { address: "1 Sample Elm Ave", owner: "M. Alvarez", years: 31, value: "$612k", signals: ["Out-of-state owner"] },

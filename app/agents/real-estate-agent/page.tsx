@@ -4,7 +4,7 @@ import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { FAQSection } from "@/components/sections/faq-section"
 import {
-  AreaStrip,
+  MarketStrip,
   RealEstateAsks,
   RealEstateDifference,
   RealEstateFinalCta,
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     "real estate listing leads",
     "absentee owner list",
     "just sold postcards",
-    "chicago real estate leads",
+    "real estate seller leads",
   ],
   alternates: { canonical: PAGE_URL },
   openGraph: {
@@ -64,17 +64,17 @@ const FAQS = [
   {
     question: "Where does the data come from?",
     answer:
-      "Public records from the Cook County Assessor and the City of Chicago: ownership, recorded sales, permits, foreclosure filings and city code records. Owner names and mailing addresses are part of those public records.",
+      "The public property records for the areas you work in: the county or land registry, recorded sales, permits, foreclosure filings and city records. We connect the agent to your local sources when we set it up. What's public, including owner names and mailing addresses, varies by country and state, so we'll tell you upfront what's available for your market.",
   },
   {
-    question: "Which areas does it cover?",
+    question: "Does it work in my city, state or country?",
     answer:
-      "Oak Park, River Forest, Forest Park, Schaumburg, Lincoln Park, Bucktown and the South Loop, with Elmhurst coming soon. If you work somewhere else, tell us your market and we'll let you know when we can add it.",
+      "Yes. It's a custom agent, so we set it up for the areas you farm, in any city, state or country with public property records. Tell us your market and we'll check which records and seller signals are available there before we build it.",
   },
   {
     question: "How does it decide who is likely to sell?",
     answer:
-      "It filters on seller signals: how long the home has been owned, absentee or out-of-state owners, a scheduled foreclosure auction, a big jump in assessed value, a recent renovation permit, and vacancy or code violations in Chicago areas. You get up to 100 homes per search, strongest signals first.",
+      "It filters on seller signals such as how long the home has been owned, absentee or out-of-state owners, a scheduled foreclosure auction, a big jump in assessed value, a recent renovation permit, and vacancy or code violations. We match the signals to what your area publishes. You get up to 100 homes per search, strongest signals first.",
   },
   {
     question: "Can it see missed mortgage payments?",
@@ -84,7 +84,7 @@ const FAQS = [
   {
     question: "Does it use MLS data?",
     answer:
-      "No. Sale prices come from recorded deeds, which appear 1 to 3 months after closing, so the latest weeks are missing. It doesn't show list prices or days on market, which are MLS data.",
+      "No. It works from public records, so sale prices come from recorded deeds, which can appear weeks or months after closing depending on the area. It doesn't show list prices or days on market, which are MLS data.",
   },
   {
     question: "Can it check my own contacts?",
@@ -110,7 +110,7 @@ const jsonLd = {
       description: DESCRIPTION,
       url: PAGE_URL,
       provider: { "@type": "Organization", name: "Talk to Me Data", url: BASE_URL },
-      areaServed: { "@type": "AdministrativeArea", name: "Cook County, Illinois" },
+      areaServed: "Worldwide",
       audience: { "@type": "BusinessAudience", audienceType: "Realtors and real estate agents" },
     },
     {
@@ -142,7 +142,7 @@ export default function RealEstateAgentPage() {
       <Header />
       <main>
         <RealEstateHero />
-        <AreaStrip />
+        <MarketStrip />
         <RealEstateDifference />
         <RealEstateSignals />
         <RealEstateHowItWorks />

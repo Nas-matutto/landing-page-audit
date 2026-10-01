@@ -94,24 +94,28 @@ export function RealEstateHero() {
   )
 }
 
-// ── Where it searches ───────────────────────────────────────────────────────
+// ── Your market ─────────────────────────────────────────────────────────────
 
-export const AREAS = ["Oak Park", "River Forest", "Forest Park", "Schaumburg", "Lincoln Park", "Bucktown", "South Loop"]
+// It's a custom agent: we connect it to the public records for the client's
+// own market, anywhere. The sample panels on this page use a Chicago suburb.
+const MARKET_SCOPES = ["Your city", "Your state", "Your country"]
 
-export function AreaStrip() {
+export function MarketStrip() {
   return (
     <section className="border-y border-hairline bg-white px-6 py-8">
-      <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-5 xl:flex-row">
-        <p className="eyebrow">Live in the Chicago area</p>
-        <ul className="flex flex-wrap items-center justify-center gap-x-5 gap-y-3">
-          {AREAS.map((area) => (
-            <li key={area} className="flex items-center gap-1.5 text-sm font-medium text-ink">
+      <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-5 text-center lg:flex-row lg:text-left">
+        <p className="eyebrow">Built for your market</p>
+        <p className="max-w-xl text-[15px] font-medium text-ink">
+          We set it up on the public property records for the areas you farm, wherever you work.
+        </p>
+        <ul className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2">
+          {MARKET_SCOPES.map((scope) => (
+            <li key={scope} className="flex items-center gap-1.5 text-sm font-medium text-ink">
               <MapPin className="h-3.5 w-3.5" aria-hidden />
-              {area}
+              {scope}
             </li>
           ))}
         </ul>
-        <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-quiet">Elmhurst coming soon</p>
       </div>
     </section>
   )
@@ -193,7 +197,7 @@ const SIGNALS = [
   { title: "Foreclosure auction scheduled", body: "The sheriff or judicial sale date is set, so the clock is running." },
   { title: "Assessment jump", body: "Assessed value up 40% or more in 3 years, which means a much bigger tax bill." },
   { title: "Big renovation permit", body: "A $25k+ remodel in the last 2 years, often done before selling." },
-  { title: "Vacant or code violations", body: "City records that point to a property the owner may want off their hands. Chicago areas only." },
+  { title: "Vacant or code violations", body: "City records that point to a property the owner may want off their hands, where your city publishes them." },
 ]
 
 export function RealEstateSignals() {
@@ -204,7 +208,7 @@ export function RealEstateSignals() {
           <p className="eyebrow mb-5">Seller signals</p>
           <h2 className="display text-[clamp(2rem,4.5vw,3.25rem)]">It knows what a likely seller looks like</h2>
           <p className="lede mt-5 max-w-2xl text-base sm:text-lg">
-            Every search can filter on the signals below, plus property type (house, condo or 2–6 units). Up to 100 homes per search, strongest signals first.
+            Every search can filter on signals like these, plus property type. Up to 100 homes per search, strongest signals first. We match the signals to what your area publishes.
           </p>
         </Reveal>
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -233,7 +237,7 @@ const STEPS = [
   {
     n: "02",
     title: "It searches the public records",
-    body: "Cook County Assessor and City of Chicago records: ownership, sales, permits, foreclosures and more, checked for you in seconds.",
+    body: "The public records for your area: ownership, recorded sales, permits, foreclosures and more, checked for you in seconds.",
     visual: <CompsPanel />,
   },
   {
