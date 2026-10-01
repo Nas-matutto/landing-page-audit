@@ -1,5 +1,5 @@
 import {
-  Headphones, Users, Calendar, Receipt, Search,
+  Headphones, Users, House, Receipt, Search,
   Megaphone, Target, BarChart3,
 } from "lucide-react"
 
@@ -89,16 +89,16 @@ export const AGENTS: Agent[] = [
   },
   {
     id: 6,
-    slug: "booking-scheduling",
-    icon: Calendar,
-    title: "Booking & scheduling",
-    tagline: "Zero back-and-forth, full calendars",
+    slug: "real-estate-agent",
+    icon: House,
+    title: "Real estate agent",
+    tagline: "Find your next listing before anyone else",
     description:
-      "Lets clients self-book, reschedule, and cancel — synced to your calendar. Sends reminders automatically and handles no-shows.",
+      "An AI agent for realtors: finds homeowners likely to sell in public property records, pulls comps, and builds just-sold mailing lists with owner names and addresses.",
     gradient: "linear-gradient(135deg, #1d4ed8 0%, #4338ca 55%, #818cf8 100%)",
-    stat: "Typically saves 5+ hours per week",
-    metricValue: "5+ hrs",
-    metricLabel: "saved / week",
+    stat: "Up to 100 likely sellers per search",
+    metricValue: "100",
+    metricLabel: "likely sellers / search",
   },
   {
     id: 7,
@@ -136,7 +136,7 @@ const BUILT_SLUGS = new Set([
   "data-entry-reporting",
   "customer-support",
   "lead-qualification",
-  "booking-scheduling",
+  "real-estate-agent",
   "invoice-processing",
   "seo-geo",
 ])

@@ -36,7 +36,7 @@ const DEMO_AGENTS = [
   { label: "Lead qualification", href: "/agents/lead-qualification" },
   { label: "Lead finding", href: "/agents/lead-finder" },
   { label: "Customer support", href: "/agents/customer-support" },
-  { label: "Booking & scheduling", href: "/agents/booking-scheduling" },
+  { label: "Real estate", href: "/agents/real-estate-agent" },
   { label: "Social media", href: "/agents/social-media" },
 ]
 

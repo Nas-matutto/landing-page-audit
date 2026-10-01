@@ -110,8 +110,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
     {
-      url: `${baseUrl}/agents/booking-scheduling`,
-      lastModified: new Date('2026-06-25'),
+      url: `${baseUrl}/agents/real-estate-agent`,
+      lastModified: new Date('2026-10-01'),
       changeFrequency: 'monthly',
       priority: 0.8,
     },

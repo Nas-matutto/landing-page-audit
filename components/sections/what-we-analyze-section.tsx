@@ -3,7 +3,7 @@
 import Link from "next/link"
 import { motion } from "framer-motion"
 import type { LucideIcon } from "lucide-react"
-import { ArrowRight, ArrowUpRight, BarChart3, Calendar, Headphones, Receipt, Target, Users } from "lucide-react"
+import { ArrowRight, ArrowUpRight, BarChart3, Headphones, House, Receipt, Target, Users } from "lucide-react"
 import { Ambassador } from "@/components/ui/ambassador"
 import { SocialAgentShowcase } from "@/components/sections/social-agent-showcase"
 import { SeoAgentShowcase } from "@/components/sections/seo-agent-showcase"
@@ -38,10 +38,10 @@ const CUSTOM_AGENTS: { title: string; description: string; href: string; Icon: L
     Icon: Receipt,
   },
   {
-    title: "Booking & Scheduling",
-    description: "Books, reschedules and sends reminders in a natural conversation, synced to your calendar.",
-    href: "/agents/booking-scheduling",
-    Icon: Calendar,
+    title: "Real Estate Agent",
+    description: "Finds homeowners likely to sell in public property records, pulls comps and builds your mailing lists.",
+    href: "/agents/real-estate-agent",
+    Icon: House,
   },
   {
     title: "Data Entry & Reporting",
