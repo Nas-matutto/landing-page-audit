@@ -1,3 +1,23 @@
+# dependencies
 node_modules
+
+# Next.js build output (contains a per-build server-actions encryption key)
+.next/
+out/
 dist
+*.tsbuildinfo
+
+# env files
 .env*
+
+# OS / editor
+.DS_Store
+
+# debug logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# vercel
+.vercel

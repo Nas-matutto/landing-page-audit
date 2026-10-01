@@ -1,3 +1,0 @@
-module.exports=[51019,a=>{"use strict";var b=a.i(26806);function c({children:a}){return(0,b.jsx)(b.Fragment,{children:a})}a.s(["default",()=>c,"metadata",0,{title:"AI Learning Game — Free Tools | Talk to me Data",description:"AI Quest: a free pixel RPG where every battle is an AI trivia duel. Explore a pixel world and learn real AI concepts in your browser — no signup required.",alternates:{canonical:"https://talktomedata.com/free-tools/ai-learning-game"}}])}];
-
-//# sourceMappingURL=app_free-tools_ai-learning-game_layout_tsx_fe01178b._.js.map

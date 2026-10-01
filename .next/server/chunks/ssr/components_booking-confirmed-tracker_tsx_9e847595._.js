@@ -1,3 +1,0 @@
-module.exports=[55344,a=>{"use strict";var b=a.i(2295),c=a.i(41602);function d(){let a=(0,c.useSearchParams)().get("uid");return(0,b.useEffect)(()=>{let b=`schedule-tracked:${a??"no-uid"}`;sessionStorage.getItem(b)||(sessionStorage.setItem(b,"1"),window.fbq?.("track","Schedule",{content_name:"Talk to Me Data demo call"},a?{eventID:a}:void 0))},[a]),null}a.s(["BookingConfirmedTracker",()=>d])}];
-
-//# sourceMappingURL=components_booking-confirmed-tracker_tsx_9e847595._.js.map
