@@ -1,3 +1,4 @@
+import { OG_IMAGE } from "@/lib/og"
 import type { Metadata } from "next"
 
 export const metadata: Metadata = {
@@ -16,6 +17,7 @@ export const metadata: Metadata = {
     canonical: "https://talktomedata.com/free-guides/ai-agent-readiness-audit",
   },
   openGraph: {
+    images: [OG_IMAGE],
     title: "AI Agent Readiness Audit — Free Download",
     description:
       "Score your business's readiness for AI agents. Free PDF audit with a step-by-step framework and clear next steps based on your results.",
@@ -24,6 +26,7 @@ export const metadata: Metadata = {
     siteName: "Talk to Me Data",
   },
   twitter: {
+    images: [OG_IMAGE],
     card: "summary_large_image",
     title: "AI Agent Readiness Audit — Free Download",
     description:

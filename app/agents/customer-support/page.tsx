@@ -1,3 +1,4 @@
+import { OG_IMAGE } from "@/lib/og"
 import type { Metadata } from "next"
 import { Bot, CheckCircle, Headphones, MessageSquare, Package, RotateCcw, HelpCircle, CreditCard, ArrowUpRight, Moon } from "lucide-react"
 import { SiIntercom, SiWhatsapp, SiZendesk, SiGmail, SiShopify, SiSlack } from "react-icons/si"
@@ -36,6 +37,7 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: PAGE_URL },
   openGraph: {
+    images: [OG_IMAGE],
     title: "AI Customer Support Agent — Built, Hosted & Managed | Talk to Me Data",
     description:
       "A custom AI customer support agent that answers FAQs, checks order status, handles refunds, and escalates to humans — across email, chat, and WhatsApp. We build, host, and manage it. Live in days.",
@@ -45,6 +47,7 @@ export const metadata: Metadata = {
     publishedTime: "2026-06-25",
   },
   twitter: {
+    images: [OG_IMAGE],
     card: "summary_large_image",
     title: "AI Customer Support Agent — Built, Hosted & Managed | Talk to Me Data",
     description:

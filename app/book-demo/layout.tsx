@@ -1,21 +1,24 @@
+import { OG_IMAGE } from "@/lib/og"
 import type { Metadata } from "next"
 
 export const metadata: Metadata = {
   title: "Book a Demo — Talk to me Data",
   description:
-    "See TTMD in action. Book a 20-minute demo and we'll show you exactly which companies are using your competitors' tools — and set you up if it's a fit.",
+    "Book a free 20-minute call with TTMD. Tell us the workflow you want to automate and we'll show you what your AI agent could do and how fast it can go live.",
   openGraph: {
+    images: [OG_IMAGE],
     title: "Book a Demo — Talk to me Data",
     description:
-      "See signal-based prospecting in action. Book a 20-minute demo with our team.",
+      "Book a free 20-minute call. Tell us what you want to automate and we'll show you what your AI agent could do.",
     type: "website",
     url: "https://talktomedata.com/book-demo",
     siteName: "Talk to me Data",
   },
   twitter: {
-    card: "summary",
+    images: [OG_IMAGE],
+    card: "summary_large_image",
     title: "Book a Demo — Talk to me Data",
-    description: "See which companies use your competitors' tools. Book a 20-min demo.",
+    description: "Tell us what you want to automate. Book a free 20-minute call to see what your AI agent could do.",
   },
   alternates: {
     canonical: "https://talktomedata.com/book-demo",

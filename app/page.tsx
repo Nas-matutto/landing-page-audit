@@ -1,3 +1,4 @@
+import { OG_IMAGE } from "@/lib/og"
 import type { Metadata } from 'next'
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
@@ -9,14 +10,16 @@ import { FAQSection } from "@/components/sections/faq-section"
 import { FinalCTASection } from "@/components/sections/final-cta-section"
 
 const BASE_URL = 'https://talktomedata.com'
-const TITLE = "Talk to me Data - Build and launch AI agents in minutes"
+const TITLE = "TTMD | Talk to me Data - Build and Launch AI Agents"
 const DESCRIPTION =
-  "AI agents that do the work for you. Start free with a ready-made agent for social media or SEO, or get a custom agent built around your workflow. Just tell it what to do."
+  "TTMD (Talk to me Data) builds, hosts and manages AI agents for your business: customer support, booking, lead finding, invoices and more. Book a demo."
 
 export const metadata: Metadata = {
   title: TITLE,
   description: DESCRIPTION,
   keywords: [
+    "TTMD",
+    "Talk to me Data",
     "AI agents",
     "AI automation",
     "AI agents for business",
@@ -28,6 +31,7 @@ export const metadata: Metadata = {
     "business automation",
   ],
   openGraph: {
+    images: [OG_IMAGE],
     title: TITLE,
     description: DESCRIPTION,
     type: 'website',
@@ -35,9 +39,10 @@ export const metadata: Metadata = {
     siteName: 'Talk to me Data',
   },
   twitter: {
+    images: [OG_IMAGE],
     card: 'summary_large_image',
     title: TITLE,
-    description: "No code. No workflows to wire. Tell your AI agent what to do, and it does the work.",
+    description: DESCRIPTION,
   },
   alternates: {
     canonical: BASE_URL

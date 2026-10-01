@@ -1,3 +1,4 @@
+import { OG_IMAGE } from "@/lib/og"
 import type { Metadata } from "next"
 import { BarChart3, FileBarChart, Layers, Plug, Combine, Clock, Table2 } from "lucide-react"
 import { SiGooglesheets, SiHubspot, SiShopify, SiStripe, SiSlack, SiGoogleanalytics } from "react-icons/si"
@@ -36,6 +37,7 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: PAGE_URL },
   openGraph: {
+    images: [OG_IMAGE],
     title: "AI Data Entry & Reporting Agent — Built, Hosted & Managed | Talk to Me Data",
     description:
       "A custom AI data entry and reporting agent that pulls data from your tools, cleans and structures it, and generates ready-to-share reports automatically. We build, host, and manage it. Live in days.",
@@ -45,6 +47,7 @@ export const metadata: Metadata = {
     publishedTime: "2026-06-25",
   },
   twitter: {
+    images: [OG_IMAGE],
     card: "summary_large_image",
     title: "AI Data Entry & Reporting Agent — Built, Hosted & Managed | Talk to Me Data",
     description:

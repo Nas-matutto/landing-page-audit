@@ -1,3 +1,4 @@
+import { OG_IMAGE } from "@/lib/og"
 import type { Metadata } from "next"
 import { Camera, Database, Receipt, ScanLine } from "lucide-react"
 import { SiQuickbooks, SiSage, SiXero, SiZoho, SiGmail } from "react-icons/si"
@@ -36,6 +37,7 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: PAGE_URL },
   openGraph: {
+    images: [OG_IMAGE],
     title: "AI Invoice Processing Agent — Built, Hosted & Managed | Talk to Me Data",
     description:
       "A custom AI invoice processing agent that reads incoming invoices, extracts data, matches against POs, flags discrepancies, and routes for approval — automatically. We build, host, and manage it. Live in days.",
@@ -45,6 +47,7 @@ export const metadata: Metadata = {
     publishedTime: "2026-06-30",
   },
   twitter: {
+    images: [OG_IMAGE],
     card: "summary_large_image",
     title: "AI Invoice Processing Agent — Built, Hosted & Managed | Talk to Me Data",
     description:

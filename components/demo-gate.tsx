@@ -130,7 +130,7 @@ export function DemoGate() {
     <div className="flex flex-col items-center px-4 sm:px-6 pb-24">
       {/* ── Gate ── */}
       {!unlocked && (
-        <div className="w-full max-w-2xl pt-20 sm:pt-28">
+        <div className="w-full max-w-2xl pt-12 sm:pt-16">
           {/* Back button */}
           {step > 0 && (
             <button
@@ -257,7 +257,7 @@ export function DemoGate() {
 
       {/* ── Video ── */}
       {unlocked && (
-        <div ref={videoRef} className="w-full max-w-4xl pt-20 sm:pt-28 animate-in fade-in duration-500">
+        <div ref={videoRef} className="w-full max-w-4xl pt-12 sm:pt-16 animate-in fade-in duration-500">
           <div className="text-center mb-10">
             <p className="text-xs font-semibold tracking-widest uppercase text-primary mb-3">Demo</p>
             <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 text-balance">

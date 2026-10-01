@@ -1,3 +1,4 @@
+import { OG_IMAGE } from "@/lib/og"
 import type { Metadata } from "next"
 import { Bell, Calendar, CalendarCheck, MessageSquare, CalendarPlus, RefreshCw, Undo2, Clock } from "lucide-react"
 import { SiGooglecalendar, SiSlack, SiWhatsapp, SiZoom, SiGmail } from "react-icons/si"
@@ -36,6 +37,7 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: PAGE_URL },
   openGraph: {
+    images: [OG_IMAGE],
     title: "AI Booking & Scheduling Agent — Built, Hosted & Managed | Talk to Me Data",
     description:
       "A custom AI booking and scheduling agent that lets clients self-book, reschedule, and cancel in a natural conversation — synced to your calendar, with automatic reminders. We build, host, and manage it. Live in days.",
@@ -45,6 +47,7 @@ export const metadata: Metadata = {
     publishedTime: "2026-06-25",
   },
   twitter: {
+    images: [OG_IMAGE],
     card: "summary_large_image",
     title: "AI Booking & Scheduling Agent — Built, Hosted & Managed | Talk to Me Data",
     description:

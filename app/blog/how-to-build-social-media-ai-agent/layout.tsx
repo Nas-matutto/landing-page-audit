@@ -1,3 +1,4 @@
+import { OG_IMAGE } from "@/lib/og"
 import type { Metadata } from "next"
 
 export const metadata: Metadata = {
@@ -19,6 +20,7 @@ export const metadata: Metadata = {
     canonical: "https://talktomedata.com/blog/how-to-build-social-media-ai-agent",
   },
   openGraph: {
+    images: [OG_IMAGE],
     title: "How to Build a Social Media AI Agent (With the Exact Prompt to Copy)",
     description:
       "An AI agent that analyzes your Instagram, extracts what works, and generates 10 new content ideas modeled on your top performers — with the full prompt included.",
@@ -28,6 +30,7 @@ export const metadata: Metadata = {
     publishedTime: "2026-06-22",
   },
   twitter: {
+    images: [OG_IMAGE],
     card: "summary_large_image",
     title: "How to Build a Social Media AI Agent",
     description:

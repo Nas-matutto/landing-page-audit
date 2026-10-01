@@ -1,3 +1,4 @@
+import { OG_IMAGE } from "@/lib/og"
 import type { Metadata } from "next"
 
 export const metadata: Metadata = {
@@ -16,6 +17,7 @@ export const metadata: Metadata = {
     canonical: "https://talktomedata.com/free-guides/business-automation-checklist",
   },
   openGraph: {
+    images: [OG_IMAGE],
     title: "Business Automation Checklist — Free Download",
     description:
       "Identify exactly what to automate in your business, in what order, and which tools to use. Free PDF checklist.",
@@ -24,6 +26,7 @@ export const metadata: Metadata = {
     siteName: "Talk to Me Data",
   },
   twitter: {
+    images: [OG_IMAGE],
     card: "summary_large_image",
     title: "Business Automation Checklist — Free Download",
     description:

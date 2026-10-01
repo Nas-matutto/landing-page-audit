@@ -1,3 +1,4 @@
+import { OG_IMAGE } from "@/lib/og"
 import type { Metadata } from "next"
 
 export const metadata: Metadata = {
@@ -17,6 +18,7 @@ export const metadata: Metadata = {
     canonical: "https://talktomedata.com/free-guides/how-to-build-ai-agents",
   },
   openGraph: {
+    images: [OG_IMAGE],
     title: "How to Build AI Agents — Free Guide",
     description:
       "Automate your manual work with AI agents. Build your first agent in Claude step by step, understand the DIY limitations, and see the done-for-you path.",
@@ -25,6 +27,7 @@ export const metadata: Metadata = {
     siteName: "Talk to Me Data",
   },
   twitter: {
+    images: [OG_IMAGE],
     card: "summary_large_image",
     title: "How to Build AI Agents — Free Guide",
     description:

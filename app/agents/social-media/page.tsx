@@ -1,3 +1,4 @@
+import { OG_IMAGE } from "@/lib/og"
 import type { Metadata } from "next"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
@@ -35,6 +36,7 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: PAGE_URL },
   openGraph: {
+    images: [OG_IMAGE],
     title: TITLE,
     description: DESCRIPTION,
     type: "article",
@@ -43,6 +45,7 @@ export const metadata: Metadata = {
     publishedTime: "2026-06-25",
   },
   twitter: {
+    images: [OG_IMAGE],
     card: "summary_large_image",
     title: TITLE,
     description: DESCRIPTION,

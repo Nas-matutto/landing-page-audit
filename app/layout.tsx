@@ -10,18 +10,19 @@ const geist = Geist({ subsets: ["latin"], variable: "--font-geist-sans", display
 const geistMono = Geist_Mono({ subsets: ["latin"], variable: "--font-geist-mono", display: "swap" })
 
 export const metadata: Metadata = {
-  title: "Talk to me Data — Sales Intelligence Powered by Real Signals",
+  // Makes the shared preview image (app/opengraph-image.png) an absolute URL.
+  metadataBase: new URL("https://talktomedata.com"),
+  title: "TTMD | Talk to me Data - Build and Launch AI Agents",
   description:
-    "Find companies already using your competitors' tools. TTMD crawls job postings and reviews to surface warm sales prospects — no cold lists, just real signals.",
+    "TTMD (Talk to me Data) builds, hosts and manages AI agents for your business: customer support, booking, lead finding, invoices and more. Book a demo.",
   keywords: [
-    "sales intelligence",
-    "competitor intelligence",
-    "B2B prospecting",
-    "signal-based outreach",
-    "companies using HubSpot",
-    "companies using Salesforce",
-    "SaaS sales tools",
-    "warm outreach",
+    "TTMD",
+    "Talk to me Data",
+    "AI agents",
+    "AI agents for business",
+    "custom AI agent",
+    "AI automation",
+    "business automation",
   ],
   generator: "Next.js",
   icons: {

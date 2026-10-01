@@ -1,3 +1,4 @@
+import { OG_IMAGE } from "@/lib/og"
 import type { Metadata } from "next"
 
 export const metadata: Metadata = {
@@ -19,6 +20,7 @@ export const metadata: Metadata = {
     canonical: "https://talktomedata.com/blog/what-are-ai-agents",
   },
   openGraph: {
+    images: [OG_IMAGE],
     title: "What Are AI Agents? A Plain-English Guide for Business Owners",
     description:
       "AI agents go far beyond chatbots. This guide explains what they are, how they work, the different types, and what they can realistically do for your business today.",
@@ -28,6 +30,7 @@ export const metadata: Metadata = {
     publishedTime: "2026-06-16",
   },
   twitter: {
+    images: [OG_IMAGE],
     card: "summary_large_image",
     title: "What Are AI Agents? A Plain-English Guide",
     description:

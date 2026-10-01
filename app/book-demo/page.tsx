@@ -3,15 +3,64 @@
 import { useEffect, useState } from "react"
 import { motion } from "framer-motion"
 import Link from "next/link"
-import { ArrowRight, CalendarDays, CheckCircle2, ChevronLeft, Play } from "lucide-react"
+import { ArrowRight, CalendarDays, Check, Play } from "lucide-react"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
+import { Ambassador } from "@/components/ui/ambassador"
+import { FAQSection } from "@/components/sections/faq-section"
+import { SIGNUP_URL } from "@/lib/links"
 
 const BENEFITS = [
-  "Tell us the workflow you want to automate",
-  "We'll show you exactly what your agent could do",
+  "Tell us the job you want off your plate",
+  "See exactly what your agent could do with the tools you already use",
   "Get a clear timeline from brief to live",
-  "Ask questions before committing to anything",
+  "Ask anything before you commit",
+]
+
+const CALL_STEPS = [
+  {
+    n: "01",
+    title: "You describe the job",
+    body: "Chasing invoices, qualifying leads, answering support, sending a weekly report. Walk us through how it's done today.",
+  },
+  {
+    n: "02",
+    title: "We map the agent",
+    body: "We show you what an agent would take over, which of your tools it connects to, and where you stay in control.",
+  },
+  {
+    n: "03",
+    title: "You decide",
+    body: "If it's a fit, we build the agent around how your team works, then host and maintain it for you. If not, no hard feelings.",
+  },
+]
+
+const FAQS = [
+  {
+    question: "Is the call really free?",
+    answer:
+      "Yes. It's a free 20-minute video call with no commitment. If an agent isn't the right fit for your workflow, we'll tell you.",
+  },
+  {
+    question: "Do I need to prepare anything?",
+    answer:
+      "No. Come with the job you want off your plate and a rough idea of the tools you use. We'll take it from there.",
+  },
+  {
+    question: "How quickly can my agent go live?",
+    answer:
+      "Most custom agents are live within a few days of the brief. We'll give you a clear timeline for yours on the call.",
+  },
+  {
+    question: "Who looks after the agent once it's built?",
+    answer:
+      "We do. We host and maintain every custom agent, and adjust it when your tools or process change.",
+  },
+  {
+    question: "Can I try an agent before booking a call?",
+    answer:
+      "Yes. Start free with a ready-made agent for social media or SEO. Connect your accounts and you'll see your first analysis within minutes.",
+  },
 ]
 
 // Cal.com booking page — opens in a new tab. The booked-call conversion itself is
@@ -61,66 +110,63 @@ export default function BookDemoPage() {
     <div className="min-h-screen bg-white flex flex-col">
       <Header />
 
-      <main className="flex-1 pt-24 sm:pt-32 pb-24">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-5xl mx-auto">
-            <Link
-              href="/"
-              className="inline-flex items-center gap-1.5 text-sm text-slate-500 hover:text-primary transition-colors mb-10"
+      <main className="flex-1">
+        <section className="bg-white pt-36 pb-24 sm:pt-44 sm:pb-32 lg:pt-36">
+          <div className="mx-auto grid w-full max-w-6xl items-start gap-12 px-6 lg:grid-cols-2 lg:gap-16 lg:px-8">
+            {/* Left: the pitch */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
+              className="text-center lg:text-left"
             >
-              <ChevronLeft className="w-4 h-4" />
-              Back to home
-            </Link>
+              <p className="eyebrow mb-5">Book a demo</p>
+              <h1 className="display text-[clamp(2.75rem,7.5vw,5rem)] lg:text-[clamp(3rem,4.4vw,4rem)]">
+                Let&apos;s build your first AI agent
+              </h1>
+              <p className="lede mx-auto mt-6 max-w-lg text-lg sm:text-xl lg:mx-0">
+                Book a free 20-minute call. Tell us the job you want off your plate, and we&apos;ll show you what
+                your agent could do and how fast it can go live.
+              </p>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
-              {/* Left: Copy */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
-              >
-                <h1 className="text-4xl sm:text-5xl font-bold tracking-tight text-slate-900 mb-5 text-balance">
-                  Let's build your first AI agent
-                </h1>
-                <p className="text-lg text-slate-500 leading-relaxed mb-10">
-                  Book a free 20-minute call with our team. Tell us what you want to automate — we'll tell you exactly what's possible and how fast we can get it live.
-                </p>
+              <ul className="mx-auto mt-10 max-w-md space-y-3 text-left lg:mx-0">
+                {BENEFITS.map((b, i) => (
+                  <motion.li
+                    key={b}
+                    initial={{ opacity: 0, x: -12 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.2 + i * 0.08, duration: 0.4 }}
+                    className="flex items-start gap-3"
+                  >
+                    <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-ink text-white">
+                      <Check className="h-3 w-3" />
+                    </span>
+                    <span className="text-[15px] leading-relaxed text-ink">{b}</span>
+                  </motion.li>
+                ))}
+              </ul>
 
-                <ul className="space-y-4 mb-10">
-                  {BENEFITS.map((b, i) => (
-                    <motion.li
-                      key={i}
-                      initial={{ opacity: 0, x: -12 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: 0.2 + i * 0.08, duration: 0.4 }}
-                      className="flex items-start gap-3"
-                    >
-                      <div className="w-5 h-5 rounded-full bg-primary/10 flex items-center justify-center shrink-0 mt-0.5">
-                        <CheckCircle2 className="w-3.5 h-3.5 text-primary" />
-                      </div>
-                      <span className="text-sm text-slate-700 leading-relaxed">{b}</span>
-                    </motion.li>
-                  ))}
-                </ul>
+              <p className="mt-10 text-[13px] text-faint">Free call · No commitment · No preparation needed</p>
+            </motion.div>
 
-                <div className="p-5 rounded-2xl bg-linear-to-br from-primary/5 to-violet-50 border border-primary/10">
-                  <p className="text-sm font-semibold text-slate-800 mb-1">No commitment, just a conversation</p>
-                  <p className="text-sm text-slate-500 leading-relaxed">
-                    We start with a free call to understand your workflow. If we're a good fit, we'll have your agent live within 24 hours of the brief.
-                  </p>
+            {/* Right: the booking card */}
+            <motion.div
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.15, ease: "easeOut" }}
+              className="overflow-hidden rounded-3xl border border-hairline bg-white"
+            >
+              <div className="flex items-end justify-between gap-4 border-b border-hairline bg-mist px-8 pt-6">
+                <div className="mb-6 rounded-2xl rounded-bl-sm bg-ink px-3.5 py-2.5 text-[13px] font-medium text-white">
+                  Which job should I take off your plate?
                 </div>
-              </motion.div>
+                <Ambassador pose="wave" sizes="120px" priority className="h-28 w-24 shrink-0" />
+              </div>
 
-              {/* Right: Google Calendar */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.15 }}
-                className="rounded-2xl border border-slate-200 bg-white shadow-xl shadow-slate-100/80 p-8"
-              >
-                <h2 className="text-xl font-bold text-slate-900 mb-2">Pick a time that works for you</h2>
-                <p className="text-sm text-slate-500 mb-8">
-                  Choose a slot directly in our calendar. The call is free, 20 minutes, and no preparation needed.
+              <div className="p-8">
+                <h2 className="text-xl font-semibold tracking-[-0.01em] text-ink">Pick a time that works for you</h2>
+                <p className="mt-2 text-sm leading-relaxed text-quiet">
+                  Choose a slot in our calendar. You&apos;ll get an invite with a video call link right after booking.
                 </p>
 
                 <a
@@ -128,37 +174,75 @@ export default function BookDemoPage() {
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={trackBookCallClick}
-                  className="relative overflow-hidden group inline-flex items-center justify-center gap-2 w-full bg-linear-to-r from-primary to-violet-500 text-white font-bold text-base px-8 py-4 rounded-xl shadow-lg shadow-primary/30 hover:shadow-primary/50 transition-all"
+                  className="group relative mt-8 inline-flex w-full items-center justify-center gap-2 overflow-hidden rounded-full bg-ink px-5 py-3.5 text-[15px] font-semibold tracking-[0.2px] text-white transition-opacity hover:opacity-85"
                 >
-                  <span className="absolute inset-0 bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-in-out" />
+                  <span className="absolute inset-0 -translate-x-full bg-linear-to-r from-transparent via-white/25 to-transparent transition-transform duration-700 ease-in-out group-hover:translate-x-full" />
                   <span className="relative flex items-center gap-2">
-                    <CalendarDays className="w-4 h-4" />
+                    <CalendarDays className="h-4 w-4" />
                     Book a free call
-                    <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+                    <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
                   </span>
                 </a>
 
-                <p className="text-center text-xs text-slate-400 mt-8">
-                  You'll receive a calendar invite with a video call link right after booking.
-                </p>
-
-                <div className="mt-6 pt-6 border-t border-slate-100">
-                  <p className="text-sm text-slate-500 mb-3 text-center font-medium">Want to watch a video Demo first?</p>
-                  <Link
-                    href="/get-started"
-                    className="relative overflow-hidden group inline-flex items-center justify-center gap-2 w-full bg-linear-to-r from-primary to-violet-500 text-white font-semibold text-sm px-6 py-3 rounded-xl shadow-md shadow-primary/25 hover:shadow-primary/40 transition-all"
-                  >
-                    <span className="absolute inset-0 bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-in-out" />
-                    <span className="relative flex items-center gap-2">
-                      <Play className="w-4 h-4" />
-                      Watch Demo
-                    </span>
-                  </Link>
+                <div className="mt-8 border-t border-hairline pt-6">
+                  <p className="mb-3 text-center text-sm text-quiet">Want to see it first?</p>
+                  <div className="flex flex-col gap-3 sm:flex-row">
+                    <Link
+                      href="/watch-demo"
+                      className="inline-flex flex-1 items-center justify-center gap-2 rounded-full border border-hairline px-5 py-3 text-[15px] font-semibold tracking-[0.2px] text-ink transition-colors hover:bg-mist"
+                    >
+                      <Play className="h-4 w-4" />
+                      Watch the demo
+                    </Link>
+                    <a
+                      href={SIGNUP_URL}
+                      className="inline-flex flex-1 items-center justify-center gap-2 rounded-full border border-hairline px-5 py-3 text-[15px] font-semibold tracking-[0.2px] text-ink transition-colors hover:bg-mist"
+                    >
+                      Start free
+                      <ArrowRight className="h-4 w-4" />
+                    </a>
+                  </div>
                 </div>
-              </motion.div>
+              </div>
+            </motion.div>
+          </div>
+        </section>
+
+        {/* What happens on the call */}
+        <section className="border-y border-hairline bg-mist py-24 sm:py-32">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="mx-auto max-w-6xl">
+              <div className="mb-14 text-center sm:mb-16">
+                <p className="eyebrow mb-5">On the call</p>
+                <h2 className="display mx-auto max-w-3xl text-[clamp(2rem,4.5vw,3.25rem)]">
+                  Twenty minutes, one clear answer
+                </h2>
+                <p className="lede mx-auto mt-6 max-w-2xl text-base sm:text-lg">
+                  You describe the outcome, not the steps. We tell you whether an agent can do it and what it takes.
+                </p>
+              </div>
+
+              <ol className="grid gap-4 md:grid-cols-3">
+                {CALL_STEPS.map((step, i) => (
+                  <motion.li
+                    key={step.n}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-60px" }}
+                    transition={{ duration: 0.5, delay: i * 0.08 }}
+                    className="rounded-3xl border border-hairline bg-white p-6"
+                  >
+                    <span className="select-none font-mono text-sm font-medium text-faint">{step.n}</span>
+                    <h3 className="mt-3 text-lg font-semibold tracking-[-0.01em] text-ink">{step.title}</h3>
+                    <p className="mt-2 text-sm leading-relaxed text-quiet">{step.body}</p>
+                  </motion.li>
+                ))}
+              </ol>
             </div>
           </div>
-        </div>
+        </section>
+
+        <FAQSection heading="Before you book" items={FAQS} />
       </main>
 
       <Footer />

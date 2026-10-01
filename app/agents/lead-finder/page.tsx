@@ -1,3 +1,4 @@
+import { OG_IMAGE } from "@/lib/og"
 import type { Metadata } from "next"
 import { Database, Search, Target, Users, Sparkles, Send, Repeat, Filter } from "lucide-react"
 import { SiHubspot, SiSalesforce, SiGmail, SiAirtable, SiNotion } from "react-icons/si"
@@ -38,6 +39,7 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: PAGE_URL },
   openGraph: {
+    images: [OG_IMAGE],
     title: "AI Lead Finder Agent - Built, Hosted & Managed | Talk to Me Data",
     description:
       "A custom AI lead finder agent that researches your ideal customer profile, finds matching companies and contacts, enriches their data, and delivers verified leads into your CRM automatically. We build, host, and manage it.",
@@ -47,6 +49,7 @@ export const metadata: Metadata = {
     publishedTime: "2026-06-25",
   },
   twitter: {
+    images: [OG_IMAGE],
     card: "summary_large_image",
     title: "AI Lead Finder Agent - Built, Hosted & Managed | Talk to Me Data",
     description:
