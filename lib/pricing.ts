@@ -29,23 +29,26 @@ export const PLANS: Plan[] = [
   { id: "scale", name: "Scale", price: 199, actions: 960, description: "For teams automating across the whole company." },
 ]
 
-export const LENSES: { id: Lens; title: string; short: string; body: string }[] = [
+export const LENSES: { id: Lens; title: string; short: string; tiny: string; body: string }[] = [
   {
     id: "social",
     title: "Social Media Manager",
     short: "Social media",
+    tiny: "Social",
     body: "Analyses your Instagram, TikTok, YouTube and Facebook, tracks competitors, plans your posts and posts them to Instagram for you.",
   },
   {
     id: "seo",
     title: "SEO & GEO Manager",
     short: "SEO & GEO",
+    tiny: "SEO & GEO",
     body: "Reads your Google Search Console, checks your site, tracks whether ChatGPT, Gemini and Claude recommend you, and fixes what's holding you back.",
   },
   {
     id: "custom",
     title: "Custom agents",
     short: "Custom agents",
+    tiny: "Custom",
     body: "Agents we build with you for your own workflows: email, sheets, CRM and more.",
   },
 ]

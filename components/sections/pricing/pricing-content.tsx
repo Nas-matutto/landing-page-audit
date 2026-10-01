@@ -4,6 +4,7 @@ import { useState } from "react"
 import { ArrowRight, Check, Hammer, Infinity as InfinityIcon, Instagram, Plug, Users, Zap } from "lucide-react"
 import { PrimaryCta, Reveal } from "@/components/sections/social-agent/parts"
 import { PlanFinder } from "@/components/sections/pricing/plan-finder"
+import { LensTabs } from "@/components/sections/pricing/lens-tabs"
 import { SIGNUP_URL } from "@/lib/links"
 import {
   ACTION_GUIDE,
@@ -55,22 +56,7 @@ export function PricingContent() {
         <div className="mx-auto max-w-6xl">
           <Reveal className="mx-auto max-w-2xl text-center">
             <p className="text-sm font-semibold text-ink">Which agent are you running?</p>
-            <div role="tablist" aria-label="Agent type" className="mt-3 inline-flex flex-wrap justify-center gap-1 rounded-full border border-hairline bg-mist p-1">
-              {LENSES.map((l) => (
-                <button
-                  key={l.id}
-                  role="tab"
-                  aria-selected={lens === l.id}
-                  onClick={() => setLens(l.id)}
-                  className={cn(
-                    "cursor-pointer rounded-full px-4 py-2 text-sm font-semibold transition-colors",
-                    lens === l.id ? "bg-ink text-white" : "text-quiet hover:text-ink",
-                  )}
-                >
-                  {l.short}
-                </button>
-              ))}
-            </div>
+            <LensTabs lens={lens} setLens={setLens} className="mt-3 bg-mist" />
             <p className="mt-4 text-[15px] leading-relaxed text-quiet">{current.body}</p>
           </Reveal>
 
@@ -190,22 +176,7 @@ export function PricingContent() {
             </p>
           </Reveal>
 
-          <div className="mt-6 inline-flex flex-wrap gap-1 rounded-full border border-hairline bg-white p-1" role="tablist" aria-label="Agent type">
-            {LENSES.map((l) => (
-              <button
-                key={l.id}
-                role="tab"
-                aria-selected={lens === l.id}
-                onClick={() => setLens(l.id)}
-                className={cn(
-                  "cursor-pointer rounded-full px-4 py-2 text-sm font-semibold transition-colors",
-                  lens === l.id ? "bg-ink text-white" : "text-quiet hover:text-ink",
-                )}
-              >
-                {l.short}
-              </button>
-            ))}
-          </div>
+          <LensTabs lens={lens} setLens={setLens} className="mt-6 bg-white" />
 
           {/* Jobs by size */}
           <div className="mt-8 grid gap-4 md:grid-cols-3">

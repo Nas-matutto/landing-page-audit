@@ -4,8 +4,9 @@ import { useState } from "react"
 import Image from "next/image"
 import { ArrowRight, Check } from "lucide-react"
 import { Reveal } from "@/components/sections/social-agent/parts"
+import { LensTabs } from "@/components/sections/pricing/lens-tabs"
 import { SIGNUP_URL } from "@/lib/links"
-import { FINDER_DEFAULTS, LENSES, recommend, type FinderInput, type Lens } from "@/lib/pricing"
+import { FINDER_DEFAULTS, recommend, type FinderInput, type Lens } from "@/lib/pricing"
 import { cn } from "@/lib/utils"
 
 // "Find your plan": a few sliders for the agent the visitor picked, and the
@@ -34,22 +35,7 @@ export function PlanFinder({ lens, setLens }: { lens: Lens; setLens: (l: Lens) =
             {/* Questions */}
             <div className="bg-mist p-6 sm:p-10">
               <p className="text-sm font-semibold text-ink">Which agent?</p>
-              <div role="tablist" aria-label="Agent type" className="mt-3 inline-flex flex-wrap gap-1 rounded-full border border-hairline bg-white p-1">
-                {LENSES.map((l) => (
-                  <button
-                    key={l.id}
-                    role="tab"
-                    aria-selected={lens === l.id}
-                    onClick={() => setLens(l.id)}
-                    className={cn(
-                      "cursor-pointer rounded-full px-4 py-2 text-sm font-semibold transition-colors",
-                      lens === l.id ? "bg-ink text-white" : "text-quiet hover:text-ink",
-                    )}
-                  >
-                    {l.short}
-                  </button>
-                ))}
-              </div>
+              <LensTabs lens={lens} setLens={setLens} className="mt-3 bg-white" />
 
               <div className="mt-8 space-y-8">
                 {lens === "social" && (
@@ -134,10 +120,10 @@ export function PlanFinder({ lens, setLens }: { lens: Lens; setLens: (l: Lens) =
             <div className="relative flex flex-col bg-ink p-6 text-white sm:p-10">
               <div className="flex items-end gap-3">
                 <Image
-                  src="/agent_ambassador_v3.webp"
-                  alt="The TTMD agent ambassador waving"
-                  width={519}
-                  height={1013}
+                  src="/ambassador-thumbs-up.png"
+                  alt="The TTMD agent ambassador giving a thumbs up"
+                  width={566}
+                  height={912}
                   sizes="96px"
                   className="h-auto w-20 shrink-0 sm:w-24"
                 />
