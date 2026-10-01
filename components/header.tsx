@@ -10,6 +10,7 @@ import { SIGNUP_URL } from "@/lib/links"
 const NAV_LINKS = [
   { href: "/#how-it-works", label: "How it works" },
   { href: "/agents", label: "Agents" },
+  { href: "/pricing", label: "Pricing" },
   { href: "/free-tools", label: "Free Tools" },
 ]
 

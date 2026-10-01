@@ -36,6 +36,11 @@ export function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href="/pricing" className="text-white/60 transition-colors hover:text-white">
+                  Pricing
+                </Link>
+              </li>
+              <li>
                 <Link href="/book-demo" className="inline-flex items-center gap-1.5 text-white/60 transition-colors hover:text-white">
                   <CalendarDays className="w-3.5 h-3.5" />
                   Book a Demo
