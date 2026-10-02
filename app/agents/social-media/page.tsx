@@ -1,4 +1,5 @@
 import { OG_IMAGE } from "@/lib/og"
+import { AgentGuidesSection } from "@/components/blog/agent-guides-section"
 import type { Metadata } from "next"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
@@ -142,6 +143,7 @@ export default function SocialMediaPage() {
         <SocialAgentFeatures />
         <SocialHowItWorks />
         <SocialGallery />
+        <AgentGuidesSection agentHref="/agents/social-media" />
         <FAQSection eyebrow="FAQ" heading="Questions about the social media agent" items={FAQS} />
         <SocialFinalCta />
       </main>

@@ -1,4 +1,5 @@
 import { OG_IMAGE } from "@/lib/og"
+import { AgentGuidesSection } from "@/components/blog/agent-guides-section"
 import type { Metadata } from "next"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
@@ -145,6 +146,7 @@ export default function SeoGeoPage() {
         <SeoAgentDemo />
         <SeoAgentFeatures />
         <SeoHowItWorks />
+        <AgentGuidesSection agentHref="/agents/seo-geo" />
         <FAQSection eyebrow="FAQ" heading="Questions about the SEO & GEO agent" items={FAQS} />
         <SeoFinalCta />
       </main>

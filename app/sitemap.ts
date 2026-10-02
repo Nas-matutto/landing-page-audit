@@ -1,4 +1,6 @@
 import { MetadataRoute } from 'next'
+import { AUTHORS } from '@/lib/authors'
+import { CATEGORIES, getAllPostsSorted, getPostsByCategory } from '@/lib/blog'
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://talktomedata.com'
@@ -146,115 +148,24 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.7,
     },
 
-    // Blog posts
-    {
-      url: `${baseUrl}/blog/how-to-automate-social-media-posting-with-ai-agent`,
-      lastModified: new Date('2026-07-23'),
-      changeFrequency: 'monthly',
-      priority: 0.85,
-    },
-    {
-      url: `${baseUrl}/blog/how-to-automate-data-entry-and-reporting-with-ai-agent`,
-      lastModified: new Date('2026-07-23'),
-      changeFrequency: 'monthly',
-      priority: 0.85,
-    },
-    {
-      url: `${baseUrl}/blog/how-to-automate-customer-service-with-ai-agent`,
-      lastModified: new Date('2026-07-22'),
-      changeFrequency: 'monthly',
-      priority: 0.85,
-    },
-    {
-      url: `${baseUrl}/blog/how-to-automate-seo-and-geo-growth-with-ai-agent`,
-      lastModified: new Date('2026-07-17'),
-      changeFrequency: 'monthly',
-      priority: 0.85,
-    },
-    {
-      url: `${baseUrl}/blog/how-to-automate-invoices-into-accounting-software`,
-      lastModified: new Date('2026-07-10'),
-      changeFrequency: 'monthly',
-      priority: 0.85,
-    },
-    {
-      url: `${baseUrl}/blog/what-are-ai-agents`,
-      lastModified: new Date('2026-06-16'),
-      changeFrequency: 'monthly',
-      priority: 0.85,
-    },
-    {
-      url: `${baseUrl}/blog/how-to-build-social-media-ai-agent`,
-      lastModified: new Date('2026-06-22'),
-      changeFrequency: 'monthly',
-      priority: 0.85,
-    },
-    {
-      url: `${baseUrl}/blog/ai-agents-for-small-business`,
-      lastModified: new Date('2026-06-03'),
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/blog/how-to-build-ai-voice-agent`,
-      lastModified: new Date('2026-06-07'),
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/blog/how-to-build-ai-lead-finder-agent`,
-      lastModified: new Date('2026-06-10'),
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/blog/how-to-use-intent-signals-to-increase-conversion-rates`,
-      lastModified: new Date('2026-04-21'),
-      changeFrequency: 'monthly',
-      priority: 0.6,
-    },
-    {
-      url: `${baseUrl}/blog/how-to-analyze-website-conversion-issues`,
-      lastModified: new Date('2025-12-19'),
-      changeFrequency: 'monthly',
-      priority: 0.6,
-    },
-    {
-      url: `${baseUrl}/blog/increase-conversion-rate-30-days`,
-      lastModified: new Date('2025-12-21'),
-      changeFrequency: 'monthly',
-      priority: 0.6,
-    },
-    {
-      url: `${baseUrl}/blog/yc-landing-page-optimization`,
-      lastModified: new Date('2025-12-23'),
-      changeFrequency: 'monthly',
-      priority: 0.6,
-    },
-    {
-      url: `${baseUrl}/blog/how-to-make-website-faster`,
-      lastModified: new Date('2025-12-26'),
-      changeFrequency: 'monthly',
-      priority: 0.6,
-    },
-    {
-      url: `${baseUrl}/blog/how-to-build-website-to-collect-leads`,
-      lastModified: new Date('2026-01-13'),
-      changeFrequency: 'monthly',
-      priority: 0.6,
-    },
-    {
-      url: `${baseUrl}/blog/how-to-use-ai-to-improve-conversion-rates`,
-      lastModified: new Date('2026-01-13'),
-      changeFrequency: 'monthly',
-      priority: 0.6,
-    },
-    {
-      url: `${baseUrl}/blog/website-checklist-how-to-build-landing-page-that-converts`,
-      lastModified: new Date('2026-01-14'),
-      changeFrequency: 'monthly',
-      priority: 0.6,
-    },
+    // Blog posts, topic hubs and author pages — generated from lib/blog.ts
+    ...getAllPostsSorted().map(post => ({
+      url: `${baseUrl}/blog/${post.slug}`,
+      lastModified: new Date(post.dateModified),
+      changeFrequency: 'monthly' as const,
+      priority: post.pillar ? 0.9 : post.category === 'conversion-optimization' ? 0.6 : 0.8,
+    })),
+    ...CATEGORIES.map(category => ({
+      url: `${baseUrl}/blog/category/${category.id}`,
+      lastModified: new Date(getPostsByCategory(category.id)[0].dateModified),
+      changeFrequency: 'weekly' as const,
+      priority: 0.7,
+    })),
+    ...Object.keys(AUTHORS).map(id => ({
+      url: `${baseUrl}/blog/author/${id}`,
+      changeFrequency: 'monthly' as const,
+      priority: 0.4,
+    })),
 
     // Legal
     {

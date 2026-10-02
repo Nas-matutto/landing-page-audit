@@ -1,4 +1,5 @@
 import { OG_IMAGE } from "@/lib/og"
+import { AgentGuidesSection } from "@/components/blog/agent-guides-section"
 import type { Metadata } from "next"
 import { Bot, CheckCircle, Headphones, MessageSquare, Package, RotateCcw, HelpCircle, CreditCard, ArrowUpRight, Moon } from "lucide-react"
 import { SiIntercom, SiWhatsapp, SiZendesk, SiGmail, SiShopify, SiSlack } from "react-icons/si"
@@ -302,6 +303,7 @@ export default function CustomerSupportPage() {
         </section>
         <AgentTestimonialsSection testimonials={TESTIMONIALS} />
         <AgentWhyUsSection items={WHY_US} />
+        <AgentGuidesSection agentHref="/agents/customer-support" />
         <AgentFaqSection faqs={FAQS} />
         <AgentCtaSection
           agentTitle="customer support"

@@ -4,7 +4,10 @@ const nextConfig = {
     ignoreBuildErrors: true,
   },
   images: {
-    unoptimized: true,
+    // Vercel bills a transformation every time a cached optimized image expires.
+    // Images in /public rarely change, so keep optimized copies for 31 days.
+    // To swap an image, give the new file a new name.
+    minimumCacheTTL: 2678400,
   },
   async redirects() {
     return [

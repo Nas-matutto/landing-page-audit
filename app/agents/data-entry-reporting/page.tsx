@@ -1,4 +1,5 @@
 import { OG_IMAGE } from "@/lib/og"
+import { AgentGuidesSection } from "@/components/blog/agent-guides-section"
 import type { Metadata } from "next"
 import { BarChart3, FileBarChart, Layers, Plug, Combine, Clock, Table2 } from "lucide-react"
 import { SiGooglesheets, SiHubspot, SiShopify, SiStripe, SiSlack, SiGoogleanalytics } from "react-icons/si"
@@ -304,6 +305,7 @@ export default function DataEntryReportingPage() {
         </section>
         <AgentTestimonialsSection testimonials={TESTIMONIALS} />
         <AgentWhyUsSection items={WHY_US} />
+        <AgentGuidesSection agentHref="/agents/data-entry-reporting" />
         <AgentFaqSection faqs={FAQS} />
         <AgentCtaSection
           agentTitle="data entry & reporting"

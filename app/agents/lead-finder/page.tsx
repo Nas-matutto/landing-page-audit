@@ -1,4 +1,5 @@
 import { OG_IMAGE } from "@/lib/og"
+import { AgentGuidesSection } from "@/components/blog/agent-guides-section"
 import type { Metadata } from "next"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
@@ -111,6 +112,7 @@ export default function LeadFinderPage() {
         <LeadFinderDemo />
         <LeadFinderHowItWorks />
         <LeadFinderQuotes />
+        <AgentGuidesSection agentHref="/agents/lead-finder" />
         <FAQSection eyebrow="FAQ" heading="Questions about the lead finder agent" items={FAQS} />
         <LeadFinderFinalCta />
       </main>

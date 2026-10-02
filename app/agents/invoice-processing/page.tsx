@@ -1,4 +1,5 @@
 import { OG_IMAGE } from "@/lib/og"
+import { AgentGuidesSection } from "@/components/blog/agent-guides-section"
 import type { Metadata } from "next"
 import { Camera, Database, Receipt, ScanLine } from "lucide-react"
 import { SiQuickbooks, SiSage, SiXero, SiZoho, SiGmail } from "react-icons/si"
@@ -285,6 +286,7 @@ export default function InvoiceProcessingPage() {
         />
         <AgentTestimonialsSection testimonials={TESTIMONIALS} />
         <AgentWhyUsSection items={WHY_US} />
+        <AgentGuidesSection agentHref="/agents/invoice-processing" />
         <AgentFaqSection faqs={FAQS} />
         <AgentCtaSection
           agentTitle="invoice processing"
