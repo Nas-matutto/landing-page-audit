@@ -12,7 +12,6 @@ const NAV_LINKS = [
   { href: "/agents", label: "Agents" },
   { href: "/pricing", label: "Pricing" },
   { href: "/free-tools", label: "Free Tools" },
-  { href: "/blog", label: "Blog" },
 ]
 
 export function Header({ minimal = false }: { minimal?: boolean }) {

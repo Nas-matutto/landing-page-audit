@@ -70,7 +70,7 @@ export default async function AuthorPage({ params }: { params: Params }) {
       <main>
         <section className="bg-white pb-14 pt-36 sm:pt-44 lg:pb-16 lg:pt-40">
           <Reveal className="mx-auto flex max-w-3xl flex-col items-center px-6 text-center">
-            <AuthorAvatar author={author} size={120} />
+            <AuthorAvatar author={author} size={80} />
             <p className="eyebrow mt-7">{author.jobTitle ?? SITE_NAME}</p>
             <h1 className="display mt-4 text-[clamp(2.75rem,6vw,4.25rem)]">{author.name}</h1>
             <p className="lede mt-6 text-lg">{author.bio}</p>

@@ -59,7 +59,7 @@ export function BlogPostShell({ slug, faqs = [], children }: { slug: string; faq
                 <h1 className="display mt-5 mb-7 text-[clamp(2.25rem,5vw,3.5rem)] leading-[1.05]">{post.title}</h1>
                 <div className="flex flex-wrap items-center gap-x-6 gap-y-3 text-sm text-quiet">
                   <Link href={authorUrl(author.id)} className="group flex items-center gap-2.5">
-                    <AuthorAvatar author={author} size={36} />
+                    <AuthorAvatar author={author} size={28} />
                     <span>
                       By <span className="font-semibold text-ink group-hover:underline">{author.name}</span>
                     </span>
@@ -109,7 +109,7 @@ export function BlogPostShell({ slug, faqs = [], children }: { slug: string; faq
               )}
 
               <aside aria-label="About the author" className="mt-6 flex gap-5 rounded-3xl border border-hairline bg-mist p-6 sm:p-7">
-                <AuthorAvatar author={author} size={64} />
+                <AuthorAvatar author={author} size={44} />
                 <div>
                   <p className="eyebrow">Written by</p>
                   <Link href={authorUrl(author.id)} className="mt-1.5 block text-lg font-semibold text-ink hover:underline">

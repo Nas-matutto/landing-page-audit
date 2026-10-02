@@ -19,7 +19,7 @@ export const AUTHORS: Record<string, Author> = {
     id: "nas",
     name: "Nas",
     bio: "Nas writes Talk to Me Data's guides on building AI agents and automating business workflows, drawing on the agents the team designs, builds and runs for clients every day.",
-    image: "/authors/nas.jpg",
+    image: "/authors/nas-paris.jpg",
     sameAs: ["https://www.linkedin.com/in/nasser-mansurali-659145102/"],
   },
 }
