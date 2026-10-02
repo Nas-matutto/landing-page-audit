@@ -81,15 +81,15 @@ export async function POST(request: NextRequest) {
             </p>
             <p style="font-size: 16px; margin-bottom: 8px;">A few tips to get the most out of it:</p>
             <ul style="font-size: 15px; padding-left: 20px; margin-bottom: 24px; line-height: 1.8;">
-              <li>Start with Section 1 — it maps the tasks that are the best fit for an agent</li>
+              <li>Start with Section 1. It maps the tasks that are the best fit for an agent</li>
               <li>Follow the Claude setup steps to build your first agent today</li>
               <li>Read the limitations section before you commit a business-critical workflow to the DIY path</li>
             </ul>
             <p style="font-size: 16px; margin-bottom: 24px;">
-              If you'd rather we just build and host it for you, reply to this email — happy to help.
+              If you'd rather we just build and host it for you, reply to this email. Happy to help.
             </p>
             <p style="font-size: 16px;">
-              — Nas
+              Nas
             </p>
             <hr style="border: none; border-top: 1px solid #e2e8f0; margin: 32px 0;" />
             <p style="font-size: 13px; color: #94a3b8;">

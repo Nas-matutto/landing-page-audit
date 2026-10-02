@@ -107,18 +107,18 @@ export const GUIDES: Guide[] = [
     title: "AI Agent Readiness Audit: Is Your Business Ready for AI Agents?",
     seoTitle: "AI Agent Readiness Audit: Free Scorecard (PDF)",
     description:
-      "Free AI agent readiness audit (PDF): 20 questions across 5 areas of your business, scored out of 40, so you know where an AI agent would help most.",
+      "Free AI agent readiness audit (PDF): 20 questions across 5 areas of your business, scored out of 60, so you know where an AI agent would help most.",
     lede:
-      "The AI Agent Readiness Audit is a free 7-page scorecard with 20 questions across five areas of your business: lead response, customer support, scheduling, admin and growth. Each area is scored out of 8, for a total out of 40. Your two lowest sections show where an AI agent would save the most time.",
+      "The AI Agent Readiness Audit is a free 7-page scorecard with 20 questions across five areas of your business: lead response, customer support, scheduling, admin and growth. Each area is scored out of 12, for a total out of 60. Your two lowest sections show where an AI agent would save the most time.",
     excerpt:
-      "20 questions across lead response, support, scheduling, admin and growth, scored out of 40. Your lowest sections show where to start with AI agents.",
+      "20 questions across lead response, support, scheduling, admin and growth, scored out of 60. Your lowest sections show where to start with AI agents.",
     kind: "Audit",
     Icon: Bot,
     pages: 7,
     stats: [
       { value: "20", label: "questions" },
       { value: "5", label: "areas scored" },
-      { value: "40", label: "point scale" },
+      { value: "60", label: "point scale" },
     ],
     inside: [
       {
@@ -129,12 +129,12 @@ export const GUIDES: Guide[] = [
       {
         title: "A score for each of 5 areas",
         description:
-          "Lead response, customer support, scheduling, admin and operations, growth and retention. Each is scored out of 8 with a note on what it means.",
+          "Lead response, customer support, scheduling, admin and operations, growth and retention. Each is scored out of 12 with a note on what it means.",
       },
       {
         title: "Your readiness band",
         description:
-          "Your total out of 40 puts you in one of three bands: high opportunity, ready now or scale up, with what each means for your business.",
+          "Your total out of 60 puts you in one of three bands: high opportunity, ready now or scale up, with what each means for your business.",
       },
       {
         title: "Where to start first",
@@ -162,34 +162,34 @@ export const GUIDES: Guide[] = [
     title: "How to Build AI Agents: The Free Guide for Business Owners",
     seoTitle: "How to Build AI Agents: Free PDF Guide for Business Owners",
     description:
-      "Free PDF guide to building AI agents: which tasks to automate, how to build your first agent in Claude with MCP, and where the DIY route hits limits.",
+      "Free PDF guide to building AI agents: which tasks to automate, how to build your first agent in Claude with connectors, and where the DIY route hits limits.",
     lede:
-      "How to Build AI Agents is a free 7-page PDF for business owners. It shows which manual tasks are worth handing to an AI agent, how to build your first one in Claude in four steps (a Project, instructions, MCP tools and a trigger), where the DIY route hits its limits, and how the done-for-you route compares.",
+      "How to Build AI Agents is a free 7-page PDF for business owners. It shows which manual tasks are worth handing to an AI agent, how to build your first one in Claude in four steps (a project, instructions, connectors and a trigger), where the DIY route hits its limits, and how the done-for-you route compares.",
     excerpt:
       "Which manual work to hand to an agent, how to build your first one in Claude in four steps, the honest limits of DIY, and the done-for-you route.",
     kind: "Guide",
     Icon: Wrench,
     pages: 7,
     stats: [
-      { value: "8", label: "workflows" },
+      { value: "6", label: "workflows" },
       { value: "4", label: "build steps" },
       { value: "2", label: "paths compared" },
     ],
     inside: [
       {
-        title: "8 workflows worth automating",
+        title: "6 workflows worth automating",
         description:
           "From invoice processing to lead research, each with a manual versus agent breakdown so you can see the time it takes today.",
       },
       {
         title: "Your first agent in Claude",
         description:
-          "Create a Project, add instructions, connect real tools with MCP and run the workflow. Includes an example instruction you can copy.",
+          "Create a project, add instructions, connect your tools with connectors and run the workflow. Includes an example instruction you can copy.",
       },
       {
         title: "The honest DIY limits",
         description:
-          "Usage windows, agents stalling mid-task, API keys and hosting. Know where building it yourself breaks before you rely on it.",
+          "Session and weekly usage limits, agents stalling mid-task, API keys and hosting. Know where building it yourself breaks before you rely on it.",
       },
       {
         title: "The done-for-you route",

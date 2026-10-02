@@ -12,20 +12,20 @@ export const metadata = buildGuideMetadata(SLUG)
 // Rendered on the page and emitted as HowTo schema from the same array.
 const STEPS = [
   {
-    name: "Create a new Project",
-    text: "In Claude's desktop app, create a new Project and name it after the workflow, for example \"Invoice Processor\". The Project holds all the context and instructions for this one agent.",
+    name: "Create a new project",
+    text: "Open Projects in Claude and create one. Name it after the workflow, like \"Invoice Processor\" or \"Lead Research Agent\". The project holds the instructions and context for this one agent.",
   },
   {
-    name: "Add instructions to the Project knowledge",
-    text: "Describe the task, the format you want the output in, the rules the agent must follow and an example of what a good result looks like.",
+    name: "Add your instructions and knowledge",
+    text: "Add project instructions and upload any reference files. Describe the task, the output format, the rules the agent must follow and examples of what good looks like.",
   },
   {
-    name: "Connect your tools with MCP",
-    text: "MCP (Model Context Protocol) lets Claude read from and act in apps such as Gmail, Google Drive, Notion, Airtable, QuickBooks, HubSpot and Slack. Enable the ones your workflow needs.",
+    name: "Connect your tools with connectors",
+    text: "Go to Customize, then Connectors, click + and turn on the tools your workflow needs, such as Google Drive, Gmail or Notion. Connectors are built on MCP (Model Context Protocol), so Claude can read from, write to and take actions in those apps.",
   },
   {
-    name: "Run the workflow",
-    text: "Start a chat inside the Project and give the agent a trigger, such as \"Process the invoices in the Pending folder\". It works through the task with the connected tools.",
+    name: "Start a chat in the project and run it",
+    text: "Open the project and start a new chat. Claude follows your project instructions automatically. Give it a trigger, such as \"Process the invoices in the /Invoices/Pending folder\", and it works through the task with the connected tools.",
   },
 ]
 
@@ -33,7 +33,7 @@ const FAQS: Faq[] = [
   {
     question: "Can I build an AI agent without coding?",
     answer:
-      "Yes. In Claude's desktop app you can build one with a Project, written instructions and tools connected through MCP, without writing any code. The guide walks through each of the four steps with an example instruction you can copy.",
+      "Yes. In Claude you can build one with a project, written instructions and tools connected through connectors, without writing any code. The guide walks through each of the four steps with an example instruction you can copy.",
   },
   {
     question: "What is MCP?",
@@ -48,7 +48,7 @@ const FAQS: Faq[] = [
   {
     question: "Why does my agent stop halfway through a task?",
     answer:
-      "Usually because it hit the usage limit of a consumer AI plan. Long jobs, such as working through 100 invoices, can use up the allowance in one session, and the agent stops wherever it is. Smaller batches help; running the agent on dedicated infrastructure removes the limit.",
+      "Usually because it hit a usage limit. Claude's paid plans have a five-hour session limit and a weekly limit, and a long job, such as working through 100 invoices, can use up a session in one go. The agent stops wherever it is. Smaller batches help; running the agent on dedicated infrastructure removes the limit.",
   },
   {
     question: "How is this guide different from the blog post on building an AI agent?",
@@ -61,8 +61,8 @@ const HOW_TO = {
   "@type": "HowTo",
   "@id": `${URL_BASE}#howto`,
   name: "How to build an AI agent in Claude",
-  description: "Build a first AI agent in Claude's desktop app with a Project, written instructions, tools connected through MCP and a trigger.",
-  tool: [{ "@type": "HowToTool", name: "Claude desktop app" }],
+  description: "Build a first AI agent in Claude with a project, written instructions, tools connected through connectors and a trigger.",
+  tool: [{ "@type": "HowToTool", name: "Claude" }],
   step: STEPS.map((step, i) => ({
     "@type": "HowToStep",
     position: i + 1,
@@ -92,11 +92,10 @@ export default function HowToBuildAIAgentsPage() {
             ["Review requests", "Hit-or-miss timing", "Sent at the right moment, every time"],
           ]}
         />
-        <p>It also covers customer support replies and proposal drafts.</p>
-      </GuideSection>
+              </GuideSection>
 
       <GuideSection id="build-in-claude" title="How do you build an AI agent in Claude?">
-        <p>You can build a first agent in Claude&apos;s desktop app in four steps:</p>
+        <p>You can build a first agent in Claude in four steps:</p>
         <ol className="space-y-3 pt-1">
           {STEPS.map((step, i) => (
             <li key={step.name} className="flex gap-4 rounded-3xl border border-hairline p-5 sm:p-6">
@@ -124,8 +123,8 @@ export default function HowToBuildAIAgentsPage() {
         </p>
         <ul className="list-disc space-y-2 pl-5 marker:text-faint">
           <li>
-            <strong>Usage limits.</strong> Consumer AI plans cap how much you can use the model in a rolling window. A
-            long job, such as 100 invoices or 200 leads, can use it all, and the agent stops mid-task.
+            <strong>Usage limits.</strong> Claude&apos;s paid plans have a five-hour session limit and a weekly limit. A
+            long job, such as 100 invoices or 200 leads, can use up a session, and the agent stops mid-task.
           </li>
           <li>
             <strong>It only runs while you do.</strong> The agent works inside your chat session, so it isn&apos;t running
@@ -147,11 +146,11 @@ export default function HowToBuildAIAgentsPage() {
           caption="Building an AI agent yourself in Claude compared with a done-for-you agent"
           head={["What you need", "DIY with Claude", "Done for you"]}
           rows={[
-            ["No usage limits", "Usage windows apply", "Runs on our infrastructure"],
-            ["Runs 24/7", "Only while you're active", "Always on, fully hosted"],
-            ["No setup", "Projects, MCP and config needed", "Describe it and we build it"],
-            ["Claude free for you", "The agent uses your quota", "Separate, so use Claude freely"],
-            ["No API keys", "Needed for API use", "Fully managed"],
+            ["No usage limits to manage", "Session and weekly limits apply", "Runs on our infrastructure"],
+            ["Runs around the clock", "Only while you're running it", "Always on, fully hosted"],
+            ["No setup", "Projects, connectors and instructions", "Describe it and we build it"],
+            ["Your Claude stays free for you", "The agent uses your plan's usage", "Separate, so use Claude freely"],
+            ["No API keys to manage", "Needed to run outside the chat", "Fully managed"],
             ["Monitoring and updates", "Your responsibility", "Included"],
           ]}
         />

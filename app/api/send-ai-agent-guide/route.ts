@@ -75,21 +75,21 @@ export async function POST(request: NextRequest) {
               Thanks for grabbing the <strong>AI Agent Readiness Audit</strong>!
             </p>
             <p style="font-size: 16px; margin-bottom: 16px;">
-              I've attached the PDF to this email. It'll walk you through exactly where your business
-              stands today and which areas are most ready for an AI agent — so you're not guessing
+              I've attached the PDF to this email. It's 20 questions across five parts of your business,
+              so you can see exactly where an AI agent would make the biggest difference and stop guessing
               where to start.
             </p>
             <p style="font-size: 16px; margin-bottom: 8px;">A few tips to get the most out of it:</p>
             <ul style="font-size: 15px; padding-left: 20px; margin-bottom: 24px; line-height: 1.8;">
-              <li>Go through Section 1 honestly — it's designed to reveal blind spots, not validate what you already think</li>
-              <li>Pay attention to the scoring at the end — it'll tell you whether you're ready to start with AI agents now or in a few months</li>
-              <li>The last section has specific next steps based on your score</li>
+              <li>Answer honestly. There are no right answers, only an accurate picture of where your time goes</li>
+              <li>Add up each section, then your total out of 60. A lower score means more room to automate</li>
+              <li>Your two lowest sections are the best place to start with your first agent</li>
             </ul>
             <p style="font-size: 16px; margin-bottom: 24px;">
               If you want to talk through what you find, just reply to this email. Happy to help.
             </p>
             <p style="font-size: 16px;">
-              — Nas
+              Nas
             </p>
             <hr style="border: none; border-top: 1px solid #e2e8f0; margin: 32px 0;" />
             <p style="font-size: 13px; color: #94a3b8;">

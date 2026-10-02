@@ -11,7 +11,7 @@ const FAQS: Faq[] = [
   {
     question: "What is an AI agent readiness audit?",
     answer:
-      "An AI agent readiness audit is a self-assessment that scores how much of your work is still done by hand in the areas where AI agents help most. Ours has 20 questions across lead response, customer support, scheduling, admin and growth, scored out of 40.",
+      "An AI agent readiness audit is a self-assessment that scores how much of your work is still done by hand in the areas where AI agents help most. Ours has 20 questions across lead response, customer support, scheduling, admin and growth, scored out of 60.",
   },
   {
     question: "What does a low score mean?",
@@ -31,7 +31,7 @@ const FAQS: Faq[] = [
   {
     question: "What do I do with my results?",
     answer:
-      "Bring your scores to a free 20-minute call. We map your two lowest sections to a specific agent design and tell you what it would automate, how long it takes to build and what it costs to run. Or use How to Build AI Agents to build it yourself.",
+      "Start with your two lowest sections. Sign up free, tell us which sections scored lowest in your own words, and we build and run an agent for them. Or use How to Build AI Agents to build it yourself.",
   },
 ]
 
@@ -47,32 +47,32 @@ export default function AIAgentReadinessAuditPage() {
           caption="The five areas of the AI agent readiness audit"
           head={["Area", "What it looks at", "Example question"]}
           rows={[
-            ["Lead response and sales", "How fast and consistently you respond to new inbound interest", "When a new lead comes in through your website or social, how fast do they typically get a response?"],
-            ["Customer support", "How much support volume your team handles manually", "What share of your inbound support messages are repetitive questions you've answered many times?"],
-            ["Scheduling and booking", "How appointments and availability are managed", "How do you reduce no-shows and last-minute cancellations?"],
-            ["Admin and operations", "How much data entry, filing and follow-through your team owns", "How current is your CRM or client database, typically?"],
-            ["Growth and retention", "How consistently you follow up, re-engage and ask for reviews", "How consistently do you request reviews after a completed job or service?"],
+            ["Lead response and sales", "How fast and consistently you reply to new interest", "When a new lead comes in through your website or social, how fast do they usually get a response?"],
+            ["Customer support", "How much support volume your team handles by hand", "What share of your inbound support messages are repeat questions you've answered many times?"],
+            ["Scheduling and booking", "How efficiently appointments and availability are managed", "How do you reduce no-shows and last-minute cancellations?"],
+            ["Admin and operations", "How much data entry, filing and follow-through your team owns", "How current is your CRM or client database, usually?"],
+            ["Growth and retention", "How consistently you follow up, re-engage and ask for reviews", "How consistently do you ask for reviews after a completed job or service?"],
           ]}
         />
       </GuideSection>
 
       <GuideSection id="how-scoring-works" title="How is AI agent readiness scored?">
         <p>
-          Each answer earns more points the more automated that job already is. Each area is scored out of 8, for a total
-          out of 40. <strong>A lower score means more room to automate</strong>, not a worse business.
+          Each answer earns more points the more automated that job already is. Each area is scored out of 12, for a total
+          out of 60. <strong>A lower score means more room to automate</strong>, not a worse business.
         </p>
         <GuideTable
           caption="AI agent readiness score bands"
           head={["Total", "Band", "What it means"]}
           rows={[
-            ["0–12", "High opportunity", "Your business still runs almost entirely on manual effort. One or two well-placed agents tend to make a big difference, fast."],
-            ["13–26", "Ready now", "The most common range. You have the foundations, with two or three areas where manual work is still the default. That is where an agent adds the most."],
-            ["27–40", "Scale up", "You're already well systematized. Agents help you handle more volume, personalize at scale and add intelligence to simple automations."],
+            ["0–18", "High opportunity", "Your business still runs almost entirely on manual effort. Even one or two well-placed agents can make a big difference."],
+            ["19–39", "Ready now", "The most common range. You have the foundations, with two or three areas where manual work is still the default. That is where an agent adds the most."],
+            ["40–60", "Scale up", "You're already well systemized. Agents help you handle more volume, personalize at scale and add intelligence to workflows that run on simple automation today."],
           ]}
         />
         <p>
           Whatever your total, look at your two lowest section scores. They are your highest-leverage starting points.
-          Most businesses start with one agent on their weakest area, see results, then expand from there.
+          Most businesses start with one agent on their weakest area, then expand from there.
         </p>
       </GuideSection>
 

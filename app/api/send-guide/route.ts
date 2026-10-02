@@ -76,20 +76,21 @@ export async function POST(request: NextRequest) {
               Thanks for grabbing the <strong>Automate by Friday Checklist</strong>!
             </p>
             <p style="font-size: 16px; margin-bottom: 16px;">
-              I've attached the PDF to this email. Inside you'll find a step-by-step guide to identifying
-              which tasks in your business are draining your time — and exactly how to automate them this week.
+              I've attached the PDF to this email. Inside you'll find 18 everyday tasks most small businesses
+              still do by hand, across sales, support, scheduling, admin and marketing. Tick the ones your team
+              still does manually and you'll see exactly where your week is going.
             </p>
             <p style="font-size: 16px; margin-bottom: 8px;">A few things to get the most out of it:</p>
             <ul style="font-size: 15px; padding-left: 20px; margin-bottom: 24px; line-height: 1.8;">
-              <li>Work through Section 1 first — it'll show you where you're losing the most time</li>
-              <li>Focus on your top 3 tasks before moving on to everything else</li>
-              <li>Use the tools column to find the right automation for each task</li>
+              <li>Don't overthink it. If a task is even partly manual, tick it</li>
+              <li>Add up your ticks and read your result on the last checklist page</li>
+              <li>Start with the area where you ticked the most. That's where an agent saves the most time</li>
             </ul>
             <p style="font-size: 16px; margin-bottom: 24px;">
-              If you get stuck or want help setting something up, just reply to this email — I read every one.
+              If you get stuck or want help setting something up, just reply to this email. I read every one.
             </p>
             <p style="font-size: 16px;">
-              — Nas
+              Nas
             </p>
             <hr style="border: none; border-top: 1px solid #e2e8f0; margin: 32px 0;" />
             <p style="font-size: 13px; color: #94a3b8;">
