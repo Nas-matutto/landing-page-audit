@@ -1,5 +1,6 @@
 import { AGENTS } from "@/lib/agents"
 import { CATEGORIES, SITE_NAME, absoluteUrl, categoryPath, getPostsByCategory, postPath } from "@/lib/blog"
+import { GUIDES, guidePath } from "@/lib/guides"
 
 /**
  * /llms.txt (llmstxt.org): a plain-markdown map of the site for AI answer
@@ -15,6 +16,8 @@ export function GET() {
     )
     return `### [${category.name}](${absoluteUrl(categoryPath(category.id))})\n\n${lines.join("\n")}`
   }).join("\n\n")
+
+  const freeGuides = GUIDES.map(guide => `- [${guide.title}](${absoluteUrl(guidePath(guide.slug))}): ${guide.description}`).join("\n")
 
   const agents = AGENTS.map(agent => `- [${/agent$/i.test(agent.title) ? agent.title : `${agent.title} agent`}](${absoluteUrl(`/agents/${agent.slug}`)}): ${agent.tagline}`).join("\n")
 
@@ -36,6 +39,10 @@ ${agents}
 ## Guides
 
 ${guides}
+
+## [Free guides (PDF)](${absoluteUrl("/free-guides")})
+
+${freeGuides}
 `
   return new Response(body, { headers: { "Content-Type": "text/plain; charset=utf-8" } })
 }

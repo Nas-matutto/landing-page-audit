@@ -73,6 +73,12 @@ const jsonLd = {
       "name": "Free Tools",
       "url": "https://talktomedata.com/free-tools",
     },
+    {
+      "@type": "SiteNavigationElement",
+      "@id": "https://talktomedata.com/#nav-free-guides",
+      "name": "Free Guides",
+      "url": "https://talktomedata.com/free-guides",
+    },
   ],
 }
 

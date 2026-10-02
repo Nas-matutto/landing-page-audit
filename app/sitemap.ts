@@ -1,6 +1,7 @@
 import { MetadataRoute } from 'next'
 import { AUTHORS } from '@/lib/authors'
 import { CATEGORIES, getAllPostsSorted, getPostsByCategory } from '@/lib/blog'
+import { GUIDES } from '@/lib/guides'
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://talktomedata.com'
@@ -31,24 +32,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'weekly',
       priority: 0.75,
     },
-    {
-      url: `${baseUrl}/free-guides/business-automation-checklist`,
-      lastModified: new Date('2026-06-15'),
-      changeFrequency: 'monthly',
+    // Free guides, generated from lib/guides.ts
+    ...GUIDES.map(guide => ({
+      url: `${baseUrl}/free-guides/${guide.slug}`,
+      lastModified: new Date(guide.dateModified),
+      changeFrequency: 'monthly' as const,
       priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/free-guides/ai-agent-readiness-audit`,
-      lastModified: new Date('2026-06-16'),
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/free-guides/how-to-build-ai-agents`,
-      lastModified: new Date('2026-07-14'),
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
+    })),
     {
       url: `${baseUrl}/free-tools/calculator`,
       lastModified: new Date(),
