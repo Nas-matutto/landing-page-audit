@@ -195,10 +195,7 @@ export function Quiz() {
     return (
       <div className="space-y-5">
         <div className="rounded-2xl overflow-hidden border border-white/10">
-          <div
-            className="px-8 py-8 text-center"
-            style={{ background: "linear-gradient(135deg, #185FA5, #2563eb, #7c3aed)" }}
-          >
+          <div className="bg-white/5 px-8 py-8 text-center">
             <p className="text-white/70 text-xs font-semibold uppercase tracking-widest mb-2">Your result</p>
             <p className="text-6xl font-bold text-white mb-2">{score}<span className="text-3xl text-white/60">/{quizQuestions.length}</span></p>
             <p className="text-white font-semibold text-lg">{label}</p>
@@ -211,7 +208,7 @@ export function Quiz() {
                 return (
                   <div key={i} className={`flex items-start gap-3 p-3 rounded-xl text-sm ${correct ? "bg-green-500/10 border border-green-500/20" : "bg-red-500/10 border border-red-500/20"}`}>
                     {correct
-                      ? <CheckCircle2 className="w-4 h-4 text-green-400 shrink-0 mt-0.5" />
+                      ? <CheckCircle2 className="w-4 h-4 text-white shrink-0 mt-0.5" />
                       : <XCircle className="w-4 h-4 text-red-400 shrink-0 mt-0.5" />}
                     <span className="text-white/70 leading-snug">{q.question}</span>
                   </div>
@@ -229,7 +226,7 @@ export function Quiz() {
           <div className="px-8 py-6">
             {emailStatus === "success" ? (
               <div className="flex items-center gap-3">
-                <CheckCircle2 className="w-5 h-5 text-green-400 shrink-0" />
+                <CheckCircle2 className="w-5 h-5 text-white shrink-0" />
                 <p className="text-white/80 text-sm font-medium">You're in. Check your inbox.</p>
               </div>
             ) : (
@@ -246,8 +243,7 @@ export function Quiz() {
                   <button
                     type="submit"
                     disabled={emailStatus === "loading"}
-                    className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl text-sm font-semibold text-white disabled:opacity-60 cursor-pointer whitespace-nowrap transition hover:opacity-90"
-                    style={{ background: "linear-gradient(135deg, #185FA5, #7c3aed)" }}
+                    className="inline-flex cursor-pointer items-center justify-center gap-2 whitespace-nowrap rounded-full bg-white px-6 py-3 text-sm font-semibold text-ink transition hover:opacity-85 disabled:opacity-60"
                   >
                     {emailStatus === "loading" ? "Sending…" : "Send me more →"}
                   </button>
@@ -267,11 +263,8 @@ export function Quiz() {
       {/* Progress bar */}
       <div className="h-1 bg-white/10">
         <div
-          className="h-full transition-all duration-500"
-          style={{
-            width: `${(current / quizQuestions.length) * 100}%`,
-            background: "linear-gradient(90deg, #60a5fa, #a78bfa)",
-          }}
+          className="h-full bg-white transition-all duration-500"
+          style={{ width: `${(current / quizQuestions.length) * 100}%` }}
         />
       </div>
 
@@ -280,7 +273,7 @@ export function Quiz() {
           <span className="text-xs font-semibold text-white/40 uppercase tracking-widest">
             Question {current + 1} of {quizQuestions.length}
           </span>
-          <span className="text-xs font-semibold text-blue-400">
+          <span className="text-xs font-semibold text-faint">
             {answers.filter((a, i) => a !== null && a === quizQuestions[i].correct).length} correct so far
           </span>
         </div>
@@ -300,10 +293,10 @@ export function Quiz() {
                 key={idx}
                 onClick={() => handleSelect(idx)}
                 disabled={isAnswered}
-                className={`w-full text-left px-5 py-3.5 rounded-xl border-2 text-sm transition-all ${cls}`}
+                className={`w-full text-left px-5 py-3.5 rounded-xl border text-sm transition-all ${cls}`}
               >
                 <div className="flex items-start gap-3">
-                  <span className={`w-6 h-6 rounded-full border-2 shrink-0 flex items-center justify-center text-xs font-bold mt-0.5 ${
+                  <span className={`w-6 h-6 rounded-full border shrink-0 flex items-center justify-center text-xs font-bold mt-0.5 ${
                     isAnswered && idx === q.correct ? "border-green-400 bg-green-400 text-white" :
                     isAnswered && idx === selected && selected !== q.correct ? "border-red-400 bg-red-400 text-white" :
                     "border-white/30 text-white/50"
@@ -318,7 +311,7 @@ export function Quiz() {
         </div>
 
         {showExplanation && (
-          <div className={`p-4 rounded-xl text-sm leading-relaxed mb-5 border ${isCorrect ? "bg-green-500/10 border-green-500/20 text-green-300" : "bg-amber-500/10 border-amber-500/20 text-amber-300"}`}>
+          <div className={`p-4 rounded-xl text-sm leading-relaxed mb-5 border ${isCorrect ? "bg-green-500/10 border-green-500/20 text-green-300" : "bg-white/5 border-white/15 text-white/80"}`}>
             <span className="font-semibold">{isCorrect ? "Correct! " : "Not quite. "}</span>
             <span className="text-white/70">{q.explanation}</span>
           </div>
@@ -327,8 +320,7 @@ export function Quiz() {
         {isAnswered && (
           <button
             onClick={handleNext}
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-semibold text-white transition hover:opacity-90 cursor-pointer"
-            style={{ background: "linear-gradient(135deg, #185FA5, #7c3aed)" }}
+            className="inline-flex cursor-pointer items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-ink transition hover:opacity-85"
           >
             {current < quizQuestions.length - 1 ? "Next question" : "See my results"}
             <ChevronRight className="w-4 h-4" />

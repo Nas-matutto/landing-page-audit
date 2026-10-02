@@ -1,4 +1,6 @@
 import Link from "next/link"
+import { SignupCta } from "@/components/blog/signup-cta"
+import { SIGNUP_URL } from "@/lib/links"
 import { BlogPostShell } from "@/components/blog/post-shell"
 import { buildPostMetadata, type Faq } from "@/lib/blog"
 
@@ -34,12 +36,12 @@ export default function BlogPost() {
   return (
     <BlogPostShell slug={SLUG} faqs={faqs}>
       <div className="prose prose-lg max-w-none">
-        <div className="space-y-6 text-muted-foreground leading-relaxed">
+        <div className="space-y-6 text-neutral-600 leading-relaxed">
 
           {/* TL;DR Section */}
-          <div className="bg-primary/8 border-l-4 border-primary p-6 my-8 rounded-r-lg">
-            <h2 className="text-xl font-bold text-foreground mb-3">TL;DR: Key Takeaways</h2>
-            <ul className="list-disc pl-6 space-y-2 text-foreground">
+          <div className="rounded-2xl border border-hairline bg-mist p-6 my-8">
+            <h2 className="text-xl font-semibold tracking-[-0.02em] text-ink mb-3">TL;DR: Key Takeaways</h2>
+            <ul className="list-disc pl-6 space-y-2 text-ink">
               <li>Intent signals are public data points (job postings and UGC reviews) that reveal which companies use specific software tools</li>
               <li>Companies already using your competitor's tool convert at 5–15× higher rates than cold lists because they're pre-qualified buyers</li>
               <li>The best signals come from ATS public APIs (Greenhouse, Lever) and review platforms (G2, Capterra, Reddit)</li>
@@ -50,7 +52,7 @@ export default function BlogPost() {
           </div>
 
 
-          <h2 id="what-is-an-intent-signal" className="text-3xl font-bold text-foreground mt-12 mb-4">What Is an Intent Signal?</h2>
+          <h2 id="what-is-an-intent-signal" className="text-3xl font-semibold tracking-[-0.02em] text-ink mt-12 mb-4">What Is an Intent Signal?</h2>
 
           <p>
             An <strong>intent signal</strong> is any public piece of data that suggests a company is actively engaged with (or evaluating) a specific type of software. Unlike demographic data (company size, industry, location), intent signals reveal behavior: what tools a company actually runs today.
@@ -69,7 +71,7 @@ export default function BlogPost() {
             Together, these two sources give you a highly accurate picture of which companies use which tools, without any licensed data, without buying contact lists, and without guessing.
           </p>
 
-          <h2 id="why-competitor-users-are-your-best-prospects" className="text-3xl font-bold text-foreground mt-12 mb-4">Why Competitor Users Are Your Best Prospects</h2>
+          <h2 id="why-competitor-users-are-your-best-prospects" className="text-3xl font-semibold tracking-[-0.02em] text-ink mt-12 mb-4">Why Competitor Users Are Your Best Prospects</h2>
 
           <p>
             Think about what you already know when you reach out to a company actively using a direct competitor:
@@ -87,15 +89,15 @@ export default function BlogPost() {
           </p>
 
           {/* Callout */}
-          <div className="bg-muted/30 border-l-4 border-primary p-6 my-8 rounded-r-lg">
-            <p className="text-foreground font-semibold mb-2">Real-World Example:</p>
+          <div className="rounded-2xl border border-hairline bg-mist p-6 my-8">
+            <p className="text-ink font-semibold mb-2">Real-World Example:</p>
             <p>A Head of Growth at a Series A SaaS company sent 200 emails to companies using a direct competitor: same sequence, same rep, just different targeting. They received 28 replies in the first week. Their previous cold campaign to an unfiltered list generated 4 replies from 200 sends. Same effort. 7× the result. That's the whole difference.</p>
           </div>
 
-          <h2 id="where-to-find-intent-signals" className="text-3xl font-bold text-foreground mt-12 mb-4">Where to Find Intent Signals</h2>
+          <h2 id="where-to-find-intent-signals" className="text-3xl font-semibold tracking-[-0.02em] text-ink mt-12 mb-4">Where to Find Intent Signals</h2>
 
           <div className="my-6">
-            <h3 className="text-xl font-bold text-foreground mb-3">1. Job Postings via ATS APIs</h3>
+            <h3 className="text-xl font-semibold text-ink mb-3">1. Job Postings via ATS APIs</h3>
             <p className="mb-3">
               Applicant tracking systems like Greenhouse and Lever expose fully public JSON APIs for every open role. A company posting a role that reads "3+ years of Salesforce administration experience required" is telling you (for free) exactly what tools they run.
             </p>
@@ -108,7 +110,7 @@ export default function BlogPost() {
           </div>
 
           <div className="my-6">
-            <h3 className="text-xl font-bold text-foreground mb-3">2. G2 and Capterra Reviews</h3>
+            <h3 className="text-xl font-semibold text-ink mb-3">2. G2 and Capterra Reviews</h3>
             <p className="mb-3">
               Review platforms are gold for intent signals. When someone leaves a review for a tool, they typically mention what they use it alongside, what they switched from, and what they wish it did better. All of this is public, indexed, and searchable.
             </p>
@@ -118,7 +120,7 @@ export default function BlogPost() {
           </div>
 
           <div className="my-6">
-            <h3 className="text-xl font-bold text-foreground mb-3">3. Reddit and Community Signals</h3>
+            <h3 className="text-xl font-semibold text-ink mb-3">3. Reddit and Community Signals</h3>
             <p>
               Subreddits like r/salesforce, r/hubspot, r/notion, and hundreds of tool-specific communities are filled with employees discussing their stack. These signals are softer than job postings but often reveal intent earlier: someone asking "is there a better alternative to Pipedrive?" is in active evaluation mode before any job post would reflect it.
             </p>
@@ -126,89 +128,89 @@ export default function BlogPost() {
 
           {/* Comparison table */}
           <div className="my-8 overflow-x-auto">
-            <table className="w-full border-collapse border-2 border-border rounded-lg">
+            <table className="w-full border-collapse border border-hairline rounded-lg">
               <thead>
-                <tr className="bg-muted/50">
-                  <th className="border border-border p-4 text-left text-foreground font-bold">Signal Source</th>
-                  <th className="border border-border p-4 text-left text-foreground font-bold">Accuracy</th>
-                  <th className="border border-border p-4 text-left text-foreground font-bold">Recency</th>
-                  <th className="border border-border p-4 text-left text-foreground font-bold">Scale</th>
+                <tr className="bg-mist">
+                  <th className="border border-hairline p-4 text-left text-ink font-bold">Signal Source</th>
+                  <th className="border border-hairline p-4 text-left text-ink font-bold">Accuracy</th>
+                  <th className="border border-hairline p-4 text-left text-ink font-bold">Recency</th>
+                  <th className="border border-hairline p-4 text-left text-ink font-bold">Scale</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td className="border border-border p-4 font-semibold">ATS Job Postings</td>
-                  <td className="border border-border p-4 text-green-600 font-semibold">Very high</td>
-                  <td className="border border-border p-4 text-green-600 font-semibold">Days</td>
-                  <td className="border border-border p-4 text-green-600 font-semibold">Millions of posts</td>
+                  <td className="border border-hairline p-4 font-semibold">ATS Job Postings</td>
+                  <td className="border border-hairline p-4 text-ink font-semibold">Very high</td>
+                  <td className="border border-hairline p-4 text-ink font-semibold">Days</td>
+                  <td className="border border-hairline p-4 text-ink font-semibold">Millions of posts</td>
                 </tr>
-                <tr className="bg-muted/20">
-                  <td className="border border-border p-4 font-semibold">G2 / Capterra Reviews</td>
-                  <td className="border border-border p-4 text-green-600 font-semibold">Very high</td>
-                  <td className="border border-border p-4">Weeks to months</td>
-                  <td className="border border-border p-4">Thousands per tool</td>
+                <tr className="bg-mist">
+                  <td className="border border-hairline p-4 font-semibold">G2 / Capterra Reviews</td>
+                  <td className="border border-hairline p-4 text-ink font-semibold">Very high</td>
+                  <td className="border border-hairline p-4">Weeks to months</td>
+                  <td className="border border-hairline p-4">Thousands per tool</td>
                 </tr>
                 <tr>
-                  <td className="border border-border p-4 font-semibold">Reddit Discussions</td>
-                  <td className="border border-border p-4">Medium</td>
-                  <td className="border border-border p-4 text-green-600 font-semibold">Days to hours</td>
-                  <td className="border border-border p-4">Tool-dependent</td>
+                  <td className="border border-hairline p-4 font-semibold">Reddit Discussions</td>
+                  <td className="border border-hairline p-4">Medium</td>
+                  <td className="border border-hairline p-4 text-ink font-semibold">Days to hours</td>
+                  <td className="border border-hairline p-4">Tool-dependent</td>
                 </tr>
-                <tr className="bg-muted/20">
-                  <td className="border border-border p-4 font-semibold">Cold Contact Lists</td>
-                  <td className="border border-border p-4 text-red-600 font-semibold">Very low</td>
-                  <td className="border border-border p-4 text-red-600 font-semibold">Often stale</td>
-                  <td className="border border-border p-4">High volume</td>
+                <tr className="bg-mist">
+                  <td className="border border-hairline p-4 font-semibold">Cold Contact Lists</td>
+                  <td className="border border-hairline p-4 text-quiet font-semibold">Very low</td>
+                  <td className="border border-hairline p-4 text-quiet font-semibold">Often stale</td>
+                  <td className="border border-hairline p-4">High volume</td>
                 </tr>
               </tbody>
             </table>
           </div>
 
-          <h2 id="how-to-turn-signals-into-outreach-that-converts" className="text-3xl font-bold text-foreground mt-12 mb-4">How to Turn Signals Into Outreach That Converts</h2>
+          <h2 id="how-to-turn-signals-into-outreach-that-converts" className="text-3xl font-semibold tracking-[-0.02em] text-ink mt-12 mb-4">How to Turn Signals Into Outreach That Converts</h2>
 
           <div className="my-6">
-            <h3 className="text-xl font-bold text-foreground mb-3">Step 1: Find companies using the right competitor</h3>
+            <h3 className="text-xl font-semibold text-ink mb-3">Step 1: Find companies using the right competitor</h3>
             <p>
               Start with one specific competitor, ideally one where you have a clear, articulate advantage. Search for companies using that tool. This takes minutes with the right tooling, not days of manual research.
             </p>
           </div>
 
           <div className="my-6">
-            <h3 className="text-xl font-bold text-foreground mb-3">Step 2: Filter by recency</h3>
+            <h3 className="text-xl font-semibold text-ink mb-3">Step 2: Filter by recency</h3>
             <p>
               A job posting from two years ago is a weaker signal than one from last month. Prioritize companies where the signal is recent: within the last 90 days. Fresh signals indicate the tool is actively in use and the team is growing, which means more potential seats and more motivated stakeholders.
             </p>
           </div>
 
           <div className="my-6">
-            <h3 className="text-xl font-bold text-foreground mb-3">Step 3: Match your advantage to the signal context</h3>
+            <h3 className="text-xl font-semibold text-ink mb-3">Step 3: Match your advantage to the signal context</h3>
             <p className="mb-3">
               Don't lead with a feature list. Lead with the single thing you do better than the tool they already use. Prepare 3–5 key advantages per competitor and rotate based on signal context:
             </p>
             <div className="my-6 overflow-x-auto">
-              <table className="w-full border-collapse border-2 border-border rounded-lg">
+              <table className="w-full border-collapse border border-hairline rounded-lg">
                 <thead>
-                  <tr className="bg-muted/50">
-                    <th className="border border-border p-4 text-left text-foreground font-bold">Your Advantage</th>
-                    <th className="border border-border p-4 text-left text-foreground font-bold">Best Signal Context to Use It</th>
+                  <tr className="bg-mist">
+                    <th className="border border-hairline p-4 text-left text-ink font-bold">Your Advantage</th>
+                    <th className="border border-hairline p-4 text-left text-ink font-bold">Best Signal Context to Use It</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
-                    <td className="border border-border p-4">40% lower cost at the same tier</td>
-                    <td className="border border-border p-4">Startup or Series A company, cost-sensitive signals</td>
+                    <td className="border border-hairline p-4">40% lower cost at the same tier</td>
+                    <td className="border border-hairline p-4">Startup or Series A company, cost-sensitive signals</td>
                   </tr>
-                  <tr className="bg-muted/20">
-                    <td className="border border-border p-4">No seat-based pricing, unlimited users</td>
-                    <td className="border border-border p-4">Job posting shows a large team being hired</td>
+                  <tr className="bg-mist">
+                    <td className="border border-hairline p-4">No seat-based pricing, unlimited users</td>
+                    <td className="border border-hairline p-4">Job posting shows a large team being hired</td>
                   </tr>
                   <tr>
-                    <td className="border border-border p-4">Native integration with [tool they also use]</td>
-                    <td className="border border-border p-4">UGC signal shows complementary tool usage</td>
+                    <td className="border border-hairline p-4">Native integration with [tool they also use]</td>
+                    <td className="border border-hairline p-4">UGC signal shows complementary tool usage</td>
                   </tr>
-                  <tr className="bg-muted/20">
-                    <td className="border border-border p-4">Migrate in under 48 hours with full data port</td>
-                    <td className="border border-border p-4">G2 review shows frustration with the competitor</td>
+                  <tr className="bg-mist">
+                    <td className="border border-hairline p-4">Migrate in under 48 hours with full data port</td>
+                    <td className="border border-hairline p-4">G2 review shows frustration with the competitor</td>
                   </tr>
                 </tbody>
               </table>
@@ -216,13 +218,13 @@ export default function BlogPost() {
           </div>
 
           <div className="my-6">
-            <h3 className="text-xl font-bold text-foreground mb-3">Step 4: Write the message</h3>
+            <h3 className="text-xl font-semibold text-ink mb-3">Step 4: Write the message</h3>
             <p className="mb-3">
               Here is what a signal-based opening looks like in practice:
             </p>
-            <div className="my-6 bg-muted/30 border-2 border-border rounded-lg p-6">
-              <p className="text-sm text-muted-foreground uppercase font-semibold tracking-wide mb-3">Example outreach message</p>
-              <p className="text-foreground leading-relaxed">
+            <div className="my-6 bg-mist border border-hairline rounded-lg p-6">
+              <p className="text-sm text-neutral-600 uppercase font-semibold tracking-wide mb-3">Example outreach message</p>
+              <p className="text-ink leading-relaxed">
                 Hey [Name], saw [Company] is hiring a HubSpot admin. Looks like you're scaling your CRM operations. We work with teams that have outgrown HubSpot's contact limits and want [your key advantage]. Worth a 10-minute call to see if there's a fit?
               </p>
             </div>
@@ -231,95 +233,80 @@ export default function BlogPost() {
             </p>
           </div>
 
-          {/* CTA box */}
-          <div className="my-12 rounded-2xl overflow-hidden border border-slate-200 shadow-sm">
-            <div className="bg-linear-to-r from-primary to-violet-500 px-8 py-5">
-              <p className="text-white/80 text-xs font-semibold uppercase tracking-widest mb-1">See it in action</p>
-              <p className="text-xl font-bold text-white">See which companies use your competitors' tools, right now.</p>
-            </div>
-            <div className="bg-white px-8 py-6">
-              <p className="text-foreground mb-6 leading-relaxed">
-                Talk to me Data crawls job postings and reviews to surface warm prospects, so you can skip the cold list and go straight to the warm conversation. Book a demo to see your first list.
-              </p>
-              <Link
-                href="/book-demo"
-                className="inline-flex items-center gap-2 bg-linear-to-r from-primary to-violet-500 text-white font-semibold text-sm px-6 py-3 rounded-xl hover:opacity-90 transition-opacity"
-              >
-                Book a demo →
-              </Link>
-            </div>
-          </div>
+          <SignupCta eyebrow="See it in action" heading="See which companies use your competitors&apos; tools">
+            Sign up free, then tell us your competitors. We&apos;ll build an agent that surfaces warm prospects from job postings and reviews.
+          </SignupCta>
 
           {/* AI Agent mid-article section */}
-          <div className="my-12 rounded-2xl overflow-hidden border border-slate-200 shadow-sm">
-            <div className="bg-linear-to-r from-primary to-violet-500 px-8 py-5">
+          <div className="my-12 rounded-2xl overflow-hidden border border-hairline">
+            <div className="bg-ink px-8 py-5">
               <p className="text-white/80 text-xs font-semibold uppercase tracking-widest mb-1">The shortcut</p>
               <p className="text-xl font-bold text-white">Intent signals get the right prospect to your page. An AI agent makes sure they don't leave without converting.</p>
             </div>
             <div className="bg-white px-8 py-6">
-              <p className="text-foreground mb-4 leading-relaxed">
+              <p className="text-ink mb-4 leading-relaxed">
                 Signal-based outreach brings warm, high-intent prospects to your site. But even a pre-qualified visitor will bounce if they hit a static page with no one to talk to. A custom AI agent closes that gap, engaging the visitor the moment they land, while their intent is highest.
               </p>
-              <ul className="space-y-3 mb-6 text-foreground">
+              <ul className="space-y-3 mb-6 text-ink">
                 <li className="flex items-start gap-3">
-                  <span className="text-primary font-bold mt-0.5 shrink-0">✓</span>
+                  <span className="text-ink font-bold mt-0.5 shrink-0">✓</span>
                   <span><strong>Engages warm prospects immediately</strong>: when someone lands from a targeted campaign, the agent opens a conversation specific to their context, not a generic "can I help you?"</span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="text-primary font-bold mt-0.5 shrink-0">✓</span>
+                  <span className="text-ink font-bold mt-0.5 shrink-0">✓</span>
                   <span><strong>Handles the competitor comparison on the spot</strong>: answers "how are you different from [Competitor]?" in real time, with your best arguments, every time</span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="text-primary font-bold mt-0.5 shrink-0">✓</span>
+                  <span className="text-ink font-bold mt-0.5 shrink-0">✓</span>
                   <span><strong>Books the meeting while intent is hot</strong>: instead of sending a warm prospect to a Calendly link, the agent qualifies and schedules directly in the conversation</span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="text-primary font-bold mt-0.5 shrink-0">✓</span>
+                  <span className="text-ink font-bold mt-0.5 shrink-0">✓</span>
                   <span><strong>Captures the ones who weren't ready yet</strong>: collects name and email from exit-intent visitors so your signal-sourced prospect list doesn't leak</span>
                 </li>
               </ul>
-              <p className="text-sm text-muted-foreground mb-5">We build, deploy, and host the agent. You keep running the signals and watch the pipeline grow.</p>
-              <Link href="/book-demo" className="inline-flex items-center gap-2 bg-linear-to-r from-primary to-violet-500 text-white font-semibold text-sm px-6 py-3 rounded-xl hover:opacity-90 transition-opacity cursor-pointer">
-                See how it works →
-              </Link>
+              <p className="text-sm text-neutral-600 mb-5">We build, deploy, and host the agent. You keep running the signals and watch the pipeline grow.</p>
+              <a href={SIGNUP_URL} className="inline-flex items-center gap-2 bg-ink text-white font-semibold text-sm px-6 py-3 rounded-xl hover:opacity-90 transition-opacity cursor-pointer">
+                Sign up free →
+              </a>
             </div>
           </div>
 
-          <h2 id="measuring-the-impact" className="text-3xl font-bold text-foreground mt-12 mb-4">Measuring the Impact</h2>
+          <h2 id="measuring-the-impact" className="text-3xl font-semibold tracking-[-0.02em] text-ink mt-12 mb-4">Measuring the Impact</h2>
 
           <p>
             When you switch from cold lists to intent-based targeting, track these metrics across your first 30 days to validate the approach:
           </p>
 
           <div className="my-8 overflow-x-auto">
-            <table className="w-full border-collapse border-2 border-border rounded-lg">
+            <table className="w-full border-collapse border border-hairline rounded-lg">
               <thead>
-                <tr className="bg-muted/50">
-                  <th className="border border-border p-4 text-left text-foreground font-bold">Metric</th>
-                  <th className="border border-border p-4 text-left text-foreground font-bold">Cold Outreach</th>
-                  <th className="border border-border p-4 text-left text-foreground font-bold">Intent-Based</th>
+                <tr className="bg-mist">
+                  <th className="border border-hairline p-4 text-left text-ink font-bold">Metric</th>
+                  <th className="border border-hairline p-4 text-left text-ink font-bold">Cold Outreach</th>
+                  <th className="border border-hairline p-4 text-left text-ink font-bold">Intent-Based</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td className="border border-border p-4 font-semibold">Reply rate</td>
-                  <td className="border border-border p-4 text-red-600">1–3%</td>
-                  <td className="border border-border p-4 text-green-600 font-semibold">8–20%</td>
+                  <td className="border border-hairline p-4 font-semibold">Reply rate</td>
+                  <td className="border border-hairline p-4 text-quiet">1–3%</td>
+                  <td className="border border-hairline p-4 text-ink font-semibold">8–20%</td>
                 </tr>
-                <tr className="bg-muted/20">
-                  <td className="border border-border p-4 font-semibold">Qualified meetings booked</td>
-                  <td className="border border-border p-4 text-red-600">0.5–1%</td>
-                  <td className="border border-border p-4 text-green-600 font-semibold">4–8%</td>
+                <tr className="bg-mist">
+                  <td className="border border-hairline p-4 font-semibold">Qualified meetings booked</td>
+                  <td className="border border-hairline p-4 text-quiet">0.5–1%</td>
+                  <td className="border border-hairline p-4 text-ink font-semibold">4–8%</td>
                 </tr>
                 <tr>
-                  <td className="border border-border p-4 font-semibold">Time to first reply</td>
-                  <td className="border border-border p-4 text-red-600">7–14 days</td>
-                  <td className="border border-border p-4 text-green-600 font-semibold">1–3 days</td>
+                  <td className="border border-hairline p-4 font-semibold">Time to first reply</td>
+                  <td className="border border-hairline p-4 text-quiet">7–14 days</td>
+                  <td className="border border-hairline p-4 text-ink font-semibold">1–3 days</td>
                 </tr>
-                <tr className="bg-muted/20">
-                  <td className="border border-border p-4 font-semibold">Pipeline predictability</td>
-                  <td className="border border-border p-4 text-red-600">Low</td>
-                  <td className="border border-border p-4 text-green-600 font-semibold">Much more consistent</td>
+                <tr className="bg-mist">
+                  <td className="border border-hairline p-4 font-semibold">Pipeline predictability</td>
+                  <td className="border border-hairline p-4 text-quiet">Low</td>
+                  <td className="border border-hairline p-4 text-ink font-semibold">Much more consistent</td>
                 </tr>
               </tbody>
             </table>
@@ -329,43 +316,43 @@ export default function BlogPost() {
             The reply rate improvement is the leading indicator. If your intent-based campaigns significantly outperform your historical cold benchmarks, the targeting is working. From there, dig into which signals (job posting vs. UGC, which competitor, which role type) generate the best results, and double down on those categories.
           </p>
 
-          <h2 id="common-mistakes-to-avoid" className="text-3xl font-bold text-foreground mt-12 mb-4">Common Mistakes to Avoid</h2>
+          <h2 id="common-mistakes-to-avoid" className="text-3xl font-semibold tracking-[-0.02em] text-ink mt-12 mb-4">Common Mistakes to Avoid</h2>
 
           <div className="my-8 overflow-x-auto">
-            <table className="w-full border-collapse border-2 border-border rounded-lg">
+            <table className="w-full border-collapse border border-hairline rounded-lg">
               <thead>
-                <tr className="bg-muted/50">
-                  <th className="border border-border p-4 text-left text-foreground font-bold">Mistake</th>
-                  <th className="border border-border p-4 text-left text-foreground font-bold">Why It Hurts</th>
-                  <th className="border border-border p-4 text-left text-foreground font-bold">Fix</th>
+                <tr className="bg-mist">
+                  <th className="border border-hairline p-4 text-left text-ink font-bold">Mistake</th>
+                  <th className="border border-hairline p-4 text-left text-ink font-bold">Why It Hurts</th>
+                  <th className="border border-hairline p-4 text-left text-ink font-bold">Fix</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td className="border border-border p-4 font-semibold">Using stale signals</td>
-                  <td className="border border-border p-4">A 2-year-old job post doesn't mean they still use the tool</td>
-                  <td className="border border-border p-4">Filter for last 90 days only</td>
+                  <td className="border border-hairline p-4 font-semibold">Using stale signals</td>
+                  <td className="border border-hairline p-4">A 2-year-old job post doesn't mean they still use the tool</td>
+                  <td className="border border-hairline p-4">Filter for last 90 days only</td>
                 </tr>
-                <tr className="bg-muted/20">
-                  <td className="border border-border p-4 font-semibold">Pitching features</td>
-                  <td className="border border-border p-4">They already know what tools in this category do</td>
-                  <td className="border border-border p-4">Lead with your advantage over their current tool</td>
+                <tr className="bg-mist">
+                  <td className="border border-hairline p-4 font-semibold">Pitching features</td>
+                  <td className="border border-hairline p-4">They already know what tools in this category do</td>
+                  <td className="border border-hairline p-4">Lead with your advantage over their current tool</td>
                 </tr>
                 <tr>
-                  <td className="border border-border p-4 font-semibold">Wrong person</td>
-                  <td className="border border-border p-4">The CEO doesn't use the tool; the team does</td>
-                  <td className="border border-border p-4">Target the manager for the team the job post is on</td>
+                  <td className="border border-hairline p-4 font-semibold">Wrong person</td>
+                  <td className="border border-hairline p-4">The CEO doesn't use the tool; the team does</td>
+                  <td className="border border-hairline p-4">Target the manager for the team the job post is on</td>
                 </tr>
-                <tr className="bg-muted/20">
-                  <td className="border border-border p-4 font-semibold">Ignoring co-use signals</td>
-                  <td className="border border-border p-4">Missing a stronger angle: native integration you already have</td>
-                  <td className="border border-border p-4">Check what else the company uses and lead with the integration</td>
+                <tr className="bg-mist">
+                  <td className="border border-hairline p-4 font-semibold">Ignoring co-use signals</td>
+                  <td className="border border-hairline p-4">Missing a stronger angle: native integration you already have</td>
+                  <td className="border border-hairline p-4">Check what else the company uses and lead with the integration</td>
                 </tr>
               </tbody>
             </table>
           </div>
 
-          <h2 id="how-to-scale-intent-signal-collection" className="text-3xl font-bold text-foreground mt-12 mb-4">How to Scale Intent Signal Collection</h2>
+          <h2 id="how-to-scale-intent-signal-collection" className="text-3xl font-semibold tracking-[-0.02em] text-ink mt-12 mb-4">How to Scale Intent Signal Collection</h2>
 
           <p>
             Manually searching for job postings and G2 reviews doesn't scale. Once you've validated that intent-based outreach works for your product, the next step is automating signal collection so your pipeline refreshes continuously without manual effort.
@@ -384,11 +371,11 @@ export default function BlogPost() {
           </ol>
 
           <p>
-            At scale, this gives you a continuously refreshed database of companies and the tools they use, which is exactly what <Link href="/" className="text-primary hover:underline font-medium">Talk to me Data</Link> provides. Instead of building this pipeline yourself, you search for any SaaS tool and instantly see which companies are confirmed users, along with the specific signals that confirmed it.
+            At scale, this gives you a continuously refreshed database of companies and the tools they use, which is exactly what <Link href="/" className="font-medium text-ink underline decoration-ink/25 underline-offset-4 hover:decoration-ink">Talk to me Data</Link> provides. Instead of building this pipeline yourself, you search for any SaaS tool and instantly see which companies are confirmed users, along with the specific signals that confirmed it.
           </p>
 
           {/* Conclusion */}
-          <h2 id="the-bottom-line" className="text-3xl font-bold text-foreground mt-12 mb-4">The Bottom Line</h2>
+          <h2 id="the-bottom-line" className="text-3xl font-semibold tracking-[-0.02em] text-ink mt-12 mb-4">The Bottom Line</h2>
 
           <p>
             Intent signals transform sales outreach from a numbers game into a targeting game. Instead of sending 1,000 cold emails and hoping 10 people respond, you send 100 highly relevant emails to companies already using your competitor, and you get 15–20 real conversations.
@@ -398,32 +385,13 @@ export default function BlogPost() {
             The math is unambiguous: better targeting beats higher volume, every time. And with public data sources like ATS APIs and review platforms, the signal is already out there. The only question is whether you act on it before your competitors do.
           </p>
 
-          <p className="text-xl font-medium text-foreground/90">
+          <p className="text-xl font-medium text-ink">
             Every company using your competitor is a warm prospect waiting for a better option. Intent signals tell you exactly who they are.
           </p>
 
-          {/* Final CTA */}
-          <div className="my-12 rounded-2xl overflow-hidden border border-slate-200 shadow-sm">
-            <div
-              className="relative px-8 py-10"
-              style={{
-                background: "linear-gradient(135deg, #185FA5, #2563eb, #7c3aed)",
-                backgroundImage: "linear-gradient(135deg, #185FA5, #2563eb, #7c3aed), radial-gradient(circle, rgba(255,255,255,0.07) 1px, transparent 1px)",
-                backgroundSize: "100% 100%, 24px 24px",
-              }}
-            >
-              <p className="text-2xl font-bold text-white mb-3">Ready to start prospecting with intent signals?</p>
-              <p className="text-white/80 mb-6 leading-relaxed max-w-xl">
-                Book a demo and we'll show you your first list of warm prospects: companies already using your competitors' tools, with the signal evidence to personalise every message.
-              </p>
-              <Link
-                href="/book-demo"
-                className="inline-flex items-center gap-2 bg-white text-primary font-semibold text-sm px-6 py-3 rounded-xl hover:bg-white/90 transition-colors"
-              >
-                Book a demo →
-              </Link>
-            </div>
-          </div>
+          <SignupCta heading="Ready to start prospecting with intent signals?">
+            Sign up free, then we&apos;ll build a lead agent that finds companies already using your competitors&apos; tools, with the signal evidence attached.
+          </SignupCta>
         </div>
       </div>
     </BlogPostShell>

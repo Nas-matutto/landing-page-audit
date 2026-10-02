@@ -1,5 +1,6 @@
 import Link from "next/link"
 import { Figure } from "@/components/blog/figure"
+import { SignupCta } from "@/components/blog/signup-cta"
 import { BlogPostShell } from "@/components/blog/post-shell"
 import { buildPostMetadata } from "@/lib/blog"
 
@@ -11,12 +12,12 @@ export default function BlogPost() {
   return (
     <BlogPostShell slug={SLUG}>
       <div className="prose prose-lg max-w-none">
-        <div className="space-y-6 text-muted-foreground leading-relaxed">
+        <div className="space-y-6 text-neutral-600 leading-relaxed">
           
           {/* TL;DR Section */}
-          <div className="bg-primary/8 border-l-4 border-primary p-6 my-8 rounded-r-lg">
-            <h2 className="text-xl font-bold text-foreground mb-3">TL;DR: Key Takeaways</h2>
-            <ul className="list-disc pl-6 space-y-2 text-foreground">
+          <div className="rounded-2xl border border-hairline bg-mist p-6 my-8">
+            <h2 className="text-xl font-semibold tracking-[-0.02em] text-ink mb-3">TL;DR: Key Takeaways</h2>
+            <ul className="list-disc pl-6 space-y-2 text-ink">
               <li>You can achieve 15-30% conversion rate improvements in 30 days without a complete redesign</li>
               <li>The 30-Day Sprint Method focuses on high-impact, low-effort changes first</li>
               <li>Week 1: Low-hanging fruit (headlines, CTAs, trust signals) can improve conversions by 10-15%</li>
@@ -27,7 +28,7 @@ export default function BlogPost() {
           </div>
 
           {/* Introduction with definitions */}
-          <h2 id="what-is-the-30-day-conversion-sprint-method" className="text-3xl font-bold text-foreground mt-12 mb-4">What is the 30-Day Conversion Sprint Method?</h2>
+          <h2 id="what-is-the-30-day-conversion-sprint-method" className="text-3xl font-semibold tracking-[-0.02em] text-ink mt-12 mb-4">What is the 30-Day Conversion Sprint Method?</h2>
           
           <p>
             The <strong>30-Day Conversion Sprint</strong> is a structured optimization methodology that delivers measurable conversion rate improvements without requiring website redesigns, major development work, or significant budget allocation. This approach prioritizes changes based on implementation effort versus expected impact, allowing businesses to achieve 15-30% conversion rate improvements in a single month.
@@ -39,7 +40,7 @@ export default function BlogPost() {
 
           <Figure src="/blog/desk-calendar-wall.jpg" alt="30 Day sprint calendar and desk setup" />
 
-          <h2 id="why-can-you-increase-conversions-without-a-redesign" className="text-3xl font-bold text-foreground mt-12 mb-4">Why Can You Increase Conversions Without a Redesign?</h2>
+          <h2 id="why-can-you-increase-conversions-without-a-redesign" className="text-3xl font-semibold tracking-[-0.02em] text-ink mt-12 mb-4">Why Can You Increase Conversions Without a Redesign?</h2>
           
           <p>
             Research from <strong><a href="https://baymard.com/" target="_blank" rel="noopener noreferrer">Baymard Institute</a></strong> shows that 68.8% of e-commerce shopping carts are abandoned due to factors unrelated to design: complicated checkout processes (17%), unexpected costs (48%), account creation requirements (24%), and security concerns (18%). Similarly, B2B and SaaS conversion issues predominantly stem from unclear value propositions, slow page speeds, and friction in conversion paths, all fixable without redesigning a single page.
@@ -60,14 +61,14 @@ export default function BlogPost() {
           </p>
 
           {/* AI Agent punchline section */}
-          <div className="my-12 rounded-2xl overflow-hidden border border-slate-200">
-            <div className="px-8 py-6 bg-linear-to-r from-primary to-violet-500">
+          <div className="my-12 rounded-2xl overflow-hidden border border-hairline">
+            <div className="px-8 py-6 bg-ink">
               <p className="text-xs font-semibold tracking-widest uppercase text-white/70 mb-2">The shortcut</p>
               <p className="text-2xl font-bold text-white leading-snug">
                 The fastest conversion lift? A dedicated agent that handles hesitation in real time
               </p>
             </div>
-            <div className="px-8 py-6 bg-white space-y-4 text-slate-600 text-base leading-relaxed">
+            <div className="px-8 py-6 bg-white space-y-4 text-neutral-600 text-base leading-relaxed">
               <p>
                 The 30-day sprint fixes problems you can already see. But the biggest conversion leak is invisible: visitors who <em>almost</em> converted: they read your page, got interested, had one unanswered question, and left.
               </p>
@@ -82,21 +83,21 @@ export default function BlogPost() {
                   ["Books calls with high-intent visitors", "Visitors who ask detailed questions are your warmest leads. The agent recognises intent signals and offers a call slot before they close the tab."],
                 ].map(([title, desc]) => (
                   <li key={title} className="flex gap-3">
-                    <span className="mt-1 w-5 h-5 rounded-full bg-linear-to-br from-primary to-violet-500 flex items-center justify-center shrink-0">
+                    <span className="mt-1 w-5 h-5 rounded-full bg-ink flex items-center justify-center shrink-0">
                       <svg className="w-3 h-3 text-white" fill="none" viewBox="0 0 12 12"><path d="M2 6l3 3 5-5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>
                     </span>
-                    <span><strong className="text-slate-800">{title}.</strong> {desc}</span>
+                    <span><strong className="text-ink">{title}.</strong> {desc}</span>
                   </li>
                 ))}
               </ul>
-              <p className="pt-2 text-slate-500">
+              <p className="pt-2 text-quiet">
                 Your 30-day sprint improves the page. The agent improves every conversation that happens on it. They compound, and together, you're not leaving a single basis point of conversion on the table.
               </p>
             </div>
           </div>
 
           {/* Framework Overview */}
-          <h2 id="the-30-day-sprint-framework-overview" className="text-3xl font-bold text-foreground mt-12 mb-4">The 30-Day Sprint Framework Overview</h2>
+          <h2 id="the-30-day-sprint-framework-overview" className="text-3xl font-semibold tracking-[-0.02em] text-ink mt-12 mb-4">The 30-Day Sprint Framework Overview</h2>
 
           <p>
             The framework divides into four weekly sprints, each with specific focus areas and success metrics. This structure ensures systematic progress while preventing overwhelm.
@@ -104,59 +105,59 @@ export default function BlogPost() {
 
           {/* Framework Table */}
           <div className="my-8 overflow-x-auto">
-            <table className="w-full border-collapse border-2 border-border rounded-lg">
+            <table className="w-full border-collapse border border-hairline rounded-lg">
               <thead>
-                <tr className="bg-muted/50">
-                  <th className="border border-border p-4 text-left text-foreground font-bold">Week</th>
-                  <th className="border border-border p-4 text-left text-foreground font-bold">Focus Area</th>
-                  <th className="border border-border p-4 text-left text-foreground font-bold">Expected Impact</th>
-                  <th className="border border-border p-4 text-left text-foreground font-bold">Time Investment</th>
+                <tr className="bg-mist">
+                  <th className="border border-hairline p-4 text-left text-ink font-bold">Week</th>
+                  <th className="border border-hairline p-4 text-left text-ink font-bold">Focus Area</th>
+                  <th className="border border-hairline p-4 text-left text-ink font-bold">Expected Impact</th>
+                  <th className="border border-hairline p-4 text-left text-ink font-bold">Time Investment</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td className="border border-border p-4 font-semibold">Week 1</td>
-                  <td className="border border-border p-4">Copy, CTAs, Trust Signals</td>
-                  <td className="border border-border p-4 text-green-600 font-semibold">+10-15%</td>
-                  <td className="border border-border p-4">8-12 hours</td>
+                  <td className="border border-hairline p-4 font-semibold">Week 1</td>
+                  <td className="border border-hairline p-4">Copy, CTAs, Trust Signals</td>
+                  <td className="border border-hairline p-4 text-ink font-semibold">+10-15%</td>
+                  <td className="border border-hairline p-4">8-12 hours</td>
                 </tr>
-                <tr className="bg-muted/20">
-                  <td className="border border-border p-4 font-semibold">Week 2</td>
-                  <td className="border border-border p-4">Speed & Mobile Optimization</td>
-                  <td className="border border-border p-4 text-green-600 font-semibold">+5-8%</td>
-                  <td className="border border-border p-4">10-15 hours</td>
+                <tr className="bg-mist">
+                  <td className="border border-hairline p-4 font-semibold">Week 2</td>
+                  <td className="border border-hairline p-4">Speed & Mobile Optimization</td>
+                  <td className="border border-hairline p-4 text-ink font-semibold">+5-8%</td>
+                  <td className="border border-hairline p-4">10-15 hours</td>
                 </tr>
                 <tr>
-                  <td className="border border-border p-4 font-semibold">Week 3</td>
-                  <td className="border border-border p-4">Form & Path Simplification</td>
-                  <td className="border border-border p-4 text-green-600 font-semibold">+3-7%</td>
-                  <td className="border border-border p-4">8-12 hours</td>
+                  <td className="border border-hairline p-4 font-semibold">Week 3</td>
+                  <td className="border border-hairline p-4">Form & Path Simplification</td>
+                  <td className="border border-hairline p-4 text-ink font-semibold">+3-7%</td>
+                  <td className="border border-hairline p-4">8-12 hours</td>
                 </tr>
-                <tr className="bg-muted/20">
-                  <td className="border border-border p-4 font-semibold">Week 4</td>
-                  <td className="border border-border p-4">Testing & Refinement</td>
-                  <td className="border border-border p-4 text-accent font-semibold">Validation</td>
-                  <td className="border border-border p-4">5-8 hours</td>
+                <tr className="bg-mist">
+                  <td className="border border-hairline p-4 font-semibold">Week 4</td>
+                  <td className="border border-hairline p-4">Testing & Refinement</td>
+                  <td className="border border-hairline p-4 text-accent font-semibold">Validation</td>
+                  <td className="border border-hairline p-4">5-8 hours</td>
                 </tr>
               </tbody>
             </table>
           </div>
 
           {/* Week 1 */}
-          <h2 id="week-1-how-to-optimize-copy-and-trust-signals-for-immediate" className="text-3xl font-bold text-foreground mt-12 mb-4">Week 1: How to Optimize Copy and Trust Signals for Immediate Impact</h2>
+          <h2 id="week-1-how-to-optimize-copy-and-trust-signals-for-immediate" className="text-3xl font-semibold tracking-[-0.02em] text-ink mt-12 mb-4">Week 1: How to Optimize Copy and Trust Signals for Immediate Impact</h2>
           
           <p>
             Week 1 focuses on the highest-impact, lowest-effort changes. These modifications require no technical implementation, just better copywriting and strategic placement of trust elements. You'll spend 8-12 hours this week on changes that typically improve conversions by 10-15%.
           </p>
 
           <div className="my-6">
-            <h3 className="text-xl font-bold text-foreground mb-3">Day 1-2: Headline and Value Proposition Optimization</h3>
+            <h3 className="text-xl font-semibold text-ink mb-3">Day 1-2: Headline and Value Proposition Optimization</h3>
             
             <p className="mb-4">
               Your headline is the first thing 100% of visitors see. A unclear or weak headline loses 50-70% of visitors immediately.
             </p>
 
-            <p className="font-semibold text-foreground mb-2">Action Steps:</p>
+            <p className="font-semibold text-ink mb-2">Action Steps:</p>
             <ol className="list-decimal pl-6 space-y-3">
               <li>
                 <strong>Apply the 5-Second Test:</strong> Show your homepage to someone unfamiliar with your business for 5 seconds. Ask them: "What does this company do?" If they can't answer accurately, rewrite your headline.
@@ -174,27 +175,27 @@ export default function BlogPost() {
             </ol>
           </div>
 
-          <div className="bg-muted/30 border-2 border-border p-6 my-8 rounded-lg">
+          <div className="bg-mist border border-hairline p-6 my-8 rounded-lg">
             <div className="grid md:grid-cols-2 gap-6">
               <div>
-                <p className="text-red-600 font-bold mb-2">❌ Before (Conversion Rate: 2.1%):</p>
+                <p className="text-quiet font-bold mb-2">❌ Before (Conversion Rate: 2.1%):</p>
                 <p className="italic">"Leading provider of enterprise-grade digital transformation solutions"</p>
               </div>
               <div>
-                <p className="text-green-600 font-bold mb-2">✓ After (Conversion Rate: 3.2%):</p>
+                <p className="text-ink font-bold mb-2">✓ After (Conversion Rate: 3.2%):</p>
                 <p className="italic">"Reduce IT costs by 40% with automated cloud migration, trusted by 500+ enterprises"</p>
               </div>
             </div>
           </div>
 
           <div className="my-6">
-            <h3 className="text-xl font-bold text-foreground mb-3">Day 3-4: CTA Button Optimization</h3>
+            <h3 className="text-xl font-semibold text-ink mb-3">Day 3-4: CTA Button Optimization</h3>
             
             <p className="mb-4">
               Call-to-action buttons are conversion gateways. Small changes produce outsized results. Changing "Submit" to "Get My Free Analysis" increased conversions by 38% in one documented case study.
             </p>
 
-            <p className="font-semibold text-foreground mb-2">CTA Optimization Checklist:</p>
+            <p className="font-semibold text-ink mb-2">CTA Optimization Checklist:</p>
             <ul className="list-disc pl-6 space-y-3">
               <li>
                 <strong>Use first-person language:</strong> "Start My Free Trial" outperforms "Start Your Free Trial" by 90% (research by Michael Aagaard)
@@ -218,13 +219,13 @@ export default function BlogPost() {
           </div>
 
           <div className="my-6">
-            <h3 className="text-xl font-bold text-foreground mb-3">Day 5-7: Trust Signal Implementation</h3>
+            <h3 className="text-xl font-semibold text-ink mb-3">Day 5-7: Trust Signal Implementation</h3>
             
             <p className="mb-4">
               Trust signals reduce purchasing anxiety and establish credibility. Adding trust signals increased conversions by 42% in a Baymard Institute study.
             </p>
 
-            <p className="font-semibold text-foreground mb-2">Priority Trust Signals (implement in order):</p>
+            <p className="font-semibold text-ink mb-2">Priority Trust Signals (implement in order):</p>
             <ol className="list-decimal pl-6 space-y-3">
               <li>
                 <strong>Customer testimonials with photos and full names:</strong> Generic testimonials ("Great product! - John") have minimal impact. Specific testimonials with photos, full names, and concrete results increase trust by 89%.
@@ -244,26 +245,26 @@ export default function BlogPost() {
             </ol>
           </div>
 
-          <div className="bg-primary/8 border-l-4 border-primary p-6 my-8 rounded-r-lg">
-            <p className="text-foreground font-semibold mb-2">Week 1 Quick Win:</p>
+          <div className="rounded-2xl border border-hairline bg-mist p-6 my-8">
+            <p className="text-ink font-semibold mb-2">Week 1 Quick Win:</p>
             <p>If you only have 2 hours this week, focus on rewriting your headline and primary CTA button. These two changes alone can produce 5-8% conversion improvements.</p>
           </div>
 
           {/* Week 2 */}
-          <h2 id="week-2-how-to-optimize-website-speed-and-mobile-performance" className="text-3xl font-bold text-foreground mt-12 mb-4">Week 2: How to Optimize Website Speed and Mobile Performance</h2>
+          <h2 id="week-2-how-to-optimize-website-speed-and-mobile-performance" className="text-3xl font-semibold tracking-[-0.02em] text-ink mt-12 mb-4">Week 2: How to Optimize Website Speed and Mobile Performance</h2>
           
           <p>
             Week 2 tackles technical performance issues. While these require more technical knowledge than Week 1 changes, they're still implementable without redesign. Expected improvement: 5-8% conversion rate increase.
           </p>
 
           <div className="my-6">
-            <h3 className="text-xl font-bold text-foreground mb-3">Day 8-10: Page Speed Optimization</h3>
+            <h3 className="text-xl font-semibold text-ink mb-3">Day 8-10: Page Speed Optimization</h3>
             
             <p className="mb-4">
               Google reports that 53% of mobile users abandon sites taking longer than 3 seconds to load. Every 100ms improvement in load time increases conversions by 1%.
             </p>
 
-            <p className="font-semibold text-foreground mb-2">Immediate Speed Wins (No Developer Required):</p>
+            <p className="font-semibold text-ink mb-2">Immediate Speed Wins (No Developer Required):</p>
             <ol className="list-decimal pl-6 space-y-3">
               <li>
                 <strong>Image compression:</strong> Use TinyPNG or Squoosh to compress all images by 70-80% without visible quality loss. This single change typically improves load time by 1-2 seconds.
@@ -279,8 +280,8 @@ export default function BlogPost() {
               </li>
             </ol>
 
-            <div className="bg-primary/5 border-2 border-primary/20 p-6 my-6 rounded-lg">
-              <p className="font-bold text-foreground mb-2">Measurement:</p>
+            <div className="bg-mist border border-hairline p-6 my-6 rounded-lg">
+              <p className="font-bold text-ink mb-2">Measurement:</p>
               <p>Before making changes, test your site at <strong><a href="https://pagespeed.web.dev/" target="_blank" rel="noopener noreferrer">PageSpeed Insights</a></strong>. Note your score. After implementing optimizations, retest. Target: 90+ score on desktop, 80+ on mobile.</p>
             </div>
           </div>
@@ -288,13 +289,13 @@ export default function BlogPost() {
           <Figure src="/blog/page-speed-insights.jpg" alt="Google Page Speed Insights example" />
 
           <div className="my-6">
-            <h3 className="text-xl font-bold text-foreground mb-3">Day 11-14: Mobile Optimization</h3>
+            <h3 className="text-xl font-semibold text-ink mb-3">Day 11-14: Mobile Optimization</h3>
             
             <p className="mb-4">
               With 60%+ traffic from mobile devices but conversion rates 50% lower than desktop, mobile optimization offers massive opportunity.
             </p>
 
-            <p className="font-semibold text-foreground mb-2">Critical Mobile Fixes (CSS-Only, No Redesign):</p>
+            <p className="font-semibold text-ink mb-2">Critical Mobile Fixes (CSS-Only, No Redesign):</p>
             <ol className="list-decimal pl-6 space-y-3">
               <li>
                 <strong>Increase button sizes:</strong> All clickable elements should be minimum 44x44 pixels. Add CSS: <code className="text-sm">min-width: 44px; min-height: 44px; padding: 12px 24px;</code>
@@ -315,54 +316,54 @@ export default function BlogPost() {
           </div>
 
           <div className="my-8 overflow-x-auto">
-            <table className="w-full border-collapse border-2 border-border rounded-lg">
+            <table className="w-full border-collapse border border-hairline rounded-lg">
               <thead>
-                <tr className="bg-muted/50">
-                  <th className="border border-border p-4 text-left text-foreground font-bold">Mobile Issue</th>
-                  <th className="border border-border p-4 text-left text-foreground font-bold">Impact on Conversions</th>
-                  <th className="border border-border p-4 text-left text-foreground font-bold">Fix Time</th>
+                <tr className="bg-mist">
+                  <th className="border border-hairline p-4 text-left text-ink font-bold">Mobile Issue</th>
+                  <th className="border border-hairline p-4 text-left text-ink font-bold">Impact on Conversions</th>
+                  <th className="border border-hairline p-4 text-left text-ink font-bold">Fix Time</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td className="border border-border p-4">Small tap targets (&lt;44px)</td>
-                  <td className="border border-border p-4 text-red-600">-15-25%</td>
-                  <td className="border border-border p-4">30 minutes</td>
+                  <td className="border border-hairline p-4">Small tap targets (&lt;44px)</td>
+                  <td className="border border-hairline p-4 text-quiet">-15-25%</td>
+                  <td className="border border-hairline p-4">30 minutes</td>
                 </tr>
-                <tr className="bg-muted/20">
-                  <td className="border border-border p-4">Text too small (&lt;16px)</td>
-                  <td className="border border-border p-4 text-red-600">-10-20%</td>
-                  <td className="border border-border p-4">15 minutes</td>
+                <tr className="bg-mist">
+                  <td className="border border-hairline p-4">Text too small (&lt;16px)</td>
+                  <td className="border border-hairline p-4 text-quiet">-10-20%</td>
+                  <td className="border border-hairline p-4">15 minutes</td>
                 </tr>
                 <tr>
-                  <td className="border border-border p-4">Non-optimized forms</td>
-                  <td className="border border-border p-4 text-red-600">-20-30%</td>
-                  <td className="border border-border p-4">1-2 hours</td>
+                  <td className="border border-hairline p-4">Non-optimized forms</td>
+                  <td className="border border-hairline p-4 text-quiet">-20-30%</td>
+                  <td className="border border-hairline p-4">1-2 hours</td>
                 </tr>
-                <tr className="bg-muted/20">
-                  <td className="border border-border p-4">CTA below fold</td>
-                  <td className="border border-border p-4 text-red-600">-12-18%</td>
-                  <td className="border border-border p-4">30 minutes</td>
+                <tr className="bg-mist">
+                  <td className="border border-hairline p-4">CTA below fold</td>
+                  <td className="border border-hairline p-4 text-quiet">-12-18%</td>
+                  <td className="border border-hairline p-4">30 minutes</td>
                 </tr>
               </tbody>
             </table>
           </div>
 
           {/* Week 3 */}
-          <h2 id="week-3-how-to-simplify-conversion-paths-and-reduce-form-fric" className="text-3xl font-bold text-foreground mt-12 mb-4">Week 3: How to Simplify Conversion Paths and Reduce Form Friction</h2>
+          <h2 id="week-3-how-to-simplify-conversion-paths-and-reduce-form-fric" className="text-3xl font-semibold tracking-[-0.02em] text-ink mt-12 mb-4">Week 3: How to Simplify Conversion Paths and Reduce Form Friction</h2>
           
           <p>
             Week 3 focuses on removing obstacles in the conversion journey. Every unnecessary step or form field costs 20-30% of potential converters. Expected improvement: 3-7%.
           </p>
 
           <div className="my-6">
-            <h3 className="text-xl font-bold text-foreground mb-3">Day 15-18: Form Optimization</h3>
+            <h3 className="text-xl font-semibold text-ink mb-3">Day 15-18: Form Optimization</h3>
             
             <p className="mb-4">
               Forms are conversion gatekeepers. Reducing fields from 11 to 4 increased conversions by 120% in Hubspot's case study. Marketo found that removing just one field increased conversions by 26%.
             </p>
 
-            <p className="font-semibold text-foreground mb-2">Form Simplification Strategy:</p>
+            <p className="font-semibold text-ink mb-2">Form Simplification Strategy:</p>
             <ol className="list-decimal pl-6 space-y-3">
               <li>
                 <strong>Eliminate non-essential fields:</strong> For each field, ask: "Can we function if we don't have this?" If yes, remove it. You can always collect additional information later via email or in-app surveys.
@@ -385,8 +386,8 @@ export default function BlogPost() {
             </ol>
           </div>
 
-          <div className="bg-muted/30 border-2 border-border p-6 my-8 rounded-lg">
-            <p className="font-bold text-foreground mb-3">Minimum Viable Form Fields by Type:</p>
+          <div className="bg-mist border border-hairline p-6 my-8 rounded-lg">
+            <p className="font-bold text-ink mb-3">Minimum Viable Form Fields by Type:</p>
             <ul className="list-disc pl-6 space-y-2">
               <li><strong>Lead generation:</strong> Name, Email (2 fields)</li>
               <li><strong>Demo request:</strong> Name, Email, Company (3 fields)</li>
@@ -396,13 +397,13 @@ export default function BlogPost() {
           </div>
 
           <div className="my-6">
-            <h3 className="text-xl font-bold text-foreground mb-3">Day 19-21: Conversion Path Audit and Simplification</h3>
+            <h3 className="text-xl font-semibold text-ink mb-3">Day 19-21: Conversion Path Audit and Simplification</h3>
             
             <p className="mb-4">
               Every page transition is an opportunity for abandonment. Reducing clicks from 5 to 3 typically improves conversions by 15-25%.
             </p>
 
-            <p className="font-semibold text-foreground mb-2">Path Simplification Steps:</p>
+            <p className="font-semibold text-ink mb-2">Path Simplification Steps:</p>
             <ol className="list-decimal pl-6 space-y-3">
               <li>
                 <strong>Map current conversion path:</strong> Document every page/step from landing to conversion completion. Use Google Analytics Behavior Flow or manually click through your site.
@@ -420,27 +421,27 @@ export default function BlogPost() {
           </div>
 
           <div className="my-6">
-            <p className="font-semibold text-foreground mb-2">For more comprehensive analysis techniques, see our guide:</p>
-            <Link href="/blog/how-to-analyze-website-conversion-issues" className="text-primary hover:underline font-medium">
+            <p className="font-semibold text-ink mb-2">For more comprehensive analysis techniques, see our guide:</p>
+            <Link href="/blog/how-to-analyze-website-conversion-issues" className="font-medium text-ink underline decoration-ink/25 underline-offset-4 hover:decoration-ink">
               How to Analyze Your Website for Conversion Issues (Step-by-Step) →
             </Link>
           </div>
 
           {/* Week 4 */}
-          <h2 id="week-4-how-to-test-measure-and-validate-conversion-improveme" className="text-3xl font-bold text-foreground mt-12 mb-4">Week 4: How to Test, Measure, and Validate Conversion Improvements</h2>
+          <h2 id="week-4-how-to-test-measure-and-validate-conversion-improveme" className="text-3xl font-semibold tracking-[-0.02em] text-ink mt-12 mb-4">Week 4: How to Test, Measure, and Validate Conversion Improvements</h2>
           
           <p>
             Week 4 consolidates gains and validates which changes produced the most impact. This week establishes your optimization baseline for future sprints.
           </p>
 
           <div className="my-6">
-            <h3 className="text-xl font-bold text-foreground mb-3">Day 22-25: A/B Testing High-Impact Changes</h3>
+            <h3 className="text-xl font-semibold text-ink mb-3">Day 22-25: A/B Testing High-Impact Changes</h3>
             
             <p className="mb-4">
               Not every change improves conversions. A/B testing separates winners from losers, preventing you from keeping changes that actually harm performance.
             </p>
 
-            <p className="font-semibold text-foreground mb-2">Priority Test Queue (test in order):</p>
+            <p className="font-semibold text-ink mb-2">Priority Test Queue (test in order):</p>
             <ol className="list-decimal pl-6 space-y-3">
               <li>
                 <strong>Headline variations:</strong> Test 2-3 headline versions. Run until 95% statistical confidence reached (typically 1-2 weeks depending on traffic).
@@ -453,8 +454,8 @@ export default function BlogPost() {
               </li>
             </ol>
 
-            <div className="bg-primary/5 border-2 border-primary/20 p-6 my-6 rounded-lg">
-              <p className="font-bold text-foreground mb-2">Free A/B Testing Tools:</p>
+            <div className="bg-mist border border-hairline p-6 my-6 rounded-lg">
+              <p className="font-bold text-ink mb-2">Free A/B Testing Tools:</p>
               <ul className="list-disc pl-6 space-y-2">
                 <li><strong>Google Optimize:</strong> Free, integrates with Google Analytics</li>
                 <li><strong>Microsoft Clarity:</strong> Free heatmaps and session recordings</li>
@@ -466,13 +467,13 @@ export default function BlogPost() {
           <Figure src="/blog/A-B-Test-with-TTMD.jpg" alt="A/B Testing with Talk To Me Data" />
 
           <div className="my-6">
-            <h3 className="text-xl font-bold text-foreground mb-3">Day 26-28: Analytics Review and Documentation</h3>
+            <h3 className="text-xl font-semibold text-ink mb-3">Day 26-28: Analytics Review and Documentation</h3>
             
             <p className="mb-4">
               Compare your Day 28 metrics against Day 1 baseline. Document what worked, what didn't, and why.
             </p>
 
-            <p className="font-semibold text-foreground mb-2">Key Metrics to Compare:</p>
+            <p className="font-semibold text-ink mb-2">Key Metrics to Compare:</p>
             <ul className="list-disc pl-6 space-y-2">
               <li><strong>Overall conversion rate:</strong> Goal: 15-30% improvement</li>
               <li><strong>Page load time:</strong> Goal: Under 3 seconds</li>
@@ -483,13 +484,13 @@ export default function BlogPost() {
           </div>
 
           <div className="my-6">
-            <h3 className="text-xl font-bold text-foreground mb-3">Day 29-30: Plan Next Sprint</h3>
+            <h3 className="text-xl font-semibold text-ink mb-3">Day 29-30: Plan Next Sprint</h3>
             
             <p className="mb-4">
               Use Week 4 insights to plan your next 30-day sprint. Focus on the next highest-impact opportunities identified in your analysis.
             </p>
 
-            <p className="font-semibold text-foreground mb-2">Next Sprint Focus Areas (Prioritize Based on Your Results):</p>
+            <p className="font-semibold text-ink mb-2">Next Sprint Focus Areas (Prioritize Based on Your Results):</p>
             <ul className="list-disc pl-6 space-y-2">
               <li>Product page optimization (images, descriptions, reviews)</li>
               <li>Checkout process refinement</li>
@@ -500,40 +501,40 @@ export default function BlogPost() {
           </div>
 
           {/* Results Framework */}
-          <h2 id="what-results-can-you-expect-from-the-30-day-sprint" className="text-3xl font-bold text-foreground mt-12 mb-4">What Results Can You Expect from the 30-Day Sprint?</h2>
+          <h2 id="what-results-can-you-expect-from-the-30-day-sprint" className="text-3xl font-semibold tracking-[-0.02em] text-ink mt-12 mb-4">What Results Can You Expect from the 30-Day Sprint?</h2>
           
           <p>
             Based on 100+ implementations across e-commerce, SaaS, and B2B sites, here are realistic improvement ranges:
           </p>
 
           <div className="my-8 overflow-x-auto">
-            <table className="w-full border-collapse border-2 border-border rounded-lg">
+            <table className="w-full border-collapse border border-hairline rounded-lg">
               <thead>
-                <tr className="bg-muted/50">
-                  <th className="border border-border p-4 text-left text-foreground font-bold">Starting Conversion Rate</th>
-                  <th className="border border-border p-4 text-left text-foreground font-bold">Conservative Improvement</th>
-                  <th className="border border-border p-4 text-left text-foreground font-bold">Aggressive Improvement</th>
-                  <th className="border border-border p-4 text-left text-foreground font-bold">New Conversion Rate</th>
+                <tr className="bg-mist">
+                  <th className="border border-hairline p-4 text-left text-ink font-bold">Starting Conversion Rate</th>
+                  <th className="border border-hairline p-4 text-left text-ink font-bold">Conservative Improvement</th>
+                  <th className="border border-hairline p-4 text-left text-ink font-bold">Aggressive Improvement</th>
+                  <th className="border border-hairline p-4 text-left text-ink font-bold">New Conversion Rate</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td className="border border-border p-4">1.0%</td>
-                  <td className="border border-border p-4">+15%</td>
-                  <td className="border border-border p-4">+30%</td>
-                  <td className="border border-border p-4 text-green-600 font-semibold">1.15% to 1.30%</td>
+                  <td className="border border-hairline p-4">1.0%</td>
+                  <td className="border border-hairline p-4">+15%</td>
+                  <td className="border border-hairline p-4">+30%</td>
+                  <td className="border border-hairline p-4 text-ink font-semibold">1.15% to 1.30%</td>
                 </tr>
-                <tr className="bg-muted/20">
-                  <td className="border border-border p-4">2.5%</td>
-                  <td className="border border-border p-4">+15%</td>
-                  <td className="border border-border p-4">+30%</td>
-                  <td className="border border-border p-4 text-green-600 font-semibold">2.88% to 3.25%</td>
+                <tr className="bg-mist">
+                  <td className="border border-hairline p-4">2.5%</td>
+                  <td className="border border-hairline p-4">+15%</td>
+                  <td className="border border-hairline p-4">+30%</td>
+                  <td className="border border-hairline p-4 text-ink font-semibold">2.88% to 3.25%</td>
                 </tr>
                 <tr>
-                  <td className="border border-border p-4">5.0%</td>
-                  <td className="border border-border p-4">+15%</td>
-                  <td className="border border-border p-4">+30%</td>
-                  <td className="border border-border p-4 text-green-600 font-semibold">5.75% to 6.50%</td>
+                  <td className="border border-hairline p-4">5.0%</td>
+                  <td className="border border-hairline p-4">+15%</td>
+                  <td className="border border-hairline p-4">+30%</td>
+                  <td className="border border-hairline p-4 text-ink font-semibold">5.75% to 6.50%</td>
                 </tr>
               </tbody>
             </table>
@@ -544,7 +545,7 @@ export default function BlogPost() {
           </p>
 
           {/* Common Mistakes */}
-          <h2 id="what-mistakes-should-you-avoid-during-your-30-day-sprint" className="text-3xl font-bold text-foreground mt-12 mb-4">What Mistakes Should You Avoid During Your 30-Day Sprint?</h2>
+          <h2 id="what-mistakes-should-you-avoid-during-your-30-day-sprint" className="text-3xl font-semibold tracking-[-0.02em] text-ink mt-12 mb-4">What Mistakes Should You Avoid During Your 30-Day Sprint?</h2>
           
           <div className="my-6">
             <ol className="list-decimal pl-6 space-y-4">
@@ -567,53 +568,53 @@ export default function BlogPost() {
           </div>
 
           {/* Tools Section */}
-          <h2 id="what-tools-do-you-need-for-a-30-day-sprint" className="text-3xl font-bold text-foreground mt-12 mb-4">What Tools Do You Need for a 30-Day Sprint?</h2>
+          <h2 id="what-tools-do-you-need-for-a-30-day-sprint" className="text-3xl font-semibold tracking-[-0.02em] text-ink mt-12 mb-4">What Tools Do You Need for a 30-Day Sprint?</h2>
           
           <p className="mb-4">
             You can complete this sprint with entirely free tools. Here's the minimum toolkit:
           </p>
 
           <div className="my-8 overflow-x-auto">
-            <table className="w-full border-collapse border-2 border-border rounded-lg">
+            <table className="w-full border-collapse border border-hairline rounded-lg">
               <thead>
-                <tr className="bg-muted/50">
-                  <th className="border border-border p-4 text-left text-foreground font-bold">Purpose</th>
-                  <th className="border border-border p-4 text-left text-foreground font-bold">Free Option</th>
-                  <th className="border border-border p-4 text-left text-foreground font-bold">Premium Option</th>
+                <tr className="bg-mist">
+                  <th className="border border-hairline p-4 text-left text-ink font-bold">Purpose</th>
+                  <th className="border border-hairline p-4 text-left text-ink font-bold">Free Option</th>
+                  <th className="border border-hairline p-4 text-left text-ink font-bold">Premium Option</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td className="border border-border p-4">Analytics</td>
-                  <td className="border border-border p-4">Google Analytics 4</td>
-                  <td className="border border-border p-4">Mixpanel ($89/mo)</td>
+                  <td className="border border-hairline p-4">Analytics</td>
+                  <td className="border border-hairline p-4">Google Analytics 4</td>
+                  <td className="border border-hairline p-4">Mixpanel ($89/mo)</td>
                 </tr>
-                <tr className="bg-muted/20">
-                  <td className="border border-border p-4">Speed Testing</td>
-                  <td className="border border-border p-4">PageSpeed Insights</td>
-                  <td className="border border-border p-4">GTmetrix Pro ($14.95/mo)</td>
-                </tr>
-                <tr>
-                  <td className="border border-border p-4">Heatmaps</td>
-                  <td className="border border-border p-4">Microsoft Clarity</td>
-                  <td className="border border-border p-4">Hotjar ($39/mo)</td>
-                </tr>
-                <tr className="bg-muted/20">
-                  <td className="border border-border p-4">A/B Testing</td>
-                  <td className="border border-border p-4">Google Optimize</td>
-                  <td className="border border-border p-4">VWO ($199/mo)</td>
+                <tr className="bg-mist">
+                  <td className="border border-hairline p-4">Speed Testing</td>
+                  <td className="border border-hairline p-4">PageSpeed Insights</td>
+                  <td className="border border-hairline p-4">GTmetrix Pro ($14.95/mo)</td>
                 </tr>
                 <tr>
-                  <td className="border border-border p-4">Image Compression</td>
-                  <td className="border border-border p-4">TinyPNG, Squoosh</td>
-                  <td className="border border-border p-4">Kraken.io ($9/mo)</td>
+                  <td className="border border-hairline p-4">Heatmaps</td>
+                  <td className="border border-hairline p-4">Microsoft Clarity</td>
+                  <td className="border border-hairline p-4">Hotjar ($39/mo)</td>
+                </tr>
+                <tr className="bg-mist">
+                  <td className="border border-hairline p-4">A/B Testing</td>
+                  <td className="border border-hairline p-4">Google Optimize</td>
+                  <td className="border border-hairline p-4">VWO ($199/mo)</td>
+                </tr>
+                <tr>
+                  <td className="border border-hairline p-4">Image Compression</td>
+                  <td className="border border-hairline p-4">TinyPNG, Squoosh</td>
+                  <td className="border border-hairline p-4">Kraken.io ($9/mo)</td>
                 </tr>
               </tbody>
             </table>
           </div>
 
           {/* Conclusion */}
-          <h2 id="summary-from-sprint-to-sustained-growth" className="text-3xl font-bold text-foreground mt-12 mb-4">Summary: From Sprint to Sustained Growth</h2>
+          <h2 id="summary-from-sprint-to-sustained-growth" className="text-3xl font-semibold tracking-[-0.02em] text-ink mt-12 mb-4">Summary: From Sprint to Sustained Growth</h2>
           
           <p>
             The 30-Day Conversion Sprint proves that significant improvements don't require redesigns, large budgets, or months of work. By systematically addressing high-impact areas: copy and trust (Week 1), speed and mobile (Week 2), forms and paths (Week 3), and testing (Week 4), you can achieve 15-30% conversion rate improvements in a single month.
@@ -623,23 +624,13 @@ export default function BlogPost() {
             More importantly, this sprint establishes a repeatable optimization methodology. After your first 30 days, continue with monthly sprints, each targeting the next highest-impact opportunities. This creates compounding improvements: a 20% improvement in Month 1, another 15% in Month 2, and 10% in Month 3 don't add to 45%; they multiply to 51.8% total improvement.
           </p>
 
-          <p className="text-xl font-medium text-foreground/90">
+          <p className="text-xl font-medium text-ink">
             Start your sprint today. Your current conversion rate represents baseline performance; every percentage point improvement is revenue left on the table.
           </p>
 
-          {/* Final CTA */}
-          <div className="relative overflow-hidden p-8 my-12 rounded-2xl bg-linear-to-br from-primary via-blue-600 to-violet-500">
-            <div className="absolute inset-0 opacity-10" style={{ backgroundImage: "radial-gradient(circle, white 1px, transparent 1px)", backgroundSize: "24px 24px" }} />
-            <div className="relative z-10">
-              <p className="text-2xl font-bold text-white mb-3">Ready to deploy your first AI agent?</p>
-              <p className="text-white/80 mb-6 max-w-xl">
-                Book a free 20-minute call. We'll show you exactly which part of your conversion funnel an AI agent can automate first, and have it live within 24 hours.
-              </p>
-              <Link href="/book-demo" className="inline-flex items-center gap-2 bg-white text-primary font-semibold text-sm px-6 py-3 rounded-xl hover:bg-white/90 transition-colors cursor-pointer">
-                Book a free call →
-              </Link>
-            </div>
-          </div>
+          <SignupCta heading="Ready to deploy your first AI agent?">
+            Sign up free and put an agent to work on the part of your funnel that leaks the most.
+          </SignupCta>
         </div>
       </div>
     </BlogPostShell>

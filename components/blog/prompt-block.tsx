@@ -48,24 +48,21 @@ export function PromptBlock({
 
   return (
     <div className="my-8">
-      <div className="rounded-2xl overflow-hidden border border-slate-200 shadow-sm">
-        <div
-          className="flex items-center justify-between px-5 py-3"
-          style={{ background: "linear-gradient(135deg, #0f172a, #1e1b4b)" }}
-        >
-          <span className="text-xs font-semibold text-white/50 uppercase tracking-widest">{label}</span>
+      <div className="overflow-hidden rounded-3xl border border-hairline">
+        <div className="flex items-center justify-between bg-ink px-5 py-3">
+          <span className="eyebrow text-white/55!">{label}</span>
           <button
             onClick={handleCopy}
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer"
+            className="inline-flex cursor-pointer items-center gap-1.5 rounded-full px-3.5 py-1.5 text-xs font-semibold transition-all"
             style={copied
-              ? { background: "rgba(34,197,94,0.15)", color: "#86efac" }
+              ? { background: "#ffffff", color: "#141414" }
               : { background: "rgba(255,255,255,0.1)", color: "rgba(255,255,255,0.8)" }}
           >
             {copied ? <><Check className="w-3.5 h-3.5" />Copied!</> : <><Copy className="w-3.5 h-3.5" />Copy prompt</>}
           </button>
         </div>
         <pre
-          className="text-sm leading-relaxed p-6 overflow-x-auto whitespace-pre-wrap text-slate-700 bg-slate-50 font-mono"
+          className="overflow-x-auto whitespace-pre-wrap bg-mist p-6 font-mono text-sm leading-relaxed text-neutral-700"
           style={{ fontFamily: "'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace" }}
         >
           {prompt}
@@ -73,21 +70,21 @@ export function PromptBlock({
       </div>
 
       {showCapture && (
-        <div className="mt-4 rounded-2xl border-2 border-violet-200 bg-violet-50 p-6">
+        <div className="mt-4 rounded-3xl border border-hairline bg-white p-6">
           <div className="flex items-start gap-3">
-            <div className="w-8 h-8 rounded-full bg-violet-100 flex items-center justify-center shrink-0 mt-0.5">
-              <Check className="w-4 h-4 text-violet-600" />
+            <div className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-ink">
+              <Check className="h-4 w-4 text-white" />
             </div>
             <div className="flex-1">
-              <p className="font-semibold text-violet-900 mb-0.5 text-sm">Prompt copied!</p>
+              <p className="mb-0.5 text-sm font-semibold text-ink">Prompt copied!</p>
               {emailStatus === "success" ? (
                 <div className="flex items-center gap-2 mt-2">
-                  <CheckCircle2 className="w-4 h-4 text-green-500 shrink-0" />
-                  <p className="text-slate-600 text-sm">You're in. We'll send new prompts as we build them.</p>
+                  <CheckCircle2 className="h-4 w-4 shrink-0 text-ink" />
+                  <p className="text-sm text-quiet">You're in. We'll send new prompts as we build them.</p>
                 </div>
               ) : (
                 <>
-                  <p className="text-violet-700 text-sm mb-4">Interested in building AI Agents?</p>
+                  <p className="mb-4 text-sm text-quiet">Interested in building AI agents? Get new prompts as we write them.</p>
                   <form onSubmit={handleEmailSubmit} className="flex flex-col sm:flex-row gap-2.5">
                     <input
                       type="email"
@@ -95,13 +92,12 @@ export function PromptBlock({
                       placeholder="you@company.com"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
-                      className="flex-1 px-4 py-2.5 rounded-xl border border-violet-200 bg-white text-sm text-slate-800 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-violet-300 transition"
+                      className="flex-1 rounded-full border border-hairline bg-white px-4 py-2.5 text-sm text-ink transition placeholder:text-faint focus:border-ink focus:outline-none"
                     />
                     <button
                       type="submit"
                       disabled={emailStatus === "loading"}
-                      className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold text-white disabled:opacity-60 cursor-pointer whitespace-nowrap transition hover:opacity-90"
-                      style={{ background: "linear-gradient(135deg, #6d28d9, #7c3aed)" }}
+                      className="inline-flex cursor-pointer items-center justify-center gap-2 whitespace-nowrap rounded-full bg-ink px-5 py-2.5 text-sm font-semibold text-white transition hover:opacity-85 disabled:opacity-60"
                     >
                       {emailStatus === "loading" ? "Sending…" : "Yes, send me more →"}
                     </button>
@@ -109,7 +105,7 @@ export function PromptBlock({
                   {emailStatus === "error" && (
                     <p className="text-red-500 text-xs mt-2">Something went wrong. Please try again.</p>
                   )}
-                  <p className="text-xs text-violet-400 mt-2">No spam. Unsubscribe any time.</p>
+                  <p className="mt-2 text-xs text-faint">No spam. Unsubscribe any time.</p>
                 </>
               )}
             </div>

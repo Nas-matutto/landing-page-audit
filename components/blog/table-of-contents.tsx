@@ -31,7 +31,7 @@ function TocLinks({ entries }: { entries: TocEntry[] }) {
     <ol className="space-y-2.5 text-sm">
       {entries.map(entry => (
         <li key={entry.id}>
-          <a href={`#${entry.id}`} className="block leading-snug text-slate-500 transition-colors hover:text-primary">
+          <a href={`#${entry.id}`} className="block leading-snug text-quiet transition-colors hover:text-ink">
             {entry.text}
           </a>
         </li>
@@ -45,7 +45,7 @@ export function TableOfContents({ entries }: { entries: TocEntry[] }) {
   if (entries.length < 3) return null
   return (
     <nav aria-label="Table of contents" className="sticky top-32">
-      <p className="mb-4 text-xs font-semibold uppercase tracking-widest text-slate-400">On this page</p>
+      <p className="eyebrow mb-4">On this page</p>
       <TocLinks entries={entries} />
     </nav>
   )
@@ -55,8 +55,8 @@ export function TableOfContents({ entries }: { entries: TocEntry[] }) {
 export function MobileTableOfContents({ entries }: { entries: TocEntry[] }) {
   if (entries.length < 3) return null
   return (
-    <details className="mb-10 rounded-xl border border-slate-200 bg-slate-50 px-5 py-4 lg:hidden">
-      <summary className="cursor-pointer text-sm font-semibold text-slate-700">On this page</summary>
+    <details className="mb-10 rounded-2xl border border-hairline bg-mist px-5 py-4 lg:hidden">
+      <summary className="cursor-pointer text-sm font-semibold text-ink">On this page</summary>
       <nav aria-label="Table of contents" className="mt-4">
         <TocLinks entries={entries} />
       </nav>

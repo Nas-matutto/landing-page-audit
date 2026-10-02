@@ -13,12 +13,12 @@ export function AgentGuidesSection({ agentHref }: { agentHref: string }) {
     <section className="py-20 sm:py-24">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <div className="mb-12 text-center">
-          <p className="mb-4 text-xs font-semibold uppercase tracking-widest text-primary">Guides</p>
-          <h2 className="text-3xl font-bold tracking-tight text-balance text-slate-900 sm:text-4xl">
+          <p className="eyebrow mb-4">Guides</p>
+          <h2 className="display text-[clamp(2rem,4vw,3rem)]">
             Learn how this agent works
           </h2>
         </div>
-        <div className="mx-auto grid max-w-4xl gap-6 md:grid-cols-2">
+        <div className="mx-auto grid max-w-4xl gap-4 md:grid-cols-2">
           {posts.map(post => (
             <PostCard key={post.slug} post={post} />
           ))}

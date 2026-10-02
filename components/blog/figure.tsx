@@ -22,7 +22,7 @@ export function Figure({
 }) {
   return (
     <figure className="my-8">
-      <div className="overflow-hidden rounded-2xl border border-slate-200">
+      <div className="overflow-hidden rounded-3xl border border-hairline bg-mist">
         <Image
           src={src}
           alt={alt}
@@ -33,7 +33,7 @@ export function Figure({
           priority={priority}
         />
       </div>
-      {caption && <figcaption className="mt-3 text-center text-sm text-slate-500">{caption}</figcaption>}
+      {caption && <figcaption className="mt-3 text-center text-sm text-quiet">{caption}</figcaption>}
     </figure>
   )
 }

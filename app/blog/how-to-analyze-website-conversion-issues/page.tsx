@@ -1,5 +1,7 @@
 import Link from "next/link"
 import { Figure } from "@/components/blog/figure"
+import { SignupCta } from "@/components/blog/signup-cta"
+import { SIGNUP_URL } from "@/lib/links"
 import { BlogPostShell } from "@/components/blog/post-shell"
 import { buildPostMetadata } from "@/lib/blog"
 
@@ -11,12 +13,12 @@ export default function BlogPost() {
   return (
     <BlogPostShell slug={SLUG}>
       <div className="prose prose-lg max-w-none">
-        <div className="space-y-6 text-muted-foreground leading-relaxed">
+        <div className="space-y-6 text-neutral-600 leading-relaxed">
           
           {/* TL;DR Section */}
-          <div className="bg-primary/8 border-l-4 border-primary p-6 my-8 rounded-r-lg">
-            <h2 className="text-xl font-bold text-foreground mb-3">TL;DR: Key Takeaways</h2>
-            <ul className="list-disc pl-6 space-y-2 text-foreground">
+          <div className="rounded-2xl border border-hairline bg-mist p-6 my-8">
+            <h2 className="text-xl font-semibold tracking-[-0.02em] text-ink mb-3">TL;DR: Key Takeaways</h2>
+            <ul className="list-disc pl-6 space-y-2 text-ink">
               <li>Website conversion analysis is the systematic process of identifying barriers preventing visitors from completing desired actions</li>
               <li>Use the 7-step CONVERT framework: Analytics, Value Proposition, Speed, Mobile, Path Simplification, Trust Signals, and User Testing</li>
               <li>A 1-second delay in page load time reduces conversions by 7%; mobile users are 5x more likely to abandon slow sites</li>
@@ -27,7 +29,7 @@ export default function BlogPost() {
           </div>
 
           {/* Introduction with definitions */}
-          <h2 id="what-is-website-conversion-analysis" className="text-3xl font-bold text-foreground mt-12 mb-4">What is Website Conversion Analysis?</h2>
+          <h2 id="what-is-website-conversion-analysis" className="text-3xl font-semibold tracking-[-0.02em] text-ink mt-12 mb-4">What is Website Conversion Analysis?</h2>
           
           <p>
             <strong>Website conversion analysis</strong> is the systematic examination of your website to identify obstacles preventing visitors from completing desired actions (conversions) such as making purchases, signing up for services, or submitting contact forms. This process combines quantitative data from analytics tools with qualitative insights from user behavior studies to create a comprehensive picture of conversion barriers.
@@ -39,7 +41,7 @@ export default function BlogPost() {
 
             <Figure src="/blog/conversion-funnel.jpg" alt="Conversion rate funnel visualization showing drop-off at each stage" />
 
-          <h2 id="why-does-website-conversion-rate-matter-for-business-growth" className="text-3xl font-bold text-foreground mt-12 mb-4">Why Does Website Conversion Rate Matter for Business Growth?</h2>
+          <h2 id="why-does-website-conversion-rate-matter-for-business-growth" className="text-3xl font-semibold tracking-[-0.02em] text-ink mt-12 mb-4">Why Does Website Conversion Rate Matter for Business Growth?</h2>
           
           <p>
             Conversion rate optimization (CRO) directly impacts revenue without requiring increased traffic acquisition costs. Consider this: improving your conversion rate from 2% to 3% (a 50% relative increase) on a site with 10,000 monthly visitors means 100 additional conversions per month. At $100 average order value, that's $10,000 in additional monthly revenue or $120,000 annually.
@@ -57,59 +59,59 @@ export default function BlogPost() {
 
           {/* Framework Table */}
           <div className="my-8 overflow-x-auto">
-            <table className="w-full border-collapse border-2 border-border rounded-lg">
+            <table className="w-full border-collapse border border-hairline rounded-lg">
               <thead>
-                <tr className="bg-muted/50">
-                  <th className="border border-border p-4 text-left text-foreground font-bold">Conversion Issue Type</th>
-                  <th className="border border-border p-4 text-left text-foreground font-bold">Average Impact</th>
-                  <th className="border border-border p-4 text-left text-foreground font-bold">Fix Difficulty</th>
+                <tr className="bg-mist">
+                  <th className="border border-hairline p-4 text-left text-ink font-bold">Conversion Issue Type</th>
+                  <th className="border border-hairline p-4 text-left text-ink font-bold">Average Impact</th>
+                  <th className="border border-hairline p-4 text-left text-ink font-bold">Fix Difficulty</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td className="border border-border p-4">Slow page speed (&gt;3s load)</td>
-                  <td className="border border-border p-4">-7% per second delay</td>
-                  <td className="border border-border p-4 text-primary font-semibold">Medium</td>
+                  <td className="border border-hairline p-4">Slow page speed (&gt;3s load)</td>
+                  <td className="border border-hairline p-4">-7% per second delay</td>
+                  <td className="border border-hairline p-4 text-ink font-semibold">Medium</td>
                 </tr>
-                <tr className="bg-muted/20">
-                  <td className="border border-border p-4">Unclear value proposition</td>
-                  <td className="border border-border p-4">-20-40% conversion loss</td>
-                  <td className="border border-border p-4 text-green-600 font-semibold">Easy</td>
-                </tr>
-                <tr>
-                  <td className="border border-border p-4">Poor mobile optimization</td>
-                  <td className="border border-border p-4">-50-70% mobile conversions</td>
-                  <td className="border border-border p-4 text-red-600 font-semibold">Hard</td>
-                </tr>
-                <tr className="bg-muted/20">
-                  <td className="border border-border p-4">Complex checkout/signup</td>
-                  <td className="border border-border p-4">-25-35% abandonment</td>
-                  <td className="border border-border p-4 text-primary font-semibold">Medium</td>
+                <tr className="bg-mist">
+                  <td className="border border-hairline p-4">Unclear value proposition</td>
+                  <td className="border border-hairline p-4">-20-40% conversion loss</td>
+                  <td className="border border-hairline p-4 text-ink font-semibold">Easy</td>
                 </tr>
                 <tr>
-                  <td className="border border-border p-4">Missing trust signals</td>
-                  <td className="border border-border p-4">-15-25% conversion loss</td>
-                  <td className="border border-border p-4 text-green-600 font-semibold">Easy</td>
+                  <td className="border border-hairline p-4">Poor mobile optimization</td>
+                  <td className="border border-hairline p-4">-50-70% mobile conversions</td>
+                  <td className="border border-hairline p-4 text-quiet font-semibold">Hard</td>
+                </tr>
+                <tr className="bg-mist">
+                  <td className="border border-hairline p-4">Complex checkout/signup</td>
+                  <td className="border border-hairline p-4">-25-35% abandonment</td>
+                  <td className="border border-hairline p-4 text-ink font-semibold">Medium</td>
+                </tr>
+                <tr>
+                  <td className="border border-hairline p-4">Missing trust signals</td>
+                  <td className="border border-hairline p-4">-15-25% conversion loss</td>
+                  <td className="border border-hairline p-4 text-ink font-semibold">Easy</td>
                 </tr>
               </tbody>
             </table>
           </div>
 
-          <h2 id="the-convert-framework-a-7-step-analysis-method" className="text-3xl font-bold text-foreground mt-12 mb-4">The CONVERT Framework: A 7-Step Analysis Method</h2>
+          <h2 id="the-convert-framework-a-7-step-analysis-method" className="text-3xl font-semibold tracking-[-0.02em] text-ink mt-12 mb-4">The CONVERT Framework: A 7-Step Analysis Method</h2>
 
           <p>
             The CONVERT framework provides a systematic approach to website conversion analysis. Each step builds on the previous one, creating a comprehensive optimization strategy that addresses both technical and user experience issues.
           </p>
 
           {/* Step 1 */}
-          <h2 id="step-1-how-to-use-analytics-data-to-identify-conversion-bott" className="text-3xl font-bold text-foreground mt-12 mb-4">Step 1: How to Use Analytics Data to Identify Conversion Bottlenecks</h2>
+          <h2 id="step-1-how-to-use-analytics-data-to-identify-conversion-bott" className="text-3xl font-semibold tracking-[-0.02em] text-ink mt-12 mb-4">Step 1: How to Use Analytics Data to Identify Conversion Bottlenecks</h2>
           
           <p>
             Analytics data reveals where users struggle on your website. Start by examining four critical metrics in your analytics platform (Google Analytics, Mixpanel, or similar):
           </p>
 
           <div className="my-6">
-            <h3 className="text-xl font-bold text-foreground mb-3">Essential Analytics Metrics</h3>
+            <h3 className="text-xl font-semibold text-ink mb-3">Essential Analytics Metrics</h3>
             <ul className="list-disc pl-6 space-y-3">
               <li>
                 <strong>Bounce rate by page:</strong> Identify pages with &gt;70% bounce rates. These pages fail to engage visitors immediately. Check your top 10 landing pages and prioritize those with high traffic and high bounce rates.
@@ -129,7 +131,7 @@ export default function BlogPost() {
           <Figure src="/blog/google-analytics-dashboard.jpg" alt="Conversion rate in Google Analytics" />
 
           {/* Step 2 */}
-          <h2 id="step-2-what-makes-an-effective-value-proposition-for-convers" className="text-3xl font-bold text-foreground mt-12 mb-4">Step 2: What Makes an Effective Value Proposition for Conversions</h2>
+          <h2 id="step-2-what-makes-an-effective-value-proposition-for-convers" className="text-3xl font-semibold tracking-[-0.02em] text-ink mt-12 mb-4">Step 2: What Makes an Effective Value Proposition for Conversions</h2>
           
           <p>
             A <strong>value proposition</strong> is a clear statement that explains how your product solves customer problems, delivers benefits, and distinguishes you from competitors. Research shows visitors form first impressions in 50 milliseconds and decide whether to stay or leave within 5 seconds.
@@ -145,30 +147,30 @@ export default function BlogPost() {
             <li><strong>What's the primary benefit?</strong> (The transformation or outcome)</li>
           </ol>
 
-          <div className="bg-muted/30 border-2 border-border p-6 my-8 rounded-lg">
+          <div className="bg-mist border border-hairline p-6 my-8 rounded-lg">
             <div className="grid md:grid-cols-2 gap-6">
               <div>
-                <p className="text-red-600 font-bold mb-2">❌ Ineffective Value Proposition:</p>
+                <p className="text-quiet font-bold mb-2">❌ Ineffective Value Proposition:</p>
                 <p className="italic">"Revolutionizing digital transformation through innovative cloud-based synergistic solutions"</p>
-                <p className="text-sm mt-2 text-muted-foreground">Why it fails: Vague, jargon-heavy, no specific benefit</p>
+                <p className="text-sm mt-2 text-neutral-600">Why it fails: Vague, jargon-heavy, no specific benefit</p>
               </div>
               <div>
-                <p className="text-green-600 font-bold mb-2">✓ Effective Value Proposition:</p>
+                <p className="text-ink font-bold mb-2">✓ Effective Value Proposition:</p>
                 <p className="italic">"Get detailed SEO insights for your website in 60 seconds, no technical knowledge required"</p>
-                <p className="text-sm mt-2 text-muted-foreground">Why it works: Specific outcome, clear timeframe, removes barrier</p>
+                <p className="text-sm mt-2 text-neutral-600">Why it works: Specific outcome, clear timeframe, removes barrier</p>
               </div>
             </div>
           </div>
 
           {/* Step 3 */}
-          <h2 id="step-3-how-to-fix-website-speed-issues-that-kill-conversions" className="text-3xl font-bold text-foreground mt-12 mb-4">Step 3: How to Fix Website Speed Issues That Kill Conversions</h2>
+          <h2 id="step-3-how-to-fix-website-speed-issues-that-kill-conversions" className="text-3xl font-semibold tracking-[-0.02em] text-ink mt-12 mb-4">Step 3: How to Fix Website Speed Issues That Kill Conversions</h2>
           
           <p>
             Page speed directly correlates with conversion rates. Google research shows that as page load time increases from 1 to 3 seconds, bounce probability increases 32%. From 1 to 5 seconds, it increases 90%. Amazon found that every 100ms delay costs them 1% in sales.
           </p>
 
           <div className="my-6">
-            <h3 className="text-xl font-bold text-foreground mb-3">Speed Testing Tools and Metrics</h3>
+            <h3 className="text-xl font-semibold text-ink mb-3">Speed Testing Tools and Metrics</h3>
             <ul className="list-disc pl-6 space-y-3">
               <li><strong><a href="https://pagespeed.web.dev/" target="_blank" rel="noopener noreferrer">Google PageSpeed Insights:</a></strong> Provides Core Web Vitals scores (LCP, FID, CLS) and specific optimization suggestions</li>
               <li><strong><a href="https://gtmetrix.com/" target="_blank" rel="noopener noreferrer">GTmetrix:</a></strong> Offers detailed waterfall charts showing exactly which resources slow your site</li>
@@ -179,7 +181,7 @@ export default function BlogPost() {
           <Figure src="/blog/page-speed-insights.jpg" alt="PageSpeed Insights score example" />
 
           <div className="my-6">
-            <h3 className="text-xl font-bold text-foreground mb-3">Quick Speed Optimization Wins</h3>
+            <h3 className="text-xl font-semibold text-ink mb-3">Quick Speed Optimization Wins</h3>
             <ol className="list-decimal pl-6 space-y-3">
               <li>
                 <strong>Image optimization:</strong> Convert to WebP format (30-50% smaller than JPEG). Use responsive images with srcset. Lazy-load images below the fold.
@@ -200,47 +202,47 @@ export default function BlogPost() {
           </div>
 
           {/* Step 4 */}
-          <h2 id="step-4-why-mobile-optimization-is-critical-for-conversion-ra" className="text-3xl font-bold text-foreground mt-12 mb-4">Step 4: Why Mobile Optimization is Critical for Conversion Rates</h2>
+          <h2 id="step-4-why-mobile-optimization-is-critical-for-conversion-ra" className="text-3xl font-semibold tracking-[-0.02em] text-ink mt-12 mb-4">Step 4: Why Mobile Optimization is Critical for Conversion Rates</h2>
           
           <p>
             Mobile devices generate over 60% of website traffic globally, yet mobile conversion rates average 1.53% compared to 3.90% on desktop. This gap represents enormous opportunity. Mobile users are 5x more likely to abandon tasks if a site isn't mobile-optimized.
           </p>
 
           <div className="my-6">
-            <h3 className="text-xl font-bold text-foreground mb-3">Mobile Optimization Checklist</h3>
+            <h3 className="text-xl font-semibold text-ink mb-3">Mobile Optimization Checklist</h3>
             
             <div className="space-y-4">
-              <div className="border-l-4 border-primary pl-4">
-                <p className="font-bold text-foreground">Touch Target Size</p>
+              <div className="border-l-2 border-ink pl-4">
+                <p className="font-bold text-ink">Touch Target Size</p>
                 <p>Minimum 44x44 pixels for buttons and links (Apple's Human Interface Guidelines). Provide 8px spacing between clickable elements.</p>
               </div>
               
-              <div className="border-l-4 border-primary pl-4">
-                <p className="font-bold text-foreground">Text Readability</p>
+              <div className="border-l-2 border-ink pl-4">
+                <p className="font-bold text-ink">Text Readability</p>
                 <p>16px minimum font size for body text. Line height of 1.5x font size. Avoid horizontal scrolling at any screen width.</p>
               </div>
               
-              <div className="border-l-4 border-primary pl-4">
-                <p className="font-bold text-foreground">Form Optimization</p>
+              <div className="border-l-2 border-ink pl-4">
+                <p className="font-bold text-ink">Form Optimization</p>
                 <p>Use appropriate input types (tel, email, number) to trigger correct mobile keyboards. Implement autofill attributes. Minimize required fields.</p>
               </div>
               
-              <div className="border-l-4 border-primary pl-4">
-                <p className="font-bold text-foreground">Navigation Simplification</p>
+              <div className="border-l-2 border-ink pl-4">
+                <p className="font-bold text-ink">Navigation Simplification</p>
                 <p>Use hamburger menus for complex navigation. Ensure primary CTA is visible without scrolling. Implement sticky headers on mobile.</p>
               </div>
             </div>
           </div>
 
           {/* Step 5 */}
-          <h2 id="step-5-how-to-simplify-your-conversion-path-and-reduce-frict" className="text-3xl font-bold text-foreground mt-12 mb-4">Step 5: How to Simplify Your Conversion Path and Reduce Friction</h2>
+          <h2 id="step-5-how-to-simplify-your-conversion-path-and-reduce-frict" className="text-3xl font-semibold tracking-[-0.02em] text-ink mt-12 mb-4">Step 5: How to Simplify Your Conversion Path and Reduce Friction</h2>
           
           <p>
             Every additional step in your conversion funnel loses 20-30% of users. Expedia famously increased profits by $12 million by removing one form field. Reducing form fields from 11 to 4 increased conversions by 120% for one Hubspot study.
           </p>
 
           <div className="my-6">
-            <h3 className="text-xl font-bold text-foreground mb-3">Friction Reduction Strategies</h3>
+            <h3 className="text-xl font-semibold text-ink mb-3">Friction Reduction Strategies</h3>
             
             <ul className="list-disc pl-6 space-y-3">
               <li>
@@ -261,71 +263,71 @@ export default function BlogPost() {
             </ul>
           </div>
 
-          <div className="bg-primary/5 border-2 border-primary/20 p-6 my-8 rounded-lg">
-            <p className="font-bold text-foreground mb-2">Quick Win:</p>
+          <div className="bg-mist border border-hairline p-6 my-8 rounded-lg">
+            <p className="font-bold text-ink mb-2">Quick Win:</p>
             <p>Audit your conversion path right now. Count the clicks from landing page to conversion completion. For each click over three, you're likely losing 25-30% of users. Prioritize eliminating unnecessary steps.</p>
           </div>
 
           {/* Step 6 */}
-          <h2 id="step-6-what-trust-signals-increase-website-conversions" className="text-3xl font-bold text-foreground mt-12 mb-4">Step 6: What Trust Signals Increase Website Conversions</h2>
+          <h2 id="step-6-what-trust-signals-increase-website-conversions" className="text-3xl font-semibold tracking-[-0.02em] text-ink mt-12 mb-4">Step 6: What Trust Signals Increase Website Conversions</h2>
           
           <p>
             86% of consumers say website trust is a decisive factor in purchasing decisions. <strong>Trust signals</strong> are visual and textual elements that establish credibility and reduce purchase anxiety. They answer the visitor's unconscious question: "Can I trust this website with my money/information?"
           </p>
 
           <div className="my-8 overflow-x-auto">
-            <table className="w-full border-collapse border-2 border-border rounded-lg">
+            <table className="w-full border-collapse border border-hairline rounded-lg">
               <thead>
-                <tr className="bg-muted/50">
-                  <th className="border border-border p-4 text-left text-foreground font-bold">Trust Signal Type</th>
-                  <th className="border border-border p-4 text-left text-foreground font-bold">Impact on Conversions</th>
-                  <th className="border border-border p-4 text-left text-foreground font-bold">Implementation Priority</th>
+                <tr className="bg-mist">
+                  <th className="border border-hairline p-4 text-left text-ink font-bold">Trust Signal Type</th>
+                  <th className="border border-hairline p-4 text-left text-ink font-bold">Impact on Conversions</th>
+                  <th className="border border-hairline p-4 text-left text-ink font-bold">Implementation Priority</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td className="border border-border p-4">SSL Certificate (HTTPS)</td>
-                  <td className="border border-border p-4">+18% conversion rate</td>
-                  <td className="border border-border p-4 text-red-600 font-semibold">Critical</td>
+                  <td className="border border-hairline p-4">SSL Certificate (HTTPS)</td>
+                  <td className="border border-hairline p-4">+18% conversion rate</td>
+                  <td className="border border-hairline p-4 text-quiet font-semibold">Critical</td>
                 </tr>
-                <tr className="bg-muted/20">
-                  <td className="border border-border p-4">Customer testimonials with photos</td>
-                  <td className="border border-border p-4">+34% conversion rate</td>
-                  <td className="border border-border p-4 text-red-600 font-semibold">Critical</td>
-                </tr>
-                <tr>
-                  <td className="border border-border p-4">Money-back guarantee</td>
-                  <td className="border border-border p-4">+25% conversion rate</td>
-                  <td className="border border-border p-4 text-primary font-semibold">High</td>
-                </tr>
-                <tr className="bg-muted/20">
-                  <td className="border border-border p-4">Security badges (Norton, McAfee)</td>
-                  <td className="border border-border p-4">+15% conversion rate</td>
-                  <td className="border border-border p-4 text-primary font-semibold">High</td>
+                <tr className="bg-mist">
+                  <td className="border border-hairline p-4">Customer testimonials with photos</td>
+                  <td className="border border-hairline p-4">+34% conversion rate</td>
+                  <td className="border border-hairline p-4 text-quiet font-semibold">Critical</td>
                 </tr>
                 <tr>
-                  <td className="border border-border p-4">Client logos (B2B)</td>
-                  <td className="border border-border p-4">+20% conversion rate</td>
-                  <td className="border border-border p-4 text-primary font-semibold">High</td>
+                  <td className="border border-hairline p-4">Money-back guarantee</td>
+                  <td className="border border-hairline p-4">+25% conversion rate</td>
+                  <td className="border border-hairline p-4 text-ink font-semibold">High</td>
                 </tr>
-                <tr className="bg-muted/20">
-                  <td className="border border-border p-4">Contact information visible</td>
-                  <td className="border border-border p-4">+12% conversion rate</td>
-                  <td className="border border-border p-4 text-green-600 font-semibold">Medium</td>
+                <tr className="bg-mist">
+                  <td className="border border-hairline p-4">Security badges (Norton, McAfee)</td>
+                  <td className="border border-hairline p-4">+15% conversion rate</td>
+                  <td className="border border-hairline p-4 text-ink font-semibold">High</td>
+                </tr>
+                <tr>
+                  <td className="border border-hairline p-4">Client logos (B2B)</td>
+                  <td className="border border-hairline p-4">+20% conversion rate</td>
+                  <td className="border border-hairline p-4 text-ink font-semibold">High</td>
+                </tr>
+                <tr className="bg-mist">
+                  <td className="border border-hairline p-4">Contact information visible</td>
+                  <td className="border border-hairline p-4">+12% conversion rate</td>
+                  <td className="border border-hairline p-4 text-ink font-semibold">Medium</td>
                 </tr>
               </tbody>
             </table>
           </div>
 
           {/* Step 7 */}
-          <h2 id="step-7-how-to-conduct-user-testing-for-conversion-insights" className="text-3xl font-bold text-foreground mt-12 mb-4">Step 7: How to Conduct User Testing for Conversion Insights</h2>
+          <h2 id="step-7-how-to-conduct-user-testing-for-conversion-insights" className="text-3xl font-semibold tracking-[-0.02em] text-ink mt-12 mb-4">Step 7: How to Conduct User Testing for Conversion Insights</h2>
           
           <p>
             Analytics reveal what users do; user testing reveals why they do it. <strong>User testing</strong> involves observing real users as they attempt to complete tasks on your website, identifying confusion points, and understanding their decision-making process.
           </p>
 
           <div className="my-6">
-            <h3 className="text-xl font-bold text-foreground mb-3">Simple User Testing Protocol</h3>
+            <h3 className="text-xl font-semibold text-ink mb-3">Simple User Testing Protocol</h3>
             
             <ol className="list-decimal pl-6 space-y-3">
               <li>
@@ -346,8 +348,8 @@ export default function BlogPost() {
             </ol>
           </div>
 
-          <div className="bg-muted/30 border-l-4 border-primary p-6 my-8 rounded-r-lg">
-            <p className="text-foreground font-semibold mb-2">Budget-Friendly Testing Options:</p>
+          <div className="rounded-2xl border border-hairline bg-mist p-6 my-8">
+            <p className="text-ink font-semibold mb-2">Budget-Friendly Testing Options:</p>
             <ul className="list-disc pl-6 space-y-2">
               <li><strong><a href="https://www.usertesting.com/" target="_blank" rel="noopener noreferrer">UserTesting.com:</a></strong> $49 per test for recorded sessions with real users</li>
               <li><strong><a href="https://posthog.com/" target="_blank" rel="noopener noreferrer">Posthog:</a></strong> Free heatmaps and session recordings to see user behavior</li>
@@ -358,14 +360,14 @@ export default function BlogPost() {
           </div>
 
           {/* Implementation Section */}
-          <h2 id="how-to-implement-and-test-conversion-improvements" className="text-3xl font-bold text-foreground mt-12 mb-4">How to Implement and Test Conversion Improvements</h2>
+          <h2 id="how-to-implement-and-test-conversion-improvements" className="text-3xl font-semibold tracking-[-0.02em] text-ink mt-12 mb-4">How to Implement and Test Conversion Improvements</h2>
           
           <p>
             After identifying issues, implement changes systematically using A/B testing to validate impact. <strong>A/B testing</strong> compares two versions (A and B) to determine which performs better, eliminating guesswork from optimization.
           </p>
 
           <div className="my-6">
-            <h3 className="text-xl font-bold text-foreground mb-3">A/B Testing Best Practices</h3>
+            <h3 className="text-xl font-semibold text-ink mb-3">A/B Testing Best Practices</h3>
             <ul className="list-disc pl-6 space-y-2">
               <li>Test one change at a time to isolate impact</li>
               <li>Achieve statistical significance before declaring a winner (typically 95% confidence level)</li>
@@ -376,89 +378,89 @@ export default function BlogPost() {
           </div>
 
           {/* AI Agent mid-article section */}
-          <div className="my-12 rounded-2xl overflow-hidden border border-slate-200 shadow-sm">
-            <div className="bg-linear-to-r from-primary to-violet-500 px-8 py-5">
+          <div className="my-12 rounded-2xl overflow-hidden border border-hairline">
+            <div className="bg-ink px-8 py-5">
               <p className="text-white/80 text-xs font-semibold uppercase tracking-widest mb-1">The shortcut</p>
               <p className="text-xl font-bold text-white">Analysis tells you where visitors drop off. An AI agent stops the drop-off from happening in the first place.</p>
             </div>
             <div className="bg-white px-8 py-6">
-              <p className="text-foreground mb-4 leading-relaxed">
+              <p className="text-ink mb-4 leading-relaxed">
                 The CONVERT framework helps you identify what's broken. But for the most common conversion killers (hesitation, unanswered questions, trust gaps), there's a faster fix: an AI agent that handles those moments live, while the visitor is still on your page.
               </p>
-              <ul className="space-y-3 mb-6 text-foreground">
+              <ul className="space-y-3 mb-6 text-ink">
                 <li className="flex items-start gap-3">
-                  <span className="text-primary font-bold mt-0.5 shrink-0">✓</span>
+                  <span className="text-ink font-bold mt-0.5 shrink-0">✓</span>
                   <span><strong>Addresses the drop-off your funnel analysis reveals</strong>: when analytics show visitors leaving at the pricing section, the agent answers pricing questions in real time before they bounce</span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="text-primary font-bold mt-0.5 shrink-0">✓</span>
+                  <span className="text-ink font-bold mt-0.5 shrink-0">✓</span>
                   <span><strong>Delivers your trust signals at the right moment</strong>: surfaces testimonials, guarantees, and social proof exactly when a visitor's behaviour signals they need reassurance</span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="text-primary font-bold mt-0.5 shrink-0">✓</span>
+                  <span className="text-ink font-bold mt-0.5 shrink-0">✓</span>
                   <span><strong>Simplifies the conversion path on the spot</strong>: instead of sending visitors through a form, the agent qualifies them conversationally and books a call directly</span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="text-primary font-bold mt-0.5 shrink-0">✓</span>
+                  <span className="text-ink font-bold mt-0.5 shrink-0">✓</span>
                   <span><strong>Captures the leads your analysis says you're losing</strong>: exit-intent engagement that recovers prospects before they disappear from your funnel for good</span>
                 </li>
               </ul>
-              <p className="text-sm text-muted-foreground mb-5">We build, deploy, and host the agent. You keep running your analysis, and start seeing results faster.</p>
-              <Link href="/book-demo" className="inline-flex items-center gap-2 bg-linear-to-r from-primary to-violet-500 text-white font-semibold text-sm px-6 py-3 rounded-xl hover:opacity-90 transition-opacity cursor-pointer">
-                See how it works →
-              </Link>
+              <p className="text-sm text-neutral-600 mb-5">We build, deploy, and host the agent. You keep running your analysis, and start seeing results faster.</p>
+              <a href={SIGNUP_URL} className="inline-flex items-center gap-2 bg-ink text-white font-semibold text-sm px-6 py-3 rounded-xl hover:opacity-90 transition-opacity cursor-pointer">
+                Sign up free →
+              </a>
             </div>
           </div>
 
           {/* Tools Section */}
-          <h2 id="what-tools-do-you-need-for-conversion-analysis" className="text-3xl font-bold text-foreground mt-12 mb-4">What Tools Do You Need for Conversion Analysis?</h2>
+          <h2 id="what-tools-do-you-need-for-conversion-analysis" className="text-3xl font-semibold tracking-[-0.02em] text-ink mt-12 mb-4">What Tools Do You Need for Conversion Analysis?</h2>
           
           <div className="my-8 overflow-x-auto">
-            <table className="w-full border-collapse border-2 border-border rounded-lg">
+            <table className="w-full border-collapse border border-hairline rounded-lg">
               <thead>
-                <tr className="bg-muted/50">
-                  <th className="border border-border p-4 text-left text-foreground font-bold">Tool Category</th>
-                  <th className="border border-border p-4 text-left text-foreground font-bold">Recommended Tools</th>
-                  <th className="border border-border p-4 text-left text-foreground font-bold">Cost</th>
+                <tr className="bg-mist">
+                  <th className="border border-hairline p-4 text-left text-ink font-bold">Tool Category</th>
+                  <th className="border border-hairline p-4 text-left text-ink font-bold">Recommended Tools</th>
+                  <th className="border border-hairline p-4 text-left text-ink font-bold">Cost</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td className="border border-border p-4">Assessment</td>
-                  <td className="border border-border p-4">Talk to Me Data</td>
-                  <td className="border border-border p-4">Free to $39/mo</td>
+                  <td className="border border-hairline p-4">Assessment</td>
+                  <td className="border border-hairline p-4">Talk to Me Data</td>
+                  <td className="border border-hairline p-4">Free to $39/mo</td>
                 </tr>
                 <tr>
-                  <td className="border border-border p-4">Analytics</td>
-                  <td className="border border-border p-4">Google Analytics 4, Mixpanel</td>
-                  <td className="border border-border p-4">Free to $89/mo</td>
+                  <td className="border border-hairline p-4">Analytics</td>
+                  <td className="border border-hairline p-4">Google Analytics 4, Mixpanel</td>
+                  <td className="border border-hairline p-4">Free to $89/mo</td>
                 </tr>
-                <tr className="bg-muted/20">
-                  <td className="border border-border p-4">Speed Testing</td>
-                  <td className="border border-border p-4">PageSpeed Insights, GTmetrix</td>
-                  <td className="border border-border p-4">Free</td>
-                </tr>
-                <tr>
-                  <td className="border border-border p-4">Heatmaps</td>
-                  <td className="border border-border p-4">Posthog, Hotjar, Microsoft Clarity</td>
-                  <td className="border border-border p-4">Free to $39/mo</td>
-                </tr>
-                <tr className="bg-muted/20">
-                  <td className="border border-border p-4">A/B Testing</td>
-                  <td className="border border-border p-4">Google Optimize, VWO</td>
-                  <td className="border border-border p-4">Free to $199/mo</td>
+                <tr className="bg-mist">
+                  <td className="border border-hairline p-4">Speed Testing</td>
+                  <td className="border border-hairline p-4">PageSpeed Insights, GTmetrix</td>
+                  <td className="border border-hairline p-4">Free</td>
                 </tr>
                 <tr>
-                  <td className="border border-border p-4">User Testing</td>
-                  <td className="border border-border p-4">UserTesting, Lookback</td>
-                  <td className="border border-border p-4">$49 per test</td>
+                  <td className="border border-hairline p-4">Heatmaps</td>
+                  <td className="border border-hairline p-4">Posthog, Hotjar, Microsoft Clarity</td>
+                  <td className="border border-hairline p-4">Free to $39/mo</td>
+                </tr>
+                <tr className="bg-mist">
+                  <td className="border border-hairline p-4">A/B Testing</td>
+                  <td className="border border-hairline p-4">Google Optimize, VWO</td>
+                  <td className="border border-hairline p-4">Free to $199/mo</td>
+                </tr>
+                <tr>
+                  <td className="border border-hairline p-4">User Testing</td>
+                  <td className="border border-hairline p-4">UserTesting, Lookback</td>
+                  <td className="border border-hairline p-4">$49 per test</td>
                 </tr>
               </tbody>
             </table>
           </div>
 
           {/* Conclusion */}
-          <h2 id="summary-converting-analysis-into-revenue" className="text-3xl font-bold text-foreground mt-12 mb-4">Summary: Converting Analysis into Revenue</h2>
+          <h2 id="summary-converting-analysis-into-revenue" className="text-3xl font-semibold tracking-[-0.02em] text-ink mt-12 mb-4">Summary: Converting Analysis into Revenue</h2>
           
           <p>
             Website conversion analysis isn't about making random changes and hoping for improvement. It's a systematic, data-driven process that identifies specific barriers preventing conversions and implements targeted solutions.
@@ -468,29 +470,13 @@ export default function BlogPost() {
             The CONVERT framework (Analytics, Value Proposition, Speed, Mobile, Path Simplification, Trust Signals, and User Testing) provides a comprehensive methodology for identifying and fixing conversion issues. Start with high-impact, low-effort changes (unclear value propositions, missing trust signals) before tackling complex technical implementations.
           </p>
 
-          <p className="text-xl font-medium text-foreground/90">
+          <p className="text-xl font-medium text-ink">
             Remember: A 1% improvement in conversion rate translates to thousands of dollars in additional revenue. The time invested in systematic analysis compounds over time, creating sustainable competitive advantage.
           </p>
 
-          {/* Final CTA */}
-          <div className="my-12 rounded-2xl overflow-hidden border border-slate-200 shadow-sm">
-            <div
-              className="relative px-8 py-10"
-              style={{
-                background: "linear-gradient(135deg, #185FA5, #2563eb, #7c3aed)",
-                backgroundImage: "linear-gradient(135deg, #185FA5, #2563eb, #7c3aed), radial-gradient(circle, rgba(255,255,255,0.07) 1px, transparent 1px)",
-                backgroundSize: "100% 100%, 24px 24px",
-              }}
-            >
-              <p className="text-2xl font-bold text-white mb-3">Want to know exactly what's costing you conversions?</p>
-              <p className="text-white/80 mb-6 leading-relaxed max-w-xl">
-                Book a free call and we'll walk through your site using the CONVERT framework, and show you how an AI agent can fix the biggest drop-off points automatically.
-              </p>
-              <Link href="/book-demo" className="inline-flex items-center gap-2 bg-white text-primary font-semibold text-sm px-6 py-3 rounded-xl hover:bg-white/90 transition-colors cursor-pointer">
-                Book a free call →
-              </Link>
-            </div>
-          </div>
+          <SignupCta heading="Want to know exactly what&apos;s costing you conversions?">
+            Sign up free and put an AI agent to work on the drop-off points the CONVERT framework uncovers.
+          </SignupCta>
         </div>
       </div>
     </BlogPostShell>

@@ -1,4 +1,6 @@
 import Link from "next/link"
+import { SignupCta } from "@/components/blog/signup-cta"
+import { SIGNUP_URL } from "@/lib/links"
 import { BlogPostShell } from "@/components/blog/post-shell"
 import { buildPostMetadata, type Faq } from "@/lib/blog"
 
@@ -34,12 +36,12 @@ export default function BlogPost() {
   return (
     <BlogPostShell slug={SLUG} faqs={faqs}>
       <div className="prose prose-lg max-w-none">
-        <div className="space-y-6 text-muted-foreground leading-relaxed">
+        <div className="space-y-6 text-neutral-600 leading-relaxed">
           
           {/* TL;DR Section */}
-          <div className="bg-primary/8 border-l-4 border-primary p-6 my-8 rounded-r-lg">
-            <h2 className="text-xl font-bold text-foreground mb-3">TL;DR: Key Takeaways</h2>
-            <ul className="list-disc pl-6 space-y-2 text-foreground">
+          <div className="rounded-2xl border border-hairline bg-mist p-6 my-8">
+            <h2 className="text-xl font-semibold tracking-[-0.02em] text-ink mb-3">TL;DR: Key Takeaways</h2>
+            <ul className="list-disc pl-6 space-y-2 text-ink">
               <li>YC startups use extremely narrow positioning to help visitors self-qualify in seconds</li>
               <li>Above-the-fold sections contain just 3-5 elements to reduce cognitive load by 40%</li>
               <li>Functional language outperforms aspirational copy by 35-50% in click-through rates</li>
@@ -62,26 +64,14 @@ export default function BlogPost() {
             After analyzing 200+ YC startup landing pages from the last 5 batches (W23 to W25), I've identified 10 patterns that appear across nearly every successful homepage. These aren't aesthetic choices; they're deliberate conversion optimization tactics that early-stage founders use to validate their products and drive signups.
           </p>
 
-          {/* Early CTA Box #1 */}
-          <div className="my-12 rounded-2xl overflow-hidden border border-slate-200 shadow-sm">
-            <div className="px-8 py-5 bg-linear-to-r from-primary to-violet-500">
-              <p className="text-xs font-semibold tracking-widest uppercase text-white/70 mb-1">Before you start</p>
-              <p className="text-xl font-bold text-white">Analyze your startup's landing page first</p>
-            </div>
-            <div className="p-8 bg-white">
-              <p className="text-slate-600 mb-6 leading-relaxed">
-                Before implementing these patterns, understand exactly where your current page is falling short. Book a free 20-minute call, and we'll walk through your landing page and tell you which of these 10 patterns will move the needle most for your business.
-              </p>
-              <Link href="/book-demo" className="inline-flex items-center gap-2 bg-linear-to-r from-primary to-violet-500 text-white font-semibold text-sm px-6 py-3 rounded-xl shadow-md shadow-primary/20 hover:shadow-primary/40 transition-all cursor-pointer">
-                Book a free call →
-              </Link>
-            </div>
-          </div>
+          <SignupCta eyebrow="Before you start" heading="Check your startup&apos;s landing page first">
+            Sign up free and run a site check before you implement these patterns, so you know exactly where your page falls short.
+          </SignupCta>
 
-          <h2 id="what-makes-yc-landing-pages-different" className="text-3xl font-bold text-foreground mt-12 mb-4">What Makes YC Landing Pages Different?</h2>
+          <h2 id="what-makes-yc-landing-pages-different" className="text-3xl font-semibold tracking-[-0.02em] text-ink mt-12 mb-4">What Makes YC Landing Pages Different?</h2>
           
           <p>
-            <strong><a href="https://www.ycombinator.com/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">Y Combinator</a></strong> startups operate under unique constraints: limited resources, unproven products, and the need to validate quickly. Their landing pages reflect this reality. While established companies can afford elaborate brand storytelling and complex designs, YC startups focus ruthlessly on one goal: helping visitors understand the value proposition and take action as fast as possible.
+            <strong><a href="https://www.ycombinator.com/" target="_blank" rel="noopener noreferrer" className="font-medium text-ink underline decoration-ink/25 underline-offset-4 hover:decoration-ink">Y Combinator</a></strong> startups operate under unique constraints: limited resources, unproven products, and the need to validate quickly. Their landing pages reflect this reality. While established companies can afford elaborate brand storytelling and complex designs, YC startups focus ruthlessly on one goal: helping visitors understand the value proposition and take action as fast as possible.
           </p>
 
           <p>
@@ -89,7 +79,7 @@ export default function BlogPost() {
           </p>
 
           {/* Pattern 1 */}
-          <h2 id="1-positioning-is-extremely-narrow" className="text-3xl font-bold text-foreground mt-12 mb-4">1. Positioning Is Extremely Narrow</h2>
+          <h2 id="1-positioning-is-extremely-narrow" className="text-3xl font-semibold tracking-[-0.02em] text-ink mt-12 mb-4">1. Positioning Is Extremely Narrow</h2>
           
           <p>
             <strong>The Pattern:</strong> YC startups don't say "we help businesses work better." They say "automated expense reports for construction companies" or "API monitoring for Python microservices."
@@ -99,17 +89,17 @@ export default function BlogPost() {
             Narrow positioning does three things instantly: tells visitors if this product is for them, eliminates comparison fatigue (you're not competing with everyone), and signals deep understanding of a specific problem.
           </p>
 
-          <div className="bg-muted/30 border-2 border-border p-6 my-8 rounded-lg">
+          <div className="bg-mist border border-hairline p-6 my-8 rounded-lg">
             <div className="grid md:grid-cols-2 gap-6">
               <div>
-                <p className="text-red-600 font-bold mb-2">❌ Vague Positioning:</p>
+                <p className="text-quiet font-bold mb-2">❌ Vague Positioning:</p>
                 <p className="italic">"Communication platform for teams"</p>
-                <p className="text-sm mt-2 text-muted-foreground">Too broad, could be anything</p>
+                <p className="text-sm mt-2 text-neutral-600">Too broad, could be anything</p>
               </div>
               <div>
-                <p className="text-green-600 font-bold mb-2">✅ YC-Style Positioning:</p>
+                <p className="text-ink font-bold mb-2">✅ YC-Style Positioning:</p>
                 <p className="italic">"Slack for remote sales teams managing 50+ daily client calls"</p>
-                <p className="text-sm mt-2 text-muted-foreground">Specific audience, clear use case</p>
+                <p className="text-sm mt-2 text-neutral-600">Specific audience, clear use case</p>
               </div>
             </div>
           </div>
@@ -119,23 +109,23 @@ export default function BlogPost() {
           </p>
 
           {/* Pattern 2 */}
-          <h2 id="2-above-the-fold-is-ruthlessly-simple" className="text-3xl font-bold text-foreground mt-12 mb-4">2. Above-the-Fold Is Ruthlessly Simple</h2>
+          <h2 id="2-above-the-fold-is-ruthlessly-simple" className="text-3xl font-semibold tracking-[-0.02em] text-ink mt-12 mb-4">2. Above-the-Fold Is Ruthlessly Simple</h2>
           
           <p>
             <strong>The Pattern:</strong> The hero section typically contains one headline, one subheadline, one CTA button, sometimes a product screenshot, and nothing else.
           </p>
 
           <p>
-            Cognitive load kills conversions. When visitors land on your page, they're deciding whether to stay in 3-5 seconds. Every extra element is a distraction that delays that decision. YC founders know they have seconds to communicate value, so they strip everything that doesn't directly contribute to that goal. If you want to learn more about how to increase conversions within 30 days, check out our <Link href="/blog/increase-conversion-rate-30-days" className="text-primary hover:underline font-medium">complete 30-day sprint guide</Link>.
+            Cognitive load kills conversions. When visitors land on your page, they're deciding whether to stay in 3-5 seconds. Every extra element is a distraction that delays that decision. YC founders know they have seconds to communicate value, so they strip everything that doesn't directly contribute to that goal. If you want to learn more about how to increase conversions within 30 days, check out our <Link href="/blog/increase-conversion-rate-30-days" className="font-medium text-ink underline decoration-ink/25 underline-offset-4 hover:decoration-ink">complete 30-day sprint guide</Link>.
           </p>
 
           <div className="my-6">
-            <h3 className="text-xl font-bold text-foreground mb-3">Conversion Data</h3>
+            <h3 className="text-xl font-semibold text-ink mb-3">Conversion Data</h3>
             <p>Landing pages with 3 or fewer above-the-fold elements convert 25-40% better than those with 6+ elements, according to multiple A/B tests from YC startups.</p>
           </div>
 
           <div className="my-6">
-            <h3 className="text-xl font-bold text-foreground mb-3">Common Mistakes to Avoid</h3>
+            <h3 className="text-xl font-semibold text-ink mb-3">Common Mistakes to Avoid</h3>
             <ul className="list-disc pl-6 space-y-2">
               <li>Multiple CTAs competing for attention</li>
               <li>Long paragraphs of explanation</li>
@@ -144,13 +134,13 @@ export default function BlogPost() {
             </ul>
           </div>
 
-          <div className="bg-primary/5 border-l-4 border-primary p-6 my-8 rounded-r-lg">
-            <p className="font-bold text-foreground mb-2">Implementation Tip:</p>
+          <div className="rounded-2xl border border-hairline bg-mist p-6 my-8">
+            <p className="font-bold text-ink mb-2">Implementation Tip:</p>
             <p>Remove everything from above-the-fold except your headline, one-line explanation, CTA, and optional product visual. If something doesn't directly help the visitor understand "what this is" and "why I should care," move it down the page.</p>
           </div>
 
           {/* Pattern 3 */}
-          <h2 id="3-language-is-functional-not-aspirational" className="text-3xl font-bold text-foreground mt-12 mb-4">3. Language Is Functional, Not Aspirational</h2>
+          <h2 id="3-language-is-functional-not-aspirational" className="text-3xl font-semibold tracking-[-0.02em] text-ink mt-12 mb-4">3. Language Is Functional, Not Aspirational</h2>
           
           <p>
             Instead of "Transform your workflow with AI-powered innovation," YC startups write "Turn customer calls into Salesforce deals automatically."
@@ -161,25 +151,25 @@ export default function BlogPost() {
           </p>
 
           <div className="my-8 overflow-x-auto">
-            <table className="w-full border-collapse border-2 border-border rounded-lg">
+            <table className="w-full border-collapse border border-hairline rounded-lg">
               <thead>
-                <tr className="bg-muted/50">
-                  <th className="border border-border p-4 text-left text-foreground font-bold">Aspirational (Weak)</th>
-                  <th className="border border-border p-4 text-left text-foreground font-bold">Functional (Strong)</th>
+                <tr className="bg-mist">
+                  <th className="border border-hairline p-4 text-left text-ink font-bold">Aspirational (Weak)</th>
+                  <th className="border border-hairline p-4 text-left text-ink font-bold">Functional (Strong)</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td className="border border-border p-4">"Empower your team to achieve breakthrough collaboration"</td>
-                  <td className="border border-border p-4">"Share design files and get feedback in one place"</td>
+                  <td className="border border-hairline p-4">"Empower your team to achieve breakthrough collaboration"</td>
+                  <td className="border border-hairline p-4">"Share design files and get feedback in one place"</td>
                 </tr>
-                <tr className="bg-muted/20">
-                  <td className="border border-border p-4">"Reimagine customer engagement with next-gen AI"</td>
-                  <td className="border border-border p-4">"AI chatbot that answers 70% of support tickets"</td>
+                <tr className="bg-mist">
+                  <td className="border border-hairline p-4">"Reimagine customer engagement with next-gen AI"</td>
+                  <td className="border border-hairline p-4">"AI chatbot that answers 70% of support tickets"</td>
                 </tr>
                 <tr>
-                  <td className="border border-border p-4">"Revolutionary analytics platform"</td>
-                  <td className="border border-border p-4">"See which features drive retention"</td>
+                  <td className="border border-hairline p-4">"Revolutionary analytics platform"</td>
+                  <td className="border border-hairline p-4">"See which features drive retention"</td>
                 </tr>
               </tbody>
             </table>
@@ -191,8 +181,8 @@ export default function BlogPost() {
 
           {/* Video Embed Section */}
           <div className="my-12">
-            <h3 className="text-2xl font-bold text-foreground mb-4">Watch: Real Examples of YC Landing Page Patterns</h3>
-            <div className="aspect-video w-full rounded-lg overflow-hidden border-2 border-border shadow-lg bg-muted/30">
+            <h3 className="text-2xl font-semibold text-ink mb-4">Watch: Real Examples of YC Landing Page Patterns</h3>
+            <div className="aspect-video w-full rounded-lg overflow-hidden border border-hairline bg-mist">
               {/* Replace the src below with your actual YouTube embed URL */}
               <iframe
                 className="w-full h-full"
@@ -202,13 +192,13 @@ export default function BlogPost() {
                 allowFullScreen
               ></iframe>
             </div>
-            <p className="text-sm text-muted-foreground mt-3 text-center">
+            <p className="text-sm text-neutral-600 mt-3 text-center">
               See these principles in action across real YC startup landing pages
             </p>
           </div>
 
           {/* Pattern 4 */}
-          <h2 id="4-product-comes-before-story" className="text-3xl font-bold text-foreground mt-12 mb-4">4. Product Comes Before Story</h2>
+          <h2 id="4-product-comes-before-story" className="text-3xl font-semibold tracking-[-0.02em] text-ink mt-12 mb-4">4. Product Comes Before Story</h2>
           
           <p>
             <strong>The Pattern:</strong> Most YC landing pages show you the product in the first screen, either through a screenshot/video of the actual interface, a live demo or interactive element, or a concrete "here's what it looks like" preview.
@@ -219,7 +209,7 @@ export default function BlogPost() {
           </p>
 
           <div className="my-6">
-            <h3 className="text-xl font-bold text-foreground mb-3">Why Showing Product First Works</h3>
+            <h3 className="text-xl font-semibold text-ink mb-3">Why Showing Product First Works</h3>
             <ul className="list-disc pl-6 space-y-2">
               <li>Builds immediate credibility (it's real, not vaporware)</li>
               <li>Helps visitors visualize using it</li>
@@ -235,7 +225,7 @@ export default function BlogPost() {
           {/* Mid-Article CTA Box #2 — removed checklist tool, replaced with book-demo nudge */}
 
           {/* Pattern 5 */}
-          <h2 id="5-proof-is-lightweight-but-targeted" className="text-3xl font-bold text-foreground mt-12 mb-4">5. Proof Is Lightweight but Targeted</h2>
+          <h2 id="5-proof-is-lightweight-but-targeted" className="text-3xl font-semibold tracking-[-0.02em] text-ink mt-12 mb-4">5. Proof Is Lightweight but Targeted</h2>
           
           <p>
             YC startups use social proof, but it's minimal (3-5 customer logos, not 50), relevant (companies their ICP recognizes), specific ("Used by 200+ YC companies"), and strategic (placed after the value proposition, not before).
@@ -245,24 +235,24 @@ export default function BlogPost() {
             Too much proof signals desperation. Targeted proof signals legitimacy. Early-stage buyers don't need to be convinced that 10,000 companies use you. They need to know that companies like them use you.
           </p>
 
-          <div className="bg-primary/8 border-l-4 border-primary p-6 my-8 rounded-r-lg">
-            <h3 className="text-xl font-bold text-foreground mb-3">Data-Backed Insight</h3>
-            <p className="text-foreground">Landing pages with 3-5 customer logos convert 18% better than those with 0 logos. But pages with 20+ logos actually convert 12% worse, according to analysis from YC's internal conversion studies.</p>
+          <div className="rounded-2xl border border-hairline bg-mist p-6 my-8">
+            <h3 className="text-xl font-semibold text-ink mb-3">Data-Backed Insight</h3>
+            <p className="text-ink">Landing pages with 3-5 customer logos convert 18% better than those with 0 logos. But pages with 20+ logos actually convert 12% worse, according to analysis from YC's internal conversion studies.</p>
           </div>
 
           <p>
-            If you're pre-traction, skip the social proof section entirely. Weak proof (no-name companies, friends doing you a favor) hurts more than it helps. Wait until you have 3-5 recognizable names in your ICP, then add them strategically. For more on building trust with early leads, see our <Link href="/blog/how-to-build-website-to-collect-leads" className="text-primary hover:underline font-medium">B2B lead generation guide</Link>.
+            If you're pre-traction, skip the social proof section entirely. Weak proof (no-name companies, friends doing you a favor) hurts more than it helps. Wait until you have 3-5 recognizable names in your ICP, then add them strategically. For more on building trust with early leads, see our <Link href="/blog/how-to-build-website-to-collect-leads" className="font-medium text-ink underline decoration-ink/25 underline-offset-4 hover:decoration-ink">B2B lead generation guide</Link>.
           </p>
 
           {/* Pattern 6 */}
-          <h2 id="6-pricing-is-often-visible-early" className="text-3xl font-bold text-foreground mt-12 mb-4">6. Pricing Is Often Visible Early</h2>
+          <h2 id="6-pricing-is-often-visible-early" className="text-3xl font-semibold tracking-[-0.02em] text-ink mt-12 mb-4">6. Pricing Is Often Visible Early</h2>
           
           <p>
             Many YC B2B startups show pricing on the homepage or link to it prominently. Even if they're not ready to list exact numbers, they signal pricing structure: "Free for teams under 10," "Starting at $49/month," or "Usage-based pricing."
           </p>
 
           <div className="my-6">
-            <h3 className="text-xl font-bold text-foreground mb-3">Why Showing Pricing Early Works</h3>
+            <h3 className="text-xl font-semibold text-ink mb-3">Why Showing Pricing Early Works</h3>
             <ul className="list-disc pl-6 space-y-2">
               <li><strong>Qualifies leads:</strong> Self-filtering saves time for everyone</li>
               <li><strong>Builds trust:</strong> Transparency is rare and valuable</li>
@@ -272,41 +262,41 @@ export default function BlogPost() {
           </div>
 
           <div className="my-8 overflow-x-auto">
-            <table className="w-full border-collapse border-2 border-border rounded-lg">
+            <table className="w-full border-collapse border border-hairline rounded-lg">
               <thead>
-                <tr className="bg-muted/50">
-                  <th className="border border-border p-4 text-left text-foreground font-bold">Business Model</th>
-                  <th className="border border-border p-4 text-left text-foreground font-bold">Show Pricing?</th>
-                  <th className="border border-border p-4 text-left text-foreground font-bold">How to Display</th>
+                <tr className="bg-mist">
+                  <th className="border border-hairline p-4 text-left text-ink font-bold">Business Model</th>
+                  <th className="border border-hairline p-4 text-left text-ink font-bold">Show Pricing?</th>
+                  <th className="border border-hairline p-4 text-left text-ink font-bold">How to Display</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td className="border border-border p-4">Product-led growth</td>
-                  <td className="border border-border p-4 text-green-600 font-semibold">Always</td>
-                  <td className="border border-border p-4">Full pricing page with tiers</td>
+                  <td className="border border-hairline p-4">Product-led growth</td>
+                  <td className="border border-hairline p-4 text-ink font-semibold">Always</td>
+                  <td className="border border-hairline p-4">Full pricing page with tiers</td>
                 </tr>
-                <tr className="bg-muted/20">
-                  <td className="border border-border p-4">Sales-led (SMB)</td>
-                  <td className="border border-border p-4 text-green-600 font-semibold">Yes</td>
-                  <td className="border border-border p-4">"Starting at $X/month"</td>
+                <tr className="bg-mist">
+                  <td className="border border-hairline p-4">Sales-led (SMB)</td>
+                  <td className="border border-hairline p-4 text-ink font-semibold">Yes</td>
+                  <td className="border border-hairline p-4">"Starting at $X/month"</td>
                 </tr>
                 <tr>
-                  <td className="border border-border p-4">Enterprise only</td>
-                  <td className="border border-border p-4 text-accent font-semibold">Optional</td>
-                  <td className="border border-border p-4">"Plans from $X" or range</td>
+                  <td className="border border-hairline p-4">Enterprise only</td>
+                  <td className="border border-hairline p-4 text-accent font-semibold">Optional</td>
+                  <td className="border border-hairline p-4">"Plans from $X" or range</td>
                 </tr>
-                <tr className="bg-muted/20">
-                  <td className="border border-border p-4">Complex/Custom</td>
-                  <td className="border border-border p-4 text-red-600 font-semibold">Maybe not</td>
-                  <td className="border border-border p-4">Pricing structure overview</td>
+                <tr className="bg-mist">
+                  <td className="border border-hairline p-4">Complex/Custom</td>
+                  <td className="border border-hairline p-4 text-quiet font-semibold">Maybe not</td>
+                  <td className="border border-hairline p-4">Pricing structure overview</td>
                 </tr>
               </tbody>
             </table>
           </div>
 
           {/* Pattern 7 */}
-          <h2 id="7-design-is-intentionally-plain" className="text-3xl font-bold text-foreground mt-12 mb-4">7. Design Is Intentionally Plain</h2>
+          <h2 id="7-design-is-intentionally-plain" className="text-3xl font-semibold tracking-[-0.02em] text-ink mt-12 mb-4">7. Design Is Intentionally Plain</h2>
           
           <p>
             YC landing pages are... kind of boring. They typically feature clean sans-serif fonts (Inter, SF Pro), lots of white space, minimal color (1-2 brand colors), simple layouts (single column, left-aligned text), and few animations.
@@ -317,37 +307,37 @@ export default function BlogPost() {
           </p>
 
           <div className="my-6">
-            <h3 className="text-xl font-bold text-foreground mb-3">Why Plain Design Wins for Startups</h3>
+            <h3 className="text-xl font-semibold text-ink mb-3">Why Plain Design Wins for Startups</h3>
             <div className="space-y-3">
-              <div className="border-l-4 border-primary pl-4">
-                <p className="font-bold text-foreground">Faster to build</p>
+              <div className="border-l-2 border-ink pl-4">
+                <p className="font-bold text-ink">Faster to build</p>
                 <p>Founders can ship in days, not weeks</p>
               </div>
-              <div className="border-l-4 border-primary pl-4">
-                <p className="font-bold text-foreground">Easier to test</p>
+              <div className="border-l-2 border-ink pl-4">
+                <p className="font-bold text-ink">Easier to test</p>
                 <p>Simple pages are easier to A/B test and iterate</p>
               </div>
-              <div className="border-l-4 border-primary pl-4">
-                <p className="font-bold text-foreground">Better performance</p>
+              <div className="border-l-2 border-ink pl-4">
+                <p className="font-bold text-ink">Better performance</p>
                 <p>Loads faster, works on all devices</p>
               </div>
-              <div className="border-l-4 border-primary pl-4">
-                <p className="font-bold text-foreground">Maintains focus</p>
+              <div className="border-l-2 border-ink pl-4">
+                <p className="font-bold text-ink">Maintains focus</p>
                 <p>No design elements competing with your message</p>
               </div>
-              <div className="border-l-4 border-primary pl-4">
-                <p className="font-bold text-foreground">Looks professional</p>
+              <div className="border-l-2 border-ink pl-4">
+                <p className="font-bold text-ink">Looks professional</p>
                 <p>Plain and functional beats fancy and confusing</p>
               </div>
             </div>
           </div>
 
           <p>
-            Many founders spend months perfecting their landing page design, adding parallax scrolling, custom illustrations, and complex animations, before they know if anyone even wants their product. YC startups do the opposite: ship a plain, functional page in 2 days, then improve it based on real user feedback. For rapid page speed optimization, check our <Link href="/blog/how-to-make-website-faster" className="text-primary hover:underline font-medium">complete speed guide</Link>.
+            Many founders spend months perfecting their landing page design, adding parallax scrolling, custom illustrations, and complex animations, before they know if anyone even wants their product. YC startups do the opposite: ship a plain, functional page in 2 days, then improve it based on real user feedback. For rapid page speed optimization, check our <Link href="/blog/how-to-make-website-faster" className="font-medium text-ink underline decoration-ink/25 underline-offset-4 hover:decoration-ink">complete speed guide</Link>.
           </p>
 
           {/* Pattern 8 */}
-          <h2 id="8-ctas-are-low-commitment" className="text-3xl font-bold text-foreground mt-12 mb-4">8. CTAs Are Low-Commitment</h2>
+          <h2 id="8-ctas-are-low-commitment" className="text-3xl font-semibold tracking-[-0.02em] text-ink mt-12 mb-4">8. CTAs Are Low-Commitment</h2>
           
           <p>
             YC startups rarely use high-pressure CTAs like "Buy Now" or "Start Your Trial." Instead, they use "See How It Works," "Get Started Free," "Book a Demo," "Try It Now," or "View Pricing."
@@ -357,8 +347,8 @@ export default function BlogPost() {
             The buttons are action-oriented but pressure-free, specific about what happens next, and often paired with "no credit card required" or similar de-risking language.
           </p>
 
-          <div className="bg-muted/30 border-2 border-border p-6 my-8 rounded-lg">
-            <h3 className="text-xl font-bold text-foreground mb-3">The Testing Data</h3>
+          <div className="bg-mist border border-hairline p-6 my-8 rounded-lg">
+            <h3 className="text-xl font-semibold text-ink mb-3">The Testing Data</h3>
             <p>Changing CTAs from "Start Free Trial" to "See How It Works" increased clicks by 35-50% across multiple YC startups, according to internal conversion tests.</p>
           </div>
 
@@ -367,7 +357,7 @@ export default function BlogPost() {
           </p>
 
           <div className="my-6">
-            <h3 className="text-xl font-bold text-foreground mb-3">Match CTA to Journey Stage</h3>
+            <h3 className="text-xl font-semibold text-ink mb-3">Match CTA to Journey Stage</h3>
             <ul className="list-disc pl-6 space-y-2">
               <li><strong>First visit:</strong> "See How It Works," "View Demo," "Learn More"</li>
               <li><strong>Engaged:</strong> "Get Started Free," "Try It Now"</li>
@@ -376,7 +366,7 @@ export default function BlogPost() {
           </div>
 
           {/* Pattern 9 */}
-          <h2 id="9-pages-are-built-to-evolve-not-be-perfect" className="text-3xl font-bold text-foreground mt-12 mb-4">9. Pages Are Built to Evolve, Not Be Perfect</h2>
+          <h2 id="9-pages-are-built-to-evolve-not-be-perfect" className="text-3xl font-semibold tracking-[-0.02em] text-ink mt-12 mb-4">9. Pages Are Built to Evolve, Not Be Perfect</h2>
           
           <p>
             YC landing pages ship fast and iterate constantly. They're version 1.0 mindset (good enough to test), component-based (easy to swap sections), A/B tested aggressively, and updated based on actual user behavior.
@@ -386,13 +376,13 @@ export default function BlogPost() {
             Perfection is the enemy of learning. YC founders know their first landing page will be wrong in multiple ways. The goal isn't to get it perfect; it's to get it live and start learning.
           </p>
 
-          <div className="bg-primary/5 border-l-4 border-primary p-6 my-8 rounded-r-lg">
-            <p className="font-bold text-foreground mb-2">Real Example:</p>
+          <div className="rounded-2xl border border-hairline bg-mist p-6 my-8">
+            <p className="font-bold text-ink mb-2">Real Example:</p>
             <p>Retool (YC W17) changed their homepage messaging 47 times in their first year. Each change was a small test based on user conversations. By month 12, their conversion rate was 4x higher than month 1.</p>
           </div>
 
           <div className="my-6">
-            <h3 className="text-xl font-bold text-foreground mb-3">What to Track and Iterate</h3>
+            <h3 className="text-xl font-semibold text-ink mb-3">What to Track and Iterate</h3>
             <ul className="list-disc pl-6 space-y-2">
               <li>Click-through rate on your primary CTA</li>
               <li>Time on page and scroll depth</li>
@@ -403,11 +393,11 @@ export default function BlogPost() {
           </div>
 
           <p>
-            Set up analytics from day one. Then change one thing per week based on what you learn. After 12 weeks, your landing page will be dramatically better than if you'd spent 12 weeks trying to make it perfect upfront. For a systematic optimization approach, see our <Link href="/blog/how-to-use-ai-to-improve-conversion-rates" className="text-primary hover:underline font-medium">AI optimization guide</Link>.
+            Set up analytics from day one. Then change one thing per week based on what you learn. After 12 weeks, your landing page will be dramatically better than if you'd spent 12 weeks trying to make it perfect upfront. For a systematic optimization approach, see our <Link href="/blog/how-to-use-ai-to-improve-conversion-rates" className="font-medium text-ink underline decoration-ink/25 underline-offset-4 hover:decoration-ink">AI optimization guide</Link>.
           </p>
 
           {/* Pattern 10 */}
-          <h2 id="10-the-hidden-meta-learning" className="text-3xl font-bold text-foreground mt-12 mb-4">10. The Hidden Meta-Learning</h2>
+          <h2 id="10-the-hidden-meta-learning" className="text-3xl font-semibold tracking-[-0.02em] text-ink mt-12 mb-4">10. The Hidden Meta-Learning</h2>
           
           <p>
             Here's what's really happening: YC startups aren't following a landing page formula because someone told them to. They're following these patterns because they work for early-stage companies.
@@ -418,31 +408,31 @@ export default function BlogPost() {
           </p>
 
           <div className="my-6">
-            <h3 className="text-xl font-bold text-foreground mb-3">The Evolution Path</h3>
+            <h3 className="text-xl font-semibold text-ink mb-3">The Evolution Path</h3>
             <p>As YC companies grow and find product-market fit, their landing pages evolve. They add more sophisticated design, longer-form content, brand storytelling, and advanced features. But they start with the essentials.</p>
           </div>
 
-          <div className="bg-primary/8 border-l-4 border-primary p-6 my-8 rounded-r-lg">
-            <h3 className="text-xl font-bold text-foreground mb-3">The Mistake Most Founders Make</h3>
-            <p className="text-foreground">They try to build a landing page that looks like a Series B company when they're pre-seed. They copy Notion's beautiful homepage when they should be copying Notion's first homepage (which was plain, functional, and very similar to the patterns above).</p>
+          <div className="rounded-2xl border border-hairline bg-mist p-6 my-8">
+            <h3 className="text-xl font-semibold text-ink mb-3">The Mistake Most Founders Make</h3>
+            <p className="text-ink">They try to build a landing page that looks like a Series B company when they're pre-seed. They copy Notion's beautiful homepage when they should be copying Notion's first homepage (which was plain, functional, and very similar to the patterns above).</p>
           </div>
 
           <p>
-            Accept that your landing page should match your stage. If you're pre-product-market-fit, embrace simplicity. Your goal is validation, not awards. Once you've found PMF and have resources, then invest in sophisticated design and brand storytelling. For a complete implementation framework, check our <Link href="/blog/website-checklist-how-to-build-landing-page-that-converts" className="text-primary hover:underline font-medium">landing page checklist guide</Link>.
+            Accept that your landing page should match your stage. If you're pre-product-market-fit, embrace simplicity. Your goal is validation, not awards. Once you've found PMF and have resources, then invest in sophisticated design and brand storytelling. For a complete implementation framework, check our <Link href="/blog/website-checklist-how-to-build-landing-page-that-converts" className="font-medium text-ink underline decoration-ink/25 underline-offset-4 hover:decoration-ink">landing page checklist guide</Link>.
           </p>
 
           {/* Template Section */}
-          <h2 id="a-yc-style-landing-page-template" className="text-3xl font-bold text-foreground mt-12 mb-4">A YC-Style Landing Page Template</h2>
+          <h2 id="a-yc-style-landing-page-template" className="text-3xl font-semibold tracking-[-0.02em] text-ink mt-12 mb-4">A YC-Style Landing Page Template</h2>
           
           <p>
             Here's what a YC-style landing page structure looks like:
           </p>
 
-          <div className="my-8 bg-muted/30 border-2 border-border p-6 rounded-lg font-mono text-sm">
+          <div className="my-8 bg-mist border border-hairline p-6 rounded-lg font-mono text-sm">
             <div className="space-y-4">
               <div>
-                <p className="font-bold text-foreground mb-2">Above the Fold:</p>
-                <div className="pl-4 space-y-1 text-muted-foreground">
+                <p className="font-bold text-ink mb-2">Above the Fold:</p>
+                <div className="pl-4 space-y-1 text-neutral-600">
                   <p>[Logo] ..................... [CTA: See Demo]</p>
                   <p></p>
                   <p>Headline: [What you do for whom]</p>
@@ -455,8 +445,8 @@ export default function BlogPost() {
                 </div>
               </div>
               <div>
-                <p className="font-bold text-foreground mb-2">Below the Fold:</p>
-                <div className="pl-4 space-y-1 text-muted-foreground">
+                <p className="font-bold text-ink mb-2">Below the Fold:</p>
+                <div className="pl-4 space-y-1 text-neutral-600">
                   <p>[3-5 Customer Logos]</p>
                   <p></p>
                   <p>How It Works</p>
@@ -484,53 +474,53 @@ export default function BlogPost() {
           </p>
 
           {/* Implementation Section */}
-          <h2 id="action-steps-improve-your-landing-page-this-week" className="text-3xl font-bold text-foreground mt-12 mb-4">Action Steps: Improve Your Landing Page This Week</h2>
+          <h2 id="action-steps-improve-your-landing-page-this-week" className="text-3xl font-semibold tracking-[-0.02em] text-ink mt-12 mb-4">Action Steps: Improve Your Landing Page This Week</h2>
           
           <div className="my-6">
-            <h3 className="text-xl font-bold text-foreground mb-3">7-Day Implementation Plan</h3>
+            <h3 className="text-xl font-semibold text-ink mb-3">7-Day Implementation Plan</h3>
             
             <div className="space-y-4">
-              <div className="border-l-4 border-primary pl-4">
-                <p className="font-bold text-foreground">Day 1: Audit Your Current Page</p>
-                <p>Is your positioning narrow enough? Is above-the-fold cluttered? Is your language functional or aspirational? Use <a href="https://www.talktomedata.com/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">Talk to me Data</a> to understand the current state of your homepage.</p>
+              <div className="border-l-2 border-ink pl-4">
+                <p className="font-bold text-ink">Day 1: Audit Your Current Page</p>
+                <p>Is your positioning narrow enough? Is above-the-fold cluttered? Is your language functional or aspirational? Use <a href="https://www.talktomedata.com/" target="_blank" rel="noopener noreferrer" className="font-medium text-ink underline decoration-ink/25 underline-offset-4 hover:decoration-ink">Talk to me Data</a> to understand the current state of your homepage.</p>
               </div>
               
-              <div className="border-l-4 border-primary pl-4">
-                <p className="font-bold text-foreground">Day 2: Simplify</p>
+              <div className="border-l-2 border-ink pl-4">
+                <p className="font-bold text-ink">Day 2: Simplify</p>
                 <p>Remove 50% of what's above the fold. Rewrite your headline to be more specific. Replace aspirational language with concrete outcomes.</p>
               </div>
               
-              <div className="border-l-4 border-primary pl-4">
-                <p className="font-bold text-foreground">Day 3: Show Product</p>
+              <div className="border-l-2 border-ink pl-4">
+                <p className="font-bold text-ink">Day 3: Show Product</p>
                 <p>Move product visuals up the page. Add a demo video if you don't have one. Make sure visitors see what they're getting.</p>
               </div>
               
-              <div className="border-l-4 border-primary pl-4">
-                <p className="font-bold text-foreground">Day 4: De-Risk</p>
+              <div className="border-l-2 border-ink pl-4">
+                <p className="font-bold text-ink">Day 4: De-Risk</p>
                 <p>Change CTAs to lower commitment. Add "no credit card required" if relevant. Show pricing or pricing structure.</p>
               </div>
               
-              <div className="border-l-4 border-primary pl-4">
-                <p className="font-bold text-foreground">Day 5: Set Up Tracking</p>
+              <div className="border-l-2 border-ink pl-4">
+                <p className="font-bold text-ink">Day 5: Set Up Tracking</p>
                 <p>Install analytics if you haven't. Track CTA clicks and drop-offs. Set a baseline conversion rate.</p>
               </div>
               
-              <div className="border-l-4 border-primary pl-4">
-                <p className="font-bold text-foreground">Days 6-7: Test and Iterate</p>
+              <div className="border-l-2 border-ink pl-4">
+                <p className="font-bold text-ink">Days 6-7: Test and Iterate</p>
                 <p>Pick one thing to test this week. Implement the change. Measure results.</p>
               </div>
             </div>
           </div>
 
           {/* AI Agent punchline */}
-          <div className="my-12 rounded-2xl overflow-hidden border border-slate-200">
-            <div className="px-8 py-6 bg-linear-to-r from-primary to-violet-500">
+          <div className="my-12 rounded-2xl overflow-hidden border border-hairline">
+            <div className="px-8 py-6 bg-ink">
               <p className="text-xs font-semibold tracking-widest uppercase text-white/70 mb-2">The shortcut</p>
               <p className="text-2xl font-bold text-white leading-snug">
                 Pattern #8 on autopilot: an AI agent that converts hesitating visitors before they leave
               </p>
             </div>
-            <div className="px-8 py-6 bg-white space-y-4 text-slate-600 text-base leading-relaxed">
+            <div className="px-8 py-6 bg-white space-y-4 text-neutral-600 text-base leading-relaxed">
               <p>
                 The hardest YC pattern to implement manually is #8: low-commitment CTAs that reduce friction at the right moment. The challenge: you can't be live on your landing page at midnight when a warm visitor is deciding whether to sign up.
               </p>
@@ -545,63 +535,63 @@ export default function BlogPost() {
                   ["Captures leads from visitors not yet ready to sign up", "Many YC-stage visitors are just researching. The agent captures their email with a low-commitment offer and follows up automatically."],
                 ].map(([title, desc]) => (
                   <li key={title} className="flex gap-3">
-                    <span className="mt-1 w-5 h-5 rounded-full bg-linear-to-br from-primary to-violet-500 flex items-center justify-center shrink-0">
+                    <span className="mt-1 w-5 h-5 rounded-full bg-ink flex items-center justify-center shrink-0">
                       <svg className="w-3 h-3 text-white" fill="none" viewBox="0 0 12 12"><path d="M2 6l3 3 5-5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>
                     </span>
-                    <span><strong className="text-slate-800">{title}.</strong> {desc}</span>
+                    <span><strong className="text-ink">{title}.</strong> {desc}</span>
                   </li>
                 ))}
               </ul>
-              <p className="pt-2 text-slate-500">
+              <p className="pt-2 text-quiet">
                 YC landing pages are built to learn fast. An AI agent accelerates that: every question a visitor asks is a signal about what your page isn't communicating clearly enough. You get the conversion and the insight.
               </p>
               <div className="pt-4">
-                <Link href="/book-demo" className="inline-flex items-center gap-2 bg-linear-to-r from-primary to-violet-500 text-white font-semibold text-sm px-6 py-3 rounded-xl shadow-md shadow-primary/20 hover:shadow-primary/40 transition-all cursor-pointer">
-                  Book a free call →
-                </Link>
+                <a href={SIGNUP_URL} className="inline-flex items-center gap-2 bg-ink text-white font-semibold text-sm px-6 py-3 rounded-xl transition-all cursor-pointer">
+                  Sign up free →
+                </a>
               </div>
             </div>
           </div>
 
           {/* Tools & Resources */}
-          <h2 id="tools-and-resources" className="text-3xl font-bold text-foreground mt-12 mb-4">Tools and Resources</h2>
+          <h2 id="tools-and-resources" className="text-3xl font-semibold tracking-[-0.02em] text-ink mt-12 mb-4">Tools and Resources</h2>
           
           <div className="my-8 overflow-x-auto">
-            <table className="w-full border-collapse border-2 border-border rounded-lg">
+            <table className="w-full border-collapse border border-hairline rounded-lg">
               <thead>
-                <tr className="bg-muted/50">
-                  <th className="border border-border p-4 text-left text-foreground font-bold">Category</th>
-                  <th className="border border-border p-4 text-left text-foreground font-bold">Tool</th>
-                  <th className="border border-border p-4 text-left text-foreground font-bold">Use Case</th>
+                <tr className="bg-mist">
+                  <th className="border border-hairline p-4 text-left text-ink font-bold">Category</th>
+                  <th className="border border-hairline p-4 text-left text-ink font-bold">Tool</th>
+                  <th className="border border-hairline p-4 text-left text-ink font-bold">Use Case</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td className="border border-border p-4">Build Fast</td>
-                  <td className="border border-border p-4">Vercel, Tailwind UI</td>
-                  <td className="border border-border p-4">Deploy in minutes</td>
+                  <td className="border border-hairline p-4">Build Fast</td>
+                  <td className="border border-hairline p-4">Vercel, Tailwind UI</td>
+                  <td className="border border-hairline p-4">Deploy in minutes</td>
                 </tr>
-                <tr className="bg-muted/20">
-                  <td className="border border-border p-4">Analytics</td>
-                  <td className="border border-border p-4">PostHog, Google Analytics</td>
-                  <td className="border border-border p-4">Track conversions</td>
+                <tr className="bg-mist">
+                  <td className="border border-hairline p-4">Analytics</td>
+                  <td className="border border-hairline p-4">PostHog, Google Analytics</td>
+                  <td className="border border-hairline p-4">Track conversions</td>
                 </tr>
                 <tr>
-                  <td className="border border-border p-4">A/B Testing</td>
-                  <td className="border border-border p-4">PostHog, Optimizely</td>
-                  <td className="border border-border p-4">Test changes</td>
+                  <td className="border border-hairline p-4">A/B Testing</td>
+                  <td className="border border-hairline p-4">PostHog, Optimizely</td>
+                  <td className="border border-hairline p-4">Test changes</td>
                 </tr>
-                <tr className="bg-muted/20">
-                  <td className="border border-border p-4">Inspiration</td>
-                  <td className="border border-border p-4">YC Company Directory</td>
-                  <td className="border border-border p-4">Study examples</td>
+                <tr className="bg-mist">
+                  <td className="border border-hairline p-4">Inspiration</td>
+                  <td className="border border-hairline p-4">YC Company Directory</td>
+                  <td className="border border-hairline p-4">Study examples</td>
                 </tr>
               </tbody>
             </table>
           </div>
 
           {/* Conclusion */}
-          <h2 id="the-real-secret" className="text-3xl font-bold text-foreground mt-12 mb-4">The Real Secret</h2>
+          <h2 id="the-real-secret" className="text-3xl font-semibold tracking-[-0.02em] text-ink mt-12 mb-4">The Real Secret</h2>
           
           <p>
             The real secret of YC landing pages isn't any one technique; it's the mindset shift. Most founders treat their landing page as a marketing asset to perfect. YC founders treat it as a learning tool to iterate.
@@ -611,23 +601,13 @@ export default function BlogPost() {
             Your first landing page will be wrong. Your tenth landing page will still have problems. That's okay. The goal isn't to build the perfect landing page. The goal is to build a landing page that helps you learn what messaging resonates, what converts, and what doesn't, as fast as possible.
           </p>
 
-          <p className="text-xl font-medium text-foreground/90">
+          <p className="text-xl font-medium text-ink">
             Ship it, measure it, improve it, repeat. That's what YC startups do. That's what works.
           </p>
 
-          {/* Final CTA */}
-          <div className="relative overflow-hidden p-8 my-12 rounded-2xl bg-linear-to-br from-primary via-blue-600 to-violet-500">
-            <div className="absolute inset-0 opacity-10" style={{ backgroundImage: "radial-gradient(circle, white 1px, transparent 1px)", backgroundSize: "24px 24px" }} />
-            <div className="relative z-10">
-              <p className="text-2xl font-bold text-white mb-3">Want an AI agent on your landing page?</p>
-              <p className="text-white/80 mb-6 max-w-xl">
-                Book a free 20-minute call. We'll review your current page, identify your biggest conversion gap, and show you how a custom-built agent can handle it, live within 24 hours.
-              </p>
-              <Link href="/book-demo" className="inline-flex items-center gap-2 bg-white text-primary font-semibold text-sm px-6 py-3 rounded-xl hover:bg-white/90 transition-colors cursor-pointer">
-                Book a free call →
-              </Link>
-            </div>
-          </div>
+          <SignupCta heading="Want an AI agent on your landing page?">
+            Sign up free, then we&apos;ll build an agent that answers questions, handles objections and books calls while visitors are still on your page.
+          </SignupCta>
         </div>
       </div>
     </BlogPostShell>

@@ -1,5 +1,7 @@
 import Link from "next/link"
 import { Figure } from "@/components/blog/figure"
+import { SignupCta } from "@/components/blog/signup-cta"
+import { SIGNUP_URL } from "@/lib/links"
 import { BlogPostShell } from "@/components/blog/post-shell"
 import { buildPostMetadata, type Faq } from "@/lib/blog"
 
@@ -35,12 +37,12 @@ export default function BlogPost() {
   return (
     <BlogPostShell slug={SLUG} faqs={faqs}>
       <div className="prose prose-lg max-w-none">
-        <div className="space-y-6 text-muted-foreground leading-relaxed">
+        <div className="space-y-6 text-neutral-600 leading-relaxed">
           
           {/* TL;DR Section */}
-          <div className="bg-primary/8 border-l-4 border-primary p-6 my-8 rounded-r-lg">
-            <h2 className="text-xl font-bold text-foreground mb-3">TL;DR: Key Takeaways</h2>
-            <ul className="list-disc pl-6 space-y-2 text-foreground">
+          <div className="rounded-2xl border border-hairline bg-mist p-6 my-8">
+            <h2 className="text-xl font-semibold tracking-[-0.02em] text-ink mb-3">TL;DR: Key Takeaways</h2>
+            <ul className="list-disc pl-6 space-y-2 text-ink">
               <li>B2B lead generation landing pages convert 5-15% on average vs 2-3% for general websites</li>
               <li>Single-purpose pages with no navigation outperform multi-page funnels by 25-40%</li>
               <li>Forms with 3-5 fields balance conversion rate (higher with fewer) and lead quality (higher with more)</li>
@@ -51,7 +53,7 @@ export default function BlogPost() {
           </div>
 
           {/* Introduction with definitions */}
-          <h2 id="what-is-a-lead-generation-landing-page" className="text-3xl font-bold text-foreground mt-12 mb-4">What is a Lead Generation Landing Page?</h2>
+          <h2 id="what-is-a-lead-generation-landing-page" className="text-3xl font-semibold tracking-[-0.02em] text-ink mt-12 mb-4">What is a Lead Generation Landing Page?</h2>
           
           <p>
             A <strong>lead generation landing page</strong> is a standalone web page specifically designed to capture visitor information (typically name, email, company) in exchange for something of value, such as content, demos, consultations, or free trials. Unlike general website pages with multiple navigation options and purposes, lead generation pages have a single conversion goal: getting visitors to complete a form and become leads in your sales pipeline.
@@ -62,94 +64,94 @@ export default function BlogPost() {
           </p>
 
 
-          <h2 id="why-do-b2b-companies-need-dedicated-lead-generation-pages" className="text-3xl font-bold text-foreground mt-12 mb-4">Why Do B2B Companies Need Dedicated Lead Generation Pages?</h2>
+          <h2 id="why-do-b2b-companies-need-dedicated-lead-generation-pages" className="text-3xl font-semibold tracking-[-0.02em] text-ink mt-12 mb-4">Why Do B2B Companies Need Dedicated Lead Generation Pages?</h2>
           
           <p>
             Your homepage serves multiple audiences: customers, partners, investors, job seekers, media. This dilutes focus and reduces conversion rates. Dedicated landing pages solve this by creating singular, focused experiences optimized for one audience with one goal.
           </p>
 
           <p>
-            Consider the data: According to <a href="https://www.hubspot.com" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">HubSpot</a>, companies with 10-15 landing pages see 55% more leads than those with fewer than 10. Companies with 40+ landing pages generate 12x more leads than those with 1-5 pages. Why? Because each landing page targets a specific audience segment, campaign, or offer, matching message to visitor intent precisely.
+            Consider the data: According to <a href="https://www.hubspot.com" target="_blank" rel="noopener noreferrer" className="font-medium text-ink underline decoration-ink/25 underline-offset-4 hover:decoration-ink">HubSpot</a>, companies with 10-15 landing pages see 55% more leads than those with fewer than 10. Companies with 40+ landing pages generate 12x more leads than those with 1-5 pages. Why? Because each landing page targets a specific audience segment, campaign, or offer, matching message to visitor intent precisely.
           </p>
 
           <div className="my-8 overflow-x-auto">
-            <table className="w-full border-collapse border-2 border-border rounded-lg">
+            <table className="w-full border-collapse border border-hairline rounded-lg">
               <thead>
-                <tr className="bg-muted/50">
-                  <th className="border border-border p-4 text-left text-foreground font-bold">Page Type</th>
-                  <th className="border border-border p-4 text-left text-foreground font-bold">Average Conversion Rate</th>
-                  <th className="border border-border p-4 text-left text-foreground font-bold">Primary Purpose</th>
+                <tr className="bg-mist">
+                  <th className="border border-hairline p-4 text-left text-ink font-bold">Page Type</th>
+                  <th className="border border-hairline p-4 text-left text-ink font-bold">Average Conversion Rate</th>
+                  <th className="border border-hairline p-4 text-left text-ink font-bold">Primary Purpose</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td className="border border-border p-4">Homepage</td>
-                  <td className="border border-border p-4 text-red-600">1-2%</td>
-                  <td className="border border-border p-4">Multiple (awareness, navigation, education)</td>
+                  <td className="border border-hairline p-4">Homepage</td>
+                  <td className="border border-hairline p-4 text-quiet">1-2%</td>
+                  <td className="border border-hairline p-4">Multiple (awareness, navigation, education)</td>
                 </tr>
-                <tr className="bg-muted/20">
-                  <td className="border border-border p-4">General Service Page</td>
-                  <td className="border border-border p-4 text-orange-600">2-4%</td>
-                  <td className="border border-border p-4">Education and soft lead capture</td>
+                <tr className="bg-mist">
+                  <td className="border border-hairline p-4">General Service Page</td>
+                  <td className="border border-hairline p-4 text-quiet">2-4%</td>
+                  <td className="border border-hairline p-4">Education and soft lead capture</td>
                 </tr>
                 <tr>
-                  <td className="border border-border p-4 font-semibold">Dedicated Landing Page</td>
-                  <td className="border border-border p-4 text-green-600 font-semibold">5-15%</td>
-                  <td className="border border-border p-4">Single conversion goal (lead capture)</td>
+                  <td className="border border-hairline p-4 font-semibold">Dedicated Landing Page</td>
+                  <td className="border border-hairline p-4 text-ink font-semibold">5-15%</td>
+                  <td className="border border-hairline p-4">Single conversion goal (lead capture)</td>
                 </tr>
-                <tr className="bg-muted/20">
-                  <td className="border border-border p-4">Optimized Landing Page</td>
-                  <td className="border border-border p-4 text-green-800 font-semibold">15-25%</td>
-                  <td className="border border-border p-4">Highly targeted, tested, optimized</td>
+                <tr className="bg-mist">
+                  <td className="border border-hairline p-4">Optimized Landing Page</td>
+                  <td className="border border-hairline p-4 text-ink font-semibold">15-25%</td>
+                  <td className="border border-hairline p-4">Highly targeted, tested, optimized</td>
                 </tr>
               </tbody>
             </table>
           </div>
 
           {/* LeadLanding.dev recommendation */}
-          <div className="my-12 rounded-2xl overflow-hidden border border-slate-200 shadow-sm">
-            <div className="bg-linear-to-r from-primary to-violet-500 px-8 py-5">
+          <div className="my-12 rounded-2xl overflow-hidden border border-hairline">
+            <div className="bg-ink px-8 py-5">
               <p className="text-white/80 text-xs font-semibold uppercase tracking-widest mb-1">Quick start</p>
               <p className="text-xl font-bold text-white">Don't have a domain yet? Skip it entirely.</p>
             </div>
             <div className="bg-white px-8 py-6">
-              <p className="text-foreground mb-4 leading-relaxed">
+              <p className="text-ink mb-4 leading-relaxed">
                 If you just need a page that captures leads, without buying a domain, setting up hosting, or touching code,{" "}
-                <a href="https://www.leadlanding.dev/" target="_blank" rel="noopener noreferrer" className="text-primary font-semibold hover:underline">LeadLanding.dev</a>{" "}
+                <a href="https://www.leadlanding.dev/" target="_blank" rel="noopener noreferrer" className="font-semibold text-ink underline decoration-ink/25 underline-offset-4 hover:decoration-ink">LeadLanding.dev</a>{" "}
                 lets you launch a lead-collecting landing page in minutes. You get a built-in form, a shareable link, and leads delivered straight to your inbox.
               </p>
-              <ul className="space-y-2 mb-6 text-sm text-foreground">
-                <li className="flex items-center gap-2"><span className="text-primary font-bold">✓</span> No domain purchase required</li>
-                <li className="flex items-center gap-2"><span className="text-primary font-bold">✓</span> Built-in lead capture form, live immediately</li>
-                <li className="flex items-center gap-2"><span className="text-primary font-bold">✓</span> Ideal for validating an idea before committing to a full website</li>
+              <ul className="space-y-2 mb-6 text-sm text-ink">
+                <li className="flex items-center gap-2"><span className="text-ink font-bold">✓</span> No domain purchase required</li>
+                <li className="flex items-center gap-2"><span className="text-ink font-bold">✓</span> Built-in lead capture form, live immediately</li>
+                <li className="flex items-center gap-2"><span className="text-ink font-bold">✓</span> Ideal for validating an idea before committing to a full website</li>
               </ul>
               <a
                 href="https://www.leadlanding.dev/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 bg-linear-to-r from-primary to-violet-500 text-white font-semibold text-sm px-6 py-3 rounded-xl hover:opacity-90 transition-opacity"
+                className="inline-flex items-center gap-2 bg-ink text-white font-semibold text-sm px-6 py-3 rounded-xl hover:opacity-90 transition-opacity"
               >
                 Launch a lead page for free →
               </a>
             </div>
           </div>
 
-          <h2 id="how-to-structure-a-high-converting-b2b-landing-page" className="text-3xl font-bold text-foreground mt-12 mb-4">How to Structure a High-Converting B2B Landing Page</h2>
+          <h2 id="how-to-structure-a-high-converting-b2b-landing-page" className="text-3xl font-semibold tracking-[-0.02em] text-ink mt-12 mb-4">How to Structure a High-Converting B2B Landing Page</h2>
           
           <p>
             Landing page structure determines visitor attention flow and conversion probability. B2B buyers are sophisticated: they scan pages in F-patterns, evaluate credibility signals, and compare alternatives. Your structure must guide this journey systematically.
           </p>
 
           <div className="my-6">
-            <h3 className="text-xl font-bold text-foreground mb-3">The 7-Section Framework for Lead Generation Pages</h3>
+            <h3 className="text-xl font-semibold text-ink mb-3">The 7-Section Framework for Lead Generation Pages</h3>
             
             <div className="space-y-6">
-              <div className="border-l-4 border-primary pl-6">
-                <h4 className="text-lg font-bold text-foreground mb-2">1. Hero Section (Above the Fold)</h4>
+              <div className="border-l-2 border-ink pl-6">
+                <h4 className="text-lg font-bold text-ink mb-2">1. Hero Section (Above the Fold)</h4>
                 <p className="mb-3">
                   Your hero section determines whether visitors stay or leave. You have 3-5 seconds to communicate value.
                 </p>
-                <p className="font-semibold text-foreground mb-2">Essential Elements:</p>
+                <p className="font-semibold text-ink mb-2">Essential Elements:</p>
                 <ul className="list-disc pl-6 space-y-2">
                   <li><strong>Headline:</strong> Clear, benefit-focused statement of what you offer. Use the formula: [Specific Outcome] + [For Whom] + [Timeframe/Method]</li>
                   <li><strong>Subheadline:</strong> Expand on the headline with supporting benefits or address primary objection</li>
@@ -157,20 +159,20 @@ export default function BlogPost() {
                   <li><strong>Primary CTA:</strong> Above-the-fold button with action-oriented copy</li>
                   <li><strong>Trust indicator:</strong> Customer logos, certification badges, or quick statistic</li>
                 </ul>
-                <div className="bg-muted/30 border-2 border-border p-6 my-4 rounded-lg">
-                  <p className="text-sm font-semibold text-foreground mb-2">Example of a Poor Headline:</p>
+                <div className="bg-mist border border-hairline p-6 my-4 rounded-lg">
+                  <p className="text-sm font-semibold text-ink mb-2">Example of a Poor Headline:</p>
                   <p className="italic mb-4">"Leading CRM Platform for Modern Businesses"</p>
-                  <p className="text-sm font-semibold text-foreground mb-2">Example of an Effective Headline:</p>
+                  <p className="text-sm font-semibold text-ink mb-2">Example of an Effective Headline:</p>
                   <p className="italic">"Close 40% More Deals with AI-Powered Sales Automation, Built for B2B Teams Under 50"</p>
                 </div>
               </div>
 
-              <div className="border-l-4 border-primary pl-6">
-                <h4 className="text-lg font-bold text-foreground mb-2">2. Social Proof Section</h4>
+              <div className="border-l-2 border-ink pl-6">
+                <h4 className="text-lg font-bold text-ink mb-2">2. Social Proof Section</h4>
                 <p className="mb-3">
                   B2B buyers are risk-averse. Social proof reduces perceived risk by demonstrating others' success.
                 </p>
-                <p className="font-semibold text-foreground mb-2">Include:</p>
+                <p className="font-semibold text-ink mb-2">Include:</p>
                 <ul className="list-disc pl-6 space-y-2">
                   <li><strong>Customer logos:</strong> Recognizable brands (6-12 logos, prioritize household names)</li>
                   <li><strong>Results-focused testimonials:</strong> Specific outcomes with names, photos, companies, titles</li>
@@ -179,12 +181,12 @@ export default function BlogPost() {
                 </ul>
               </div>
 
-              <div className="border-l-4 border-primary pl-6">
-                <h4 className="text-lg font-bold text-foreground mb-2">3. Benefits Section (Not Features)</h4>
+              <div className="border-l-2 border-ink pl-6">
+                <h4 className="text-lg font-bold text-ink mb-2">3. Benefits Section (Not Features)</h4>
                 <p className="mb-3">
                   B2B buyers care about outcomes, not technical specifications. Translate features into business benefits.
                 </p>
-                <p className="font-semibold text-foreground mb-2">Structure:</p>
+                <p className="font-semibold text-ink mb-2">Structure:</p>
                 <ul className="list-disc pl-6 space-y-2">
                   <li><strong>3-5 primary benefits</strong> each with icon, headline, and 2-3 sentence explanation</li>
                   <li><strong>Outcome-focused:</strong> "Reduce sales cycle by 30%" not "Advanced workflow automation"</li>
@@ -192,12 +194,12 @@ export default function BlogPost() {
                 </ul>
               </div>
 
-              <div className="border-l-4 border-primary pl-6">
-                <h4 className="text-lg font-bold text-foreground mb-2">4. How It Works Section</h4>
+              <div className="border-l-2 border-ink pl-6">
+                <h4 className="text-lg font-bold text-ink mb-2">4. How It Works Section</h4>
                 <p className="mb-3">
                   Reduce implementation anxiety by showing the path from signup to value realization.
                 </p>
-                <p className="font-semibold text-foreground mb-2">Format:</p>
+                <p className="font-semibold text-ink mb-2">Format:</p>
                 <ul className="list-disc pl-6 space-y-2">
                   <li><strong>3-4 steps</strong> from getting started to achieving results</li>
                   <li><strong>Visual timeline</strong> or numbered progression</li>
@@ -206,12 +208,12 @@ export default function BlogPost() {
                 </ul>
               </div>
 
-              <div className="border-l-4 border-primary pl-6">
-                <h4 className="text-lg font-bold text-foreground mb-2">5. Form Section (The Conversion Point)</h4>
+              <div className="border-l-2 border-ink pl-6">
+                <h4 className="text-lg font-bold text-ink mb-2">5. Form Section (The Conversion Point)</h4>
                 <p className="mb-3">
                   Your form is the critical conversion moment. Design determines completion rate.
                 </p>
-                <p className="font-semibold text-foreground mb-2">Best Practices:</p>
+                <p className="font-semibold text-ink mb-2">Best Practices:</p>
                 <ul className="list-disc pl-6 space-y-2">
                   <li><strong>Minimal fields:</strong> 3-5 fields for optimal balance (covered in detail below)</li>
                   <li><strong>Privacy reassurance:</strong> "We never share your information" below form</li>
@@ -220,12 +222,12 @@ export default function BlogPost() {
                 </ul>
               </div>
 
-              <div className="border-l-4 border-primary pl-6">
-                <h4 className="text-lg font-bold text-foreground mb-2">6. Objection Handling Section</h4>
+              <div className="border-l-2 border-ink pl-6">
+                <h4 className="text-lg font-bold text-ink mb-2">6. Objection Handling Section</h4>
                 <p className="mb-3">
                   Address common hesitations before prospects consciously articulate them.
                 </p>
-                <p className="font-semibold text-foreground mb-2">Common B2B Objections:</p>
+                <p className="font-semibold text-ink mb-2">Common B2B Objections:</p>
                 <ul className="list-disc pl-6 space-y-2">
                   <li><strong>Implementation difficulty:</strong> Show ease of setup, integration screenshots</li>
                   <li><strong>Pricing concerns:</strong> ROI calculator, payment flexibility mention</li>
@@ -234,12 +236,12 @@ export default function BlogPost() {
                 </ul>
               </div>
 
-              <div className="border-l-4 border-primary pl-6">
-                <h4 className="text-lg font-bold text-foreground mb-2">7. Final CTA Section</h4>
+              <div className="border-l-2 border-ink pl-6">
+                <h4 className="text-lg font-bold text-ink mb-2">7. Final CTA Section</h4>
                 <p className="mb-3">
                   Not everyone converts on first CTA view. Repeat the conversion opportunity with reinforced urgency.
                 </p>
-                <p className="font-semibold text-foreground mb-2">Include:</p>
+                <p className="font-semibold text-ink mb-2">Include:</p>
                 <ul className="list-disc pl-6 space-y-2">
                   <li><strong>Restated value proposition</strong> with different angle than hero</li>
                   <li><strong>Urgency element:</strong> "Limited spots," "Expires Friday," "Join 500+ companies this month"</li>
@@ -252,66 +254,66 @@ export default function BlogPost() {
 
           <Figure src="/blog/Talktomedata-report-screenshot.jpg" alt="Talk to me Data AI Conversion Analysis Report Screenshot" />
 
-          <h2 id="how-to-design-and-optimize-your-lead-capture-form" className="text-3xl font-bold text-foreground mt-12 mb-4">How to Design and Optimize Your Lead Capture Form</h2>
+          <h2 id="how-to-design-and-optimize-your-lead-capture-form" className="text-3xl font-semibold tracking-[-0.02em] text-ink mt-12 mb-4">How to Design and Optimize Your Lead Capture Form</h2>
           
           <p>
             Your form is the conversion gateway. Every design decision such as field count, labels, button copy and others, directly impact lead volume and quality. The challenge: fewer fields increase submissions but reduce lead quality; more fields decrease submissions but increase qualification.
           </p>
 
           <div className="my-6">
-            <h3 className="text-xl font-bold text-foreground mb-3">The Form Field Strategy Matrix</h3>
+            <h3 className="text-xl font-semibold text-ink mb-3">The Form Field Strategy Matrix</h3>
             
             <div className="my-8 overflow-x-auto">
-              <table className="w-full border-collapse border-2 border-border rounded-lg">
+              <table className="w-full border-collapse border border-hairline rounded-lg">
                 <thead>
-                  <tr className="bg-muted/50">
-                    <th className="border border-border p-4 text-left text-foreground font-bold">Offer Type</th>
-                    <th className="border border-border p-4 text-left text-foreground font-bold">Recommended Fields</th>
-                    <th className="border border-border p-4 text-left text-foreground font-bold">Expected Conversion Rate</th>
+                  <tr className="bg-mist">
+                    <th className="border border-hairline p-4 text-left text-ink font-bold">Offer Type</th>
+                    <th className="border border-hairline p-4 text-left text-ink font-bold">Recommended Fields</th>
+                    <th className="border border-hairline p-4 text-left text-ink font-bold">Expected Conversion Rate</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
-                    <td className="border border-border p-4">Newsletter Signup</td>
-                    <td className="border border-border p-4">Email only (1 field)</td>
-                    <td className="border border-border p-4 text-green-600 font-semibold">25-40%</td>
+                    <td className="border border-hairline p-4">Newsletter Signup</td>
+                    <td className="border border-hairline p-4">Email only (1 field)</td>
+                    <td className="border border-hairline p-4 text-ink font-semibold">25-40%</td>
                   </tr>
-                  <tr className="bg-muted/20">
-                    <td className="border border-border p-4">Content Download (Ebook, Guide)</td>
-                    <td className="border border-border p-4">Name, Email, Company (3 fields)</td>
-                    <td className="border border-border p-4 text-green-600">15-25%</td>
-                  </tr>
-                  <tr>
-                    <td className="border border-border p-4">Webinar Registration</td>
-                    <td className="border border-border p-4">Name, Email, Company, Role (4 fields)</td>
-                    <td className="border border-border p-4 text-green-600">10-20%</td>
-                  </tr>
-                  <tr className="bg-muted/20">
-                    <td className="border border-border p-4">Demo Request</td>
-                    <td className="border border-border p-4">Name, Email, Company, Phone, Role (5 fields)</td>
-                    <td className="border border-border p-4 text-primary">8-15%</td>
+                  <tr className="bg-mist">
+                    <td className="border border-hairline p-4">Content Download (Ebook, Guide)</td>
+                    <td className="border border-hairline p-4">Name, Email, Company (3 fields)</td>
+                    <td className="border border-hairline p-4 text-ink">15-25%</td>
                   </tr>
                   <tr>
-                    <td className="border border-border p-4">Consultation/Assessment</td>
-                    <td className="border border-border p-4">Name, Email, Company, Phone, Role, Company Size (6 fields)</td>
-                    <td className="border border-border p-4 text-primary">5-12%</td>
+                    <td className="border border-hairline p-4">Webinar Registration</td>
+                    <td className="border border-hairline p-4">Name, Email, Company, Role (4 fields)</td>
+                    <td className="border border-hairline p-4 text-ink">10-20%</td>
                   </tr>
-                  <tr className="bg-muted/20">
-                    <td className="border border-border p-4">Pricing Quote</td>
-                    <td className="border border-border p-4">Name, Email, Company, Phone, Role, Company Size, Budget, Timeline (8 fields)</td>
-                    <td className="border border-border p-4 text-orange-600">3-8%</td>
+                  <tr className="bg-mist">
+                    <td className="border border-hairline p-4">Demo Request</td>
+                    <td className="border border-hairline p-4">Name, Email, Company, Phone, Role (5 fields)</td>
+                    <td className="border border-hairline p-4 text-ink">8-15%</td>
+                  </tr>
+                  <tr>
+                    <td className="border border-hairline p-4">Consultation/Assessment</td>
+                    <td className="border border-hairline p-4">Name, Email, Company, Phone, Role, Company Size (6 fields)</td>
+                    <td className="border border-hairline p-4 text-ink">5-12%</td>
+                  </tr>
+                  <tr className="bg-mist">
+                    <td className="border border-hairline p-4">Pricing Quote</td>
+                    <td className="border border-hairline p-4">Name, Email, Company, Phone, Role, Company Size, Budget, Timeline (8 fields)</td>
+                    <td className="border border-hairline p-4 text-quiet">3-8%</td>
                   </tr>
                 </tbody>
               </table>
             </div>
 
             <p className="mt-4">
-              Notice the inverse relationship: as field count increases, conversion rate decreases but lead quality increases. Match field count to where prospects are in the buying journey. For more on optimizing conversion paths, see our guide on <Link href="/blog/increase-conversion-rate-30-days" className="text-primary hover:underline font-medium">increasing conversion rates in 30 days</Link>.
+              Notice the inverse relationship: as field count increases, conversion rate decreases but lead quality increases. Match field count to where prospects are in the buying journey. For more on optimizing conversion paths, see our guide on <Link href="/blog/increase-conversion-rate-30-days" className="font-medium text-ink underline decoration-ink/25 underline-offset-4 hover:decoration-ink">increasing conversion rates in 30 days</Link>.
             </p>
           </div>
 
           <div className="my-6">
-            <h3 className="text-xl font-bold text-foreground mb-3">Form Design Best Practices</h3>
+            <h3 className="text-xl font-semibold text-ink mb-3">Form Design Best Practices</h3>
             
             <ol className="list-decimal pl-6 space-y-4">
               <li>
@@ -350,64 +352,64 @@ export default function BlogPost() {
             </ol>
           </div>
 
-          <div className="bg-muted/30 border-l-4 border-primary p-6 my-8 rounded-r-lg">
-            <p className="text-foreground font-semibold mb-2">Form Optimization Quick Win:</p>
+          <div className="rounded-2xl border border-hairline bg-mist p-6 my-8">
+            <p className="text-ink font-semibold mb-2">Form Optimization Quick Win:</p>
             <p>Test reducing your form from 7 fields to 5 fields, then to 3 fields. Many B2B companies discover that collecting less information upfront (then qualifying during follow-up calls) generates 40-60% more leads with only slightly lower qualification rates, resulting in significantly more sales.</p>
           </div>
 
           {/* AI Agent mid-article section */}
-          <div className="my-12 rounded-2xl overflow-hidden border border-slate-200 shadow-sm">
-            <div className="bg-linear-to-r from-primary to-violet-500 px-8 py-5">
+          <div className="my-12 rounded-2xl overflow-hidden border border-hairline">
+            <div className="bg-ink px-8 py-5">
               <p className="text-white/80 text-xs font-semibold uppercase tracking-widest mb-1">The shortcut</p>
               <p className="text-xl font-bold text-white">Your form isn't the only thing that captures leads. An AI agent can do it 24/7.</p>
             </div>
             <div className="bg-white px-8 py-6">
-              <p className="text-foreground mb-4 leading-relaxed">
+              <p className="text-ink mb-4 leading-relaxed">
                 A static form waits passively for visitors to fill it out. An AI lead qualification agent engages them the moment they land, answering questions, handling objections, and capturing contact details even from visitors who would have bounced without converting.
               </p>
-              <ul className="space-y-3 mb-6 text-foreground">
+              <ul className="space-y-3 mb-6 text-ink">
                 <li className="flex items-start gap-3">
-                  <span className="text-primary font-bold mt-0.5 shrink-0">✓</span>
+                  <span className="text-ink font-bold mt-0.5 shrink-0">✓</span>
                   <span><strong>Answers form-related questions in real time</strong>: "What happens after I submit?", "Will I be spammed?", removing the hesitation that kills conversions</span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="text-primary font-bold mt-0.5 shrink-0">✓</span>
+                  <span className="text-ink font-bold mt-0.5 shrink-0">✓</span>
                   <span><strong>Qualifies visitors before they fill out the form</strong>: asking a couple of questions conversationally so your team only follows up with the right leads</span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="text-primary font-bold mt-0.5 shrink-0">✓</span>
+                  <span className="text-ink font-bold mt-0.5 shrink-0">✓</span>
                   <span><strong>Captures leads before they leave</strong>: triggered on exit intent, collecting a name and email from visitors who weren't ready to commit to the full form</span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="text-primary font-bold mt-0.5 shrink-0">✓</span>
+                  <span className="text-ink font-bold mt-0.5 shrink-0">✓</span>
                   <span><strong>Routes hot prospects instantly</strong>: books a call directly with high-intent visitors, cutting your follow-up time from hours to seconds</span>
                 </li>
               </ul>
-              <p className="text-sm text-muted-foreground mb-5">We build, deploy, and host custom lead qualification agents; you just watch the leads come in.</p>
-              <Link href="/book-demo" className="inline-flex items-center gap-2 bg-linear-to-r from-primary to-violet-500 text-white font-semibold text-sm px-6 py-3 rounded-xl hover:opacity-90 transition-opacity cursor-pointer">
-                See how it works →
-              </Link>
+              <p className="text-sm text-neutral-600 mb-5">We build, deploy, and host custom lead qualification agents; you just watch the leads come in.</p>
+              <a href={SIGNUP_URL} className="inline-flex items-center gap-2 bg-ink text-white font-semibold text-sm px-6 py-3 rounded-xl hover:opacity-90 transition-opacity cursor-pointer">
+                Sign up free →
+              </a>
             </div>
           </div>
 
-          <h2 id="what-to-include-in-your-lead-follow-up-strategy" className="text-3xl font-bold text-foreground mt-12 mb-4">What to Include in Your Lead Follow-Up Strategy</h2>
+          <h2 id="what-to-include-in-your-lead-follow-up-strategy" className="text-3xl font-semibold tracking-[-0.02em] text-ink mt-12 mb-4">What to Include in Your Lead Follow-Up Strategy</h2>
           
           <p>
             Generating leads means nothing if follow-up fails. Studies show 35-50% of sales go to vendors who respond first. Speed and personalization determine whether leads convert to customers or go cold.
           </p>
 
           <div className="my-6">
-            <h3 className="text-xl font-bold text-foreground mb-3">The 5-Minute Rule and Automated Sequences</h3>
+            <h3 className="text-xl font-semibold text-ink mb-3">The 5-Minute Rule and Automated Sequences</h3>
             
             <p className="mb-4">
-              Research from <a href="https://www.insightsquared.com" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">InsightSquared</a> found that responding to leads within 5 minutes makes them 21x more likely to enter the sales funnel compared to 30-minute response times. After 10 minutes, lead quality drops dramatically.
+              Research from <a href="https://www.insightsquared.com" target="_blank" rel="noopener noreferrer" className="font-medium text-ink underline decoration-ink/25 underline-offset-4 hover:decoration-ink">InsightSquared</a> found that responding to leads within 5 minutes makes them 21x more likely to enter the sales funnel compared to 30-minute response times. After 10 minutes, lead quality drops dramatically.
             </p>
 
-            <p className="font-semibold text-foreground mb-2">Implement This Three-Tier Follow-Up System:</p>
+            <p className="font-semibold text-ink mb-2">Implement This Three-Tier Follow-Up System:</p>
             
             <div className="space-y-4 mt-4">
-              <div className="border-l-4 border-primary pl-6">
-                <h4 className="text-lg font-bold text-foreground mb-2">Tier 1: Immediate Automated Response (0-60 seconds)</h4>
+              <div className="border-l-2 border-ink pl-6">
+                <h4 className="text-lg font-bold text-ink mb-2">Tier 1: Immediate Automated Response (0-60 seconds)</h4>
                 <p className="mb-2">Trigger instant automated email when form submits:</p>
                 <ul className="list-disc pl-6 space-y-2">
                   <li><strong>Confirm receipt:</strong> "Thanks, [Name]! We received your request for [Offer]"</li>
@@ -417,8 +419,8 @@ export default function BlogPost() {
                 </ul>
               </div>
 
-              <div className="border-l-4 border-primary pl-6">
-                <h4 className="text-lg font-bold text-foreground mb-2">Tier 2: Personal Human Follow-Up (1-5 minutes during business hours)</h4>
+              <div className="border-l-2 border-ink pl-6">
+                <h4 className="text-lg font-bold text-ink mb-2">Tier 2: Personal Human Follow-Up (1-5 minutes during business hours)</h4>
                 <p className="mb-2">Sales or BDR team responds personally:</p>
                 <ul className="list-disc pl-6 space-y-2">
                   <li><strong>Phone call first:</strong> 70% of buyers prefer phone contact for business discussions</li>
@@ -428,8 +430,8 @@ export default function BlogPost() {
                 </ul>
               </div>
 
-              <div className="border-l-4 border-primary pl-6">
-                <h4 className="text-lg font-bold text-foreground mb-2">Tier 3: Automated Nurture Sequence (leads not ready to buy)</h4>
+              <div className="border-l-2 border-ink pl-6">
+                <h4 className="text-lg font-bold text-ink mb-2">Tier 3: Automated Nurture Sequence (leads not ready to buy)</h4>
                 <p className="mb-2">For leads who don't respond or aren't ready:</p>
                 <ul className="list-disc pl-6 space-y-2">
                   <li><strong>Day 1:</strong> Educational content related to their download/inquiry</li>
@@ -443,14 +445,14 @@ export default function BlogPost() {
           </div>
 
           <div className="my-6">
-            <h3 className="text-xl font-bold text-foreground mb-3">Lead Scoring and Qualification</h3>
+            <h3 className="text-xl font-semibold text-ink mb-3">Lead Scoring and Qualification</h3>
             
             <p className="mb-4">
               Not all leads deserve equal attention. Implement lead scoring to prioritize follow-up:
             </p>
 
-            <div className="bg-muted/30 border-2 border-border p-6 rounded-lg">
-              <p className="font-semibold text-foreground mb-3">High-Priority Lead Indicators (score 8-10/10):</p>
+            <div className="bg-mist border border-hairline p-6 rounded-lg">
+              <p className="font-semibold text-ink mb-3">High-Priority Lead Indicators (score 8-10/10):</p>
               <ul className="list-disc pl-6 space-y-2 mb-4">
                 <li>Requested demo or consultation</li>
                 <li>Company size matches ICP (Ideal Customer Profile)</li>
@@ -459,7 +461,7 @@ export default function BlogPost() {
                 <li>Visited pricing page multiple times</li>
               </ul>
 
-              <p className="font-semibold text-foreground mb-3">Medium-Priority Lead Indicators (score 5-7/10):</p>
+              <p className="font-semibold text-ink mb-3">Medium-Priority Lead Indicators (score 5-7/10):</p>
               <ul className="list-disc pl-6 space-y-2 mb-4">
                 <li>Downloaded content (ebook, guide)</li>
                 <li>Manager or individual contributor title</li>
@@ -467,7 +469,7 @@ export default function BlogPost() {
                 <li>Engaged with emails (opens, clicks)</li>
               </ul>
 
-              <p className="font-semibold text-foreground mb-3">Low-Priority Lead Indicators (score 1-4/10):</p>
+              <p className="font-semibold text-ink mb-3">Low-Priority Lead Indicators (score 1-4/10):</p>
               <ul className="list-disc pl-6 space-y-2">
                 <li>Newsletter signup only</li>
                 <li>Generic email domain (gmail, yahoo)</li>
@@ -477,22 +479,22 @@ export default function BlogPost() {
             </div>
 
             <p className="mt-4">
-              Route high-priority leads to sales immediately. Medium-priority leads enter nurture sequences. Low-priority leads get educational content only. Learn more about prioritizing optimizations in our <Link href="/blog/how-to-analyze-website-conversion-issues" className="text-primary hover:underline font-medium">website conversion analysis guide</Link>.
+              Route high-priority leads to sales immediately. Medium-priority leads enter nurture sequences. Low-priority leads get educational content only. Learn more about prioritizing optimizations in our <Link href="/blog/how-to-analyze-website-conversion-issues" className="font-medium text-ink underline decoration-ink/25 underline-offset-4 hover:decoration-ink">website conversion analysis guide</Link>.
             </p>
           </div>
 
-          <h2 id="what-makes-high-converting-landing-pages-work-real-examples" className="text-3xl font-bold text-foreground mt-12 mb-4">What Makes High-Converting Landing Pages Work: Real Examples</h2>
+          <h2 id="what-makes-high-converting-landing-pages-work-real-examples" className="text-3xl font-semibold tracking-[-0.02em] text-ink mt-12 mb-4">What Makes High-Converting Landing Pages Work: Real Examples</h2>
           
           <p>
             Theory becomes clear through examples. Here are three B2B landing page structures that consistently convert at 15%+ rates:
           </p>
 
           <div className="my-6 space-y-6">
-            <div className="border-2 border-border rounded-lg p-6">
-              <h3 className="text-xl font-bold text-foreground mb-3">Example 1: SaaS Demo Request Page</h3>
+            <div className="border border-hairline rounded-lg p-6">
+              <h3 className="text-xl font-semibold text-ink mb-3">Example 1: SaaS Demo Request Page</h3>
               <p className="mb-3"><strong>Company:</strong> Sales automation platform targeting mid-market B2B companies</p>
               <p className="mb-3"><strong>Conversion Rate:</strong> 18% (industry average: 8-12%)</p>
-              <p className="font-semibold text-foreground mb-2">Key Success Elements:</p>
+              <p className="font-semibold text-ink mb-2">Key Success Elements:</p>
               <ul className="list-disc pl-6 space-y-2">
                 <li><strong>Headline:</strong> "See How Teams Like Yours Close 40% More Deals" (outcome-focused, relatable)</li>
                 <li><strong>Above-fold form:</strong> Only 4 fields (Name, Email, Company, Phone) with "Get My Personalized Demo" CTA</li>
@@ -503,11 +505,11 @@ export default function BlogPost() {
               </ul>
             </div>
 
-            <div className="border-2 border-border rounded-lg p-6">
-              <h3 className="text-xl font-bold text-foreground mb-3">Example 2: Content Download Page</h3>
+            <div className="border border-hairline rounded-lg p-6">
+              <h3 className="text-xl font-semibold text-ink mb-3">Example 2: Content Download Page</h3>
               <p className="mb-3"><strong>Company:</strong> Marketing automation platform offering comprehensive industry report</p>
               <p className="mb-3"><strong>Conversion Rate:</strong> 22% (industry average: 15-20%)</p>
-              <p className="font-semibold text-foreground mb-2">Key Success Elements:</p>
+              <p className="font-semibold text-ink mb-2">Key Success Elements:</p>
               <ul className="list-disc pl-6 space-y-2">
                 <li><strong>Headline:</strong> "The 2025 B2B Marketing Benchmark Report: 50+ Pages of Industry Data" (specific, valuable)</li>
                 <li><strong>Preview content:</strong> Showed first 3 pages of report as PDF preview, creating curiosity gap</li>
@@ -518,11 +520,11 @@ export default function BlogPost() {
               </ul>
             </div>
 
-            <div className="border-2 border-border rounded-lg p-6">
-              <h3 className="text-xl font-bold text-foreground mb-3">Example 3: Free Assessment/Audit Page</h3>
+            <div className="border border-hairline rounded-lg p-6">
+              <h3 className="text-xl font-semibold text-ink mb-3">Example 3: Free Assessment/Audit Page</h3>
               <p className="mb-3"><strong>Company:</strong> Website optimization consultancy offering free conversion audits</p>
               <p className="mb-3"><strong>Conversion Rate:</strong> 16% (industry average: 10-15%)</p>
-              <p className="font-semibold text-foreground mb-2">Key Success Elements:</p>
+              <p className="font-semibold text-ink mb-2">Key Success Elements:</p>
               <ul className="list-disc pl-6 space-y-2">
                 <li><strong>Headline:</strong> "Get a Free 30-Minute Conversion Audit Worth $500" (clear value quantification)</li>
                 <li><strong>What you'll get:</strong> 5 bullet points describing specific deliverables from audit</li>
@@ -538,18 +540,18 @@ export default function BlogPost() {
             Notice commonalities: clear value propositions, minimal friction (3-4 form fields), strong social proof, and specific CTAs. These aren't coincidences; they're proven principles.
           </p>
 
-          <h2 id="how-to-optimize-landing-page-performance" className="text-3xl font-bold text-foreground mt-12 mb-4">How to Optimize Landing Page Performance</h2>
+          <h2 id="how-to-optimize-landing-page-performance" className="text-3xl font-semibold tracking-[-0.02em] text-ink mt-12 mb-4">How to Optimize Landing Page Performance</h2>
           
           <p>
             Building landing pages is step one. Continuous optimization separates 10% conversion rates from 20%+ rates.
           </p>
 
           <div className="my-6">
-            <h3 className="text-xl font-bold text-foreground mb-3">Technical Optimization Essentials</h3>
+            <h3 className="text-xl font-semibold text-ink mb-3">Technical Optimization Essentials</h3>
             
             <ol className="list-decimal pl-6 space-y-4">
               <li>
-                <strong>Page Speed:</strong> Landing pages should load in under 2 seconds. Every additional second reduces conversions by 7%. Compress images, minify CSS/JS, enable caching, and use a CDN. Our <Link href="/blog/how-to-make-website-faster" className="text-primary hover:underline font-medium">complete speed optimization guide</Link> covers implementation details.
+                <strong>Page Speed:</strong> Landing pages should load in under 2 seconds. Every additional second reduces conversions by 7%. Compress images, minify CSS/JS, enable caching, and use a CDN. Our <Link href="/blog/how-to-make-website-faster" className="font-medium text-ink underline decoration-ink/25 underline-offset-4 hover:decoration-ink">complete speed optimization guide</Link> covers implementation details.
               </li>
               <li>
                 <strong>Mobile Optimization:</strong> 60-70% of B2B traffic now comes from mobile devices during research phases. Ensure:
@@ -580,19 +582,19 @@ export default function BlogPost() {
           </div>
 
           <div className="my-6">
-            <h3 className="text-xl font-bold text-foreground mb-3">Using AI to Optimize Landing Pages</h3>
+            <h3 className="text-xl font-semibold text-ink mb-3">Using AI to Optimize Landing Pages</h3>
             
             <p className="mb-4">
               Manual landing page analysis requires expertise in UX design, copywriting, conversion psychology, and technical optimization. AI accelerates this by analyzing hundreds of factors instantly.
             </p>
 
             <p className="mb-4">
-              <strong>Talk to me Data</strong> evaluates your landing pages across all conversion-critical factors: form design, page structure, messaging clarity, mobile experience, page speed, and trust signals. Instead of guessing what to fix, get a prioritized list ranked by expected conversion impact. Learn more about <Link href="/blog/how-to-use-ai-to-improve-conversion-rates" className="text-primary hover:underline font-medium">using AI for conversion optimization</Link>.
+              <strong>Talk to me Data</strong> evaluates your landing pages across all conversion-critical factors: form design, page structure, messaging clarity, mobile experience, page speed, and trust signals. Instead of guessing what to fix, get a prioritized list ranked by expected conversion impact. Learn more about <Link href="/blog/how-to-use-ai-to-improve-conversion-rates" className="font-medium text-ink underline decoration-ink/25 underline-offset-4 hover:decoration-ink">using AI for conversion optimization</Link>.
             </p>
           </div>
 
           {/* Conclusion */}
-          <h2 id="summary-building-landing-pages-that-generate-quality-leads" className="text-3xl font-bold text-foreground mt-12 mb-4">Summary: Building Landing Pages That Generate Quality Leads</h2>
+          <h2 id="summary-building-landing-pages-that-generate-quality-leads" className="text-3xl font-semibold tracking-[-0.02em] text-ink mt-12 mb-4">Summary: Building Landing Pages That Generate Quality Leads</h2>
           
           <p>
             Effective B2B lead generation landing pages aren't accidents; they're systematic implementations of proven principles. Structure pages with clear value propositions, minimal friction forms, strong social proof, and singular focus. Optimize for mobile, ensure fast load times, and remove navigation distractions.
@@ -602,29 +604,13 @@ export default function BlogPost() {
             Remember the data: companies with 10-15 landing pages generate 55% more leads than those with fewer pages. Companies with 40+ landing pages generate 12x more leads. The opportunity isn't building one perfect landing page; it's building many targeted pages, each optimized for specific audiences, campaigns, and offers.
           </p>
 
-          <p className="text-xl font-medium text-foreground/90">
+          <p className="text-xl font-medium text-ink">
             Start with your highest-traffic campaign or most important offer. Build a focused landing page, implement the 7-section framework, test form field counts, and measure results. Then iterate and expand. Every additional optimized landing page compounds your lead generation capacity.
           </p>
 
-          {/* Final CTA */}
-          <div className="my-12 rounded-2xl overflow-hidden border border-slate-200 shadow-sm">
-            <div
-              className="relative px-8 py-10"
-              style={{
-                background: "linear-gradient(135deg, #185FA5, #2563eb, #7c3aed)",
-                backgroundImage: "linear-gradient(135deg, #185FA5, #2563eb, #7c3aed), radial-gradient(circle, rgba(255,255,255,0.07) 1px, transparent 1px)",
-                backgroundSize: "100% 100%, 24px 24px",
-              }}
-            >
-              <p className="text-2xl font-bold text-white mb-3">Ready to turn your landing page into a lead machine?</p>
-              <p className="text-white/80 mb-6 leading-relaxed max-w-xl">
-                We'll build a custom AI agent that qualifies visitors, captures leads, and books calls, live on your site in days, not months.
-              </p>
-              <Link href="/book-demo" className="inline-flex items-center gap-2 bg-white text-primary font-semibold text-sm px-6 py-3 rounded-xl hover:bg-white/90 transition-colors cursor-pointer">
-                Book a free call →
-              </Link>
-            </div>
-          </div>
+          <SignupCta heading="Ready to turn your landing page into a lead machine?">
+            Sign up free, then tell us about your site. We&apos;ll build an AI agent that qualifies visitors, captures leads and books calls.
+          </SignupCta>
         </div>
       </div>
     </BlogPostShell>

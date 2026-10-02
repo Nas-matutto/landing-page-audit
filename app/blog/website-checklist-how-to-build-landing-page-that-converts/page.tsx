@@ -1,5 +1,7 @@
 import Link from "next/link"
 import { Figure } from "@/components/blog/figure"
+import { SignupCta } from "@/components/blog/signup-cta"
+import { SIGNUP_URL } from "@/lib/links"
 import { BlogPostShell } from "@/components/blog/post-shell"
 import { buildPostMetadata, type Faq } from "@/lib/blog"
 
@@ -35,12 +37,12 @@ export default function BlogPost() {
   return (
     <BlogPostShell slug={SLUG} faqs={faqs}>
       <div className="prose prose-lg max-w-none">
-        <div className="space-y-6 text-muted-foreground leading-relaxed">
+        <div className="space-y-6 text-neutral-600 leading-relaxed">
           
           {/* TL;DR Section */}
-          <div className="bg-primary/8 border-l-4 border-primary p-6 my-8 rounded-r-lg">
-            <h2 className="text-xl font-bold text-foreground mb-3">TL;DR: Key Takeaways</h2>
-            <ul className="list-disc pl-6 space-y-2 text-foreground">
+          <div className="rounded-2xl border border-hairline bg-mist p-6 my-8">
+            <h2 className="text-xl font-semibold tracking-[-0.02em] text-ink mb-3">TL;DR: Key Takeaways</h2>
+            <ul className="list-disc pl-6 space-y-2 text-ink">
               <li>Landing pages with complete checklists convert 40-60% better than pages missing critical elements</li>
               <li>Must-have elements (value proposition, CTA, mobile optimization) are non-negotiable; without them, expect 50%+ visitor loss</li>
               <li>Business stage matters: idea-stage startups need different elements than scaling companies</li>
@@ -51,7 +53,7 @@ export default function BlogPost() {
           </div>
 
           {/* Introduction with definitions */}
-          <h2 id="what-is-a-website-checklist-and-why-does-it-matter" className="text-3xl font-bold text-foreground mt-12 mb-4">What is a Website Checklist and Why Does It Matter?</h2>
+          <h2 id="what-is-a-website-checklist-and-why-does-it-matter" className="text-3xl font-semibold tracking-[-0.02em] text-ink mt-12 mb-4">What is a Website Checklist and Why Does It Matter?</h2>
           
           <p>
             A <strong>website checklist</strong> (or landing page checklist) is a systematic list of essential elements, features, and optimizations that high-converting pages include. Rather than building pages based on intuition or copying competitors blindly, checklists provide proven frameworks based on thousands of A/B tests and conversion rate optimization studies. Think of it as a quality assurance process, ensuring nothing critical is overlooked before launching campaigns or spending ad budget driving traffic to underperforming pages.
@@ -62,94 +64,82 @@ export default function BlogPost() {
           </p>
 
 
-          <h2 id="why-most-landing-pages-fail-and-how-checklists-prevent-it" className="text-3xl font-bold text-foreground mt-12 mb-4">Why Most Landing Pages Fail (And How Checklists Prevent It)</h2>
+          <h2 id="why-most-landing-pages-fail-and-how-checklists-prevent-it" className="text-3xl font-semibold tracking-[-0.02em] text-ink mt-12 mb-4">Why Most Landing Pages Fail (And How Checklists Prevent It)</h2>
           
           <p>
             The average landing page conversion rate is just 2.35%. This means 97.65% of visitors leave without converting: a staggering waste of traffic, ad spend, and opportunity. Why? Most pages fail due to systematic, preventable mistakes: unclear value propositions, slow load times, poor mobile experience, missing trust signals, or confusing conversion paths.
           </p>
 
           <p>
-            Here's the data: According to <a href="https://unbounce.com/conversion-benchmark-report/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">Unbounce's conversion benchmark report</a>, the top 25% of landing pages convert at 5.31% or higher, more than 2x the average. The top 10% convert at 11.45%+. What separates high performers from failures? Systematic implementation of conversion best practices: exactly what checklists ensure.
+            Here's the data: According to <a href="https://unbounce.com/conversion-benchmark-report/" target="_blank" rel="noopener noreferrer" className="font-medium text-ink underline decoration-ink/25 underline-offset-4 hover:decoration-ink">Unbounce's conversion benchmark report</a>, the top 25% of landing pages convert at 5.31% or higher, more than 2x the average. The top 10% convert at 11.45%+. What separates high performers from failures? Systematic implementation of conversion best practices: exactly what checklists ensure.
           </p>
 
           <div className="my-8 overflow-x-auto">
-            <table className="w-full border-collapse border-2 border-border rounded-lg">
+            <table className="w-full border-collapse border border-hairline rounded-lg">
               <thead>
-                <tr className="bg-muted/50">
-                  <th className="border border-border p-4 text-left text-foreground font-bold">Landing Page Type</th>
-                  <th className="border border-border p-4 text-left text-foreground font-bold">Average Conversion Rate</th>
-                  <th className="border border-border p-4 text-left text-foreground font-bold">Top 25% Conversion Rate</th>
+                <tr className="bg-mist">
+                  <th className="border border-hairline p-4 text-left text-ink font-bold">Landing Page Type</th>
+                  <th className="border border-hairline p-4 text-left text-ink font-bold">Average Conversion Rate</th>
+                  <th className="border border-hairline p-4 text-left text-ink font-bold">Top 25% Conversion Rate</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td className="border border-border p-4">Lead Generation (B2B)</td>
-                  <td className="border border-border p-4 text-orange-600">2.3%</td>
-                  <td className="border border-border p-4 text-green-600 font-semibold">5.2%</td>
+                  <td className="border border-hairline p-4">Lead Generation (B2B)</td>
+                  <td className="border border-hairline p-4 text-quiet">2.3%</td>
+                  <td className="border border-hairline p-4 text-ink font-semibold">5.2%</td>
                 </tr>
-                <tr className="bg-muted/20">
-                  <td className="border border-border p-4">E-commerce Product</td>
-                  <td className="border border-border p-4 text-orange-600">1.8%</td>
-                  <td className="border border-border p-4 text-green-600 font-semibold">4.1%</td>
-                </tr>
-                <tr>
-                  <td className="border border-border p-4">SaaS Signup</td>
-                  <td className="border border-border p-4 text-orange-600">3.1%</td>
-                  <td className="border border-border p-4 text-green-600 font-semibold">7.3%</td>
-                </tr>
-                <tr className="bg-muted/20">
-                  <td className="border border-border p-4">Webinar Registration</td>
-                  <td className="border border-border p-4 text-orange-600">8.6%</td>
-                  <td className="border border-border p-4 text-green-600 font-semibold">18.2%</td>
+                <tr className="bg-mist">
+                  <td className="border border-hairline p-4">E-commerce Product</td>
+                  <td className="border border-hairline p-4 text-quiet">1.8%</td>
+                  <td className="border border-hairline p-4 text-ink font-semibold">4.1%</td>
                 </tr>
                 <tr>
-                  <td className="border border-border p-4">Content Download</td>
-                  <td className="border border-border p-4 text-orange-600">12.3%</td>
-                  <td className="border border-border p-4 text-green-600 font-semibold">25.7%</td>
+                  <td className="border border-hairline p-4">SaaS Signup</td>
+                  <td className="border border-hairline p-4 text-quiet">3.1%</td>
+                  <td className="border border-hairline p-4 text-ink font-semibold">7.3%</td>
+                </tr>
+                <tr className="bg-mist">
+                  <td className="border border-hairline p-4">Webinar Registration</td>
+                  <td className="border border-hairline p-4 text-quiet">8.6%</td>
+                  <td className="border border-hairline p-4 text-ink font-semibold">18.2%</td>
+                </tr>
+                <tr>
+                  <td className="border border-hairline p-4">Content Download</td>
+                  <td className="border border-hairline p-4 text-quiet">12.3%</td>
+                  <td className="border border-hairline p-4 text-ink font-semibold">25.7%</td>
                 </tr>
               </tbody>
             </table>
           </div>
 
           <p>
-            Notice the pattern: top performers convert at 2-3x higher rates. The difference isn't magic; it's systematic execution of fundamentals. For more on identifying and fixing specific conversion issues, see our <Link href="/blog/how-to-analyze-website-conversion-issues" className="text-primary hover:underline font-medium">comprehensive website conversion analysis guide</Link>.
+            Notice the pattern: top performers convert at 2-3x higher rates. The difference isn't magic; it's systematic execution of fundamentals. For more on identifying and fixing specific conversion issues, see our <Link href="/blog/how-to-analyze-website-conversion-issues" className="font-medium text-ink underline decoration-ink/25 underline-offset-4 hover:decoration-ink">comprehensive website conversion analysis guide</Link>.
           </p>
 
-          {/* Early CTA Box */}
-          <div className="my-12 rounded-2xl overflow-hidden border border-slate-200 shadow-sm">
-            <div className="bg-linear-to-r from-primary to-violet-500 px-8 py-5">
-              <p className="text-white/80 text-xs font-semibold uppercase tracking-widest mb-1">Not sure where to start?</p>
-              <p className="text-xl font-bold text-white">We'll walk through your landing page with you, for free.</p>
-            </div>
-            <div className="bg-white px-8 py-6">
-              <p className="text-foreground mb-6 leading-relaxed">
-                Book a free 20-minute call and we'll tell you exactly what's missing, what to prioritize, and what an AI agent could do to turn your page into a 24/7 conversion machine.
-              </p>
-              <Link href="/book-demo" className="inline-flex items-center gap-2 bg-linear-to-r from-primary to-violet-500 text-white font-semibold text-sm px-6 py-3 rounded-xl hover:opacity-90 transition-opacity cursor-pointer">
-                Book a free call →
-              </Link>
-            </div>
-          </div>
+          <SignupCta eyebrow="Not sure where to start?" heading="Get your landing page checked for free">
+            Sign up free and run a site check that shows what&apos;s missing from your page and what to fix first.
+          </SignupCta>
 
-          <h2 id="what-are-the-must-have-elements-every-landing-page-needs" className="text-3xl font-bold text-foreground mt-12 mb-4">What Are the Must-Have Elements Every Landing Page Needs?</h2>
+          <h2 id="what-are-the-must-have-elements-every-landing-page-needs" className="text-3xl font-semibold tracking-[-0.02em] text-ink mt-12 mb-4">What Are the Must-Have Elements Every Landing Page Needs?</h2>
           
           <p>
             Regardless of business type or stage, certain elements are non-negotiable. These are the conversion fundamentals: without them, you're likely losing 50-80% of potential conversions before visitors even consider your offer.
           </p>
 
           <div className="my-6">
-            <h3 className="text-xl font-bold text-foreground mb-3">The 7 Non-Negotiable Landing Page Elements</h3>
+            <h3 className="text-xl font-semibold text-ink mb-3">The 7 Non-Negotiable Landing Page Elements</h3>
             
             <div className="space-y-6">
-              <div className="border-l-4 border-green-500 pl-6 bg-green-50 p-4 rounded-r-lg">
-                <h4 className="text-lg font-bold text-foreground mb-2">1. Clear Value Proposition (Above the Fold)</h4>
+              <div className="rounded-2xl border border-hairline bg-mist p-4">
+                <h4 className="text-lg font-bold text-ink mb-2">1. Clear Value Proposition (Above the Fold)</h4>
                 <p className="mb-3">
                   Your headline and subheadline must communicate what you offer, who it's for, and why it matters, in 5 seconds or less. This isn't about clever wordplay; it's about clarity and specificity.
                 </p>
-                <div className="bg-white border-2 border-red-200 p-4 my-3 rounded-lg">
-                  <p className="text-sm font-semibold text-foreground mb-2">❌ Weak Value Proposition:</p>
+                <div className="bg-white border border-hairline p-4 my-3 rounded-lg">
+                  <p className="text-sm font-semibold text-ink mb-2">❌ Weak Value Proposition:</p>
                   <p className="italic mb-3">"The Best CRM Solution for Modern Businesses"</p>
-                  <p className="text-sm font-semibold text-foreground mb-2">✅ Strong Value Proposition:</p>
+                  <p className="text-sm font-semibold text-ink mb-2">✅ Strong Value Proposition:</p>
                   <p className="italic">"Close 40% More Deals with AI-Powered Sales Automation Built for B2B Teams Under 50"</p>
                 </div>
                 <p className="text-sm">
@@ -157,8 +147,8 @@ export default function BlogPost() {
                 </p>
               </div>
 
-              <div className="border-l-4 border-green-500 pl-6 bg-green-50 p-4 rounded-r-lg">
-                <h4 className="text-lg font-bold text-foreground mb-2">2. Single, Prominent Call-to-Action</h4>
+              <div className="rounded-2xl border border-hairline bg-mist p-4">
+                <h4 className="text-lg font-bold text-ink mb-2">2. Single, Prominent Call-to-Action</h4>
                 <p className="mb-3">
                   Your primary CTA button must be visible above the fold (without scrolling) and repeated 2-3 times down the page. Use action-oriented, first-person copy that tells users exactly what happens next.
                 </p>
@@ -171,12 +161,12 @@ export default function BlogPost() {
                 </p>
               </div>
 
-              <div className="border-l-4 border-green-500 pl-6 bg-green-50 p-4 rounded-r-lg">
-                <h4 className="text-lg font-bold text-foreground mb-2">3. Mobile-Optimized Experience</h4>
+              <div className="rounded-2xl border border-hairline bg-mist p-4">
+                <h4 className="text-lg font-bold text-ink mb-2">3. Mobile-Optimized Experience</h4>
                 <p className="mb-3">
                   60-70% of traffic comes from mobile devices. If your landing page doesn't work perfectly on mobile, you're losing the majority of potential customers immediately.
                 </p>
-                <p className="font-semibold text-foreground mb-2">Mobile optimization checklist:</p>
+                <p className="font-semibold text-ink mb-2">Mobile optimization checklist:</p>
                 <ul className="list-disc pl-6 space-y-2">
                   <li>Text readable without zooming (16px minimum font size)</li>
                   <li>Buttons meet 44x44 pixel touch target minimum</li>
@@ -186,22 +176,22 @@ export default function BlogPost() {
                 </ul>
               </div>
 
-              <div className="border-l-4 border-green-500 pl-6 bg-green-50 p-4 rounded-r-lg">
-                <h4 className="text-lg font-bold text-foreground mb-2">4. Fast Page Speed (Under 3 Seconds)</h4>
+              <div className="rounded-2xl border border-hairline bg-mist p-4">
+                <h4 className="text-lg font-bold text-ink mb-2">4. Fast Page Speed (Under 3 Seconds)</h4>
                 <p className="mb-3">
                   Every additional second of load time reduces conversions by 7%. Pages taking 5+ seconds to load lose 50%+ of visitors before content even displays. Speed is a conversion fundamental, not a nice-to-have.
                 </p>
                 <p className="text-sm">
-                  Quick wins: Compress images (use WebP format), enable browser caching, minify CSS/JavaScript, use a CDN. Our <Link href="/blog/how-to-make-website-faster" className="text-primary hover:underline font-medium">complete speed optimization guide</Link> covers implementation details.
+                  Quick wins: Compress images (use WebP format), enable browser caching, minify CSS/JavaScript, use a CDN. Our <Link href="/blog/how-to-make-website-faster" className="font-medium text-ink underline decoration-ink/25 underline-offset-4 hover:decoration-ink">complete speed optimization guide</Link> covers implementation details.
                 </p>
               </div>
 
-              <div className="border-l-4 border-green-500 pl-6 bg-green-50 p-4 rounded-r-lg">
-                <h4 className="text-lg font-bold text-foreground mb-2">5. Social Proof</h4>
+              <div className="rounded-2xl border border-hairline bg-mist p-4">
+                <h4 className="text-lg font-bold text-ink mb-2">5. Social Proof</h4>
                 <p className="mb-3">
                   B2B buyers are risk-averse. Social proof reduces perceived risk by demonstrating others' success. Even early-stage companies can include social proof.
                 </p>
-                <p className="font-semibold text-foreground mb-2">Social proof hierarchy (strongest to weakest):</p>
+                <p className="font-semibold text-ink mb-2">Social proof hierarchy (strongest to weakest):</p>
                 <ul className="list-decimal pl-6 space-y-2">
                   <li><strong>Video testimonials with results:</strong> "Increased revenue 40% in 6 months", Name, Title, Company</li>
                   <li><strong>Written testimonials with specifics:</strong> Real names, photos, companies, outcomes</li>
@@ -211,25 +201,25 @@ export default function BlogPost() {
                 </ul>
               </div>
 
-              <div className="border-l-4 border-green-500 pl-6 bg-green-50 p-4 rounded-r-lg">
-                <h4 className="text-lg font-bold text-foreground mb-2">6. Benefit-Focused Copy (Not Features)</h4>
+              <div className="rounded-2xl border border-hairline bg-mist p-4">
+                <h4 className="text-lg font-bold text-ink mb-2">6. Benefit-Focused Copy (Not Features)</h4>
                 <p className="mb-3">
                   Visitors care about outcomes, not technical specifications. Translate every feature into a concrete business benefit or result.
                 </p>
-                <div className="bg-white border-2 border-red-200 p-4 my-3 rounded-lg">
-                  <p className="text-sm font-semibold text-foreground mb-2">❌ Feature-focused:</p>
+                <div className="bg-white border border-hairline p-4 my-3 rounded-lg">
+                  <p className="text-sm font-semibold text-ink mb-2">❌ Feature-focused:</p>
                   <p className="italic mb-3">"Advanced workflow automation with 50+ integrations"</p>
-                  <p className="text-sm font-semibold text-foreground mb-2">✅ Benefit-focused:</p>
+                  <p className="text-sm font-semibold text-ink mb-2">✅ Benefit-focused:</p>
                   <p className="italic">"Reduce manual data entry by 15 hours per week and automate repetitive tasks so your team focuses on closing deals"</p>
                 </div>
               </div>
 
-              <div className="border-l-4 border-green-500 pl-6 bg-green-50 p-4 rounded-r-lg">
-                <h4 className="text-lg font-bold text-foreground mb-2">7. Simplified Forms (3-5 Fields Maximum)</h4>
+              <div className="rounded-2xl border border-hairline bg-mist p-4">
+                <h4 className="text-lg font-bold text-ink mb-2">7. Simplified Forms (3-5 Fields Maximum)</h4>
                 <p className="mb-3">
                   Every form field reduces conversion rate by 5-10%. Ask only for information you'll actually use immediately.
                 </p>
-                <p className="font-semibold text-foreground mb-2">Form field guidelines by offer type:</p>
+                <p className="font-semibold text-ink mb-2">Form field guidelines by offer type:</p>
                 <ul className="list-disc pl-6 space-y-2">
                   <li><strong>Newsletter/content:</strong> Email only (1 field)</li>
                   <li><strong>Ebook/guide download:</strong> Name, email, company (3 fields)</li>
@@ -237,47 +227,47 @@ export default function BlogPost() {
                   <li><strong>Consultation:</strong> Name, email, company, phone, role (5 fields max)</li>
                 </ul>
                 <p className="text-sm mt-3">
-                  For more on form optimization strategies, see our <Link href="/blog/how-to-build-website-to-collect-leads" className="text-primary hover:underline font-medium">complete B2B lead generation guide</Link>.
+                  For more on form optimization strategies, see our <Link href="/blog/how-to-build-website-to-collect-leads" className="font-medium text-ink underline decoration-ink/25 underline-offset-4 hover:decoration-ink">complete B2B lead generation guide</Link>.
                 </p>
               </div>
             </div>
           </div>
 
-          <h2 id="how-does-business-stage-affect-your-landing-page-checklist" className="text-3xl font-bold text-foreground mt-12 mb-4">How Does Business Stage Affect Your Landing Page Checklist?</h2>
+          <h2 id="how-does-business-stage-affect-your-landing-page-checklist" className="text-3xl font-semibold tracking-[-0.02em] text-ink mt-12 mb-4">How Does Business Stage Affect Your Landing Page Checklist?</h2>
           
           <p>
             Not all landing pages should look the same. An idea-stage startup has different resources, constraints, and credibility levels than a scaling company. Attempting to implement every possible optimization wastes time and resources; focus on stage-appropriate priorities.
           </p>
 
           <div className="my-8 overflow-x-auto">
-            <table className="w-full border-collapse border-2 border-border rounded-lg">
+            <table className="w-full border-collapse border border-hairline rounded-lg">
               <thead>
-                <tr className="bg-muted/50">
-                  <th className="border border-border p-4 text-left text-foreground font-bold">Stage</th>
-                  <th className="border border-border p-4 text-left text-foreground font-bold">Must-Have Elements</th>
-                  <th className="border border-border p-4 text-left text-foreground font-bold">Skip Until Later</th>
+                <tr className="bg-mist">
+                  <th className="border border-hairline p-4 text-left text-ink font-bold">Stage</th>
+                  <th className="border border-hairline p-4 text-left text-ink font-bold">Must-Have Elements</th>
+                  <th className="border border-hairline p-4 text-left text-ink font-bold">Skip Until Later</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td className="border border-border p-4 font-semibold">Idea / Pre-Launch<br /><span className="text-sm font-normal text-muted-foreground">(0 customers)</span></td>
-                  <td className="border border-border p-4">
+                  <td className="border border-hairline p-4 font-semibold">Idea / Pre-Launch<br /><span className="text-sm font-normal text-neutral-600">(0 customers)</span></td>
+                  <td className="border border-hairline p-4">
                     • Clear value proposition<br />
                     • Simple email capture form<br />
                     • Founder story/vision<br />
                     • Mobile responsive<br />
                     • Fast page speed
                   </td>
-                  <td className="border border-border p-4">
+                  <td className="border border-hairline p-4">
                     • Customer testimonials (don't have yet)<br />
                     • Advanced analytics (not enough traffic)<br />
                     • A/B testing (insufficient volume)<br />
                     • Live chat (focus on building product)
                   </td>
                 </tr>
-                <tr className="bg-muted/20">
-                  <td className="border border-border p-4 font-semibold">Early Traction<br /><span className="text-sm font-normal text-muted-foreground">(1-50 customers)</span></td>
-                  <td className="border border-border p-4">
+                <tr className="bg-mist">
+                  <td className="border border-hairline p-4 font-semibold">Early Traction<br /><span className="text-sm font-normal text-neutral-600">(1-50 customers)</span></td>
+                  <td className="border border-hairline p-4">
                     • All idea-stage elements, plus:<br />
                     • 3-5 customer testimonials<br />
                     • Customer logos<br />
@@ -285,7 +275,7 @@ export default function BlogPost() {
                     • Clear pricing (or starting prices)<br />
                     • Trust badges
                   </td>
-                  <td className="border border-border p-4">
+                  <td className="border border-hairline p-4">
                     • Video testimonials (text works fine)<br />
                     • Interactive demos (screenshots sufficient)<br />
                     • Chatbot automation (humans better now)<br />
@@ -293,8 +283,8 @@ export default function BlogPost() {
                   </td>
                 </tr>
                 <tr>
-                  <td className="border border-border p-4 font-semibold">Scaling<br /><span className="text-sm font-normal text-muted-foreground">(50+ customers)</span></td>
-                  <td className="border border-border p-4">
+                  <td className="border border-hairline p-4 font-semibold">Scaling<br /><span className="text-sm font-normal text-neutral-600">(50+ customers)</span></td>
+                  <td className="border border-hairline p-4">
                     • All early traction elements, plus:<br />
                     • 10+ testimonials throughout page<br />
                     • 3-5 video testimonials<br />
@@ -303,7 +293,7 @@ export default function BlogPost() {
                     • Security certifications<br />
                     • Live chat support
                   </td>
-                  <td className="border border-border p-4">
+                  <td className="border border-hairline p-4">
                     • AI chatbots (human support better)<br />
                     • Multi-language (unless data shows need)<br />
                     • Complex personalization (focus on fundamentals)
@@ -318,48 +308,48 @@ export default function BlogPost() {
           </p>
 
           {/* AI Agent mid-article section */}
-          <div className="my-12 rounded-2xl overflow-hidden border border-slate-200 shadow-sm">
-            <div className="bg-linear-to-r from-primary to-violet-500 px-8 py-5">
+          <div className="my-12 rounded-2xl overflow-hidden border border-hairline">
+            <div className="bg-ink px-8 py-5">
               <p className="text-white/80 text-xs font-semibold uppercase tracking-widest mb-1">The shortcut</p>
               <p className="text-xl font-bold text-white">You can check every box on the checklist, and still lose visitors who just had one unanswered question.</p>
             </div>
             <div className="bg-white px-8 py-6">
-              <p className="text-foreground mb-4 leading-relaxed">
+              <p className="text-ink mb-4 leading-relaxed">
                 Even a well-built landing page is passive. Visitors with questions bounce. Visitors unsure about pricing leave. Visitors who almost converted but wanted reassurance: gone. An AI conversion agent solves this by staying live on your page and handling those moments in real time.
               </p>
-              <ul className="space-y-3 mb-6 text-foreground">
+              <ul className="space-y-3 mb-6 text-ink">
                 <li className="flex items-start gap-3">
-                  <span className="text-primary font-bold mt-0.5 shrink-0">✓</span>
+                  <span className="text-ink font-bold mt-0.5 shrink-0">✓</span>
                   <span><strong>Answers the questions your copy doesn't cover</strong>: pricing edge cases, integration questions, "is this right for me?", handled instantly, without losing the visitor</span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="text-primary font-bold mt-0.5 shrink-0">✓</span>
+                  <span className="text-ink font-bold mt-0.5 shrink-0">✓</span>
                   <span><strong>Handles objections in real time</strong>: the same objections you'd address in a sales call, surfaced and resolved before the visitor decides to leave</span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="text-primary font-bold mt-0.5 shrink-0">✓</span>
+                  <span className="text-ink font-bold mt-0.5 shrink-0">✓</span>
                   <span><strong>Replaces your "Book a Demo" form with a real conversation</strong>: qualifies the visitor, then books the call automatically, cutting time-to-meeting from days to minutes</span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="text-primary font-bold mt-0.5 shrink-0">✓</span>
+                  <span className="text-ink font-bold mt-0.5 shrink-0">✓</span>
                   <span><strong>Captures leads from visitors who weren't ready to fill out the form</strong>: exit-intent engagement that recovers prospects before they bounce for good</span>
                 </li>
               </ul>
-              <p className="text-sm text-muted-foreground mb-5">We build, deploy, and host the agent for you. You keep the checklist and gain a 24/7 closer.</p>
-              <Link href="/book-demo" className="inline-flex items-center gap-2 bg-linear-to-r from-primary to-violet-500 text-white font-semibold text-sm px-6 py-3 rounded-xl hover:opacity-90 transition-opacity cursor-pointer">
-                See how it works →
-              </Link>
+              <p className="text-sm text-neutral-600 mb-5">We build, deploy, and host the agent for you. You keep the checklist and gain a 24/7 closer.</p>
+              <a href={SIGNUP_URL} className="inline-flex items-center gap-2 bg-ink text-white font-semibold text-sm px-6 py-3 rounded-xl hover:opacity-90 transition-opacity cursor-pointer">
+                Sign up free →
+              </a>
             </div>
           </div>
 
-          <h2 id="what-elements-boost-conversions-but-arent-essential" className="text-3xl font-bold text-foreground mt-12 mb-4">What Elements Boost Conversions But Aren't Essential?</h2>
+          <h2 id="what-elements-boost-conversions-but-arent-essential" className="text-3xl font-semibold tracking-[-0.02em] text-ink mt-12 mb-4">What Elements Boost Conversions But Aren't Essential?</h2>
           
           <p>
             After implementing must-haves, these "nice-to-have" elements can improve conversions by 10-30% when executed well. Prioritize based on resources and expected impact.
           </p>
 
           <div className="my-6">
-            <h3 className="text-xl font-bold text-foreground mb-3">High-Impact Optional Elements</h3>
+            <h3 className="text-xl font-semibold text-ink mb-3">High-Impact Optional Elements</h3>
             
             <ol className="list-decimal pl-6 space-y-4">
               <li>
@@ -380,50 +370,50 @@ export default function BlogPost() {
             </ol>
           </div>
 
-          <h2 id="what-common-landing-page-mistakes-should-you-avoid" className="text-3xl font-bold text-foreground mt-12 mb-4">What Common Landing Page Mistakes Should You Avoid?</h2>
+          <h2 id="what-common-landing-page-mistakes-should-you-avoid" className="text-3xl font-semibold tracking-[-0.02em] text-ink mt-12 mb-4">What Common Landing Page Mistakes Should You Avoid?</h2>
           
           <p>
             Even pages with must-have elements can fail due to these systematic mistakes. Avoid them to maximize conversion potential.
           </p>
 
           <div className="my-6 space-y-4">
-            <div className="bg-muted/30 border-l-4 border-red-600 p-6 rounded-r-lg">
-              <p className="font-semibold text-foreground mb-2">❌ Mistake #1: Multiple Conversion Goals</p>
+            <div className="rounded-2xl border border-hairline bg-mist border-ink p-6">
+              <p className="font-semibold text-ink mb-2">❌ Mistake #1: Multiple Conversion Goals</p>
               <p>
                 Offering "Request Demo" and "Download Whitepaper" and "Start Free Trial" on the same page creates decision paralysis. Visitors don't know which action to take, so they take none. Solution: One landing page, one conversion goal, one CTA.
               </p>
             </div>
 
-            <div className="bg-muted/30 border-l-4 border-red-600 p-6 rounded-r-lg">
-              <p className="font-semibold text-foreground mb-2">❌ Mistake #2: Keeping Navigation Links</p>
+            <div className="rounded-2xl border border-hairline bg-mist border-ink p-6">
+              <p className="font-semibold text-ink mb-2">❌ Mistake #2: Keeping Navigation Links</p>
               <p>
                 Every navigation link is an exit opportunity. Visitors who click away rarely return. Remove header navigation, sidebar links, and excessive footer links. Keep only legally required links (privacy policy, terms). Landing pages without navigation convert 25-40% better.
               </p>
             </div>
 
-            <div className="bg-muted/30 border-l-4 border-red-600 p-6 rounded-r-lg">
-              <p className="font-semibold text-foreground mb-2">❌ Mistake #3: Generic Stock Photography</p>
+            <div className="rounded-2xl border border-hairline bg-mist border-ink p-6">
+              <p className="font-semibold text-ink mb-2">❌ Mistake #3: Generic Stock Photography</p>
               <p>
                 Obvious stock photos (corporate handshakes, diverse team high-fiving, person pointing at whiteboard) reduce credibility. Visitors recognize fake imagery instantly. Use real product screenshots, actual customer photos, or authentic team pictures. If you must use stock photos, choose natural lifestyle imagery over posed corporate shots.
               </p>
             </div>
 
-            <div className="bg-muted/30 border-l-4 border-red-600 p-6 rounded-r-lg">
-              <p className="font-semibold text-foreground mb-2">❌ Mistake #4: Asking for Too Much Information</p>
+            <div className="rounded-2xl border border-hairline bg-mist border-ink p-6">
+              <p className="font-semibold text-ink mb-2">❌ Mistake #4: Asking for Too Much Information</p>
               <p>
                 Forms with 10+ fields reduce conversion by 50%+ compared to 3-5 field forms. Every field creates friction. Ask: "Do we need this information before first contact, or can we collect it during follow-up?" For early-stage leads, less information (with higher volume) beats more information (with lower volume).
               </p>
             </div>
 
-            <div className="bg-muted/30 border-l-4 border-red-600 p-6 rounded-r-lg">
-              <p className="font-semibold text-foreground mb-2">❌ Mistake #5: Ignoring Load Speed</p>
+            <div className="rounded-2xl border border-hairline bg-mist border-ink p-6">
+              <p className="font-semibold text-ink mb-2">❌ Mistake #5: Ignoring Load Speed</p>
               <p>
-                Beautiful landing page taking 6 seconds to load will convert worse than ugly, fast page. Compress images aggressively (use WebP format, reduce dimensions), minimize JavaScript, enable caching. Every second counts: literally 7% per second in conversion rate. Learn more about how to make your website faster <a href="https://talktomedata.com/blog/how-to-make-website-faster" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">in this article</a>.
+                Beautiful landing page taking 6 seconds to load will convert worse than ugly, fast page. Compress images aggressively (use WebP format, reduce dimensions), minimize JavaScript, enable caching. Every second counts: literally 7% per second in conversion rate. Learn more about how to make your website faster <a href="https://talktomedata.com/blog/how-to-make-website-faster" target="_blank" rel="noopener noreferrer" className="font-medium text-ink underline decoration-ink/25 underline-offset-4 hover:decoration-ink">in this article</a>.
               </p>
             </div>
           </div>
 
-          <h2 id="how-can-you-use-ai-to-optimize-your-landing-page" className="text-3xl font-bold text-foreground mt-12 mb-4">How Can You Use AI to Optimize Your Landing Page?</h2>
+          <h2 id="how-can-you-use-ai-to-optimize-your-landing-page" className="text-3xl font-semibold tracking-[-0.02em] text-ink mt-12 mb-4">How Can You Use AI to Optimize Your Landing Page?</h2>
           
           <p>
             Manual landing page optimization requires expertise in copywriting, design, conversion psychology, and technical implementation. Even with expertise, analyzing all elements takes hours. AI accelerates this dramatically while reducing subjective bias.
@@ -434,27 +424,27 @@ export default function BlogPost() {
           </p>
 
           <p>
-            For example: instead of "improve your headline," AI provides "Current headline focuses on features not benefits. Recommend: '[Specific Outcome] for [Target Audience] in [Timeframe]' structure. Expected impact: 15-25% conversion increase based on similar pages." For more on AI-powered optimization, see our <Link href="/blog/how-to-use-ai-to-improve-conversion-rates" className="text-primary hover:underline font-medium">complete guide to using AI for conversion optimization</Link>.
+            For example: instead of "improve your headline," AI provides "Current headline focuses on features not benefits. Recommend: '[Specific Outcome] for [Target Audience] in [Timeframe]' structure. Expected impact: 15-25% conversion increase based on similar pages." For more on AI-powered optimization, see our <Link href="/blog/how-to-use-ai-to-improve-conversion-rates" className="font-medium text-ink underline decoration-ink/25 underline-offset-4 hover:decoration-ink">complete guide to using AI for conversion optimization</Link>.
           </p>
 
           <Figure src="/blog/TTMD_speed_test_1.jpg" alt="Website speed test of Talk to me Data" />
 
-          <h2 id="how-do-you-implement-your-landing-page-checklist" className="text-3xl font-bold text-foreground mt-12 mb-4">How Do You Implement Your Landing Page Checklist?</h2>
+          <h2 id="how-do-you-implement-your-landing-page-checklist" className="text-3xl font-semibold tracking-[-0.02em] text-ink mt-12 mb-4">How Do You Implement Your Landing Page Checklist?</h2>
           
           <p>
             Having a checklist is step one. Systematic implementation is step two. Use this framework to go from checklist to live, converting page.
           </p>
 
           <div className="my-6">
-            <h3 className="text-xl font-bold text-foreground mb-3">The 4-Phase Implementation Framework</h3>
+            <h3 className="text-xl font-semibold text-ink mb-3">The 4-Phase Implementation Framework</h3>
             
             <div className="space-y-6">
-              <div className="border-l-4 border-primary pl-6">
-                <h4 className="text-lg font-bold text-foreground mb-2">Phase 1: Audit Current State (Week 1)</h4>
+              <div className="border-l-2 border-ink pl-6">
+                <h4 className="text-lg font-bold text-ink mb-2">Phase 1: Audit Current State (Week 1)</h4>
                 <p className="mb-3">
                   Before building or optimizing, understand where you stand. Generate your personalized checklist using our tool, then audit your current page against every must-have element.
                 </p>
-                <p className="font-semibold text-foreground mb-2">Audit questions:</p>
+                <p className="font-semibold text-ink mb-2">Audit questions:</p>
                 <ul className="list-disc pl-6 space-y-2">
                   <li>Can someone understand your offer in 5 seconds? (Ask 3 people unfamiliar with your product)</li>
                   <li>Is your primary CTA visible without scrolling on mobile and desktop?</li>
@@ -467,12 +457,12 @@ export default function BlogPost() {
                 </p>
               </div>
 
-              <div className="border-l-4 border-primary pl-6">
-                <h4 className="text-lg font-bold text-foreground mb-2">Phase 2: Fix Critical Issues (Week 2-3)</h4>
+              <div className="border-l-2 border-ink pl-6">
+                <h4 className="text-lg font-bold text-ink mb-2">Phase 2: Fix Critical Issues (Week 2-3)</h4>
                 <p className="mb-3">
                   Prioritize must-have elements only. Don't get distracted by nice-to-haves yet; focus exclusively on conversion fundamentals.
                 </p>
-                <p className="font-semibold text-foreground mb-2">Implementation priority order:</p>
+                <p className="font-semibold text-ink mb-2">Implementation priority order:</p>
                 <ol className="list-decimal pl-6 space-y-2">
                   <li><strong>Value proposition:</strong> Rewrite headline using [Outcome] + [Audience] + [Timeframe] formula</li>
                   <li><strong>CTA optimization:</strong> Add above-fold CTA with first-person, action-oriented copy</li>
@@ -483,12 +473,12 @@ export default function BlogPost() {
                 </ol>
               </div>
 
-              <div className="border-l-4 border-primary pl-6">
-                <h4 className="text-lg font-bold text-foreground mb-2">Phase 3: Measure Baseline (Week 4-6)</h4>
+              <div className="border-l-2 border-ink pl-6">
+                <h4 className="text-lg font-bold text-ink mb-2">Phase 3: Measure Baseline (Week 4-6)</h4>
                 <p className="mb-3">
                   After implementing must-haves, let the page run for 2-4 weeks (depending on traffic volume) to establish baseline conversion rate. Avoid making changes during this period; you need clean data.
                 </p>
-                <p className="font-semibold text-foreground mb-2">Track these metrics:</p>
+                <p className="font-semibold text-ink mb-2">Track these metrics:</p>
                 <ul className="list-disc pl-6 space-y-2">
                   <li>Conversion rate (overall and by traffic source)</li>
                   <li>Bounce rate and average time on page</li>
@@ -497,16 +487,16 @@ export default function BlogPost() {
                   <li>Mobile vs desktop conversion rate</li>
                 </ul>
                 <p className="text-sm mt-3">
-                  Need help tracking conversions? Our <Link href="/blog/increase-conversion-rate-30-days" className="text-primary hover:underline font-medium">30-day sprint guide</Link> covers measurement setup in detail.
+                  Need help tracking conversions? Our <Link href="/blog/increase-conversion-rate-30-days" className="font-medium text-ink underline decoration-ink/25 underline-offset-4 hover:decoration-ink">30-day sprint guide</Link> covers measurement setup in detail.
                 </p>
               </div>
 
-              <div className="border-l-4 border-primary pl-6">
-                <h4 className="text-lg font-bold text-foreground mb-2">Phase 4: Implement Nice-to-Haves (Week 7+)</h4>
+              <div className="border-l-2 border-ink pl-6">
+                <h4 className="text-lg font-bold text-ink mb-2">Phase 4: Implement Nice-to-Haves (Week 7+)</h4>
                 <p className="mb-3">
                   Once fundamentals are solid and baseline is established, add nice-to-have elements one at a time. Implement, measure impact for 1-2 weeks, then add next element. This isolates the effect of each change.
                 </p>
-                <p className="font-semibold text-foreground mb-2">Implementation order (highest impact first):</p>
+                <p className="font-semibold text-ink mb-2">Implementation order (highest impact first):</p>
                 <ol className="list-decimal pl-6 space-y-2">
                   <li>Exit intent popup (10-15% abandonment recovery)</li>
                   <li>Product demo video if complex offering (20-30% engagement boost)</li>
@@ -519,7 +509,7 @@ export default function BlogPost() {
           </div>
 
           {/* Conclusion */}
-          <h2 id="summary-building-landing-pages-that-convert" className="text-3xl font-bold text-foreground mt-12 mb-4">Summary: Building Landing Pages That Convert</h2>
+          <h2 id="summary-building-landing-pages-that-convert" className="text-3xl font-semibold tracking-[-0.02em] text-ink mt-12 mb-4">Summary: Building Landing Pages That Convert</h2>
           
           <p>
             High-converting landing pages aren't accidents; they're systematic implementations of proven principles. The difference between average (2-3% conversion) and top-performing (8-15% conversion) isn't magic or massive budgets; it's executing fundamentals consistently.
@@ -533,29 +523,13 @@ export default function BlogPost() {
             Avoid common mistakes that sabotage conversions: multiple conversion goals, keeping navigation links, generic stock photos, asking for too much information, and ignoring page speed. Each mistake can reduce conversions by 20-50%, they compound quickly.
           </p>
 
-          <p className="text-xl font-medium text-foreground/90">
+          <p className="text-xl font-medium text-ink">
             Use our interactive checklist tool to generate personalized recommendations based on your specific business type and stage. Get must-have, nice-to-have, and do-later priorities tailored to where you are in your journey. Don't guess what matters; let data and proven frameworks guide implementation.
           </p>
 
-          {/* Final CTA */}
-          <div className="my-12 rounded-2xl overflow-hidden border border-slate-200 shadow-sm">
-            <div
-              className="relative px-8 py-10"
-              style={{
-                background: "linear-gradient(135deg, #185FA5, #2563eb, #7c3aed)",
-                backgroundImage: "linear-gradient(135deg, #185FA5, #2563eb, #7c3aed), radial-gradient(circle, rgba(255,255,255,0.07) 1px, transparent 1px)",
-                backgroundSize: "100% 100%, 24px 24px",
-              }}
-            >
-              <p className="text-2xl font-bold text-white mb-3">Ready to build a landing page that actually converts?</p>
-              <p className="text-white/80 mb-6 leading-relaxed max-w-xl">
-                Book a free call. We'll review your page against the checklist, spot the highest-impact gaps, and show you how an AI agent can handle the conversion work your page can't do on its own.
-              </p>
-              <Link href="/book-demo" className="inline-flex items-center gap-2 bg-white text-primary font-semibold text-sm px-6 py-3 rounded-xl hover:bg-white/90 transition-colors cursor-pointer">
-                Book a free call →
-              </Link>
-            </div>
-          </div>
+          <SignupCta heading="Ready to build a landing page that actually converts?">
+            Sign up free, check your page against what converts, and put an agent on it to answer the questions your copy doesn&apos;t.
+          </SignupCta>
         </div>
       </div>
     </BlogPostShell>

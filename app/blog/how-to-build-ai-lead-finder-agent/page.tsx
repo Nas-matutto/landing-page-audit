@@ -1,4 +1,6 @@
 import Link from "next/link"
+import { SignupCta } from "@/components/blog/signup-cta"
+import { SIGNUP_URL } from "@/lib/links"
 import { BlogPostShell } from "@/components/blog/post-shell"
 import { CopyButton } from "@/components/blog/copy-button"
 import { buildPostMetadata, type Faq } from "@/lib/blog"
@@ -101,17 +103,17 @@ export default function BlogPost() {
   return (
     <BlogPostShell slug={SLUG} faqs={faqs}>
       <div className="prose prose-lg max-w-none">
-        <div className="space-y-6 text-muted-foreground leading-relaxed">
+        <div className="space-y-6 text-neutral-600 leading-relaxed">
 
           {/* TL;DR */}
-          <div className="bg-primary/8 border-l-4 border-primary p-6 my-8 rounded-r-lg">
-            <h2 className="text-xl font-bold text-foreground mb-3">TL;DR: Key Takeaways</h2>
-            <ul className="list-disc pl-6 space-y-2 text-foreground">
+          <div className="rounded-2xl border border-hairline bg-mist p-6 my-8">
+            <h2 className="text-xl font-semibold tracking-[-0.02em] text-ink mb-3">TL;DR: Key Takeaways</h2>
+            <ul className="list-disc pl-6 space-y-2 text-ink">
               <li>You can build an AI-powered lead generation pipeline using Claude, Apify, and Google Sheets, without writing code</li>
               <li>The full system is actually two separate agents: one that scrapes and saves leads, and one that researches each lead and writes a personalized cold email</li>
               <li>Use NeverBounce to verify emails before sending: it costs $8 per 1,000 checks and protects your sender reputation</li>
               <li>Both agent prompts are provided below, ready to copy and paste directly into your Agent System Prompt</li>
-              <li>If you want this built and running for your business without managing any of it yourself, <Link href="/book-demo" className="text-primary hover:underline font-semibold">Talk to Me Data can do that for you</Link></li>
+              <li>If you want this built and running for your business without managing any of it yourself, <a href={SIGNUP_URL} className="font-semibold text-ink underline decoration-ink/25 underline-offset-4 hover:decoration-ink">Talk to Me Data can do that for you</a></li>
             </ul>
           </div>
 
@@ -123,11 +125,11 @@ export default function BlogPost() {
             In this post we are sharing a lead generation system that scrapes the internet for B2B contacts matching your criteria, saves them to a Google Sheet, verifies their email addresses, and then researches each lead individually to write a personalized cold email based on a genuine signal it has found about that business. By the end of this guide, you will have two fully functional agent prompts: one for finding and filtering leads, and another for researching and writing emails (along with a clear picture of how they connect into a repeatable outbound pipeline).
           </p>
           <p>
-            If you are newer to the concept of AI agents and want to understand the broader picture before diving into this, our guide on <Link href="/blog/ai-agents-for-small-business" className="text-primary hover:underline">AI agents for small and medium businesses</Link> is a useful starting point. And if you want to understand the logic behind using signals rather than cold lists for outreach, we have covered that in detail in our piece on <Link href="/blog/how-to-use-intent-signals-to-increase-conversion-rates" className="text-primary hover:underline">intent-based prospecting</Link>.
+            If you are newer to the concept of AI agents and want to understand the broader picture before diving into this, our guide on <Link href="/blog/ai-agents-for-small-business" className="text-ink underline decoration-ink/25 underline-offset-4 hover:decoration-ink">AI agents for small and medium businesses</Link> is a useful starting point. And if you want to understand the logic behind using signals rather than cold lists for outreach, we have covered that in detail in our piece on <Link href="/blog/how-to-use-intent-signals-to-increase-conversion-rates" className="text-ink underline decoration-ink/25 underline-offset-4 hover:decoration-ink">intent-based prospecting</Link>.
           </p>
 
           {/* Architecture */}
-          <h2 id="understanding-the-architecture-it-is-not-one-agent-it-is-a-p" className="text-2xl font-bold text-foreground mt-10 mb-4">Understanding the architecture: it is not one agent, it is a pipeline</h2>
+          <h2 id="understanding-the-architecture-it-is-not-one-agent-it-is-a-p" className="text-2xl font-semibold tracking-[-0.02em] text-ink mt-10 mb-4">Understanding the architecture: it is not one agent, it is a pipeline</h2>
           <p>
             Before we build anything, it is worth being clear about what we are actually creating, because "an AI agent that finds leads" understates the real structure. What you end up with is a multi-agent pipeline where each agent is responsible for one specific job and passes its output to the next stage.
           </p>
@@ -142,37 +144,37 @@ export default function BlogPost() {
           </p>
 
           {/* CTA — inline */}
-          <div className="bg-slate-50 border border-slate-200 rounded-2xl p-6 my-8">
-            <p className="text-foreground font-semibold mb-2">Want this built and running for your business?</p>
-            <p className="text-sm text-muted-foreground mb-4">Talk to Me Data builds and manages AI agent pipelines like this end-to-end, so you get the leads without managing the infrastructure. We handle the setup, the integrations, and the ongoing monitoring.</p>
-            <Link href="/book-demo" className="inline-flex items-center gap-2 px-5 py-2.5 bg-linear-to-r from-primary to-violet-500 text-white text-sm font-semibold rounded-xl hover:opacity-90 transition-opacity">
-              Book a free call →
-            </Link>
+          <div className="bg-mist border border-hairline rounded-2xl p-6 my-8">
+            <p className="text-ink font-semibold mb-2">Want this built and running for your business?</p>
+            <p className="text-sm text-neutral-600 mb-4">Talk to Me Data builds and manages AI agent pipelines like this end-to-end, so you get the leads without managing the infrastructure. Sign up free, then tell us your ideal customer and we handle the setup, the integrations and the monitoring.</p>
+            <a href={SIGNUP_URL} className="inline-flex items-center gap-2 px-5 py-2.5 bg-ink text-white text-sm font-semibold rounded-xl hover:opacity-90 transition-opacity">
+              Sign up free →
+            </a>
           </div>
 
           {/* Scraping Agent */}
-          <h2 id="how-to-build-the-web-scraping-agent" className="text-3xl font-bold text-foreground mt-10 mb-4">How to build the Web Scraping Agent</h2>
+          <h2 id="how-to-build-the-web-scraping-agent" className="text-3xl font-semibold tracking-[-0.02em] text-ink mt-10 mb-4">How to build the Web Scraping Agent</h2>
 
-          <h3 className="text-xl font-bold text-foreground mt-8 mb-3">What is Apify and why are we using it?</h3>
+          <h3 className="text-xl font-semibold text-ink mt-8 mb-3">What is Apify and why are we using it?</h3>
           <p>
-            <a href="https://apify.com" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Apify</a> is a web scraping and automation platform that provides a marketplace of pre-built scrapers called "actors." Rather than writing custom code to extract data from a website, you use an actor that someone else has already built for that exact source, and you configure it by passing in a JSON object with your search parameters. The actor we are using in this guide is <code className="bg-slate-100 px-1.5 py-0.5 rounded text-sm text-slate-700">code_crafter/leads-finder</code>, which accepts search terms, location, role type, and a maximum result count, and returns a structured dataset of B2B contacts.
+            <a href="https://apify.com" target="_blank" rel="noopener noreferrer" className="text-ink underline decoration-ink/25 underline-offset-4 hover:decoration-ink">Apify</a> is a web scraping and automation platform that provides a marketplace of pre-built scrapers called "actors." Rather than writing custom code to extract data from a website, you use an actor that someone else has already built for that exact source, and you configure it by passing in a JSON object with your search parameters. The actor we are using in this guide is <code className="bg-mist px-1.5 py-0.5 rounded text-sm text-ink">code_crafter/leads-finder</code>, which accepts search terms, location, role type, and a maximum result count, and returns a structured dataset of B2B contacts.
           </p>
           <p>
-            Apify has a free tier with monthly compute credits that is sufficient for testing and smaller batches. For ongoing use at meaningful volume, their paid plans charge per compute unit, which translates to a reasonably predictable cost per lead depending on the source you are scraping from. To connect Apify to Claude, you add it as an MCP integration in Claude Desktop's settings panel, the same approach we covered in the <Link href="/blog/how-to-build-ai-voice-agent" className="text-primary hover:underline">voice agent guide</Link>.
+            Apify has a free tier with monthly compute credits that is sufficient for testing and smaller batches. For ongoing use at meaningful volume, their paid plans charge per compute unit, which translates to a reasonably predictable cost per lead depending on the source you are scraping from. To connect Apify to Claude, you add it as an MCP integration in Claude Desktop's settings panel, the same approach we covered in the <Link href="/blog/how-to-build-ai-voice-agent" className="text-ink underline decoration-ink/25 underline-offset-4 hover:decoration-ink">voice agent guide</Link>.
           </p>
 
-          <h3 className="text-xl font-bold text-foreground mt-8 mb-3">The Scraping Agent prompt</h3>
+          <h3 className="text-xl font-semibold text-ink mt-8 mb-3">The Scraping Agent prompt</h3>
           <p>
             The prompt below is designed to run the Apify actor, apply your filtering criteria, and write qualifying leads to your Google Sheet in a single pass. Before using it, you will need to replace the placeholder values in square brackets with your actual parameters: the Apify actor input for your search, your filtering criteria, and your Google Sheets spreadsheet ID and tab name.
           </p>
 
           {/* Scraping Prompt Block */}
-          <div className="my-8 rounded-2xl overflow-hidden border border-slate-200">
-            <div className="flex items-center justify-between px-4 py-3 bg-slate-900">
-              <span className="text-slate-400 text-sm font-mono">Scraping Agent: copy and paste into Claude</span>
-              <CopyButton text={SCRAPING_PROMPT} className="px-3 py-1.5 text-xs font-semibold rounded-lg bg-primary/20 text-primary hover:bg-primary/30 transition-colors cursor-pointer" />
+          <div className="my-8 rounded-2xl overflow-hidden border border-hairline">
+            <div className="flex items-center justify-between px-4 py-3 bg-ink">
+              <span className="text-faint text-sm font-mono">Scraping Agent: copy and paste into Claude</span>
+              <CopyButton text={SCRAPING_PROMPT} className="px-3 py-1.5 text-xs font-semibold rounded-lg bg-mist text-ink hover:bg-mist transition-colors cursor-pointer" />
             </div>
-            <pre className="bg-slate-800 text-slate-200 text-sm p-5 overflow-x-auto leading-relaxed whitespace-pre-wrap font-mono">
+            <pre className="bg-neutral-900 text-neutral-200 text-sm p-5 overflow-x-auto leading-relaxed whitespace-pre-wrap font-mono">
               {SCRAPING_PROMPT}
             </pre>
           </div>
@@ -185,19 +187,19 @@ export default function BlogPost() {
           </p>
 
           {/* NeverBounce */}
-          <h2 id="cleaning-your-lead-list-with-neverbounce" className="text-2xl font-bold text-foreground mt-10 mb-4">Cleaning your lead list with NeverBounce</h2>
+          <h2 id="cleaning-your-lead-list-with-neverbounce" className="text-2xl font-semibold tracking-[-0.02em] text-ink mt-10 mb-4">Cleaning your lead list with NeverBounce</h2>
           <p>
-            Before you pass your scraped leads to the Signal Research Agent or, eventually, to an outreach tool, you should verify the email addresses. Apify aggregates contact data from publicly available sources, and the quality of those emails can vary considerably, and while some will be current and deliverable, others will be outdated job titles that have since moved on, role-based addresses like <code className="bg-slate-100 px-1.5 py-0.5 rounded text-sm text-slate-700">info@</code> that rarely reach an individual, or simply incorrect.
+            Before you pass your scraped leads to the Signal Research Agent or, eventually, to an outreach tool, you should verify the email addresses. Apify aggregates contact data from publicly available sources, and the quality of those emails can vary considerably, and while some will be current and deliverable, others will be outdated job titles that have since moved on, role-based addresses like <code className="bg-mist px-1.5 py-0.5 rounded text-sm text-ink">info@</code> that rarely reach an individual, or simply incorrect.
           </p>
           <p>
             Sending cold email to a list with a high bounce rate is one of the most effective ways to get your sending domain flagged as spam by Google and Microsoft. Once that happens, it affects not just your outbound campaigns but every email your domain sends, including replies to customers, proposals, and internal communication. The cost of repairing a burnt domain, or setting up and warming a replacement, far exceeds the cost of verifying the list upfront.
           </p>
           <p>
-            <a href="https://www.neverbounce.com" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">NeverBounce</a> is the tool we use for this step. You export your lead list from Google Sheets, upload it to NeverBounce, and it returns each address marked as valid, invalid, disposable, or catchall. Remove everything that is not confirmed valid, and you are left with a list that is substantially safer to contact. At $8 per 1,000 email verifications, it is a negligible cost relative to the risk it mitigates, and relative to the time the scraping agent just saved you in building the list.
+            <a href="https://www.neverbounce.com" target="_blank" rel="noopener noreferrer" className="text-ink underline decoration-ink/25 underline-offset-4 hover:decoration-ink">NeverBounce</a> is the tool we use for this step. You export your lead list from Google Sheets, upload it to NeverBounce, and it returns each address marked as valid, invalid, disposable, or catchall. Remove everything that is not confirmed valid, and you are left with a list that is substantially safer to contact. At $8 per 1,000 email verifications, it is a negligible cost relative to the risk it mitigates, and relative to the time the scraping agent just saved you in building the list.
           </p>
 
           {/* Signal Agent */}
-          <h2 id="building-the-signal-research-agent" className="text-2xl font-bold text-foreground mt-10 mb-4">Building the Signal Research Agent</h2>
+          <h2 id="building-the-signal-research-agent" className="text-2xl font-semibold tracking-[-0.02em] text-ink mt-10 mb-4">Building the Signal Research Agent</h2>
           <p>
             Most cold email fails not because the product is wrong for the prospect, but because the email reads like it was written for anyone. "I noticed you are the Head of Operations at Acme, and I would love to show you how AI can transform your workflows" tells the recipient nothing except that someone scraped their LinkedIn title. It generates no response because it deserves none.
           </p>
@@ -205,7 +207,7 @@ export default function BlogPost() {
             The Signal Research Agent is built around a different premise: that a single well-chosen observation about a company, combined with one sentence about the implication of that observation, does more work than three paragraphs of feature selling. The agent reads the company website, searches for recent job postings, and picks the single strongest signal it can find, then writes an email that leads with that specific thing and nothing else. The result is an email that reads like it was written by someone who spent five minutes looking at the business, because it was.
           </p>
 
-          <h3 className="text-xl font-bold text-foreground mt-8 mb-3">How the signal logic works</h3>
+          <h3 className="text-xl font-semibold text-ink mt-8 mb-3">How the signal logic works</h3>
           <p>
             The prompt instructs the agent to identify one signal from a prioritized list: a company that is actively hiring for operations, admin, or support roles is signalling that it is scaling manual workflows and experiencing the pain that comes with that. A fast-growing SMB in an industry with characteristically high administrative volume (insurance, legal, accounting, real estate, healthcare admin) is a strong candidate regardless of job postings. A business with no visible automation or AI tooling represents a greenfield opportunity. A recently funded or expanding company has budget availability that a bootstrapped operation may not.
           </p>
@@ -213,15 +215,15 @@ export default function BlogPost() {
             If none of these signals are clearly present, the agent flags the lead for manual review rather than fabricating a rationale. That is the right behaviour: a made-up opener is worse than no opener at all, because it signals to the recipient that the email was generated at scale without any real research.
           </p>
 
-          <h3 className="text-xl font-bold text-foreground mt-8 mb-3">The Signal Research Agent prompt</h3>
+          <h3 className="text-xl font-semibold text-ink mt-8 mb-3">The Signal Research Agent prompt</h3>
 
           {/* Signal Prompt Block */}
-          <div className="my-8 rounded-2xl overflow-hidden border border-slate-200">
-            <div className="flex items-center justify-between px-4 py-3 bg-slate-900">
-              <span className="text-slate-400 text-sm font-mono">Signal Research Agent: copy and paste into Claude</span>
-              <CopyButton text={SIGNAL_PROMPT} className="px-3 py-1.5 text-xs font-semibold rounded-lg bg-primary/20 text-primary hover:bg-primary/30 transition-colors cursor-pointer" />
+          <div className="my-8 rounded-2xl overflow-hidden border border-hairline">
+            <div className="flex items-center justify-between px-4 py-3 bg-ink">
+              <span className="text-faint text-sm font-mono">Signal Research Agent: copy and paste into Claude</span>
+              <CopyButton text={SIGNAL_PROMPT} className="px-3 py-1.5 text-xs font-semibold rounded-lg bg-mist text-ink hover:bg-mist transition-colors cursor-pointer" />
             </div>
-            <pre className="bg-slate-800 text-slate-200 text-sm p-5 overflow-x-auto leading-relaxed whitespace-pre-wrap font-mono">
+            <pre className="bg-neutral-900 text-neutral-200 text-sm p-5 overflow-x-auto leading-relaxed whitespace-pre-wrap font-mono">
               {SIGNAL_PROMPT}
             </pre>
           </div>
@@ -230,13 +232,13 @@ export default function BlogPost() {
             To run this agent, you give it the lead details from your Google Sheet, such as name, title, company, website or email, industry, size, etc. and it does the research and writing from there. You can paste one lead at a time, or you can give it a small batch and let it work through them sequentially. The output format is fixed: it always returns the identified signal, the subject line, and the email body in that order, which makes it easy to copy the outputs into a spreadsheet column or directly into your outreach tool.
           </p>
 
-          <h3 className="text-xl font-bold text-foreground mt-8 mb-3">What a good output looks like versus a bad one</h3>
+          <h3 className="text-xl font-semibold text-ink mt-8 mb-3">What a good output looks like versus a bad one</h3>
           <p>
             The difference between a useful output and a useless one comes down to whether the opener contains something specific. Here is an example of what the agent should produce when it finds a strong signal:
           </p>
 
-          <div className="bg-slate-50 border border-slate-200 rounded-xl p-5 my-6 font-mono text-sm text-slate-700 leading-relaxed">
-            <p className="text-slate-400 text-xs mb-3 font-sans font-medium uppercase tracking-wide">Good output example</p>
+          <div className="bg-mist border border-hairline rounded-xl p-5 my-6 font-mono text-sm text-ink leading-relaxed">
+            <p className="text-faint text-xs mb-3 font-sans font-medium uppercase tracking-wide">Good output example</p>
             <p><strong>Signal:</strong> Hiring two claims processors right now</p>
             <p className="mt-2"><strong>Subject:</strong> Claims processors at Meridian</p>
             <p className="mt-2"><strong>Email:</strong></p>
@@ -254,11 +256,11 @@ export default function BlogPost() {
 
           {/* What's next */}
           {/* Video walkthrough */}
-          <h2 id="watch-the-full-walkthrough" className="text-2xl font-bold text-foreground mt-10 mb-4">Watch the full walkthrough</h2>
+          <h2 id="watch-the-full-walkthrough" className="text-2xl font-semibold tracking-[-0.02em] text-ink mt-10 mb-4">Watch the full walkthrough</h2>
           <p>
             If you would prefer to follow along visually rather than reading through the steps, the video below walks through the entire pipeline, from connecting Apify to Claude, through to the Signal Research Agent writing personalized emails for each lead.
           </p>
-          <div className="relative w-full my-8 rounded-2xl overflow-hidden bg-slate-900" style={{ paddingBottom: "56.25%" }}>
+          <div className="relative w-full my-8 rounded-2xl overflow-hidden bg-ink" style={{ paddingBottom: "56.25%" }}>
             <iframe
               className="absolute inset-0 w-full h-full"
               src="https://www.youtube.com/embed/husaiR18Fec"
@@ -268,16 +270,16 @@ export default function BlogPost() {
             />
           </div>
 
-          <h2 id="what-comes-next-running-the-campaigns-with-instantly" className="text-2xl font-bold text-foreground mt-10 mb-4">What comes next: running the campaigns with Instantly</h2>
+          <h2 id="what-comes-next-running-the-campaigns-with-instantly" className="text-2xl font-semibold tracking-[-0.02em] text-ink mt-10 mb-4">What comes next: running the campaigns with Instantly</h2>
           <p>
-            Once you have a Google Sheet full of verified, researched leads with personalized email copy ready for each one, the final step is running the actual outreach campaigns. The tool we use for this is <a href="https://instantly.ai" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Instantly</a>, which handles sequence scheduling, inbox rotation, reply detection, and campaign analytics in a clean interface designed specifically for cold email at volume. We will cover the full Instantly setup (including how to import leads from your Sheet, configure follow-up sequences, and interpret campaign data) in a follow-up post.
+            Once you have a Google Sheet full of verified, researched leads with personalized email copy ready for each one, the final step is running the actual outreach campaigns. The tool we use for this is <a href="https://instantly.ai" target="_blank" rel="noopener noreferrer" className="text-ink underline decoration-ink/25 underline-offset-4 hover:decoration-ink">Instantly</a>, which handles sequence scheduling, inbox rotation, reply detection, and campaign analytics in a clean interface designed specifically for cold email at volume. We will cover the full Instantly setup (including how to import leads from your Sheet, configure follow-up sequences, and interpret campaign data) in a follow-up post.
           </p>
           <p>
             For now, the pipeline you have built  (Scraping Agent) pulling contacts into Google Sheets, NeverBounce verifying the list, and Signal Agent researching and writing emails for each qualifying lead, is a complete lead generation and research engine. The outreach layer sits on top of it, not inside it, which is the correct separation of concerns.
           </p>
 
           {/* When not enough CTA */}
-          <h2 id="when-you-want-this-running-automatically-not-manually" className="text-2xl font-bold text-foreground mt-10 mb-4">When you want this running automatically, not manually</h2>
+          <h2 id="when-you-want-this-running-automatically-not-manually" className="text-2xl font-semibold tracking-[-0.02em] text-ink mt-10 mb-4">When you want this running automatically, not manually</h2>
           <p>
             The agent pipeline we have built in this guide requires you to initiate each step manually inside Claude Desktop: you trigger the Scraping Agent when you want a new batch of leads, then run the Signal Agent on each lead individually. For a solo founder or small team doing targeted outbound to a curated list, that manual cadence is perfectly workable and gives you tight control over what goes out.
           </p>
@@ -285,41 +287,20 @@ export default function BlogPost() {
             But for businesses that want their pipeline running on a schedule (pulling fresh leads weekly, verifying them automatically, researching and drafting emails for every new addition without anyone having to initiate a session), you need a more substantial deployment. That means orchestration, scheduled triggers, error handling for when Apify returns unexpected data, monitoring to catch issues before they affect your outreach, and a proper integration with your outreach tool's API so that approved emails move into campaigns without manual copy-pasting.
           </p>
           <p>
-            That kind of production-grade lead generation system is something <Link href="/agents" className="text-primary hover:underline">Talk to Me Data</Link> builds and runs for businesses. You define your ideal customer profile, the signals that matter to you, and the voice you want your outreach to have; we handle everything else. You can also use our <Link href="/free-tools/calculator" className="text-primary hover:underline">workflow time savings calculator</Link> to estimate how many hours a week a fully automated pipeline like this could reclaim for your team.
+            That kind of production-grade lead generation system is something <Link href="/agents" className="text-ink underline decoration-ink/25 underline-offset-4 hover:decoration-ink">Talk to Me Data</Link> builds and runs for businesses. You define your ideal customer profile, the signals that matter to you, and the voice you want your outreach to have; we handle everything else. You can also use our <Link href="/free-tools/calculator" className="text-ink underline decoration-ink/25 underline-offset-4 hover:decoration-ink">workflow time savings calculator</Link> to estimate how many hours a week a fully automated pipeline like this could reclaim for your team.
           </p>
 
-          {/* Final CTA Box */}
-          <div className="bg-slate-900 text-white p-8 rounded-2xl my-10">
-            <h3 className="text-2xl font-bold mb-3">Get this pipeline built and running for your business</h3>
-            <p className="text-slate-300 mb-6 leading-relaxed">
-              Talk to Me Data builds, deploys and manages custom AI agent pipelines for small and medium businesses, including fully automated lead generation and outreach systems. In a free 20-minute call, we will scope your use case and tell you exactly what a production version of this pipeline would look like for your specific target market.
-            </p>
-            <Link
-              href="/book-demo"
-              className="inline-flex items-center gap-2 px-6 py-3 bg-linear-to-r from-primary to-violet-500 text-white font-semibold rounded-xl hover:opacity-90 transition-opacity"
-            >
-              Book a free call →
-            </Link>
-          </div>
+          <SignupCta heading="Get this pipeline built and running for your business">
+            Sign up free, then tell us your ideal customer and the signals that matter. We&apos;ll build and run the lead pipeline for you.
+          </SignupCta>
 
         </div>
       </div>
 
 
-      {/* Bottom CTA */}
-      <div className="mt-16 text-center border-t border-slate-100 pt-12">
-        <p className="text-sm text-muted-foreground mb-2">Ready to automate your outbound pipeline?</p>
-        <p className="text-2xl font-bold text-foreground mb-4">We build it, you use it</p>
-        <p className="text-muted-foreground mb-8 max-w-xl mx-auto">
-          From lead scraping to signal research to outreach campaigns: Talk to Me Data builds and manages the full AI agent pipeline for your business. No tokens to manage, no infrastructure to maintain, no prompts to fine-tune.
-        </p>
-        <Link
-          href="/book-demo"
-          className="inline-flex items-center gap-2 px-8 py-4 bg-linear-to-r from-primary to-violet-500 text-white font-semibold rounded-xl hover:opacity-90 transition-opacity text-lg"
-        >
-          Book a free call →
-        </Link>
-      </div>
+      <SignupCta heading="Ready to automate your outbound pipeline?">
+        From lead scraping to signal research to outreach, we build and manage the whole agent pipeline. Sign up free to get started.
+      </SignupCta>
     </BlogPostShell>
   )
 }

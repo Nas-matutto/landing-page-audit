@@ -4,7 +4,9 @@ import { notFound } from "next/navigation"
 import { ChevronRight } from "lucide-react"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
+import { BlogCtaBand } from "@/components/blog/cta-band"
 import { JsonLd } from "@/components/blog/json-ld"
+import { Reveal } from "@/components/sections/social-agent/parts"
 import { PostCard } from "@/components/blog/post-card"
 import {
   CATEGORIES,
@@ -90,51 +92,57 @@ export default async function CategoryPage({ params }: { params: Params }) {
     <div className="min-h-screen bg-white">
       <JsonLd data={jsonLd} />
       <Header />
-      <main className="pt-32 sm:pt-40 pb-16 sm:pb-24">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <nav aria-label="Breadcrumb" className="mx-auto mb-8 max-w-3xl">
-            <ol className="flex items-center gap-1.5 text-sm text-slate-500">
-              <li><Link href="/blog" className="hover:text-primary">Blog</Link></li>
-              <li aria-hidden><ChevronRight className="h-3.5 w-3.5" /></li>
-              <li className="text-slate-700">{category.name}</li>
-            </ol>
-          </nav>
-
-          <header className="mx-auto mb-12 max-w-3xl">
-            <h1 className="mb-6 text-4xl font-bold tracking-tight text-balance text-slate-900 sm:text-5xl">
-              {category.heading}
-            </h1>
-            <div className="space-y-4 text-lg leading-relaxed text-slate-500">
-              {category.intro.map(paragraph => (
-                <p key={paragraph}>{paragraph}</p>
-              ))}
-            </div>
-          </header>
-
-          <h2 className="mb-6 text-center text-sm font-semibold uppercase tracking-widest text-slate-400">
-            {posts.length} {posts.length === 1 ? "guide" : "guides"}
-          </h2>
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {posts.map(post => (
-              <PostCard key={post.slug} post={post} />
-            ))}
+      <main>
+        <section className="bg-white pb-14 pt-36 sm:pt-44 lg:pb-16 lg:pt-40">
+          <div className="mx-auto max-w-6xl px-6 lg:px-8">
+            <nav aria-label="Breadcrumb" className="mb-8">
+              <ol className="flex items-center gap-1.5 text-sm text-quiet">
+                <li><Link href="/blog" className="transition-colors hover:text-ink">Blog</Link></li>
+                <li aria-hidden><ChevronRight className="h-3.5 w-3.5 text-faint" /></li>
+                <li className="text-ink">{category.name}</li>
+              </ol>
+            </nav>
+            <Reveal className="max-w-3xl">
+              <p className="eyebrow mb-5">
+                {posts.length} {posts.length === 1 ? "guide" : "guides"}
+              </p>
+              <h1 className="display text-[clamp(2.5rem,6vw,4.25rem)]">{category.heading}</h1>
+              <div className="lede mt-6 space-y-4 text-lg">
+                {category.intro.map(paragraph => (
+                  <p key={paragraph}>{paragraph}</p>
+                ))}
+              </div>
+            </Reveal>
           </div>
+        </section>
 
-          <nav aria-label="Other topics" className="mt-16 border-t border-slate-200 pt-10 text-center">
-            <p className="mb-4 text-sm font-semibold text-slate-700">More topics</p>
-            <div className="flex flex-wrap justify-center gap-2">
-              {CATEGORIES.filter(c => c.id !== category.id).map(other => (
-                <Link
-                  key={other.id}
-                  href={categoryPath(other.id)}
-                  className="rounded-full border border-slate-200 px-4 py-2 text-sm font-medium text-slate-600 transition-colors hover:border-primary hover:text-primary"
-                >
-                  {other.name}
-                </Link>
+        <section className="border-y border-hairline bg-mist px-6 py-16 sm:py-24 lg:px-8">
+          <div className="mx-auto max-w-6xl">
+            <h2 className="eyebrow mb-5">All {category.name} guides</h2>
+            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+              {posts.map(post => (
+                <PostCard key={post.slug} post={post} />
               ))}
             </div>
-          </nav>
-        </div>
+
+            <nav aria-label="Other topics" className="mt-16 text-center">
+              <p className="eyebrow mb-4">More topics</p>
+              <div className="flex flex-wrap justify-center gap-2">
+                {CATEGORIES.filter(c => c.id !== category.id).map(other => (
+                  <Link
+                    key={other.id}
+                    href={categoryPath(other.id)}
+                    className="rounded-full border border-hairline bg-white px-4 py-2 text-sm font-medium text-ink transition-colors hover:border-ink hover:bg-ink hover:text-white"
+                  >
+                    {other.name}
+                  </Link>
+                ))}
+              </div>
+            </nav>
+          </div>
+        </section>
+
+        <BlogCtaBand />
       </main>
       <Footer />
     </div>
