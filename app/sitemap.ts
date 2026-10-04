@@ -85,7 +85,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       url: `${baseUrl}/agents/data-entry-reporting`,
-      lastModified: new Date('2026-06-25'),
+      lastModified: new Date('2026-10-04'),
       changeFrequency: 'monthly',
       priority: 0.8,
     },
@@ -156,6 +156,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'monthly' as const,
       priority: 0.4,
     })),
+
+    {
+      url: `${baseUrl}/support`,
+      lastModified: new Date('2026-10-04'),
+      changeFrequency: 'monthly',
+      priority: 0.5,
+    },
 
     // Legal
     {
