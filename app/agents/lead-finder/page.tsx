@@ -5,7 +5,6 @@ import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { FAQSection } from "@/components/sections/faq-section"
 import {
-  LeadFinderDemo,
   LeadFinderDifference,
   LeadFinderFinalCta,
   LeadFinderHero,
@@ -109,7 +108,6 @@ export default function LeadFinderPage() {
         <LeadFinderHero />
         <ToolStrip />
         <LeadFinderDifference />
-        <LeadFinderDemo />
         <LeadFinderHowItWorks />
         <LeadFinderQuotes />
         <AgentGuidesSection agentHref="/agents/lead-finder" />

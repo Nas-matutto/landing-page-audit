@@ -5,7 +5,7 @@ import { Check, Quote, Sparkles, Wrench, X } from "lucide-react"
 import { SiAirtable, SiGmail, SiHubspot, SiNotion, SiSalesforce } from "react-icons/si"
 import { FaLinkedin, FaSlack } from "react-icons/fa"
 import { Ambassador } from "@/components/ui/ambassador"
-import { GhostCta, PrimaryCta, Reveal } from "@/components/sections/social-agent/parts"
+import { PrimaryCta, Reveal } from "@/components/sections/social-agent/parts"
 import { SIGNUP_URL } from "@/lib/links"
 import { CrmPanel, IcpPanel, LeadsPanel, MatchesPanel } from "./mocks"
 
@@ -40,7 +40,6 @@ export function LeadFinderHero() {
 
           <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row lg:justify-start">
             <PrimaryCta href={SIGNUP_URL}>Get Started</PrimaryCta>
-            <GhostCta href="#demo">Watch the demo</GhostCta>
           </div>
 
           <ul className="mt-10 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 lg:justify-start">
@@ -193,33 +192,6 @@ export function LeadFinderDifference() {
   )
 }
 
-// ── Demo ────────────────────────────────────────────────────────────────────
-
-export function LeadFinderDemo() {
-  return (
-    <section id="demo" className="scroll-mt-24 bg-white px-6 py-20 sm:py-28 lg:px-8">
-      <div className="mx-auto max-w-5xl">
-        <Reveal className="mb-10 text-center">
-          <p className="eyebrow mb-5">See it work</p>
-          <h2 className="display mx-auto max-w-2xl text-[clamp(2rem,4.5vw,3.25rem)]">Watch it find and deliver leads</h2>
-        </Reveal>
-        <Reveal className="rounded-[26px] border border-hairline bg-mist p-2">
-          <div className="relative aspect-video overflow-hidden rounded-[18px] border border-hairline bg-ink">
-            <iframe
-              src="https://www.youtube.com/embed/VuuO47J3ql8?rel=0"
-              title="AI Lead Finder Agent — Demo"
-              loading="lazy"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-              className="absolute inset-0 h-full w-full"
-            />
-          </div>
-        </Reveal>
-      </div>
-    </section>
-  )
-}
-
 // ── How it works ────────────────────────────────────────────────────────────
 
 const STEPS = [
@@ -319,12 +291,6 @@ export function LeadFinderFinalCta() {
               className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-5 py-3 text-[15px] font-semibold tracking-[0.2px] text-ink transition-opacity hover:opacity-90"
             >
               Get Started
-            </a>
-            <a
-              href="/book-demo"
-              className="inline-flex items-center justify-center gap-2 rounded-full border border-white/25 px-5 py-3 text-[15px] font-semibold tracking-[0.2px] text-white transition-colors hover:bg-white/10"
-            >
-              Book Demo
             </a>
           </div>
           <p className="mt-6 text-xs text-white/40">Previews on this page use sample leads.</p>

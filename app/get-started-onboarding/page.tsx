@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 import { ArrowRight, Mail } from "lucide-react"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
+import { DEMO_EMBED_URL } from "@/lib/links"
 
 export const metadata: Metadata = {
   title: "Your AI Agent Demo — Talk to Me Data",
@@ -10,9 +11,6 @@ export const metadata: Metadata = {
   // End-of-funnel page — no reason for search engines to index it.
   robots: { index: false, follow: false },
 }
-
-const DEMO_VIDEO_URL =
-  process.env.NEXT_PUBLIC_DEMO_VIDEO_URL ?? "https://www.youtube.com/embed/vM5USyYEK1g"
 
 // Inline Cal.com booking embed shown at the top of the page. `embed=true` renders
 // the self-contained booking UI (no cal.com chrome); month view + light theme match
@@ -58,7 +56,7 @@ export default function GetStartedOnboardingPage() {
           </div>
           <div className="w-full aspect-video rounded-2xl overflow-hidden shadow-2xl shadow-slate-200 border border-slate-200">
             <iframe
-              src={`${DEMO_VIDEO_URL}?rel=0`}
+              src={`${DEMO_EMBED_URL}?rel=0`}
               title="Talk to Me Data — Product Demo"
               allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
