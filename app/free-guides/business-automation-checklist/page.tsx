@@ -137,7 +137,7 @@ export default function BusinessAutomationChecklistPage() {
         </p>
         <ul className="list-disc space-y-2 pl-5 marker:text-faint">
           <li>
-            <Link href="/agents/lead-qualification">A lead qualification agent</Link> replies to new inquiries in seconds,
+            A lead qualification agent replies to new inquiries in seconds,
             asks your standard questions and only passes on the leads that are ready to talk.
           </li>
           <li>

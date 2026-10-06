@@ -26,7 +26,7 @@ export function FinalCTASection() {
               Put your first agent to work today
             </h2>
             <p className="lede mx-auto mt-6 max-w-xl text-lg">
-              Start free with a ready-made agent for social media or SEO. Or tell us the job you want off your plate,
+              Start free with a ready-made agent for social media, SEO or your website. Or tell us the job you want off your plate,
               and we&apos;ll build an agent for it.
             </p>
 

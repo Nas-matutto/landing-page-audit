@@ -2,7 +2,8 @@
  * Public pricing, as sold on /pricing.
  *
  * ⚠️ Mirrors the app's billing page (app-TTDM: lib/constants.ts → PLAN_TIERS,
- * SOCIAL_PLAN_LIMITS, SEO_PLAN_LIMITS; components/dashboard/billing-actions.tsx).
+ * SOCIAL_PLAN_LIMITS, SEO_PLAN_LIMITS, WEBSITE_PLAN_LIMITS;
+ * components/dashboard/billing-actions.tsx).
  * The app enforces the limits; this file only describes them. Change both
  * together.
  *
@@ -11,7 +12,7 @@
  */
 
 export type PlanId = "starter" | "solo" | "grow" | "scale"
-export type Lens = "social" | "seo" | "custom"
+export type Lens = "social" | "seo" | "website" | "custom"
 
 export interface Plan {
   id: PlanId
@@ -41,8 +42,15 @@ export const LENSES: { id: Lens; title: string; short: string; tiny: string; bod
     id: "seo",
     title: "SEO & GEO Manager",
     short: "SEO & GEO",
-    tiny: "SEO & GEO",
+    tiny: "SEO",
     body: "Reads your Google Search Console, checks your site, tracks whether ChatGPT, Gemini and Claude recommend you, and fixes what's holding you back.",
+  },
+  {
+    id: "website",
+    title: "Website Manager",
+    short: "Website",
+    tiny: "Website",
+    body: "Connects to your website through GitHub or WordPress, shows it to you live, and makes the changes you ask for in plain English.",
   },
   {
     id: "custom",
@@ -64,6 +72,15 @@ export interface LensPlan {
 }
 
 const actions = (p: Plan) => `${p.actions.toLocaleString("en-US")} actions / month`
+
+/**
+ * Website Manager changes a month (app-TTDM WEBSITE_PLAN_LIMITS). Changes don't
+ * use actions: this count is their only limit. The actions are for talking to
+ * the agent. Undo is free and never counted.
+ */
+export const WEBSITE_CHANGES: Record<PlanId, number> = { starter: 3, solo: 25, grow: 100, scale: 250 }
+const changesLine = (p: Plan) => `${WEBSITE_CHANGES[p.id]} changes a month`
+const websiteLimits = (p: Plan) => [changesLine(p), `${actions(p)} for questions`, "1 website", "GitHub or WordPress, connected free"]
 
 export const LENS_PLANS: Record<Lens, Record<PlanId, LensPlan>> = {
   social: {
@@ -115,6 +132,28 @@ export const LENS_PLANS: Record<Lens, Record<PlanId, LensPlan>> = {
       role: "Runs your SEO across up to 3 websites",
       does: ["Everything in Grow, on every site", "Checks up to 1,000 pages a week", "Checks if ChatGPT, Gemini & Claude recommend you, on 4× the searches"],
       limits: [actions(PLANS[3]), "Up to 3 websites", "Google Search Console, connected free", "Site check up to 1,000 pages, weekly", "Keeps 5 years of history"],
+    },
+  },
+  website: {
+    starter: {
+      role: "Makes changes to your website",
+      does: ["Your site, live, on desktop and phone", `${changesLine(PLANS[0])}, made and put live for you`, "Undo any change in one click"],
+      limits: websiteLimits(PLANS[0]),
+    },
+    solo: {
+      role: "Your on-call web developer",
+      does: [`${changesLine(PLANS[1])}, made and put live for you`, "New pages, sections, wording and design", "Live in minutes, with one-click undo"],
+      limits: websiteLimits(PLANS[1]),
+    },
+    grow: {
+      role: "Keeps your website moving every week",
+      does: [`${changesLine(PLANS[2])}, made and put live for you`, "New pages, sections, wording and design", "Live in minutes, with one-click undo", "Everything in Solo"],
+      limits: websiteLimits(PLANS[2]),
+    },
+    scale: {
+      role: "Runs your website day to day",
+      does: [`${changesLine(PLANS[3])}, made and put live for you`, "New pages, sections, wording and design", "Live in minutes, with one-click undo", "Everything in Solo"],
+      limits: websiteLimits(PLANS[3]),
     },
   },
   custom: {
@@ -181,6 +220,17 @@ export const ACTION_GUIDE: Record<Lens, { free: ActionExample[]; small: ActionEx
       { what: "Writing a full blog post", cost: "10–20" },
     ],
   },
+  website: {
+    free: [{ what: "Making a change to your site (counted as a change instead)" }, { what: "The live preview of your site" }, { what: "Undoing a change" }],
+    small: [
+      { what: "A quick question to your agent", cost: "~2" },
+      { what: "Reading a page of your site", cost: "~2" },
+    ],
+    big: [
+      { what: "Reviewing several pages of your site at once", cost: "~10" },
+      { what: "Planning a bigger redesign with you", cost: "10–15" },
+    ],
+  },
   custom: {
     free: [{ what: "Designing your agent with us" }, { what: "Connecting your tools" }],
     small: [
@@ -212,18 +262,21 @@ export const PLAN_LIMITS: Record<
  * weekly analysis ~30 an account a month, a fix or page ~8 (fixes ~5, blog
  * posts 10–20), a custom-agent task ~10. AI-visibility checks are per plan
  * (PLAN_LIMITS.aiChecks: its searches × 15 actions × 2 checks a month).
+ * Website changes don't use actions; questions to any agent are ~2.
  */
-export const TYPICAL = { post: 12, analysis: 30, fix: 8, task: 10 }
+export const TYPICAL = { post: 12, analysis: 30, fix: 8, task: 10, question: 2 }
 
 export interface FinderInput {
   social: { posts: number; accounts: number; autopost: boolean }
   seo: { websites: number; fixes: number; alerts: boolean }
+  website: { changes: number; questions: number }
   custom: { agents: number; tasks: number; scheduled: boolean }
 }
 
 export const FINDER_DEFAULTS: FinderInput = {
   social: { posts: 0, accounts: 1, autopost: false },
   seo: { websites: 1, fixes: 0, alerts: false },
+  website: { changes: 0, questions: 0 },
   custom: { agents: 0, tasks: 0, scheduled: false },
 }
 
@@ -240,6 +293,7 @@ export interface Recommendation {
 function usage(lens: Lens, input: FinderInput, id: PlanId): number {
   if (lens === "social") return input.social.posts * TYPICAL.post + input.social.accounts * TYPICAL.analysis
   if (lens === "seo") return PLAN_LIMITS[id].aiChecks + input.seo.fixes * TYPICAL.fix
+  if (lens === "website") return input.website.questions * TYPICAL.question
   return input.custom.tasks * TYPICAL.task
 }
 
@@ -255,6 +309,7 @@ function fits(lens: Lens, input: FinderInput, id: PlanId): boolean {
     const { websites, fixes, alerts } = input.seo
     return websites <= l.websites && (fixes === 0 || id !== "starter") && (!alerts || l.trafficAlerts)
   }
+  if (lens === "website") return input.website.changes <= WEBSITE_CHANGES[id]
   const { agents, tasks, scheduled } = input.custom
   return agents <= l.customAgents && (tasks === 0 || agents > 0) && (!scheduled || l.scheduled)
 }
@@ -274,7 +329,8 @@ function covers(lens: Lens, input: FinderInput, id: PlanId): string[] {
     if (l.trafficAlerts) lines.push("Traffic-drop alerts and a weekly email")
     return lines
   }
-  if (id === "starter") return ["A ready-made Social or SEO agent", "Upgrade to Solo for a custom agent"]
+  if (lens === "website") return ["1 website, live on desktop and phone", `${WEBSITE_CHANGES[id]} changes a month`, "One-click undo, always free"]
+  if (id === "starter") return ["A ready-made Social, SEO or Website agent", "Upgrade to Solo for a custom agent"]
   return [`${l.customAgents === 1 ? "1 custom agent" : `Up to ${l.customAgents} custom agents`}`, l.scheduled ? "Runs on its own schedule" : "Runs whenever you ask"]
 }
 

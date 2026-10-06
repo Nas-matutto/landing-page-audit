@@ -38,7 +38,7 @@ const AGENTS = [
   { label: "Real estate", href: "/agents/real-estate-agent" },
   { label: "Data entry & reporting", href: "/agents/data-entry-reporting" },
   { label: "Customer support", href: "/agents/customer-support" },
-  { label: "Lead qualification", href: "/agents/lead-qualification" },
+  { label: "Website manager", href: "/agents/website-manager" },
   { label: "Invoice processing", href: "/agents/invoice-processing" },
 ]
 

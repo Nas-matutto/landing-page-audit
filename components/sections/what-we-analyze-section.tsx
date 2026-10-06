@@ -3,10 +3,9 @@
 import Link from "next/link"
 import { motion } from "framer-motion"
 import type { LucideIcon } from "lucide-react"
-import { ArrowRight, ArrowUpRight, BarChart3, Headphones, House, Receipt, Target, Users } from "lucide-react"
+import { ArrowRight, ArrowUpRight, BarChart3, Headphones, House, Receipt, Target } from "lucide-react"
 import { Ambassador } from "@/components/ui/ambassador"
-import { SocialAgentShowcase } from "@/components/sections/social-agent-showcase"
-import { SeoAgentShowcase } from "@/components/sections/seo-agent-showcase"
+import { ReadyMadeAgentsCarousel } from "@/components/sections/ready-made-agents-carousel"
 
 // Two halves: the ready-made agents anyone can sign up for today, then the
 // custom agents we've built for other businesses, ending on the open invitation
@@ -18,12 +17,6 @@ const CUSTOM_AGENTS: { title: string; description: string; href: string; Icon: L
     description: "Researches your ideal customer and delivers verified, ready-to-contact leads to your CRM every day.",
     href: "/agents/lead-finder",
     Icon: Target,
-  },
-  {
-    title: "Lead Qualification",
-    description: "Replies to every inbound lead in seconds, qualifies them, and routes the hot ones to your team.",
-    href: "/agents/lead-qualification",
-    Icon: Users,
   },
   {
     title: "Customer Support",
@@ -80,7 +73,7 @@ export function WhatWeAnalyzeSection() {
               Start with a ready-made agent. Or have one built for you.
             </h2>
             <p className="lede mx-auto mt-6 max-w-2xl text-base sm:text-lg">
-              Two agents are ready to use today. Beyond those, we build custom agents around any workflow your
+              Three agents are ready to use today. Beyond those, we build custom agents around any workflow your
               business runs. Here&apos;s what other businesses have asked for.
             </p>
           </motion.div>
@@ -90,16 +83,11 @@ export function WhatWeAnalyzeSection() {
             number="01"
             label="Ready to use"
             title="Pre-built agents you can start using right away"
-            aside="Sign up, connect your accounts, and put them to work."
+            aside="Sign up, connect your accounts, and put them to work. Swipe or use the arrows to see each one."
           />
-          <div className="space-y-6">
-            <motion.div {...fadeUp}>
-              <SocialAgentShowcase />
-            </motion.div>
-            <motion.div {...fadeUp}>
-              <SeoAgentShowcase />
-            </motion.div>
-          </div>
+          <motion.div {...fadeUp}>
+            <ReadyMadeAgentsCarousel />
+          </motion.div>
 
           {/* ── 02 · Custom-built ── */}
           <div className="mt-24 sm:mt-32">

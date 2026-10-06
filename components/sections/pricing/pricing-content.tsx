@@ -28,7 +28,7 @@ const ACTION_BUCKETS = [
 ] as const
 
 const ACTION_FACTS = [
-  { title: "One meter for every agent", body: "Your Social, SEO and custom agents all draw from the same monthly actions. No separate bills." },
+  { title: "One meter for every agent", body: "Your Social, SEO, Website and custom agents all draw from the same monthly actions. No separate bills." },
   { title: "Resets on the 1st", body: "Your actions top back up at the start of every month. You can watch what each agent uses in your dashboard." },
   { title: "Running low? Nothing breaks", body: "If you use them all, your agents pause until the 1st or until you upgrade. A job that has already started always finishes." },
   { title: "No surprise charges", body: "You're never billed for extra actions. The price on the card is the price you pay." },

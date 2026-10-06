@@ -126,8 +126,16 @@ const TYPE_MS = 26
 
 type Phase = "idle" | "typing" | "working" | "done"
 
-/** Other agent pages pass their own requests; the first run starts on `startIndex`. */
-export function AgentDemo({ commands = COMMANDS, startIndex = 2 }: { commands?: Command[]; startIndex?: number }) {
+/** Other agent pages pass their own requests; the first run starts on `startIndex`. `note` sits under the chat's title. */
+export function AgentDemo({
+  commands = COMMANDS,
+  startIndex = 2,
+  note = "Answers use the numbers on your dashboard",
+}: {
+  commands?: Command[]
+  startIndex?: number
+  note?: string
+}) {
   const ref = useRef<HTMLDivElement>(null)
   const inView = useInView(ref, { once: true, amount: 0.35 })
   const [cmd, setCmd] = useState<Command | null>(null)
@@ -233,7 +241,7 @@ export function AgentDemo({ commands = COMMANDS, startIndex = 2 }: { commands?: 
               <div className="flex h-full min-h-[520px] flex-col overflow-hidden rounded-3xl bg-white text-ink">
                 <div className="border-b border-hairline px-5 py-3.5">
                   <p className="text-sm font-semibold">Ask your Agent</p>
-                  <p className="text-[11px] text-quiet">Answers use the numbers on your dashboard</p>
+                  <p className="text-[11px] text-quiet">{note}</p>
                 </div>
 
                 <div className="flex-1 space-y-4 px-5 py-5 text-[14px] leading-relaxed text-quiet">

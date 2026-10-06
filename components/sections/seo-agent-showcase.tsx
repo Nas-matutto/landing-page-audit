@@ -278,10 +278,10 @@ export function SeoAgentShowcase() {
 
   return (
     <MotionConfig reducedMotion="user">
-      <div className="group relative overflow-hidden rounded-3xl bg-zinc-950 text-white shadow-xl">
+      <div className="group relative h-full overflow-hidden rounded-3xl bg-zinc-950 text-white shadow-xl">
         <SearchGlow />
 
-        <div className="relative grid gap-10 p-6 sm:p-8 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] lg:gap-12 lg:p-12">
+        <div className="relative grid h-full content-center gap-10 p-6 sm:p-8 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] lg:gap-12 lg:p-12">
           {/* Copy — first on phones, on the right from lg up */}
           <div className="flex min-w-0 flex-col justify-center lg:order-2">
             <span className="inline-flex w-fit items-center gap-1.5 rounded-full bg-white/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-wider text-white/90 ring-1 ring-white/15 backdrop-blur">

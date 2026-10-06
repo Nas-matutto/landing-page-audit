@@ -96,8 +96,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
     {
-      url: `${baseUrl}/agents/lead-qualification`,
-      lastModified: new Date('2026-06-25'),
+      url: `${baseUrl}/agents/website-manager`,
+      lastModified: new Date('2026-10-06'),
       changeFrequency: 'monthly',
       priority: 0.8,
     },

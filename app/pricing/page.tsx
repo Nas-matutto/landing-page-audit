@@ -11,12 +11,12 @@ const PAGE_URL = `${BASE_URL}/pricing`
 
 const TITLE = "Pricing — AI Agents From $0 a Month | Talk to me Data"
 const DESCRIPTION =
-  "Simple pricing for AI agents that do the work for you. Start free, then pick Solo ($49), Grow ($99) or Scale ($199). One plan covers your Social Media, SEO & GEO and custom agents."
+  "Simple pricing for AI agents that do the work for you. Start free, then pick Solo ($49), Grow ($99) or Scale ($199). One plan covers your Social Media, SEO & GEO, Website and custom agents."
 
 export const metadata: Metadata = {
   title: TITLE,
   description: DESCRIPTION,
-  keywords: ["ai agent pricing", "ai social media manager pricing", "ai seo agent pricing", "custom ai agent cost", "ai agents for small business"],
+  keywords: ["ai agent pricing", "ai social media manager pricing", "ai seo agent pricing", "ai website manager pricing", "custom ai agent cost", "ai agents for small business"],
   alternates: { canonical: PAGE_URL },
   openGraph: {
     images: [OG_IMAGE],
@@ -45,7 +45,7 @@ const FAQS = [
   {
     question: "Do I need a separate plan for each agent?",
     answer:
-      "No. One plan covers every agent you run, and they all share the same monthly actions. On paid plans, the Social Media Manager and the SEO & GEO Manager don't count towards your custom-agent limit.",
+      "No. One plan covers every agent you run, and they all share the same monthly actions. On paid plans, the Social Media Manager, the SEO & GEO Manager and the Website Manager don't count towards your custom-agent limit.",
   },
   {
     question: "What is an action?",
@@ -65,6 +65,11 @@ const FAQS = [
   {
     question: "How many websites can the SEO & GEO Manager look after?",
     answer: "One website on Starter, Solo and Grow. Scale covers up to 3 websites, and AI Native is shaped around however many you run.",
+  },
+  {
+    question: "How many changes can the Website Manager make?",
+    answer:
+      "3 a month on Starter, so you can try it on your own site, then 25 on Solo, 100 on Grow and 250 on Scale. Changes don't use your actions: your actions are only for questions you ask the agent. The live preview and undo are always free.",
   },
   {
     question: "What makes a custom agent proactive?",

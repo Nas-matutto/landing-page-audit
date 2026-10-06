@@ -45,7 +45,7 @@ const videoJsonLd = {
 
 const DEMO_AGENTS = [
   { label: "Invoice processing", href: "/agents/invoice-processing" },
-  { label: "Lead qualification", href: "/agents/lead-qualification" },
+  { label: "Website manager", href: "/agents/website-manager" },
   { label: "Lead finding", href: "/agents/lead-finder" },
   { label: "Customer support", href: "/agents/customer-support" },
   { label: "Real estate", href: "/agents/real-estate-agent" },

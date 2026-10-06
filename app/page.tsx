@@ -26,6 +26,7 @@ export const metadata: Metadata = {
     "no-code AI agent",
     "AI social media agent",
     "AI SEO agent",
+    "AI website manager",
     "generative engine optimization",
     "custom AI agent",
     "business automation",
@@ -55,7 +56,7 @@ const FAQS = [
   {
     question: "What is Talk to me Data?",
     answer:
-      "A platform of AI agents that do the work for you, not just show you a dashboard. Start with a ready-made agent for social media or SEO, or ask us to build one for any other job. You tell your agent what you want in plain English, and it gets it done.",
+      "A platform of AI agents that do the work for you, not just show you a dashboard. Start with a ready-made agent for social media, SEO or your website, or ask us to build one for any other job. You tell your agent what you want in plain English, and it gets it done.",
   },
   {
     question: "Is it free to start?",
@@ -70,7 +71,7 @@ const FAQS = [
   {
     question: "What can the ready-made agents do?",
     answer:
-      "The Social Media Manager reads every post on Instagram, TikTok, YouTube and Facebook, tracks your competitors, writes and designs new posts in your brand kit, and posts them to Instagram, Facebook and TikTok. The SEO & GEO Agent connects to Google Search Console, finds the searches you can win, and writes pages built to rank on Google and get cited by ChatGPT, Claude and Perplexity, then publishes them to your site.",
+      "The Social Media Manager reads every post on Instagram, TikTok, YouTube and Facebook, tracks your competitors, writes and designs new posts in your brand kit, and posts them to Instagram, Facebook and TikTok. The SEO & GEO Agent connects to Google Search Console, finds the searches you can win, and writes pages built to rank on Google and get cited by ChatGPT, Claude and Perplexity, then publishes them to your site. The Website Manager connects to your site through GitHub or WordPress, whether you built it with Claude Code, Codex, Lovable or Bolt, shows it to you live, and makes the changes you ask for in plain English, with one-click undo.",
   },
   {
     question: "What if I need an agent for something else?",

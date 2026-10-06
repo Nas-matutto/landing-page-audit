@@ -13,6 +13,8 @@ const nextConfig = {
     return [
       // The booking & scheduling page became the real estate agent page (2026-10).
       { source: "/agents/booking-scheduling", destination: "/agents/real-estate-agent", permanent: true },
+      // The lead qualification page became the Website Manager page (2026-10).
+      { source: "/agents/lead-qualification", destination: "/agents/website-manager", permanent: true },
     ]
   },
 }

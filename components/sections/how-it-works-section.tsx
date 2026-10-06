@@ -5,7 +5,7 @@ import Image from "next/image"
 import { AnimatePresence, motion, useInView, useReducedMotion } from "framer-motion"
 import type { LucideIcon } from "lucide-react"
 import { ArrowRight, Check, LayoutGrid, MessageSquare, Plug, Plus, Send } from "lucide-react"
-import { SiGoogle, SiInstagram, SiOpenai, SiTiktok, SiYoutube } from "react-icons/si"
+import { SiGithub, SiGoogle, SiInstagram, SiOpenai, SiTiktok, SiWordpress, SiYoutube } from "react-icons/si"
 import type { IconType } from "react-icons"
 import { Ambassador } from "@/components/ui/ambassador"
 import { SIGNUP_URL } from "@/lib/links"
@@ -24,7 +24,7 @@ const STEPS: { id: StepId; n: string; title: string; body: string; Icon: LucideI
     id: "pick",
     n: "01",
     title: "Pick your agent",
-    body: "Start with a ready-made agent for social media or SEO. Need something else? Describe the job and we'll build an agent for it.",
+    body: "Start with a ready-made agent for social media, SEO or your website. Need something else? Describe the job and we'll build an agent for it.",
     Icon: LayoutGrid,
   },
   {
@@ -261,21 +261,30 @@ const AGENTS: { name: string; sub: string; glow: string[]; icons: { Icon: IconTy
       { Icon: SiOpenai, color: "#111827" },
     ],
   },
+  {
+    name: "Website Manager",
+    sub: "Claude Code · Codex · WordPress",
+    glow: ["#6366F1", "#06B6D4", "#8B5CF6"],
+    icons: [
+      { Icon: SiGithub, color: "#111827" },
+      { Icon: SiWordpress, color: "#21759B" },
+    ],
+  },
 ]
 
 function PickStage() {
   return (
     <>
-      <div className="absolute inset-x-[5%] top-[7%] overflow-hidden rounded-[14px] border border-hairline bg-white shadow-[0_24px_60px_-30px_rgba(20,20,20,0.35)]">
+      <div className="absolute inset-x-[5%] top-[5%] overflow-hidden rounded-[14px] border border-hairline bg-white shadow-[0_24px_60px_-30px_rgba(20,20,20,0.35)]">
         <div className="flex items-center justify-between border-b border-hairline px-4 py-3">
           <span className="text-sm font-semibold text-ink">My agents</span>
           <span className="text-[11px] text-faint">Choose one to start</span>
         </div>
-        <ul className="space-y-2 p-3">
+        <ul className="space-y-1.5 p-2.5 lg:space-y-2 lg:p-3">
           {AGENTS.map((agent) => (
-            <li key={agent.name} className="flex items-center gap-3 rounded-xl border border-hairline p-2.5">
+            <li key={agent.name} className="flex items-center gap-3 rounded-xl border border-hairline p-2 lg:p-2.5">
               {/* A small version of the agent's dark, platform-lit card */}
-              <span className="relative h-10 w-10 shrink-0 overflow-hidden rounded-lg bg-zinc-950 sm:h-11 sm:w-11">
+              <span className="relative h-9 w-9 shrink-0 overflow-hidden rounded-lg bg-zinc-950 lg:h-11 lg:w-11">
                 <span className="absolute -left-2 -top-2 h-7 w-7 rounded-full blur-md" style={{ background: agent.glow[0] }} />
                 <span className="absolute -bottom-2 left-2 h-7 w-7 rounded-full blur-md" style={{ background: agent.glow[1] }} />
                 <span className="absolute -right-2 top-1 h-6 w-6 rounded-full opacity-70 blur-md" style={{ background: agent.glow[2] }} />
@@ -292,8 +301,8 @@ function PickStage() {
               <span className="shrink-0 rounded-full bg-ink px-3 py-1 text-[11px] font-semibold text-white">Start</span>
             </li>
           ))}
-          <li className="flex items-center gap-3 rounded-xl border border-dashed border-hairline p-2.5">
-            <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-mist text-ink sm:h-11 sm:w-11">
+          <li className="flex items-center gap-3 rounded-xl border border-dashed border-hairline p-2 lg:p-2.5">
+            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-mist text-ink lg:h-11 lg:w-11">
               <Plus className="h-4 w-4" />
             </span>
             <span className="min-w-0 flex-1">
@@ -308,7 +317,7 @@ function PickStage() {
         <div className="relative mb-6 rounded-2xl rounded-br-sm bg-ink px-3.5 py-2.5 text-[13px] font-medium text-white">
           Which job should I take off your plate?
         </div>
-        <Ambassador pose="wave" sizes="140px" className="h-33 w-27.5 shrink-0" />
+        <Ambassador pose="wave" sizes="140px" className="h-24 w-20 shrink-0 lg:h-33 lg:w-27.5" />
       </div>
     </>
   )

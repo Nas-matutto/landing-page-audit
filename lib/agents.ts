@@ -1,5 +1,5 @@
 import {
-  Headphones, Users, House, Receipt, Search,
+  Headphones, Globe, House, Receipt, Search,
   Megaphone, Target, BarChart3,
 } from "lucide-react"
 
@@ -76,16 +76,16 @@ export const AGENTS: Agent[] = [
   },
   {
     id: 5,
-    slug: "lead-qualification",
-    icon: Users,
-    title: "Lead qualification",
-    tagline: "Only talk to leads worth your time",
+    slug: "website-manager",
+    icon: Globe,
+    title: "Website manager",
+    tagline: "Change your website in plain English",
     description:
-      "Engages every inbound lead instantly, asks qualifying questions, scores intent, and routes hot leads to your inbox or CRM — 24/7.",
-    gradient: "linear-gradient(135deg, #185FA5 0%, #2563eb 55%, #93c5fd 100%)",
-    stat: "Typically 3× more qualified conversations",
-    metricValue: "3×",
-    metricLabel: "more qualified convos",
+      "Shows your live website and makes the changes you ask for, through GitHub or WordPress. Ideal for sites built with Claude Code and Codex.",
+    gradient: "linear-gradient(135deg, #4338ca 0%, #6366f1 55%, #67e8f9 100%)",
+    stat: "Most changes live in 1 to 3 minutes",
+    metricValue: "1–3 min",
+    metricLabel: "from request to live",
   },
   {
     id: 6,
@@ -135,7 +135,7 @@ const BUILT_SLUGS = new Set([
   "lead-finder",
   "data-entry-reporting",
   "customer-support",
-  "lead-qualification",
+  "website-manager",
   "real-estate-agent",
   "invoice-processing",
   "seo-geo",

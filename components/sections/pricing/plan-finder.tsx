@@ -85,6 +85,27 @@ export function PlanFinder({ lens, setLens }: { lens: Lens; setLens: (l: Lens) =
                     <Toggle label="Email me when my traffic drops" checked={input.seo.alerts} onChange={(alerts) => set("seo", { alerts })} />
                   </>
                 )}
+                {lens === "website" && (
+                  <>
+                    <Range
+                      label="How many changes to your site each month?"
+                      value={input.website.changes}
+                      min={0}
+                      max={300}
+                      display={(v) => (v === 0 ? "None, just the live preview" : `${v} ${v === 1 ? "change" : "changes"}`)}
+                      onChange={(changes) => set("website", { changes })}
+                    />
+                    <Range
+                      label="How many questions to your agent each month?"
+                      value={input.website.questions}
+                      min={0}
+                      max={100}
+                      step={5}
+                      display={(v) => (v === 0 ? "None" : `${v} questions`)}
+                      onChange={(questions) => set("website", { questions })}
+                    />
+                  </>
+                )}
                 {lens === "custom" && (
                   <>
                     <Range
