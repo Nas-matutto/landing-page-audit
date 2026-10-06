@@ -621,7 +621,8 @@ export function buildPostJsonLd(slug: string, faqs: Faq[] = []) {
             thumbnailUrl: `https://i.ytimg.com/vi/${post.video.youtubeId}/hqdefault.jpg`,
             embedUrl: `https://www.youtube.com/embed/${post.video.youtubeId}`,
             contentUrl: `https://www.youtube.com/watch?v=${post.video.youtubeId}`,
-            uploadDate: post.datePublished,
+            // Google requires a full ISO 8601 datetime with a time zone here.
+            uploadDate: `${post.datePublished}T00:00:00+00:00`,
           },
         }),
       },
