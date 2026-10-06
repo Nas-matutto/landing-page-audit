@@ -88,7 +88,7 @@ const faqs: Faq[] = [
   {
     question: "Can I scale this to run automatically every week without me triggering it?",
     answer:
-      "The setup we describe in this guide requires you to initiate each run manually inside Claude. For a fully automated pipeline (one that runs on a schedule, processes hundreds of leads, and feeds directly into your outreach tool without any human initiation), you would need a more robust deployment with proper orchestration, error handling, and monitoring. That kind of production-grade lead generation system is something Talk to Me Data builds and manages for businesses. If that is what you are looking to implement, book a free call and we can scope out what your specific pipeline would look like.",
+      "Not with the manual setup described in this guide, since each run has to be triggered inside Claude. A fully automated pipeline that runs on a schedule and processes leads without human input needs proper orchestration, error handling, and monitoring. Talk to Me Data builds and manages that kind of production-grade system, so book a free call if that is what you need.",
   },
   {
     question: "What outreach tool should I use to send the emails the agent writes?",
