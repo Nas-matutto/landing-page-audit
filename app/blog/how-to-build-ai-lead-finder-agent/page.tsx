@@ -290,10 +290,6 @@ export default function BlogPost() {
             That kind of production-grade lead generation system is something <Link href="/agents" className="text-ink underline decoration-ink/25 underline-offset-4 hover:decoration-ink">Talk to Me Data</Link> builds and runs for businesses. You define your ideal customer profile, the signals that matter to you, and the voice you want your outreach to have; we handle everything else. You can also use our <Link href="/free-tools/calculator" className="text-ink underline decoration-ink/25 underline-offset-4 hover:decoration-ink">workflow time savings calculator</Link> to estimate how many hours a week a fully automated pipeline like this could reclaim for your team.
           </p>
 
-          <SignupCta heading="Get this pipeline built and running for your business">
-            Sign up free, then tell us your ideal customer and the signals that matter. We&apos;ll build and run the lead pipeline for you.
-          </SignupCta>
-
         </div>
       </div>
 
