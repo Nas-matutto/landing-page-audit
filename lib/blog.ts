@@ -119,8 +119,10 @@ export type BlogPost = {
   readMinutes: number
   cover: { src: string; alt: string; width: number; height: number }
   keywords: string[]
-  /** Pillar posts anchor a topic cluster; the newest one is featured on /blog. */
+  /** Pillar posts anchor a topic cluster; the newest one is featured on /blog unless a post sets `featured`. */
   pillar?: boolean
+  /** Pins this post as the featured guide on /blog. Set it on one post at most. */
+  featured?: boolean
   /** The commercial page this guide supports — linked from the post. */
   agentPage?: { href: string; label: string }
   /** A YouTube walkthrough embedded in the post, emitted as VideoObject. */
@@ -130,6 +132,38 @@ export type BlogPost = {
 const COVER = { width: 1200, height: 630 }
 
 export const POSTS: BlogPost[] = [
+  {
+    slug: "how-to-automate-keyword-research-for-geo",
+    title: "How to Automate Keyword Research for GEO (Generative Engine Optimization), Step by Step",
+    seoTitle: "How to Automate Keyword Research for GEO (Step by Step)",
+    description:
+      "How to automate keyword research for GEO: turn keywords into the prompts people ask ChatGPT, see who AI search cites, and build briefs. Free prompt.",
+    excerpt:
+      "A seven-step system for keyword research for AI search: seed from Search Console, rewrite keywords as real prompts, expand them with fan-out, check who ChatGPT, Perplexity and Gemini cite, and turn the gaps into briefs. Includes the agent prompt to automate it.",
+    category: "seo-automation",
+    author: "nas",
+    datePublished: "2026-10-08",
+    dateModified: "2026-10-08",
+    readMinutes: 14,
+    cover: {
+      src: "/blog/how-to-automate-keyword-research-for-geo/geo-keyword-research-automation-cover.png",
+      alt: "The Talk to me Data agent at a laptop next to a three-step GEO keyword research flow: fan-out prompts, a visibility check and a ready-to-write brief",
+      width: 2400,
+      height: 1260,
+    },
+    keywords: [
+      "how to automate keyword research for geo",
+      "geo keyword research tools",
+      "keyword research for ai search",
+      "how to find prompts people ask chatgpt",
+      "automate geo content optimization",
+      "generative engine optimization",
+      "query fan-out",
+      "AI visibility tracking",
+    ],
+    featured: true,
+    agentPage: { href: "/agents/seo-geo", label: "The SEO & GEO AI Agent: finds the searches and prompts you can win" },
+  },
   {
     slug: "how-to-build-an-ai-agent",
     title: "How to Build an AI Agent: A Step-by-Step Guide for 2026",
@@ -510,7 +544,8 @@ export function getPostsByCategory(id: CategoryId): BlogPost[] {
 }
 
 export function getFeaturedPost(): BlogPost {
-  return getAllPostsSorted().find(p => p.pillar) ?? getAllPostsSorted()[0]
+  const sorted = getAllPostsSorted()
+  return sorted.find(p => p.featured) ?? sorted.find(p => p.pillar) ?? sorted[0]
 }
 
 /** Same-category posts first, then pillars, then the newest — never the post itself. */
