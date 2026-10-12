@@ -79,7 +79,7 @@ export default function AutomateSocialMediaPostingPage() {
             videos, and captions) for every platform, and drops the finished work into a folder so all you do is
             hit publish. Then it watches what happens and gets better. If you&apos;re new to the concept, our
             primer on <Link href="/blog/what-are-ai-agents" className="text-ink underline decoration-ink/25 underline-offset-4 hover:decoration-ink">what AI agents actually are</Link> is a good place to start, and if you&apos;d like to build one from scratch, see our
-            walkthrough on <Link href="/blog/how-to-build-social-media-ai-agent" className="text-ink underline decoration-ink/25 underline-offset-4 hover:decoration-ink">how to build a social media AI agent</Link>.
+            walkthrough on <Link href="/blog/how-to-build-social-media-ai-agent" className="text-ink underline decoration-ink/25 underline-offset-4 hover:decoration-ink">how to build a social media AI agent</Link>. To see how I use the data to decide what to post next, read <Link href="/blog/how-to-grow-on-social-media-with-claude-and-ai-agent" className="text-ink underline decoration-ink/25 underline-offset-4 hover:decoration-ink">how to grow on social media with Claude and an AI agent</Link>.
           </p>
 
           {/* TL;DR */}

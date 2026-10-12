@@ -133,6 +133,36 @@ const COVER = { width: 1200, height: 630 }
 
 export const POSTS: BlogPost[] = [
   {
+    slug: "how-to-grow-on-social-media-with-claude-and-ai-agent",
+    title: "How to Grow on Social Media with Claude and an AI Agent",
+    description:
+      "Grow on social media with Claude and an AI agent: find your winning posts, hooks and competitor breakouts, then turn them into carousels and videos.",
+    excerpt:
+      "The exact system I use to pick content that works: an AI agent pulls every post into one dashboard, finds my winning formats and hooks, tracks competitors' breakout posts, and Claude turns the plan into carousels and fully edited videos.",
+    category: "social-media-automation",
+    author: "nas",
+    datePublished: "2026-10-12",
+    dateModified: "2026-10-12",
+    readMinutes: 11,
+    cover: {
+      src: "/blog/how-to-grow-on-social-media-with-claude-and-ai-agent/ai-social-media-agent-dashboard-cover.png",
+      alt: "The Talk to me Data social media AI agent dashboard showing followers, views, engagement rate and a best post found at 2.4x the account's median",
+      width: 2400,
+      height: 1260,
+    },
+    keywords: [
+      "how to grow on social media",
+      "grow on social media with AI",
+      "Claude for social media",
+      "social media AI agent",
+      "social media analytics",
+      "competitor content analysis",
+      "hooks that work",
+      "AI content ideas",
+    ],
+    agentPage: { href: "/agents/social-media", label: "The Social Media AI Agent: start free with one account" },
+  },
+  {
     slug: "how-to-automate-keyword-research-for-geo",
     title: "How to Automate Keyword Research for GEO (Generative Engine Optimization), Step by Step",
     seoTitle: "How to Automate Keyword Research for GEO (Step by Step)",

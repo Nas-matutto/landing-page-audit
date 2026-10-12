@@ -1,4 +1,5 @@
 import Image from "next/image"
+import { cn } from "@/lib/utils"
 
 /**
  * An in-article image with a visible caption. Captions are read by search
@@ -12,6 +13,7 @@ export function Figure({
   width = 1200,
   height = 630,
   priority = false,
+  className,
 }: {
   src: string
   alt: string
@@ -19,9 +21,11 @@ export function Figure({
   width?: number
   height?: number
   priority?: boolean
+  /** Constrains the figure, e.g. "mx-auto max-w-sm" for a tall screenshot. */
+  className?: string
 }) {
   return (
-    <figure className="my-8">
+    <figure className={cn("my-8", className)}>
       <div className="overflow-hidden rounded-3xl border border-hairline bg-mist">
         <Image
           src={src}
