@@ -24,7 +24,7 @@ export interface Plan {
 }
 
 export const PLANS: Plan[] = [
-  { id: "starter", name: "Starter", price: 0, actions: 100, description: "Start a ready-made agent and see it work. No card required." },
+  { id: "starter", name: "Starter", price: 0, actions: 50, description: "Start a ready-made agent and see it work. No card required." },
   { id: "solo", name: "Solo", price: 49, actions: 240, description: "For one person growing a brand, with agents that plan and follow up for you." },
   { id: "grow", name: "Grow", price: 99, actions: 480, description: "For a business running several agents across its workflows.", highlight: "Most popular" },
   { id: "scale", name: "Scale", price: 199, actions: 960, description: "For teams automating across the whole company." },
@@ -71,7 +71,7 @@ export interface LensPlan {
   limits: string[]
 }
 
-const actions = (p: Plan) => `${p.actions.toLocaleString("en-US")} actions / month`
+const actions = (p: Plan) => `${p.actions.toLocaleString("en-US")} actions / month${p.price === 0 ? ", shared by all agents" : ""}`
 
 /**
  * Website Manager changes a month (app-TTDM WEBSITE_PLAN_LIMITS). Changes don't
@@ -80,7 +80,7 @@ const actions = (p: Plan) => `${p.actions.toLocaleString("en-US")} actions / mon
  */
 export const WEBSITE_CHANGES: Record<PlanId, number> = { starter: 3, solo: 25, grow: 100, scale: 250 }
 const changesLine = (p: Plan) => `${WEBSITE_CHANGES[p.id]} changes a month`
-const websiteLimits = (p: Plan) => [changesLine(p), `${actions(p)} for questions`, "1 website", "GitHub or WordPress, connected free"]
+const websiteLimits = (p: Plan) => [changesLine(p), p.price === 0 ? actions(p) : `${actions(p)} for questions`, "1 website", "GitHub or WordPress, connected free"]
 
 export const LENS_PLANS: Record<Lens, Record<PlanId, LensPlan>> = {
   social: {
@@ -91,7 +91,7 @@ export const LENS_PLANS: Record<Lens, Record<PlanId, LensPlan>> = {
     },
     solo: {
       role: "Plans and designs your posts",
-      does: ["Designs 10 posts a month", "Posts 5 of them to Instagram for you", "Hooks, post kits and a content plan", "Reminders and a weekly digest"],
+      does: ["Designs 10 posts a month", "Hooks, post kits and a content plan", "Reminders and a weekly digest"],
       limits: [actions(PLANS[1]), "4 social accounts", "Track 3 competitors", "Automatic weekly refresh", "Keeps your last 50 posts"],
     },
     grow: {
@@ -252,7 +252,7 @@ export const PLAN_LIMITS: Record<
   { socialAccounts: number; postsBuilt: number; autoPosts: number | null; websites: number; aiChecks: number; customAgents: number; scheduled: boolean; trafficAlerts: boolean }
 > = {
   starter: { socialAccounts: 1, postsBuilt: 0, autoPosts: 0, websites: 1, aiChecks: 0, customAgents: 0, scheduled: false, trafficAlerts: false },
-  solo: { socialAccounts: 4, postsBuilt: 10, autoPosts: 5, websites: 1, aiChecks: 90, customAgents: 1, scheduled: false, trafficAlerts: false },
+  solo: { socialAccounts: 4, postsBuilt: 10, autoPosts: 0, websites: 1, aiChecks: 90, customAgents: 1, scheduled: false, trafficAlerts: false },
   grow: { socialAccounts: 6, postsBuilt: 20, autoPosts: null, websites: 1, aiChecks: 180, customAgents: 2, scheduled: true, trafficAlerts: true },
   scale: { socialAccounts: 10, postsBuilt: 40, autoPosts: null, websites: 3, aiChecks: 360, customAgents: 4, scheduled: true, trafficAlerts: true },
 }

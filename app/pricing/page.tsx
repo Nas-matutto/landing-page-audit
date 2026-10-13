@@ -40,7 +40,7 @@ const FAQS = [
   {
     question: "Is there a free plan?",
     answer:
-      "Yes. Starter is free forever: one ready-made agent and 100 actions a month, with no card required. It's the easiest way to see an agent work on your own account before you pay for anything.",
+      "Yes. Starter is free forever: a ready-made agent and 50 actions a month in total, shared across all your agents, with no card required. It's the easiest way to see an agent work on your own account before you pay for anything.",
   },
   {
     question: "Do I need a separate plan for each agent?",
@@ -60,7 +60,7 @@ const FAQS = [
   {
     question: "Can the agent post to Instagram for me?",
     answer:
-      "Yes. On Solo, your agent designs 10 posts a month and posts 5 of them to Instagram for you. On Grow and Scale, it builds, schedules and posts every one at your best times.",
+      "Yes, from Grow. On Grow and Scale, your agent builds, schedules and posts every one to Instagram at your best times. On Solo, it designs 10 posts a month for you to post yourself.",
   },
   {
     question: "How many websites can the SEO & GEO Manager look after?",
