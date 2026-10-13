@@ -40,7 +40,7 @@ const FAQS = [
   {
     question: "Is there a free plan?",
     answer:
-      "Yes. Starter is free forever: a ready-made agent and 50 actions a month in total, shared across all your agents, with no card required. It's the easiest way to see an agent work on your own account before you pay for anything.",
+      "Yes. Starter is free forever: one ready-made agent and 50 actions a month, with no card required. It's the easiest way to see an agent work on your own account before you pay for anything.",
   },
   {
     question: "Do I need a separate plan for each agent?",

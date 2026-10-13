@@ -71,7 +71,7 @@ export interface LensPlan {
   limits: string[]
 }
 
-const actions = (p: Plan) => `${p.actions.toLocaleString("en-US")} actions / month${p.price === 0 ? ", shared by all agents" : ""}`
+const actions = (p: Plan) => `${p.actions.toLocaleString("en-US")} actions / month`
 
 /**
  * Website Manager changes a month (app-TTDM WEBSITE_PLAN_LIMITS). Changes don't
@@ -80,7 +80,7 @@ const actions = (p: Plan) => `${p.actions.toLocaleString("en-US")} actions / mon
  */
 export const WEBSITE_CHANGES: Record<PlanId, number> = { starter: 3, solo: 25, grow: 100, scale: 250 }
 const changesLine = (p: Plan) => `${WEBSITE_CHANGES[p.id]} changes a month`
-const websiteLimits = (p: Plan) => [changesLine(p), p.price === 0 ? actions(p) : `${actions(p)} for questions`, "1 website", "GitHub or WordPress, connected free"]
+const websiteLimits = (p: Plan) => [changesLine(p), `${actions(p)} for questions`, "1 website", "GitHub or WordPress, connected free"]
 
 export const LENS_PLANS: Record<Lens, Record<PlanId, LensPlan>> = {
   social: {

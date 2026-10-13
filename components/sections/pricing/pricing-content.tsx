@@ -247,7 +247,7 @@ export function PricingFinalCta() {
       <Reveal className="mx-auto max-w-6xl rounded-[32px] bg-ink px-7 py-14 text-center text-white sm:px-12 sm:py-16">
         <h2 className="display mx-auto max-w-2xl text-[clamp(2.25rem,5vw,3.5rem)] text-white!">Start free. Upgrade when your agent is earning it.</h2>
         <p className="mx-auto mt-5 max-w-md text-lg font-light leading-snug text-white/65">
-          A ready-made agent and 50 actions a month, shared across all your agents, free forever. No card required.
+          50 actions a month and a ready-made agent, free forever. No card required.
         </p>
         <div className="mt-9 flex justify-center">
           <PrimaryCta href={SIGNUP_URL} className="bg-white text-ink">
