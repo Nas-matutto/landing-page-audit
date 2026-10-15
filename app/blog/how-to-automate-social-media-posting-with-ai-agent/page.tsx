@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { Bot } from "lucide-react"
+import { Figure } from "@/components/blog/figure"
 import { SignupCta } from "@/components/blog/signup-cta"
 import { BlogPostShell } from "@/components/blog/post-shell"
 import { PromptBlock } from "@/components/blog/prompt-block"
@@ -10,390 +10,337 @@ const SLUG = "how-to-automate-social-media-posting-with-ai-agent"
 
 export const metadata = buildPostMetadata(SLUG)
 
-const AGENT_PROMPT = `You are the autonomous social media agent for [Company]. You run the entire content cycle end to end - analyse, plan, create, and deliver - without needing a human to prompt each step.
+const LINK = "text-ink underline decoration-ink/25 underline-offset-4 hover:decoration-ink"
+const H2 = "text-3xl font-semibold tracking-[-0.02em] text-ink mt-12 mb-4"
+const H3 = "text-xl font-semibold tracking-[-0.01em] text-ink mt-10 mb-3"
 
-STEP 1 - CONNECT & ANALYSE YOUR CHANNELS
-Read the connected accounts (Instagram, TikTok, LinkedIn, YouTube, X, Facebook). Learn the brand voice, the best-performing formats and hooks, the posting cadence, and which topics drive reach, saves, and engagement.
+const AGENT_PROMPT = `You are the autonomous social media agent for [Company]. You run the whole content cycle end to end: analyze, plan, create and deliver, without a human prompting each step.
+
+STEP 1 - ANALYZE OUR CHANNELS
+Read the connected accounts ([Instagram, TikTok, YouTube, Facebook, LinkedIn, X]). Learn the brand voice, the best-performing formats and hooks, the posting cadence, and which topics drive reach, saves and engagement. Compare every post with the account's median, not with raw views.
 
 STEP 2 - STUDY THE COMPETITION
-Analyse competitor and adjacent accounts in the niche. Identify their top-performing posts, the hooks and formats that consistently work, the content gaps you can own, and the trends worth riding right now.
+Analyze [competitor accounts] and similar accounts in the niche. Find their breakout posts (2x or more their usual views), the hooks and formats that keep working, the content gaps we can own, and the trends worth using now.
 
 STEP 3 - BUILD A DATA-DRIVEN CONTENT PLAN
-Turn what you learned into a concrete plan for the period ahead: the themes, the format of each post (reel, carousel, short, thread, static), the posting schedule per platform, and the goal of every post. Justify each choice with the data.
+Turn what you learned into a plan for the next [2 weeks]: the topic, format (reel, carousel, short, static), platform, day and time, and goal of every post. Give one line of evidence from the data for each choice.
 
 STEP 4 - CREATE THE CONTENT
-Produce everything each post needs: images, short-form video, and copy, adapted to each platform's format and aspect ratio, plus a ready-to-use caption with a hook and hashtags. Keep it on-brand and platform-native.
+For each post, write the hook, the script or slide text, and a ready-to-use caption with hashtags. Create the images and slides in our brand colors and font, sized for each platform. Keep it on-brand and native to each platform.
 
-STEP 5 - DELIVER TO THE FOLDER
-Save every finished asset and caption into the shared folder (e.g. Google Drive), organised by platform and date, so all that is left for a human to do is hit post. Nothing is published without approval.
+STEP 5 - DELIVER FOR APPROVAL
+Save every finished asset and caption to [Google Drive folder], organized by platform and date, so all a human has to do is review and post. Nothing is published without approval.
 
-STEP 6 - LEARN & REFINE
-After posts go live, read the results, compare them against the plan, and update your understanding of what works. EThe agent gets progressively better at writting hooks, it gets better timing, better formats, etc, making performance compounds over time.`
+STEP 6 - LEARN AND REFINE
+After posts go live, read the results, compare them with the plan, and update what you know about our audience. Each cycle, improve the hooks, timing and formats you choose.
+
+RULES
+- Never invent numbers. If data is missing, say so.
+- Never copy a competitor's post. Borrow the pattern, not the content.`
 
 const faqs: Faq[] = [
   {
     question: "Which platforms does the social media agent support?",
-    answer: "All the major ones, including Instagram, TikTok, LinkedIn, YouTube, X (Twitter), and Facebook. It adapts each post to the platform's native format and aspect ratio, so a short-form video, a carousel, and a thread are each built the way that platform expects rather than copy-pasted across all of them.",
+    answer:
+      "The Talk to me Data social media agent analyzes Instagram, TikTok, YouTube and Facebook Pages. On the Grow and Scale plans it posts to Instagram for you at your best times; otherwise you get a reminder with the finished post. If you build your own agent with the prompt in this guide, you can point it at any platform you can connect, including LinkedIn and X.",
   },
   {
     question: "Does it actually create the images and videos, or just the text?",
-    answer: "It creates everything a post needs: images, short-form video, and the written copy, plus a ready-to-use caption with hooks and hashtags. You get finished, on-brand assets for each platform, not just a content calendar or a list of ideas.",
+    answer:
+      "It creates the post, not just the idea. For each post it writes the hooks, the script or slide text and the caption, and it designs carousels and images in your brand kit: your logo, colors, font and layout. For video it gives you a ready-to-film script, and you can edit full videos with Claude and HyperFrames.",
   },
   {
     question: "Does it post automatically, or do I stay in control?",
-    answer: "By default it does everything up to the moment of publishing and saves the finished posts into your folder, so a human just reviews and hits post. If you'd rather it publish directly on a schedule, it can; you choose how much control to keep.",
+    answer:
+      "You choose, post by post. You can review every post before it goes live, set it to auto-post at its scheduled time, or get a reminder and post it yourself. Nothing is published unless you connect the account and turn posting on.",
   },
   {
     question: "How does it know what content will perform?",
-    answer: "It analyzes your own channels to learn what already works for your audience, and studies competitor and niche accounts to spot the hooks, formats, and topics that are performing right now. Every decision in the content plan is grounded in that data rather than guesswork.",
+    answer:
+      "It compares every post on your account with your own median, so it can see which formats, hooks, topics and posting times beat your usual results. It also tracks competitors in your niche and flags their breakout posts, the ones that did at least twice their usual views. Every post in the plan comes with the data behind it.",
   },
   {
     question: "Does it get better over time?",
-    answer: "Yes. After posts go live, the agent reads the results, compares them against the plan, and refines its understanding of what works: better hooks, better timing, better formats. The more it posts, the sharper the plan gets, so results compound over time.",
+    answer:
+      "Yes. Each week it refreshes your data, checks how the latest posts did against your median, and updates what it recommends: which hooks, formats and times to use next. The more you post, the more reliable its picks become.",
   },
   {
-    question: "Can Talk to Me Data build and host this agent for me?",
-    answer: "Yes. We build, connect, and host the agent on our infrastructure, including the channel connections, the model, the content generation, and the delivery to your folder, so there's nothing to configure or maintain on your side. Book a demo and we'll get you onboarded in days.",
+    question: "Is there a free way to automate social media with AI?",
+    answer:
+      "Yes. The Talk to me Data free plan analyzes one social account and tells you what to post next, with no card required. You can also build your own agent for free with Claude and the prompt in this guide, though you'll need to connect your accounts and run it yourself.",
   },
 ]
+
+/** Analyze → competitors → plan → create → post → learn, drawn as a loop. */
+function AgentCycleDiagram() {
+  const steps = [
+    { n: "1", title: "Analyze", sub: "your channels" },
+    { n: "2", title: "Study", sub: "competitors" },
+    { n: "3", title: "Plan", sub: "the next posts" },
+    { n: "4", title: "Create", sub: "hooks and slides" },
+    { n: "5", title: "Post", sub: "or send for review" },
+    { n: "6", title: "Learn", sub: "from the results" },
+  ]
+  return (
+    <figure className="my-8">
+      <svg viewBox="0 0 780 210" role="img" aria-labelledby="agent-cycle-title" className="h-auto w-full rounded-2xl border border-hairline bg-mist">
+        <title id="agent-cycle-title">
+          How a social media AI agent works: it analyzes your channels, studies competitors, plans the next posts, creates them, posts them or sends them for review, and learns from the results before the next cycle
+        </title>
+        <defs>
+          <marker id="agent-cycle-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+            <path d="M0,0 L10,5 L0,10 z" fill="#141414" />
+          </marker>
+        </defs>
+        {steps.map((step, i) => {
+          const x = 20 + i * 126
+          return (
+            <g key={step.title}>
+              <rect x={x} y="40" width="108" height="92" rx="12" fill={i === 4 ? "#141414" : "white"} stroke="#141414" strokeWidth="1.5" />
+              <text x={x + 14} y="62" fontSize="11" fontFamily="monospace" fill="#adadad">{step.n.padStart(2, "0")}</text>
+              <text x={x + 14} y="88" fontSize="15" fontWeight="700" fill={i === 4 ? "white" : "#141414"}>{step.title}</text>
+              <text x={x + 14} y="108" fontSize="10.5" fill={i === 4 ? "#d4d4d4" : "#717171"}>{step.sub}</text>
+              {i < steps.length - 1 && (
+                <path d={`M${x + 110},86 L${x + 124},86`} stroke="#141414" strokeWidth="2.5" markerEnd="url(#agent-cycle-arrow)" />
+              )}
+            </g>
+          )
+        })}
+        <path d="M704,134 C704,190 74,190 74,138" fill="none" stroke="#adadad" strokeWidth="2" strokeDasharray="5 5" markerEnd="url(#agent-cycle-arrow)" />
+        <text x="390" y="200" textAnchor="middle" fontSize="11" fill="#141414">every week, the results feed the next plan</text>
+      </svg>
+      <figcaption className="mt-3 text-center text-sm text-quiet">
+        The six steps run as a loop. The agent does each one; you decide whether step 5 posts on its own or waits for your approval.
+      </figcaption>
+    </figure>
+  )
+}
 
 export default function AutomateSocialMediaPostingPage() {
   return (
     <BlogPostShell slug={SLUG} faqs={faqs}>
-      <div className="prose prose-lg max-w-none">
-        <div className="space-y-6 text-neutral-600 leading-relaxed">
+      <div className="space-y-6 text-neutral-600 leading-relaxed">
+        <p className="text-lg text-ink">
+          <strong>
+            To automate social media with AI, hand the content cycle to an AI agent: it analyzes what performs on your
+            channels and your competitors&apos;, builds a content plan from that data, creates the posts (hooks, captions,
+            carousels and images) for each platform, and schedules them at your best times.
+          </strong>{" "}
+          You stay in control by approving posts before they go live, or let the agent post them for you.
+        </p>
+        <p>
+          A scheduling tool only automates the last click. You still have to come up with the idea, design the post and
+          write the caption. An AI agent automates the work before that click, which is where the hours go. This guide
+          shows how it works in six simple steps, then two ways to set it up: a ready-made agent you can start free, or
+          your own agent built with Claude and the prompt below.
+        </p>
 
-          <p className="text-lg text-ink">
-            <strong>To automate social media with AI, hand the whole content cycle to an AI agent: it analyzes what performs on your channels and your competitors&apos;, builds a content plan from that data, creates the images, videos and captions for each platform, and saves the finished posts to your folder on a set schedule.</strong> You stay in control by reviewing the plan or the finished posts before anything goes live.
-          </p>
-          <p>
-            Staying consistent on social media is one of the hardest, most relentless jobs in a business. It
-            never stops asking for more: another reel, another carousel, another caption, another week of ideas
-            that have to be fresh, on-brand, and actually worth watching. Most teams either burn hours they
-            don&apos;t have on it, pay an agency a fortune, or quietly let their accounts go stale.
-          </p>
-          <p>
-            This guide shows you how to automate social media posting with an AI agent that runs the entire
-            content cycle, end to end, and largely on its own. It connects to your channels and studies them,
-            analyses your competitors, builds a data-driven content plan, creates the actual posts (images,
-            videos, and captions) for every platform, and drops the finished work into a folder so all you do is
-            hit publish. Then it watches what happens and gets better. If you&apos;re new to the concept, our
-            primer on <Link href="/blog/what-are-ai-agents" className="text-ink underline decoration-ink/25 underline-offset-4 hover:decoration-ink">what AI agents actually are</Link> is a good place to start, and if you&apos;d like to build one from scratch, see our
-            walkthrough on <Link href="/blog/how-to-build-social-media-ai-agent" className="text-ink underline decoration-ink/25 underline-offset-4 hover:decoration-ink">how to build a social media AI agent</Link>. To see how I use the data to decide what to post next, read <Link href="/blog/how-to-grow-on-social-media-with-claude-and-ai-agent" className="text-ink underline decoration-ink/25 underline-offset-4 hover:decoration-ink">how to grow on social media with Claude and an AI agent</Link>.
-          </p>
-
-          {/* TL;DR */}
-          <div className="rounded-2xl border border-hairline bg-mist p-6 my-8">
-            <h2 className="text-xl font-semibold tracking-[-0.02em] text-ink mb-3">TL;DR</h2>
-            <ul className="list-disc pl-6 space-y-2 text-ink">
-              <li>The agent connects to your channels and learns your voice, formats, and what already performs</li>
-              <li>It analyses competitors and the niche to find winning hooks, formats, and content gaps</li>
-              <li>It produces a <strong>data-driven content plan</strong>: themes, formats, and a schedule per platform</li>
-              <li>It <strong>creates the posts</strong>: images, videos, and text with ready-to-use captions, tailored to each platform</li>
-              <li>It saves everything to <strong>your folder of choice</strong>, you just review and post</li>
-              <li>It <strong>learns as it goes</strong>, refining the plan every cycle so results compound</li>
-              <li>It runs <strong>independently, with no human intervention</strong> needed between steps</li>
-            </ul>
-          </div>
-
-          <h2 id="the-problem-with-doing-social-media-manually" className="text-3xl font-semibold tracking-[-0.02em] text-ink mt-12 mb-4">The Problem With Doing Social Media Manually</h2>
-          <p>
-            Manual social media isn&apos;t hard because any single post is hard; it&apos;s hard because it never
-            ends. Every week resets the pressure to come up with fresh ideas, research what&apos;s trending,
-            design the visuals, shoot or edit the video, write captions that actually hook, and then remember to
-            post it all at the right time on the right platform. Miss a week and the algorithm punishes you;
-            keep up and it quietly eats your most creative hours.
-          </p>
-          <p>
-            It&apos;s also a job that fragments across skills. Good social needs a strategist who knows what to
-            post, a designer who can make it look right, an editor for video, a copywriter for captions, and an
-            analyst to read the numbers and adjust. Most businesses have none of those roles dedicated to it, so
-            one overstretched person does all five badly, or the work simply doesn&apos;t happen.
-          </p>
-          <p>
-            The usual &quot;automation&quot; (like a scheduling tool) only solves the smallest part of the problem.
-            It queues posts you still have to invent, design, and write yourself. An AI agent is different: it
-            doesn&apos;t just schedule the work, it <em>does</em> the work (the research, the plan, the creation,
-            and the learning) and it does it continuously without waiting to be told. For the wider picture of
-            what that unlocks, see our guide on <Link href="/blog/ai-agents-for-small-business" className="text-ink underline decoration-ink/25 underline-offset-4 hover:decoration-ink">AI agents for small business</Link>.
-          </p>
-
-          <h2 id="how-the-social-media-agent-works-end-to-end" className="text-3xl font-semibold tracking-[-0.02em] text-ink mt-12 mb-4">How the Social Media Agent Works, End to End</h2>
-          <p>
-            The agent behind <Link href="/agents/social-media" className="text-ink underline decoration-ink/25 underline-offset-4 hover:decoration-ink">Talk to Me Data&apos;s social media automation</Link> runs a full, repeating cycle. It moves through six stages on its own (analysing, planning, creating,
-            delivering, and learning) and comes back around sharper each time. Here is exactly what happens at
-            each stage.
-          </p>
-
-          {/* Step 1 */}
-          <h3 className="text-2xl font-semibold text-ink mt-10 mb-3">Step 1: It connects to your channels and analyses them</h3>
-          <p>
-            First, the agent is given access to your social accounts: Instagram, TikTok, LinkedIn, YouTube, X,
-            Facebook, or whichever you use. Before it creates anything, it studies what you already have. It
-            reads your history to understand your brand voice and visual style, and it looks at the numbers to
-            learn what genuinely works for <em>your</em> audience.
-          </p>
-          <p>Concretely, it works out things like:</p>
-          <ul className="list-disc pl-6 space-y-2">
-            <li>which formats (reels, carousels, shorts, threads, statics) earn the most reach, saves, and engagement;</li>
-            <li>the hooks, topics, and angles your audience responds to;</li>
-            <li>your best posting times and cadence per platform;</li>
-            <li>the tone and visual identity that make a post unmistakably yours.</li>
+        <div className="rounded-2xl border border-hairline bg-mist p-6 my-8">
+          <h2 className="text-xl font-semibold tracking-[-0.02em] text-ink mb-3">TL;DR</h2>
+          <ul className="list-disc pl-6 space-y-2 text-ink">
+            <li>An AI agent runs six steps: <strong>analyze, study competitors, plan, create, post, learn</strong></li>
+            <li>It judges every post against <strong>your own median</strong>, so the plan is built on what already works for you</li>
+            <li>It creates the post itself: hooks, captions and designed carousels in your brand kit</li>
+            <li>You choose: approve each post, or let it <strong>auto-post</strong> at your best times</li>
+            <li>Fastest route: <a href={SIGNUP_URL} className={LINK}>sign up free</a> and paste your profile link. DIY route: the free prompt below</li>
           </ul>
-          <p>
-            This is the foundation. Everything the agent produces later is anchored to what your own data says
-            works, not to a generic template.
-          </p>
-
-          {/* Step 2 */}
-          <h3 className="text-2xl font-semibold text-ink mt-10 mb-3">Step 2: It analyses your competitors&apos; pages and top-performing posts</h3>
-          <p>
-            Next, the agent looks outward. It studies competitor and adjacent accounts in your niche to see
-            what&apos;s working beyond your own feed, because the fastest way to know what will land is to see
-            what already has. It surfaces their best-performing posts and reverse-engineers <em>why</em> they
-            worked: the hook, the format, the pacing, the topic.
-          </p>
-          <p>From that competitive read it identifies:</p>
-          <ul className="list-disc pl-6 space-y-2">
-            <li>the hooks and formats consistently over-performing in your space right now;</li>
-            <li>content gaps and angles competitors are missing that you can own;</li>
-            <li>trends and formats worth riding while they&apos;re still fresh;</li>
-            <li>benchmarks for what &quot;good&quot; looks like in your category.</li>
-          </ul>
-          <p>
-            The result is a picture of the whole playing field: your strengths plus the opportunities around you,
-            rather than a feed built in a vacuum.
-          </p>
-
-          {/* Step 3 */}
-          <h3 className="text-2xl font-semibold text-ink mt-10 mb-3">Step 3: It provides a data-driven content plan</h3>
-          <p>
-            With both reads in hand, the agent turns insight into a concrete plan for the period ahead. This
-            isn&apos;t a vague list of ideas; it&apos;s a real calendar with a rationale behind every slot. For
-            each post it decides the theme, the format, the platform, the timing, and the goal, and it can tell
-            you why each choice was made based on the data.
-          </p>
-          <p>A typical plan specifies, for each piece of content:</p>
-          <ul className="list-disc pl-6 space-y-2">
-            <li>the topic and angle, mapped to a theme that&apos;s proven to perform;</li>
-            <li>the format and platform it&apos;s built for, and why;</li>
-            <li>the day and time to post it;</li>
-            <li>the objective is reach, saves, engagement, clicks, or conversions.</li>
-          </ul>
-          <p>
-            You get a coherent, defensible strategy for the weeks ahead in minutes, instead of staring at a blank
-            calendar wondering what to post.
-          </p>
-
-          {/* Step 4 */}
-          <h3 className="text-2xl font-semibold text-ink mt-10 mb-3">Step 4: It builds the posts: images, videos, text, and captions for every platform</h3>
-          <p>
-            This is where most tools stop and the agent keeps going. It doesn&apos;t hand you a plan and wish you
-            luck; it produces the finished content. For every item in the plan it creates the actual assets, and
-            it tailors each one to the platform it&apos;s destined for rather than reusing a single file
-            everywhere.
-          </p>
-          <p>For each post, the agent produces:</p>
-          <ul className="list-disc pl-6 space-y-2">
-            <li><strong>Images</strong>: on-brand graphics and visuals in the right dimensions for each platform;</li>
-            <li><strong>Videos</strong>: short-form video cut and formatted for reels, shorts, and TikTok;</li>
-            <li><strong>Text and captions</strong>: a ready-to-use caption with a strong hook, the right tone, and hashtags;</li>
-            <li><strong>Platform-native variants</strong>: the same idea adapted to each platform&apos;s format and aspect ratio.</li>
-          </ul>
-          <p>
-            What you end up with is a set of complete, publish-ready posts. Not a brief, not a mood board, but
-            the real thing, captioned and ready to go.
-          </p>
-
-          {/* Step 5 */}
-          <h3 className="text-2xl font-semibold text-ink mt-10 mb-3">Step 5: It saves the posts to your folder, and you just post</h3>
-          <p>
-            Every finished asset and caption is saved directly into the folder of your choice (a Google Drive
-            folder, for example), neatly organised by platform and date. Nothing goes out without your say-so, so
-            you keep full editorial control while skipping every step that came before it. When you sit down to
-            post, the work is simply <em>there</em>, done.
-          </p>
-          <p>
-            All that&apos;s left for a human to do is open the folder, give it a final glance, and hit post. And
-            if you&apos;d rather remove even that step, the agent can publish directly on a schedule instead; the
-            choice of how much control to keep is yours.
-          </p>
-
-          {/* Step 6 */}
-          <h3 className="text-2xl font-semibold text-ink mt-10 mb-3">Step 6: It keeps learning and refines the plan as it goes</h3>
-          <p>
-            The cycle doesn&apos;t end at publishing; that&apos;s where the agent gets smarter. Once posts are
-            live, it reads the results, compares them against what the plan predicted, and updates its model of
-            what works for your audience. Every round, the plan gets sharper: better hooks, better timing, better
-            formats, fewer misses.
-          </p>
-          <p>
-            That&apos;s the compounding advantage of an agent over a one-off content batch. A freelancer or an
-            agency starts from scratch each month; the agent carries everything it has learned forward, so month
-            three is meaningfully better than month one, and it keeps improving for as long as it runs.
-          </p>
-
-          {/* Autonomy highlight */}
-          <div className="my-10 rounded-2xl border border-hairline bg-mist p-6">
-            <div className="flex items-start gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-mist text-ink shrink-0">
-                <Bot className="w-5 h-5" />
-              </div>
-              <div>
-                <h4 className="text-base font-bold text-ink mb-1.5">It runs independently, no human in the loop</h4>
-                <p className="text-sm text-neutral-600 leading-relaxed">
-                  The defining feature of this agent is autonomy. It moves from analysing your channels, to
-                  studying competitors, to planning, to creating, to delivering, and back to learning
-                  <strong className="text-ink"> without a person prompting each step</strong>. You&apos;re
-                  not feeding it briefs or nudging it along; it drives the whole cycle itself and simply hands
-                  you finished posts. The only human touch required is the final approval before publishing, and
-                  even that is optional.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <h2 id="the-prompt" className="text-3xl font-semibold tracking-[-0.02em] text-ink mt-12 mb-4">The Prompt</h2>
-          <p>
-            Here&apos;s the exact prompt behind the agent. Paste it into your AI agent orchestration interface, 
-            whether that&apos;s Talk to Me Data or a <a href="https://claude.ai" target="_blank" rel="noopener noreferrer" className="text-ink underline decoration-ink/25 underline-offset-4 hover:decoration-ink">Claude</a> project with your social accounts and a <a href="https://www.google.com/drive/" target="_blank" rel="noopener noreferrer" className="text-ink underline decoration-ink/25 underline-offset-4 hover:decoration-ink">Google Drive</a> folder connected. Swap
-            {" "}<code className="bg-mist px-1.5 py-0.5 rounded text-xs font-mono">[Company]</code> for your business name and point it at the channels and folder you want it to work from.
-          </p>
-
         </div>
-      </div>
 
-      {/* Prompt block */}
-      <PromptBlock prompt={AGENT_PROMPT} leadSource="prompt_social_media_agent" />
-
-      <div className="prose prose-lg max-w-none">
-        <div className="space-y-6 text-neutral-600 leading-relaxed">
-
-          <h2 id="what-you-need-to-set-it-up" className="text-3xl font-semibold tracking-[-0.02em] text-ink mt-12 mb-4">What You Need to Set It Up</h2>
-          <div className="my-6 space-y-4">
-            <div className="border border-hairline rounded-xl p-5">
-              <h3 className="font-semibold text-ink mb-1">Access to your social channels</h3>
-              <p className="text-sm">Connections to the accounts you want the agent to work on: Instagram, TikTok, LinkedIn, YouTube, X, or Facebook. This is what lets it analyse your history, learn what works, and build platform-native content.</p>
-            </div>
-            <div className="border border-hairline rounded-xl p-5">
-              <h3 className="font-semibold text-ink mb-1">A capable, multimodal model</h3>
-              <p className="text-sm">A model like <a href="https://claude.ai" target="_blank" rel="noopener noreferrer" className="text-ink underline decoration-ink/25 underline-offset-4 hover:decoration-ink">Claude</a> with tool use, plus image and video generation. This is the engine that reads the data, writes the plan and captions, and creates the visuals for each platform.</p>
-            </div>
-            <div className="border border-hairline rounded-xl p-5">
-              <h3 className="font-semibold text-ink mb-1">A folder to deliver into</h3>
-              <p className="text-sm">A shared destination like a <a href="https://www.google.com/drive/" target="_blank" rel="noopener noreferrer" className="text-ink underline decoration-ink/25 underline-offset-4 hover:decoration-ink">Google Drive</a> folder where the agent saves finished posts, organised by platform and date, ready for you to review and publish.</p>
-            </div>
-          </div>
-
-          <div className="rounded-xl border border-hairline bg-mist p-5">
-            <p className="font-semibold text-ink mb-1 text-sm">Don&apos;t want to wire up the channels, model, and delivery yourself?</p>
-            <p className="text-sm text-neutral-600 mb-3">
-              Talk to Me Data builds, connects, and hosts this agent for you: the channel connections, the model, the content generation, and the delivery to your folder. Nothing to configure or maintain on your side.
-            </p>
-            <Link href="/agents/social-media" className="inline-flex items-center gap-1.5 text-sm font-semibold text-ink underline decoration-ink/25 underline-offset-4 hover:decoration-ink">
-              See the social media agent →
-            </Link>
-          </div>
-
-          <h2 id="what-you-get-out-of-it" className="text-3xl font-semibold tracking-[-0.02em] text-ink mt-12 mb-4">What You Get Out of It</h2>
-          <div className="my-6 overflow-x-auto">
-            <table className="w-full border-collapse border border-hairline rounded-lg text-sm">
-              <thead>
-                <tr className="bg-mist">
-                  <th className="border border-hairline p-4 text-left text-ink font-bold">Before (manual)</th>
-                  <th className="border border-hairline p-4 text-left text-ink font-bold">After (AI agent)</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td className="border border-hairline p-4">Stare at a blank calendar every week</td>
-                  <td className="border border-hairline p-4 font-semibold text-ink">A data-driven plan produced automatically</td>
-                </tr>
-                <tr className="bg-mist">
-                  <td className="border border-hairline p-4">Design, film, and write every post by hand</td>
-                  <td className="border border-hairline p-4 font-semibold text-ink">Images, videos, and captions created for you</td>
-                </tr>
-                <tr>
-                  <td className="border border-hairline p-4">Guess what will perform</td>
-                  <td className="border border-hairline p-4 font-semibold text-ink">Decisions grounded in your data and competitors&apos;</td>
-                </tr>
-                <tr className="bg-mist">
-                  <td className="border border-hairline p-4">Reformat the same idea for each platform</td>
-                  <td className="border border-hairline p-4 font-semibold text-ink">Platform-native variants built automatically</td>
-                </tr>
-                <tr>
-                  <td className="border border-hairline p-4">Results plateau; every month restarts</td>
-                  <td className="border border-hairline p-4 font-semibold text-ink">The agent learns and improves each cycle</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-
-
-          {/* Keyword section + CTAs */}
-          <div className="my-12">
-            <h2 id="how-to-automate-social-media-posting-without-hiring-an-agenc" className="text-3xl font-semibold tracking-[-0.02em] text-ink mb-4">How to automate social media posting without hiring an agency</h2>
-            <p className="mb-6">
-              The goal isn&apos;t just to schedule posts; it&apos;s to remove the entire content pipeline from
-              your plate. An AI agent handles the strategy, the creation, and the learning, and leaves you with a
-              folder of finished, on-brand posts to approve. You keep a consistent, high-quality presence across
-              every platform without an agency retainer or a full-time hire, and it gets better the longer it runs.
-            </p>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 not-prose">
-              <Link
-                href="/agents/social-media"
-                className="group flex flex-col justify-between rounded-2xl border border-hairline bg-white p-6 hover:border-ink transition-all no-underline"
-              >
-                <div>
-                  <p className="text-xs font-semibold uppercase tracking-widest text-ink mb-2">See the agent</p>
-                  <h3 className="text-lg font-semibold text-ink mb-1.5">Learn More</h3>
-                  <p className="text-sm text-neutral-600">See exactly how the AI social media agent plans, creates, and delivers content, and how we build it around your brand.</p>
-                </div>
-                <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-ink">
-                  Explore the social media agent →
-                </span>
-              </Link>
-              <Link
-                href={SIGNUP_URL}
-                className="group flex flex-col justify-between rounded-2xl bg-ink p-6 hover:opacity-95 transition-opacity no-underline"
-              >
-                <div>
-                  <p className="text-xs font-semibold uppercase tracking-widest text-white/70 mb-2">Ready to go</p>
-                  <p className="text-lg font-bold text-white mb-1.5">Sign up free</p>
-                  <p className="text-sm text-white/80">Tell us your channels and brand and we&apos;ll build, connect, and host your social media agent, live in days.</p>
-                </div>
-                <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-white">
-                  Create your free account →
-                </span>
-              </Link>
-            </div>
-          </div>
-
+        <h2 id="what-can-you-automate-on-social-media" className={H2}>What Can You Automate on Social Media With AI?</h2>
+        <p>
+          You can automate almost everything except your own expertise and your face on camera. Here is how the weekly
+          work splits:
+        </p>
+        <div className="my-6 overflow-x-auto rounded-xl border border-hairline">
+          <table className="w-full text-left text-sm">
+            <thead className="bg-mist text-ink">
+              <tr>
+                <th className="p-4 font-semibold">Task</th>
+                <th className="p-4 font-semibold">Doing it by hand</th>
+                <th className="p-4 font-semibold">With an AI agent</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-hairline">
+              <tr><td className="p-4 font-medium text-ink">Checking what works</td><td className="p-4">Scroll your grid and guess from view counts</td><td className="p-4">Every post compared with your median; breakouts flagged</td></tr>
+              <tr><td className="p-4 font-medium text-ink">Watching competitors</td><td className="p-4">Scroll their profiles when you remember</td><td className="p-4">Tracked automatically; only their breakout posts surface</td></tr>
+              <tr><td className="p-4 font-medium text-ink">Deciding what to post</td><td className="p-4">A blank calendar every Monday</td><td className="p-4">A plan with the data behind every post</td></tr>
+              <tr><td className="p-4 font-medium text-ink">Writing hooks and captions</td><td className="p-4">From scratch, every time</td><td className="p-4">Written in the hook styles that beat your median</td></tr>
+              <tr><td className="p-4 font-medium text-ink">Designing carousels</td><td className="p-4">Time in a design tool for every post</td><td className="p-4">Designed in your brand kit, every slide editable</td></tr>
+              <tr><td className="p-4 font-medium text-ink">Posting on time</td><td className="p-4">Easy to forget</td><td className="p-4">Scheduled at your best time, posted or reminded</td></tr>
+              <tr><td className="p-4 font-medium text-ink">Filming and your expertise</td><td className="p-4">You</td><td className="p-4">Still you. The agent gives you a ready-to-film script</td></tr>
+            </tbody>
+          </table>
         </div>
-      </div>
 
-      <div className="prose prose-lg max-w-none">
-        <div className="space-y-6 text-neutral-600 leading-relaxed">
+        <h2 id="how-the-social-media-agent-works-end-to-end" className={H2}>How Does a Social Media AI Agent Work?</h2>
+        <p>
+          A social media AI agent works in a loop of six steps. The screenshots below are from the{" "}
+          <Link href="/agents/social-media" className={LINK}>Talk to me Data social media agent</Link>, shown on a sample
+          account.
+        </p>
 
-          <h2 id="summary" className="text-3xl font-semibold tracking-[-0.02em] text-ink mt-12 mb-4">Summary</h2>
-          <p>
-            Automating social media used to mean a scheduling tool that still left you to invent, design, and
-            write every post. An AI agent changes that. It connects to your channels and learns them, analyses
-            your competitors, builds a data-driven content plan, creates the images, videos, and captions for
-            every platform, and saves the finished posts to your folder, then learns from the results and
-            refines the plan every cycle. It runs the whole thing independently, with no human intervention
-            needed between steps.
-          </p>
-          <p>
-            The prompt above is ready to use. Connect a capable model, your channels, and a folder, drop the
-            prompt in, and let the analysing, planning, and creating run themselves. If you&apos;d rather skip the
-            setup entirely, we build, connect, and host the whole thing for you.
-          </p>
+        <AgentCycleDiagram />
 
-          <SignupCta heading="Want the social media agent working for your brand?">
-            Sign up free and start with the ready-made social media agent. It plans, creates and delivers your content across every platform.
-          </SignupCta>
+        <h3 className={H3}>Step 1: It analyzes your channels</h3>
+        <p>
+          The agent reads every post on your account and compares each one with <strong>your own median</strong>. That is
+          what makes the analysis useful: a post that did twice your usual views is a winner whether you have 500
+          followers or 500,000. It works out:
+        </p>
+        <ul className="list-disc pl-6 space-y-2">
+          <li>which formats (carousels, reels, images) earn the most for you;</li>
+          <li>which hooks and topics your audience responds to;</li>
+          <li>your best days and times to post.</li>
+        </ul>
+        <Figure
+          src="/social-agent/analysis.webp"
+          alt="The agent's analysis: carousels earn 2.4 times the median, with three cards for keep doing, fix and try this week"
+          width={1600}
+          height={570}
+          caption="Each analysis ends in three plain actions: keep doing, fix, try this week."
+        />
+
+        <h3 className={H3}>Step 2: It studies your competitors</h3>
+        <p>
+          Next it looks outward. It suggests accounts in your niche, tracks the ones you pick, and flags their{" "}
+          <strong>breakout posts</strong>: posts that did at least twice that account&apos;s usual views. Those show you
+          formats and topics your audience already wants. The agent turns them into plays you can run, never copies.
+        </p>
+        <Figure
+          src="/social-agent/breakouts.webp"
+          alt="Breakout posts from competitors in the same niche, each showing how many times their usual views it earned"
+          width={1600}
+          height={1333}
+          caption="Competitor breakouts, ranked by how far they beat that account's usual. This is the fastest source of proven ideas."
+        />
+        <p>
+          I explain how I use this every week, and the competitor trick in detail, in{" "}
+          <Link href="/blog/how-to-grow-on-social-media-with-claude-and-ai-agent" className={LINK}>how to grow on social media with Claude and an AI agent</Link>.
+        </p>
+
+        <h3 className={H3}>Step 3: It builds a data-driven content plan</h3>
+        <p>
+          With both reads in hand, the agent plans your next posts: the topic, the format, the platform, and the day and
+          time. Every post comes with a one-line &quot;why this&quot;, so you can see the data behind each choice instead
+          of trusting a guess.
+        </p>
+
+        <h3 className={H3}>Step 4: It creates the posts</h3>
+        <p>
+          This is where most tools stop and the agent keeps going. For each post it writes several hook options, the
+          script or slide text and the caption. Carousels and images are designed in your brand kit (logo, colors, font and
+          layout), and you can edit any slide before it goes out.
+        </p>
+        <Figure
+          src="/social-agent/plan.webp"
+          alt="The content plan: a designed five-slide carousel scheduled for Tuesday at 9am, the reason it was chosen, and three hooks to pick from"
+          width={1600}
+          height={898}
+          caption="A planned post with its slides, its hook options and the reason it was chosen: carousels earn 2.4× the median here, and Tuesday 9:00 is the best slot."
+        />
+
+        <h3 className={H3}>Step 5: It posts, or sends it to you for approval</h3>
+        <p>
+          Every post lands in your plan at your best time. You choose what happens next, post by post: approve it, let the
+          agent post it for you, or get a reminder and post it yourself. Nothing goes live unless you connect the account
+          and turn posting on.
+        </p>
+
+        <h3 className={H3}>Step 6: It learns from the results</h3>
+        <p>
+          After posts go live, the agent checks how each one did against your median and feeds that into the next plan.
+          Week by week, its picks of hooks, formats and times get sharper, because they are based on more of your own data.
+        </p>
+
+        <SignupCta eyebrow="Start free" heading="Let the agent find your next winning post">
+          Sign up free, paste your Instagram, TikTok, YouTube or Facebook link, and the social media agent analyzes your
+          posts and tells you what to post next. No card required.
+        </SignupCta>
+
+        <h2 id="how-do-you-set-up-social-media-automation" className={H2}>How Do You Set Up Social Media Automation?</h2>
+        <p>There are two ways to set it up. Pick the one that matches how much time you want to spend on setup.</p>
+        <div className="my-6 overflow-x-auto rounded-xl border border-hairline">
+          <table className="w-full text-left text-sm">
+            <thead className="bg-mist text-ink">
+              <tr>
+                <th className="p-4 font-semibold"></th>
+                <th className="p-4 font-semibold">Ready-made agent</th>
+                <th className="p-4 font-semibold">Build your own with Claude</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-hairline">
+              <tr><td className="p-4 font-medium text-ink">Setup time</td><td className="p-4">About 5 minutes</td><td className="p-4">An afternoon, plus connecting accounts</td></tr>
+              <tr><td className="p-4 font-medium text-ink">What you need</td><td className="p-4">Your profile link</td><td className="p-4">Claude, connectors to your accounts, a Drive folder</td></tr>
+              <tr><td className="p-4 font-medium text-ink">Dashboards and charts</td><td className="p-4">Included</td><td className="p-4">You build them</td></tr>
+              <tr><td className="p-4 font-medium text-ink">Runs every week on its own</td><td className="p-4">Yes</td><td className="p-4">Only if you schedule it</td></tr>
+              <tr><td className="p-4 font-medium text-ink">Cost</td><td className="p-4">Free plan for 1 account; <Link href="/pricing" className={LINK}>paid plans</Link> to design and post</td><td className="p-4">Your Claude plan</td></tr>
+            </tbody>
+          </table>
         </div>
+
+        <h3 className={H3}>Option 1: Use a ready-made agent (about 5 minutes)</h3>
+        <ol className="list-decimal pl-6 space-y-2">
+          <li><a href={SIGNUP_URL} className={LINK}>Sign up free</a>. No card required.</li>
+          <li>Paste your public profile link: Instagram, TikTok, YouTube or a Facebook Page. No password needed.</li>
+          <li>Read your first analysis, ready in minutes: your winning posts, best formats and best times.</li>
+          <li>Ask the agent what to post next, or ask it to plan your week.</li>
+          <li>On a paid plan, approve the designed posts or let the agent post them for you.</li>
+        </ol>
+        <Figure
+          src="/social-agent/chat.webp"
+          alt="Ask your Agent chat: the agent recommends more carousels based on the account's numbers, then plans three posts into the best time slots"
+          width={720}
+          height={1350}
+          className="mx-auto max-w-sm"
+          caption="Ask in plain English. The answers use the numbers on your dashboard, then the agent acts on them."
+        />
+
+        <h3 className={H3}>Option 2: Build your own agent with Claude</h3>
+        <p>
+          If you prefer to build it yourself, you need three things: a capable model with tool use such as{" "}
+          <a href="https://claude.ai" target="_blank" rel="noopener noreferrer" className={LINK}>Claude</a>, connectors to
+          your social accounts, and a folder (for example in{" "}
+          <a href="https://www.google.com/drive/" target="_blank" rel="noopener noreferrer" className={LINK}>Google Drive</a>)
+          where it saves finished posts. Create a Claude Project, paste the prompt below into its instructions, and swap
+          the brackets for your details. New to this? Our guide on{" "}
+          <Link href="/blog/how-to-build-an-ai-agent" className={LINK}>how to build an AI agent</Link> walks through the setup,
+          and <Link href="/blog/how-to-build-social-media-ai-agent" className={LINK}>how to build a social media AI agent</Link>{" "}
+          has a simpler Instagram-only version.
+        </p>
+
+        <h3 id="the-prompt" className={H3}>The prompt</h3>
+        <PromptBlock prompt={AGENT_PROMPT} leadSource="prompt_social_media_agent" />
+        <p>
+          Two honest limits of the DIY route: it runs when you open a chat, not on a schedule, and long runs in a chat app
+          can hit usage limits halfway through. To make your carousels with Claude, add the Web Asset Generator skill; for
+          full videos, see{" "}
+          <a href="https://www.sellingwithnas.com/how-to-build-free-ai-videos-with-claude-hyperframes" target="_blank" rel="noopener" className={LINK}>how to build free AI videos with Claude and HyperFrames</a>.
+        </p>
+
+        <h2 id="how-to-automate-social-media-posting-without-hiring-an-agency" className={H2}>How Do You Automate Social Media Without Hiring an Agency?</h2>
+        <p>
+          You automate social media without an agency by letting an agent do the repeatable work (the analysis, the plan,
+          the hooks, the designs and the scheduling) and keeping the parts only you can do: your expertise and your voice on
+          camera. That gives you a consistent presence on every platform without a retainer or a full-time hire, and it
+          improves the longer it runs. Small teams use the same approach across the business; see{" "}
+          <Link href="/blog/ai-agents-for-small-business" className={LINK}>AI agents for small business</Link> for other
+          workflows, or the <Link href="/blog/how-to-automate-seo-and-geo-growth-with-ai-agent" className={LINK}>SEO and GEO agent guide</Link>{" "}
+          to automate your search traffic too.
+        </p>
+
+        <h2 id="summary" className={H2}>Summary</h2>
+        <p>
+          Automating social media with AI means handing the whole content cycle to an agent: analyze your channels, study
+          competitors, plan the next posts, create them, post them, and learn from the results. Start with a ready-made agent
+          if you want results this week, or build your own with Claude and the prompt above. Either way, the posts are built
+          on what your data says works, not on guesswork. New to agents in general? Start with{" "}
+          <Link href="/blog/what-are-ai-agents" className={LINK}>what AI agents are</Link>.
+        </p>
+
+        <SignupCta heading="Automate your social media, starting today">
+          Sign up free and connect one account. The social media agent finds your winning posts, tracks your competitors
+          and tells you what to post next.
+        </SignupCta>
       </div>
     </BlogPostShell>
   )

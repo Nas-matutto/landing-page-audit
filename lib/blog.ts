@@ -246,16 +246,21 @@ export const POSTS: BlogPost[] = [
     description:
       "How to automate social media with an AI agent that analyzes your channels, plans content, and creates posts, images and captions for every platform.",
     excerpt:
-      "A step-by-step guide to an AI agent that analyzes your channels and competitors, builds a data-driven content plan, and creates the images, videos, and captions for every platform, then saves them to your folder. Runs independently, no human intervention.",
+      "A simple, step-by-step guide to automating social media with an AI agent: it analyzes your channels and competitors, plans your posts, creates them and posts them for you. Includes a free prompt to build your own.",
     category: "social-media-automation",
     author: "nas",
     datePublished: "2026-07-23",
-    dateModified: "2026-10-01",
-    readMinutes: 13,
-    cover: { src: "/blog/social-media-ai-agent-cover.png", alt: "AI social media agent creating images, videos and captions for Instagram, TikTok, LinkedIn, YouTube, X and Facebook", ...COVER },
+    dateModified: "2026-10-15",
+    readMinutes: 9,
+    cover: {
+      src: "/blog/how-to-automate-social-media-posting-with-ai-agent/ai-agent-automating-social-media-posts-cover.png",
+      alt: "The Talk to me Data agent giving a thumbs up next to designed carousel slides, a post scheduled for Tuesday at 9:00 and the cycle analyze, plan, create, post",
+      width: 2400,
+      height: 1260,
+    },
     keywords: ["how to automate social media", "automate social media posting", "AI social media automation", "social media AI agent", "AI content calendar", "automate Instagram posts"],
     pillar: true,
-    agentPage: { href: "/agents/social-media", label: "The Social Media AI Agent: built and hosted for you" },
+    agentPage: { href: "/agents/social-media", label: "The Social Media AI Agent: start free with one account" },
   },
   {
     slug: "how-to-automate-data-entry-and-reporting-with-ai-agent",

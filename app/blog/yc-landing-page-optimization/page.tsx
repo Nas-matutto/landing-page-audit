@@ -482,7 +482,7 @@ export default function BlogPost() {
             <div className="space-y-4">
               <div className="border-l-2 border-ink pl-4">
                 <p className="font-bold text-ink">Day 1: Audit Your Current Page</p>
-                <p>Is your positioning narrow enough? Is above-the-fold cluttered? Is your language functional or aspirational? Use <a href="https://www.talktomedata.com/" target="_blank" rel="noopener noreferrer" className="font-medium text-ink underline decoration-ink/25 underline-offset-4 hover:decoration-ink">Talk to me Data</a> to understand the current state of your homepage.</p>
+                <p>Is your positioning narrow enough? Is above-the-fold cluttered? Is your language functional or aspirational? Use <a href="https://talktomedata.com/" target="_blank" rel="noopener noreferrer" className="font-medium text-ink underline decoration-ink/25 underline-offset-4 hover:decoration-ink">Talk to me Data</a> to understand the current state of your homepage.</p>
               </div>
               
               <div className="border-l-2 border-ink pl-4">
