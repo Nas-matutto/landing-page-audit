@@ -3,8 +3,9 @@ import { Figure } from "@/components/blog/figure"
 import { SignupCta } from "@/components/blog/signup-cta"
 import { BlogPostShell } from "@/components/blog/post-shell"
 import { PromptBlock } from "@/components/blog/prompt-block"
+import { YouTubeEmbed } from "@/components/ui/youtube-embed"
 import { buildPostMetadata, type Faq } from "@/lib/blog"
-import { SIGNUP_URL } from "@/lib/links"
+import { SIGNUP_URL, SOCIAL_AGENT_VIDEO } from "@/lib/links"
 
 const SLUG = "how-to-automate-social-media-posting-with-ai-agent"
 
@@ -180,6 +181,18 @@ export default function AutomateSocialMediaPostingPage() {
         </p>
 
         <AgentCycleDiagram />
+
+        <p>Prefer to watch? Here is the whole cycle in 71 seconds:</p>
+        <YouTubeEmbed
+          youtubeId={SOCIAL_AGENT_VIDEO.youtubeId}
+          title={SOCIAL_AGENT_VIDEO.title}
+          thumbnail={SOCIAL_AGENT_VIDEO.thumbnail}
+          className="my-6"
+        />
+        <p className="text-sm">
+          <strong className="text-ink">In the video:</strong> the social media agent reads an account&apos;s posts, shows
+          which formats and hooks beat its median, tracks competitors, and turns the findings into planned, designed posts.
+        </p>
 
         <h3 className={H3}>Step 1: It analyzes your channels</h3>
         <p>

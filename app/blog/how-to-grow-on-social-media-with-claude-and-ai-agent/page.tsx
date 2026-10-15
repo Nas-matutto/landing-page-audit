@@ -3,6 +3,8 @@ import { Figure } from "@/components/blog/figure"
 import { SignupCta } from "@/components/blog/signup-cta"
 import { BlogPostShell } from "@/components/blog/post-shell"
 import { PromptBlock } from "@/components/blog/prompt-block"
+import { YouTubeEmbed } from "@/components/ui/youtube-embed"
+import { SOCIAL_AGENT_VIDEO } from "@/lib/links"
 import { buildPostMetadata, type Faq } from "@/lib/blog"
 
 const SLUG = "how-to-grow-on-social-media-with-claude-and-ai-agent"
@@ -160,6 +162,18 @@ export default function GrowOnSocialMediaWithClaudePage() {
         </ol>
 
         <GrowthLoopDiagram />
+
+        <p>Here is the agent I use, in a 71-second demo, before we go through each step:</p>
+        <YouTubeEmbed
+          youtubeId={SOCIAL_AGENT_VIDEO.youtubeId}
+          title={SOCIAL_AGENT_VIDEO.title}
+          thumbnail={SOCIAL_AGENT_VIDEO.thumbnail}
+          className="my-6"
+        />
+        <p className="text-sm">
+          <strong className="text-ink">In the video:</strong> the social media agent pulls an account&apos;s posts into one
+          dashboard, finds its winning formats and hooks, tracks competitors, and builds the next posts from that data.
+        </p>
 
         <h2 id="step-1-connect-your-account-to-a-social-media-ai-agent" className={H2}>Step 1: Connect Your Account to a Social Media AI Agent</h2>
         <p>

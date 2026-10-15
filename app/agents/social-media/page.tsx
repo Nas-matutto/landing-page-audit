@@ -12,8 +12,10 @@ import {
   PlatformStrip,
   SocialFinalCta,
   SocialGallery,
+  SocialDemoVideo,
   SocialHowItWorks,
 } from "@/components/sections/social-agent/sections"
+import { SOCIAL_AGENT_VIDEO } from "@/lib/links"
 
 const BASE_URL = "https://talktomedata.com"
 const PAGE_URL = `${BASE_URL}/agents/social-media`
@@ -109,6 +111,17 @@ const jsonLd = {
       areaServed: "Worldwide",
     },
     {
+      "@type": "VideoObject",
+      "@id": `${PAGE_URL}#video`,
+      name: SOCIAL_AGENT_VIDEO.title,
+      description: SOCIAL_AGENT_VIDEO.description,
+      thumbnailUrl: `${BASE_URL}${SOCIAL_AGENT_VIDEO.thumbnail}`,
+      uploadDate: SOCIAL_AGENT_VIDEO.uploadDate,
+      duration: SOCIAL_AGENT_VIDEO.duration,
+      embedUrl: `https://www.youtube.com/embed/${SOCIAL_AGENT_VIDEO.youtubeId}`,
+      contentUrl: `https://www.youtube.com/watch?v=${SOCIAL_AGENT_VIDEO.youtubeId}`,
+    },
+    {
       "@type": "FAQPage",
       "@id": `${PAGE_URL}#faq`,
       mainEntity: FAQS.map((faq) => ({
@@ -143,6 +156,7 @@ export default function SocialMediaPage() {
         <SocialAgentFeatures />
         <SocialHowItWorks />
         <SocialGallery />
+        <SocialDemoVideo />
         <AgentGuidesSection agentHref="/agents/social-media" />
         <FAQSection eyebrow="FAQ" heading="Questions about the social media agent" items={FAQS} />
         <SocialFinalCta />

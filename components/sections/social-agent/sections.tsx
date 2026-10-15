@@ -4,7 +4,8 @@ import { X, Check, Wrench, Sparkles } from "lucide-react"
 import { SiInstagram, SiTiktok, SiYoutube } from "react-icons/si"
 import { FaFacebook } from "react-icons/fa"
 import { Ambassador } from "@/components/ui/ambassador"
-import { SIGNUP_URL } from "@/lib/links"
+import { YouTubeEmbed } from "@/components/ui/youtube-embed"
+import { SIGNUP_URL, SOCIAL_AGENT_VIDEO } from "@/lib/links"
 import { Reveal, Screenshot } from "./parts"
 
 // ── Platforms ───────────────────────────────────────────────────────────────
@@ -212,6 +213,32 @@ export function SocialFinalCta() {
         </div>
         <Ambassador pose="thumbs-up" sizes="360px" className="pointer-events-none absolute -bottom-2 -right-6 hidden h-[300px] w-[270px] sm:block lg:right-8 lg:h-[380px] lg:w-[340px]" />
       </Reveal>
+    </section>
+  )
+}
+
+// ── Demo video ──────────────────────────────────────────────────────────────
+
+export function SocialDemoVideo() {
+  return (
+    <section className="bg-white px-6 pt-20 sm:pt-28 lg:px-8">
+      <div className="mx-auto max-w-4xl">
+        <Reveal className="mb-10 text-center">
+          <p className="eyebrow mb-5">Demo</p>
+          <h2 className="display mx-auto max-w-2xl text-[clamp(2rem,4.5vw,3.25rem)]">See the agent at work in 71 seconds</h2>
+          <p className="lede mx-auto mt-6 max-w-xl text-base sm:text-lg">
+            It reads your posts, finds what wins, tracks your competitors and builds your next posts.
+          </p>
+        </Reveal>
+        <Reveal delay={0.1}>
+          <YouTubeEmbed
+            youtubeId={SOCIAL_AGENT_VIDEO.youtubeId}
+            title={SOCIAL_AGENT_VIDEO.title}
+            thumbnail={SOCIAL_AGENT_VIDEO.thumbnail}
+            className="shadow-2xl shadow-black/10"
+          />
+        </Reveal>
+      </div>
     </section>
   )
 }

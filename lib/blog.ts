@@ -1,6 +1,7 @@
 import type { Metadata } from "next"
 import { format, parseISO } from "date-fns"
 import { authorUrl, getAuthor } from "@/lib/authors"
+import { SOCIAL_AGENT_VIDEO } from "@/lib/links"
 
 /**
  * Single source of truth for the blog. The index page, category hubs, author
@@ -126,7 +127,15 @@ export type BlogPost = {
   /** The commercial page this guide supports — linked from the post. */
   agentPage?: { href: string; label: string }
   /** A YouTube walkthrough embedded in the post, emitted as VideoObject. */
-  video?: { youtubeId: string; title: string; description: string }
+  video?: {
+    youtubeId: string
+    title: string
+    description: string
+    /** ISO 8601 with time zone. Falls back to datePublished. */
+    uploadDate?: string
+    /** ISO 8601 duration, e.g. "PT1M11S". */
+    duration?: string
+  }
 }
 
 const COVER = { width: 1200, height: 630 }
@@ -161,6 +170,13 @@ export const POSTS: BlogPost[] = [
       "AI content ideas",
     ],
     agentPage: { href: "/agents/social-media", label: "The Social Media AI Agent: start free with one account" },
+    video: {
+      youtubeId: SOCIAL_AGENT_VIDEO.youtubeId,
+      title: SOCIAL_AGENT_VIDEO.title,
+      description: SOCIAL_AGENT_VIDEO.description,
+      uploadDate: SOCIAL_AGENT_VIDEO.uploadDate,
+      duration: SOCIAL_AGENT_VIDEO.duration,
+    },
   },
   {
     slug: "how-to-automate-keyword-research-for-geo",
@@ -261,6 +277,13 @@ export const POSTS: BlogPost[] = [
     keywords: ["how to automate social media", "automate social media posting", "AI social media automation", "social media AI agent", "AI content calendar", "automate Instagram posts"],
     pillar: true,
     agentPage: { href: "/agents/social-media", label: "The Social Media AI Agent: start free with one account" },
+    video: {
+      youtubeId: SOCIAL_AGENT_VIDEO.youtubeId,
+      title: SOCIAL_AGENT_VIDEO.title,
+      description: SOCIAL_AGENT_VIDEO.description,
+      uploadDate: SOCIAL_AGENT_VIDEO.uploadDate,
+      duration: SOCIAL_AGENT_VIDEO.duration,
+    },
   },
   {
     slug: "how-to-automate-data-entry-and-reporting-with-ai-agent",
@@ -692,7 +715,8 @@ export function buildPostJsonLd(slug: string, faqs: Faq[] = []) {
             embedUrl: `https://www.youtube.com/embed/${post.video.youtubeId}`,
             contentUrl: `https://www.youtube.com/watch?v=${post.video.youtubeId}`,
             // Google requires a full ISO 8601 datetime with a time zone here.
-            uploadDate: `${post.datePublished}T00:00:00+00:00`,
+            uploadDate: post.video.uploadDate ?? `${post.datePublished}T00:00:00+00:00`,
+            ...(post.video.duration && { duration: post.video.duration }),
           },
         }),
       },
