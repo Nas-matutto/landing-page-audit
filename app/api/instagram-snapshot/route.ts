@@ -6,7 +6,7 @@ import { AccountNotFoundError, fetchAccount, normalizeHandle } from '@/lib/insta
 import { buildSnapshot } from '@/lib/instagram-snapshot/snapshot'
 import { snapshotEmailHtml } from '@/lib/instagram-snapshot/email'
 
-// The free Instagram Snapshot (/free-tools/instagram-snapshot).
+// The free Instagram Snapshot (/free-tools/social-media-analyzer).
 //
 // The request checks everything the visitor can fix (email, handle, account
 // type, one snapshot per email) and records the lead, then answers. The
@@ -120,16 +120,16 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Please enter your Instagram handle, like @yourbrand.' }, { status: 400 })
     }
     if (body.professionalAccount !== true) {
-      return NextResponse.json({ error: 'The snapshot is for Instagram Creator and Business accounts. Please confirm yours is one.' }, { status: 400 })
+      return NextResponse.json({ error: 'The analyzer is for Instagram Creator and Business accounts. Please confirm yours is one.' }, { status: 400 })
     }
     if (!process.env.META_BD_ACCESS_TOKEN || !process.env.META_BD_IG_USER_ID) {
       console.error('Instagram snapshot: META_BD_ACCESS_TOKEN / META_BD_IG_USER_ID are not set')
-      return NextResponse.json({ error: 'The snapshot is unavailable right now. Please try again later.' }, { status: 503 })
+      return NextResponse.json({ error: 'The analyzer is unavailable right now. Please try again later.' }, { status: 503 })
     }
 
     if (await alreadyHadSnapshot(email)) {
       return NextResponse.json(
-        { error: "We've already sent a snapshot to this email. Check your inbox (and spam folder) for it." },
+        { error: "We've already sent a free analysis to this email. Check your inbox (and spam folder) for it." },
         { status: 409 },
       )
     }

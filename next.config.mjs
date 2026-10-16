@@ -19,6 +19,8 @@ const nextConfig = {
       { source: "/agents/booking-scheduling", destination: "/agents/real-estate-agent", permanent: true },
       // The lead qualification page became the Website Manager page (2026-10).
       { source: "/agents/lead-qualification", destination: "/agents/website-manager", permanent: true },
+      // The Instagram snapshot page was renamed for search (2026-10).
+      { source: "/free-tools/instagram-snapshot", destination: "/free-tools/social-media-analyzer", permanent: true },
     ]
   },
 }

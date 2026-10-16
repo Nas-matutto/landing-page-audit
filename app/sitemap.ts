@@ -58,7 +58,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.75,
     },
     {
-      url: `${baseUrl}/free-tools/instagram-snapshot`,
+      url: `${baseUrl}/free-tools/social-media-analyzer`,
       lastModified: new Date('2026-10-16'),
       changeFrequency: 'monthly',
       priority: 0.8,

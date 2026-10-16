@@ -1,4 +1,4 @@
-// Shapes for the free Instagram Snapshot tool (/free-tools/instagram-snapshot).
+// Shapes for the free Instagram Snapshot tool (/free-tools/social-media-analyzer).
 
 export type PostType = "reel" | "carousel" | "image"
 

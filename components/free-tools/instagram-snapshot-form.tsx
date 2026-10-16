@@ -61,9 +61,9 @@ export function InstagramSnapshotForm() {
           <CheckCircle2 className="h-5 w-5" />
         </span>
         <div>
-          <p className="mb-1 font-semibold text-ink">Your snapshot is on its way</p>
+          <p className="mb-1 font-semibold text-ink">Your analysis is on its way</p>
           <p className="text-sm leading-relaxed text-quiet">
-            We&apos;re analysing <span className="font-medium text-ink">@{sentHandle}</span> now. The PDF lands in{" "}
+            Our AI agent is analyzing <span className="font-medium text-ink">@{sentHandle}</span> now. Your PDF lands in{" "}
             <span className="font-medium text-ink">{email}</span> in about a minute. If it isn&apos;t there in five, check
             your spam folder.
           </p>
@@ -119,7 +119,7 @@ export function InstagramSnapshotForm() {
               {shownHandle ? `@${shownHandle}` : "My account"} is an Instagram Creator or Business account
             </span>
             <span className="mt-1 block text-xs leading-relaxed text-quiet">
-              The snapshot only works for professional accounts. Switching a personal account is free: Settings and activity,
+              The analyzer only works for professional accounts. Switching a personal account is free: Settings and activity,
               then Account type and tools.
             </span>
           </span>
@@ -132,7 +132,7 @@ export function InstagramSnapshotForm() {
         >
           <span className="absolute inset-0 -translate-x-full bg-linear-to-r from-transparent via-white/25 to-transparent transition-transform duration-700 ease-in-out group-hover:translate-x-full" />
           <span className="relative flex items-center gap-2">
-            {status === "loading" ? "Finding your account…" : "Email me my snapshot"}
+            {status === "loading" ? "Finding your account…" : "Analyze my page"}
             {status !== "loading" && <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />}
           </span>
         </button>
@@ -142,7 +142,7 @@ export function InstagramSnapshotForm() {
           {errorMsg}
         </p>
       )}
-      <p className="mt-3 text-xs text-faint">One free snapshot per email. Public data only, no Instagram login. No spam.</p>
+      <p className="mt-3 text-xs text-faint">One free analysis per email. Public data only, no Instagram login. No spam.</p>
     </>
   )
 }

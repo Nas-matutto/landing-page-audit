@@ -51,7 +51,7 @@ export function snapshotEmailHtml({ handle, firstName, snapshot }: { handle: str
     <p style="font-size:15px;line-height:1.6;margin:24px 0 0;">Nas<br><span style="color:#71717a;">Talk to me Data</span></p>
     <hr style="border:none;border-top:1px solid #e4e4e7;margin:28px 0 16px;" />
     <p style="font-size:12px;color:#a1a1aa;margin:0;">
-      You asked for this snapshot at <a href="https://talktomedata.com/free-tools/instagram-snapshot" style="color:#71717a;">talktomedata.com</a>. It uses public data only.
+      You asked for this snapshot at <a href="https://talktomedata.com/free-tools/social-media-analyzer" style="color:#71717a;">talktomedata.com</a>. It uses public data only.
     </p>
   </div>`
 }

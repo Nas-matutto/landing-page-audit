@@ -5,7 +5,7 @@ import type { PostType, SnapshotInsights, SnapshotPost, SnapshotProfile } from "
 // "Studio Nova": the demo account behind the sample report on the landing
 // page (the same sample account as the agent screenshots). Fixed numbers and a
 // fixed date, so the preview image only changes when the template does.
-// Regenerate the preview with scripts/instagram-snapshot-sample.tsx.
+// Regenerate the preview via app/api/instagram-snapshot/sample/route.ts.
 // ---------------------------------------------------------------------------
 
 export const SAMPLE_DATE = new Date("2026-10-14T12:00:00Z")

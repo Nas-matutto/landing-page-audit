@@ -1,7 +1,8 @@
 import type { Metadata } from "next"
+import Image from "next/image"
 import Link from "next/link"
 import type { LucideIcon } from "lucide-react"
-import { ArrowUpRight, Clock, Gamepad2, Instagram, Palette, Workflow } from "lucide-react"
+import { ArrowUpRight, Check, Clock, Gamepad2, Palette, Workflow } from "lucide-react"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { Ambassador } from "@/components/ui/ambassador"
@@ -11,7 +12,7 @@ import { SIGNUP_URL } from "@/lib/links"
 export const metadata: Metadata = {
   title: "Free Tools — Talk to me Data",
   description:
-    "Free calculators and resources for teams exploring AI automation. See how much time and money an AI agent could save your business — no signup required.",
+    "Free AI tools: a social media page analyzer that tells you how to grow your Instagram, plus calculators and resources that show what an AI agent could do for your business.",
   alternates: {
     canonical: "https://talktomedata.com/free-tools",
   },
@@ -54,15 +55,13 @@ const TOOLS: { number: string; href: string; title: string; description: string;
     cta: "Play the game",
     Icon: Gamepad2,
   },
-  {
-    number: "05",
-    href: "/free-tools/instagram-snapshot",
-    title: "Instagram Snapshot",
-    description:
-      "Enter your Instagram handle and get a one-page PDF by email: your last 10 posts measured, your best Reel length, whether calls to action work, and three things to do next.",
-    cta: "Get my snapshot",
-    Icon: Instagram,
-  },
+]
+
+// The featured tool's jobs, shown landing in turn like the social agent's hero.
+const ANALYZER_DONE = [
+  { text: "Analyzed your last 30 posts", note: "views, engagement, captions" },
+  { text: "Found your best Reel length", note: "15 to 30 seconds" },
+  { text: "Wrote your growth plan", note: "do, fix and try" },
 ]
 
 const COMING_SOON = ["ROI calculator", "Agent readiness audit", "Automation playbook generator"]
@@ -81,7 +80,7 @@ export default function FreeToolsPage() {
                 Free tools to see what an AI agent can do for you
               </h1>
               <p className="lede mx-auto mt-6 max-w-lg text-lg sm:text-xl lg:mx-0">
-                Work out the hours you&apos;d save, map which steps an agent can take over, build your brand kit and get a snapshot of your Instagram. No signup needed.
+                Let our AI agent analyze your Instagram page, work out the hours you&apos;d save, map which steps an agent can take over and build your brand kit. No signup needed.
               </p>
             </Reveal>
 
@@ -98,6 +97,70 @@ export default function FreeToolsPage() {
         {/* Tools */}
         <section className="border-y border-hairline bg-mist px-6 py-20 sm:py-28 lg:px-8">
           <div className="mx-auto max-w-6xl">
+            {/* Featured: the social media page analyzer, in the social agent's look */}
+            <Reveal className="mb-4">
+              <Link
+                href="/free-tools/social-media-analyzer"
+                className="group relative grid overflow-hidden rounded-[32px] border border-hairline bg-white transition-colors hover:border-ink lg:grid-cols-[minmax(0,5fr)_minmax(0,6fr)]"
+              >
+                <div className="relative z-10 flex flex-col p-7 sm:p-10">
+                  <span className="mb-6 inline-flex w-fit items-center gap-2 rounded-full border border-hairline bg-white px-3 py-1.5 text-xs font-semibold text-ink">
+                    <span className="h-2 w-2 rounded-full bg-[#DD2A7B]" /> New · Free AI tool
+                  </span>
+                  <h2 className="display text-[clamp(2rem,4.5vw,3rem)] leading-[1.05]">Social Media Page Analyzer</h2>
+                  <p className="lede mt-4 max-w-md text-[17px]">
+                    Enter your Instagram handle and our AI agent analyzes your page, finds what&apos;s working and tells you how to grow it. Free, in
+                    your inbox in a minute.
+                  </p>
+                  <ul className="mt-7 space-y-2.5">
+                    {["Measures your latest posts against your own average", "Finds your best Reel length and caption style", "Tells you what to do, fix and try next"].map(item => (
+                      <li key={item} className="flex items-center gap-2.5 text-sm font-medium text-ink">
+                        <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-ink text-white">
+                          <Check className="h-3 w-3" />
+                        </span>
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                  <span className="mt-9 inline-flex w-fit items-center gap-2 rounded-full bg-ink px-5 py-3 text-[15px] font-semibold text-white transition-opacity group-hover:opacity-85">
+                    Analyze my page
+                    <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                  </span>
+                </div>
+
+                {/* The sample analysis, with the agent and the jobs he finishes */}
+                <div className="relative min-h-[340px] border-t border-hairline bg-mist lg:border-l lg:border-t-0">
+                  <div className="absolute inset-x-8 top-8 bottom-0 overflow-hidden rounded-t-2xl border border-b-0 border-hairline bg-white shadow-xl shadow-black/5 sm:inset-x-14 sm:top-10">
+                    <Image
+                      src="/free-tools/instagram-snapshot-sample.png"
+                      alt="A sample analysis PDF from the social media page analyzer"
+                      width={1241}
+                      height={1754}
+                      sizes="(min-width: 1024px) 520px, 100vw"
+                      className="h-auto w-full"
+                    />
+                  </div>
+                  <Ambassador
+                    pose="wave"
+                    sizes="140px"
+                    className="pointer-events-none absolute -bottom-2 left-0 hidden h-[220px] w-[110px] drop-shadow-xl sm:block"
+                  />
+                  <ul className="absolute bottom-5 right-4 flex flex-col items-end gap-2 sm:right-6">
+                    {ANALYZER_DONE.map(d => (
+                      <li key={d.text} className="flex items-center gap-2.5 rounded-full border border-hairline bg-white py-1.5 pl-1.5 pr-4 shadow-lg shadow-black/5">
+                        <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-ink text-white">
+                          <Check className="h-3.5 w-3.5" />
+                        </span>
+                        <span className="text-xs font-semibold text-ink sm:text-[13px]">
+                          {d.text} <span className="hidden font-normal text-quiet sm:inline">· {d.note}</span>
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </Link>
+            </Reveal>
+
             <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
               {TOOLS.map((tool, i) => (
                 <Reveal key={tool.href} delay={(i % 2) * 0.06} className="h-full">
