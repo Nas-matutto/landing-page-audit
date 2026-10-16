@@ -3,6 +3,10 @@ const nextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
+  // The Instagram Snapshot PDF reads its fonts and ambassador image from disk.
+  outputFileTracingIncludes: {
+    "/api/instagram-snapshot": ["./lib/instagram-snapshot/assets/**"],
+  },
   images: {
     // Vercel bills a transformation every time a cached optimized image expires.
     // Images in /public rarely change, so keep optimized copies for 31 days.

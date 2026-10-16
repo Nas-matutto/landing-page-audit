@@ -102,6 +102,22 @@ export async function findLeadRowByEmail(email: string): Promise<string | undefi
   return undefined
 }
 
+// True if any row has this email (column B) and this page/source (column I).
+// Lets a tool allow one run per email even when the same person has other rows.
+export async function hasLeadRowForPage(email: string, page: string): Promise<boolean> {
+  const client = getSheets()
+  if (!client) return false
+
+  const target = email.trim().toLowerCase()
+  const res = await client.sheets.spreadsheets.values.get({
+    spreadsheetId: client.sheetId,
+    range: 'Sheet1!B:I',
+  })
+  return (res.data.values ?? []).some(
+    r => (r[0] ?? '').trim().toLowerCase() === target && (r[7] ?? '').trim() === page,
+  )
+}
+
 export async function updateLeadRow(range: string, row: string[]) {
   const client = getSheets()
   if (!client) return

@@ -1,7 +1,7 @@
 import type { Metadata } from "next"
 import Link from "next/link"
 import type { LucideIcon } from "lucide-react"
-import { ArrowUpRight, Clock, Gamepad2, Palette, Workflow } from "lucide-react"
+import { ArrowUpRight, Clock, Gamepad2, Instagram, Palette, Workflow } from "lucide-react"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { Ambassador } from "@/components/ui/ambassador"
@@ -54,6 +54,15 @@ const TOOLS: { number: string; href: string; title: string; description: string;
     cta: "Play the game",
     Icon: Gamepad2,
   },
+  {
+    number: "05",
+    href: "/free-tools/instagram-snapshot",
+    title: "Instagram Snapshot",
+    description:
+      "Enter your Instagram handle and get a one-page PDF by email: your last 10 posts measured, your best Reel length, whether calls to action work, and three things to do next.",
+    cta: "Get my snapshot",
+    Icon: Instagram,
+  },
 ]
 
 const COMING_SOON = ["ROI calculator", "Agent readiness audit", "Automation playbook generator"]
@@ -72,7 +81,7 @@ export default function FreeToolsPage() {
                 Free tools to see what an AI agent can do for you
               </h1>
               <p className="lede mx-auto mt-6 max-w-lg text-lg sm:text-xl lg:mx-0">
-                Work out the hours you&apos;d save, map which steps an agent can take over, and build your brand kit. No signup needed.
+                Work out the hours you&apos;d save, map which steps an agent can take over, build your brand kit and get a snapshot of your Instagram. No signup needed.
               </p>
             </Reveal>
 
