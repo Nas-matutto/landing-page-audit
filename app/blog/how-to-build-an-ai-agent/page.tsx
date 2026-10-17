@@ -145,7 +145,7 @@ export default function HowToBuildAnAIAgentPage() {
         <p>
           Every AI agent, from a weekend experiment to a production system, is made of the same four parts. If you
           understand these, every tool and framework becomes a different way of supplying them. (New to the idea? Start
-          with our plain-English guide to <Link href="/blog/what-are-ai-agents" className="text-ink underline decoration-ink/25 underline-offset-4 hover:decoration-ink">what AI agents are</Link>.)
+          with our plain-English guide to <Link href="/blog/what-are-ai-agents" className="text-ink underline decoration-ink/25 underline-offset-4 hover:decoration-ink">what AI agents are</Link>, or our <Link href="/blog/ai-agents-for-beginners" className="text-ink underline decoration-ink/25 underline-offset-4 hover:decoration-ink">AI agents for beginners</Link> guide.)
         </p>
 
         <AgentAnatomyDiagram />

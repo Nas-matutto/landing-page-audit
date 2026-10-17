@@ -327,7 +327,7 @@ export default function WhatAreAIAgentsPage() {
             The best use cases today are high-volume, repetitive, logic-driven tasks: lead qualification, customer support triage, data entry and reporting, and outbound prospecting. Strategy, relationships, and physical-world tasks remain firmly in human territory.
           </p>
           <p>
-            Ready to try one? Our step-by-step guide on <Link href="/blog/how-to-build-an-ai-agent" className="text-ink underline decoration-ink/25 underline-offset-4 hover:decoration-ink">how to build an AI agent</Link> walks through picking a workflow, writing the instructions, connecting tools and testing it.
+            Ready to try one? Our step-by-step guide on <Link href="/blog/how-to-build-an-ai-agent" className="text-ink underline decoration-ink/25 underline-offset-4 hover:decoration-ink">how to build an AI agent</Link> walks through picking a workflow, writing the instructions, connecting tools and testing it. If you are brand new to this, start with <Link href="/blog/ai-agents-for-beginners" className="text-ink underline decoration-ink/25 underline-offset-4 hover:decoration-ink">AI agents for beginners</Link>, our AI Agents 101 guide to getting started.
           </p>
 
           <SignupCta heading="Ready to see what an AI agent could do for your business?">

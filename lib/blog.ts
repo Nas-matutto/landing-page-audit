@@ -142,6 +142,45 @@ const COVER = { width: 1200, height: 630 }
 
 export const POSTS: BlogPost[] = [
   {
+    slug: "ai-agents-for-beginners",
+    title: "AI Agents for Beginners: Everything You Need to Know to Get Started (AI Agents 101)",
+    seoTitle: "AI Agents for Beginners: How to Get Started (AI Agents 101)",
+    description:
+      "AI agents explained for beginners: the 3 parts every agent has (model, tools, instructions), why they belong in your apps, and how to start for free.",
+    excerpt:
+      "AI agents 101 in plain English: the three parts every agent is made of, why the best agents work inside the tools you already use instead of a chatbox, and how to get started this week with a social media or SEO agent.",
+    category: "ai-agents",
+    author: "nas",
+    datePublished: "2026-10-17",
+    dateModified: "2026-10-17",
+    readMinutes: 10,
+    cover: {
+      src: "/blog/ai-agents-for-beginners/ai-agents-explained-for-beginners-cover.png",
+      alt: "The Talk to me Data agent walking with a laptop under its arm, next to the formula model plus tools plus instructions equals AI agent, working inside your Instagram",
+      width: 2400,
+      height: 1260,
+    },
+    keywords: [
+      "AI agents for beginners",
+      "how to get started with AI agents",
+      "AI agents explained for beginners",
+      "AI agents 101",
+      "everything you need to know about AI agents",
+      "what is a system prompt",
+      "AI agent vs chatbot",
+      "MCP",
+    ],
+    pillar: true,
+    agentPage: { href: "/agents", label: "Start with a ready-built AI agent: free plan, no code" },
+    video: {
+      youtubeId: SOCIAL_AGENT_VIDEO.youtubeId,
+      title: SOCIAL_AGENT_VIDEO.title,
+      description: SOCIAL_AGENT_VIDEO.description,
+      uploadDate: SOCIAL_AGENT_VIDEO.uploadDate,
+      duration: SOCIAL_AGENT_VIDEO.duration,
+    },
+  },
+  {
     slug: "how-to-grow-on-social-media-with-claude-and-ai-agent",
     title: "How to Grow on Social Media with Claude and an AI Agent",
     description:
