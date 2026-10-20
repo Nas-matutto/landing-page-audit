@@ -682,7 +682,9 @@ export default function HowToAutomateGeoKeywordResearchPage() {
           <a href="https://arxiv.org/abs/2311.09735" target="_blank" rel="noopener noreferrer" className={LINK}>GEO research paper</a>{" "}
           from Princeton and partners (published at KDD 2024) found that methods such as adding statistics, quotations
           and source citations could raise a page&apos;s visibility in generative engine answers by up to 40%. In practice,
-          a citable page has:
+          a citable page has (our guide on{" "}
+          <Link href="/blog/how-to-get-cited-by-chatgpt" className={LINK}>how to get cited by ChatGPT and AI search</Link>{" "}
+          covers each one in detail, plus the crawler settings that decide whether you can be cited at all):
         </p>
         <ol className="list-decimal pl-6 space-y-2">
           <li><strong className="text-ink">A direct answer first.</strong> 40 to 60 words that answer the target prompt on their own.</li>

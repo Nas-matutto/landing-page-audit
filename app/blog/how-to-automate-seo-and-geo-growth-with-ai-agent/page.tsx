@@ -255,7 +255,7 @@ export default function AutomateSeoGeoPage() {
             Ranking a blue link is still valuable, but more and more journeys now start, and sometimes end, inside an AI answer. When someone asks ChatGPT, Perplexity, or Google's AI Overview a question in your space, the engine reads the web and cites a few sources. Being one of those cited sources puts your brand in front of the user at the exact moment of intent, often above the traditional results.
           </p>
           <p>
-            GEO is how you earn those citations: clear answers near the top of the page, well-structured headings, factual and sourced claims, and formatting an AI can lift cleanly and attribute. Because the agent is trained on both disciplines, every piece it writes is built to do double duty: rank in classic search and get quoted by the answer engines, so you compound visibility on both surfaces at once.
+            GEO is how you earn those citations: clear answers near the top of the page, well-structured headings, factual and sourced claims, and formatting an AI can lift cleanly and attribute. Our step-by-step guide on <Link href="/blog/how-to-get-cited-by-chatgpt" className="text-ink underline decoration-ink/25 underline-offset-4 hover:decoration-ink">how to get cited by ChatGPT and AI search</Link> covers the full checklist, including our study of which AI crawlers the top 1,000 websites block. Because the agent is trained on both disciplines, every piece it writes is built to do double duty: rank in classic search and get quoted by the answer engines, so you compound visibility on both surfaces at once.
           </p>
 
           <div className="my-8 overflow-hidden rounded-2xl border border-hairline">

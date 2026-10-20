@@ -142,6 +142,38 @@ const COVER = { width: 1200, height: 630 }
 
 export const POSTS: BlogPost[] = [
   {
+    slug: "how-to-get-cited-by-chatgpt",
+    title: "How to Get Cited by ChatGPT and AI Search: 9 Steps, Plus Data From the Top 1,000 Websites",
+    seoTitle: "How to Get Cited by ChatGPT and AI Search (2026 Guide)",
+    description:
+      "How to get cited by ChatGPT, Perplexity and Google AI Overviews in 9 steps, plus our study of which AI crawlers the top 1,000 websites block.",
+    excerpt:
+      "What decides whether ChatGPT, Claude, Perplexity and Google's AI answers quote your site, the 9 steps to get cited, and our study of which AI crawlers the world's top 1,000 websites let in. Includes a prompt to check your own AI visibility.",
+    category: "seo-automation",
+    author: "nas",
+    datePublished: "2026-10-20",
+    dateModified: "2026-10-20",
+    readMinutes: 15,
+    cover: {
+      src: "/blog/how-to-get-cited-by-chatgpt/how-to-get-cited-by-chatgpt-and-ai-search-cover.png",
+      alt: "How to get cited by ChatGPT and AI search: the Talk to me Data agent next to ChatGPT and Perplexity source cards and the stat that 1 in 6 top websites block an AI search crawler",
+      width: 2400,
+      height: 1260,
+    },
+    keywords: [
+      "how to get cited by ChatGPT",
+      "how to show up in ChatGPT",
+      "how to rank in AI search",
+      "how to get mentioned by ChatGPT",
+      "how to appear in Google AI Overviews",
+      "generative engine optimization",
+      "GEO",
+      "OAI-SearchBot",
+      "AI crawlers robots.txt",
+    ],
+    agentPage: { href: "/agents/seo-geo", label: "The SEO & GEO AI Agent: checks who AI cites and writes pages built to be quoted" },
+  },
+  {
     slug: "ai-agents-for-beginners",
     title: "AI Agents for Beginners: Everything You Need to Know to Get Started (AI Agents 101)",
     seoTitle: "AI Agents for Beginners: How to Get Started (AI Agents 101)",
