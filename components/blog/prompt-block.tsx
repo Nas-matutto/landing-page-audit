@@ -11,10 +11,12 @@ import { Check, CheckCircle2, Copy } from "lucide-react"
 export function PromptBlock({
   prompt,
   label = "Agent Prompt",
+  copyLabel = "Copy prompt",
   leadSource,
 }: {
   prompt: string
   label?: string
+  copyLabel?: string
   leadSource?: string
 }) {
   const [copied, setCopied] = useState(false)
@@ -58,7 +60,7 @@ export function PromptBlock({
               ? { background: "#ffffff", color: "#141414" }
               : { background: "rgba(255,255,255,0.1)", color: "rgba(255,255,255,0.8)" }}
           >
-            {copied ? <><Check className="w-3.5 h-3.5" />Copied!</> : <><Copy className="w-3.5 h-3.5" />Copy prompt</>}
+            {copied ? <><Check className="w-3.5 h-3.5" />Copied!</> : <><Copy className="w-3.5 h-3.5" />{copyLabel}</>}
           </button>
         </div>
         <pre
