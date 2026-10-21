@@ -3,7 +3,8 @@
 import { X, Check, Wrench, Sparkles } from "lucide-react"
 import { SiClaude, SiGoogle, SiGooglegemini, SiOpenai, SiPerplexity } from "react-icons/si"
 import { Ambassador } from "@/components/ui/ambassador"
-import { SIGNUP_URL } from "@/lib/links"
+import { YouTubeEmbed } from "@/components/ui/youtube-embed"
+import { SEO_AGENT_VIDEO, SIGNUP_URL } from "@/lib/links"
 import { Reveal } from "@/components/sections/social-agent/parts"
 
 // ── Where it ranks ──────────────────────────────────────────────────────────
@@ -131,6 +132,32 @@ export function SeoHowItWorks() {
             </Reveal>
           ))}
         </div>
+      </div>
+    </section>
+  )
+}
+
+// ── Demo video ──────────────────────────────────────────────────────────────
+
+export function SeoDemoVideo() {
+  return (
+    <section className="bg-white px-6 pt-20 sm:pt-28 lg:px-8">
+      <div className="mx-auto max-w-4xl">
+        <Reveal className="mb-10 text-center">
+          <p className="eyebrow mb-5">Demo</p>
+          <h2 className="display mx-auto max-w-2xl text-[clamp(2rem,4.5vw,3.25rem)]">See the agent at work in 53 seconds</h2>
+          <p className="lede mx-auto mt-6 max-w-xl text-base sm:text-lg">
+            It finds the searches you can win, writes pages built to rank and get cited by AI, and publishes them to your site.
+          </p>
+        </Reveal>
+        <Reveal delay={0.1}>
+          <YouTubeEmbed
+            youtubeId={SEO_AGENT_VIDEO.youtubeId}
+            title={SEO_AGENT_VIDEO.title}
+            thumbnail={SEO_AGENT_VIDEO.thumbnail}
+            className="shadow-2xl shadow-black/10"
+          />
+        </Reveal>
       </div>
     </section>
   )

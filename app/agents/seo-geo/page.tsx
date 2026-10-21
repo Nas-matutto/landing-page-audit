@@ -1,6 +1,7 @@
 import { OG_IMAGE } from "@/lib/og"
 import { AgentGuidesSection } from "@/components/blog/agent-guides-section"
 import type { Metadata } from "next"
+import { SEO_AGENT_VIDEO } from "@/lib/links"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { FAQSection } from "@/components/sections/faq-section"
@@ -10,6 +11,7 @@ import { SeoAgentFeatures } from "@/components/sections/seo-agent/features"
 import {
   DoesNotSupport,
   EngineStrip,
+  SeoDemoVideo,
   SeoFinalCta,
   SeoHowItWorks,
 } from "@/components/sections/seo-agent/sections"
@@ -113,6 +115,17 @@ const jsonLd = {
       areaServed: "Worldwide",
     },
     {
+      "@type": "VideoObject",
+      "@id": `${PAGE_URL}#video`,
+      name: SEO_AGENT_VIDEO.title,
+      description: SEO_AGENT_VIDEO.description,
+      thumbnailUrl: `${BASE_URL}${SEO_AGENT_VIDEO.thumbnail}`,
+      uploadDate: SEO_AGENT_VIDEO.uploadDate,
+      duration: SEO_AGENT_VIDEO.duration,
+      embedUrl: `https://www.youtube.com/embed/${SEO_AGENT_VIDEO.youtubeId}`,
+      contentUrl: `https://www.youtube.com/watch?v=${SEO_AGENT_VIDEO.youtubeId}`,
+    },
+    {
       "@type": "FAQPage",
       "@id": `${PAGE_URL}#faq`,
       mainEntity: FAQS.map((faq) => ({
@@ -146,6 +159,7 @@ export default function SeoGeoPage() {
         <SeoAgentDemo />
         <SeoAgentFeatures />
         <SeoHowItWorks />
+        <SeoDemoVideo />
         <AgentGuidesSection agentHref="/agents/seo-geo" />
         <FAQSection eyebrow="FAQ" heading="Questions about the SEO & GEO agent" items={FAQS} />
         <SeoFinalCta />

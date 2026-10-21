@@ -23,3 +23,16 @@ export const SOCIAL_AGENT_VIDEO = {
   uploadDate: "2026-10-15T06:48:48-07:00",
   duration: "PT1M11S",
 }
+
+/**
+ * The SEO & GEO agent demo (https://youtu.be/NQFFZaovJTw), embedded on
+ * /agents/seo-geo.
+ */
+export const SEO_AGENT_VIDEO = {
+  youtubeId: "NQFFZaovJTw",
+  title: "SEO & GEO AI Agent Demo",
+  description: "A 53-second demo of the Talk to me Data SEO & GEO agent: it finds the searches you can win on Google, writes pages built to rank and get cited by AI, and publishes them to your site.",
+  thumbnail: "/videos/seo-geo-agent-demo-thumbnail.jpg",
+  uploadDate: "2026-10-21T01:26:36-07:00",
+  duration: "PT53S",
+}
