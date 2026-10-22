@@ -412,7 +412,7 @@ function Analysis({ insights, postCount }: { insights: SnapshotInsights; postCou
 // ---------------------------------------------------------------------------
 
 const UNLOCKS = [
-  ["Audience data", "Age, gender, top cities and the hours your followers are online."],
+  ["Your audience", "Who your posts attract, and what makes them share, save and comment."],
   ["Hooks that work", "Which opening lines stop the scroll for your audience, and why."],
   ["Competitor posts", "Your competitors' best posts each week, and what to borrow."],
   ["Posts made for you", "A content plan built from what works, with the posts ready to publish."],
