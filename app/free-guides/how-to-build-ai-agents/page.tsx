@@ -8,7 +8,7 @@ const URL_BASE = absoluteUrl(guidePath(SLUG))
 
 export const metadata = buildGuideMetadata(SLUG)
 
-// The four-step Claude setup from public/guides/how-to-build-ai-agents.pdf.
+// The four-step Claude setup from public/guides/how-to-build-ai-agents-Oct.25 v2.pdf.
 // Rendered on the page and emitted as HowTo schema from the same array.
 const STEPS = [
   {

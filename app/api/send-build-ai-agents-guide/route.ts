@@ -61,7 +61,7 @@ export async function POST(request: NextRequest) {
     } else {
       const resend = new Resend(resendKey)
 
-      const pdfPath = path.join(process.cwd(), 'public', 'guides', 'how-to-build-ai-agents.pdf')
+      const pdfPath = path.join(process.cwd(), 'public', 'guides', 'how-to-build-ai-agents-Oct.25 v2.pdf')
       const pdfBuffer = fs.readFileSync(pdfPath)
 
       const { error } = await resend.emails.send({
