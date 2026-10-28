@@ -90,7 +90,7 @@ const FAQS = [
   {
     question: "How many changes can I make?",
     answer:
-      "3 a month on the free Starter plan, then 25 on Solo, 100 on Grow and 250 on Scale. Changes don't use your actions: those are only for the questions you ask the agent.",
+      "As many as your actions cover. A change usually takes 5 to 15 actions, so the free Starter plan's 50 actions a month is enough to try it on your own site, and Solo's 450 is about 60 changes. Undo is always free.",
   },
   {
     question: "What can't it change?",

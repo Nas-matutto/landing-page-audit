@@ -2,182 +2,104 @@
  * Public pricing, as sold on /pricing.
  *
  * ⚠️ Mirrors the app's billing page (app-TTDM: lib/constants.ts → PLAN_TIERS,
- * SOCIAL_PLAN_LIMITS, SEO_PLAN_LIMITS, WEBSITE_PLAN_LIMITS;
- * components/dashboard/billing-actions.tsx).
- * The app enforces the limits; this file only describes them. Change both
- * together.
+ * PLAN_RAILS; lib/action-costs.ts → ACTION_CATALOG;
+ * components/dashboard/billing-actions.tsx). The app enforces the limits;
+ * this file only describes them. Change both together.
  *
- * One action ≈ one cent of the work an agent does (AI writing, tool calls,
- * data pulls), rounded up. Typical costs are from app-TTDM lib/usage.ts.
+ * One meter (Nas, 2026-10-28): every agent's work is paid for in actions.
+ * Every pre-built agent is on every plan, Starter too. Plans differ only in
+ * actions, how many custom agents you can have, and autopilot (PLAN_RAILS).
  */
 
+import type { PrebuiltAgentId } from "@/lib/prebuilt-agents"
+
 export type PlanId = "starter" | "solo" | "grow" | "scale"
-export type Lens = "social" | "seo" | "website" | "custom"
 
 export interface Plan {
   id: PlanId
   name: string
   price: number
   actions: number
+  /** Custom agents at once. Pre-built agents never count. */
+  customAgents: number
+  /** PLAN_RAILS.background + sendEmail: agents work on their own, post and send. */
+  autopilot: boolean
+  /** What the plan means for you, in one line. */
+  role: string
   description: string
   highlight?: string
 }
 
 export const PLANS: Plan[] = [
-  { id: "starter", name: "Starter", price: 0, actions: 50, description: "Start a ready-made agent and see it work. No card required." },
-  { id: "solo", name: "Solo", price: 49, actions: 240, description: "For one person growing a brand, with agents that plan and follow up for you." },
-  { id: "grow", name: "Grow", price: 99, actions: 480, description: "For a business running several agents across its workflows.", highlight: "Most popular" },
-  { id: "scale", name: "Scale", price: 199, actions: 960, description: "For teams automating across the whole company." },
+  {
+    id: "starter",
+    name: "Starter",
+    price: 0,
+    actions: 50,
+    customAgents: 0,
+    autopilot: false,
+    role: "Try every agent",
+    description: "Try every pre-built agent and see it work. No card required.",
+  },
+  {
+    id: "solo",
+    name: "Solo",
+    price: 49,
+    actions: 450,
+    customAgents: 1,
+    autopilot: true,
+    role: "Your agents work on their own",
+    description: "For one person growing a brand, with agents that plan and follow up for you.",
+  },
+  {
+    id: "grow",
+    name: "Grow",
+    price: 99,
+    actions: 900,
+    customAgents: 2,
+    autopilot: true,
+    role: "Twice the work, every month",
+    description: "For a business running several agents across its workflows.",
+    highlight: "Most popular",
+  },
+  {
+    id: "scale",
+    name: "Scale",
+    price: 199,
+    actions: 1800,
+    customAgents: 4,
+    autopilot: true,
+    role: "Agents across the whole business",
+    description: "For teams putting agents to work across the whole company.",
+  },
 ]
 
-export const LENSES: { id: Lens; title: string; short: string; tiny: string; body: string }[] = [
-  {
-    id: "social",
-    title: "Social Media Manager",
-    short: "Social media",
-    tiny: "Social",
-    body: "Analyses your Instagram, TikTok, YouTube and Facebook, tracks competitors, plans your posts and posts them to Instagram for you.",
-  },
-  {
-    id: "seo",
-    title: "SEO & GEO Manager",
-    short: "SEO & GEO",
-    tiny: "SEO",
-    body: "Reads your Google Search Console, checks your site, tracks whether ChatGPT, Gemini and Claude recommend you, and fixes what's holding you back.",
-  },
-  {
-    id: "website",
-    title: "Website Manager",
-    short: "Website",
-    tiny: "Website",
-    body: "Connects to your website through GitHub or WordPress, shows it to you live, and makes the changes you ask for in plain English.",
-  },
-  {
-    id: "custom",
-    title: "Custom agents",
-    short: "Custom agents",
-    tiny: "Custom",
-    body: "Agents we build with you for your own workflows: email, sheets, CRM and more.",
-  },
-]
-
-/** A plan, described for one kind of agent: what the agent does for you, then the limits. */
-export interface LensPlan {
-  /** The line the card leads with: what the agent does on your behalf. */
-  role: string
-  /** Show the Instagram mark beside the role. */
-  instagram?: boolean
-  does: string[]
-  limits: string[]
+export function customAgentsLabel(n: number): string {
+  if (n === 0) return "Custom agents from Solo"
+  if (n === 1) return "1 custom agent, built with you"
+  return `Up to ${n} custom agents, built with you`
 }
 
-const actions = (p: Plan) => `${p.actions.toLocaleString("en-US")} actions / month`
-
-/**
- * Website Manager changes a month (app-TTDM WEBSITE_PLAN_LIMITS). Changes don't
- * use actions: this count is their only limit. The actions are for talking to
- * the agent. Undo is free and never counted.
- */
-export const WEBSITE_CHANGES: Record<PlanId, number> = { starter: 3, solo: 25, grow: 100, scale: 250 }
-const changesLine = (p: Plan) => `${WEBSITE_CHANGES[p.id]} changes a month`
-const websiteLimits = (p: Plan) => [changesLine(p), `${actions(p)} for questions`, "1 website", "GitHub or WordPress, connected free"]
-
-export const LENS_PLANS: Record<Lens, Record<PlanId, LensPlan>> = {
-  social: {
-    starter: {
-      role: "Analyses your account",
-      does: ["Your agent's analysis and charts", "What to post next"],
-      limits: [actions(PLANS[0]), "1 social account", "Competitor preview", "Refresh once a week", "Your last 10 posts"],
-    },
-    solo: {
-      role: "Plans and designs your posts",
-      does: ["Designs 10 posts a month", "Hooks, post kits and a content plan", "Reminders and a weekly digest"],
-      limits: [actions(PLANS[1]), "4 social accounts", "Track 3 competitors", "Automatic weekly refresh", "Keeps your last 50 posts"],
-    },
-    grow: {
-      role: "Builds, schedules and posts to Instagram for you",
-      instagram: true,
-      does: ["Builds and schedules 20 posts a month", "Posts every one to Instagram for you, at your best times", "Everything in Solo"],
-      limits: [actions(PLANS[2]), "6 social accounts", "Track 6 competitors", "Automatic weekly refresh", "Keeps your last 100 posts"],
-    },
-    scale: {
-      role: "Runs your Instagram on autopilot",
-      instagram: true,
-      does: ["Builds and schedules 40 posts a month", "Posts every one to Instagram for you, across all 10 accounts", "Everything in Grow"],
-      limits: [actions(PLANS[3]), "10 social accounts", "Track 10 competitors", "Automatic weekly refresh", "Keeps your last 250 posts"],
-    },
-  },
-  seo: {
-    starter: {
-      role: "Checks your site",
-      does: ["Your agent's analysis and charts", "One free check of whether AI assistants recommend you"],
-      limits: [actions(PLANS[0]), "1 website", "Google Search Console, connected free", "Site check up to 25 pages", "Your last 3 months"],
-    },
-    solo: {
-      role: "Finds what to fix and writes the fixes",
-      does: ["Ready-to-paste fixes and an Action Plan", "Publishes fixes to your site when you say go", "Checks if ChatGPT, Gemini & Claude recommend you"],
-      limits: [actions(PLANS[1]), "1 website", "Google Search Console, connected free", "Site check up to 100 pages, weekly", "Keeps 2 years of history"],
-    },
-    grow: {
-      role: "Watches your site and acts for you",
-      does: [
-        "Alerts you the moment your traffic drops",
-        "A weekly email with your numbers and the next best move",
-        "Checks if ChatGPT, Gemini & Claude recommend you, on 2× the searches",
-        "Everything in Solo",
-      ],
-      limits: [actions(PLANS[2]), "1 website", "Google Search Console, connected free", "Site check up to 250 pages, weekly", "Keeps 3 years of history"],
-    },
-    scale: {
-      role: "Runs your SEO across up to 3 websites",
-      does: ["Everything in Grow, on every site", "Checks up to 1,000 pages a week", "Checks if ChatGPT, Gemini & Claude recommend you, on 4× the searches"],
-      limits: [actions(PLANS[3]), "Up to 3 websites", "Google Search Console, connected free", "Site check up to 1,000 pages, weekly", "Keeps 5 years of history"],
-    },
-  },
-  website: {
-    starter: {
-      role: "Makes changes to your website",
-      does: ["Your site, live, on desktop and phone", `${changesLine(PLANS[0])}, made and put live for you`, "Undo any change in one click"],
-      limits: websiteLimits(PLANS[0]),
-    },
-    solo: {
-      role: "Your on-call web developer",
-      does: [`${changesLine(PLANS[1])}, made and put live for you`, "New pages, sections, wording and design", "Live in minutes, with one-click undo"],
-      limits: websiteLimits(PLANS[1]),
-    },
-    grow: {
-      role: "Keeps your website moving every week",
-      does: [`${changesLine(PLANS[2])}, made and put live for you`, "New pages, sections, wording and design", "Live in minutes, with one-click undo", "Everything in Solo"],
-      limits: websiteLimits(PLANS[2]),
-    },
-    scale: {
-      role: "Runs your website day to day",
-      does: [`${changesLine(PLANS[3])}, made and put live for you`, "New pages, sections, wording and design", "Live in minutes, with one-click undo", "Everything in Solo"],
-      limits: websiteLimits(PLANS[3]),
-    },
-  },
-  custom: {
-    starter: {
-      role: "Try a ready-made agent",
-      does: ["Ready-made agents", "Custom agents from Solo"],
-      limits: [actions(PLANS[0]), "1 agent"],
-    },
-    solo: {
-      role: "Does the jobs you give it",
-      does: ["Built with you in a free kickoff session", "Connect your tools: email, sheets, CRM and more", "Priority support"],
-      limits: [actions(PLANS[1]), "1 custom agent"],
-    },
-    grow: {
-      role: "Works proactively, without being asked",
-      does: ["Runs on its own schedule and gets the work done", "Everything in Solo"],
-      limits: [actions(PLANS[2]), "Up to 2 custom agents"],
-    },
-    scale: {
-      role: "Runs your workflows end to end",
-      does: ["Several agents working proactively across your tools", "Everything in Grow"],
-      limits: [actions(PLANS[3]), "Up to 4 custom agents"],
-    },
-  },
+/** A plan card's bullets: what's included, then (Starter only) what isn't. */
+export function planPoints(plan: Plan): { points: string[]; missing: string[] } {
+  const actions = `${plan.actions.toLocaleString("en-US")} actions a month`
+  if (!plan.autopilot) {
+    return {
+      points: [actions, "All 5 pre-built agents", "Your agents work when you ask them"],
+      missing: ["No autopilot: nothing runs on its own", "Doesn't post or send emails for you", "No custom agents"],
+    }
+  }
+  return {
+    points: [
+      actions,
+      "All 5 pre-built agents",
+      "Autopilot: your agents work on their own",
+      "Weekly refreshes, scheduled runs and daily leads",
+      "Posts to Instagram and sends your emails",
+      customAgentsLabel(plan.customAgents),
+    ],
+    missing: [],
+  }
 }
 
 export const AI_NATIVE_FEATURES = [
@@ -187,157 +109,143 @@ export const AI_NATIVE_FEATURES = [
   { title: "A dedicated AI team", body: "People who know your business, on call." },
 ]
 
-// ── What counts as an action ────────────────────────────────────────────────
+// ── What counts as an action (app-TTDM lib/action-costs.ts) ─────────────────
 
-export interface ActionExample {
+export type CostKey = PrebuiltAgentId | "custom"
+
+export interface ActionCost {
   what: string
-  cost?: string
+  /** As shown: "~11", "1–4", "0". */
+  cost: string
+  /** A single number for the month examples (the middle of the range). */
+  typical: number
 }
 
-export const ACTION_GUIDE: Record<Lens, { free: ActionExample[]; small: ActionExample[]; big: ActionExample[] }> = {
-  social: {
-    free: [{ what: "Posting to Instagram for you" }, { what: "Editing captions and slides" }, { what: "Your dashboard and charts" }],
-    small: [
-      { what: "Pulling an account's latest posts", cost: "1–4" },
-      { what: "A quick question to your agent", cost: "~2" },
-      { what: "A new cover image", cost: "4" },
-      { what: "A ready-to-film post kit", cost: "~5" },
-      { what: "Your weekly analysis of an account", cost: "~6" },
-    ],
-    big: [
-      { what: "A finished post, from idea to designed", cost: "~11" },
-      { what: "Finding competitors in your niche", cost: "10–15" },
+export const ACTION_CATALOG: Record<CostKey, { title: string; costs: ActionCost[] }> = {
+  social_manager: {
+    title: "Social Media Manager",
+    costs: [
+      { what: "Pulling an account's latest posts", cost: "1–5", typical: 4 },
+      { what: "Your weekly analysis of an account", cost: "~6", typical: 6 },
+      { what: "A finished post, from idea to designed", cost: "~11", typical: 11 },
+      { what: "Finding competitors in your niche", cost: "10–15", typical: 12 },
+      { what: "Posting it to Instagram for you", cost: "0", typical: 0 },
     ],
   },
-  seo: {
-    free: [{ what: "Reading your Google Search Console" }, { what: "Checking your pages and site speed" }, { what: "Your dashboard and charts" }],
-    small: [
-      { what: "A quick question to your agent", cost: "~2" },
-      { what: "A ready-to-paste fix, like new page titles", cost: "~5" },
-    ],
-    big: [
-      { what: "Checking one search on ChatGPT, Gemini & Claude", cost: "up to 15" },
-      { what: "Writing a full blog post", cost: "10–20" },
+  seo_manager: {
+    title: "SEO & GEO Manager",
+    costs: [
+      { what: "Reading Search Console and checking your pages", cost: "0", typical: 0 },
+      { what: "A ready-to-paste fix, like new page titles", cost: "~5", typical: 5 },
+      { what: "Checking one search on ChatGPT, Gemini & Claude", cost: "up to 15", typical: 15 },
+      { what: "Writing a full blog post", cost: "10–20", typical: 15 },
     ],
   },
-  website: {
-    free: [{ what: "Making a change to your site (counted as a change instead)" }, { what: "The live preview of your site" }, { what: "Undoing a change" }],
-    small: [
-      { what: "A quick question to your agent", cost: "~2" },
-      { what: "Reading a page of your site", cost: "~2" },
+  website_manager: {
+    title: "Website Manager",
+    costs: [
+      { what: "A change to your site, made and put live", cost: "5–15", typical: 7 },
+      { what: "Reading a page of your site", cost: "~2", typical: 2 },
+      { what: "Undoing a change", cost: "0", typical: 0 },
     ],
-    big: [
-      { what: "Reviewing several pages of your site at once", cost: "~10" },
-      { what: "Planning a bigger redesign with you", cost: "10–15" },
+  },
+  sdr_agent: {
+    title: "SDR AI Agent",
+    costs: [
+      { what: "A lead found, checked and written to", cost: "~4", typical: 4 },
+      { what: "Turning your ideal customer into a search", cost: "~1", typical: 1 },
+      { what: "Sending an email from your mailbox", cost: "1", typical: 1 },
+      { what: "Reading a reply and acting on it", cost: "1", typical: 1 },
+    ],
+  },
+  social_listening: {
+    title: "Social Listening",
+    costs: [
+      { what: "One look across Reddit and X", cost: "~5", typical: 5 },
+      { what: "One look on every platform, Facebook search too", cost: "~13", typical: 13 },
+      { what: "Redrafting a reply", cost: "~1", typical: 1 },
     ],
   },
   custom: {
-    free: [{ what: "Designing your agent with us" }, { what: "Connecting your tools" }],
-    small: [
-      { what: "Each tool your agent uses, like reading a sheet", cost: "1" },
-      { what: "A quick question to your agent", cost: "~2" },
-    ],
-    big: [
-      { what: "Working through your inbox", cost: "10–20" },
-      { what: "A research job", cost: "10–20" },
+    title: "Custom agents",
+    costs: [
+      { what: "Each tool your agent uses, like reading a sheet", cost: "1", typical: 1 },
+      { what: "A quick question to your agent", cost: "~2", typical: 2 },
+      { what: "Working through your inbox, or a research job", cost: "10–20", typical: 15 },
     ],
   },
+}
+
+/** How many of something an allowance buys, rounded down to a friendly number (app-TTDM howMany). */
+export function howMany(actions: number, each: number): number {
+  const n = Math.floor(actions / Math.max(1, each))
+  return n >= 100 ? Math.floor(n / 10) * 10 : n >= 20 ? Math.floor(n / 5) * 5 : n
+}
+
+export const TYPICAL = {
+  post: ACTION_CATALOG.social_manager.costs[2].typical,
+  lead: ACTION_CATALOG.sdr_agent.costs[0].typical,
+  change: ACTION_CATALOG.website_manager.costs[0].typical,
+}
+
+/** "≈ 40 finished posts or 110 leads": what a plan's actions buy. */
+export function buysLine(actions: number): string {
+  return `≈ ${howMany(actions, TYPICAL.post)} finished posts or ${howMany(actions, TYPICAL.lead)} leads`
 }
 
 // ── Plan finder ─────────────────────────────────────────────────────────────
 
-/** The limits the plan finder checks against (app-TTDM lib/constants.ts). null = no cap beyond actions. */
-export const PLAN_LIMITS: Record<
-  PlanId,
-  { socialAccounts: number; postsBuilt: number; autoPosts: number | null; websites: number; aiChecks: number; customAgents: number; scheduled: boolean; trafficAlerts: boolean }
-> = {
-  starter: { socialAccounts: 1, postsBuilt: 0, autoPosts: 0, websites: 1, aiChecks: 0, customAgents: 0, scheduled: false, trafficAlerts: false },
-  solo: { socialAccounts: 4, postsBuilt: 10, autoPosts: 0, websites: 1, aiChecks: 90, customAgents: 1, scheduled: false, trafficAlerts: false },
-  grow: { socialAccounts: 6, postsBuilt: 20, autoPosts: null, websites: 1, aiChecks: 180, customAgents: 2, scheduled: true, trafficAlerts: true },
-  scale: { socialAccounts: 10, postsBuilt: 40, autoPosts: null, websites: 3, aiChecks: 360, customAgents: 4, scheduled: true, trafficAlerts: true },
+/**
+ * One slider per kind of work, priced from the catalog above. SEO's "fix or
+ * page" averages a fix (~5) and a blog post (~15); a custom-agent task is a
+ * mid-sized job (~10).
+ */
+export interface FinderWork {
+  key: CostKey
+  label: string
+  unit: string
+  max: number
+  step: number
+  each: number
 }
 
-/**
- * Typical actions, rounded up from the costs above: a finished post ~12, a
- * weekly analysis ~30 an account a month, a fix or page ~8 (fixes ~5, blog
- * posts 10–20), a custom-agent task ~10. AI-visibility checks are per plan
- * (PLAN_LIMITS.aiChecks: its searches × 15 actions × 2 checks a month).
- * Website changes don't use actions; questions to any agent are ~2.
- */
-export const TYPICAL = { post: 12, analysis: 30, fix: 8, task: 10, question: 2 }
+export const FINDER_WORK: FinderWork[] = [
+  { key: "social_manager", label: "Finished social posts", unit: "posts", max: 60, step: 1, each: TYPICAL.post },
+  { key: "seo_manager", label: "SEO fixes and new pages", unit: "fixes", max: 40, step: 1, each: 10 },
+  { key: "website_manager", label: "Changes to your website", unit: "changes", max: 100, step: 1, each: TYPICAL.change },
+  { key: "sdr_agent", label: "Leads found and written to", unit: "leads", max: 400, step: 10, each: TYPICAL.lead },
+  { key: "social_listening", label: "Social listening looks", unit: "looks", max: 60, step: 1, each: ACTION_CATALOG.social_listening.costs[0].typical },
+  { key: "custom", label: "Custom agent tasks", unit: "tasks", max: 120, step: 2, each: 10 },
+]
 
 export interface FinderInput {
-  social: { posts: number; accounts: number; autopost: boolean }
-  seo: { websites: number; fixes: number; alerts: boolean }
-  website: { changes: number; questions: number }
-  custom: { agents: number; tasks: number; scheduled: boolean }
+  work: Record<CostKey, number>
+  customAgents: number
+  autopilot: boolean
 }
 
 export const FINDER_DEFAULTS: FinderInput = {
-  social: { posts: 0, accounts: 1, autopost: false },
-  seo: { websites: 1, fixes: 0, alerts: false },
-  website: { changes: 0, questions: 0 },
-  custom: { agents: 0, tasks: 0, scheduled: false },
+  work: { social_manager: 0, seo_manager: 0, website_manager: 0, sdr_agent: 0, social_listening: 0, custom: 0 },
+  customAgents: 0,
+  autopilot: false,
 }
 
 export interface Recommendation {
   /** null = more than Scale covers: AI Native. */
   plan: Plan | null
-  /** Typical actions this month on the recommended plan. */
+  /** Typical actions a month for this work. */
   used: number
-  /** What the plan gives, against what was asked for. */
-  covers: string[]
 }
 
-/** Typical monthly actions for these needs on a plan. */
-function usage(lens: Lens, input: FinderInput, id: PlanId): number {
-  if (lens === "social") return input.social.posts * TYPICAL.post + input.social.accounts * TYPICAL.analysis
-  if (lens === "seo") return PLAN_LIMITS[id].aiChecks + input.seo.fixes * TYPICAL.fix
-  if (lens === "website") return input.website.questions * TYPICAL.question
-  return input.custom.tasks * TYPICAL.task
+export function monthlyActions(input: FinderInput): number {
+  return FINDER_WORK.reduce((sum, w) => sum + input.work[w.key] * w.each, 0)
 }
 
-function fits(lens: Lens, input: FinderInput, id: PlanId): boolean {
-  const l = PLAN_LIMITS[id]
-  const plan = PLANS.find((p) => p.id === id)!
-  if (usage(lens, input, id) > plan.actions) return false
-  if (lens === "social") {
-    const { posts, accounts, autopost } = input.social
-    return accounts <= l.socialAccounts && posts <= l.postsBuilt && (!autopost || posts === 0 || l.autoPosts === null || posts <= l.autoPosts)
-  }
-  if (lens === "seo") {
-    const { websites, fixes, alerts } = input.seo
-    return websites <= l.websites && (fixes === 0 || id !== "starter") && (!alerts || l.trafficAlerts)
-  }
-  if (lens === "website") return input.website.changes <= WEBSITE_CHANGES[id]
-  const { agents, tasks, scheduled } = input.custom
-  return agents <= l.customAgents && (tasks === 0 || agents > 0) && (!scheduled || l.scheduled)
-}
-
-function covers(lens: Lens, input: FinderInput, id: PlanId): string[] {
-  const l = PLAN_LIMITS[id]
-  if (lens === "social") {
-    const lines = [`${l.socialAccounts} social ${l.socialAccounts === 1 ? "account" : "accounts"}`]
-    if (l.postsBuilt > 0) lines.unshift(`Up to ${l.postsBuilt} posts a month`)
-    if (input.social.autopost && l.autoPosts !== 0) lines.push(l.autoPosts === null ? "Posts every one to Instagram for you" : `Posts ${l.autoPosts} a month to Instagram for you`)
-    if (l.postsBuilt === 0) lines.push("Your agent's analysis and what to post next")
-    return lines
-  }
-  if (lens === "seo") {
-    const lines = [l.websites === 1 ? "1 website" : `Up to ${l.websites} websites`]
-    lines.push(id === "starter" ? "Search Console and site checks" : "Ready-to-paste fixes, published when you say go")
-    if (l.trafficAlerts) lines.push("Traffic-drop alerts and a weekly email")
-    return lines
-  }
-  if (lens === "website") return ["1 website, live on desktop and phone", `${WEBSITE_CHANGES[id]} changes a month`, "One-click undo, always free"]
-  if (id === "starter") return ["A ready-made Social, SEO or Website agent", "Upgrade to Solo for a custom agent"]
-  return [`${l.customAgents === 1 ? "1 custom agent" : `Up to ${l.customAgents} custom agents`}`, l.scheduled ? "Runs on its own schedule" : "Runs whenever you ask"]
-}
-
-/** The cheapest plan that covers these needs, or AI Native. */
-export function recommend(lens: Lens, input: FinderInput): Recommendation {
-  for (const plan of PLANS) {
-    if (fits(lens, input, plan.id)) return { plan, used: usage(lens, input, plan.id), covers: covers(lens, input, plan.id) }
-  }
-  return { plan: null, used: usage(lens, input, "scale"), covers: ["Unlimited agents and actions", "Custom integrations", "A dedicated AI team"] }
+/** The cheapest plan that covers this work, or AI Native. */
+export function recommend(input: FinderInput): Recommendation {
+  const used = monthlyActions(input)
+  const plan = PLANS.find(
+    (p) => used <= p.actions && input.customAgents <= p.customAgents && (!input.autopilot || p.autopilot),
+  )
+  return { plan: plan ?? null, used }
 }

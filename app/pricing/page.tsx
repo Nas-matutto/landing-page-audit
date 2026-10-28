@@ -9,14 +9,14 @@ import { PLANS } from "@/lib/pricing"
 const BASE_URL = "https://talktomedata.com"
 const PAGE_URL = `${BASE_URL}/pricing`
 
-const TITLE = "Pricing — AI Agents From $0 a Month | Talk to me Data"
+const TITLE = "AI Agent Pricing, From $0 a Month | Talk to me Data"
 const DESCRIPTION =
-  "Simple pricing for AI agents that do the work for you. Start free, then pick Solo ($49), Grow ($99) or Scale ($199). One plan covers your Social Media, SEO & GEO, Website and custom agents."
+  "Every plan includes all five pre-built AI agents: Social Media, SEO & GEO, Website, SDR and Social Listening. Pay for actions, not agents. Start free with 50 actions a month, then Solo ($49), Grow ($99) or Scale ($199)."
 
 export const metadata: Metadata = {
   title: TITLE,
   description: DESCRIPTION,
-  keywords: ["ai agent pricing", "ai social media manager pricing", "ai seo agent pricing", "ai website manager pricing", "custom ai agent cost", "ai agents for small business"],
+  keywords: ["ai agent pricing", "ai social media manager pricing", "ai seo agent pricing", "ai website manager pricing", "ai sdr agent pricing", "social listening tool pricing", "custom ai agent cost", "ai agents for small business"],
   alternates: { canonical: PAGE_URL },
   openGraph: {
     images: [OG_IMAGE],
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     description: DESCRIPTION,
     type: "website",
     url: PAGE_URL,
-    siteName: "Talk to Me Data",
+    siteName: "Talk to me Data",
   },
   twitter: {
     images: [OG_IMAGE],
@@ -40,17 +40,27 @@ const FAQS = [
   {
     question: "Is there a free plan?",
     answer:
-      "Yes. Starter is free forever: one ready-made agent and 50 actions a month, with no card required. It's the easiest way to see an agent work on your own account before you pay for anything.",
+      "Yes. Starter is free forever: every pre-built agent and 50 actions a month, with no card required. Your agents work when you ask them, so you can see real results on your own accounts before you pay for anything.",
   },
   {
     question: "Do I need a separate plan for each agent?",
     answer:
-      "No. One plan covers every agent you run, and they all share the same monthly actions. On paid plans, the Social Media Manager, the SEO & GEO Manager and the Website Manager don't count towards your custom-agent limit.",
+      "No. Every plan includes all five pre-built agents: the Social Media Manager, SEO & GEO Manager, Website Manager, SDR AI Agent and Social Listening. They all share one monthly pool of actions, so you can put one agent to work hard or spread the work across all of them.",
   },
   {
     question: "What is an action?",
     answer:
-      "An action is one small step your agent takes for you, like pulling your latest posts, using a tool or writing something. A quick question is about 2 actions, a finished social post about 11, and a full blog post 10 to 20. Some things are always free, like reading your Google Search Console or posting to Instagram.",
+      "An action is one task your agent does for you, like pulling your latest posts, finding a lead or making a change to your site. Small tasks take one action, bigger ones take a few: a finished social post is about 11, a lead found and written to about 4, and a website change 5 to 15. Some things are always free, like reading your Google Search Console, posting to Instagram or undoing a change.",
+  },
+  {
+    question: "How much work does a plan get me?",
+    answer:
+      "On Solo, 450 actions is about 40 finished posts, 110 leads written to or 60 website changes, or any mix of them across your agents. Grow doubles that and Scale doubles it again. The plan finder above adds it up for you.",
+  },
+  {
+    question: "What do paid plans add?",
+    answer:
+      "Autopilot. On Starter your agents work when you ask them. From Solo they also work on their own: weekly refreshes, scheduled runs and daily leads, plus posting to Instagram and sending emails from your own mailbox. Paid plans also include custom agents.",
   },
   {
     question: "What happens if I run out of actions?",
@@ -58,23 +68,9 @@ const FAQS = [
       "Your agents pause until your actions reset on the 1st of the month, or until you upgrade. You're never charged extra, and a job that has already started always finishes.",
   },
   {
-    question: "Can the agent post to Instagram for me?",
+    question: "What is a custom agent?",
     answer:
-      "Yes, from Grow. On Grow and Scale, your agent builds, schedules and posts every one to Instagram at your best times. On Solo, it designs 10 posts a month for you to post yourself.",
-  },
-  {
-    question: "How many websites can the SEO & GEO Manager look after?",
-    answer: "One website on Starter, Solo and Grow. Scale covers up to 3 websites, and AI Native is shaped around however many you run.",
-  },
-  {
-    question: "How many changes can the Website Manager make?",
-    answer:
-      "3 a month on Starter, so you can try it on your own site, then 25 on Solo, 100 on Grow and 250 on Scale. Changes don't use your actions: your actions are only for questions you ask the agent. The live preview and undo are always free.",
-  },
-  {
-    question: "What makes a custom agent proactive?",
-    answer:
-      "On Solo, your custom agent does the jobs you hand it. From Grow, it runs on its own schedule, so the work gets done every day or week without you having to ask.",
+      "An agent we build with you around your own workflow, like chasing overdue invoices or logging sales calls in your CRM. Solo includes 1, Grow up to 2 and Scale up to 4. Pre-built agents never count towards that limit, and custom agents use the same actions as everything else.",
   },
   {
     question: "Can I change or cancel my plan?",
@@ -95,10 +91,10 @@ const jsonLd = {
     {
       "@type": "Product",
       "@id": `${PAGE_URL}#product`,
-      name: "Talk to Me Data AI Agents",
+      name: "Talk to me Data AI Agents",
       description: DESCRIPTION,
       url: PAGE_URL,
-      brand: { "@type": "Brand", name: "Talk to Me Data" },
+      brand: { "@type": "Brand", name: "Talk to me Data" },
       offers: PLANS.map((plan) => ({
         "@type": "Offer",
         name: plan.name,
