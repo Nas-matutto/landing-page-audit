@@ -6,6 +6,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react"
 import { SocialAgentShowcase } from "@/components/sections/social-agent-showcase"
 import { SeoAgentShowcase } from "@/components/sections/seo-agent-showcase"
 import { WebsiteAgentShowcase } from "@/components/sections/website-agent-showcase"
+import { ListeningAgentShowcase, SdrAgentShowcase } from "@/components/sections/sdr-listening-showcases"
 import { cn } from "@/lib/utils"
 
 // The ready-made agents, one showcase at a time. Swipe or drag between them,
@@ -13,9 +14,11 @@ import { cn } from "@/lib/utils"
 // the agent pills above, or the arrow keys. It loops, so there's no dead end.
 
 const AGENTS = [
-  { id: "social", name: "Social Media Manager", short: "Social media", Showcase: SocialAgentShowcase },
-  { id: "seo", name: "SEO & GEO Agent", short: "SEO & GEO", Showcase: SeoAgentShowcase },
+  { id: "social", name: "Social Media Manager", short: "Social", Showcase: SocialAgentShowcase },
+  { id: "seo", name: "SEO & GEO Agent", short: "SEO", Showcase: SeoAgentShowcase },
   { id: "website", name: "Website Manager", short: "Website", Showcase: WebsiteAgentShowcase },
+  { id: "sdr", name: "SDR AI Agent", short: "SDR", Showcase: SdrAgentShowcase },
+  { id: "listening", name: "Social Listening", short: "Listening", Showcase: ListeningAgentShowcase },
 ]
 
 /** Text fields keep their own drag, so selecting what you typed doesn't swipe the card away. */
@@ -74,8 +77,8 @@ export function ReadyMadeAgentsCarousel() {
                 selected === i ? "bg-ink text-white" : "text-quiet hover:text-ink",
               )}
             >
-              <span className="sm:hidden">{agent.short}</span>
-              <span className="hidden sm:inline">{agent.name}</span>
+              <span className="lg:hidden">{agent.short}</span>
+              <span className="hidden lg:inline">{agent.name}</span>
             </button>
           ))}
         </div>

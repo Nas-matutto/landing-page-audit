@@ -73,7 +73,7 @@ export function WhatWeAnalyzeSection() {
               Start with a ready-made agent. Or have one built for you.
             </h2>
             <p className="lede mx-auto mt-6 max-w-2xl text-base sm:text-lg">
-              Three agents are ready to use today. Beyond those, we build custom agents around any workflow your
+              Five agents are ready to use today. Beyond those, we build custom agents around any workflow your
               business runs. Here&apos;s what other businesses have asked for.
             </p>
           </motion.div>
@@ -83,7 +83,7 @@ export function WhatWeAnalyzeSection() {
             number="01"
             label="Ready to use"
             title="Pre-built agents you can start using right away"
-            aside="Sign up, connect your accounts, and put them to work. Swipe or use the arrows to see each one."
+            aside="Sign up free, connect your accounts, and they get to work. Swipe or use the arrows to see what each one does for you."
           />
           <motion.div {...fadeUp}>
             <ReadyMadeAgentsCarousel />

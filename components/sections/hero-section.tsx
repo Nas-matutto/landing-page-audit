@@ -2,27 +2,70 @@
 
 import Link from "next/link"
 import Image from "next/image"
+import { useEffect, useState } from "react"
 import { ArrowRight } from "lucide-react"
 import { motion } from "framer-motion"
 import { IntegrationMarquee } from "@/components/ui/integration-marquee"
 import { SIGNUP_URL } from "@/lib/links"
 
+// What the agent does for you, one result at a time. The last one is the whole
+// pitch, so it takes the brand's Signal Blue to stand out from the rest.
+const OUTCOMES = [
+  { text: "grows your social media" },
+  { text: "grows your SEO" },
+  { text: "finds you new leads" },
+  { text: "manages your website" },
+  { text: "gets you cited by AI" },
+  { text: "runs your business", className: "text-[#0072D5]!" },
+]
+
+/**
+ * The outcomes sit in one grid cell, so the box is as tall as the longest one
+ * wraps to on any screen and nothing below it jumps as they rotate.
+ */
+function RotatingOutcome() {
+  const [index, setIndex] = useState(0)
+
+  useEffect(() => {
+    const id = setTimeout(() => setIndex((i) => (i + 1) % OUTCOMES.length), 2400)
+    return () => clearTimeout(id)
+  }, [index])
+
+  return (
+    <span className="grid overflow-hidden pb-[0.12em]">
+      {OUTCOMES.map((o, i) => (
+        <motion.span
+          key={o.text}
+          aria-hidden={index !== i}
+          className={`display col-start-1 row-start-1 lg:whitespace-nowrap ${o.className ?? ""}`}
+          initial={{ opacity: 0, y: 60 }}
+          animate={index === i ? { opacity: 1, y: 0 } : { opacity: 0, y: index > i ? -60 : 60 }}
+          transition={{ type: "spring", stiffness: 80, damping: 18 }}
+        >
+          {o.text}
+        </motion.span>
+      ))}
+    </span>
+  )
+}
+
 export function HeroSection() {
   return (
     <section className="relative w-full overflow-hidden bg-white pt-36 sm:pt-44 lg:pt-36">
-      <div className="relative mx-auto grid w-full max-w-6xl items-center gap-10 px-6 lg:grid-cols-2 lg:gap-8 lg:px-8">
+      <div className="relative mx-auto grid w-full max-w-6xl items-center gap-10 px-6 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)] lg:gap-8 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
           className="text-center lg:text-left"
         >
-          <h1 className="display text-[clamp(2.75rem,7.5vw,5rem)] lg:text-[clamp(3rem,4.4vw,4rem)]">
-            Build and launch an AI Agent in minutes
+          <h1 className="display text-[clamp(2.5rem,7vw,4.5rem)] lg:text-[clamp(2.25rem,3.5vw,3rem)]">
+            <span className="block lg:whitespace-nowrap">Get an AI Agent that</span>
+            <RotatingOutcome />
           </h1>
 
           <p className="lede mx-auto mt-6 max-w-lg text-lg sm:text-xl lg:mx-0">
-            Automate any task with prompting. Start for free today.
+            Agents that bring in customers and do the work for you, around the clock. Start free, no card needed.
           </p>
 
           <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row lg:justify-start">
