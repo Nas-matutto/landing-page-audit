@@ -20,8 +20,9 @@ const OUTCOMES = [
 ]
 
 /**
- * The outcomes sit in one grid cell, so the box is as tall as the longest one
- * wraps to on any screen and nothing below it jumps as they rotate.
+ * The outcomes sit in one grid cell, so the box keeps one height and nothing
+ * below it jumps as they rotate. Each stays on one line: on phones the title
+ * scales with the screen so "grows your social media" fits.
  */
 function RotatingOutcome() {
   const [index, setIndex] = useState(0)
@@ -37,7 +38,7 @@ function RotatingOutcome() {
         <motion.span
           key={o.text}
           aria-hidden={index !== i}
-          className={`display col-start-1 row-start-1 lg:whitespace-nowrap ${o.className ?? ""}`}
+          className={`display col-start-1 row-start-1 whitespace-nowrap ${o.className ?? ""}`}
           initial={{ opacity: 0, y: 60 }}
           animate={index === i ? { opacity: 1, y: 0 } : { opacity: 0, y: index > i ? -60 : 60 }}
           transition={{ type: "spring", stiffness: 80, damping: 18 }}
@@ -59,12 +60,12 @@ export function HeroSection() {
           transition={{ duration: 0.6, ease: "easeOut" }}
           className="text-center lg:text-left"
         >
-          <h1 className="display text-[clamp(2.5rem,7vw,4.5rem)] lg:text-[clamp(2.25rem,3.5vw,3rem)]">
-            <span className="block lg:whitespace-nowrap">Get an AI Agent that</span>
+          <h1 className="display text-[clamp(1.375rem,7.4vw,2.5rem)] sm:text-[clamp(2.5rem,7vw,4.5rem)] lg:text-[clamp(2.25rem,3.5vw,3rem)]">
+            <span className="block whitespace-nowrap">Get an AI Agent that</span>
             <RotatingOutcome />
           </h1>
 
-          <p className="lede mx-auto mt-6 max-w-lg text-lg sm:text-xl lg:mx-0">
+          <p className="lede mx-auto mt-5 max-w-lg text-base sm:mt-6 sm:text-xl lg:mx-0">
             Agents that bring in customers and do the work for you, around the clock. Start free, no card needed.
           </p>
 

@@ -29,7 +29,7 @@ export function Header({ minimal = false }: { minimal?: boolean }) {
             className="flex items-center gap-2 text-xs font-medium text-white/80 transition-colors hover:text-white sm:text-[13px]"
           >
             <span>
-              <span className="font-semibold text-white">New:</span> let our AI agent analyze your Instagram page for free
+              <span className="font-semibold text-white">New:</span> let our AI agent analyze your Instagram page
             </span>
             <ArrowRight className="h-3.5 w-3.5 shrink-0" />
           </Link>

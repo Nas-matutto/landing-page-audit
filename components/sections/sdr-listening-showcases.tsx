@@ -7,6 +7,7 @@ import { FaLinkedin, FaMicrosoft } from "react-icons/fa"
 import type { IconType } from "react-icons"
 import { SiFacebook, SiGmail, SiInstagram, SiReddit, SiX } from "react-icons/si"
 import { Bricolage_Grotesque } from "next/font/google"
+import { Ambassador, type AmbassadorPose } from "@/components/ui/ambassador"
 import { SIGNUP_URL } from "@/lib/links"
 import { cn } from "@/lib/utils"
 
@@ -14,7 +15,8 @@ import { cn } from "@/lib/utils"
 // The fourth and fifth ready-made agents, in the same dark panel as the Social,
 // SEO and Website showcases, lit in the reds of the SDR's card in the app and
 // the teal and blue of Social Listening's. Each demo runs on sample data: pick
-// a sample business and see what the agent hands back.
+// a sample business and see what the agent hands back. The ambassador sits
+// above the window as on the other three, and answers what you pick.
 
 const display = Bricolage_Grotesque({ subsets: ["latin"], display: "swap" })
 
@@ -33,6 +35,8 @@ function Shell({
   chips,
   features,
   picker,
+  pose,
+  bubble,
   children,
 }: {
   glow: React.ReactNode
@@ -41,6 +45,8 @@ function Shell({
   chips: Chip[]
   features: string[]
   picker: React.ReactNode
+  pose: AmbassadorPose
+  bubble: string
   children: React.ReactNode
 }) {
   return (
@@ -91,7 +97,20 @@ function Shell({
           </div>
 
           {/* Demo */}
-          <div className="min-w-0 self-center">{children}</div>
+          <div className="min-w-0 self-center">
+            {/* The ambassador leans over the top of the window and answers what you pick */}
+            <div className="flex items-end gap-2 pl-3 sm:gap-3 sm:pl-8">
+              <Ambassador pose={pose} sizes="140px" className="h-[104px] w-24 shrink-0 sm:h-[124px] sm:w-28" />
+              <div
+                aria-live="polite"
+                className="relative mb-3 max-w-[15rem] rounded-2xl rounded-bl-sm bg-white px-3.5 py-2.5 text-xs font-medium leading-snug text-zinc-800 shadow-lg shadow-black/20 sm:max-w-xs sm:text-[13px]"
+              >
+                {bubble}
+                <span aria-hidden className="absolute -left-1.5 bottom-3 h-3 w-3 rotate-45 bg-white" />
+              </div>
+            </div>
+            {children}
+          </div>
         </div>
       </div>
     </MotionConfig>
@@ -262,6 +281,8 @@ const ICP_ORDER: IcpId[] = ["agencies", "saas", "clinics"]
 export function SdrAgentShowcase() {
   const [icp, setIcp] = useState<IcpId>("agencies")
   const [picked, setPicked] = useState(0)
+  // 0: nothing chosen yet, 1: a customer chosen, 2: a lead opened
+  const [step, setStep] = useState<0 | 1 | 2>(0)
   const data = ICPS[icp]
   const lead = data.leads[picked]
 
@@ -290,8 +311,17 @@ export function SdrAgentShowcase() {
           onChange={(id) => {
             setIcp(id)
             setPicked(0)
+            setStep(1)
           }}
         />
+      }
+      pose={step === 0 ? "wave" : "thumbs-up"}
+      bubble={
+        step === 0
+          ? "Tell me who you want to sell to. I'll find them and write to each one."
+          : step === 1
+            ? "Found 3 leads who fit. Pick one to read the email I wrote."
+            : "Email written and follow-ups lined up, ready to send."
       }
     >
       <Window title="SDR AI Agent" right={<span className="rounded-full bg-emerald-50 px-2 py-0.5 text-[10px] font-semibold text-emerald-700">3 leads today</span>}>
@@ -307,7 +337,10 @@ export function SdrAgentShowcase() {
                   <button
                     type="button"
                     aria-pressed={picked === i}
-                    onClick={() => setPicked(i)}
+                    onClick={() => {
+                      setPicked(i)
+                      setStep(2)
+                    }}
                     className={cn(
                       "flex w-full cursor-pointer items-center gap-3 rounded-xl border px-3 py-2.5 text-left transition-colors",
                       picked === i ? "border-zinc-900 bg-zinc-50" : "border-zinc-200 hover:bg-zinc-50",
@@ -484,6 +517,8 @@ const BIZ_ORDER: BizId[] = ["bookkeeping", "skincare", "coaching"]
 export function ListeningAgentShowcase() {
   const [biz, setBiz] = useState<BizId>("bookkeeping")
   const [picked, setPicked] = useState(0)
+  // 0: nothing chosen yet, 1: a business chosen, 2: a conversation opened
+  const [step, setStep] = useState<0 | 1 | 2>(0)
   const data = BUSINESSES[biz]
   const m = data.mentions[picked]
 
@@ -512,8 +547,17 @@ export function ListeningAgentShowcase() {
           onChange={(id) => {
             setBiz(id)
             setPicked(0)
+            setStep(1)
           }}
         />
+      }
+      pose={step === 0 ? "wave" : "thumbs-up"}
+      bubble={
+        step === 0
+          ? "Tell me who you want to reach. I'll find them in the conversations."
+          : step === 1
+            ? "Found 3 people asking for what you sell. Pick one to see my reply."
+            : "Reply and DM drafted. You send them when you're ready."
       }
     >
       <Window title="Social Listening" right={<span className="rounded-full bg-emerald-50 px-2 py-0.5 text-[10px] font-semibold text-emerald-700">3 people to reply to</span>}>
@@ -531,7 +575,10 @@ export function ListeningAgentShowcase() {
                     <button
                       type="button"
                       aria-pressed={picked === i}
-                      onClick={() => setPicked(i)}
+                      onClick={() => {
+                        setPicked(i)
+                        setStep(2)
+                      }}
                       className={cn(
                         "flex w-full cursor-pointer items-start gap-3 rounded-xl border px-3 py-2.5 text-left transition-colors",
                         picked === i ? "border-zinc-900 bg-zinc-50" : "border-zinc-200 hover:bg-zinc-50",
