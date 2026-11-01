@@ -40,7 +40,7 @@ export const PREBUILT_AGENTS: PrebuiltAgent[] = [
     id: "seo_manager",
     title: "SEO & GEO Manager",
     short: "SEO & GEO",
-    face: "/faces/seo.jpg",
+    face: "/faces/seo-green-cap.jpg",
     href: "/agents/seo-geo",
     blurb: "Gets you found on Google and recommended by ChatGPT, Gemini and Claude.",
     features: [
@@ -53,7 +53,7 @@ export const PREBUILT_AGENTS: PrebuiltAgent[] = [
     id: "website_manager",
     title: "Website Manager",
     short: "Your Website",
-    face: "/faces/website.jpg",
+    face: "/faces/website-white-hoodie.jpg",
     href: "/agents/website-manager",
     blurb: "Keeps your website up to date. Ask for any change in plain English and it's live in minutes.",
     features: [
@@ -66,7 +66,7 @@ export const PREBUILT_AGENTS: PrebuiltAgent[] = [
     id: "sdr_agent",
     title: "SDR AI Agent",
     short: "Sales Outreach",
-    face: "/faces/sdr.jpg",
+    face: "/faces/sdr-red-cap.jpg",
     blurb: "Fills your pipeline. It finds your ideal customers, writes to each one and lines up every follow-up.",
     features: [
       "Finds B2B leads that match your ideal customer",
@@ -78,7 +78,7 @@ export const PREBUILT_AGENTS: PrebuiltAgent[] = [
     id: "social_listening",
     title: "Social Listening",
     short: "Social Listening",
-    face: "/faces/listening.jpg",
+    face: "/faces/listening-ai-cap.jpg",
     blurb: "Turns online conversations into customers. It finds people asking for what you sell and drafts your reply.",
     features: [
       "Reads Reddit, X, Threads, YouTube, LinkedIn, Facebook and Instagram",
