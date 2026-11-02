@@ -18,7 +18,7 @@ const { h2, h3, p, ul, ol } = legal
 
 export default function PrivacyPolicyPage() {
   return (
-    <LegalPage title="Privacy Policy" lastUpdated="30 September 2026">
+    <LegalPage title="Privacy Policy" lastUpdated="2 November 2026">
       {/* Intro */}
       <section>
         <p className={p}>
@@ -94,8 +94,8 @@ export default function PrivacyPolicyPage() {
             rows={[
               [
                 <><strong className="text-foreground">Instagram</strong> (Instagram API with Instagram Login)</>,
-                <><code>instagram_business_basic</code>, <code>instagram_business_content_publish</code></>,
-                "Your Instagram user ID, username and account type, and an access token",
+                <><code>instagram_business_basic</code>, <code>instagram_business_content_publish</code>, and, if you connect audience insights, <code>instagram_business_manage_insights</code> and <code>instagram_business_manage_comments</code></>,
+                "Your Instagram user ID, username and account type, and an access token, and, if you connect audience insights, the insights and comments described below",
               ],
               [
                 <><strong className="text-foreground">Facebook</strong> (Facebook Login for Business)</>,
@@ -118,7 +118,19 @@ export default function PrivacyPolicyPage() {
         </ol>
         <p className={p}>Access tokens are encrypted before they are stored, and only our servers can read them.</p>
         <p className={p}>
-          We <strong>do not</strong> use data from Meta or TikTok for advertising, we do not sell it, we do not share it with anyone other than the service providers who help us run the Service (section 9), and we do not use it to build profiles of people. See section 5 for Google and YouTube.
+          <strong>Audience insights and comments.</strong> If you connect your account on the Social Media Manager&rsquo;s Audience tab, we also read information that only you can see on that platform:
+        </p>
+        <ul className={ul}>
+          <li><strong>Instagram insights</strong> (<code>instagram_business_manage_insights</code>): your account&rsquo;s reach, views, accounts engaged, profile link taps, follows and unfollows; the age, gender, country and city breakdown of your followers and of the people who engaged with you; the hours your followers are online; and, for each of your own posts, its reach, views, saves, shares, profile visits, follows, and Reels watch time and skip rate.</li>
+          <li><strong>Instagram comments</strong> (<code>instagram_business_manage_comments</code>): comments on your own posts (the commenter&rsquo;s username, the comment, when it was posted and its likes), so you can read and answer them in your dashboard. A reply is posted only when you click &ldquo;Send reply&rdquo;. We never comment, reply or hide comments automatically.</li>
+          <li><strong>YouTube</strong> (<code>youtube.readonly</code> and <code>yt-analytics.readonly</code>): your channel&rsquo;s ID and name, and YouTube Analytics for your channel: viewers&rsquo; age, gender and country, where views come from, watch time, subscribers gained and lost, and, for each video, average view duration and how many viewers are still watching at each point.</li>
+          <li><strong>TikTok</strong> (TikTok API for Business): your followers&rsquo; age, gender and country, the hours they&rsquo;re active, and, for each video, its reach, watch time, how many people watched to the end, and where views came from.</li>
+        </ul>
+        <p className={p}>
+          The platforms give us these figures as totals and percentages; they don&rsquo;t identify individual followers. We show them only to you, and your AI agent uses them to suggest what and when to post and to draft comment replies (see section 6). When you disconnect, we delete the access tokens and everything we read with them straight away.
+        </p>
+        <p className={p}>
+          We <strong>do not</strong> use data from Meta, TikTok or YouTube, including insights and comments, for advertising, we do not sell it, we do not share it with anyone other than the service providers who help us run the Service (section 9), and we do not use it to build profiles of people. See section 5 for Google and YouTube.
         </p>
 
         <h3 className={h3}>3.4 Information collected automatically</h3>
@@ -177,14 +189,14 @@ export default function PrivacyPolicyPage() {
           <ExternalLink href="https://developers.google.com/terms/api-services-user-data-policy">Google API Services User Data Policy</ExternalLink>, including the Limited Use requirements. In particular:
         </p>
         <ul className={ul}>
-          <li>we only use Google user data (for example Gmail, Calendar, Drive, Docs, Sheets or Google Search Console data) to provide the features you asked for;</li>
+          <li>we only use Google user data (for example Gmail, Calendar, Drive, Docs, Sheets, Google Search Console or YouTube Analytics data) to provide the features you asked for;</li>
           <li>we do not use it for advertising;</li>
           <li>we do not sell it or transfer it to others, except to provide the Service, to comply with the law, or as part of a merger or acquisition with notice to you;</li>
           <li>no person at Talk to Me Data reads it unless you ask us to (for example for support), it is needed for security or to comply with the law, or it has been aggregated and anonymised; and</li>
           <li>we do not use it to train general-purpose AI or machine-learning models.</li>
         </ul>
         <p className={p}>
-          We do not allow humans to read Google user data unless you ask us to (for example for support), it is needed for security or to comply with the law, or it is aggregated and anonymised for our internal operations. We do not use Google user data to develop, improve or train generalised AI or machine-learning models. To produce your analysis and suggested fixes, we send the relevant Search Console figures to our AI provider Anthropic, under terms that prevent it from training on them.
+          We do not allow humans to read Google user data unless you ask us to (for example for support), it is needed for security or to comply with the law, or it is aggregated and anonymised for our internal operations. We do not use Google user data to develop, improve or train generalised AI or machine-learning models. To produce your analysis and suggested fixes, we send the relevant Search Console figures to our AI provider Anthropic, under terms that prevent it from training on them. If you connect YouTube Analytics, we send the relevant figures to Anthropic in the same way, so your agent can suggest what to post, under the same terms.
         </p>
         <p className={p}>
           When you disconnect Search Console (or remove the website), we revoke our access at Google and immediately delete the tokens and all Search Console data we pulled. You can also remove our access at any time at{" "}
@@ -193,7 +205,7 @@ export default function PrivacyPolicyPage() {
         <p className={p}>
           <strong>YouTube.</strong> The Social Media Manager uses YouTube API Services to show public data about YouTube channels. By using those features you agree to be bound by the{" "}
           <ExternalLink href="https://www.youtube.com/t/terms">YouTube Terms of Service</ExternalLink>, and Google&rsquo;s use of data is covered by the{" "}
-          <ExternalLink href="https://policies.google.com/privacy">Google Privacy Policy</ExternalLink>. We only access public channel and video data using an API key. We do not ask for access to your YouTube account. We delete YouTube data we have stored when you remove that channel from your dashboard, and we keep and refresh it in line with the YouTube API Services Developer Policies. You can also revoke any access through Google&rsquo;s security settings page at{" "}
+          <ExternalLink href="https://policies.google.com/privacy">Google Privacy Policy</ExternalLink>. Most YouTube features use public channel and video data through an API key. If you choose to connect your channel for audience insights, you sign in with Google and give us read-only access to your channel details and YouTube Analytics (section 3.3). When you disconnect, we revoke that access at Google and immediately delete the tokens and the analytics data we read. We delete YouTube data we have stored when you remove that channel from your dashboard, and we keep and refresh it in line with the YouTube API Services Developer Policies. You can also revoke any access through Google&rsquo;s security settings page at{" "}
           <ExternalLink href="https://myaccount.google.com/permissions">myaccount.google.com/permissions</ExternalLink>.
         </p>
       </section>
@@ -224,6 +236,8 @@ export default function PrivacyPolicyPage() {
         <ul className={ul}>
           <li><strong>Public social media accounts.</strong> If a customer adds your public Instagram, TikTok, YouTube or Facebook Page account to their dashboard (for example as a competitor), we collect the public profile and post data described in section 3.3. We only collect what you have made public, we keep a limited number of recent posts, and we use it to show performance insights to that customer. We do not collect private messages, private accounts or follower lists.</li>
           <li><strong>Public property records.</strong> The Property Leads agent uses public records published by US local government bodies (such as county assessor data, building permits, property sales, vacancy and code-violation records, and foreclosure auctions). These records can include property owners&rsquo; names.</li>
+          <li><strong>Comments on our customers&rsquo; posts.</strong> If a customer connects their Instagram account, we store comments people have left on that customer&rsquo;s own posts (username and comment) so the customer can read and answer them. We delete them when the customer disconnects or removes the account.</li>
+          <li><strong>Clicks on tracked links.</strong> When someone clicks a customer&rsquo;s tracked link (talktomedata.com/l/&hellip;), we count the click for that day and send them on to the customer&rsquo;s website. We don&rsquo;t store their IP address or any identifier.</li>
           <li><strong>Contacts uploaded by customers.</strong> Property Leads customers may upload their own contact lists. The customer is the controller of that data and we process it on their behalf.</li>
         </ul>
         <p className={p}>
@@ -254,7 +268,7 @@ export default function PrivacyPolicyPage() {
               ["Vercel", "Hosting the website and app, and cookie-free page-view statistics", "US and EU"],
               ["Anthropic", "AI models (Claude)", "US"],
               ["OpenAI", "AI models (ChatGPT), used for AI visibility checks", "US"],
-              ["Google", "AI models (Gemini), Google sign-in, YouTube Data API, Google Search Console API (only if you connect it), PageSpeed Insights, Google Sheets (our record of website enquiries), and Google Analytics (only with your consent)", "US and worldwide"],
+              ["Google", "AI models (Gemini), Google sign-in, YouTube Data API, YouTube Analytics API (only if you connect your channel), Google Search Console API (only if you connect it), PageSpeed Insights, Google Sheets (our record of website enquiries), and Google Analytics (only with your consent)", "US and worldwide"],
               ["Meta", "Measuring our ads with the Meta Pixel (only with your consent)", "US and worldwide"],
               ["Brevo", "Our mailing list and marketing emails", "EU (France)"],
               ["Composio", "Securely connecting the third-party tools you choose", "US"],
@@ -269,7 +283,7 @@ export default function PrivacyPolicyPage() {
           />
         </div>
         <p className={p}>
-          We also send data to <strong>Meta (Instagram, Facebook)</strong> and <strong>TikTok</strong> when you tell us to publish a post. Those platforms handle it under their own privacy policies as independent controllers.
+          We also send data to <strong>Meta (Instagram, Facebook)</strong> and <strong>TikTok</strong> when you tell us to publish a post or send a reply to a comment. Those platforms handle it under their own privacy policies as independent controllers.
         </p>
         <p className="text-muted-foreground leading-relaxed mb-2">We may also disclose data:</p>
         <ul className={ul}>
@@ -304,6 +318,10 @@ export default function PrivacyPolicyPage() {
               ["Agent chats and results", "While your account is open, unless you ask us to delete them sooner"],
               ["Tokens for connected tools", "Until you disconnect the tool or close your account"],
               ["Instagram, Facebook and TikTok posting tokens", "Deleted immediately when you disconnect the account or remove it from your dashboard, or when you close your account"],
+              ["YouTube and TikTok insights tokens", "Deleted immediately when you disconnect the account, remove it from your dashboard, or close your account. YouTube access is also revoked at Google"],
+              ["Audience insights (Instagram, YouTube, TikTok)", "Refreshed about once a day while the account is connected. Deleted immediately when you disconnect it, remove it from your dashboard, or close your account"],
+              ["Comments on your Instagram posts, and replies you send", "As for audience insights"],
+              ["Tracked links and click counts", "Until you close your account. Removing a link stops it counting, but it keeps forwarding so links in old posts still work"],
               ["Google Search Console tokens", "Revoked and deleted immediately when you disconnect Search Console, remove the website, or close your account"],
               ["Social media data (profiles, posts, metrics, images)", "While that account is in your dashboard (the number of posts kept depends on your plan). Deleted when you remove the account"],
               ["Search Console data (searches, pages, clicks, impressions, positions)", "While the website is on your dashboard, up to your plan’s history limit (3 months on Starter, up to 10 years on paid plans). Deleted immediately when you disconnect Search Console or remove the website"],
