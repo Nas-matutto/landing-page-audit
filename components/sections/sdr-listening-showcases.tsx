@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import Link from "next/link"
 import { AnimatePresence, MotionConfig, motion } from "framer-motion"
 import { ArrowRight, Check, Mail, MessageCircle, Sparkles } from "lucide-react"
 import { FaLinkedin, FaMicrosoft } from "react-icons/fa"
@@ -37,6 +38,7 @@ function Shell({
   picker,
   pose,
   bubble,
+  href,
   children,
 }: {
   glow: React.ReactNode
@@ -47,6 +49,8 @@ function Shell({
   picker: React.ReactNode
   pose: AmbassadorPose
   bubble: string
+  /** This agent's page, linked as "See how it works" when it has one. */
+  href?: string
   children: React.ReactNode
 }) {
   return (
@@ -87,13 +91,20 @@ function Shell({
               ))}
             </ul>
 
-            <a
-              href={SIGNUP_URL}
-              className="mt-8 inline-flex w-fit items-center gap-2 rounded-full bg-white px-5 py-3 text-[15px] font-semibold text-zinc-950 shadow-lg transition-colors hover:bg-zinc-100"
-            >
-              Start free
-              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
-            </a>
+            <div className="mt-8 flex flex-wrap items-center gap-3">
+              <a
+                href={SIGNUP_URL}
+                className="inline-flex w-fit items-center gap-2 rounded-full bg-white px-5 py-3 text-[15px] font-semibold text-zinc-950 shadow-lg transition-colors hover:bg-zinc-100"
+              >
+                Start free
+                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+              </a>
+              {href && (
+                <Link href={href} className="inline-flex items-center gap-2 rounded-full px-4 py-3 text-[15px] font-semibold text-white/80 transition-colors hover:text-white">
+                  See how it works
+                </Link>
+              )}
+            </div>
           </div>
 
           {/* Demo */}
@@ -278,7 +289,8 @@ const ICPS: Record<IcpId, { label: string; brief: string; leads: Lead[] }> = {
 
 const ICP_ORDER: IcpId[] = ["agencies", "saas", "clinics"]
 
-export function SdrAgentShowcase() {
+/** On the SDR page itself, `howItWorks={false}` drops the link back to that page. */
+export function SdrAgentShowcase({ howItWorks = true }: { howItWorks?: boolean }) {
   const [icp, setIcp] = useState<IcpId>("agencies")
   const [picked, setPicked] = useState(0)
   // 0: nothing chosen yet, 1: a customer chosen, 2: a lead opened
@@ -289,6 +301,7 @@ export function SdrAgentShowcase() {
   return (
     <Shell
       glow={<SdrGlow />}
+      href={howItWorks ? "/agents/ai-sdr-agent" : undefined}
       title="SDR AI Agent"
       blurb="Fills your pipeline for you. Describe your ideal customer, and your agent finds them, checks they fit, writes to each one and lines up every follow-up."
       chips={[

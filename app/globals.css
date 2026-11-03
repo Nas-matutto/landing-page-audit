@@ -24,6 +24,11 @@
   --hairline: rgba(65, 65, 65, 0.16); /* every border on the page */
   --glass: rgba(237, 237, 237, 0.64); /* floating nav fill */
 
+  /* The SDR agent's red, taken from his hoodie. Only /agents/ai-sdr-agent
+     uses it; everywhere else stays black and white. */
+  --sdr: #c8272a;
+  --sdr-soft: #fdeeee;   /* tinted grounds and chips */
+
   /* Aurora component color aliases */
   --white: #ffffff;
   --black: #000000;
@@ -133,6 +138,8 @@
   --color-faint: var(--faint);
   --color-mist: var(--mist);
   --color-hairline: var(--hairline);
+  --color-sdr: var(--sdr);
+  --color-sdr-soft: var(--sdr-soft);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);

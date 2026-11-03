@@ -126,6 +126,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
     {
+      url: `${baseUrl}/agents/ai-sdr-agent`,
+      lastModified: new Date('2026-11-03'),
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
       url: `${baseUrl}/watch-demo`,
       lastModified: new Date(),
       changeFrequency: 'monthly',

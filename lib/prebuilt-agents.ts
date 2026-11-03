@@ -67,6 +67,7 @@ export const PREBUILT_AGENTS: PrebuiltAgent[] = [
     title: "SDR AI Agent",
     short: "Sales Outreach",
     face: "/faces/sdr-red-cap.jpg",
+    href: "/agents/ai-sdr-agent",
     blurb: "Fills your pipeline. It finds your ideal customers, writes to each one and lines up every follow-up.",
     features: [
       "Finds B2B leads that match your ideal customer",
