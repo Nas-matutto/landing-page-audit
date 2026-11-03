@@ -5,6 +5,7 @@ import { SiGmail } from "react-icons/si"
 import { cn } from "@/lib/utils"
 import { Reveal } from "@/components/sections/social-agent/parts"
 import { Frame } from "@/components/sections/seo-agent/mocks"
+import { SdrGetStarted } from "./sections"
 
 // One row per outcome the agent gets you. Copy leads with the result, then
 // says how the agent gets there. Panels use a sample business: a marketing
@@ -267,6 +268,8 @@ export function SdrAgentOutcomes() {
                     You get: <span className="font-semibold">{o.result}</span>
                   </span>
                 </p>
+
+                <SdrGetStarted className="mt-6 justify-start" />
               </Reveal>
 
               <Reveal delay={0.1} className={cn("min-w-0", flip && "lg:order-1")}>

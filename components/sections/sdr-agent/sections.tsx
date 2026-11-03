@@ -5,8 +5,20 @@ import { ArrowRight, Check, Clock, X } from "lucide-react"
 import { FaLinkedin, FaMicrosoft } from "react-icons/fa"
 import { SiGmail, SiInstagram, SiX } from "react-icons/si"
 import { SIGNUP_URL } from "@/lib/links"
-import { Reveal } from "@/components/sections/social-agent/parts"
+import { cn } from "@/lib/utils"
+import { PrimaryCta, Reveal } from "@/components/sections/social-agent/parts"
 import { SdrAgentShowcase } from "@/components/sections/sdr-listening-showcases"
+
+/** The sign-up button that closes each section. */
+export function SdrGetStarted({ className }: { className?: string }) {
+  return (
+    <div className={cn("flex justify-center", className)}>
+      <PrimaryCta href={SIGNUP_URL} className="bg-sdr">
+        Get started
+      </PrimaryCta>
+    </div>
+  )
+}
 
 // ── Where it reaches buyers ─────────────────────────────────────────────────
 
@@ -94,7 +106,7 @@ export function BeforeAfter() {
               <div className="flex h-8 w-8 items-center justify-center rounded-full border border-white/30 text-white">
                 <Check className="h-4 w-4" />
               </div>
-              <span className="eyebrow text-white/70">With your AI SDR</span>
+              <span className="eyebrow text-white!">With your AI SDR</span>
             </div>
             <h3 className="relative mb-6 text-xl font-semibold tracking-[-0.01em] text-white">Your week goes on selling</h3>
             <ul className="relative mt-auto space-y-3.5">
@@ -107,6 +119,7 @@ export function BeforeAfter() {
             </ul>
           </Reveal>
         </div>
+        <SdrGetStarted className="mt-12" />
       </div>
     </section>
   )
@@ -128,6 +141,7 @@ export function SdrTryIt() {
         <Reveal delay={0.1}>
           <SdrAgentShowcase howItWorks={false} />
         </Reveal>
+        <SdrGetStarted className="mt-12" />
       </div>
     </section>
   )
@@ -170,6 +184,7 @@ export function SdrHowItWorks() {
             </Reveal>
           ))}
         </div>
+        <SdrGetStarted className="mt-12" />
       </div>
     </section>
   )
