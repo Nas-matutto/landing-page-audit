@@ -228,7 +228,7 @@ export default function SocialMediaAnalyzerPage() {
             <ol className="grid grid-cols-1 gap-4 md:grid-cols-3">
               {STEPS.map((step, i) => (
                 <li key={step.title} className="h-full">
-                  <Reveal delay={i * 0.06} className="flex h-full flex-col rounded-3xl border border-hairline bg-white p-7">
+                  <Reveal className="flex h-full flex-col rounded-3xl border border-hairline bg-white p-7">
                     <span className="mb-8 flex h-9 w-9 items-center justify-center rounded-full bg-ink text-sm font-semibold text-white">{i + 1}</span>
                     <h3 className="mb-2 text-lg font-semibold leading-snug tracking-[-0.01em] text-ink">{step.title}</h3>
                     <p className="text-sm leading-relaxed text-quiet">{step.description}</p>
@@ -273,7 +273,7 @@ export default function SocialMediaAnalyzerPage() {
               <ol className="space-y-3">
                 {CHECKS.map((item, i) => (
                   <li key={item.title}>
-                    <Reveal delay={i * 0.04} className="flex gap-5 rounded-3xl border border-hairline bg-white p-6">
+                    <Reveal className="flex gap-5 rounded-3xl border border-hairline bg-white p-6">
                       <span className="font-mono text-sm font-medium text-faint">{String(i + 1).padStart(2, "0")}</span>
                       <div>
                         <h3 className="mb-1 text-lg font-semibold leading-snug tracking-[-0.01em] text-ink">{item.title}</h3>

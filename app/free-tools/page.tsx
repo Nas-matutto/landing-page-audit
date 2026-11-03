@@ -85,7 +85,7 @@ export default function FreeToolsPage() {
             </Reveal>
 
             {/* The ambassador, pointing you to the tools */}
-            <Reveal delay={0.1} className="mx-auto flex items-end gap-3 lg:mx-0 lg:justify-self-end">
+            <Reveal className="mx-auto flex items-end gap-3 lg:mx-0 lg:justify-self-end">
               <Ambassador pose="wave" sizes="200px" className="h-[260px] w-[130px] shrink-0 sm:h-[320px] sm:w-[160px]" priority />
               <div className="relative mb-24 max-w-[13rem] rounded-2xl rounded-bl-sm border border-hairline bg-white px-4 py-3 text-[14px] font-medium leading-snug text-ink shadow-lg shadow-black/5">
                 Pick a tool and try it. It&apos;s free, and there&apos;s no signup.
@@ -163,7 +163,7 @@ export default function FreeToolsPage() {
 
             <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
               {TOOLS.map((tool, i) => (
-                <Reveal key={tool.href} delay={(i % 2) * 0.06} className="h-full">
+                <Reveal key={tool.href} className="h-full">
                   <Link
                     href={tool.href}
                     className="group flex h-full flex-col rounded-3xl border border-hairline bg-white p-7 transition-colors hover:border-ink sm:p-8"

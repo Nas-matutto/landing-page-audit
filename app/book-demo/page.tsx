@@ -1,7 +1,6 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { motion } from "framer-motion"
 import Link from "next/link"
 import { ArrowRight, CalendarDays, Check, Play } from "lucide-react"
 import { Header } from "@/components/header"
@@ -114,12 +113,7 @@ export default function BookDemoPage() {
         <section className="bg-white pt-36 pb-24 sm:pt-44 sm:pb-32 lg:pt-36">
           <div className="mx-auto grid w-full max-w-6xl items-start gap-12 px-6 lg:grid-cols-2 lg:gap-16 lg:px-8">
             {/* Left: the pitch */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, ease: "easeOut" }}
-              className="text-center lg:text-left"
-            >
+            <div className="rise-in text-center lg:text-left">
               <p className="eyebrow mb-5">Book a demo</p>
               <h1 className="display text-[clamp(2.75rem,7.5vw,5rem)] lg:text-[clamp(3rem,4.4vw,4rem)]">
                 Let&apos;s build your first AI agent
@@ -131,31 +125,20 @@ export default function BookDemoPage() {
 
               <ul className="mx-auto mt-10 max-w-md space-y-3 text-left lg:mx-0">
                 {BENEFITS.map((b, i) => (
-                  <motion.li
-                    key={b}
-                    initial={{ opacity: 0, x: -12 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.2 + i * 0.08, duration: 0.4 }}
-                    className="flex items-start gap-3"
-                  >
+                  <li key={b} className="pop-in flex items-start gap-3" style={{ animationDelay: `${0.2 + i * 0.08}s` }}>
                     <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-ink text-white">
                       <Check className="h-3 w-3" />
                     </span>
                     <span className="text-[15px] leading-relaxed text-ink">{b}</span>
-                  </motion.li>
+                  </li>
                 ))}
               </ul>
 
               <p className="mt-10 text-[13px] text-faint">Free call · No commitment · No preparation needed</p>
-            </motion.div>
+            </div>
 
             {/* Right: the booking card */}
-            <motion.div
-              initial={{ opacity: 0, y: 24 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.15, ease: "easeOut" }}
-              className="overflow-hidden rounded-3xl border border-hairline bg-white"
-            >
+            <div className="rise-in overflow-hidden rounded-3xl border border-hairline bg-white" style={{ animationDelay: "0.15s" }}>
               <div className="flex items-end justify-between gap-4 border-b border-hairline bg-mist px-8 pt-6">
                 <div className="mb-6 rounded-2xl rounded-bl-sm bg-ink px-3.5 py-2.5 text-[13px] font-medium text-white">
                   Which job should I take off your plate?
@@ -204,7 +187,7 @@ export default function BookDemoPage() {
                   </div>
                 </div>
               </div>
-            </motion.div>
+            </div>
           </div>
         </section>
 
@@ -223,19 +206,12 @@ export default function BookDemoPage() {
               </div>
 
               <ol className="grid gap-4 md:grid-cols-3">
-                {CALL_STEPS.map((step, i) => (
-                  <motion.li
-                    key={step.n}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: "-60px" }}
-                    transition={{ duration: 0.5, delay: i * 0.08 }}
-                    className="rounded-3xl border border-hairline bg-white p-6"
-                  >
+                {CALL_STEPS.map((step) => (
+                  <li key={step.n} className="reveal rounded-3xl border border-hairline bg-white p-6">
                     <span className="select-none font-mono text-sm font-medium text-faint">{step.n}</span>
                     <h3 className="mt-3 text-lg font-semibold tracking-[-0.01em] text-ink">{step.title}</h3>
                     <p className="mt-2 text-sm leading-relaxed text-quiet">{step.body}</p>
-                  </motion.li>
+                  </li>
                 ))}
               </ol>
             </div>

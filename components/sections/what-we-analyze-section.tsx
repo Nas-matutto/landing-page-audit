@@ -1,7 +1,6 @@
 "use client"
 
 import Link from "next/link"
-import { motion } from "framer-motion"
 import type { LucideIcon } from "lucide-react"
 import { ArrowRight, ArrowUpRight, BarChart3, Headphones, House, Receipt, Target } from "lucide-react"
 import { Ambassador } from "@/components/ui/ambassador"
@@ -54,20 +53,13 @@ const REQUEST_IDEAS = [
   "Send a weekly KPI report to Slack",
 ]
 
-const fadeUp = {
-  initial: { opacity: 0, y: 20 },
-  whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true },
-  transition: { duration: 0.5 },
-}
-
 export function WhatWeAnalyzeSection() {
   return (
     <section id="use-cases" className="border-y border-hairline bg-mist py-24 sm:py-32">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-6xl">
           {/* Heading */}
-          <motion.div {...fadeUp} className="mb-16 text-center sm:mb-20">
+          <div className="reveal mb-16 text-center sm:mb-20">
             <p className="eyebrow mb-5">AI agents</p>
             <h2 className="display mx-auto max-w-3xl text-[clamp(2rem,4.5vw,3.25rem)]">
               Start with a ready-made agent. Or have one built for you.
@@ -76,7 +68,7 @@ export function WhatWeAnalyzeSection() {
               Five agents are ready to use today. Beyond those, we build custom agents around any workflow your
               business runs. Here&apos;s what other businesses have asked for.
             </p>
-          </motion.div>
+          </div>
 
           {/* ── 01 · Ready-made ── */}
           <PartHeader
@@ -85,9 +77,9 @@ export function WhatWeAnalyzeSection() {
             title="Pre-built agents you can start using right away"
             aside="Sign up free, connect your accounts, and they get to work. Swipe or use the arrows to see what each one does for you."
           />
-          <motion.div {...fadeUp}>
+          <div className="reveal">
             <ReadyMadeAgentsCarousel />
-          </motion.div>
+          </div>
 
           {/* ── 02 · Custom-built ── */}
           <div className="mt-24 sm:mt-32">
@@ -99,8 +91,8 @@ export function WhatWeAnalyzeSection() {
             />
 
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              {CUSTOM_AGENTS.map((agent, i) => (
-                <motion.div key={agent.href} {...fadeUp} transition={{ duration: 0.5, delay: (i % 3) * 0.06 }}>
+              {CUSTOM_AGENTS.map((agent) => (
+                <div key={agent.href} className="reveal">
                   <Link
                     href={agent.href}
                     className="group flex h-full flex-col rounded-3xl border border-hairline bg-white p-6 transition-colors hover:border-ink"
@@ -114,14 +106,13 @@ export function WhatWeAnalyzeSection() {
                     <h4 className="mb-2 text-lg font-semibold tracking-[-0.01em] text-ink">{agent.title}</h4>
                     <p className="text-sm leading-relaxed text-quiet">{agent.description}</p>
                   </Link>
-                </motion.div>
+                </div>
               ))}
             </div>
 
             {/* Request any agent */}
-            <motion.div
-              {...fadeUp}
-              className="relative mt-6 overflow-hidden rounded-3xl bg-ink p-6 text-white sm:p-10 lg:p-12"
+            <div
+              className="reveal relative mt-6 overflow-hidden rounded-3xl bg-ink p-6 text-white sm:p-10 lg:p-12"
             >
               <div
                 aria-hidden
@@ -185,7 +176,7 @@ export function WhatWeAnalyzeSection() {
                   </ul>
                 </div>
               </div>
-            </motion.div>
+            </div>
           </div>
         </div>
       </div>
@@ -195,12 +186,12 @@ export function WhatWeAnalyzeSection() {
 
 function PartHeader({ number, label, title, aside }: { number: string; label: string; title: string; aside: string }) {
   return (
-    <motion.div {...fadeUp} className="mb-8 border-b border-hairline pb-6">
+    <div className="reveal mb-8 border-b border-hairline pb-6">
       <p className="eyebrow mb-3">
         <span className="text-ink">{number}</span> · {label}
       </p>
       <h3 className="text-2xl font-semibold tracking-[-0.02em] text-ink sm:text-3xl lg:whitespace-nowrap">{title}</h3>
       <p className="mt-2 max-w-2xl text-sm leading-relaxed text-quiet">{aside}</p>
-    </motion.div>
+    </div>
   )
 }

@@ -166,14 +166,8 @@ export function HowItWorksSection() {
 
           {/* Phones and tablets: the same four steps, one after another */}
           <ol className="space-y-12 lg:hidden">
-            {STEPS.map((step, i) => (
-              <motion.li
-                key={step.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-60px" }}
-                transition={{ duration: 0.5, delay: i === 0 ? 0 : 0.05 }}
-              >
+            {STEPS.map((step) => (
+              <li key={step.id} className="reveal">
                 <div className="mb-3 flex items-center gap-3">
                   <span className="select-none font-mono text-sm font-medium text-faint">{step.n}</span>
                   <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-ink bg-ink text-white">
@@ -183,7 +177,7 @@ export function HowItWorksSection() {
                 </div>
                 <p className="mb-5 text-sm leading-relaxed text-quiet">{step.body}</p>
                 <Stage step={step.id} />
-              </motion.li>
+              </li>
             ))}
           </ol>
 

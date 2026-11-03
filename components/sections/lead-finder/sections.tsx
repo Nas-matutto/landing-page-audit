@@ -1,6 +1,5 @@
 "use client"
 
-import { motion } from "framer-motion"
 import { Check, Quote, Sparkles, Wrench, X } from "lucide-react"
 import { SiAirtable, SiGmail, SiHubspot, SiNotion, SiSalesforce } from "react-icons/si"
 import { FaLinkedin, FaSlack } from "react-icons/fa"
@@ -26,12 +25,7 @@ export function LeadFinderHero() {
   return (
     <section className="relative w-full overflow-hidden bg-white pb-20 pt-36 sm:pt-44 lg:pb-28 lg:pt-36">
       <div className="mx-auto grid w-full max-w-6xl items-center gap-14 px-6 lg:grid-cols-[minmax(0,5fr)_minmax(0,6fr)] lg:gap-10 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
-          className="text-center lg:text-left"
-        >
+        <div className="rise-in text-center lg:text-left">
           <p className="eyebrow mb-5">AI Lead Finder Agent</p>
           <h1 className="display text-[clamp(2.75rem,7.5vw,5rem)] lg:text-[clamp(3rem,4.4vw,4rem)]">An AI agent that fills your pipeline every day</h1>
           <p className="lede mx-auto mt-6 max-w-lg text-lg sm:text-xl lg:mx-0">
@@ -52,14 +46,9 @@ export function LeadFinderHero() {
               </li>
             ))}
           </ul>
-        </motion.div>
+        </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.15, ease: "easeOut" }}
-          className="relative mx-auto w-full max-w-xl pb-10 lg:max-w-none lg:pb-0"
-        >
+        <div className="rise-in relative mx-auto w-full max-w-xl pb-10 lg:max-w-none lg:pb-0" style={{ animationDelay: "0.15s" }}>
           <LeadsPanel rows={3} stage />
 
           <Ambassador
@@ -71,23 +60,17 @@ export function LeadFinderHero() {
 
           <ul className="absolute -bottom-2 right-0 flex flex-col items-end gap-2 sm:-right-4 sm:bottom-6 lg:-right-6">
             {DONE.map((d) => (
-              <motion.li
-                key={d.text}
-                initial={{ opacity: 0, x: 16, scale: 0.96 }}
-                animate={{ opacity: 1, x: 0, scale: 1 }}
-                transition={{ duration: 0.4, delay: d.delay, ease: "easeOut" }}
-                className="flex items-center gap-2.5 rounded-full border border-hairline bg-white py-1.5 pl-1.5 pr-4 shadow-lg shadow-black/5"
-              >
+              <li key={d.text} className="pop-in flex items-center gap-2.5 rounded-full border border-hairline bg-white py-1.5 pl-1.5 pr-4 shadow-lg shadow-black/5" style={{ animationDelay: `${d.delay}s` }}>
                 <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-ink text-white">
                   <Check className="h-3.5 w-3.5" />
                 </span>
                 <span className="text-xs font-semibold text-ink sm:text-[13px]">
                   {d.text} <span className="hidden font-normal text-quiet sm:inline">· {d.note}</span>
                 </span>
-              </motion.li>
+              </li>
             ))}
           </ul>
-        </motion.div>
+        </div>
       </div>
     </section>
   )
@@ -168,7 +151,7 @@ export function LeadFinderDifference() {
             </ul>
           </Reveal>
 
-          <Reveal delay={0.1} className="relative flex flex-col overflow-hidden rounded-3xl bg-ink p-7 sm:p-8">
+          <Reveal className="relative flex flex-col overflow-hidden rounded-3xl bg-ink p-7 sm:p-8">
             <div className="mb-2 flex items-center gap-2.5">
               <div className="flex h-8 w-8 items-center justify-center rounded-full border border-white/20 text-white">
                 <Sparkles className="h-4 w-4" />
@@ -225,7 +208,7 @@ export function LeadFinderHowItWorks() {
         </Reveal>
         <div className="grid gap-5 lg:grid-cols-3">
           {STEPS.map((s, i) => (
-            <Reveal key={s.n} delay={i * 0.08} className="flex flex-col rounded-3xl border border-hairline bg-white p-6 sm:p-7">
+            <Reveal key={s.n} className="flex flex-col rounded-3xl border border-hairline bg-white p-6 sm:p-7">
               <span className="font-mono text-lg font-medium text-faint">{s.n}</span>
               <h3 className="mt-5 text-xl font-semibold tracking-[-0.01em] text-ink">{s.title}</h3>
               <p className="mt-3 text-sm leading-relaxed text-quiet">{s.body}</p>
@@ -261,7 +244,7 @@ export function LeadFinderQuotes() {
         </Reveal>
         <div className="grid gap-5 md:grid-cols-3">
           {QUOTES.map((q, i) => (
-            <Reveal key={q.author} delay={i * 0.08} className="flex flex-col rounded-3xl border border-hairline bg-white p-7">
+            <Reveal key={q.author} className="flex flex-col rounded-3xl border border-hairline bg-white p-7">
               <Quote className="h-5 w-5 text-ink" />
               <p className="mt-4 flex-1 text-[15px] leading-relaxed text-ink">{q.quote}</p>
               <p className="mt-6 text-sm font-semibold text-ink">{q.author}</p>

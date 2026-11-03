@@ -108,7 +108,7 @@ export function GuideShell({
             <ol className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
               {guide.inside.map((item, i) => (
                 <li key={item.title} className="h-full">
-                  <Reveal delay={(i % 4) * 0.05} className="flex h-full flex-col rounded-3xl border border-hairline bg-white p-7">
+                  <Reveal className="flex h-full flex-col rounded-3xl border border-hairline bg-white p-7">
                     <span className="mb-8 font-mono text-sm font-medium text-faint">{String(i + 1).padStart(2, "0")}</span>
                     <h3 className="mb-2 text-lg font-semibold leading-snug tracking-[-0.01em] text-ink">{item.title}</h3>
                     <p className="text-sm leading-relaxed text-quiet">{item.description}</p>

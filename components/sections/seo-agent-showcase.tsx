@@ -281,7 +281,7 @@ export function SeoAgentShowcase({ howItWorks = true }: { howItWorks?: boolean }
   return (
     <MotionConfig reducedMotion="user">
       <div className="group relative h-full overflow-hidden rounded-3xl bg-ink text-white shadow-xl">
-        <AgentGlow id="seo_manager" large />
+        <AgentGlow id="seo_manager" />
 
         <div className="relative grid h-full content-center gap-10 p-6 sm:p-8 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] lg:gap-12 lg:p-12">
           {/* Copy — first on phones, on the right from lg up */}

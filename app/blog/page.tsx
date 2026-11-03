@@ -85,7 +85,7 @@ export default function BlogPage() {
             </Reveal>
 
             {/* The ambassador, at work on the next guide */}
-            <Reveal delay={0.1} className="mx-auto flex items-end gap-3 lg:mx-0 lg:justify-self-end">
+            <Reveal className="mx-auto flex items-end gap-3 lg:mx-0 lg:justify-self-end">
               <Ambassador pose="working" sizes="200px" className="h-[260px] w-[150px] shrink-0 sm:h-[300px] sm:w-[175px]" priority />
               <div className="relative mb-24 max-w-[13rem] rounded-2xl rounded-bl-sm border border-hairline bg-white px-4 py-3 text-[14px] font-medium leading-snug text-ink shadow-lg shadow-black/5">
                 Every guide includes the exact prompts we use. Copy them and build your own.

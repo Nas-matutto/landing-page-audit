@@ -105,7 +105,7 @@ export function SocialAgentFeatures() {
             <div className={cn("mx-auto grid max-w-7xl items-center gap-12 lg:gap-14", flip ? "lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)]" : "lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)]")}>
               <Reveal className={cn(flip && "lg:order-2")}>
                 <p className="eyebrow mb-5">
-                  {String(i + 1).padStart(2, "0")} · It {f.verb.toLowerCase()}
+                  <span className="text-social">{String(i + 1).padStart(2, "0")}</span> · It {f.verb.toLowerCase()}
                 </p>
                 <h2 className="display text-[clamp(1.85rem,3.6vw,2.75rem)]">{f.title}</h2>
                 <p className="lede mt-5 max-w-lg text-base sm:text-lg">{f.body}</p>
@@ -113,21 +113,21 @@ export function SocialAgentFeatures() {
                 <ul className="mt-7 space-y-3">
                   {f.bullets.map((b) => (
                     <li key={b} className="flex items-start gap-2.5">
-                      <Check className="mt-0.5 h-4 w-4 shrink-0 text-ink" />
+                      <Check className="mt-0.5 h-4 w-4 shrink-0 text-social" />
                       <span className="text-sm leading-relaxed text-quiet">{b}</span>
                     </li>
                   ))}
                 </ul>
 
-                <p className="mt-8 inline-flex max-w-full items-center gap-2 rounded-full border border-hairline bg-white py-2 pl-3 pr-4 text-[13px] text-quiet">
-                  <MessageSquareText className="h-4 w-4 shrink-0 text-ink" />
+                <p className="mt-8 inline-flex max-w-full items-center gap-2 rounded-full bg-social-soft py-2 pl-3 pr-4 text-[13px] text-quiet ring-1 ring-inset ring-social/15">
+                  <MessageSquareText className="h-4 w-4 shrink-0 text-social" />
                   <span className="truncate">
                     Ask: <span className="font-medium text-ink">“{f.ask}”</span>
                   </span>
                 </p>
               </Reveal>
 
-              <Reveal delay={0.1} className={cn("min-w-0", flip && "lg:order-1")}>
+              <Reveal className={cn("min-w-0", flip && "lg:order-1")}>
                 {f.visual}
               </Reveal>
             </div>

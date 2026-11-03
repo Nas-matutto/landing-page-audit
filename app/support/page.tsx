@@ -110,7 +110,7 @@ export default function SupportPage() {
               </p>
             </Reveal>
 
-            <Reveal delay={0.1} className="relative mx-auto mt-12 max-w-3xl overflow-hidden rounded-[32px] bg-ink px-7 py-10 text-white sm:px-10 sm:py-12">
+            <Reveal className="relative mx-auto mt-12 max-w-3xl overflow-hidden rounded-[32px] bg-ink px-7 py-10 text-white sm:px-10 sm:py-12">
               <div className="relative z-10 sm:pr-40">
                 <div className="flex h-10 w-10 items-center justify-center rounded-full border border-white/20">
                   <Mail className="h-4 w-4" />
@@ -161,7 +161,7 @@ export default function SupportPage() {
             </Reveal>
             <div className="grid gap-4 md:grid-cols-3">
               {WHAT_WE_DO.map((item, i) => (
-                <Reveal key={item.title} delay={i * 0.06} className="rounded-3xl border border-hairline bg-white p-7">
+                <Reveal key={item.title} className="rounded-3xl border border-hairline bg-white p-7">
                   <span className="font-mono text-sm font-medium text-faint">{String(i + 1).padStart(2, "0")}</span>
                   <h3 className="mt-4 text-lg font-semibold tracking-[-0.01em] text-ink">{item.title}</h3>
                   <p className="mt-2 text-sm leading-relaxed text-quiet">{item.body}</p>
@@ -192,7 +192,7 @@ export default function SupportPage() {
             </Reveal>
             <div className="grid gap-5 md:grid-cols-2">
               {OTHER_WAYS.map(({ Icon, title, body, cta, href }, i) => (
-                <Reveal key={title} delay={i * 0.08} className="flex flex-col rounded-3xl border border-hairline bg-white p-7 sm:p-8">
+                <Reveal key={title} className="flex flex-col rounded-3xl border border-hairline bg-white p-7 sm:p-8">
                   <div className="flex h-10 w-10 items-center justify-center rounded-full border border-hairline">
                     <Icon className="h-4 w-4 text-ink" />
                   </div>

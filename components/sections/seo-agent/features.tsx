@@ -119,7 +119,7 @@ export function SeoAgentFeatures() {
                 </p>
               </Reveal>
 
-              <Reveal delay={0.1} className={cn("min-w-0", flip && "lg:order-1")}>
+              <Reveal className={cn("min-w-0", flip && "lg:order-1")}>
                 {o.visual}
               </Reveal>
             </div>

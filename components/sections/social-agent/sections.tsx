@@ -30,7 +30,7 @@ export function PlatformStrip() {
             </li>
           ))}
         </ul>
-        <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-quiet">Auto-posts to Instagram · Facebook · TikTok</p>
+        <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-quiet">Auto-posts to <span className="text-social">Instagram · Facebook · TikTok</span></p>
       </div>
     </section>
   )
@@ -58,7 +58,7 @@ export function DoesNotSupport() {
       <div className="mx-auto max-w-6xl">
         <Reveal className="mb-12 text-center">
           <p className="eyebrow mb-5">The difference</p>
-          <h2 className="display mx-auto max-w-3xl text-[clamp(2rem,4.5vw,3.25rem)]">Other tools show you the work. This agent does it.</h2>
+          <h2 className="display mx-auto max-w-3xl text-[clamp(2rem,4.5vw,3.25rem)]">Other tools show you the work. <span className="text-social">This agent does it.</span></h2>
           <p className="lede mx-auto mt-6 max-w-2xl text-base sm:text-lg">
             Most social media tools give you a dashboard and a to-do list. This one is a teammate: you tell it what you want, and it gets it done.
           </p>
@@ -83,19 +83,19 @@ export function DoesNotSupport() {
             </ul>
           </Reveal>
 
-          <Reveal delay={0.1} className="relative flex flex-col overflow-hidden rounded-3xl bg-ink p-7 sm:p-8">
+          <Reveal className="relative flex flex-col overflow-hidden rounded-3xl bg-social p-7 sm:p-8">
             <div className="mb-2 flex items-center gap-2.5">
               <div className="flex h-8 w-8 items-center justify-center rounded-full border border-white/20 text-white">
                 <Sparkles className="h-4 w-4" />
               </div>
-              <span className="eyebrow text-white/50">Your AI agent</span>
+              <span className="eyebrow text-white/70">Your AI agent</span>
             </div>
             <h3 className="mb-6 text-xl font-semibold tracking-[-0.01em] text-white">Does it for you</h3>
             <ul className="mt-auto space-y-3.5 pr-24 sm:pr-32">
               {DOES.map((point) => (
                 <li key={point} className="flex items-start gap-2.5">
                   <Check className="mt-0.5 h-4 w-4 shrink-0 text-white" />
-                  <span className="text-sm leading-relaxed text-white/80">{point}</span>
+                  <span className="text-sm leading-relaxed text-white/90">{point}</span>
                 </li>
               ))}
             </ul>
@@ -124,9 +124,9 @@ export function SocialHowItWorks() {
           <h2 className="display mx-auto max-w-2xl text-[clamp(2rem,4.5vw,3.25rem)]">From profile link to posted, in three steps</h2>
         </Reveal>
         <div className="grid gap-5 md:grid-cols-3">
-          {STEPS.map((s, i) => (
-            <Reveal key={s.n} delay={i * 0.08} className="rounded-3xl border border-hairline bg-white p-7 transition-colors hover:border-ink sm:p-8">
-              <span className="font-mono text-lg font-medium text-faint">{s.n}</span>
+          {STEPS.map((s) => (
+            <Reveal key={s.n} className="rounded-3xl border border-hairline bg-white p-7 transition-colors hover:border-social sm:p-8">
+              <span className="font-mono text-lg font-medium text-social">{s.n}</span>
               <h3 className="mt-6 text-xl font-semibold tracking-[-0.01em] text-ink">{s.title}</h3>
               <p className="mt-3 text-sm leading-relaxed text-quiet">{s.body}</p>
             </Reveal>
@@ -189,27 +189,27 @@ export function SocialGallery() {
 export function SocialFinalCta() {
   return (
     <section className="bg-white px-4 py-20 sm:px-6 sm:py-28 lg:px-8">
-      <Reveal className="relative mx-auto max-w-6xl overflow-hidden rounded-[32px] bg-ink px-7 py-14 text-white sm:px-12 sm:py-16 lg:py-20">
+      <Reveal className="relative mx-auto max-w-6xl overflow-hidden rounded-[32px] bg-social px-7 py-14 text-white sm:px-12 sm:py-16 lg:py-20">
         <div className="relative z-10 max-w-xl">
           <h2 className="display text-[clamp(2.25rem,5vw,3.75rem)] text-white!">Hand your social media to an agent</h2>
-          <p className="mt-6 max-w-md text-lg font-light leading-snug text-white/65">
+          <p className="mt-6 max-w-md text-lg font-light leading-snug text-white/80">
             Paste your profile link, watch it find what works, and tell it what to post next.
           </p>
           <div className="mt-9 flex flex-col items-stretch gap-3 sm:flex-row sm:items-center">
             <a
               href={SIGNUP_URL}
-              className="group inline-flex items-center justify-center gap-2 rounded-full bg-white px-5 py-3 text-[15px] font-semibold tracking-[0.2px] text-ink transition-opacity hover:opacity-90"
+              className="group inline-flex items-center justify-center gap-2 rounded-full bg-white px-5 py-3 text-[15px] font-semibold tracking-[0.2px] text-social transition-opacity hover:opacity-90"
             >
               Get Started
             </a>
             <a
               href="/book-demo"
-              className="inline-flex items-center justify-center gap-2 rounded-full border border-white/25 px-5 py-3 text-[15px] font-semibold tracking-[0.2px] text-white transition-colors hover:bg-white/10"
+              className="inline-flex items-center justify-center gap-2 rounded-full border border-white/40 px-5 py-3 text-[15px] font-semibold tracking-[0.2px] text-white transition-colors hover:bg-white/10"
             >
               Book Demo
             </a>
           </div>
-          <p className="mt-6 text-xs text-white/40">Screens on this page use a sample account.</p>
+          <p className="mt-6 text-xs text-white/60">Screens on this page use a sample account.</p>
         </div>
         <Ambassador pose="thumbs-up" sizes="360px" className="pointer-events-none absolute -bottom-2 -right-6 hidden h-[300px] w-[270px] sm:block lg:right-8 lg:h-[380px] lg:w-[340px]" />
       </Reveal>
@@ -230,12 +230,12 @@ export function SocialDemoVideo() {
             It reads your posts, finds what wins, tracks your competitors and builds your next posts.
           </p>
         </Reveal>
-        <Reveal delay={0.1}>
+        <Reveal>
           <YouTubeEmbed
             youtubeId={SOCIAL_AGENT_VIDEO.youtubeId}
             title={SOCIAL_AGENT_VIDEO.title}
             thumbnail={SOCIAL_AGENT_VIDEO.thumbnail}
-            className="shadow-2xl shadow-black/10"
+            className="shadow-2xl shadow-social/15"
           />
         </Reveal>
       </div>

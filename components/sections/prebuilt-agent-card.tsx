@@ -58,32 +58,39 @@ const GLOWS: Record<PrebuiltAgentId, [string, string, string, string, string]> =
 }
 
 /**
- * The agent's glow. On the cards here it's sized in px; `large` lays the same
- * blobs out in percentages of the panel (measured off a ~370×410 card), so the
- * homepage's wide showcases are lit just as much as their card here.
+ * Where the five glows sit, in % of the panel (centre x, centre y, width,
+ * height, strength). Same spots as the app's blurred blobs, measured off a
+ * ~370×410 card, so the homepage's wide showcases are lit just like a card.
  */
-export function AgentGlow({ id, large = false }: { id: PrebuiltAgentId; large?: boolean }) {
-  const [a, b, c, d, e] = GLOWS[id]
-  const blob = cn("absolute rounded-full", large ? "blur-[110px]" : "blur-3xl")
+const BLOBS: [number, number, number, number, number][] = [
+  [22, 12, 86, 78, 0.35],
+  [76.5, 84, 103, 94, 0.35],
+  [88.5, 69, 77, 71, 0.25],
+  [61.5, 11.5, 77, 71, 0.15],
+  [74, 85, 86, 78, 0.35],
+]
+
+function tint(hex: string, alpha: number) {
+  const n = parseInt(hex.slice(1), 16)
+  return `rgba(${n >> 16}, ${(n >> 8) & 255}, ${n & 255}, ${+alpha.toFixed(3)})`
+}
+
+/**
+ * The agent's glow: soft radial gradients rather than blurred blobs. A large
+ * CSS blur is one of the most expensive things to draw, and with a few dozen
+ * on a page iPhones run out of graphics memory and blank out sections as you
+ * scroll. Gradients look the same and cost nothing.
+ */
+export function AgentGlow({ id }: { id: PrebuiltAgentId }) {
+  const backgroundImage = BLOBS.map(([x, y, w, h, o], i) => {
+    const c = GLOWS[id][i]
+    return `radial-gradient(${w * 0.9}% ${h * 0.9}% at ${x}% ${y}%, ${tint(c, o)}, ${tint(c, o * 0.95)} 33%, ${tint(c, o * 0.5)} 55%, ${tint(c, o * 0.12)} 80%, transparent)`
+  })
+    .reverse()
+    .join(", ")
   return (
     <div aria-hidden className="pointer-events-none absolute inset-0">
-      {large ? (
-        <>
-          <div className={cn(blob, "-left-[21%] -top-[27%] h-[78%] w-[86%] opacity-35")} style={{ background: a }} />
-          <div className={cn(blob, "-bottom-[31%] left-1/4 h-[94%] w-[103%] opacity-35 transition-opacity duration-500 group-hover:opacity-25")} style={{ background: b }} />
-          <div className={cn(blob, "left-1/2 top-1/3 h-[71%] w-[77%] opacity-25")} style={{ background: c }} />
-          <div className={cn(blob, "-top-[24%] right-0 h-[71%] w-[77%] opacity-15")} style={{ background: d }} />
-          <div className={cn(blob, "-bottom-[24%] -right-[17%] h-[78%] w-[86%] opacity-35")} style={{ background: e }} />
-        </>
-      ) : (
-        <>
-          <div className={cn(blob, "-left-20 -top-28 h-80 w-80 opacity-35")} style={{ background: a }} />
-          <div className={cn(blob, "-bottom-32 left-1/4 h-96 w-96 opacity-35 transition-opacity duration-500 group-hover:opacity-25")} style={{ background: b }} />
-          <div className={cn(blob, "left-1/2 top-1/3 h-72 w-72 opacity-25")} style={{ background: c }} />
-          <div className={cn(blob, "-top-24 right-0 h-72 w-72 opacity-15")} style={{ background: d }} />
-          <div className={cn(blob, "-bottom-24 -right-16 h-80 w-80 opacity-35")} style={{ background: e }} />
-        </>
-      )}
+      <div className="absolute inset-0" style={{ backgroundImage }} />
       {/* Fine grid keeps the glow from reading as a flat gradient */}
       <div className="absolute inset-0 opacity-[0.07] [background-image:linear-gradient(to_right,white_1px,transparent_1px),linear-gradient(to_bottom,white_1px,transparent_1px)] [background-size:32px_32px]" />
     </div>

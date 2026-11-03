@@ -301,7 +301,7 @@ export function SdrAgentShowcase({ howItWorks = true }: { howItWorks?: boolean }
 
   return (
     <Shell
-      glow={<AgentGlow id="sdr_agent" large />}
+      glow={<AgentGlow id="sdr_agent" />}
       href={howItWorks ? "/agents/ai-sdr-agent" : undefined}
       title="SDR AI Agent"
       blurb="Fills your pipeline for you. Describe your ideal customer, and your agent finds them, checks they fit, writes to each one and lines up every follow-up."
@@ -526,7 +526,7 @@ export function ListeningAgentShowcase({ howItWorks = true }: { howItWorks?: boo
 
   return (
     <Shell
-      glow={<AgentGlow id="social_listening" large />}
+      glow={<AgentGlow id="social_listening" />}
       href={howItWorks ? "/agents/social-listening" : undefined}
       title="Social Listening"
       blurb="Turns online conversations into customers. Your agent finds people asking for what you sell, skips the noise, and drafts a helpful reply and DM for you to send."

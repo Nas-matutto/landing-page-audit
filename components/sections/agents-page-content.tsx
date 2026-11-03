@@ -1,7 +1,3 @@
-"use client"
-
-import { motion } from "framer-motion"
-import { useState, useEffect } from "react"
 import Link from "next/link"
 import Image from "next/image"
 import {
@@ -14,35 +10,7 @@ import { PREBUILT_AGENTS } from "@/lib/prebuilt-agents"
 import { SIGNUP_URL } from "@/lib/links"
 import { IntegrationMarquee } from "@/components/ui/integration-marquee"
 import { PrebuiltAgentCard } from "@/components/sections/prebuilt-agent-card"
-
-// ─── Rotating hero words: the pre-built agents ──────────────────────────────
-
-const ROTATING_WORDS = PREBUILT_AGENTS.map((a) => a.short)
-
-function RotatingWord({ className = "" }: { className?: string }) {
-  const [index, setIndex] = useState(0)
-
-  useEffect(() => {
-    const id = setTimeout(() => setIndex(i => (i + 1) % ROTATING_WORDS.length), 2200)
-    return () => clearTimeout(id)
-  }, [index])
-
-  return (
-    <span className={`relative inline-flex justify-center w-full overflow-hidden ${className}`} style={{ height: "1.15em" }}>
-      {ROTATING_WORDS.map((word, i) => (
-        <motion.span
-          key={word}
-          className="display absolute whitespace-nowrap"
-          initial={{ opacity: 0, y: 60 }}
-          animate={index === i ? { opacity: 1, y: 0 } : { opacity: 0, y: index > i ? -60 : 60 }}
-          transition={{ type: "spring", stiffness: 80, damping: 18 }}
-        >
-          {word}
-        </motion.span>
-      ))}
-    </span>
-  )
-}
+import { AgentsRotatingWord } from "@/components/sections/agents-rotating-word"
 
 // ─── Custom agents we've built ──────────────────────────────────────────────
 
@@ -89,15 +57,10 @@ export function AgentsPageContent() {
       {/* ── Hero ── */}
       <section className="relative overflow-hidden bg-white pb-20 pt-36 sm:pt-44 lg:pb-24 lg:pt-40">
         <div className="relative z-10 mx-auto grid max-w-6xl items-center gap-12 px-4 sm:px-6 lg:grid-cols-[minmax(0,1fr)_auto] lg:gap-10 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center lg:text-left"
-          >
+          <div className="rise-in text-center lg:text-left">
             <h1 className="display text-[clamp(2.5rem,6.5vw,4.5rem)]">AI agents built for</h1>
             <div className="mb-8 mt-1 text-[clamp(2.5rem,6.5vw,4.5rem)]">
-              <RotatingWord className="lg:justify-start" />
+              <AgentsRotatingWord className="lg:justify-start" />
             </div>
 
             <p className="lede mx-auto mb-10 max-w-2xl text-lg lg:mx-0 lg:max-w-xl">
@@ -123,23 +86,15 @@ export function AgentsPageContent() {
               </Link>
             </div>
             <p className="mt-5 text-[13px] text-faint">Every agent free to try · 50 actions a month · No card required</p>
-          </motion.div>
+          </div>
 
           {/* Brand ambassador — waves hello beside the headline; stacks under the CTAs on mobile */}
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.15 }}
-            className="relative mx-auto w-[180px] sm:w-[210px] lg:w-[250px] xl:w-[270px]"
-          >
+          <div className="rise-in relative mx-auto w-[180px] sm:w-[210px] lg:w-[250px] xl:w-[270px]" style={{ animationDelay: "0.15s" }}>
             <div
               aria-hidden
               className="absolute -bottom-2 left-1/2 h-5 w-[78%] -translate-x-1/2 rounded-[50%] bg-ink/10 blur-md"
             />
-            <motion.div
-              animate={{ y: [0, -8, 0] }}
-              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-            >
+            <div className="float-y">
               <Image
                 src="/agent_ambassador_v3.webp"
                 alt="Talk to me Data's AI agent ambassador waving hello"
@@ -149,8 +104,8 @@ export function AgentsPageContent() {
                 className="relative h-auto w-full select-none"
                 draggable={false}
               />
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -158,13 +113,7 @@ export function AgentsPageContent() {
       <section id="explore" className="py-24 sm:py-32 bg-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-6xl mx-auto">
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-              className="text-center mb-14"
-            >
+            <div className="reveal text-center mb-14">
               <p className="eyebrow mb-5">Pre-built agents</p>
               <h2 className="display mb-4 text-[clamp(1.75rem,4vw,2.75rem)]">
                 Five agents, ready to work today
@@ -173,28 +122,17 @@ export function AgentsPageContent() {
                 Every one is included on every plan, the free one too. Pick an agent, connect your account and it gets
                 to work.
               </p>
-            </motion.div>
+            </div>
 
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              {PREBUILT_AGENTS.map((agent, i) => (
-                <motion.div
-                  key={agent.id}
-                  initial={{ opacity: 0, y: 16 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.45, delay: (i % 3) * 0.06 }}
-                >
+              {PREBUILT_AGENTS.map((agent) => (
+                <div key={agent.id} className="reveal">
                   <PrebuiltAgentCard agent={agent} />
-                </motion.div>
+                </div>
               ))}
 
               {/* Custom agent: the light card beside the five dark ones */}
-              <motion.div
-                initial={{ opacity: 0, y: 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.45, delay: 0.12 }}
-              >
+              <div className="reveal">
                 <Link
                   href="/book-demo"
                   className="group relative flex h-full flex-col overflow-hidden rounded-3xl border border-hairline bg-mist p-6 transition-all duration-300 hover:-translate-y-1 hover:border-ink"
@@ -220,17 +158,11 @@ export function AgentsPageContent() {
                     <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
                   </span>
                 </Link>
-              </motion.div>
+              </div>
             </div>
 
             {/* Custom agents we've already built: proof the custom route delivers */}
-            <motion.div
-              initial={{ opacity: 0, y: 12 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-              className="mt-16"
-            >
+            <div className="reveal mt-16">
               <p className="eyebrow mb-5 text-center">Custom agents we&apos;ve built</p>
               <div className="grid grid-cols-1 gap-px overflow-hidden rounded-3xl border border-hairline bg-hairline sm:grid-cols-2 lg:grid-cols-4">
                 {CUSTOM_BUILDS.map(({ title, result, href, Icon }) => (
@@ -246,7 +178,7 @@ export function AgentsPageContent() {
                   </Link>
                 ))}
               </div>
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>
@@ -258,13 +190,7 @@ export function AgentsPageContent() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
 
               {/* Left: heading + the two paths */}
-              <motion.div
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5 }}
-                className="lg:sticky lg:top-32"
-              >
+              <div className="reveal lg:sticky lg:top-32">
                 <p className="eyebrow mb-5">How it works</p>
                 <h2 className="display mb-6 text-[clamp(2rem,4.5vw,3.25rem)]">
                   Pick an agent, or get one built for you
@@ -302,26 +228,19 @@ export function AgentsPageContent() {
                     </div>
                   ))}
                 </div>
-              </motion.div>
+              </div>
 
               {/* Right: what we handle grid */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <p className="eyebrow col-span-full mb-2">Taken care of for you</p>
                 {WE_HANDLE.map((item, i) => (
-                  <motion.div
-                    key={i}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.4, delay: i * 0.06 }}
-                    className="rounded-3xl border border-hairline bg-white p-5 transition-colors hover:border-ink"
-                  >
+                  <div key={i} className="reveal rounded-3xl border border-hairline bg-white p-5 transition-colors hover:border-ink">
                     <div className="mb-3 flex h-9 w-9 items-center justify-center rounded-full border border-hairline">
                       <item.icon className="h-4 w-4 text-ink" />
                     </div>
                     <h3 className="mb-1.5 text-sm font-semibold text-ink">{item.title}</h3>
                     <p className="text-xs leading-relaxed text-quiet">{item.body}</p>
-                  </motion.div>
+                  </div>
                 ))}
               </div>
 
@@ -333,12 +252,7 @@ export function AgentsPageContent() {
       {/* ── Integrations ── */}
       <section className="overflow-hidden bg-white py-24">
         <div className="mx-auto mb-12 max-w-4xl px-6 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-          >
+          <div className="reveal">
             <p className="eyebrow mb-5">Integrations</p>
             <h2 className="display mb-4 text-[clamp(1.75rem,4vw,2.75rem)]">
               Works with your existing tools
@@ -347,7 +261,7 @@ export function AgentsPageContent() {
               Your agents get results inside the platforms you already use. No migrations, no new logins: connect in a
               few clicks, or we wire it up for you.
             </p>
-          </motion.div>
+          </div>
         </div>
 
         <IntegrationMarquee />
@@ -356,12 +270,7 @@ export function AgentsPageContent() {
       {/* ── Bottom CTA ── */}
       <section className="border-t border-hairline bg-mist py-24 sm:py-32">
         <div className="container relative mx-auto px-4 text-center sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-          >
+          <div className="reveal">
             <h2 className="display text-[clamp(2rem,4.5vw,3.25rem)]">
               Put your first agent to work today
             </h2>
@@ -388,7 +297,7 @@ export function AgentsPageContent() {
               </Link>
             </div>
             <p className="mt-6 text-[13px] text-faint">Free forever plan · No card required · Cancel any time</p>
-          </motion.div>
+          </div>
         </div>
       </section>
     </>

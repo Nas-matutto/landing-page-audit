@@ -100,7 +100,7 @@ export function BeforeAfter() {
             </ul>
           </Reveal>
 
-          <Reveal delay={0.1} className="relative flex flex-col overflow-hidden rounded-3xl bg-sdr p-7 sm:p-8">
+          <Reveal className="relative flex flex-col overflow-hidden rounded-3xl bg-sdr p-7 sm:p-8">
             <div aria-hidden className="pointer-events-none absolute -right-16 -top-20 h-64 w-64 rounded-full bg-white/15 blur-3xl" />
             <div className="relative mb-2 flex items-center gap-2.5">
               <div className="flex h-8 w-8 items-center justify-center rounded-full border border-white/30 text-white">
@@ -138,7 +138,7 @@ export function SdrTryIt() {
             Pick a sample business and open any lead to read the email your agent wrote for them.
           </p>
         </Reveal>
-        <Reveal delay={0.1}>
+        <Reveal>
           <SdrAgentShowcase howItWorks={false} />
         </Reveal>
       </div>
@@ -176,7 +176,7 @@ export function SdrHowItWorks() {
         </Reveal>
         <div className="grid gap-5 md:grid-cols-3">
           {STEPS.map((s, i) => (
-            <Reveal key={s.n} delay={i * 0.08} className="rounded-3xl border border-hairline bg-white p-7 transition-colors hover:border-sdr sm:p-8">
+            <Reveal key={s.n} className="rounded-3xl border border-hairline bg-white p-7 transition-colors hover:border-sdr sm:p-8">
               <span className="font-mono text-lg font-medium text-sdr">{s.n}</span>
               <h3 className="mt-6 text-xl font-semibold tracking-[-0.01em] text-ink">{s.title}</h3>
               <p className="mt-3 text-sm leading-relaxed text-quiet">{s.body}</p>

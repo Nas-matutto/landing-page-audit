@@ -1,6 +1,5 @@
 "use client"
 
-import { motion } from "framer-motion"
 import { ArrowRight } from "lucide-react"
 import Link from "next/link"
 import { SIGNUP_URL } from "@/lib/links"
@@ -16,12 +15,7 @@ export function FinalCTASection() {
     <section className="bg-white py-24 sm:py-32">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-3xl text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
+          <div className="reveal">
             <h2 className="display text-[clamp(2.25rem,5.5vw,4rem)]">
               Put your first agent to work today
             </h2>
@@ -61,7 +55,7 @@ export function FinalCTASection() {
                 </div>
               ))}
             </div>
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>

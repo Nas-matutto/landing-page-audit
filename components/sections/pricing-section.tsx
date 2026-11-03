@@ -1,6 +1,5 @@
 "use client"
 
-import { motion } from "framer-motion"
 import { Check, ArrowRight, MessageCircle } from "lucide-react"
 import { useRouter } from "next/navigation"
 
@@ -62,19 +61,12 @@ export function PricingSection() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto">
-            {plans.map((plan, i) => (
-              <motion.div
-                key={plan.name}
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: i * 0.1 }}
-                className={`relative rounded-2xl p-7 flex flex-col ${
+            {plans.map((plan) => (
+              <div key={plan.name} className={`reveal relative rounded-2xl p-7 flex flex-col ${
                   plan.gradient
                     ? "bg-linear-to-br from-primary to-violet-600 text-white shadow-2xl shadow-primary/30 ring-1 ring-primary/20"
                     : "bg-white border-2 border-slate-200 shadow-sm hover:border-primary/40 transition-colors"
-                }`}
-              >
+                }`}>
                 {plan.gradient && (
                   <div className="absolute inset-0 rounded-2xl overflow-hidden pointer-events-none">
                     <div className="absolute -top-12 -right-12 w-40 h-40 bg-white/8 rounded-full blur-2xl" />
@@ -138,7 +130,7 @@ export function PricingSection() {
                     <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
                   </span>
                 </button>
-              </motion.div>
+              </div>
             ))}
           </div>
 

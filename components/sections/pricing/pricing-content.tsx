@@ -74,7 +74,7 @@ export function PricingContent() {
       <section className="bg-white px-4 pb-16 sm:px-6 lg:px-8">
         <div className="mx-auto grid max-w-6xl gap-4 md:grid-cols-3">
           {PROMISES.map(({ Icon, title, body }, i) => (
-            <Reveal key={title} delay={i * 0.05} className="h-full">
+            <Reveal key={title} className="h-full">
               <div className="h-full rounded-3xl border border-hairline bg-mist p-6">
                 <span className="flex h-10 w-10 items-center justify-center rounded-full bg-ink text-white">
                   <Icon className="h-5 w-5" />
@@ -94,7 +94,7 @@ export function PricingContent() {
             {PLANS.map((plan, i) => {
               const { points, missing } = planPoints(plan)
               return (
-                <Reveal key={plan.id} delay={i * 0.05} className="h-full">
+                <Reveal key={plan.id} className="h-full">
                   <div
                     className={cn(
                       "relative flex h-full flex-col rounded-3xl border bg-white p-6",
@@ -208,7 +208,7 @@ export function PricingContent() {
               const agent = ACTION_CATALOG[key]
               const face = FACES[key]
               return (
-                <Reveal key={key} delay={(i % 3) * 0.05} className="h-full">
+                <Reveal key={key} className="h-full">
                   <div className="h-full rounded-3xl border border-hairline bg-white p-6">
                     <div className="flex items-center gap-3">
                       {face ? (
@@ -258,7 +258,7 @@ export function PricingContent() {
           {/* The rules */}
           <div className="mt-16 grid gap-4 sm:grid-cols-2">
             {ACTION_FACTS.map((f, i) => (
-              <Reveal key={f.title} delay={(i % 2) * 0.05} className="h-full">
+              <Reveal key={f.title} className="h-full">
                 <div className="h-full rounded-3xl border border-hairline bg-white p-7">
                   <p className="text-base font-semibold text-ink">{f.title}</p>
                   <p className="mt-2 text-[15px] leading-relaxed text-quiet">{f.body}</p>

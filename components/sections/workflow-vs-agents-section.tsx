@@ -1,7 +1,6 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { motion } from "framer-motion"
 import Link from "next/link"
 import {
   X, Check, AlertTriangle, Wrench, Sparkles, ArrowRight, Play, RotateCcw, Zap, Loader2, MousePointer2, CornerDownRight,
@@ -163,13 +162,7 @@ export function WorkflowVsAgentsSection() {
 
           <div className="grid grid-cols-1 items-stretch gap-5 lg:grid-cols-2 lg:gap-6">
             {/* ── The workflow-builder way ── */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-              className="flex flex-col rounded-3xl border border-hairline bg-white p-6 sm:p-8"
-            >
+            <div className="reveal flex flex-col rounded-3xl border border-hairline bg-white p-6 sm:p-8">
               <div className="mb-2 flex items-center gap-2.5">
                 <div className="flex h-8 w-8 items-center justify-center rounded-full border border-hairline text-quiet">
                   <Wrench className="h-4 w-4" />
@@ -252,16 +245,10 @@ export function WorkflowVsAgentsSection() {
                   </li>
                 ))}
               </ul>
-            </motion.div>
+            </div>
 
             {/* ── The AI agent way ── */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              className="relative flex flex-col overflow-hidden rounded-3xl bg-ink p-6 sm:p-8"
-            >
+            <div className="reveal relative flex flex-col overflow-hidden rounded-3xl bg-ink p-6 sm:p-8">
               <span className="absolute right-5 top-6 inline-flex items-center gap-1.5 rounded-full border border-white/20 px-2.5 py-1 text-[11px] font-semibold text-white sm:right-6 sm:top-8">
                 <Check className="h-3 w-3" />
                 The TTMD way
@@ -342,17 +329,11 @@ export function WorkflowVsAgentsSection() {
                   </li>
                 ))}
               </ul>
-            </motion.div>
+            </div>
           </div>
 
           {/* CTA */}
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.15 }}
-            className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row"
-          >
+          <div className="reveal mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
             <Link
               href="/get-started"
               className="group relative inline-flex items-center gap-2 overflow-hidden rounded-full bg-ink px-5 py-3 text-[15px] font-semibold tracking-[0.2px] text-white transition-opacity hover:opacity-85"
@@ -363,7 +344,7 @@ export function WorkflowVsAgentsSection() {
               </span>
             </Link>
             <p className="text-sm text-faint">No nodes to wire · Live in 24 hours</p>
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>
