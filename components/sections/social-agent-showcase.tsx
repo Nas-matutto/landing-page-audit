@@ -10,6 +10,7 @@ import { Bricolage_Grotesque } from "next/font/google"
 import { Ambassador, type AmbassadorPose } from "@/components/ui/ambassador"
 import { SIGNUP_URL } from "@/lib/links"
 import { cn } from "@/lib/utils"
+import { AgentGlow } from "@/components/sections/prebuilt-agent-card"
 
 // ── Social Media Manager showcase ───────────────────────────────────────────
 // Mirrors the agent's look in the app: a dark panel lit by Instagram, TikTok
@@ -259,8 +260,8 @@ export function SocialAgentShowcase() {
 
   return (
     <MotionConfig reducedMotion="user">
-      <div className="group relative h-full overflow-hidden rounded-3xl bg-zinc-950 text-white shadow-xl">
-        <PlatformGlow />
+      <div className="group relative h-full overflow-hidden rounded-3xl bg-ink text-white shadow-xl">
+        <AgentGlow id="social_manager" large />
 
         <div className="relative grid h-full content-center gap-10 p-6 sm:p-8 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-12 lg:p-12">
           {/* Copy */}
@@ -462,20 +463,6 @@ export function SocialAgentShowcase() {
         </div>
       </div>
     </MotionConfig>
-  )
-}
-
-/** Instagram, TikTok and YouTube glows on a fine grid, as on the agent's card in the app. */
-function PlatformGlow() {
-  return (
-    <div aria-hidden className="pointer-events-none absolute inset-0">
-      <div className="absolute -left-20 -top-28 h-80 w-80 rounded-full bg-[#F58529]/30 blur-3xl" />
-      <div className="absolute -bottom-32 left-1/4 h-96 w-96 rounded-full bg-[#DD2A7B]/35 blur-3xl transition-opacity duration-500 group-hover:opacity-80" />
-      <div className="absolute left-1/2 top-1/3 h-72 w-72 rounded-full bg-[#8134AF]/35 blur-3xl" />
-      <div className="absolute -top-24 right-0 h-72 w-72 rounded-full bg-[#25F4EE]/20 blur-3xl" />
-      <div className="absolute -bottom-24 -right-16 h-80 w-80 rounded-full bg-[#FF0033]/30 blur-3xl" />
-      <div className="absolute inset-0 opacity-[0.07] [background-image:linear-gradient(to_right,white_1px,transparent_1px),linear-gradient(to_bottom,white_1px,transparent_1px)] [background-size:32px_32px]" />
-    </div>
   )
 }
 

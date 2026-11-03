@@ -1,6 +1,5 @@
 "use client"
 
-import { motion } from "framer-motion"
 import { Check } from "lucide-react"
 import { Ambassador } from "@/components/ui/ambassador"
 import { SIGNUP_URL } from "@/lib/links"
@@ -20,12 +19,7 @@ export function WebsiteAgentHero() {
   return (
     <section className="relative w-full overflow-hidden bg-white pb-20 pt-36 sm:pt-44 lg:pb-28 lg:pt-36">
       <div className="mx-auto grid w-full max-w-6xl items-center gap-14 px-6 lg:grid-cols-[minmax(0,5fr)_minmax(0,6fr)] lg:gap-10 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
-          className="text-center lg:text-left"
-        >
+        <div className="rise-in text-center lg:text-left">
           <p className="eyebrow mb-5">AI Website Manager</p>
           <h1 className="display text-[clamp(2.75rem,7.5vw,5rem)] lg:text-[clamp(3rem,4.4vw,4rem)]">
             An AI agent that changes your website while you watch
@@ -49,15 +43,10 @@ export function WebsiteAgentHero() {
               </li>
             ))}
           </ul>
-        </motion.div>
+        </div>
 
         {/* The live site, with the ambassador and the changes he finishes */}
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.15, ease: "easeOut" }}
-          className="relative mx-auto w-full max-w-xl pb-10 lg:max-w-none lg:pb-0"
-        >
+        <div className="rise-in relative mx-auto w-full max-w-xl pb-10 lg:max-w-none lg:pb-0" style={{ animationDelay: "0.15s" }}>
           <OverviewPanel />
 
           <Ambassador
@@ -69,12 +58,10 @@ export function WebsiteAgentHero() {
 
           <ul className="absolute -bottom-2 right-0 flex flex-col items-end gap-2 sm:bottom-6 sm:-right-4 lg:-right-6">
             {DONE.map((d) => (
-              <motion.li
+              <li
                 key={d.text}
-                initial={{ opacity: 0, x: 16, scale: 0.96 }}
-                animate={{ opacity: 1, x: 0, scale: 1 }}
-                transition={{ duration: 0.4, delay: d.delay, ease: "easeOut" }}
-                className="flex items-center gap-2.5 rounded-full border border-hairline bg-white py-1.5 pl-1.5 pr-4 shadow-lg shadow-black/5"
+                style={{ animationDelay: `${d.delay}s` }}
+                className="pop-in flex items-center gap-2.5 rounded-full border border-hairline bg-white py-1.5 pl-1.5 pr-4 shadow-lg shadow-black/5"
               >
                 <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-ink text-white">
                   <Check className="h-3.5 w-3.5" />
@@ -82,10 +69,10 @@ export function WebsiteAgentHero() {
                 <span className="text-xs font-semibold text-ink sm:text-[13px]">
                   {d.text} <span className="hidden font-normal text-quiet sm:inline">· {d.note}</span>
                 </span>
-              </motion.li>
+              </li>
             ))}
           </ul>
-        </motion.div>
+        </div>
       </div>
     </section>
   )

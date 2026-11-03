@@ -1,6 +1,6 @@
 import {
   Headphones, Globe, House, Receipt, Search,
-  Megaphone, Target, BarChart3, Mail,
+  Megaphone, Target, BarChart3, Mail, Ear,
 } from "lucide-react"
 
 // ─── Types ────────────────────────────────────────────────────────────────────
@@ -139,6 +139,19 @@ export const AGENTS: Agent[] = [
     metricValue: "Daily",
     metricLabel: "leads and emails",
   },
+  {
+    id: 10,
+    slug: "social-listening",
+    icon: Ear,
+    title: "Social listening",
+    tagline: "Customers found in the conversations they start",
+    description:
+      "Finds people asking for what you sell on Reddit, X, Threads, YouTube, LinkedIn, Facebook and Instagram, skips the noise and drafts a reply and DM for you to send.",
+    gradient: "linear-gradient(135deg, #0a0a0a 0%, #262626 55%, #737373 100%)",
+    stat: "Buyers found in conversations every day",
+    metricValue: "Daily",
+    metricLabel: "buyers to reply to",
+  },
 ]
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
@@ -153,6 +166,7 @@ const BUILT_SLUGS = new Set([
   "invoice-processing",
   "seo-geo",
   "ai-sdr-agent",
+  "social-listening",
 ])
 
 export function getAgentBySlug(slug: string): Agent | undefined {

@@ -11,6 +11,7 @@ import { Bricolage_Grotesque } from "next/font/google"
 import { Ambassador, type AmbassadorPose } from "@/components/ui/ambassador"
 import { SIGNUP_URL } from "@/lib/links"
 import { cn } from "@/lib/utils"
+import { AgentGlow } from "@/components/sections/prebuilt-agent-card"
 
 // ── SDR AI Agent and Social Listening showcases ─────────────────────────────
 // The fourth and fifth ready-made agents, in the same dark panel as the Social,
@@ -55,7 +56,7 @@ function Shell({
 }) {
   return (
     <MotionConfig reducedMotion="user">
-      <div className="group relative h-full overflow-hidden rounded-3xl bg-zinc-950 text-white shadow-xl">
+      <div className="group relative h-full overflow-hidden rounded-3xl bg-ink text-white shadow-xl">
         {glow}
 
         <div className="relative grid h-full content-center gap-10 p-6 sm:p-8 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-12 lg:p-12">
@@ -300,7 +301,7 @@ export function SdrAgentShowcase({ howItWorks = true }: { howItWorks?: boolean }
 
   return (
     <Shell
-      glow={<SdrGlow />}
+      glow={<AgentGlow id="sdr_agent" large />}
       href={howItWorks ? "/agents/ai-sdr-agent" : undefined}
       title="SDR AI Agent"
       blurb="Fills your pipeline for you. Describe your ideal customer, and your agent finds them, checks they fit, writes to each one and lines up every follow-up."
@@ -387,19 +388,6 @@ export function SdrAgentShowcase({ howItWorks = true }: { howItWorks?: boolean }
         </AnimatePresence>
       </Window>
     </Shell>
-  )
-}
-
-function SdrGlow() {
-  return (
-    <div aria-hidden className="pointer-events-none absolute inset-0">
-      <div className="absolute -left-20 -top-28 h-80 w-80 rounded-full bg-[#EF4444]/40 blur-3xl" />
-      <div className="absolute -bottom-32 left-1/4 h-96 w-96 rounded-full bg-[#F43F5E]/35 blur-3xl transition-opacity duration-500 group-hover:opacity-80" />
-      <div className="absolute left-1/2 top-1/3 h-72 w-72 rounded-full bg-[#FB923C]/25 blur-3xl" />
-      <div className="absolute -top-24 right-0 h-72 w-72 rounded-full bg-white/15 blur-3xl" />
-      <div className="absolute -bottom-24 -right-16 h-80 w-80 rounded-full bg-[#DC2626]/40 blur-3xl" />
-      <div className="absolute inset-0 opacity-[0.07] [background-image:linear-gradient(to_right,white_1px,transparent_1px),linear-gradient(to_bottom,white_1px,transparent_1px)] [background-size:32px_32px]" />
-    </div>
   )
 }
 
@@ -527,7 +515,8 @@ const BUSINESSES: Record<BizId, { label: string; brief: string; mentions: Mentio
 
 const BIZ_ORDER: BizId[] = ["bookkeeping", "skincare", "coaching"]
 
-export function ListeningAgentShowcase() {
+/** On the Social Listening page itself, `howItWorks={false}` drops the link back to that page. */
+export function ListeningAgentShowcase({ howItWorks = true }: { howItWorks?: boolean }) {
   const [biz, setBiz] = useState<BizId>("bookkeeping")
   const [picked, setPicked] = useState(0)
   // 0: nothing chosen yet, 1: a business chosen, 2: a conversation opened
@@ -537,7 +526,8 @@ export function ListeningAgentShowcase() {
 
   return (
     <Shell
-      glow={<ListeningGlow />}
+      glow={<AgentGlow id="social_listening" large />}
+      href={howItWorks ? "/agents/social-listening" : undefined}
       title="Social Listening"
       blurb="Turns online conversations into customers. Your agent finds people asking for what you sell, skips the noise, and drafts a helpful reply and DM for you to send."
       chips={[
@@ -638,15 +628,3 @@ export function ListeningAgentShowcase() {
   )
 }
 
-function ListeningGlow() {
-  return (
-    <div aria-hidden className="pointer-events-none absolute inset-0">
-      <div className="absolute -left-20 -top-28 h-80 w-80 rounded-full bg-[#14B8A6]/40 blur-3xl" />
-      <div className="absolute -bottom-32 left-1/4 h-96 w-96 rounded-full bg-[#0EA5E9]/35 blur-3xl transition-opacity duration-500 group-hover:opacity-80" />
-      <div className="absolute left-1/2 top-1/3 h-72 w-72 rounded-full bg-[#6366F1]/25 blur-3xl" />
-      <div className="absolute -top-24 right-0 h-72 w-72 rounded-full bg-white/15 blur-3xl" />
-      <div className="absolute -bottom-24 -right-16 h-80 w-80 rounded-full bg-[#0D9488]/40 blur-3xl" />
-      <div className="absolute inset-0 opacity-[0.07] [background-image:linear-gradient(to_right,white_1px,transparent_1px),linear-gradient(to_bottom,white_1px,transparent_1px)] [background-size:32px_32px]" />
-    </div>
-  )
-}

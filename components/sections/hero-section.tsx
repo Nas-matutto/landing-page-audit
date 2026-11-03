@@ -39,7 +39,7 @@ function RotatingOutcome() {
           key={o.text}
           aria-hidden={index !== i}
           className={`display col-start-1 row-start-1 whitespace-nowrap ${o.className ?? ""}`}
-          initial={{ opacity: 0, y: 60 }}
+          initial={false}
           animate={index === i ? { opacity: 1, y: 0 } : { opacity: 0, y: index > i ? -60 : 60 }}
           transition={{ type: "spring", stiffness: 80, damping: 18 }}
         >
@@ -54,12 +54,7 @@ export function HeroSection() {
   return (
     <section className="relative w-full overflow-hidden bg-white pt-36 sm:pt-44 lg:pt-36">
       <div className="relative mx-auto grid w-full max-w-6xl items-center gap-10 px-6 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)] lg:gap-8 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
-          className="text-center lg:text-left"
-        >
+        <div className="rise-in text-center lg:text-left">
           <h1 className="display text-[clamp(1.375rem,7.4vw,2.5rem)] sm:text-[clamp(2.5rem,7vw,4.5rem)] lg:text-[clamp(2.25rem,3.5vw,3rem)]">
             <span className="block whitespace-nowrap">Get an AI Agent that</span>
             <RotatingOutcome />
@@ -86,40 +81,31 @@ export function HeroSection() {
               Book Demo
             </Link>
           </div>
-        </motion.div>
+        </div>
 
         {/* Brand ambassador at work — the image is flattened onto pure white with feathered
             edges, so it sits on the section background without a visible frame. */}
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.15, ease: "easeOut" }}
-          className="mx-auto w-full max-w-105 sm:max-w-120 lg:max-w-none"
-        >
+        <div className="rise-in mx-auto w-full max-w-105 sm:max-w-120 lg:max-w-none" style={{ animationDelay: "0.15s" }}>
           <Image
             src="/hero_ambassador.webp"
             alt="Talk to me Data's AI agent ambassador working on a laptop, surrounded by dashboards for social media, analytics, projects and music"
             width={1024}
             height={1024}
             priority
+            sizes="(min-width: 1024px) 520px, (min-width: 640px) 480px, 420px"
             className="h-auto w-full select-none"
             draggable={false}
           />
-        </motion.div>
+        </div>
       </div>
 
       {/* Integration marks drift past below the fold-line, bled to the full page width. */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-        className="mt-6 pb-4 sm:mt-8"
-      >
+      <div className="rise-in mt-6 pb-4 sm:mt-8" style={{ animationDelay: "0.2s" }}>
         <p className="mb-6 text-center text-[13px] text-faint">
           Your AI Agents integrate seamlessly with any app you use
         </p>
         <IntegrationMarquee />
-      </motion.div>
+      </div>
     </section>
   )
 }

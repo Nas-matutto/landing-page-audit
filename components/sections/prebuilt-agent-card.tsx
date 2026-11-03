@@ -57,15 +57,33 @@ const GLOWS: Record<PrebuiltAgentId, [string, string, string, string, string]> =
   social_listening: ["#14B8A6", "#0EA5E9", "#6366F1", "#FFFFFF", "#0D9488"],
 }
 
-function Glow({ id }: { id: PrebuiltAgentId }) {
+/**
+ * The agent's glow. On the cards here it's sized in px; `large` lays the same
+ * blobs out in percentages of the panel (measured off a ~370×410 card), so the
+ * homepage's wide showcases are lit just as much as their card here.
+ */
+export function AgentGlow({ id, large = false }: { id: PrebuiltAgentId; large?: boolean }) {
   const [a, b, c, d, e] = GLOWS[id]
+  const blob = cn("absolute rounded-full", large ? "blur-[110px]" : "blur-3xl")
   return (
     <div aria-hidden className="pointer-events-none absolute inset-0">
-      <div className="absolute -left-20 -top-28 h-80 w-80 rounded-full opacity-35 blur-3xl" style={{ background: a }} />
-      <div className="absolute -bottom-32 left-1/4 h-96 w-96 rounded-full opacity-35 blur-3xl transition-opacity duration-500 group-hover:opacity-25" style={{ background: b }} />
-      <div className="absolute left-1/2 top-1/3 h-72 w-72 rounded-full opacity-25 blur-3xl" style={{ background: c }} />
-      <div className="absolute -top-24 right-0 h-72 w-72 rounded-full opacity-15 blur-3xl" style={{ background: d }} />
-      <div className="absolute -bottom-24 -right-16 h-80 w-80 rounded-full opacity-35 blur-3xl" style={{ background: e }} />
+      {large ? (
+        <>
+          <div className={cn(blob, "-left-[21%] -top-[27%] h-[78%] w-[86%] opacity-35")} style={{ background: a }} />
+          <div className={cn(blob, "-bottom-[31%] left-1/4 h-[94%] w-[103%] opacity-35 transition-opacity duration-500 group-hover:opacity-25")} style={{ background: b }} />
+          <div className={cn(blob, "left-1/2 top-1/3 h-[71%] w-[77%] opacity-25")} style={{ background: c }} />
+          <div className={cn(blob, "-top-[24%] right-0 h-[71%] w-[77%] opacity-15")} style={{ background: d }} />
+          <div className={cn(blob, "-bottom-[24%] -right-[17%] h-[78%] w-[86%] opacity-35")} style={{ background: e }} />
+        </>
+      ) : (
+        <>
+          <div className={cn(blob, "-left-20 -top-28 h-80 w-80 opacity-35")} style={{ background: a }} />
+          <div className={cn(blob, "-bottom-32 left-1/4 h-96 w-96 opacity-35 transition-opacity duration-500 group-hover:opacity-25")} style={{ background: b }} />
+          <div className={cn(blob, "left-1/2 top-1/3 h-72 w-72 opacity-25")} style={{ background: c }} />
+          <div className={cn(blob, "-top-24 right-0 h-72 w-72 opacity-15")} style={{ background: d }} />
+          <div className={cn(blob, "-bottom-24 -right-16 h-80 w-80 opacity-35")} style={{ background: e }} />
+        </>
+      )}
       {/* Fine grid keeps the glow from reading as a flat gradient */}
       <div className="absolute inset-0 opacity-[0.07] [background-image:linear-gradient(to_right,white_1px,transparent_1px),linear-gradient(to_bottom,white_1px,transparent_1px)] [background-size:32px_32px]" />
     </div>
@@ -87,7 +105,7 @@ export function AgentFace({ src, size = 40, className }: { src: string; size?: n
 export function PrebuiltAgentCard({ agent }: { agent: PrebuiltAgent }) {
   return (
     <div className="group relative flex h-full flex-col overflow-hidden rounded-3xl bg-ink p-6 text-white shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-black/25">
-      <Glow id={agent.id} />
+      <AgentGlow id={agent.id} />
 
       <div className="relative flex items-center justify-between gap-2">
         <div className="flex items-center gap-1.5">

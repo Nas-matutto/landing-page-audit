@@ -80,6 +80,7 @@ export const PREBUILT_AGENTS: PrebuiltAgent[] = [
     title: "Social Listening",
     short: "Social Listening",
     face: "/faces/listening-ai-cap.jpg",
+    href: "/agents/social-listening",
     blurb: "Turns online conversations into customers. It finds people asking for what you sell and drafts your reply.",
     features: [
       "Reads Reddit, X, Threads, YouTube, LinkedIn, Facebook and Instagram",

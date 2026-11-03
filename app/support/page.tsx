@@ -35,6 +35,7 @@ const AGENTS = [
   { label: "Social media", href: "/agents/social-media" },
   { label: "SEO & GEO", href: "/agents/seo-geo" },
   { label: "AI SDR", href: "/agents/ai-sdr-agent" },
+  { label: "Social listening", href: "/agents/social-listening" },
   { label: "Lead finder", href: "/agents/lead-finder" },
   { label: "Real estate", href: "/agents/real-estate-agent" },
   { label: "Data entry & reporting", href: "/agents/data-entry-reporting" },

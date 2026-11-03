@@ -25,12 +25,7 @@ export function SeoAgentHero() {
   return (
     <section className="relative w-full overflow-hidden bg-white pb-20 pt-36 sm:pt-44 lg:pb-28 lg:pt-36">
       <div className="mx-auto grid w-full max-w-6xl items-center gap-14 px-6 lg:grid-cols-[minmax(0,6fr)_minmax(0,5fr)] lg:gap-12 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
-          className="text-center lg:text-left"
-        >
+        <div className="rise-in text-center lg:text-left">
           <p className="eyebrow mb-5 inline-flex items-center gap-2">
             <span className="h-2 w-2 rounded-full bg-seo" aria-hidden />
             AI SEO &amp; GEO Agent
@@ -59,15 +54,10 @@ export function SeoAgentHero() {
               </li>
             ))}
           </ul>
-        </motion.div>
+        </div>
 
         {/* The agent at work, lit green behind, with the week's results */}
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.15, ease: "easeOut" }}
-          className="relative mx-auto w-full max-w-[520px]"
-        >
+        <div className="rise-in relative mx-auto w-full max-w-[520px]" style={{ animationDelay: "0.15s" }}>
           <div aria-hidden className="pointer-events-none absolute inset-0">
             <div className="absolute -right-10 -top-10 h-56 w-56 rounded-full bg-seo/30 blur-3xl" />
             <div className="absolute -bottom-12 -left-12 h-64 w-64 rounded-full bg-seo/25 blur-3xl" />
@@ -92,12 +82,10 @@ export function SeoAgentHero() {
           {/* Under the clip on phones; on wider screens, in the empty top right he never fills */}
           <ul className="relative mt-5 flex flex-col items-center gap-2 sm:absolute sm:-right-8 sm:top-24 sm:mt-0 sm:items-end lg:-right-4 xl:-right-12">
             {DONE.map((d) => (
-              <motion.li
+              <li
                 key={d.text}
-                initial={{ opacity: 0, x: 16, scale: 0.96 }}
-                animate={{ opacity: 1, x: 0, scale: 1 }}
-                transition={{ duration: 0.4, delay: d.delay, ease: "easeOut" }}
-                className="flex items-center gap-2.5 rounded-full border border-hairline bg-white py-1.5 pl-1.5 pr-4 shadow-lg shadow-black/5"
+                style={{ animationDelay: `${d.delay}s` }}
+                className="pop-in flex items-center gap-2.5 rounded-full border border-hairline bg-white py-1.5 pl-1.5 pr-4 shadow-lg shadow-black/5"
               >
                 <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-seo text-white">
                   <Check className="h-3.5 w-3.5" />
@@ -105,10 +93,10 @@ export function SeoAgentHero() {
                 <span className="text-xs font-semibold text-ink sm:text-[13px]">
                   {d.text} <span className="font-normal text-quiet sm:hidden">· {d.note}</span>
                 </span>
-              </motion.li>
+              </li>
             ))}
           </ul>
-        </motion.div>
+        </div>
       </div>
     </section>
   )

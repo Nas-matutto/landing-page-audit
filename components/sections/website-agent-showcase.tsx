@@ -10,6 +10,7 @@ import { Bricolage_Grotesque } from "next/font/google"
 import { Ambassador, type AmbassadorPose } from "@/components/ui/ambassador"
 import { SIGNUP_URL } from "@/lib/links"
 import { cn } from "@/lib/utils"
+import { AgentGlow } from "@/components/sections/prebuilt-agent-card"
 
 // ── Website Manager showcase ────────────────────────────────────────────────
 // The third ready-made agent, in the same dark panel as its siblings, lit in
@@ -269,8 +270,8 @@ export function WebsiteAgentShowcase() {
 
   return (
     <MotionConfig reducedMotion="user">
-      <div className="group relative h-full overflow-hidden rounded-3xl bg-zinc-950 text-white shadow-xl">
-        <SiteGlow />
+      <div className="group relative h-full overflow-hidden rounded-3xl bg-ink text-white shadow-xl">
+        <AgentGlow id="website_manager" large />
 
         <div className="relative grid h-full content-center gap-10 p-6 sm:p-8 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-12 lg:p-12">
           {/* Copy */}
@@ -511,19 +512,6 @@ export function WebsiteAgentShowcase() {
         </div>
       </div>
     </MotionConfig>
-  )
-}
-
-/** Indigo and cyan glows on a fine grid, as on the agent's card in the app. */
-function SiteGlow() {
-  return (
-    <div aria-hidden className="pointer-events-none absolute inset-0">
-      <div className="absolute -left-20 -top-28 h-80 w-80 rounded-full bg-[#6366F1]/30 blur-3xl" />
-      <div className="absolute -bottom-32 left-1/4 h-96 w-96 rounded-full bg-[#06B6D4]/25 blur-3xl transition-opacity duration-500 group-hover:opacity-80" />
-      <div className="absolute -top-24 right-0 h-72 w-72 rounded-full bg-[#0EA5E9]/15 blur-3xl" />
-      <div className="absolute -bottom-24 -right-16 h-80 w-80 rounded-full bg-[#8B5CF6]/25 blur-3xl" />
-      <div className="absolute inset-0 opacity-[0.07] [background-image:linear-gradient(to_right,white_1px,transparent_1px),linear-gradient(to_bottom,white_1px,transparent_1px)] [background-size:32px_32px]" />
-    </div>
   )
 }
 

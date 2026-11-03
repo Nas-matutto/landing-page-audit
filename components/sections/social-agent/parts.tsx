@@ -9,13 +9,14 @@ import { cn } from "@/lib/utils"
 // Shared pieces for the /agents/social-media page. Screenshots are real captures
 // of the agent's dashboard (a sample account), in /public/social-agent.
 
+/** Fades in as it scrolls into view. It starts 120px early and runs short, so you never scroll into a blank section. */
 export function Reveal({ children, className, delay = 0 }: { children: React.ReactNode; className?: string; delay?: number }) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
+      initial={{ opacity: 0, y: 16 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-60px" }}
-      transition={{ duration: 0.55, delay, ease: "easeOut" }}
+      viewport={{ once: true, margin: "0px 0px 120px 0px" }}
+      transition={{ duration: 0.4, delay, ease: "easeOut" }}
       className={className}
     >
       {children}

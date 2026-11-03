@@ -11,6 +11,7 @@ import { Bricolage_Grotesque } from "next/font/google"
 import { Ambassador, type AmbassadorPose } from "@/components/ui/ambassador"
 import { SIGNUP_URL } from "@/lib/links"
 import { cn } from "@/lib/utils"
+import { AgentGlow } from "@/components/sections/prebuilt-agent-card"
 
 // ── SEO & GEO Agent showcase ────────────────────────────────────────────────
 // The sibling of the Social Media Manager showcase, mirrored left-to-right.
@@ -279,8 +280,8 @@ export function SeoAgentShowcase({ howItWorks = true }: { howItWorks?: boolean }
 
   return (
     <MotionConfig reducedMotion="user">
-      <div className="group relative h-full overflow-hidden rounded-3xl bg-zinc-950 text-white shadow-xl">
-        <SearchGlow />
+      <div className="group relative h-full overflow-hidden rounded-3xl bg-ink text-white shadow-xl">
+        <AgentGlow id="seo_manager" large />
 
         <div className="relative grid h-full content-center gap-10 p-6 sm:p-8 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] lg:gap-12 lg:p-12">
           {/* Copy — first on phones, on the right from lg up */}
@@ -482,20 +483,6 @@ export function SeoAgentShowcase({ howItWorks = true }: { howItWorks?: boolean }
         </div>
       </div>
     </MotionConfig>
-  )
-}
-
-/** Search orange and AI violet glows on a fine grid, matching the social showcase. */
-function SearchGlow() {
-  return (
-    <div aria-hidden className="pointer-events-none absolute inset-0">
-      <div className="absolute -right-20 -top-28 h-80 w-80 rounded-full bg-[#EA580C]/35 blur-3xl" />
-      <div className="absolute -bottom-32 right-1/4 h-96 w-96 rounded-full bg-[#9A3412]/40 blur-3xl transition-opacity duration-500 group-hover:opacity-80" />
-      <div className="absolute right-1/2 top-1/3 h-72 w-72 rounded-full bg-[#7C3AED]/30 blur-3xl" />
-      <div className="absolute -top-24 left-0 h-72 w-72 rounded-full bg-[#FDBA74]/20 blur-3xl" />
-      <div className="absolute -bottom-24 -left-16 h-80 w-80 rounded-full bg-[#4285F4]/20 blur-3xl" />
-      <div className="absolute inset-0 opacity-[0.07] [background-image:linear-gradient(to_right,white_1px,transparent_1px),linear-gradient(to_bottom,white_1px,transparent_1px)] [background-size:32px_32px]" />
-    </div>
   )
 }
 
