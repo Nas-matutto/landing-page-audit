@@ -27,7 +27,7 @@ export function SocialAgentHero() {
             AI Social Media Agent
           </p>
           <h1 className="display text-[clamp(2.75rem,7.5vw,5rem)] lg:text-[clamp(3rem,4.4vw,4rem)]">
-            An AI agent that <span className="text-social">runs your social media</span>
+            An AI agent that runs your <span className="text-social">social media</span>
           </h1>
           <p className="lede mx-auto mt-6 max-w-lg text-lg sm:text-xl lg:mx-0">
             Tell it what you want. It finds your winning posts, tracks your competitors, designs the content, and posts it for you.
@@ -43,7 +43,7 @@ export function SocialAgentHero() {
           <ul className="mt-10 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 lg:justify-start">
             {VERBS.map((verb) => (
               <li key={verb} className="flex items-center gap-2 text-sm font-medium text-ink">
-                <span className="flex h-5 w-5 items-center justify-center rounded-full bg-social text-white">
+                <span className="flex h-5 w-5 items-center justify-center rounded-full bg-ink text-white">
                   <Check className="h-3 w-3" />
                 </span>
                 It {verb.toLowerCase()}

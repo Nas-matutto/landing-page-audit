@@ -88,7 +88,7 @@ export function DoesNotSupport() {
               <div className="flex h-8 w-8 items-center justify-center rounded-full border border-white/20 text-white">
                 <Sparkles className="h-4 w-4" />
               </div>
-              <span className="eyebrow text-white/70">Your AI agent</span>
+              <span className="eyebrow text-white!">Your AI agent</span>
             </div>
             <h3 className="mb-6 text-xl font-semibold tracking-[-0.01em] text-white">Does it for you</h3>
             <ul className="mt-auto space-y-3.5 pr-24 sm:pr-32">
