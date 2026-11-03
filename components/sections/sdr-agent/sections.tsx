@@ -141,7 +141,6 @@ export function SdrTryIt() {
         <Reveal delay={0.1}>
           <SdrAgentShowcase howItWorks={false} />
         </Reveal>
-        <SdrGetStarted className="mt-12" />
       </div>
     </section>
   )

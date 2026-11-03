@@ -6,14 +6,14 @@ import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { FAQSection } from "@/components/sections/faq-section"
 import { SeoAgentHero } from "@/components/sections/seo-agent/hero"
-import { SeoAgentDemo } from "@/components/sections/seo-agent/agent-demo"
 import { SeoAgentFeatures } from "@/components/sections/seo-agent/features"
 import {
-  DoesNotSupport,
+  BeforeAfter,
   EngineStrip,
   SeoDemoVideo,
   SeoFinalCta,
   SeoHowItWorks,
+  SeoTryIt,
 } from "@/components/sections/seo-agent/sections"
 
 const BASE_URL = "https://talktomedata.com"
@@ -58,9 +58,9 @@ export const metadata: Metadata = {
 
 const FAQS = [
   {
-    question: "What does the AI SEO & GEO agent actually do?",
+    question: "What does the AI SEO & GEO agent get me?",
     answer:
-      "It reads your Google Search Console and works out which searches you can win. Then it writes pages built to rank on Google and get quoted by AI tools, publishes them to your site, and tracks how they do. You tell it what you want, and it does the work.",
+      "More people finding you on Google and in AI answers, without you writing a word. It reads your Google Search Console, finds the searches you can win, writes the pages that win them, publishes them to your site and keeps them ranking.",
   },
   {
     question: "What is GEO, and why does it matter?",
@@ -155,9 +155,9 @@ export default function SeoGeoPage() {
       <main>
         <SeoAgentHero />
         <EngineStrip />
-        <DoesNotSupport />
-        <SeoAgentDemo />
+        <BeforeAfter />
         <SeoAgentFeatures />
+        <SeoTryIt />
         <SeoHowItWorks />
         <SeoDemoVideo />
         <AgentGuidesSection agentHref="/agents/seo-geo" />

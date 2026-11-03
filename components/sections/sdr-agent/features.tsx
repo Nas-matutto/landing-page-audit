@@ -5,7 +5,6 @@ import { SiGmail } from "react-icons/si"
 import { cn } from "@/lib/utils"
 import { Reveal } from "@/components/sections/social-agent/parts"
 import { Frame } from "@/components/sections/seo-agent/mocks"
-import { SdrGetStarted } from "./sections"
 
 // One row per outcome the agent gets you. Copy leads with the result, then
 // says how the agent gets there. Panels use a sample business: a marketing
@@ -246,7 +245,7 @@ export function SdrAgentOutcomes() {
         return (
           <section key={o.label} className={cn("px-6 py-20 sm:py-28 lg:px-8", i % 2 === 0 ? "bg-white" : "border-y border-hairline bg-mist")}>
             <div className={cn("mx-auto grid max-w-7xl items-center gap-12 lg:gap-14", flip ? "lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)]" : "lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)]")}>
-              <Reveal className={cn(flip && "lg:order-2")}>
+              <Reveal className={cn("min-w-0", flip && "lg:order-2")}>
                 <p className="eyebrow mb-5">
                   <span className="text-sdr">{String(i + 1).padStart(2, "0")}</span> · {o.label}
                 </p>
@@ -268,8 +267,6 @@ export function SdrAgentOutcomes() {
                     You get: <span className="font-semibold">{o.result}</span>
                   </span>
                 </p>
-
-                <SdrGetStarted className="mt-6 justify-start" />
               </Reveal>
 
               <Reveal delay={0.1} className={cn("min-w-0", flip && "lg:order-1")}>

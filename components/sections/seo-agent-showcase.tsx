@@ -202,7 +202,8 @@ const DONE_LINES: Record<Intent, string> = {
 
 const POSE_FOR: Record<Phase, AmbassadorPose> = { idle: "wave", typing: "wave", working: "working", done: "thumbs-up" }
 
-export function SeoAgentShowcase() {
+/** On the SEO page itself, `howItWorks={false}` drops the link back to that page. */
+export function SeoAgentShowcase({ howItWorks = true }: { howItWorks?: boolean }) {
   const [siteId, setSiteId] = useState<SiteId>("saas")
   const [tab, setTab] = useState<TabId>("opportunities")
   const site = SITES[siteId]
@@ -344,12 +345,14 @@ export function SeoAgentShowcase() {
                 Start with your website
                 <ArrowRight className="h-4 w-4 transition-transform group-hover/cta:translate-x-0.5" />
               </a>
-              <Link
-                href="/agents/seo-geo"
-                className="inline-flex items-center gap-2 rounded-full px-4 py-3 text-[15px] font-semibold text-white/80 transition-colors hover:text-white"
-              >
-                See how it works
-              </Link>
+              {howItWorks && (
+                <Link
+                  href="/agents/seo-geo"
+                  className="inline-flex items-center gap-2 rounded-full px-4 py-3 text-[15px] font-semibold text-white/80 transition-colors hover:text-white"
+                >
+                  See how it works
+                </Link>
+              )}
             </div>
           </div>
 

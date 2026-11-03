@@ -29,6 +29,10 @@
   --sdr: #c8272a;
   --sdr-soft: #fdeeee;   /* tinted grounds and chips */
 
+  /* The SEO agent's dark green, from his hoodie. Only /agents/seo-geo. */
+  --seo: #24573a;
+  --seo-soft: #edf5f0;
+
   /* Aurora component color aliases */
   --white: #ffffff;
   --black: #000000;
@@ -140,6 +144,8 @@
   --color-hairline: var(--hairline);
   --color-sdr: var(--sdr);
   --color-sdr-soft: var(--sdr-soft);
+  --color-seo: var(--seo);
+  --color-seo-soft: var(--seo-soft);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);

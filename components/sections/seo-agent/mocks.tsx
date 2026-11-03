@@ -50,66 +50,6 @@ function Tag({ label }: { label: keyof typeof TAG_TONES }) {
   return <span className={cn("inline-flex shrink-0 rounded-full px-2 py-0.5 text-[10px] font-semibold ring-1 ring-inset", TAG_TONES[label])}>{label}</span>
 }
 
-// ── Overview (hero) ─────────────────────────────────────────────────────────
-
-const KPIS = [
-  { label: "Clicks", value: "4.2K", delta: "+18%" },
-  { label: "Impressions", value: "128K", delta: "+24%" },
-  { label: "Avg position", value: "8.3", delta: "↑ 2.1" },
-  { label: "AI citations", value: "37", delta: "+12" },
-]
-
-// Clicks per week over the last quarter, climbing as new pages go live.
-const TREND = [22, 24, 23, 27, 26, 31, 30, 35, 39, 38, 44, 49, 53]
-
-function TrendLine() {
-  const w = 320
-  const h = 70
-  const max = Math.max(...TREND)
-  const min = Math.min(...TREND)
-  const points = TREND.map((v, i) => `${(i / (TREND.length - 1)) * w},${h - 6 - ((v - min) / (max - min)) * (h - 12)}`).join(" ")
-  return (
-    <svg viewBox={`0 0 ${w} ${h}`} preserveAspectRatio="none" className="h-16 w-full" aria-hidden>
-      <polygon points={`0,${h} ${points} ${w},${h}`} className="fill-emerald-500/10" />
-      <polyline points={points} fill="none" strokeWidth="2" strokeLinejoin="round" strokeLinecap="round" className="stroke-emerald-600" vectorEffect="non-scaling-stroke" />
-    </svg>
-  )
-}
-
-export function OverviewPanel() {
-  return (
-    <Frame title={SITE.domain} meta="Google Search Console · last 3 months">
-      <div className="grid grid-cols-2 gap-px border-b border-hairline bg-hairline sm:grid-cols-4">
-        {KPIS.map((k) => (
-          <div key={k.label} className="bg-white px-4 py-3">
-            <p className="text-[11px] text-quiet">{k.label}</p>
-            <p className="mt-0.5 flex items-baseline gap-1.5">
-              <span className="text-lg font-semibold tabular-nums">{k.value}</span>
-              <Delta value={k.delta} />
-            </p>
-          </div>
-        ))}
-      </div>
-      <div className="border-b border-hairline px-4 pb-2 pt-4 sm:px-5">
-        <p className="mb-1 text-[11px] font-medium text-quiet">Clicks per week</p>
-        <TrendLine />
-      </div>
-      <div className="px-4 py-3 sm:px-5">
-        <p className="mb-2 text-[11px] font-medium text-quiet">Searches you can win next</p>
-        <ul className="space-y-2">
-          {OPPORTUNITIES.slice(0, 3).map((o) => (
-            <li key={o.query} className="flex items-center gap-3 text-[13px]">
-              <span className="min-w-0 flex-1 truncate font-medium">{o.query}</span>
-              <span className="hidden text-[11px] text-quiet sm:inline">{o.where}</span>
-              <Tag label={o.tag} />
-            </li>
-          ))}
-        </ul>
-      </div>
-    </Frame>
-  )
-}
-
 // ── Opportunities ───────────────────────────────────────────────────────────
 
 const OPPORTUNITIES: { query: string; where: string; tag: keyof typeof TAG_TONES; upside: string }[] = [

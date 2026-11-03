@@ -1,18 +1,13 @@
 "use client"
 
-import { useEffect, useState } from "react"
-import Image from "next/image"
 import { motion } from "framer-motion"
 import { Check } from "lucide-react"
 import { SIGNUP_URL } from "@/lib/links"
-import { cn } from "@/lib/utils"
+import { HeroVideo } from "@/components/ui/hero-video"
 import { GhostCta, PrimaryCta } from "@/components/sections/social-agent/parts"
 
 // The SDR agent in his red hoodie: waves, takes a call, sits down to work and
-// gives a thumbs up. The clip is a 720px, silent H.264 encode (about 360 KB)
-// of the 9.4 MB original. The first frame shows as an optimised still straight
-// away; the video only starts loading once the page has, so it never competes
-// with anything the page needs, and it's skipped for reduced motion and Save-Data.
+// gives a thumbs up (a 360 KB encode of the 9.4 MB original).
 
 const VIDEO = "/videos/sdr-agent-hero.mp4"
 const POSTER = "/videos/sdr-agent-hero-poster.jpg"
@@ -25,53 +20,6 @@ const DONE = [
   { text: "38 personal emails written", note: "in your voice", delay: 2.2 },
   { text: "4 replies waiting", note: "in your inbox", delay: 3.2 },
 ]
-
-function HeroVideo() {
-  const [src, setSrc] = useState<string | null>(null)
-  const [playing, setPlaying] = useState(false)
-
-  useEffect(() => {
-    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches
-    const saveData = (navigator as Navigator & { connection?: { saveData?: boolean } }).connection?.saveData
-    if (reduce || saveData) return
-
-    const start = () => setSrc(VIDEO)
-    if (document.readyState === "complete") {
-      const id = window.setTimeout(start, 150)
-      return () => window.clearTimeout(id)
-    }
-    window.addEventListener("load", start, { once: true })
-    return () => window.removeEventListener("load", start)
-  }, [])
-
-  return (
-    <div className="relative aspect-square w-full overflow-hidden rounded-[32px] bg-white">
-      <Image
-        src={POSTER}
-        alt="The Talk to me Data SDR agent, in a red hoodie and cap, waving hello"
-        width={720}
-        height={720}
-        sizes="(min-width: 1024px) 520px, 90vw"
-        priority
-        className="absolute inset-0 h-full w-full object-cover"
-      />
-      {src && (
-        // Plays once and holds on the thumbs up.
-        <video
-          src={src}
-          muted
-          autoPlay
-          playsInline
-          preload="auto"
-          aria-hidden
-          tabIndex={-1}
-          onPlaying={() => setPlaying(true)}
-          className={cn("absolute inset-0 h-full w-full object-cover transition-opacity duration-300", playing ? "opacity-100" : "opacity-0")}
-        />
-      )}
-    </div>
-  )
-}
 
 export function SdrAgentHero() {
   return (
@@ -126,7 +74,12 @@ export function SdrAgentHero() {
           </div>
 
           <div className="relative rounded-[40px] bg-sdr-soft p-2.5 shadow-2xl shadow-sdr/15 ring-1 ring-sdr/15">
-            <HeroVideo />
+            <HeroVideo
+              src={VIDEO}
+              poster={POSTER}
+              alt="The Talk to me Data SDR agent, in a red hoodie and cap, waving hello"
+              sizes="(min-width: 1024px) 520px, 90vw"
+            />
             <span className="absolute left-6 top-6 inline-flex items-center gap-2 rounded-full bg-white/90 px-3 py-1.5 text-[11px] font-semibold text-ink shadow-sm ring-1 ring-hairline backdrop-blur">
               <span className="relative flex h-2 w-2">
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-sdr opacity-60 motion-reduce:hidden" />
