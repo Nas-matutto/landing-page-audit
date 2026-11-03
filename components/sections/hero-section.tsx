@@ -1,10 +1,10 @@
 "use client"
 
 import Link from "next/link"
-import Image from "next/image"
 import { useEffect, useState } from "react"
 import { ArrowRight } from "lucide-react"
 import { motion } from "framer-motion"
+import { HeroVideo } from "@/components/ui/hero-video"
 import { IntegrationMarquee } from "@/components/ui/integration-marquee"
 import { SIGNUP_URL } from "@/lib/links"
 
@@ -50,6 +50,12 @@ function RotatingOutcome() {
   )
 }
 
+const FEATHER: React.CSSProperties = {
+  maskImage: "linear-gradient(to right, transparent, black 8%, black 92%, transparent), linear-gradient(to bottom, transparent, black 7%, black 86%, transparent)",
+  maskComposite: "intersect",
+  WebkitMaskComposite: "source-in",
+}
+
 export function HeroSection() {
   return (
     <section className="relative w-full overflow-hidden bg-white pt-36 sm:pt-44 lg:pt-36">
@@ -83,19 +89,20 @@ export function HeroSection() {
           </div>
         </div>
 
-        {/* Brand ambassador at work — the image is flattened onto pure white with feathered
-            edges, so it sits on the section background without a visible frame. */}
+        {/* The agent walks in, sits down with a coffee and gets to work (a 440 KB
+            encode of the 4.3 MB original, on pure white). The clip ends on a
+            close-up that runs off the frame (the cap's crown included), so all four
+            edges are feathered into the page, as the still before it was. */}
         <div className="rise-in mx-auto w-full max-w-105 sm:max-w-120 lg:max-w-none" style={{ animationDelay: "0.15s" }}>
-          <Image
-            src="/hero_ambassador.webp"
-            alt="Talk to me Data's AI agent ambassador working on a laptop, surrounded by dashboards for social media, analytics, projects and music"
-            width={1024}
-            height={1024}
-            priority
-            sizes="(min-width: 1024px) 520px, (min-width: 640px) 480px, 420px"
-            className="h-auto w-full select-none"
-            draggable={false}
-          />
+          <div style={FEATHER}>
+            <HeroVideo
+              src="/videos/home-agent-hero.mp4"
+              poster="/videos/home-agent-hero-poster.jpg"
+              alt="Talk to me Data's AI agent walking in to start work at his laptop"
+              sizes="(min-width: 1024px) 520px, (min-width: 640px) 480px, 420px"
+              className="rounded-none"
+            />
+          </div>
         </div>
       </div>
 

@@ -1,11 +1,14 @@
 "use client"
 
 import { Check } from "lucide-react"
-import { Ambassador } from "@/components/ui/ambassador"
 import { SIGNUP_URL } from "@/lib/links"
-import { GhostCta, PrimaryCta, Screenshot } from "./parts"
+import { HeroVideo } from "@/components/ui/hero-video"
+import { GhostCta, PrimaryCta } from "./parts"
 
 const VERBS = ["Finds", "Tracks", "Creates", "Posts"]
+
+// The agent in his black hoodie: waves, takes a call, sits down to work and
+// gives a thumbs up (a 340 KB encode of the 3.8 MB original).
 
 // The agent "working" as the page loads: each finished job lands in turn.
 const DONE = [
@@ -17,7 +20,7 @@ const DONE = [
 export function SocialAgentHero() {
   return (
     <section className="relative w-full overflow-hidden bg-white pb-20 pt-36 sm:pt-44 lg:pb-28 lg:pt-36">
-      <div className="mx-auto grid w-full max-w-6xl items-center gap-14 px-6 lg:grid-cols-[minmax(0,5fr)_minmax(0,6fr)] lg:gap-10 lg:px-8">
+      <div className="mx-auto grid w-full max-w-6xl items-center gap-14 px-6 lg:grid-cols-[minmax(0,6fr)_minmax(0,5fr)] lg:gap-12 lg:px-8">
         <div className="rise-in text-center lg:text-left">
           <p className="eyebrow mb-5">AI Social Media Agent</p>
           <h1 className="display text-[clamp(2.75rem,7.5vw,5rem)] lg:text-[clamp(3rem,4.4vw,4rem)]">
@@ -44,25 +47,31 @@ export function SocialAgentHero() {
           </ul>
         </div>
 
-        {/* The real dashboard, with the ambassador and the jobs he finishes */}
-        <div className="rise-in relative mx-auto w-full max-w-xl pb-10 lg:max-w-none lg:pb-0" style={{ animationDelay: "0.15s" }}>
-          <Screenshot
-            name="dashboard-overview"
-            width={1800}
-            height={1215}
-            alt="The Social Media Agent's dashboard: every channel at a glance, key metrics, and every post measured against your median"
-            sizes="(min-width: 1024px) 620px, 100vw"
-            priority
-          />
+        {/* The agent at work, with the jobs he finishes */}
+        <div className="rise-in relative mx-auto w-full max-w-[520px]" style={{ animationDelay: "0.15s" }}>
+          <div aria-hidden className="pointer-events-none absolute inset-0">
+            <div className="absolute -right-10 -top-10 h-56 w-56 rounded-full bg-ink/10 blur-3xl" />
+            <div className="absolute -bottom-12 -left-12 h-64 w-64 rounded-full bg-ink/10 blur-3xl" />
+          </div>
 
-          <Ambassador
-            pose="wave"
-            sizes="180px"
-            className="pointer-events-none absolute -bottom-6 -left-3 h-[250px] w-[124px] drop-shadow-xl sm:-left-8 sm:h-[330px] sm:w-[164px] lg:-left-14 lg:-bottom-10"
-            priority
-          />
+          <div className="relative rounded-[40px] bg-mist p-2.5 shadow-2xl shadow-black/10 ring-1 ring-hairline">
+            <HeroVideo
+              src="/videos/social-agent-hero.mp4"
+              poster="/videos/social-agent-hero-poster.jpg"
+              alt="The Talk to me Data social media agent, in a black hoodie and cap, waving hello"
+              sizes="(min-width: 1024px) 520px, 90vw"
+            />
+            <span className="absolute left-6 top-6 inline-flex items-center gap-2 rounded-full bg-white/90 px-3 py-1.5 text-[11px] font-semibold text-ink shadow-sm ring-1 ring-hairline backdrop-blur">
+              <span className="relative flex h-2 w-2">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-ink opacity-50 motion-reduce:hidden" />
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-ink" />
+              </span>
+              Running your socials
+            </span>
+          </div>
 
-          <ul className="absolute -bottom-2 right-0 flex flex-col items-end gap-2 sm:bottom-6 sm:-right-4 lg:-right-6">
+          {/* Under the clip on phones; on wider screens, in the empty top right he never sits in */}
+          <ul className="relative mt-5 flex flex-col items-center gap-2 sm:absolute sm:-right-8 sm:top-24 sm:mt-0 sm:items-end lg:-right-4 xl:-right-12">
             {DONE.map((d) => (
               <li
                 key={d.text}
@@ -73,7 +82,7 @@ export function SocialAgentHero() {
                   <Check className="h-3.5 w-3.5" />
                 </span>
                 <span className="text-xs font-semibold text-ink sm:text-[13px]">
-                  {d.text} <span className="hidden font-normal text-quiet sm:inline">· {d.note}</span>
+                  {d.text} <span className="font-normal text-quiet sm:hidden">· {d.note}</span>
                 </span>
               </li>
             ))}
