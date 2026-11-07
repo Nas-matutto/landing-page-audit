@@ -5,6 +5,7 @@ import { isLikelyBot } from '@/lib/bot-filter'
 import { AccountNotFoundError, fetchAccount, normalizeHandle } from '@/lib/instagram-snapshot/instagram'
 import { buildSnapshot } from '@/lib/instagram-snapshot/snapshot'
 import { snapshotEmailHtml } from '@/lib/instagram-snapshot/email'
+import { EMAIL_FROM, REPLY_TO } from '@/lib/email-from'
 
 // The free Instagram Snapshot (/free-tools/social-media-analyzer).
 //
@@ -163,7 +164,8 @@ export async function POST(request: NextRequest) {
           return
         }
         const { error } = await new Resend(resendKey).emails.send({
-          from: 'Nas <nas@talktomedata.com>',
+          from: EMAIL_FROM,
+          replyTo: REPLY_TO,
           to: [email],
           subject: `Your Instagram snapshot for @${account.profile.handle}`,
           html: snapshotEmailHtml({ handle: account.profile.handle, firstName, snapshot }),

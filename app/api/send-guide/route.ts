@@ -4,6 +4,8 @@ import fs from 'fs'
 import path from 'path'
 import { appendLeadRow, buildLeadRow } from '@/lib/leads-sheet'
 import { isLikelyBot } from '@/lib/bot-filter'
+import { EMAIL_FROM, REPLY_TO } from '@/lib/email-from'
+import { guideEmail } from '@/lib/email-layout'
 
 export async function POST(request: NextRequest) {
   try {
@@ -60,45 +62,28 @@ export async function POST(request: NextRequest) {
       console.warn('RESEND_API_KEY is not set — skipping email send')
     } else {
       const resend = new Resend(resendKey)
-      const fromEmail = 'Nas <nas@talktomedata.com>'
+      const fromEmail = EMAIL_FROM
 
       const pdfPath = path.join(process.cwd(), 'public', 'guides', 'automate-by-friday-checklist.pdf')
       const pdfBuffer = fs.readFileSync(pdfPath)
 
       const { error } = await resend.emails.send({
         from: fromEmail,
+        replyTo: REPLY_TO,
         to: [email],
         subject: 'Your Business Automation Checklist is here',
-        html: `
-          <div style="font-family: sans-serif; max-width: 560px; margin: 0 auto; color: #1e293b;">
-            <p style="font-size: 16px; margin-bottom: 16px;">Hey,</p>
-            <p style="font-size: 16px; margin-bottom: 16px;">
-              Thanks for grabbing the <strong>Automate by Friday Checklist</strong>!
-            </p>
-            <p style="font-size: 16px; margin-bottom: 16px;">
-              I've attached the PDF to this email. Inside you'll find 18 everyday tasks most small businesses
-              still do by hand, across sales, support, scheduling, admin and marketing. Tick the ones your team
-              still does manually and you'll see exactly where your week is going.
-            </p>
-            <p style="font-size: 16px; margin-bottom: 8px;">A few things to get the most out of it:</p>
-            <ul style="font-size: 15px; padding-left: 20px; margin-bottom: 24px; line-height: 1.8;">
-              <li>Don't overthink it. If a task is even partly manual, tick it</li>
-              <li>Add up your ticks and read your result on the last checklist page</li>
-              <li>Start with the area where you ticked the most. That's where an agent saves the most time</li>
-            </ul>
-            <p style="font-size: 16px; margin-bottom: 24px;">
-              If you get stuck or want help setting something up, just reply to this email. I read every one.
-            </p>
-            <p style="font-size: 16px;">
-              Nas
-            </p>
-            <hr style="border: none; border-top: 1px solid #e2e8f0; margin: 32px 0;" />
-            <p style="font-size: 13px; color: #94a3b8;">
-              You're receiving this because you downloaded a free guide from
-              <a href="https://talktomedata.com" style="color: #185FA5;">talktomedata.com</a>.
-            </p>
-          </div>
-        `,
+        html: guideEmail({
+          firstName,
+          title: "Automate by Friday Checklist",
+          what: "it's attached as a PDF: 18 everyday tasks most small businesses still do by hand, across sales, support, scheduling, admin and marketing.",
+          steps: [
+            "Tick every task that's even partly manual. Don't overthink it.",
+            "Add up your ticks and read your result on the last page.",
+            "Start where you ticked the most. That's where an agent saves the most time.",
+          ],
+          reply: "Stuck, or want help setting something up? Just reply. I read every one.",
+          source: "guide_automation_checklist",
+        }),
         attachments: [
           {
             filename: 'automate-by-friday-checklist.pdf',

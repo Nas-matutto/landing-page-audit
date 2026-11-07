@@ -4,6 +4,8 @@ import fs from 'fs'
 import path from 'path'
 import { appendLeadRow, buildLeadRow } from '@/lib/leads-sheet'
 import { isLikelyBot } from '@/lib/bot-filter'
+import { EMAIL_FROM, REPLY_TO } from '@/lib/email-from'
+import { guideEmail } from '@/lib/email-layout'
 
 export async function POST(request: NextRequest) {
   try {
@@ -65,39 +67,22 @@ export async function POST(request: NextRequest) {
       const pdfBuffer = fs.readFileSync(pdfPath)
 
       const { error } = await resend.emails.send({
-        from: 'Nas <nas@talktomedata.com>',
+        from: EMAIL_FROM,
+        replyTo: REPLY_TO,
         to: [email],
         subject: 'Your AI Agent Readiness Audit is here',
-        html: `
-          <div style="font-family: sans-serif; max-width: 560px; margin: 0 auto; color: #1e293b;">
-            <p style="font-size: 16px; margin-bottom: 16px;">Hey,</p>
-            <p style="font-size: 16px; margin-bottom: 16px;">
-              Thanks for grabbing the <strong>AI Agent Readiness Audit</strong>!
-            </p>
-            <p style="font-size: 16px; margin-bottom: 16px;">
-              I've attached the PDF to this email. It's 20 questions across five parts of your business,
-              so you can see exactly where an AI agent would make the biggest difference and stop guessing
-              where to start.
-            </p>
-            <p style="font-size: 16px; margin-bottom: 8px;">A few tips to get the most out of it:</p>
-            <ul style="font-size: 15px; padding-left: 20px; margin-bottom: 24px; line-height: 1.8;">
-              <li>Answer honestly. There are no right answers, only an accurate picture of where your time goes</li>
-              <li>Add up each section, then your total out of 60. A lower score means more room to automate</li>
-              <li>Your two lowest sections are the best place to start with your first agent</li>
-            </ul>
-            <p style="font-size: 16px; margin-bottom: 24px;">
-              If you want to talk through what you find, just reply to this email. Happy to help.
-            </p>
-            <p style="font-size: 16px;">
-              Nas
-            </p>
-            <hr style="border: none; border-top: 1px solid #e2e8f0; margin: 32px 0;" />
-            <p style="font-size: 13px; color: #94a3b8;">
-              You're receiving this because you downloaded a free guide from
-              <a href="https://talktomedata.com" style="color: #185FA5;">talktomedata.com</a>.
-            </p>
-          </div>
-        `,
+        html: guideEmail({
+          firstName,
+          title: "AI Agent Readiness Audit",
+          what: "it's attached as a PDF: 20 questions across five parts of your business, so you can see where an AI agent would help most.",
+          steps: [
+            "Answer honestly. There are no right answers, only an accurate picture.",
+            "Add up each section, then your total out of 60. Lower means more room to automate.",
+            "Your two lowest sections are where your first agent should start.",
+          ],
+          reply: "Want to talk through what you find? Just reply. Happy to help.",
+          source: "guide_ai_agent_readiness",
+        }),
         attachments: [
           {
             filename: 'ai-agent-readiness-audit.pdf',

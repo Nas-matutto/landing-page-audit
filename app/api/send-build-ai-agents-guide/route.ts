@@ -4,6 +4,8 @@ import fs from 'fs'
 import path from 'path'
 import { appendLeadRow, buildLeadRow } from '@/lib/leads-sheet'
 import { isLikelyBot } from '@/lib/bot-filter'
+import { EMAIL_FROM, REPLY_TO } from '@/lib/email-from'
+import { guideEmail } from '@/lib/email-layout'
 
 export async function POST(request: NextRequest) {
   try {
@@ -65,39 +67,22 @@ export async function POST(request: NextRequest) {
       const pdfBuffer = fs.readFileSync(pdfPath)
 
       const { error } = await resend.emails.send({
-        from: 'Nas <nas@talktomedata.com>',
+        from: EMAIL_FROM,
+        replyTo: REPLY_TO,
         to: [email],
         subject: 'Your guide: How to Build AI Agents',
-        html: `
-          <div style="font-family: sans-serif; max-width: 560px; margin: 0 auto; color: #1e293b;">
-            <p style="font-size: 16px; margin-bottom: 16px;">Hey,</p>
-            <p style="font-size: 16px; margin-bottom: 16px;">
-              Thanks for grabbing <strong>How to Build AI Agents</strong>!
-            </p>
-            <p style="font-size: 16px; margin-bottom: 16px;">
-              I've attached the PDF to this email. It walks you through the everyday work worth automating,
-              how to build your first agent in Claude step by step, the real limitations of the DIY path,
-              and the done-for-you alternative.
-            </p>
-            <p style="font-size: 16px; margin-bottom: 8px;">A few tips to get the most out of it:</p>
-            <ul style="font-size: 15px; padding-left: 20px; margin-bottom: 24px; line-height: 1.8;">
-              <li>Start with Section 1. It maps the tasks that are the best fit for an agent</li>
-              <li>Follow the Claude setup steps to build your first agent today</li>
-              <li>Read the limitations section before you commit a business-critical workflow to the DIY path</li>
-            </ul>
-            <p style="font-size: 16px; margin-bottom: 24px;">
-              If you'd rather we just build and host it for you, reply to this email. Happy to help.
-            </p>
-            <p style="font-size: 16px;">
-              Nas
-            </p>
-            <hr style="border: none; border-top: 1px solid #e2e8f0; margin: 32px 0;" />
-            <p style="font-size: 13px; color: #94a3b8;">
-              You're receiving this because you downloaded a free guide from
-              <a href="https://talktomedata.com" style="color: #185FA5;">talktomedata.com</a>.
-            </p>
-          </div>
-        `,
+        html: guideEmail({
+          firstName,
+          title: "How to Build AI Agents guide",
+          what: "it's attached as a PDF: the work worth automating, how to build your first agent in Claude step by step, and where the DIY path falls short.",
+          steps: [
+            "Start with Section 1. It maps the tasks that fit an agent best.",
+            "Follow the Claude setup steps to build your first agent today.",
+            "Read the limitations before trusting a business-critical workflow to DIY.",
+          ],
+          reply: "Rather we build and host it for you? Just reply. Happy to help.",
+          source: "guide_build_ai_agents",
+        }),
         attachments: [
           {
             filename: 'how-to-build-ai-agents.pdf',
