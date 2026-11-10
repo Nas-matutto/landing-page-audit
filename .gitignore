@@ -21,3 +21,6 @@ pnpm-debug.log*
 
 # vercel
 .vercel
+
+# AppSumo codes in plain text (only their hashes are committed)
+private/
