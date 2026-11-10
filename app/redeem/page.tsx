@@ -5,19 +5,16 @@ import { CONTACT_EMAIL } from "@/components/legal-page"
 import { RedeemForm } from "@/components/redeem/redeem-form"
 import { Reveal } from "@/components/sections/social-agent/parts"
 
-export const metadata: Metadata = {
-  title: "Redeem your AppSumo code | Talk to me Data",
-  description: "Bought Talk to me Data on AppSumo? Enter your code to unlock the Solo plan.",
-  alternates: { canonical: "https://talktomedata.com/redeem" },
-  robots: { index: false, follow: false },
-}
+const PAGE_URL = "https://talktomedata.com/redeem"
+const TITLE = "Redeem your AppSumo code | Talk to me Data"
+const DESCRIPTION = "Bought Talk to me Data on AppSumo? Enter your code to unlock the Solo plan."
 
-const INCLUDED = [
-  "450 actions a month across every agent",
-  "All five pre-built AI agents",
-  "Autopilot: scheduled runs, weekly refreshes and daily leads",
-  "1 custom agent built around your workflow",
-]
+export const metadata: Metadata = {
+  title: TITLE,
+  description: DESCRIPTION,
+  alternates: { canonical: PAGE_URL },
+  openGraph: { title: TITLE, description: DESCRIPTION, url: PAGE_URL, siteName: "Talk to me Data", type: "website" },
+}
 
 export default function RedeemPage() {
   return (
@@ -35,18 +32,6 @@ export default function RedeemPage() {
 
           <Reveal className="mt-10 rounded-[32px] border border-hairline bg-white p-6 sm:p-8">
             <RedeemForm />
-          </Reveal>
-
-          <Reveal className="mt-8 rounded-3xl bg-mist p-6 sm:p-7">
-            <p className="eyebrow mb-4">What Solo includes</p>
-            <ul className="space-y-2.5">
-              {INCLUDED.map(item => (
-                <li key={item} className="flex gap-3 text-sm text-ink">
-                  <span aria-hidden className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-ink" />
-                  {item}
-                </li>
-              ))}
-            </ul>
           </Reveal>
 
           <p className="mt-8 text-center text-sm text-quiet">

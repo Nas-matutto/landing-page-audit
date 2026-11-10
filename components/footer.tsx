@@ -67,6 +67,11 @@ export function Footer() {
                   Free Guides
                 </Link>
               </li>
+              <li>
+                <Link href="/redeem" className="text-white/60 transition-colors hover:text-white">
+                  Redeem AppSumo Code
+                </Link>
+              </li>
             </ul>
           </div>
 
