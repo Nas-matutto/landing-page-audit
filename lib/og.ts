@@ -5,5 +5,5 @@ export const OG_IMAGE = {
   url: "/opengraph-image.png",
   width: 1200,
   height: 630,
-  alt: "Talk to Me Data — AI agents that do the work for you",
+  alt: "Talk to me Data: get an AI agent that runs your business",
 }
