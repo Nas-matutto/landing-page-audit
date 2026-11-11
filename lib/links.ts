@@ -36,3 +36,16 @@ export const SEO_AGENT_VIDEO = {
   uploadDate: "2026-10-21T01:26:36-07:00",
   duration: "PT53S",
 }
+
+/**
+ * Nas's Claude social media tutorial (https://youtu.be/mtRx7mtiCEs), embedded
+ * in the Instagram automation guide.
+ */
+export const CLAUDE_SOCIAL_TUTORIAL_VIDEO = {
+  youtubeId: "mtRx7mtiCEs",
+  title: "How to Use Claude to Automate Your Social Media (Beginner to Pro Tutorial)",
+  description: "A 14-minute tutorial: pick topics your audience asks for, find the right topic with the social media AI agent, write the script, then use Claude and HyperFrames to build carousels, animated posts and short-form videos.",
+  thumbnail: "/videos/how-to-use-claude-to-automate-social-media-thumbnail.jpg",
+  uploadDate: "2026-10-19T09:00:18-07:00",
+  duration: "PT14M5S",
+}

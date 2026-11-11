@@ -13,20 +13,26 @@ export function SignupCta({
   children,
   eyebrow,
   button = "Sign up free",
+  accent,
 }: {
   heading: ReactNode
   children?: ReactNode
   eyebrow?: string
   button?: string
+  /** "social" gives the button and glow the social media agent's pink, for posts in that cluster. */
+  accent?: "social"
 }) {
   return (
     <aside className="relative my-12 overflow-hidden rounded-[28px] bg-ink px-7 py-10 sm:px-10 sm:py-12">
+      {accent === "social" && (
+        <div aria-hidden className="pointer-events-none absolute -right-16 -top-16 h-64 w-64 rounded-full bg-social/40 blur-3xl" />
+      )}
       <div className="relative z-10 max-w-md">
         {eyebrow && <p className="eyebrow mb-4 text-white/50!">{eyebrow}</p>}
         <p className="display text-[clamp(1.6rem,3.4vw,2.25rem)] text-white!">{heading}</p>
         {children && <div className="mt-4 text-[15px] font-light leading-relaxed text-white/65">{children}</div>}
         <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-5">
-          <PrimaryCta href={SIGNUP_URL} className="bg-white text-ink">
+          <PrimaryCta href={SIGNUP_URL} className={accent === "social" ? "bg-social text-white" : "bg-white text-ink"}>
             {button}
           </PrimaryCta>
           <p className="text-center text-[13px] text-white/45 sm:text-left">Free plan · No card required</p>

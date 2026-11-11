@@ -346,7 +346,9 @@ export default function AutomateSocialMediaPostingPage() {
           Automating social media with AI means handing the whole content cycle to an agent: analyze your channels, study
           competitors, plan the next posts, create them, post them, and learn from the results. Start with a ready-made agent
           if you want results this week, or build your own with Claude and the prompt above. Either way, the posts are built
-          on what your data says works, not on guesswork. New to agents in general? Start with{" "}
+          on what your data says works, not on guesswork. Only on Instagram? Follow the step-by-step guide to{" "}
+          <Link href="/blog/how-to-automate-instagram-with-ai" className={LINK}>fully automate your Instagram with AI</Link>.
+          New to agents in general? Start with{" "}
           <Link href="/blog/what-are-ai-agents" className={LINK}>what AI agents are</Link>.
         </p>
 

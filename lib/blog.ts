@@ -1,7 +1,7 @@
 import type { Metadata } from "next"
 import { format, parseISO } from "date-fns"
 import { authorUrl, getAuthor } from "@/lib/authors"
-import { SOCIAL_AGENT_VIDEO } from "@/lib/links"
+import { CLAUDE_SOCIAL_TUTORIAL_VIDEO, SOCIAL_AGENT_VIDEO } from "@/lib/links"
 
 /**
  * Single source of truth for the blog. The index page, category hubs, author
@@ -141,6 +141,44 @@ export type BlogPost = {
 const COVER = { width: 1200, height: 630 }
 
 export const POSTS: BlogPost[] = [
+  {
+    slug: "how-to-automate-instagram-with-ai",
+    title: "How to Fully Automate Your Instagram With AI: A Step-by-Step Guide",
+    seoTitle: "How to Automate Instagram With AI (Step-by-Step Guide)",
+    description:
+      "How to automate Instagram with AI: find your best posts, study competitors' breakouts, reuse your best hooks, then create and schedule posts automatically.",
+    excerpt:
+      "The full loop, step by step: let an AI agent find which of your posts your audience loves, spot your competitors' breakout posts, rank your hooks by performance, then design new posts and schedule them straight to Instagram.",
+    category: "social-media-automation",
+    author: "nas",
+    datePublished: "2026-11-11",
+    dateModified: "2026-11-11",
+    readMinutes: 12,
+    cover: {
+      src: "/blog/how-to-automate-instagram-with-ai/how-to-automate-instagram-with-ai-cover.png",
+      alt: "How to fully automate your Instagram with AI: the social media agent waving next to finished jobs (found your best post, wrote 5 hooks, scheduled Tuesday 9:00) and a designed carousel slide",
+      width: 2400,
+      height: 1260,
+    },
+    keywords: [
+      "how to automate Instagram",
+      "automate Instagram with AI",
+      "Instagram automation",
+      "AI Instagram manager",
+      "schedule Instagram posts automatically",
+      "Instagram competitor analysis",
+      "best Instagram hooks",
+      "Instagram AI agent",
+    ],
+    agentPage: { href: "/agents/social-media", label: "The Social Media AI Agent: start free" },
+    video: {
+      youtubeId: CLAUDE_SOCIAL_TUTORIAL_VIDEO.youtubeId,
+      title: CLAUDE_SOCIAL_TUTORIAL_VIDEO.title,
+      description: CLAUDE_SOCIAL_TUTORIAL_VIDEO.description,
+      uploadDate: CLAUDE_SOCIAL_TUTORIAL_VIDEO.uploadDate,
+      duration: CLAUDE_SOCIAL_TUTORIAL_VIDEO.duration,
+    },
+  },
   {
     slug: "how-to-get-cited-by-chatgpt",
     title: "How to Get Cited by ChatGPT and AI Search: 9 Steps, Plus Data From the Top 1,000 Websites",
