@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
 import type { LucideIcon } from "lucide-react"
-import { Bot, ListChecks, Wrench } from "lucide-react"
+import { Bot, ListChecks, Target, Wrench } from "lucide-react"
 import { SITE_NAME, SITE_URL, absoluteUrl, type Faq } from "@/lib/blog"
 import { OG_IMAGE } from "@/lib/og"
 
@@ -25,7 +25,7 @@ export type Guide = {
   lede: string
   /** Hub card copy. */
   excerpt: string
-  kind: "Checklist" | "Audit" | "Guide"
+  kind: "Checklist" | "Audit" | "Guide" | "Playbook"
   Icon: LucideIcon
   pages: number
   stats: { value: string; label: string }[]
@@ -212,11 +212,71 @@ export const GUIDES: Guide[] = [
     dateModified: "2026-10-02",
     relatedPosts: ["how-to-build-an-ai-agent", "what-are-ai-agents", "how-to-build-social-media-ai-agent"],
   },
+  {
+    slug: "multi-channel-lead-generation-playbook",
+    title: "Multi-Channel Lead Generation Playbook: Find Buyers on Every Platform",
+    seoTitle: "Multi-Channel Lead Generation Playbook (Free PDF)",
+    description:
+      "Free lead generation playbook (PDF): where buyers ask on 7 platforms, 40 buying-intent phrases, 8 timing signals and two 14-day multi-channel cadences.",
+    lede:
+      "The Multi-Channel Lead Generation Playbook is a free 12-page PDF for founders and sales teams. It maps where buyers ask for help on seven platforms, lists 40 buying-intent phrases and eight timing signals, and gives you two 14-day multi-channel cadences with seven message templates, a weekly scorecard and a deliverability checklist.",
+    excerpt:
+      "Where buyers ask for help on 7 platforms, 40 buying-intent phrases, 8 timing signals and two multi-channel cadences that turn a name into a conversation.",
+    kind: "Playbook",
+    Icon: Target,
+    pages: 12,
+    stats: [
+      { value: "7", label: "platforms mapped" },
+      { value: "40", label: "buying-intent phrases" },
+      { value: "2", label: "14-day cadences" },
+    ],
+    inside: [
+      {
+        title: "Where buyers ask, on 7 platforms",
+        description:
+          "LinkedIn, Reddit, X, Threads, YouTube, Facebook and Instagram: where to look, what buyers post and the best first move, plus 40 phrases to search.",
+      },
+      {
+        title: "8 timing signals for outbound",
+        description:
+          "Hiring, funding, new leaders, launches and more: where to spot each one and how to open with it, plus a grid to decide who to contact first.",
+      },
+      {
+        title: "Two 14-day multi-channel cadences",
+        description:
+          "Why showing up in more than one place raises your odds of a reply, and two step-by-step cadences across email, LinkedIn and social.",
+      },
+      {
+        title: "Templates, scorecard and checklists",
+        description:
+          "Seven message templates for every touch, a weekly scorecard by channel, and checklists that keep your emails out of spam and your accounts safe.",
+      },
+    ],
+    endpoint: "/api/send-lead-playbook",
+    cta: "Send me the playbook",
+    keywords: [
+      "lead generation playbook",
+      "multi-channel outreach",
+      "multichannel prospecting",
+      "how to find customers online",
+      "buying intent signals",
+      "social listening for lead generation",
+      "outbound sales cadence",
+    ],
+    about: ["Lead generation", "Multi-channel outreach", "Social listening", "Sales development"],
+    datePublished: "2026-11-12",
+    dateModified: "2026-11-12",
+    relatedPosts: [
+      "how-to-build-ai-lead-finder-agent",
+      "how-to-use-intent-signals-to-increase-conversion-rates",
+      "how-to-build-website-to-collect-leads",
+    ],
+  },
 ]
 
 export const GUIDES_TITLE = "Free AI Agent & Automation Guides (PDF)"
 export const GUIDES_DESCRIPTION =
-  "Free PDF guides for business owners: a business automation checklist, an AI agent readiness audit and a step-by-step guide to building AI agents."
+  "Free PDF guides for business owners: a business automation checklist, an AI agent readiness audit, a guide to building AI agents and a lead generation playbook."
 
 export const guidePath = (slug: string) => `/free-guides/${slug}`
 

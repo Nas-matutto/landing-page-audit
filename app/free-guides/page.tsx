@@ -24,6 +24,7 @@ export const metadata: Metadata = {
     "AI readiness audit",
     "how to build AI agents PDF",
     "small business automation guide",
+    "lead generation playbook",
   ],
   alternates: { canonical: PAGE_URL },
   openGraph: {
@@ -52,12 +53,12 @@ const FAQS: Faq[] = [
   {
     question: "Are the guides really free?",
     answer:
-      "Yes. All three guides are free PDFs. Enter your name and email and the PDF is sent to your inbox straight away. There is no card, no trial and no signup to the app, and you can unsubscribe from our emails at any time.",
+      "Yes. All four guides are free PDFs. Enter your name and email and the PDF is sent to your inbox straight away. There is no card, no trial and no signup to the app, and you can unsubscribe from our emails at any time.",
   },
   {
     question: "Which guide should I start with?",
     answer:
-      "Start with the Business Automation Checklist if you're not sure what to automate yet. Take the AI Agent Readiness Audit next to score where an agent would help most. Read How to Build AI Agents when you're ready to build your first one, or to decide whether to build it yourself or have it built for you.",
+      "Start with the Business Automation Checklist if you're not sure what to automate yet. Take the AI Agent Readiness Audit next to score where an agent would help most. Read How to Build AI Agents when you're ready to build your first one, or to decide whether to build it yourself or have it built for you. If you're after more customers, go straight to the Multi-Channel Lead Generation Playbook.",
   },
   {
     question: "Do I need technical knowledge to use them?",
@@ -135,8 +136,8 @@ export default function FreeGuidesPage() {
                 Free guides to automating your business with AI agents
               </h1>
               <p className="lede mx-auto mt-6 max-w-lg text-lg sm:text-xl lg:mx-0">
-                Three free PDFs that take you from &ldquo;what should I automate?&rdquo; to a working AI agent: a
-                business automation checklist, an AI agent readiness audit and a guide to building your first agent.
+                Free PDFs that take you from &ldquo;what should I automate?&rdquo; to a working AI agent, plus a
+                playbook for finding customers on every platform and reaching them on more than one.
               </p>
             </div>
 
@@ -153,7 +154,7 @@ export default function FreeGuidesPage() {
         {/* Guides */}
         <section aria-label="Free guides" className="border-y border-hairline bg-mist px-6 py-20 sm:py-28 lg:px-8">
           <div className="mx-auto max-w-6xl">
-            <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
               {GUIDES.map((guide, i) => (
                 <Reveal key={guide.slug} className="h-full">
                   <GuideCard guide={guide} number={i + 1} headingLevel="h2" />

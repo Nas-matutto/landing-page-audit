@@ -1,0 +1,638 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>The Multi-Channel Lead Playbook · Talk to me Data</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  @page { size: 8.5in 11in; margin: 0; }
+  :root {
+    --ink: #141414; --ink2: #3a3a3a; --quiet: #6b6b6b; --faint: #9a9a9a;
+    --hair: #e4e4e4; --mist: #f5f5f5; --white: #fff; --blue: #0072D5;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: #fff; }
+  body { font-family: "Geist", system-ui, sans-serif; color: var(--ink2); font-size: 10.5px; line-height: 1.5; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .mono { font-family: "Geist Mono", ui-monospace, monospace; }
+  .page { width: 8.5in; height: 11in; padding: 0.55in 0.6in 0.5in; position: relative; overflow: hidden; page-break-after: always; display: flex; flex-direction: column; }
+  .page:last-child { page-break-after: auto; }
+  .dark { background: var(--ink); color: #cfcfcf; }
+  .dark h1, .dark h2, .dark h3, .dark strong { color: #fff; }
+
+  .top { display: flex; justify-content: space-between; align-items: center; padding-bottom: 14px; border-bottom: 1px solid var(--hair); margin-bottom: 26px; }
+  .dark .top { border-color: #2c2c2c; }
+  .brand { display: flex; align-items: center; gap: 7px; font-weight: 700; letter-spacing: .5px; font-size: 12px; color: var(--ink); }
+  .dark .brand { color: #fff; }
+  .brand img { width: 20px; height: 20px; border-radius: 50%; }
+  .label { font-family: "Geist Mono", monospace; font-size: 8px; letter-spacing: 1.6px; text-transform: uppercase; color: var(--quiet); }
+  .dark .label { color: #8a8a8a; }
+  .foot { margin-top: auto; padding-top: 12px; display: flex; justify-content: space-between; }
+
+  h1 { font-size: 40px; line-height: 1.04; letter-spacing: -1.2px; font-weight: 600; color: var(--ink); }
+  h2 { font-size: 25px; line-height: 1.12; letter-spacing: -.6px; font-weight: 600; color: var(--ink); margin: 6px 0 10px; }
+  h3 { font-size: 12px; font-weight: 600; color: var(--ink); margin-bottom: 4px; letter-spacing: -.1px; }
+  p { margin-bottom: 8px; }
+  .lead { font-size: 12px; line-height: 1.55; color: var(--ink2); max-width: 6.4in; }
+  .dark .lead { color: #bdbdbd; }
+
+  .grid { display: grid; gap: 10px; }
+  .g2 { grid-template-columns: 1fr 1fr; } .g3 { grid-template-columns: 1fr 1fr 1fr; } .g4 { grid-template-columns: repeat(4, 1fr); }
+  .card { border: 1px solid var(--hair); border-radius: 12px; padding: 13px 14px; background: #fff; }
+  .card.mist { background: var(--mist); border-color: var(--mist); }
+  .card.ink { background: var(--ink); border-color: var(--ink); color: #cfcfcf; }
+  .card.ink h3, .card.ink strong { color: #fff; }
+  .dark .card { background: #1d1d1d; border-color: #2c2c2c; color: #bdbdbd; }
+  .dark .card.white { background: #fff; color: var(--ink2); }
+  .dark .card.white h3 { color: var(--ink); }
+  .num { font-family: "Geist Mono", monospace; font-size: 8px; letter-spacing: 1.4px; color: var(--quiet); text-transform: uppercase; margin-bottom: 6px; display: block; }
+  .card.ink .num, .dark .num { color: #8a8a8a; }
+
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; }
+  .chip { border: 1px solid #3a3a3a; color: #d9d9d9; border-radius: 999px; padding: 4px 10px; font-size: 9px; }
+  .chip.l { border-color: var(--hair); color: var(--ink2); background: #fff; }
+
+  table { width: 100%; border-collapse: collapse; font-size: 9.6px; line-height: 1.42; }
+  th { text-align: left; font-family: "Geist Mono", monospace; font-weight: 500; font-size: 7.6px; letter-spacing: 1.3px; text-transform: uppercase; color: var(--quiet); padding: 0 8px 7px 0; border-bottom: 1px solid var(--ink); }
+  td { padding: 8px 8px 8px 0; border-bottom: 1px solid var(--hair); vertical-align: top; }
+  td:first-child { font-weight: 600; color: var(--ink); }
+  td em { font-style: normal; color: var(--ink); background: var(--mist); border-radius: 4px; padding: 0 3px; }
+
+  .note { font-size: 8.6px; color: var(--quiet); margin-top: 8px; }
+  .rule { height: 1px; background: var(--hair); margin: 16px 0; }
+  ul.clean { list-style: none; }
+  ul.clean li { padding-left: 14px; position: relative; margin-bottom: 4px; }
+  ul.clean li::before { content: ""; position: absolute; left: 2px; top: 6px; width: 5px; height: 5px; border-radius: 50%; background: var(--ink); }
+  .dark ul.clean li::before, .card.ink ul.clean li::before { background: #fff; }
+  ul.ticks { list-style: none; }
+  ul.ticks li { padding-left: 18px; position: relative; margin-bottom: 5px; }
+  ul.ticks li::before { content: "✓"; position: absolute; left: 0; top: 0; font-weight: 700; color: var(--ink); }
+  .dark ul.ticks li::before { color: #fff; }
+  ul.boxes { list-style: none; }
+  ul.boxes li { padding-left: 20px; position: relative; margin-bottom: 6px; }
+  ul.boxes li::before { content: ""; position: absolute; left: 0; top: 1px; width: 10px; height: 10px; border: 1.3px solid var(--ink); border-radius: 3px; }
+
+  .phr { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 6px; }
+  .phr span { font-family: "Geist Mono", monospace; font-size: 8.4px; background: var(--mist); border-radius: 5px; padding: 3px 6px; color: var(--ink); }
+  .card.ink .phr span { background: #2a2a2a; color: #eee; }
+
+  .who { display: inline-block; font-family: "Geist Mono", monospace; font-size: 7.4px; letter-spacing: .8px; text-transform: uppercase; border-radius: 999px; padding: 2px 7px; white-space: nowrap; }
+  .who.agent { background: var(--ink); color: #fff; }
+  .who.you { border: 1px solid var(--ink); color: var(--ink); }
+  .who.both { background: var(--mist); color: var(--ink); }
+
+  .tpl { border: 1px solid var(--hair); border-radius: 12px; padding: 12px 14px; }
+  .tpl .body { font-family: "Geist Mono", monospace; font-size: 8.7px; line-height: 1.6; color: var(--ink); white-space: pre-wrap; margin-top: 6px; }
+  .tpl .why { font-size: 8.8px; color: var(--quiet); margin-top: 7px; border-top: 1px dashed var(--hair); padding-top: 6px; }
+
+  .mock { border: 1px solid var(--hair); border-radius: 12px; overflow: hidden; background: #fff; }
+  .mock .bar { display: flex; justify-content: space-between; padding: 8px 12px; border-bottom: 1px solid var(--hair); background: var(--mist); }
+  .mock .bar b { color: var(--ink); font-size: 10px; }
+  .mock .row { padding: 9px 12px; border-bottom: 1px solid var(--hair); }
+  .mock .row:last-child { border-bottom: 0; }
+  .tag { font-family: "Geist Mono", monospace; font-size: 7.2px; letter-spacing: .8px; text-transform: uppercase; border-radius: 999px; padding: 2px 6px; }
+  .tag.s { background: var(--ink); color: #fff; } .tag.g { background: var(--mist); color: var(--ink); }
+
+  .flow { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; }
+  .step { border: 1px solid var(--hair); border-radius: 12px; padding: 11px; position: relative; }
+  .step .n { width: 20px; height: 20px; border-radius: 50%; background: var(--ink); color: #fff; font-family: "Geist Mono", monospace; font-size: 8.5px; display: flex; align-items: center; justify-content: center; margin-bottom: 8px; }
+  .step h3 { font-size: 10.5px; }
+  .step p { font-size: 9px; margin: 0; color: var(--quiet); }
+
+  .lane { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+  .pill { border-radius: 8px; padding: 6px 9px; font-size: 9px; font-weight: 500; }
+  .pill.e { background: var(--ink); color: #fff; }
+  .pill.s { background: #fff; color: var(--ink); border: 1px solid var(--ink); }
+  .pill.x { background: var(--mist); color: var(--faint); text-decoration: line-through; }
+  .arrow { color: var(--faint); font-size: 10px; }
+
+  .matrix { display: grid; grid-template-columns: 70px 1fr 1fr; grid-template-rows: auto 1fr 1fr; gap: 6px; }
+  .matrix .ax { font-family: "Geist Mono", monospace; font-size: 7.6px; letter-spacing: 1.2px; text-transform: uppercase; color: var(--quiet); display: flex; align-items: center; }
+  .matrix .cell { border-radius: 10px; padding: 10px 11px; font-size: 9.2px; }
+  .matrix .cell b { display: block; font-size: 10.5px; margin-bottom: 2px; }
+
+  .score td { height: 26px; }
+  .score td:not(:first-child) { border-left: 1px solid var(--hair); }
+
+  .btn { display: inline-flex; align-items: center; gap: 8px; background: #fff; color: var(--ink); font-weight: 600; font-size: 11px; border-radius: 999px; padding: 9px 16px; text-decoration: none; }
+  .btn.dk { background: var(--ink); color: #fff; }
+  a { color: inherit; }
+  .avatar { border-radius: 12px; object-fit: cover; display: block; }
+</style>
+</head>
+<body>
+
+<!-- ============ 1. COVER ============ -->
+<section class="page dark">
+  <div class="top">
+    <div class="brand"><img src="../public/android-chrome-192x192.png" alt="">TTMD</div>
+    <span class="label">Free playbook · V1.0</span>
+  </div>
+
+  <div style="display:grid;grid-template-columns:1.2fr 1fr;gap:26px;align-items:center;flex:1;padding-bottom:24px">
+    <div>
+      <span class="label">Free playbook · Lead generation</span>
+      <h1 style="color:#fff;margin:14px 0 16px">Find buyers on every platform. Reach them on more than one.</h1>
+      <p class="lead">A practical playbook for founders and sales teams: where buyers ask for help online, the signals that say now is a good time to reach out, and how to run multi-channel campaigns that turn a name into a real conversation.</p>
+      <div class="chips" style="margin-top:16px">
+        <span class="chip">7 platforms mapped</span>
+        <span class="chip">40 buying-intent phrases</span>
+        <span class="chip">8 timing signals</span>
+        <span class="chip">2 ready-made cadences</span>
+        <span class="chip">7 message templates</span>
+        <span class="chip">Deliverability checklist</span>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+      <img class="avatar" src="../public/Social-listening-body-agent.jpeg" style="width:100%;aspect-ratio:3/5;object-position:50% 40%" alt="">
+      <img class="avatar" src="../public/videos/sdr-agent-hero-end.jpg" style="width:100%;aspect-ratio:3/5;object-position:50% 50%;margin-top:40px" alt="">
+    </div>
+  </div>
+
+  <div class="grid g2" style="margin-top:auto">
+    <div class="card">
+      <span class="num">Agent 01 · Social listening</span>
+      <h3>Finds the people already asking</h3>
+      <p style="margin:0">Reads conversations across seven platforms every day and brings you the posts where someone wants what you sell, with a reply and a DM drafted.</p>
+    </div>
+    <div class="card white">
+      <span class="num">Agent 02 · AI SDR</span>
+      <h3>Finds the buyers who fit, and follows up</h3>
+      <p style="margin:0">Finds companies that match your ideal customer, checks for a reason to talk now, writes to each one and sends every follow-up on time.</p>
+    </div>
+  </div>
+  <div class="foot"><span class="label">A free playbook by Talk to me Data</span><span class="label">talktomedata.com</span></div>
+</section>
+
+<!-- ============ 2. THE PROBLEM ============ -->
+<section class="page">
+  <div class="top"><div class="brand"><img src="../public/android-chrome-192x192.png" alt="">TTMD</div><span class="label">01 · The problem</span></div>
+  <span class="label">Why lead generation stalls</span>
+  <h2>Most lead lists fail for one of three reasons.</h2>
+  <p class="lead">Most businesses find leads in one of two ways: they wait for buyers to find them, or they send a batch of cold emails and hope. Both leave money on the table, and almost always for the same three reasons.</p>
+
+  <div class="grid g3" style="margin-top:16px">
+    <div class="card"><span class="num">Reason 01</span><h3>Wrong people</h3><p style="margin:0">Lists built from a job title alone. They fit on paper but have no reason to care about you today.</p></div>
+    <div class="card"><span class="num">Reason 02</span><h3>Wrong time</h3><p style="margin:0">A good fit on a bad week. Without a timing signal you are guessing, and most guesses land when nobody is buying.</p></div>
+    <div class="card"><span class="num">Reason 03</span><h3>One touch</h3><p style="margin:0">A single email in a crowded inbox. Many people who would have said yes never saw it, or saw it on the wrong day.</p></div>
+  </div>
+
+  <div class="card ink" style="margin-top:14px;padding:18px 20px">
+    <span class="num">The fix, in one line</span>
+    <p style="font-size:15px;line-height:1.4;color:#fff;margin:0;font-weight:500">Find people who fit <u>and</u> have a reason to talk now, then show up in more than one place until the timing is right.</p>
+  </div>
+
+  <div class="rule"></div>
+  <span class="label">How this playbook fits together</span>
+  <div style="display:grid;grid-template-columns:1fr 26px 1fr 26px 1fr;align-items:center;gap:6px;margin-top:12px">
+    <div style="display:grid;gap:8px">
+      <div class="card"><span class="num">Source A · Warm</span><h3>People asking</h3><p style="margin:0;font-size:9.4px">Someone posts "can anyone recommend…" on Reddit, LinkedIn or X. Covered in chapters 02 and 04.</p></div>
+      <div class="card"><span class="num">Source B · Fit + signal</span><h3>People who match, at the right moment</h3><p style="margin:0;font-size:9.4px">A company that fits is hiring, raised money or just launched. Covered in chapter 03.</p></div>
+    </div>
+    <div class="arrow" style="text-align:center;font-size:16px">→</div>
+    <div class="card mist" style="text-align:center;padding:18px 12px"><span class="num">Chapters 05 to 07</span><h3 style="font-size:13px">A multi-channel campaign</h3><p style="margin:0;font-size:9.4px">Several useful touches across email, LinkedIn and the platform where they spoke up.</p></div>
+    <div class="arrow" style="text-align:center;font-size:16px">→</div>
+    <div class="card ink" style="text-align:center;padding:18px 12px"><span class="num">The goal</span><h3 style="font-size:13px">A conversation</h3><p style="margin:0;font-size:9.4px">A reply, a call booked, a buyer who already knows your name.</p></div>
+  </div>
+
+  <div class="rule"></div>
+  <span class="label">Inside</span>
+  <table style="margin-top:8px">
+    <tr><td style="width:34px" class="mono">02</td><td style="font-weight:400">Where buyers ask for help on 7 platforms, and a bank of 40 buying-intent phrases</td><td style="width:34px" class="mono">06</td><td style="font-weight:400">Two ready-made 14-day cadences, step by step</td></tr>
+    <tr><td class="mono">03</td><td style="font-weight:400">8 timing signals for outbound, and how to rank leads by fit and timing</td><td class="mono">07</td><td style="font-weight:400">How the AI SDR agent runs outbound from setup to replies</td></tr>
+    <tr><td class="mono">04</td><td style="font-weight:400">How the social listening agent finds people asking, every day</td><td class="mono">08</td><td style="font-weight:400">7 message templates you can copy today</td></tr>
+    <tr><td class="mono">05</td><td style="font-weight:400">Why multi-channel campaigns raise your odds of a reply</td><td class="mono">09</td><td style="font-weight:400">A weekly scorecard and a deliverability checklist</td></tr>
+  </table>
+  <div class="foot"><span class="label">A free playbook by Talk to me Data</span><span class="label">2</span></div>
+</section>
+
+<!-- ============ 3. WHERE BUYERS ASK ============ -->
+<section class="page">
+  <div class="top"><div class="brand"><img src="../public/android-chrome-192x192.png" alt="">TTMD</div><span class="label">02 · Where buyers ask</span></div>
+  <span class="label">Source A · Warm leads</span>
+  <h2>Every day, your buyers post the exact question you answer.</h2>
+  <p class="lead">People ask their peers before they ask a salesperson. They post on LinkedIn, in subreddits, in Facebook groups and under YouTube videos. Find those posts on the day they go up and you are talking to someone who is already shopping.</p>
+
+  <table style="margin-top:14px">
+    <tr><th style="width:15%">Platform</th><th style="width:27%">Where to look</th><th style="width:29%">What buyers post</th><th>Best first move</th></tr>
+    <tr><td>LinkedIn</td><td>Posts and comments in your niche, "recommendations" posts, posts by people your buyers follow</td><td>"Can anyone recommend a…" · "We're looking for a partner to…"</td><td>Comment with a useful answer. Connect afterwards with a note that mentions the post.</td></tr>
+    <tr><td>Reddit</td><td>Subreddits where your customers hang out, not where your competitors do</td><td>"What do you use for…" · "Is [product] worth it?"</td><td>Answer fully in the thread. Never pitch in a first reply; many subreddits ban it.</td></tr>
+    <tr><td>X</td><td>Search for phrases plus your topic, and replies to big accounts in your space</td><td>"Anyone know a good…" · "So frustrated with [tool]"</td><td>A short, specific reply. DM only once they engage back.</td></tr>
+    <tr><td>Threads</td><td>Topic tags and search for your category</td><td>Same questions as X, in a more casual voice</td><td>A friendly, conversational reply. Keep it brief.</td></tr>
+    <tr><td>YouTube</td><td>Comments under tutorials, reviews and "how I do X" videos in your field</td><td>"Does this work for…?" · "What would you use instead?"</td><td>Reply with one concrete tip. YouTube comments stay live for months.</td></tr>
+    <tr><td>Facebook</td><td>Groups for your customer's industry or location</td><td>"Who do you use for…" · "Need help with…"</td><td>Follow the group rules. Answer, then offer to share more by message.</td></tr>
+    <tr><td>Instagram</td><td>Comments on creators' posts in your niche, and niche hashtags</td><td>"How do you do this?" · "I need this"</td><td>Reply to the comment, then send a DM that mentions it.</td></tr>
+  </table>
+
+  <div class="grid g3" style="margin-top:16px">
+    <div class="card mist"><span class="num">Rule 01</span><h3>Speed beats polish</h3><p style="margin:0">A good answer in the first few hours gets seen. A perfect answer three days later is buried under twenty others.</p></div>
+    <div class="card mist"><span class="num">Rule 02</span><h3>Help first, sell later</h3><p style="margin:0">Answer the question they asked. If your answer is good, they will look at who wrote it.</p></div>
+    <div class="card mist"><span class="num">Rule 03</span><h3>Follow the house rules</h3><p style="margin:0">Every group and subreddit has its own. One spammy reply can get you banned from the place your buyers gather.</p></div>
+  </div>
+
+  <div class="card" style="margin-top:10px">
+    <span class="num">Find your communities in 15 minutes</span>
+    <div class="grid g3" style="gap:14px;margin-top:2px">
+      <div><h3>Ask your customers</h3><p style="margin:0">Ask your three best customers where they go for advice. Their answers are your shortlist.</p></div>
+      <div><h3>Follow the questions</h3><p style="margin:0">Search your category plus "reddit" or "group". Note where the same questions keep coming up.</p></div>
+      <div><h3>Keep the active ones</h3><p style="margin:0">Keep places with new questions every week and real answers. Drop the ones full of promotion.</p></div>
+    </div>
+  </div>
+  <div class="foot"><span class="label">A free playbook by Talk to me Data</span><span class="label">3</span></div>
+</section>
+
+<!-- ============ 4. PHRASE BANK ============ -->
+<section class="page">
+  <div class="top"><div class="brand"><img src="../public/android-chrome-192x192.png" alt="">TTMD</div><span class="label">02 · Phrase bank</span></div>
+  <span class="label">Copy these into any search bar</span>
+  <h2>40 buying-intent phrases, and the ones to filter out.</h2>
+  <p class="lead">Pair each phrase with your category, for example <span class="mono" style="background:var(--mist);padding:1px 5px;border-radius:4px;color:var(--ink)">"recommend" + "bookkeeper"</span>. Swap the words in brackets for your product, your category or a competitor's name.</p>
+
+  <div class="grid g2" style="margin-top:14px">
+    <div class="card"><span class="num">Stage 01 · Asking for a recommendation</span><h3>They know they need something</h3>
+      <div class="phr"><span>can anyone recommend</span><span>looking for a [category]</span><span>who do you use for</span><span>any suggestions for</span><span>what's the best [category] for</span><span>does anyone know a good</span><span>recommendations for</span><span>need help with</span><span>where do I find a</span><span>who should I hire for</span></div></div>
+    <div class="card"><span class="num">Stage 02 · Comparing options</span><h3>They are choosing between you and someone else</h3>
+      <div class="phr"><span>[A] vs [B]</span><span>alternative to [competitor]</span><span>switching from [competitor]</span><span>is [product] worth it</span><span>thinking about trying</span><span>pros and cons of</span><span>has anyone used</span><span>[competitor] review</span><span>cheaper than [competitor]</span><span>moving away from</span></div></div>
+    <div class="card"><span class="num">Stage 03 · Feeling the pain</span><h3>They have the problem, maybe not the words</h3>
+      <div class="phr"><span>struggling with</span><span>sick of</span><span>spending hours on</span><span>there has to be a better way</span><span>drowning in</span><span>can't keep up with</span><span>keeps breaking</span><span>wasting so much time</span><span>how do you all handle</span><span>am I the only one who</span></div></div>
+    <div class="card"><span class="num">Stage 04 · Getting ready to buy</span><h3>Budget, timing or a change is in motion</h3>
+      <div class="phr"><span>budget for</span><span>getting quotes for</span><span>how much should I pay for</span><span>setting up our first</span><span>just raised</span><span>scaling our</span><span>about to launch</span><span>new role, first 90 days</span><span>outsourcing our</span><span>time to replace</span></div></div>
+  </div>
+
+  <div class="card ink" style="margin-top:12px">
+    <span class="num">Filter these out · They look like buyers but are not</span>
+    <div class="grid g3" style="gap:14px;margin-top:4px">
+      <div><h3>Self-promotion</h3><div class="phr"><span>I help [X] do [Y]</span><span>check out my</span><span>link in bio</span></div></div>
+      <div><h3>Vendors pitching</h3><div class="phr"><span>we offer</span><span>DM me for</span><span>use code</span></div></div>
+      <div><h3>Job posts</h3><div class="phr"><span>we're hiring</span><span>apply now</span><span>[role] wanted</span></div></div>
+    </div>
+    <p style="margin:10px 0 0;font-size:9.4px">Mentions of your topic are mostly other people selling. If you search by hand, expect to scroll past many of these for every real buyer. This filtering is the most tedious part of social listening, and the first part worth automating.</p>
+  </div>
+
+  <div class="card mist" style="margin-top:10px;display:flex;gap:14px;align-items:center">
+    <div style="flex:1"><h3>Try it in two minutes</h3><p style="margin:0">Pick three phrases from Stage 01, add your category, and search them on Reddit and LinkedIn sorted by newest. Count the real buyers you find from the last 7 days. That is your baseline.</p></div>
+  </div>
+  <div class="foot"><span class="label">A free playbook by Talk to me Data</span><span class="label">4</span></div>
+</section>
+
+<!-- ============ 5. TIMING SIGNALS ============ -->
+<section class="page">
+  <div class="top"><div class="brand"><img src="../public/android-chrome-192x192.png" alt="">TTMD</div><span class="label">03 · Timing signals</span></div>
+  <span class="label">Source B · Fit + signal</span>
+  <h2>The best outbound opens on something true that happened this week.</h2>
+  <p class="lead">Not everyone posts their problems. For outbound, look for companies that fit your ideal customer and have a visible reason to talk to you now. That reason becomes the first line of your email.</p>
+
+  <table style="margin-top:12px">
+    <tr><th style="width:17%">Signal</th><th style="width:23%">Where to spot it</th><th style="width:27%">Why it matters</th><th>Open with</th></tr>
+    <tr><td>Hiring for a role you support</td><td>Careers page, job boards, LinkedIn jobs</td><td>They have a gap and a budget right now</td><td>"Saw you're hiring two account managers…"</td></tr>
+    <tr><td>New funding</td><td>Press releases, funding databases, founder posts</td><td>New money usually comes with new targets</td><td>"Congrats on the round. Usually that means…"</td></tr>
+    <tr><td>New leader in the seat</td><td>LinkedIn job changes, company news</td><td>New leaders often review tools and suppliers early</td><td>"Congrats on the new role at [company]…"</td></tr>
+    <tr><td>Launch or new service</td><td>Website, product pages, press, social posts</td><td>Growth creates new work to handle</td><td>"Your new [service] looks great. One thing that…"</td></tr>
+    <tr><td>Team growth</td><td>Headcount changes, "we're growing" posts</td><td>Processes that worked at 10 people break at 30</td><td>"Your team has grown fast this year…"</td></tr>
+    <tr><td>New market or location</td><td>Announcements, new office pages, local listings</td><td>New ground means new suppliers</td><td>"Saw you've opened in [city]…"</td></tr>
+    <tr><td>Complaint about a current tool</td><td>Public posts, reviews, community threads</td><td>They are halfway out the door already</td><td>"Saw your post about [tool]. We hear that a lot…"</td></tr>
+    <tr><td>Engaging with your space</td><td>Comments on posts about your topic, event attendance</td><td>The topic is on their mind this week</td><td>"Saw your comment on [post]. Curious what…"</td></tr>
+  </table>
+
+  <div style="display:grid;grid-template-columns:1.05fr 1fr;gap:18px;margin-top:16px;align-items:start">
+    <div>
+      <span class="label">Who to contact first</span>
+      <div class="matrix" style="margin-top:8px">
+        <div></div><div class="ax" style="justify-content:center">Signal: yes</div><div class="ax" style="justify-content:center">Signal: no</div>
+        <div class="ax">Strong fit</div>
+        <div class="cell" style="background:var(--ink);color:#ddd"><b style="color:#fff">Contact today</b>Your best leads. Full multi-channel cadence.</div>
+        <div class="cell" style="background:var(--mist)"><b>Watch</b>Light touch now. Move up when a signal appears.</div>
+        <div class="ax">Weak fit</div>
+        <div class="cell" style="border:1px solid var(--hair)"><b>Think twice</b>Only if the signal is very strong. Otherwise refer.</div>
+        <div class="cell" style="border:1px dashed var(--hair);color:var(--quiet)"><b style="color:var(--quiet)">Skip</b>Not worth a touch.</div>
+      </div>
+    </div>
+    <div class="card mist">
+      <h3>Write down your ideal customer in two sentences</h3>
+      <p>Everything in this playbook gets easier once this is clear. Brief it the way you would brief a new hire:</p>
+      <ul class="clean">
+        <li>The kind of company, its size and where it is</li>
+        <li>The person you want to reach, by role</li>
+        <li>The problem they have that you solve</li>
+        <li>The signals that say "now"</li>
+      </ul>
+      <p class="mono" style="margin:8px 0 0;font-size:8.6px;color:var(--ink)">Example: "Marketing agencies in the UK with 10 to 50 people. I want to reach the founder or MD, especially when they're hiring account managers or launching a new service."</p>
+    </div>
+  </div>
+  <div class="foot"><span class="label">A free playbook by Talk to me Data</span><span class="label">5</span></div>
+</section>
+
+<!-- ============ 6. LISTENING AGENT ============ -->
+<section class="page">
+  <div class="top"><div class="brand"><img src="../public/android-chrome-192x192.png" alt="">TTMD</div><span class="label">04 · The social listening agent</span></div>
+  <div style="display:grid;grid-template-columns:1fr 150px;gap:20px;align-items:end">
+    <div>
+      <span class="label">Chapter 02, done for you every day</span>
+      <h2>How the social listening agent finds people asking for you.</h2>
+      <p class="lead" style="margin:0">Searching seven platforms by hand, every day, is a part-time job. The social listening agent does the reading and the filtering, and hands you only the posts worth answering.</p>
+    </div>
+    <img class="avatar" src="../public/Social-listening-body-agent.jpeg" style="width:150px;height:150px;object-position:50% 30%" alt="">
+  </div>
+
+  <div class="flow" style="margin-top:18px">
+    <div class="step"><div class="n">1</div><h3>Describe who you want to reach</h3><p>A sentence or two: who you help and the problem they post about.</p></div>
+    <div class="step"><div class="n">2</div><h3>It reads seven platforms</h3><p>Reddit, X, Threads, YouTube, LinkedIn, Facebook and Instagram.</p></div>
+    <div class="step"><div class="n">3</div><h3>It skips the noise</h3><p>Self-promotion, vendors pitching, job posts and off topic chatter.</p></div>
+    <div class="step"><div class="n">4</div><h3>It rates every match</h3><p>Strong or good, so you answer the best ones first.</p></div>
+    <div class="step"><div class="n">5</div><h3>It drafts a reply and a DM</h3><p>A helpful public answer, and a short message to take it private.</p></div>
+  </div>
+
+  <div style="display:grid;grid-template-columns:1.2fr 1fr;gap:14px;margin-top:16px">
+    <div class="mock">
+      <div class="bar"><b>Found today</b><span class="label">Example · last 24 hours</span></div>
+      <div class="row"><div style="display:flex;justify-content:space-between"><span class="label" style="color:var(--ink)">u/designdaily_ in r/freelance · 12m</span><span class="tag s">Strong match</span></div><p style="margin:4px 0 0;color:var(--ink)">"Tax time again and my receipts are a mess. What do you all use to track expenses?"</p></div>
+      <div class="row"><div style="display:flex;justify-content:space-between"><span class="label" style="color:var(--ink)">Kayla M. on X · 1h</span><span class="tag s">Strong match</span></div><p style="margin:4px 0 0;color:var(--ink)">"Chasing three clients for unpaid invoices today. There has to be a better way than spreadsheets."</p></div>
+      <div class="row"><div style="display:flex;justify-content:space-between"><span class="label" style="color:var(--ink)">Tom Reyes on LinkedIn · 3h</span><span class="tag g">Good match</span></div><p style="margin:4px 0 0;color:var(--ink)">"Two years freelancing and I still do my books in a spreadsheet. What should I switch to?"</p></div>
+      <div class="row" style="background:var(--mist)"><span class="label">Skipped today: self-promotion · vendors pitching · job posts · off topic</span></div>
+    </div>
+    <div class="mock">
+      <div class="bar"><b>Reply to u/designdaily_</b><span class="label">Drafted</span></div>
+      <div class="row"><p style="margin:0;color:var(--ink)">"Snap every receipt the day you get it and tag it by client. Doing it weekly instead of yearly turns tax time into a 20 minute job. Happy to share the categories I use if useful."</p></div>
+      <div class="row" style="display:flex;gap:5px;flex-wrap:wrap"><span class="tag g">Answers the question first</span><span class="tag g">No hard sell</span><span class="tag g">Sounds like you</span></div>
+      <div class="bar" style="border-top:1px solid var(--hair)"><b>DM, ready when they reply</b></div>
+      <div class="row"><p style="margin:0;color:var(--ink)">"Hey, saw your post in r/freelance about receipts. I put together the exact setup I mentioned. Want me to send it over?"</p></div>
+    </div>
+  </div>
+
+  <div class="grid g2" style="margin-top:14px">
+    <div class="card ink"><span class="num">Why you press send</span><h3>Your name, your account, your call</h3><p style="margin:0">The agent finds and drafts. You choose which to send, make any change you want and post from your own account. Platforms are wary of automated posting, and buyers can tell a bot. A human send keeps your accounts safe and your replies real.</p></div>
+    <div class="card"><span class="num">What it replaces</span><h3>Hours of scrolling, every week</h3><ul class="clean" style="margin-top:4px"><li>Checking seven platforms, every day, including the posts that went up overnight</li><li>Wading through the sellers to find the one real buyer</li><li>Writing every reply from scratch</li></ul></div>
+  </div>
+  <p class="note">Example posts and replies are illustrative. Your matches depend on your market and the people you describe.</p>
+  <div class="foot"><span class="label">A free playbook by Talk to me Data</span><span class="label">6</span></div>
+</section>
+
+<!-- ============ 7. WHY MULTI-CHANNEL ============ -->
+<section class="page">
+  <div class="top"><div class="brand"><img src="../public/android-chrome-192x192.png" alt="">TTMD</div><span class="label">05 · Why multi-channel</span></div>
+  <span class="label">The core idea</span>
+  <h2>One message is a lottery ticket. A multi-channel campaign is a plan.</h2>
+  <p class="lead">A buyer who ignores one email is not saying no. Usually they are busy, they missed it, or the timing was off. Showing up a few times, in a few places, with something useful each time, is one of the most reliable ways to raise the odds that a good lead turns into a conversation.</p>
+
+  <div class="grid g2" style="margin-top:14px">
+    <div class="card"><span class="num">Reason 01</span><h3>More chances to be seen</h3><p style="margin:0">Inboxes and feeds are crowded. Every touch in a different place is another chance to land on a day they are paying attention.</p></div>
+    <div class="card"><span class="num">Reason 02</span><h3>Familiar beats cold</h3><p style="margin:0">The name they saw giving a helpful answer on Monday is not a stranger in their inbox on Wednesday. Recognition is the start of trust.</p></div>
+    <div class="card"><span class="num">Reason 03</span><h3>People have a favourite channel</h3><p style="margin:0">Some live in email. Some only answer LinkedIn messages. Some reply to a comment but never a cold email. Multi-channel meets each one where they answer.</p></div>
+    <div class="card"><span class="num">Reason 04</span><h3>Timing changes week to week</h3><p style="margin:0">"Not now" in week one can become "good timing, actually" in week three. A campaign is still running when the moment arrives.</p></div>
+  </div>
+
+  <div class="rule"></div>
+  <span class="label">The same lead, two ways</span>
+  <div style="display:grid;gap:12px;margin-top:10px">
+    <div>
+      <h3 style="margin-bottom:6px">Single channel</h3>
+      <div class="lane"><span class="pill e">Email 1</span><span class="arrow">→</span><span class="pill e">Email 2</span><span class="arrow">→</span><span class="pill e">Email 3</span><span class="arrow">→</span><span class="pill x">Missed it on a busy week</span><span class="arrow">→</span><span class="pill x">Lead goes cold</span></div>
+    </div>
+    <div>
+      <h3 style="margin-bottom:6px">Multi-channel</h3>
+      <div class="lane"><span class="pill s">Helpful comment</span><span class="arrow">→</span><span class="pill e">Email 1</span><span class="arrow">→</span><span class="pill s">LinkedIn connect</span><span class="arrow">→</span><span class="pill e">Follow-up</span><span class="arrow">→</span><span class="pill s">Comment on their post</span><span class="arrow">→</span><span class="pill e">Last email</span><span class="arrow">→</span><span class="pill e" style="background:#fff;color:var(--ink);border:2px solid var(--ink);font-weight:700">"Does Thursday work?"</span></div>
+      <div style="display:flex;gap:14px;margin-top:8px"><span class="note" style="margin:0"><span class="pill e" style="padding:1px 6px;font-size:7.6px">&nbsp;</span> Email</span><span class="note" style="margin:0"><span class="pill s" style="padding:1px 6px;font-size:7.6px">&nbsp;</span> Social</span></div>
+    </div>
+  </div>
+
+  <div class="rule"></div>
+  <span class="label">Four rules that keep it welcome, not annoying</span>
+  <div class="grid g4" style="margin-top:10px">
+    <div class="card mist"><h3>Every touch adds something</h3><p style="margin:0;font-size:9.4px">A tip, an example, a question. Never "just bumping this".</p></div>
+    <div class="card mist"><h3>Never the same message twice</h3><p style="margin:0;font-size:9.4px">Each channel gets its own short, native message.</p></div>
+    <div class="card mist"><h3>Stop the moment they reply</h3><p style="margin:0;font-size:9.4px">A reply, even "not now", ends the sequence. Then talk.</p></div>
+    <div class="card mist"><h3>Keep social human</h3><p style="margin:0;font-size:9.4px">Comments and DMs sent by you, in your own words.</p></div>
+  </div>
+  <p class="note">Results vary with your market, your list and your message. Track your own numbers with the scorecard in chapter 09.</p>
+  <div class="foot"><span class="label">A free playbook by Talk to me Data</span><span class="label">7</span></div>
+</section>
+
+<!-- ============ 8. CADENCES ============ -->
+<section class="page">
+  <div class="top"><div class="brand"><img src="../public/android-chrome-192x192.png" alt="">TTMD</div><span class="label">06 · Two 14-day cadences</span></div>
+  <span class="label">Copy these step by step</span>
+  <h2>Two ready-made multi-channel cadences.</h2>
+  <p class="lead">Use Play A when someone has asked a question in public. Use Play B when a company fits and shows a timing signal. Each touch says who does the work: <span class="who agent">Agent</span> runs it for you, <span class="who both">Agent drafts</span> means the agent writes it and you send it, <span class="who you">You</span> takes a minute or two.</p>
+
+  <div class="grid g2" style="margin-top:14px;gap:14px">
+    <div>
+      <div class="card ink" style="margin-bottom:8px"><span class="num">Play A · Start warm</span><h3 style="font-size:13px">Someone asked for what you sell</h3><p style="margin:0;font-size:9.4px">Powered by the social listening agent</p></div>
+      <table>
+        <tr><th style="width:44px">Day</th><th>Touch</th><th style="width:72px">Who</th></tr>
+        <tr><td>0</td><td><strong>Public reply</strong> on the platform where they posted. Answer the question. No pitch.</td><td><span class="who both">Agent drafts</span></td></tr>
+        <tr><td>1</td><td><strong>DM</strong> that mentions their post and offers one useful thing.</td><td><span class="who both">Agent drafts</span></td></tr>
+        <tr><td>3</td><td><strong>LinkedIn connect</strong> with a note that mentions the thread.</td><td><span class="who you">You</span></td></tr>
+        <tr><td>5</td><td><strong>Engage</strong> with their next post: a real comment, not a like.</td><td><span class="who you">You</span></td></tr>
+        <tr><td>7</td><td><strong>Second DM</strong> with a resource or example tied to their question.</td><td><span class="who you">You</span></td></tr>
+        <tr><td>10</td><td><strong>Email</strong>, if you have their work address and the company fits. Mention where you met.</td><td><span class="who you">You</span></td></tr>
+        <tr><td>14</td><td><strong>Close the loop</strong> politely. Leave the door open.</td><td><span class="who you">You</span></td></tr>
+      </table>
+    </div>
+    <div>
+      <div class="card ink" style="margin-bottom:8px"><span class="num">Play B · Start with a signal</span><h3 style="font-size:13px">A company that fits just gave you a reason</h3><p style="margin:0;font-size:9.4px">Powered by the AI SDR agent</p></div>
+      <table>
+        <tr><th style="width:44px">Day</th><th>Touch</th><th style="width:72px">Who</th></tr>
+        <tr><td>1</td><td><strong>First email</strong> opening on the signal. One clear, small ask.</td><td><span class="who agent">Agent</span></td></tr>
+        <tr><td>2</td><td><strong>LinkedIn</strong>: view their profile and connect. No pitch in the note.</td><td><span class="who you">You</span></td></tr>
+        <tr><td>3</td><td><strong>Follow-up email</strong>: a short nudge with one example.</td><td><span class="who agent">Agent</span></td></tr>
+        <tr><td>5</td><td><strong>Comment</strong> on a recent post by them or their company.</td><td><span class="who you">You</span></td></tr>
+        <tr><td>7</td><td><strong>Last email</strong> that closes the loop, politely.</td><td><span class="who agent">Agent</span></td></tr>
+        <tr><td>9</td><td><strong>LinkedIn message</strong>, only if they accepted. Different angle from the emails.</td><td><span class="who you">You</span></td></tr>
+        <tr><td>14+</td><td><strong>Stay visible</strong>: engage with their content now and then. Re-enter the cadence on a new signal.</td><td><span class="who you">You</span></td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="grid g3" style="margin-top:14px">
+    <div class="card mist"><h3>A reply ends the sequence</h3><p style="margin:0;font-size:9.4px">The moment they answer anywhere, stop every scheduled touch and have a real conversation.</p></div>
+    <div class="card mist"><h3>"Not now" is a date</h3><p style="margin:0;font-size:9.4px">Ask when to check back, note it and come back with something new. Not the same email again.</p></div>
+    <div class="card mist"><h3>Keep your part small</h3><p style="margin:0;font-size:9.4px">With the agents finding leads and writing the messages, your part is a few minutes per lead.</p></div>
+  </div>
+  <div class="foot"><span class="label">A free playbook by Talk to me Data</span><span class="label">8</span></div>
+</section>
+
+<!-- ============ 9. SDR AGENT ============ -->
+<section class="page">
+  <div class="top"><div class="brand"><img src="../public/android-chrome-192x192.png" alt="">TTMD</div><span class="label">07 · The AI SDR agent</span></div>
+  <div style="display:grid;grid-template-columns:1fr 150px;gap:20px;align-items:end">
+    <div>
+      <span class="label">Chapters 03 and 06, done for you</span>
+      <h2>How the AI SDR agent runs outbound from setup to replies.</h2>
+      <p class="lead" style="margin:0">Setting it up is one brief: who you sell to, in a sentence or two. From there the agent does the work a sales development rep would, every morning, and the replies come to you.</p>
+    </div>
+    <img class="avatar" src="../public/videos/sdr-agent-hero-end.jpg" style="width:150px;height:150px;object-position:50% 40%" alt="">
+  </div>
+
+  <div class="flow" style="margin-top:16px">
+    <div class="step"><div class="n">1</div><h3>You brief it once</h3><p>Describe who you sell to, like briefing a new hire. Change it any time in plain English.</p></div>
+    <div class="step"><div class="n">2</div><h3>It finds who fits</h3><p>Companies and people that match the customer you described.</p></div>
+    <div class="step"><div class="n">3</div><h3>It checks for "why now"</h3><p>Hiring, funding, growth, new launches. And tells you why each lead fits.</p></div>
+    <div class="step"><div class="n">4</div><h3>It writes to each one</h3><p>A personal email in your voice that opens on something true about their business.</p></div>
+    <div class="step"><div class="n">5</div><h3>It follows up, on time</h3><p>Sends from your Gmail or Outlook on paid plans and lines up every follow-up.</p></div>
+  </div>
+
+  <div style="display:grid;grid-template-columns:1fr 1.1fr 1fr;gap:10px;margin-top:14px">
+    <div class="mock">
+      <div class="bar"><b>Today's leads</b><span class="label">Example</span></div>
+      <div class="row"><b style="color:var(--ink)">Maya Collins</b> <span class="tag s" style="float:right">Strong fit</span><br><span style="font-size:9px">Founder, Northwind Creative</span><br><span style="font-size:9px;color:var(--quiet)">Why now: hiring 2 account managers</span></div>
+      <div class="row"><b style="color:var(--ink)">Daniel Okafor</b> <span class="tag s" style="float:right">Strong fit</span><br><span style="font-size:9px">Head of Growth, Brightside Media</span><br><span style="font-size:9px;color:var(--quiet)">Why now: launched a new service line</span></div>
+      <div class="row"><b style="color:var(--ink)">Priya Nair</b> <span class="tag g" style="float:right">Good fit</span><br><span style="font-size:9px">MD, Loop &amp; Lantern</span><br><span style="font-size:9px;color:var(--quiet)">Why now: team grew this year</span></div>
+    </div>
+    <div class="mock">
+      <div class="bar"><b>Sequence for Maya Collins</b><span class="label">Lined up</span></div>
+      <div class="row"><span class="tag s">Day 1 · Sent</span><p style="margin:4px 0 0">First email: Northwind's new account manager roles</p></div>
+      <div class="row"><span class="tag g">Day 3 · Scheduled</span><p style="margin:4px 0 0">Follow-up: a short nudge with one example</p></div>
+      <div class="row"><span class="tag g">Day 7 · Scheduled</span><p style="margin:4px 0 0">Last follow-up: closes the loop, politely</p></div>
+    </div>
+    <div class="mock">
+      <div class="bar"><b>Your inbox</b><span class="label">Replies</span></div>
+      <div class="row"><b style="color:var(--ink)">Maya Collins</b> <span class="tag s" style="float:right">Interested</span><p style="margin:3px 0 0">"Good timing, actually. Does Thursday at 2 work?"</p></div>
+      <div class="row"><b style="color:var(--ink)">Daniel Okafor</b> <span class="tag s" style="float:right">Interested</span><p style="margin:3px 0 0">"Can you send over pricing and a case study?"</p></div>
+      <div class="row"><b style="color:var(--ink)">Priya Nair</b> <span class="tag g" style="float:right">Later</span><p style="margin:3px 0 0">"Not this quarter, but try me again in January."</p></div>
+    </div>
+  </div>
+
+  <table style="margin-top:14px">
+    <tr><th style="width:24%">The work</th><th style="width:38%">By hand</th><th>With the AI SDR agent</th></tr>
+    <tr><td>Building the list</td><td>Evenings in spreadsheets and search tools</td><td>Fresh leads that fit, ready every morning</td></tr>
+    <tr><td>Researching each lead</td><td>10 to 15 minutes per lead to find, check and write an opener</td><td>A reason to talk now and why they fit, for every lead</td></tr>
+    <tr><td>Writing the emails</td><td>A template with a first name swapped in</td><td>One email per person, in your voice, about their business</td></tr>
+    <tr><td>Following up</td><td>The first thing to slip on a busy week</td><td>Every follow-up lined up and sent on time</td></tr>
+    <tr><td>Handling replies</td><td>Digging through threads and tabs</td><td>Replies land in the inbox you already use</td></tr>
+  </table>
+  <p class="note">Example leads and replies are illustrative. Manual times are typical estimates; your numbers will vary. Sending from your own mailbox is on paid plans.</p>
+  <div class="foot"><span class="label">A free playbook by Talk to me Data</span><span class="label">9</span></div>
+</section>
+
+<!-- ============ 10. TEMPLATES ============ -->
+<section class="page">
+  <div class="top"><div class="brand"><img src="../public/android-chrome-192x192.png" alt="">TTMD</div><span class="label">08 · Templates</span></div>
+  <span class="label">Copy, fill the brackets, send</span>
+  <h2>7 message templates for every touch.</h2>
+  <p class="lead">Short beats clever. Every template opens on them, gives something useful and makes one small ask.</p>
+
+  <div class="grid g2" style="margin-top:12px">
+    <div class="tpl"><span class="num">01 · Public reply · Play A, day 0</span><div class="body">[Direct answer to their question in 1 or 2 lines]. What worked for us/our clients: [one specific tip].
+
+If it helps, happy to share [the checklist / setup / example] I use.</div><div class="why">Answer first. The offer at the end is optional and soft.</div></div>
+    <div class="tpl"><span class="num">02 · DM · Play A, day 1</span><div class="body">Hey [name], saw your post in [place] about [problem]. I put together [the thing you mentioned]. Want me to send it over?</div><div class="why">Mentions the exact post, so it never feels cold. One yes or no question.</div></div>
+    <div class="tpl"><span class="num">03 · LinkedIn connection note</span><div class="body">Hi [name], enjoyed your [post/comment] on [topic]. I work on [your area] with [type of company] and would like to follow your updates.</div><div class="why">No pitch. The goal is to be a familiar name, not to sell in 200 characters.</div></div>
+    <div class="tpl"><span class="num">04 · First email · Play B, day 1</span><div class="body">Subject: [their signal, in 3 to 5 words]
+
+Hi [name], saw [signal: you're hiring two account managers]. Usually that means [the problem it creates].
+
+We help [similar companies] [result] without [the usual cost or pain].
+
+Worth a 15 minute chat next week?</div><div class="why">Opens on why now. One line on you. One clear, small ask.</div></div>
+    <div class="tpl"><span class="num">05 · Follow-up · Play B, day 3</span><div class="body">Hi [name], one example in case it's useful: [similar company] used [your approach] to [specific result].
+
+Happy to show you how it would look for [their company].</div><div class="why">Adds proof, not pressure. Never "just bumping this".</div></div>
+    <div class="tpl"><span class="num">06 · Social touch · Play B, day 9</span><div class="body">Hi [name], thanks for connecting. Curious how you're handling [problem] with the team growing. Anything you'd do differently?</div><div class="why">A different angle from the emails. A question, not a repeat.</div></div>
+  </div>
+  <div class="tpl" style="margin-top:10px"><span class="num">07 · Last email · Play B, day 7</span><div class="body">Hi [name], I'll stop here so I'm not cluttering your inbox. If [problem] moves up the list later, just reply to this email and I'll pick it straight up. Good luck with [their signal].</div><div class="why">Closing the loop politely often gets the reply the first two didn't, and leaves the door open.</div></div>
+  <div class="foot"><span class="label">A free playbook by Talk to me Data</span><span class="label">10</span></div>
+</section>
+
+<!-- ============ 11. SCORECARD + DELIVERABILITY ============ -->
+<section class="page">
+  <div class="top"><div class="brand"><img src="../public/android-chrome-192x192.png" alt="">TTMD</div><span class="label">09 · Measure and protect</span></div>
+  <span class="label">Print this page</span>
+  <h2>A weekly scorecard, and a checklist to keep your accounts safe.</h2>
+  <p class="lead">Track five numbers per channel each week. After a month you will know which channel starts the most conversations for you, and where to put more effort.</p>
+
+  <table class="score" style="margin-top:12px">
+    <tr><th style="width:26%">This week</th><th>Email</th><th>LinkedIn</th><th>Reddit</th><th>X / Threads</th><th>Other</th></tr>
+    <tr><td>Leads contacted</td><td></td><td></td><td></td><td></td><td></td></tr>
+    <tr><td>Replies</td><td></td><td></td><td></td><td></td><td></td></tr>
+    <tr><td>Positive replies</td><td></td><td></td><td></td><td></td><td></td></tr>
+    <tr><td>Calls booked</td><td></td><td></td><td></td><td></td><td></td></tr>
+    <tr><td>Reply rate (replies ÷ contacted)</td><td></td><td></td><td></td><td></td><td></td></tr>
+  </table>
+  <p class="note">Also note which touch got the reply. If most replies come after the second or third touch, that is your multi-channel campaign doing its job.</p>
+
+  <div class="grid g2" style="margin-top:14px;gap:14px">
+    <div class="card">
+      <span class="num">Email deliverability checklist</span>
+      <h3>So your emails land in the inbox</h3>
+      <ul class="boxes" style="margin-top:8px">
+        <li>SPF, DKIM and DMARC are set up on your sending domain</li>
+        <li>You send from a real mailbox, under a real name</li>
+        <li>New mailboxes start slowly and build volume over a few weeks</li>
+        <li>First emails are plain text, with no attachments and no images</li>
+        <li>One link at most, and none in the very first email if you can</li>
+        <li>Every email opens on something specific to that person</li>
+        <li>Bounced addresses are removed straight away</li>
+        <li>Anyone who asks to stop is never emailed again</li>
+        <li>You follow the email rules where your buyers are, such as GDPR in the UK and EU and CAN-SPAM in the US</li>
+      </ul>
+    </div>
+    <div class="card">
+      <span class="num">Social safety checklist</span>
+      <h3>So your accounts stay in good standing</h3>
+      <ul class="boxes" style="margin-top:8px">
+        <li>You send replies and DMs yourself, from your own account</li>
+        <li>No browser bots or tools that click for you on LinkedIn</li>
+        <li>No copy and paste: each message is edited for the person</li>
+        <li>You read the rules of every group and subreddit first</li>
+        <li>Your profile says clearly who you are and what you do</li>
+        <li>Your public replies help even if the person never buys</li>
+        <li>You keep a sensible daily pace instead of bursts</li>
+      </ul>
+      <div class="card mist" style="margin-top:10px;padding:10px 12px"><p style="margin:0;font-size:9.4px">This is why the social listening agent drafts and you send. Finding and writing are the slow parts; pressing send takes seconds and keeps your account yours.</p></div>
+    </div>
+  </div>
+  <div class="foot"><span class="label">A free playbook by Talk to me Data</span><span class="label">11</span></div>
+</section>
+
+<!-- ============ 12. CTA ============ -->
+<section class="page dark">
+  <div class="top"><div class="brand"><img src="../public/android-chrome-192x192.png" alt="">TTMD</div><span class="label">Get started</span></div>
+
+  <span class="label" style="margin-top:20px">Talk to me Data</span>
+  <h1 style="color:#fff;margin:12px 0 14px;font-size:38px;max-width:6.2in">Let two agents run this playbook for you.</h1>
+  <p class="lead" style="max-width:5.8in">You now have the whole system: where buyers ask, the signals that say now, and the campaigns that turn them into conversations. The slow parts are the finding, the filtering, the writing and the following up. That is exactly what these two agents do, every day.</p>
+
+  <div class="grid g2" style="margin-top:22px;gap:14px">
+    <div class="card" style="padding:0;overflow:hidden">
+      <img src="../public/Social-listening-body-agent.jpeg" style="width:100%;height:220px;object-fit:cover;object-position:50% 25%;display:block" alt="">
+      <div style="padding:14px 16px">
+        <span class="num">Social listening agent</span>
+        <h3 style="font-size:14px">People asking for you, found every day</h3>
+        <ul class="ticks" style="margin-top:8px">
+          <li>Reads Reddit, X, Threads, YouTube, LinkedIn, Facebook and Instagram</li>
+          <li>Skips self-promotion, vendors and job posts</li>
+          <li>Rates every match and drafts a reply and a DM</li>
+          <li>You send from your own account</li>
+        </ul>
+      </div>
+    </div>
+    <div class="card" style="padding:0;overflow:hidden">
+      <img src="../public/videos/sdr-agent-hero-end.jpg" style="width:100%;height:220px;object-fit:cover;object-position:50% 15%;display:block" alt="">
+      <div style="padding:14px 16px">
+        <span class="num">AI SDR agent</span>
+        <h3 style="font-size:14px">Buyers who fit, written to and followed up</h3>
+        <ul class="ticks" style="margin-top:8px">
+          <li>Leads that match your ideal customer, every morning</li>
+          <li>Spots hiring, funding, growth and launches</li>
+          <li>A personal email and a full sequence for every lead</li>
+          <li>Sends from your Gmail or Outlook on paid plans</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:14px;display:flex;justify-content:space-between;align-items:center;padding:16px 18px">
+    <div>
+      <h3 style="font-size:13px">Free to start</h3>
+      <p style="margin:0">Every pre-built agent and 50 actions a month, free forever. No card required.</p>
+    </div>
+    <a class="btn" href="https://app.talktomedata.com/signup">Get started →</a>
+  </div>
+  <p class="note" style="color:#8a8a8a;margin-top:8px">app.talktomedata.com/signup · Or reply to the email this playbook came with and tell us who you sell to.</p>
+
+  <div class="foot"><span class="label">A free playbook by Talk to me Data</span><span class="label">talktomedata.com</span></div>
+</section>
+
+</body>
+</html>
