@@ -7,7 +7,9 @@
  * Writes:
  *   private/appsumo/appsumo-codes.csv   one code per line, no header (upload this to AppSumo)
  *   private/appsumo/test-codes.txt      codes for testing /redeem, NOT in the CSV
- *   lib/appsumo/code-hashes.json        SHA-256 of every code (committed; the API checks against it)
+ *   private/appsumo/appsumo-codes-*.sql INSERT for the app's appsumo_codes table (run it in the
+ *                                       app's Supabase SQL editor, or the new codes won't redeem)
+ *   lib/appsumo/code-hashes.json        SHA-256 of every code (committed; /api/redeem checks against it)
  *
  * private/ is gitignored, so plain codes never land in the repo. Running it again
  * ADDS a new batch to the hashes file, so codes already sold keep working.
@@ -56,6 +58,18 @@ writeFileSync(csvPath, codes.join("\n") + "\n")
 writeFileSync(join(OUT_DIR, "test-codes.txt"), tests.join("\n") + "\n", { flag: "a" })
 writeFileSync(HASHES, JSON.stringify([...seen], null, 0) + "\n")
 
+// The app (app-TTDM, 078_appsumo_codes.sql) is what actually claims a code, so
+// it needs this batch too. ON CONFLICT makes running it twice harmless.
+const sqlPath = csvPath.replace(/\.csv$/, ".sql")
+const rows = [...codes.map(c => `  ('${hash(c)}', false)`), ...tests.map(c => `  ('${hash(c)}', true)`)]
+writeFileSync(
+  sqlPath,
+  `-- AppSumo codes, batch of ${stamp}: ${codes.length} codes + ${tests.length} test codes.\n` +
+    `-- Run in the app's Supabase SQL editor (needs 078_appsumo_codes.sql applied first).\n` +
+    `INSERT INTO public.appsumo_codes (code_hash, is_test) VALUES\n${rows.join(",\n")}\nON CONFLICT (code_hash) DO NOTHING;\n`,
+)
+
 console.log(`Wrote ${codes.length} codes to ${csvPath}`)
 console.log(`Test codes (not in the CSV):\n  ${tests.join("\n  ")}`)
 console.log(`${seen.size} valid codes in total in lib/appsumo/code-hashes.json`)
+console.log(`Now run ${sqlPath} in the app's Supabase SQL editor`)

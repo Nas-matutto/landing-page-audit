@@ -3,6 +3,8 @@
  */
 export const SIGNUP_URL = "https://app.talktomedata.com/signup"
 export const LOGIN_URL = "https://app.talktomedata.com/login"
+/** Where /redeem sends an AppSumo buyer with a valid code (?code=). The app claims it and applies Solo. */
+export const APP_REDEEM_URL = "https://app.talktomedata.com/redeem"
 
 /**
  * The product demo that every "Watch the demo" link leads to (/watch-demo).

@@ -26,7 +26,7 @@ export default function RedeemPage() {
             <p className="eyebrow mb-5">AppSumo</p>
             <h1 className="display text-[clamp(2.5rem,7vw,4rem)]">Redeem your code</h1>
             <p className="lede mx-auto mt-6 max-w-md text-lg">
-              Enter the code from your AppSumo purchase to unlock the Solo plan.
+              Enter the code from your AppSumo purchase, then create your account or sign in. The Solo plan unlocks instantly.
             </p>
           </Reveal>
 

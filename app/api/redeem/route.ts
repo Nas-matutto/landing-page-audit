@@ -5,7 +5,9 @@ import hashes from "@/lib/appsumo/code-hashes.json"
 /**
  * Checks an AppSumo code. Only SHA-256 hashes of the codes live in the repo
  * (see scripts/generate-appsumo-codes.mjs), so the list can't be read from the site.
- * This only validates; the Solo upgrade itself is done by hand after the buyer emails us.
+ * This is only a first check so a typo gets caught here. The form then sends the
+ * buyer to app.talktomedata.com/redeem, which claims the code for their account
+ * (one account per code) and applies Solo. "Already used" is only known there.
  */
 const VALID = new Set<string>(hashes as string[])
 
