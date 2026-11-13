@@ -27,11 +27,12 @@ import type { SnapshotInsights, SnapshotPost, SnapshotProfile } from "@/lib/inst
 const MODEL = "claude-sonnet-5-5"
 
 const InsightSchema = z.object({ title: z.string(), why: z.string() })
-const InsightsSchema = z.object({ headline: z.string(), do: InsightSchema, fix: InsightSchema, try: InsightSchema })
+const InsightsSchema = z.object({ hook: z.string(), headline: z.string(), do: InsightSchema, fix: InsightSchema, try: InsightSchema })
 
 const SYSTEM = `You are a social media agent writing the analysis section of a one-page Instagram snapshot for a creator or business. You get their profile, their numbers and a table of their latest posts. Tell them what to do, not what you observed.
 
 Write:
+- hook: the email's subject heading, shown right after the reader's first name and a comma. Your single best quick win in the form "<instruction> to <result>", max 10 words, starting with a lowercase verb and ending with a full stop, e.g. "post more 20 second Reels to double your views." The result must be one the data supports.
 - headline: the verdict on the account right now in one sentence (max 25 words), including the most important number.
 - do: the thing that's working that they should do more of.
 - fix: the biggest thing underperforming against their own average.
@@ -124,6 +125,11 @@ export function fallbackInsights(profile: SnapshotProfile, posts: SnapshotPost[]
   const ctaHelps = withCta.count >= 2 && (withCta.multiple ?? 0) > (withoutCta.multiple ?? 0)
 
   return {
+    hook: best
+      ? `post more ${TYPE_LABEL[best.type]}s to lift your engagement.`
+      : last30.postsPerWeek < 2
+        ? "post twice a week to grow your reach."
+        : "end each caption with one ask to get more comments.",
     headline: `@${profile.handle} posted ${last30.current.posts} times in the last 30 days at ${percent(last30.current.engagementRate)} engagement.`,
     do: best
       ? { title: `Post more ${TYPE_LABEL[best.type]}s, your strongest format so far.`, why: `Your ${best.count} ${TYPE_LABEL[best.type]}s averaged ${percent(best.engagementRate)} engagement, the best of any format.` }

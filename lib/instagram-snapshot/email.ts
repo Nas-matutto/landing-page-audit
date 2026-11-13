@@ -11,13 +11,20 @@ function stat(name: string, value: string): string {
 /** The first sentence, so the headline reads in one breath. */
 const firstSentence = (s: string) => (s.match(/^.*?[.!?](?=\s|$)/)?.[0] ?? s).trim()
 
+/** "Nas, post more carousels to lift your engagement." The tip comes first so the reader gets value before opening the PDF. */
+function heading(hook: string, firstName?: string): string {
+  const h = hook.trim().replace(/[.!?\s]+$/, "") + "."
+  if (firstName) return `${firstName}, ${/^[A-Z][a-z]/.test(h) ? h[0].toLowerCase() + h.slice(1) : h}`
+  return h[0].toUpperCase() + h.slice(1)
+}
+
 /** The email that carries the PDF: the headline, three numbers, three moves (like the app's weekly digest), the signup link. */
 export function snapshotEmailHtml({ handle, firstName, snapshot }: { handle: string; firstName?: string; snapshot: Snapshot }): string {
   const k = snapshot.last30.current
   const i = snapshot.insights
   return emailShell({
     from: FROM_SOCIAL_AGENT,
-    heading: `${firstName ? `${firstName}, here's` : "Here's"} your Instagram snapshot`,
+    heading: heading(i.hook, firstName),
     blocks: [
       `<p style="margin:0 0 2px;font-size:11px;font-weight:600;color:#71717a;text-transform:uppercase;letter-spacing:.04em">Instagram · @${esc(handle)}</p>`,
       p(esc(firstSentence(i.headline))),

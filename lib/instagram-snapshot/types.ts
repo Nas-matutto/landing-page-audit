@@ -37,6 +37,8 @@ export interface Insight {
 }
 
 export interface SnapshotInsights {
+  /** The email's heading after the reader's name: one quick win, e.g. "post more carousels to lift your engagement." */
+  hook: string
   headline: string
   do: Insight
   fix: Insight

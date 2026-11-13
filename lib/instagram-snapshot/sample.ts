@@ -81,6 +81,7 @@ export function sampleInsights(): SnapshotInsights {
   const image = formats.find(f => f.type === "image")
   const best = formats[0]
   return {
+    hook: "film more 20 second before and afters to get more views.",
     headline: `Short Reels are carrying the account: ${sweet?.count} Reels between 15 and 30 seconds did ${multiple(sweet?.multiple ?? null)} your typical Reel.`,
     do: {
       title: "Film two more 20 second before and afters this week, opening on the finished room.",
