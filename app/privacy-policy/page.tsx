@@ -18,7 +18,7 @@ const { h2, h3, p, ul, ol } = legal
 
 export default function PrivacyPolicyPage() {
   return (
-    <LegalPage title="Privacy Policy" lastUpdated="2 November 2026">
+    <LegalPage title="Privacy Policy" lastUpdated="13 November 2026">
       {/* Intro */}
       <section>
         <p className={p}>
@@ -76,6 +76,9 @@ export default function PrivacyPolicyPage() {
         </p>
         <p className={p}>
           The content our agents read (for example an email thread or a spreadsheet) is processed to complete the task and is stored only as part of that agent&rsquo;s conversation history, so you can see what it did.
+        </p>
+        <p className={p}>
+          <strong>Your email account.</strong> If you connect a mailbox (Gmail, Outlook, or another provider by IMAP/SMTP), our agents send emails you&rsquo;ve approved from it and read incoming messages only to spot replies, bounces and opt-outs to those emails. Passwords for IMAP/SMTP accounts are stored encrypted and used only to send and check those emails.
         </p>
         <p className={p}>
           If you connect Google Search Console to the SEO &amp; GEO Manager, we read, read-only, the search performance data for the websites you choose: the searches people used to find your site, the pages they landed on, clicks, impressions, average position, and splits by device and country. We connect to Google directly for this (not through Composio) and store the access tokens ourselves, encrypted.
@@ -164,6 +167,7 @@ export default function PrivacyPolicyPage() {
               ["Take payments, manage your subscription, send receipts", <strong className="text-foreground">Contract</strong>],
               ["Keep financial and tax records", <strong className="text-foreground">Legal obligation</strong>],
               ["Collect public social media data and public property records to power the Social Media Manager and Property Leads agents", <><strong className="text-foreground">Legitimate interests</strong>: providing market and competitor insight from information people have chosen to make public (see section 7)</>],
+              ["Find the name and work email of editors and website owners, and send them the emails our customers approve (SEO & GEO Manager “Get featured” and the SDR agent)", <><strong className="text-foreground">Legitimate interests</strong>: business-to-business contact about a page they publish (see section 7)</>],
               ["Keep the Service secure, prevent fraud and abuse, fix bugs", <><strong className="text-foreground">Legitimate interests</strong>: protecting our users and our Service</>],
               ["Understand how people use the Service so we can improve it (analytics using cookies), and measure our advertising", <><strong className="text-foreground">Consent</strong>: via our cookie banner, which you can change at any time</>],
               ["Count visits and clicks anonymously without cookies, when you choose “Necessary only”", <><strong className="text-foreground">Legitimate interests</strong>: understanding, in aggregate, how our website is used so we can improve it</>],
@@ -239,6 +243,7 @@ export default function PrivacyPolicyPage() {
           <li><strong>Comments on our customers&rsquo; posts.</strong> If a customer connects their Instagram account, we store comments people have left on that customer&rsquo;s own posts (username and comment) so the customer can read and answer them. We delete them when the customer disconnects or removes the account.</li>
           <li><strong>Clicks on tracked links.</strong> When someone clicks a customer&rsquo;s tracked link (talktomedata.com/l/&hellip;), we count the click for that day and send them on to the customer&rsquo;s website. We don&rsquo;t store their IP address or any identifier.</li>
           <li><strong>Contacts uploaded by customers.</strong> Property Leads customers may upload their own contact lists. The customer is the controller of that data and we process it on their behalf.</li>
+          <li><strong>Editors and website owners.</strong> When a customer uses the SEO &amp; GEO Manager&rsquo;s &ldquo;Get featured&rdquo; feature (or the SDR agent), we read public web pages that AI assistants cite, and find the name and work email address of the person who runs each page: from the page itself, the site&rsquo;s contact or about pages, or a business-contact lookup service. We use these only to send the emails the customer approves (or switches on autopilot for) from their connected mailbox, and one follow-up. Every email has a one-line way to opt out. If someone opts out, bounces or asks us to stop, we add their address to a suppression list and never email them again from any customer&rsquo;s account. We rely on legitimate interests (business-to-business contact about a page they publish). Anyone can ask us to delete their details at <Email />.</li>
         </ul>
         <p className={p}>
           If you&rsquo;d like to know whether we hold data about you, object to it being processed, or ask us to delete it, email <Email />. We will act on your request unless we have a compelling legal reason not to, in which case we&rsquo;ll explain why.
@@ -251,6 +256,8 @@ export default function PrivacyPolicyPage() {
         <ul className={ul}>
           <li><strong>Service emails</strong> such as account confirmations, receipts, failed-post alerts, posting reminders and weekly digests. Reminders and digests can be switched off in your Social Media Manager settings. We cannot switch off essential account emails while you have an account.</li>
           <li><strong>Marketing emails</strong> only if you agreed to receive them, or if you&rsquo;re a customer and did not opt out. Every one has an unsubscribe link.</li>
+          <li><strong>Emails from your own mailbox.</strong> Some agents send emails from your own mailbox, on your behalf (pitches to editors, sales outreach). You choose who they go to and approve them, or turn on autopilot. You are responsible for what is sent from your account, under our{" "}
+            <Link href="/terms-of-service"className="text-foreground underline underline-offset-4">Terms</Link>.</li>
         </ul>
       </section>
 
@@ -279,6 +286,7 @@ export default function PrivacyPolicyPage() {
               ["Cloudflare", "Bot protection at sign-up (Turnstile)", "US and worldwide"],
               ["Cal.com", "Booking calls with us", "US"],
               ["GitHub", "Running scheduled background jobs", "US"],
+              ["treg.to", "Finding and verifying business contact emails (and the data providers it routes requests to)", "US"],
             ]}
           />
         </div>
