@@ -432,7 +432,9 @@ export default function HowToGetCitedByChatGPTPage() {
           industry lists, alongside or instead of brand websites. Run your buyers&apos; questions, note which outside pages
           get cited, and work on being included in them: ask happy customers for reviews, pitch the authors of
           comparison articles, answer questions in the communities your buyers use, and share your original data with
-          the people who write about your industry.
+          the people who write about your industry. Our playbook on{" "}
+          <Link href="/blog/how-to-get-cited-by-chatgpt-perplexity-and-claude" className={LINK}>how to get cited by ChatGPT, Perplexity and Claude</Link>{" "}
+          shows how to find those articles and what to offer each type.
         </p>
 
         <h3 className={H3}>Step 9: Update pages and track the same questions every week</h3>

@@ -142,6 +142,38 @@ const COVER = { width: 1200, height: 630 }
 
 export const POSTS: BlogPost[] = [
   {
+    slug: "how-to-get-cited-by-chatgpt-perplexity-and-claude",
+    title: "How to Get Cited by ChatGPT, Perplexity and Claude: The 2026 Playbook",
+    seoTitle: "How to Get Cited by ChatGPT, Perplexity and Claude",
+    description:
+      "How to get cited by ChatGPT, Perplexity and Claude: get quoted in the articles they already cite, add llms.txt, fix speed and metadata, and beat rivals.",
+    excerpt:
+      "The playbook for getting cited and recommended by all three AI engines: get quoted in the articles they already trust, publish an llms.txt (with our study of who does), fix speed and metadata, and find out who AI recommends ahead of you.",
+    category: "seo-automation",
+    author: "nas",
+    datePublished: "2026-11-13",
+    dateModified: "2026-11-13",
+    readMinutes: 14,
+    cover: {
+      src: "/blog/how-to-get-cited-by-chatgpt-perplexity-and-claude/how-to-get-cited-by-chatgpt-perplexity-and-claude-cover.png",
+      alt: "How to get cited by ChatGPT, Perplexity and Claude: the SEO and GEO agent in his green hoodie waving next to the checks Cited by ChatGPT, Cited by Perplexity, Cited by Claude and Quoted in 3 roundups",
+      width: 2400,
+      height: 1260,
+    },
+    keywords: [
+      "how to get cited by ChatGPT, Perplexity and Claude",
+      "how to get cited by Perplexity",
+      "how to get cited by Claude",
+      "how to get recommended by ChatGPT",
+      "how to get mentioned in AI answers",
+      "llms.txt",
+      "AI search optimization",
+      "generative engine optimization",
+      "AI visibility",
+    ],
+    agentPage: { href: "/agents/seo-geo", label: "The SEO & GEO AI Agent: finds the articles AI cites and gets you into them" },
+  },
+  {
     slug: "how-to-automate-instagram-with-ai",
     title: "How to Fully Automate Your Instagram With AI: A Step-by-Step Guide",
     seoTitle: "How to Automate Instagram With AI (Step-by-Step Guide)",
