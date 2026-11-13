@@ -22,7 +22,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ success: true })
     }
 
-    // Brevo: add contact to list 5 (TTMD Leads), like every other guide
+    // Brevo: add contact to list 14 (Multi-Channel Lead Generation Playbook leads)
     const brevoKey = process.env.BREVO_API_KEY?.trim()
     if (!brevoKey) {
       console.warn('BREVO_API_KEY is not set')
@@ -36,7 +36,7 @@ export async function POST(request: NextRequest) {
         body: JSON.stringify({
           email,
           updateEnabled: true,
-          listIds: [5],
+          listIds: [14],
           attributes: {
             SOURCE: 'guide_lead_playbook',
             ...(firstName ? { FIRSTNAME: firstName } : {}),
