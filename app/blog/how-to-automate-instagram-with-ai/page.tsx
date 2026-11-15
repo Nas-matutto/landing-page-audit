@@ -344,7 +344,9 @@ export default function AutomateInstagramWithAiPage() {
           The rule I follow: <strong>borrow the pattern, never the post.</strong> If a competitor&apos;s carousel broke out
           because it taught one lesson per slide, or a Reel broke out because it showed the result in the first second,
           that structure is yours to use on your own topic. The <strong>What to borrow</strong> cards do this translation
-          for you, and <strong>Script this for me</strong> writes your version.
+          for you, and <strong>Script this for me</strong> writes your version. For the full method, from picking up to 10
+          accounts to transcribing their winners, read{" "}
+          <Link href="/blog/how-to-spy-on-competitors-instagram" className={LINK}>how to spy on your competitors&apos; Instagram</Link>.
         </p>
 
         <Figure

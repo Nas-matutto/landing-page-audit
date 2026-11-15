@@ -142,6 +142,37 @@ const COVER = { width: 1200, height: 630 }
 
 export const POSTS: BlogPost[] = [
   {
+    slug: "how-to-spy-on-competitors-instagram",
+    title: "How to Spy on Your Competitors' Instagram Accounts: A 7-Step Guide",
+    seoTitle: "How to Spy on Competitors' Instagram Accounts (2026)",
+    description:
+      "How to spy on competitors' Instagram: track up to 10 accounts, catch their breakout posts, transcribe what worked and turn it into your own version.",
+    excerpt:
+      "A 7-step mission for spying on competitors' Instagram the smart way: pick up to 10 accounts, build a you vs them scoreboard, catch breakout posts as they happen, spot trends across accounts, then transcribe the winners and turn them into posts made for your audience.",
+    category: "social-media-automation",
+    author: "nas",
+    datePublished: "2026-11-15",
+    dateModified: "2026-11-15",
+    readMinutes: 13,
+    cover: {
+      src: "/blog/how-to-spy-on-competitors-instagram/how-to-spy-on-competitors-instagram-cover.png",
+      alt: "How to spy on your competitors' Instagram: the social media agent in an AI cap watching 10 accounts, with the checks Breakout spotted, Transcribed the Reel and Wrote your version, and a you vs them views chart",
+      width: 2400,
+      height: 1260,
+    },
+    keywords: [
+      "how to spy on competitors Instagram",
+      "spy on competitors Instagram",
+      "Instagram competitor analysis",
+      "track competitors on Instagram",
+      "Instagram competitor tracking tool",
+      "Instagram trend spotting",
+      "competitor breakout posts",
+      "Instagram content ideas from competitors",
+    ],
+    agentPage: { href: "/agents/social-media", label: "The Social Media AI Agent: track up to 10 competitors" },
+  },
+  {
     slug: "how-to-get-cited-by-chatgpt-perplexity-and-claude",
     title: "How to Get Cited by ChatGPT, Perplexity and Claude: The 2026 Playbook",
     seoTitle: "How to Get Cited by ChatGPT, Perplexity and Claude",
