@@ -49,7 +49,7 @@ export function WebsiteAgentHero() {
         <div className="rise-in relative mx-auto w-full max-w-xl pb-10 lg:max-w-none lg:pb-0" style={{ animationDelay: "0.15s" }}>
           <OverviewPanel />
 
-          <Ambassador
+          <Ambassador agent="website_manager"
             pose="wave"
             sizes="180px"
             className="pointer-events-none absolute -bottom-6 -left-3 h-[250px] w-[124px] drop-shadow-xl sm:-left-8 sm:h-[330px] sm:w-[164px] lg:-left-14 lg:-bottom-10"

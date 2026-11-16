@@ -1,5 +1,6 @@
 import Image from "next/image"
 import { cn } from "@/lib/utils"
+import { PREBUILT_AGENTS, type PrebuiltAgentId } from "@/lib/prebuilt-agents"
 
 // The agent ambassador as transparent cutouts (the same character as the
 // hero and the app). Poses are real PNGs with alpha, so he sits on any surface.
@@ -16,6 +17,12 @@ const POSES: Record<AmbassadorPose, { src: string; width: number; height: number
 
 interface AmbassadorProps {
   pose: AmbassadorPose
+  /**
+   * Whose section this is. When that agent has its own full-body ambassador
+   * (pink Social Media, green SEO, red SDR, black Listening) it stands in for
+   * every pose; otherwise the black-hoodie poses are used.
+   */
+  agent?: PrebuiltAgentId
   /** Sets the crop window, e.g. "h-28 w-32". Each pose is drawn full width from the top, so a short window shows head and shoulders. */
   className?: string
   sizes?: string
@@ -23,7 +30,31 @@ interface AmbassadorProps {
 }
 
 /** Every pose stays mounted and crossfades, so changing pose never flashes or reloads. */
-export function Ambassador({ pose, className, sizes = "200px", priority }: AmbassadorProps) {
+export function Ambassador({ pose, agent, className, sizes = "200px", priority }: AmbassadorProps) {
+  const body = agent ? PREBUILT_AGENTS.find((a) => a.id === agent)?.body : undefined
+
+  if (body) {
+    // Drawn as tall as the pose it replaces would be, centred, so every crop
+    // window frames the agent the same way whichever agent it is.
+    const p = POSES[pose]
+    const width = (p.height / p.width) * (body.width / body.height) * 100
+    return (
+      <div className={cn("relative select-none overflow-hidden", className)}>
+        <Image
+          src={body.src}
+          alt={body.alt}
+          width={body.width}
+          height={body.height}
+          sizes={sizes}
+          priority={priority}
+          draggable={false}
+          className="absolute top-0 h-auto max-w-none transition-[width,left] duration-300"
+          style={{ width: `${width}%`, left: `${(100 - width) / 2}%` }}
+        />
+      </div>
+    )
+  }
+
   return (
     <div className={cn("relative select-none overflow-hidden", className)}>
       {(Object.keys(POSES) as AmbassadorPose[]).map((key) => {

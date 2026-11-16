@@ -7,7 +7,7 @@ import { GhostCta, PrimaryCta } from "./parts"
 
 const VERBS = ["Finds", "Tracks", "Creates", "Posts"]
 
-// The agent in his black hoodie: waves, takes a call, sits down to work and
+// The agent in his pink hoodie: waves, takes a call, sits down to work and
 // gives a thumbs up (a 340 KB encode of the 3.8 MB original).
 
 // The agent "working" as the page loads: each finished job lands in turn.
@@ -61,9 +61,9 @@ export function SocialAgentHero() {
 
           <div className="relative rounded-[40px] bg-social-soft p-2.5 shadow-2xl shadow-social/15 ring-1 ring-social/15">
             <HeroVideo
-              src="/videos/social-agent-hero.mp4"
-              poster="/videos/social-agent-hero-poster.jpg"
-              alt="The Talk to me Data social media agent, in a black hoodie and cap, waving hello"
+              src="/videos/social-media-agent-hero.mp4"
+              poster="/videos/social-media-agent-hero-poster.jpg"
+              alt="The Talk to me Data social media agent, in a pink hoodie and cap, waving hello"
               sizes="(min-width: 1024px) 520px, 90vw"
             />
             <span className="absolute left-6 top-6 inline-flex items-center gap-2 rounded-full bg-white/90 px-3 py-1.5 text-[11px] font-semibold text-ink shadow-sm ring-1 ring-hairline backdrop-blur">

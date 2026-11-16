@@ -100,7 +100,7 @@ export function DoesNotSupport() {
                 </li>
               ))}
             </ul>
-            <Ambassador pose="thumbs-up" sizes="180px" className="pointer-events-none absolute -right-2 bottom-0 h-[150px] w-[130px] sm:h-[190px] sm:w-[165px]" />
+            <Ambassador agent="website_manager" pose="thumbs-up" sizes="180px" className="pointer-events-none absolute -right-2 bottom-0 h-[150px] w-[130px] sm:h-[190px] sm:w-[165px]" />
           </Reveal>
         </div>
       </div>
@@ -165,7 +165,7 @@ export function WebsiteFinalCta() {
           </div>
           <p className="mt-6 text-xs text-white/40">Previews on this page use a sample site.</p>
         </div>
-        <Ambassador pose="thumbs-up" sizes="360px" className="pointer-events-none absolute -bottom-2 -right-6 hidden h-[300px] w-[270px] sm:block lg:right-8 lg:h-[380px] lg:w-[340px]" />
+        <Ambassador agent="website_manager" pose="thumbs-up" sizes="360px" className="pointer-events-none absolute -bottom-2 -right-6 hidden h-[300px] w-[270px] sm:block lg:right-8 lg:h-[380px] lg:w-[340px]" />
       </Reveal>
     </section>
   )

@@ -347,7 +347,7 @@ export function SocialAgentShowcase() {
                 {bubble}
                 <span aria-hidden className="absolute -right-1.5 bottom-3 h-3 w-3 rotate-45 bg-white" />
               </div>
-              <Ambassador pose={POSE_FOR[phase]} sizes="140px" className="h-[104px] w-24 shrink-0 sm:h-[124px] sm:w-28" />
+              <Ambassador agent="social_manager" pose={POSE_FOR[phase]} sizes="140px" className="h-[104px] w-24 shrink-0 sm:h-[124px] sm:w-28" />
             </div>
 
             <div className="overflow-hidden rounded-2xl bg-zinc-50 text-zinc-900 shadow-2xl ring-1 ring-white/20">

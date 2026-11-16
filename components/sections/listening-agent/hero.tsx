@@ -1,9 +1,9 @@
-import Image from "next/image"
 import { Check } from "lucide-react"
 import { SIGNUP_URL } from "@/lib/links"
+import { HeroVideo } from "@/components/ui/hero-video"
 import { GhostCta, PrimaryCta } from "@/components/sections/social-agent/parts"
 
-// The Social Listening agent in his black hoodie and AI cap, waving hello.
+// The Social Listening agent in his black hoodie and cap, waving hello (a short looping-once hero clip).
 // Black and white like the brand, so the page needs no accent colour.
 
 const OUTCOMES = ["Warm leads every day", "No more scrolling", "Replies ready to send"]
@@ -56,17 +56,12 @@ export function ListeningAgentHero() {
           </div>
 
           <div className="relative rounded-[40px] bg-mist p-2.5 shadow-2xl shadow-black/10 ring-1 ring-hairline">
-            <div className="relative aspect-square w-full overflow-hidden rounded-[32px] bg-white">
-              <Image
-                src="/Social-listening-body-agent.jpeg"
-                alt="The Talk to me Data social listening agent, in a black hoodie and AI cap, waving hello"
-                width={1024}
-                height={1024}
-                sizes="(min-width: 1024px) 460px, 80vw"
-                priority
-                className="absolute bottom-0 left-[2%] h-auto w-[88%]"
-              />
-            </div>
+            <HeroVideo
+              src="/videos/social-agent-hero.mp4"
+              poster="/videos/social-agent-hero-poster.jpg"
+              alt="The Talk to me Data social listening agent, in a black hoodie and cap, waving hello"
+              sizes="(min-width: 1024px) 520px, 90vw"
+            />
             <span className="absolute left-6 top-6 inline-flex items-center gap-2 rounded-full bg-white/90 px-3 py-1.5 text-[11px] font-semibold text-ink shadow-sm ring-1 ring-hairline backdrop-blur">
               <span className="relative flex h-2 w-2">
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-ink opacity-50 motion-reduce:hidden" />

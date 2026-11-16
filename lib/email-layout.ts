@@ -7,7 +7,7 @@ import { SIGNUP_URL } from "@/lib/links"
 const SITE = "https://talktomedata.com"
 
 export const FROM_NAS = { name: "Nas", face: `${SITE}/ambassador_face.jpeg` }
-export const FROM_SOCIAL_AGENT = { name: "Your Social Media Manager", face: `${SITE}/faces/social.jpg` }
+export const FROM_SOCIAL_AGENT = { name: "Your Social Media Manager", face: `${SITE}/faces/social-pink-cap.jpg` }
 
 export function esc(s: unknown): string {
   return String(s ?? "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;")

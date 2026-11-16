@@ -225,7 +225,7 @@ export function AgentDemo({
               </div>
 
               <div className="mt-8 flex items-end gap-3 self-start">
-                <Ambassador pose={pose} sizes="200px" className="-mb-px h-[190px] w-[150px] shrink-0 sm:h-[210px] sm:w-[170px]" />
+                <Ambassador agent="social_manager" pose={pose} sizes="200px" className="-mb-px h-[190px] w-[150px] shrink-0 sm:h-[210px] sm:w-[170px]" />
                 <div
                   aria-live="polite"
                   className="relative mb-8 max-w-[15rem] rounded-2xl rounded-bl-sm bg-white/10 px-3.5 py-2.5 text-[13px] leading-snug text-white ring-1 ring-white/15"

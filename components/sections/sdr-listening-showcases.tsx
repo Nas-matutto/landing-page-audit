@@ -9,6 +9,7 @@ import type { IconType } from "react-icons"
 import { SiFacebook, SiGmail, SiInstagram, SiReddit, SiX } from "react-icons/si"
 import { Bricolage_Grotesque } from "next/font/google"
 import { Ambassador, type AmbassadorPose } from "@/components/ui/ambassador"
+import type { PrebuiltAgentId } from "@/lib/prebuilt-agents"
 import { SIGNUP_URL } from "@/lib/links"
 import { cn } from "@/lib/utils"
 import { AgentGlow } from "@/components/sections/prebuilt-agent-card"
@@ -38,6 +39,7 @@ function Shell({
   features,
   picker,
   pose,
+  agent,
   bubble,
   href,
   children,
@@ -49,6 +51,8 @@ function Shell({
   features: string[]
   picker: React.ReactNode
   pose: AmbassadorPose
+  /** Whose ambassador leans over the window. */
+  agent: PrebuiltAgentId
   bubble: string
   /** This agent's page, linked as "See how it works" when it has one. */
   href?: string
@@ -112,7 +116,7 @@ function Shell({
           <div className="min-w-0 self-center">
             {/* The ambassador leans over the top of the window and answers what you pick */}
             <div className="flex items-end gap-2 pl-3 sm:gap-3 sm:pl-8">
-              <Ambassador pose={pose} sizes="140px" className="h-[104px] w-24 shrink-0 sm:h-[124px] sm:w-28" />
+              <Ambassador pose={pose} agent={agent} sizes="140px" className="h-[104px] w-24 shrink-0 sm:h-[124px] sm:w-28" />
               <div
                 aria-live="polite"
                 className="relative mb-3 max-w-[15rem] rounded-2xl rounded-bl-sm bg-white px-3.5 py-2.5 text-xs font-medium leading-snug text-zinc-800 shadow-lg shadow-black/20 sm:max-w-xs sm:text-[13px]"
@@ -301,6 +305,7 @@ export function SdrAgentShowcase({ howItWorks = true }: { howItWorks?: boolean }
 
   return (
     <Shell
+      agent="sdr_agent"
       glow={<AgentGlow id="sdr_agent" />}
       href={howItWorks ? "/agents/ai-sdr-agent" : undefined}
       title="SDR AI Agent"
@@ -526,6 +531,7 @@ export function ListeningAgentShowcase({ howItWorks = true }: { howItWorks?: boo
 
   return (
     <Shell
+      agent="social_listening"
       glow={<AgentGlow id="social_listening" />}
       href={howItWorks ? "/agents/social-listening" : undefined}
       title="Social Listening"

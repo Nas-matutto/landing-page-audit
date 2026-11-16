@@ -4,7 +4,9 @@
  *
  * ⚠️ Mirrors the app (app-TTDM: lib/ready-made.ts → READY_MADE_TYPES, and the
  * cards in components/dashboard/ready-made-agents.tsx). Every one is included
- * on every plan, Starter too. Faces are copied from app-TTDM public/faces.
+ * on every plan, Starter too. Faces and bodies are copied from app-TTDM
+ * public/faces and public/bodies: one colour per agent (Social pink, SEO
+ * green, Website white, SDR red, Listening black).
  */
 
 export type PrebuiltAgentId = "social_manager" | "seo_manager" | "website_manager" | "sdr_agent" | "social_listening"
@@ -15,6 +17,8 @@ export interface PrebuiltAgent {
   /** For tight spots: tabs, the hero's rotating word. */
   short: string
   face: string
+  /** The full-body ambassador in this agent's colour (transparent cutout), when there is one. */
+  body?: { src: string; width: number; height: number; alt: string }
   /** Its page on this site, when it has one. */
   href?: string
   /** The outcome, in one line. */
@@ -27,7 +31,8 @@ export const PREBUILT_AGENTS: PrebuiltAgent[] = [
     id: "social_manager",
     title: "Social Media Manager",
     short: "Social Media",
-    face: "/faces/social.jpg",
+    face: "/faces/social-pink-cap.jpg",
+    body: { src: "/bodies/social-pink.png", width: 419, height: 1000, alt: "The social media agent, in a pink hoodie and cap, waving" },
     href: "/agents/social-media",
     blurb: "Grows your social media for you. It learns what works on your accounts, then plans, designs and posts your content.",
     features: [
@@ -41,6 +46,7 @@ export const PREBUILT_AGENTS: PrebuiltAgent[] = [
     title: "SEO & GEO Manager",
     short: "SEO & GEO",
     face: "/faces/seo-green-cap.jpg",
+    body: { src: "/bodies/seo-green.png", width: 442, height: 1000, alt: "The SEO agent, in a green hoodie and cap, waving" },
     href: "/agents/seo-geo",
     blurb: "Gets you found on Google and recommended by ChatGPT, Gemini and Claude.",
     features: [
@@ -53,7 +59,7 @@ export const PREBUILT_AGENTS: PrebuiltAgent[] = [
     id: "website_manager",
     title: "Website Manager",
     short: "Your Website",
-    face: "/faces/website-white-hoodie.jpg",
+    face: "/faces/website-white-cap.jpg",
     href: "/agents/website-manager",
     blurb: "Keeps your website up to date. Ask for any change in plain English and it's live in minutes.",
     features: [
@@ -67,6 +73,7 @@ export const PREBUILT_AGENTS: PrebuiltAgent[] = [
     title: "SDR AI Agent",
     short: "Sales Outreach",
     face: "/faces/sdr-red-cap.jpg",
+    body: { src: "/bodies/sdr-red.png", width: 455, height: 1000, alt: "The SDR agent, in a red hoodie and cap, waving" },
     href: "/agents/ai-sdr-agent",
     blurb: "Fills your pipeline. It finds your ideal customers, writes to each one and lines up every follow-up.",
     features: [
@@ -80,6 +87,7 @@ export const PREBUILT_AGENTS: PrebuiltAgent[] = [
     title: "Social Listening",
     short: "Social Listening",
     face: "/faces/listening-ai-cap.jpg",
+    body: { src: "/bodies/listening-black.png", width: 419, height: 1000, alt: "The social listening agent, in a black hoodie and AI cap, waving" },
     href: "/agents/social-listening",
     blurb: "Turns online conversations into customers. It finds people asking for what you sell and drafts your reply.",
     features: [

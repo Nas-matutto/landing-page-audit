@@ -361,7 +361,7 @@ export function SeoAgentShowcase({ howItWorks = true }: { howItWorks?: boolean }
           <div className="min-w-0 self-center lg:order-1">
             {/* The ambassador leans over the top of the window and answers what you ask */}
             <div className="flex items-end gap-2 pl-3 sm:gap-3 sm:pl-8">
-              <Ambassador pose={POSE_FOR[phase]} sizes="140px" className="h-[104px] w-24 shrink-0 sm:h-[124px] sm:w-28" />
+              <Ambassador agent="seo_manager" pose={POSE_FOR[phase]} sizes="140px" className="h-[104px] w-24 shrink-0 sm:h-[124px] sm:w-28" />
               <div
                 aria-live="polite"
                 className="relative mb-3 max-w-[15rem] rounded-2xl rounded-bl-sm bg-white px-3.5 py-2.5 text-xs font-medium leading-snug text-zinc-800 shadow-lg shadow-black/20 sm:max-w-xs sm:text-[13px]"
