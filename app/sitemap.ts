@@ -176,6 +176,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })),
 
     {
+      url: `${baseUrl}/about`,
+      lastModified: new Date('2026-11-16'),
+      changeFrequency: 'monthly',
+      priority: 0.6,
+    },
+    {
       url: `${baseUrl}/support`,
       lastModified: new Date('2026-10-04'),
       changeFrequency: 'monthly',
