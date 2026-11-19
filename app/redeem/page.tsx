@@ -4,11 +4,11 @@ import { Footer } from "@/components/footer"
 import { CONTACT_EMAIL } from "@/components/legal-page"
 import { RedeemForm } from "@/components/redeem/redeem-form"
 import { Reveal } from "@/components/sections/social-agent/parts"
-import { APPSUMO_MAX_CODES, APPSUMO_TIERS } from "@/lib/appsumo/tiers"
+import { APPSUMO_MAX_CODES, loadAppsumoTiers } from "@/lib/appsumo/tiers"
 
 const PAGE_URL = "https://talktomedata.com/redeem"
 const TITLE = "Redeem your AppSumo code | Talk to me Data"
-const DESCRIPTION = "Bought Talk to me Data on AppSumo? Enter your codes to unlock your lifetime deal. Stack up to 4 codes for more agents and actions."
+const DESCRIPTION = "Bought Talk to me Data on AppSumo? Enter your codes to unlock your lifetime deal. Stack up to 4 codes for more agents and AI Agent Actions."
 
 export const metadata: Metadata = {
   title: TITLE,
@@ -17,7 +17,11 @@ export const metadata: Metadata = {
   openGraph: { title: TITLE, description: DESCRIPTION, url: PAGE_URL, siteName: "Talk to me Data", type: "website" },
 }
 
-export default function RedeemPage() {
+// The tiers are set in the app (Admin → AppSumo); re-read every 5 minutes.
+export const revalidate = 300
+
+export default async function RedeemPage() {
+  const tiers = await loadAppsumoTiers()
   return (
     <div className="min-h-screen">
       <Header />
@@ -28,18 +32,18 @@ export default function RedeemPage() {
             <h1 className="display text-[clamp(2.5rem,7vw,4rem)]">Redeem your code</h1>
             <p className="lede mx-auto mt-6 max-w-md text-lg">
               Enter the codes from your AppSumo purchase, then create your account or sign in. Your deal unlocks instantly.
-              Stack up to {APPSUMO_MAX_CODES} codes on one account for more agents and actions.
+              Stack up to {APPSUMO_MAX_CODES} codes on one account for more agents and AI Agent Actions.
             </p>
           </Reveal>
 
           <Reveal className="mt-10 rounded-[32px] border border-hairline bg-white p-6 sm:p-8">
-            <RedeemForm />
+            <RedeemForm tiers={tiers} />
           </Reveal>
 
           <Reveal className="mt-10">
             <h2 className="text-center text-lg font-semibold text-ink">What each stack unlocks</h2>
             <div className="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-4">
-              {APPSUMO_TIERS.map(t => (
+              {tiers.map(t => (
                 <div key={t.codes} className="rounded-3xl border border-hairline bg-white p-4">
                   <p className="text-sm font-semibold text-ink">
                     {t.codes} {t.codes === 1 ? "code" : "codes"}
@@ -47,7 +51,7 @@ export default function RedeemPage() {
                   <p className="text-xs text-quiet">${t.price} on AppSumo</p>
                   <ul className="mt-3 space-y-1 text-sm text-ink">
                     <li>{t.readyMade} pre-built agents</li>
-                    <li>{t.actions.toLocaleString()} actions a month</li>
+                    <li>{t.actions.toLocaleString()} AI Agent Actions</li>
                     <li>
                       {t.agents} custom {t.agents === 1 ? "agent" : "agents"}
                     </li>
@@ -56,6 +60,9 @@ export default function RedeemPage() {
                 </div>
               ))}
             </div>
+            <p className="mt-4 text-center text-xs text-quiet">
+              AI Agent Actions are a one-time allowance. They don&apos;t reset monthly and expire once your code&apos;s actions are used up.
+            </p>
           </Reveal>
 
           <p className="mt-8 text-center text-sm text-quiet">

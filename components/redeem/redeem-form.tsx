@@ -3,7 +3,7 @@
 import { useId, useRef, useState } from "react"
 import { ArrowRight, CheckCircle2, Plus, X } from "lucide-react"
 import { APP_REDEEM_URL } from "@/lib/links"
-import { APPSUMO_MAX_CODES, appsumoTier } from "@/lib/appsumo/tiers"
+import { APPSUMO_MAX_CODES, appsumoTier, type AppsumoTier } from "@/lib/appsumo/tiers"
 
 const inputCls =
   "w-full min-w-0 rounded-2xl border border-hairline bg-white px-4 py-3.5 font-mono text-base uppercase tracking-[0.08em] text-ink placeholder:normal-case placeholder:tracking-normal placeholder:text-faint transition focus:border-ink focus:outline-none focus:ring-4 focus:ring-ink/5"
@@ -22,7 +22,7 @@ const norm = (raw: string) => raw.toUpperCase().replace(/[‐-―−]/g, "-").re
  * claims the codes for their account and applies the deal. Whether a code is
  * already used is only known there.
  */
-export function RedeemForm() {
+export function RedeemForm({ tiers }: { tiers: AppsumoTier[] }) {
   const id = useId()
   const inputRef = useRef<HTMLInputElement>(null)
   const [added, setAdded] = useState<string[]>([])
@@ -31,7 +31,7 @@ export function RedeemForm() {
   const [status, setStatus] = useState<"idle" | "checking" | "leaving">("idle")
 
   const full = added.length >= APPSUMO_MAX_CODES
-  const tier = appsumoTier(added.length)
+  const tier = appsumoTier(added.length, tiers)
 
   /** Checks the typed code and adds it to the list. Returns the list it made, or null if the code was refused. */
   async function addDraft(): Promise<string[] | null> {
@@ -179,7 +179,7 @@ export function RedeemForm() {
             <strong>{tier.readyMade}</strong> pre-built agents
           </li>
           <li>
-            <strong>{tier.actions.toLocaleString()}</strong> actions a month
+            <strong>{tier.actions.toLocaleString()}</strong> AI Agent Actions
           </li>
           <li>
             <strong>{tier.agents}</strong> custom {tier.agents === 1 ? "agent" : "agents"}
