@@ -18,7 +18,7 @@ const { h2, h3, p, ul, ol } = legal
 
 export default function PrivacyPolicyPage() {
   return (
-    <LegalPage title="Privacy Policy" lastUpdated="13 November 2026">
+    <LegalPage title="Privacy Policy" lastUpdated="25 November 2026">
       {/* Intro */}
       <section>
         <p className={p}>
@@ -86,10 +86,10 @@ export default function PrivacyPolicyPage() {
 
         <h3 className={h3}>3.3 Information from social media platforms</h3>
         <p className={p}>
-          <strong>Public profile data.</strong> When you add a social media account to the Social Media Manager (your own or a competitor&rsquo;s), we collect publicly available information about that account and its recent posts: handle, display name, bio, profile picture, follower and following counts, and each post&rsquo;s caption, thumbnail, publish date and public engagement figures (views, likes, comments, shares). We collect this through the YouTube Data API and through Apify, a data collection provider, for Instagram, TikTok and Facebook Pages.
+          <strong>Public profile data.</strong> When you add a social media account to the Social Media Manager (your own or a competitor&rsquo;s), we collect publicly available information about that account and its recent posts: handle, display name, bio, profile picture, follower and following counts, and each post&rsquo;s caption, thumbnail, publish date and public engagement figures (views, likes, comments, shares). We collect this through the YouTube Data API and through Apify, a data collection provider, for Instagram, TikTok and Facebook Pages. We never collect LinkedIn profiles or posts this way.
         </p>
         <p className={p}>
-          <strong>Accounts you connect for posting (Instagram, Facebook, TikTok).</strong> If you choose to connect an account so our agent can post for you, you sign in on that platform&rsquo;s own page and approve the permissions listed below. We never see your password.
+          <strong>Accounts you connect for posting (Instagram, Facebook, TikTok, LinkedIn).</strong> If you choose to connect an account so our agent can post for you, you sign in on that platform&rsquo;s own page and approve the permissions listed below. We never see your password.
         </p>
         <div className="mb-4">
           <Table
@@ -110,16 +110,24 @@ export default function PrivacyPolicyPage() {
                 <><code>user.info.basic</code>, <code>video.publish</code></>,
                 "Your TikTok user ID, display name and avatar, the privacy options TikTok allows for your account, and access and refresh tokens",
               ],
+              [
+                <><strong className="text-foreground">LinkedIn</strong> (Sign In with LinkedIn using OpenID Connect, and Share on LinkedIn)</>,
+                <><code>openid</code>, <code>profile</code>, <code>w_member_social</code></>,
+                "Your LinkedIn member ID, name and profile photo, and an access token that LinkedIn makes valid for 60 days",
+              ],
             ]}
           />
         </div>
         <p className={p}>We use these permissions <strong>only</strong> to:</p>
         <ol className={ol}>
           <li>confirm that the account you signed in to is the one in your dashboard;</li>
-          <li>publish the posts you designed and scheduled, at the time you chose; and</li>
+          <li>publish the posts you designed and scheduled, at the time you chose (on LinkedIn, only the post you send by pressing &ldquo;Post now&rdquo;); and</li>
           <li>show you the result of each post (whether it was published and a link to it).</li>
         </ol>
         <p className={p}>Access tokens are encrypted before they are stored, and only our servers can read them.</p>
+        <p className={p}>
+          <strong>LinkedIn.</strong> On LinkedIn, the Social Media Manager only writes posts and publishes them for you. We never read your LinkedIn feed, posts, connections, messages or statistics, and we never post on a schedule or automatically: a post goes to LinkedIn only when you open it, review it and press &ldquo;Post now&rdquo;. We use your LinkedIn name and photo only to show which profile is connected and to preview how your post will look. When you disconnect LinkedIn, we delete the access token and your LinkedIn name and photo straight away. You can also remove our access at any time in your LinkedIn settings under Data privacy &rarr; Permitted services.
+        </p>
         <p className={p}>
           <strong>Audience insights and comments.</strong> If you connect your account on the Social Media Manager&rsquo;s Audience tab, we also read information that only you can see on that platform:
         </p>
@@ -133,7 +141,7 @@ export default function PrivacyPolicyPage() {
           The platforms give us these figures as totals and percentages; they don&rsquo;t identify individual followers. We show them only to you, and your AI agent uses them to suggest what and when to post and to draft comment replies (see section 6). When you disconnect, we delete the access tokens and everything we read with them straight away.
         </p>
         <p className={p}>
-          We <strong>do not</strong> use data from Meta, TikTok or YouTube, including insights and comments, for advertising, we do not sell it, we do not share it with anyone other than the service providers who help us run the Service (section 9), and we do not use it to build profiles of people. See section 5 for Google and YouTube.
+          We <strong>do not</strong> use data from Meta, TikTok, LinkedIn or YouTube, including insights and comments, for advertising, we do not sell it, we do not share it with anyone other than the service providers who help us run the Service (section 9), and we do not use it to build profiles of people. See section 5 for Google and YouTube.
         </p>
 
         <h3 className={h3}>3.4 Information collected automatically</h3>
@@ -291,7 +299,7 @@ export default function PrivacyPolicyPage() {
           />
         </div>
         <p className={p}>
-          We also send data to <strong>Meta (Instagram, Facebook)</strong> and <strong>TikTok</strong> when you tell us to publish a post or send a reply to a comment. Those platforms handle it under their own privacy policies as independent controllers.
+          We also send data to <strong>Meta (Instagram, Facebook)</strong>, <strong>TikTok</strong> and <strong>LinkedIn</strong> when you tell us to publish a post or send a reply to a comment. Those platforms handle it under their own privacy policies as independent controllers.
         </p>
         <p className="text-muted-foreground leading-relaxed mb-2">We may also disclose data:</p>
         <ul className={ul}>
@@ -325,7 +333,8 @@ export default function PrivacyPolicyPage() {
               ["Account and profile details", "While your account is open, then deleted within 30 days of closure"],
               ["Agent chats and results", "While your account is open, unless you ask us to delete them sooner"],
               ["Tokens for connected tools", "Until you disconnect the tool or close your account"],
-              ["Instagram, Facebook and TikTok posting tokens", "Deleted immediately when you disconnect the account or remove it from your dashboard, or when you close your account"],
+              ["Instagram, Facebook, TikTok and LinkedIn posting tokens", "Deleted immediately when you disconnect the account or remove it from your dashboard, or when you close your account"],
+              ["Your LinkedIn name and profile photo", "As for posting tokens"],
               ["YouTube and TikTok insights tokens", "Deleted immediately when you disconnect the account, remove it from your dashboard, or close your account. YouTube access is also revoked at Google"],
               ["Audience insights (Instagram, YouTube, TikTok)", "Refreshed about once a day while the account is connected. Deleted immediately when you disconnect it, remove it from your dashboard, or close your account"],
               ["Comments on your Instagram posts, and replies you send", "As for audience insights"],
