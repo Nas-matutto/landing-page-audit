@@ -18,7 +18,7 @@ const { h2, h3, p, ul, ol } = legal
 
 export default function PrivacyPolicyPage() {
   return (
-    <LegalPage title="Privacy Policy" lastUpdated="25 November 2026">
+    <LegalPage title="Privacy Policy" lastUpdated="26 November 2026">
       {/* Intro */}
       <section>
         <p className={p}>
@@ -129,6 +129,9 @@ export default function PrivacyPolicyPage() {
           <strong>LinkedIn.</strong> On LinkedIn, the Social Media Manager only writes posts and publishes them for you. We never read your LinkedIn feed, posts, connections, messages or statistics, and we never post on a schedule or automatically: a post goes to LinkedIn only when you open it, review it and press &ldquo;Post now&rdquo;. We use your LinkedIn name and photo only to show which profile is connected and to preview how your post will look. When you disconnect LinkedIn, we delete the access token and your LinkedIn name and photo straight away. You can also remove our access at any time in your LinkedIn settings under Data privacy &rarr; Permitted services.
         </p>
         <p className={p}>
+          <strong>YouTube posting.</strong> If you connect your YouTube channel on the Social Media Manager&rsquo;s Create tab (<code>youtube.upload</code> and <code>youtube.readonly</code>), we use that access only to upload the videos you choose to your channel, now or at the time you schedule, with the title, description, tags and settings you see on the post screen (whether it&rsquo;s made for kids, the altered-content and paid-promotion labels, visibility and category), and to check that YouTube has finished processing each one. We read your channel&rsquo;s ID and name to confirm you connected the right channel. We never post anything you haven&rsquo;t uploaded and approved, and we never edit or delete videos on your channel. When you disconnect YouTube, we revoke our access at Google and delete the access tokens straight away.
+        </p>
+        <p className={p}>
           <strong>Audience insights and comments.</strong> If you connect your account on the Social Media Manager&rsquo;s Audience tab, we also read information that only you can see on that platform:
         </p>
         <ul className={ul}>
@@ -201,7 +204,7 @@ export default function PrivacyPolicyPage() {
           <ExternalLink href="https://developers.google.com/terms/api-services-user-data-policy">Google API Services User Data Policy</ExternalLink>, including the Limited Use requirements. In particular:
         </p>
         <ul className={ul}>
-          <li>we only use Google user data (for example Gmail, Calendar, Drive, Docs, Sheets, Google Search Console or YouTube Analytics data) to provide the features you asked for;</li>
+          <li>we only use Google user data (for example Gmail, Calendar, Drive, Docs, Sheets, Google Search Console, YouTube Analytics data or YouTube upload access) to provide the features you asked for;</li>
           <li>we do not use it for advertising;</li>
           <li>we do not sell it or transfer it to others, except to provide the Service, to comply with the law, or as part of a merger or acquisition with notice to you;</li>
           <li>no person at Talk to Me Data reads it unless you ask us to (for example for support), it is needed for security or to comply with the law, or it has been aggregated and anonymised; and</li>
@@ -217,7 +220,7 @@ export default function PrivacyPolicyPage() {
         <p className={p}>
           <strong>YouTube.</strong> The Social Media Manager uses YouTube API Services to show public data about YouTube channels. By using those features you agree to be bound by the{" "}
           <ExternalLink href="https://www.youtube.com/t/terms">YouTube Terms of Service</ExternalLink>, and Google&rsquo;s use of data is covered by the{" "}
-          <ExternalLink href="https://policies.google.com/privacy">Google Privacy Policy</ExternalLink>. Most YouTube features use public channel and video data through an API key. If you choose to connect your channel for audience insights, you sign in with Google and give us read-only access to your channel details and YouTube Analytics (section 3.3). When you disconnect, we revoke that access at Google and immediately delete the tokens and the analytics data we read. We delete YouTube data we have stored when you remove that channel from your dashboard, and we keep and refresh it in line with the YouTube API Services Developer Policies. You can also revoke any access through Google&rsquo;s security settings page at{" "}
+          <ExternalLink href="https://policies.google.com/privacy">Google Privacy Policy</ExternalLink>. Most YouTube features use public channel and video data through an API key. If you choose to connect your channel, you sign in with Google and give us access to upload the videos you choose and, if you allow it, read-only access to your channel details and YouTube Analytics (section 3.3). When you disconnect, we revoke that access at Google and immediately delete the tokens and the analytics data we read. We delete YouTube data we have stored when you remove that channel from your dashboard, and we keep and refresh it in line with the YouTube API Services Developer Policies. You can also revoke any access through Google&rsquo;s security settings page at{" "}
           <ExternalLink href="https://myaccount.google.com/permissions">myaccount.google.com/permissions</ExternalLink>.
         </p>
       </section>
