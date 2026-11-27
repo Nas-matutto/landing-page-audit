@@ -109,7 +109,8 @@ export function AgentFace({ src, size = 40, className }: { src: string; size?: n
   )
 }
 
-export function PrebuiltAgentCard({ agent }: { agent: PrebuiltAgent }) {
+/** `badge` swaps the "Free to start" tag for a highlight, like "Most popular". */
+export function PrebuiltAgentCard({ agent, badge }: { agent: PrebuiltAgent; badge?: string }) {
   return (
     <div className="group relative flex h-full flex-col overflow-hidden rounded-3xl bg-ink p-6 text-white shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-black/25">
       <AgentGlow id={agent.id} />
@@ -122,8 +123,13 @@ export function PrebuiltAgentCard({ agent }: { agent: PrebuiltAgent }) {
             </span>
           ))}
         </div>
-        <span className="shrink-0 rounded-full bg-white/15 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider ring-1 ring-white/20">
-          Free to start
+        <span
+          className={cn(
+            "shrink-0 rounded-full px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider",
+            badge ? "bg-white text-ink" : "bg-white/15 ring-1 ring-white/20",
+          )}
+        >
+          {badge ?? "Free to start"}
         </span>
       </div>
 

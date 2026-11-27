@@ -4,49 +4,47 @@ import { useEffect, useRef, useState } from "react"
 import Image from "next/image"
 import { AnimatePresence, motion, useInView, useReducedMotion } from "framer-motion"
 import type { LucideIcon } from "lucide-react"
-import { ArrowRight, Check, LayoutGrid, MessageSquare, Plug, Plus, Send } from "lucide-react"
-import { SiGithub, SiGoogle, SiInstagram, SiOpenai, SiTiktok, SiWordpress, SiYoutube } from "react-icons/si"
-import type { IconType } from "react-icons"
-import { Ambassador } from "@/components/ui/ambassador"
+import { ArrowRight, BarChart3, CalendarClock, Check, Plug, Plus, Sparkles } from "lucide-react"
+import { SiFacebook, SiInstagram, SiTiktok, SiYoutube } from "react-icons/si"
 import { SIGNUP_URL } from "@/lib/links"
 import { cn } from "@/lib/utils"
 
 // ── How it works ────────────────────────────────────────────────────────────
-// The four things a new user actually does in the app, each shown on the
-// screen where it happens. Steps 02–04 are real captures of the Social Media
-// agent on a sample account (in /public/social-agent); step 01 is drawn,
-// in the style of the app's agent cards.
+// The social media agent from first login to a post going out: connect your
+// accounts, read what it found, ask it for posts, then schedule them or let it
+// run. Every stage is a real capture of the agent on a sample account (in
+// /public/social-agent), with a drawn card or toast laid over it.
 
-type StepId = "pick" | "connect" | "ask" | "run"
+type StepId = "connect" | "insights" | "create" | "schedule"
 
 const STEPS: { id: StepId; n: string; title: string; body: string; Icon: LucideIcon }[] = [
   {
-    id: "pick",
-    n: "01",
-    title: "Pick your agent",
-    body: "Start with a ready-made agent for social media, SEO or your website. Need something else? Describe the job and we'll build an agent for it.",
-    Icon: LayoutGrid,
-  },
-  {
     id: "connect",
-    n: "02",
+    n: "01",
     title: "Connect your accounts",
-    body: "Paste a profile link or sign in to the tools you already use. Your agent reads everything and has its first analysis ready in minutes.",
+    body: "Sign in to Instagram, TikTok, Facebook or YouTube through each platform's own login, or paste a profile link. Your agent reads every post and has its first analysis ready in minutes.",
     Icon: Plug,
   },
   {
-    id: "ask",
-    n: "03",
-    title: "Tell it what to do",
-    body: "Ask in plain English. It answers from your own numbers, then does the work: plans the week, writes the copy, designs the post.",
-    Icon: MessageSquare,
+    id: "insights",
+    n: "02",
+    title: "Get your data and insights",
+    body: "See which formats, hooks and time slots win with your audience, plus a short list of what to keep doing, what to fix and what to try this week.",
+    Icon: BarChart3,
   },
   {
-    id: "run",
+    id: "create",
+    n: "03",
+    title: "Ask it to make your posts",
+    body: "Tell it what you want in plain English, or press Build it on any insight. It writes the hooks and captions and designs each post in your brand kit.",
+    Icon: Sparkles,
+  },
+  {
+    id: "schedule",
     n: "04",
-    title: "Approve, or let it run",
-    body: "Review each piece before it goes out, or switch on auto-post. It publishes on schedule and reports back on how it did.",
-    Icon: Send,
+    title: "Schedule them, or go on autopilot",
+    body: "Approve each post and it goes out at your best time, or switch on autopilot and the agent posts for you. Either way, it reports back on how each post did.",
+    Icon: CalendarClock,
   },
 ]
 
@@ -83,7 +81,8 @@ export function HowItWorksSection() {
               How does the AI social media agent work?
             </h2>
             <p className="lede mx-auto mt-6 max-w-2xl text-base sm:text-lg">
-              No workflows to wire and no code to write. Here&apos;s what it looks like inside the app.
+              Connect your accounts, see what&apos;s working, then ask for posts and let it schedule them. Here&apos;s what
+              that looks like inside the app.
             </p>
           </div>
 
@@ -207,10 +206,10 @@ const shot = "absolute h-auto max-w-none rounded-[14px] border border-hairline b
 function Stage({ step }: { step: StepId }) {
   return (
     <div className="relative h-80 overflow-hidden rounded-3xl border border-hairline bg-white sm:h-105 lg:h-125">
-      {step === "pick" && <PickStage />}
       {step === "connect" && <ConnectStage />}
-      {step === "ask" && <AskStage />}
-      {step === "run" && <RunStage />}
+      {step === "insights" && <InsightsStage />}
+      {step === "create" && <CreateStage />}
+      {step === "schedule" && <ScheduleStage />}
     </div>
   )
 }
@@ -235,110 +234,36 @@ function Toast({ title, note, className }: { title: string; note: string; classN
   )
 }
 
-const AGENTS: { name: string; sub: string; glow: string[]; icons: { Icon: IconType; color: string }[] }[] = [
-  {
-    name: "Social Media Manager",
-    sub: "Instagram · TikTok · YouTube",
-    glow: ["#F58529", "#DD2A7B", "#8134AF"],
-    icons: [
-      { Icon: SiInstagram, color: "#DD2A7B" },
-      { Icon: SiTiktok, color: "#111827" },
-      { Icon: SiYoutube, color: "#FF0033" },
-    ],
-  },
-  {
-    name: "SEO & GEO Agent",
-    sub: "Google · ChatGPT · Perplexity",
-    glow: ["#EA580C", "#7C3AED", "#EA580C"],
-    icons: [
-      { Icon: SiGoogle, color: "#4285F4" },
-      { Icon: SiOpenai, color: "#111827" },
-    ],
-  },
-  {
-    name: "Website Manager",
-    sub: "Claude Code · Codex · WordPress",
-    glow: ["#6366F1", "#06B6D4", "#8B5CF6"],
-    icons: [
-      { Icon: SiGithub, color: "#111827" },
-      { Icon: SiWordpress, color: "#21759B" },
-    ],
-  },
+const CONNECTED = [
+  { Icon: SiInstagram, color: "#E4405F", label: "Instagram", on: true },
+  { Icon: SiTiktok, color: "#111827", label: "TikTok", on: true },
+  { Icon: SiFacebook, color: "#0866FF", label: "Facebook", on: true },
+  { Icon: SiYoutube, color: "#FF0000", label: "YouTube", on: false },
 ]
-
-function PickStage() {
-  return (
-    <>
-      <div className="absolute inset-x-[5%] top-[5%] overflow-hidden rounded-[14px] border border-hairline bg-white shadow-[0_24px_60px_-30px_rgba(20,20,20,0.35)]">
-        <div className="flex items-center justify-between border-b border-hairline px-4 py-3">
-          <span className="text-sm font-semibold text-ink">My agents</span>
-          <span className="text-[11px] text-faint">Choose one to start</span>
-        </div>
-        <ul className="space-y-1.5 p-2.5 lg:space-y-2 lg:p-3">
-          {AGENTS.map((agent) => (
-            <li key={agent.name} className="flex items-center gap-3 rounded-xl border border-hairline p-2 lg:p-2.5">
-              {/* A small version of the agent's dark, platform-lit card */}
-              <span className="relative h-9 w-9 shrink-0 overflow-hidden rounded-lg bg-zinc-950 lg:h-11 lg:w-11">
-                <span className="absolute -left-2 -top-2 h-7 w-7 rounded-full blur-md" style={{ background: agent.glow[0] }} />
-                <span className="absolute -bottom-2 left-2 h-7 w-7 rounded-full blur-md" style={{ background: agent.glow[1] }} />
-                <span className="absolute -right-2 top-1 h-6 w-6 rounded-full opacity-70 blur-md" style={{ background: agent.glow[2] }} />
-              </span>
-              <span className="min-w-0 flex-1">
-                <span className="block truncate text-[13px] font-semibold text-ink">{agent.name}</span>
-                <span className="block truncate text-[11px] text-quiet">{agent.sub}</span>
-              </span>
-              <span className="hidden items-center gap-1.5 sm:flex">
-                {agent.icons.map(({ Icon, color }, i) => (
-                  <Icon key={i} className="h-3.5 w-3.5" style={{ color }} />
-                ))}
-              </span>
-              <span className="shrink-0 rounded-full bg-ink px-3 py-1 text-[11px] font-semibold text-white">Start</span>
-            </li>
-          ))}
-          <li className="flex items-center gap-3 rounded-xl border border-dashed border-hairline p-2 lg:p-2.5">
-            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-mist text-ink lg:h-11 lg:w-11">
-              <Plus className="h-4 w-4" />
-            </span>
-            <span className="min-w-0 flex-1">
-              <span className="block truncate text-[13px] font-semibold text-ink">Request a custom agent</span>
-              <span className="block truncate text-[11px] text-quiet">Describe the job. We build it around your tools.</span>
-            </span>
-          </li>
-        </ul>
-      </div>
-
-      <div className="absolute bottom-0 right-[5%] hidden items-end gap-2 sm:flex">
-        <div className="relative mb-6 rounded-2xl rounded-br-sm bg-ink px-3.5 py-2.5 text-[13px] font-medium text-white">
-          Which job should I take off your plate?
-        </div>
-        <Ambassador pose="wave" sizes="140px" className="h-24 w-20 shrink-0 lg:h-33 lg:w-27.5" />
-      </div>
-    </>
-  )
-}
 
 function ConnectStage() {
   return (
     <>
       <Image
         src="/social-agent/dashboard-overview.webp"
-        alt="The agent's dashboard after connecting an Instagram and a TikTok account: followers, views and interactions across every channel"
+        alt="The agent's dashboard after connecting Instagram and TikTok: followers, views and interactions across every channel"
         width={1800}
         height={1215}
         sizes="(min-width: 1024px) 820px, 130vw"
         className={cn(shot, "left-[5%] top-[7%] w-[125%]")}
       />
       <div className="absolute bottom-[6%] right-[5%] hidden w-60 rounded-2xl border border-hairline bg-white p-3 shadow-[0_18px_40px_-20px_rgba(20,20,20,0.45)] sm:block">
-        <p className="mb-2 px-1 text-[11px] font-semibold uppercase tracking-wider text-faint">Connected</p>
+        <p className="mb-2 px-1 text-[11px] font-semibold uppercase tracking-wider text-faint">Your accounts</p>
         <ul className="space-y-1.5">
-          {[
-            { Icon: SiInstagram, color: "#DD2A7B", label: "Instagram" },
-            { Icon: SiTiktok, color: "#111827", label: "TikTok" },
-          ].map(({ Icon, color, label }) => (
+          {CONNECTED.map(({ Icon, color, label, on }) => (
             <li key={label} className="flex items-center gap-2.5 rounded-lg bg-mist px-2.5 py-2">
               <Icon className="h-4 w-4 shrink-0" style={{ color }} />
               <span className="flex-1 text-xs font-medium text-ink">{label}</span>
-              <Check className="h-3.5 w-3.5 text-emerald-600" />
+              {on ? (
+                <Check className="h-3.5 w-3.5 text-emerald-600" />
+              ) : (
+                <span className="rounded-full bg-ink px-2 py-0.5 text-[10px] font-semibold text-white">Connect</span>
+              )}
             </li>
           ))}
           <li className="flex items-center gap-2.5 rounded-lg border border-dashed border-hairline px-2.5 py-2 text-xs font-medium text-quiet">
@@ -351,38 +276,56 @@ function ConnectStage() {
   )
 }
 
-function AskStage() {
+function InsightsStage() {
   return (
     <>
-      {/* The chat opens as a drawer over the dashboard, as it does in the app */}
+      {/* The charts behind, the agent's read of them in front */}
       <Image
-        src="/social-agent/dashboard-overview.webp"
-        alt=""
-        aria-hidden
-        width={1800}
-        height={1215}
-        sizes="(min-width: 1024px) 820px, 130vw"
-        className={cn(shot, "left-[5%] top-[7%] w-[125%] opacity-40 blur-[1.5px]")}
+        src="/social-agent/patterns.webp"
+        alt="Charts of the account's posting rhythm, breakout posts, best time slots and what each format earns"
+        width={1600}
+        height={1275}
+        sizes="(min-width: 1024px) 760px, 120vw"
+        className={cn(shot, "left-[5%] top-[5%] w-[110%]")}
       />
       <Image
-        src="/social-agent/chat.webp"
-        alt="Ask your Agent: it answers which posts to make more of, then plans and schedules the next week"
-        width={720}
-        height={1350}
-        sizes="(min-width: 1024px) 380px, 70vw"
-        className={cn(shot, "right-[5%] top-[7%] w-[62%] sm:w-[52%] lg:w-[56%]")}
-      />
-      <div aria-hidden className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-linear-to-t from-white to-transparent" />
-      <Ambassador
-        pose="working"
-        sizes="160px"
-        className="pointer-events-none absolute bottom-0 left-[4%] hidden h-42.5 w-35 sm:block lg:h-50 lg:w-41.25"
+        src="/social-agent/analysis.webp"
+        alt="Your Agent's analysis: carousels earn 2.4 times the median, with what to keep doing, what to fix and what to try this week"
+        width={1600}
+        height={570}
+        sizes="(min-width: 1024px) 640px, 95vw"
+        className={cn(shot, "bottom-[6%] left-[4%] w-[92%]")}
       />
     </>
   )
 }
 
-function RunStage() {
+function CreateStage() {
+  return (
+    <>
+      {/* You ask in the chat; the finished carousel comes back in your brand kit */}
+      <Image
+        src="/social-agent/design.webp"
+        alt="A finished five-slide carousel, 3 branding mistakes killing your reach, designed in the brand kit and ready to edit"
+        width={1500}
+        height={1513}
+        sizes="(min-width: 1024px) 520px, 90vw"
+        className={cn(shot, "left-[5%] top-[7%] w-[78%] sm:w-[66%]")}
+      />
+      <Image
+        src="/social-agent/chat.webp"
+        alt="Ask your Agent: it says which posts to make more of, then plans and schedules the next week"
+        width={720}
+        height={1350}
+        sizes="(min-width: 1024px) 340px, 60vw"
+        className={cn(shot, "right-[4%] top-[12%] hidden w-[44%] sm:block")}
+      />
+      <div aria-hidden className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-linear-to-t from-white to-transparent" />
+    </>
+  )
+}
+
+function ScheduleStage() {
   return (
     <>
       <Image

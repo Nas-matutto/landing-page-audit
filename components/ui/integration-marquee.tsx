@@ -1,10 +1,11 @@
 "use client"
 
-import { FaSlack, FaWhatsapp, FaGoogle } from "react-icons/fa"
+import { FaSlack, FaWhatsapp, FaGoogle, FaLinkedin } from "react-icons/fa"
 import {
   SiNotion, SiSalesforce, SiHubspot, SiShopify, SiStripe,
   SiZendesk, SiGmail, SiAirtable, SiMailchimp, SiAsana,
   SiTrello, SiIntercom, SiJira,
+  SiInstagram, SiTiktok, SiFacebook, SiYoutube, SiThreads, SiPinterest,
 } from "react-icons/si"
 
 type IntegrationIcon = {
@@ -75,6 +76,51 @@ export function IntegrationMarquee({ className = "" }: { className?: string }) {
       <div className="integ-scroll-right flex gap-6 whitespace-nowrap">
         {repeat(ROW_2).map((item, i) => (
           <Chip key={`r2-${i}`} item={item} />
+        ))}
+      </div>
+    </div>
+  )
+}
+
+// The places the social media agent reads and posts to. Keep this in line with
+// the homepage FAQ and the privacy policy before adding a platform.
+export const SOCIAL_PLATFORMS: IntegrationIcon[] = [
+  { Icon: SiInstagram, color: "#E4405F", label: "Instagram" },
+  { Icon: SiTiktok, color: "#000000", label: "TikTok" },
+  { Icon: SiFacebook, color: "#0866FF", label: "Facebook" },
+  { Icon: SiYoutube, color: "#FF0000", label: "YouTube" },
+  { Icon: SiThreads, color: "#000000", label: "Threads" },
+  { Icon: SiPinterest, color: "#E60023", label: "Pinterest" },
+  { Icon: FaLinkedin, color: "#0A66C2", label: "LinkedIn" },
+]
+
+/**
+ * One row of named platform pills drifting left: fewer marks than the
+ * integrations strip, so each one gets its name beside it.
+ */
+export function PlatformMarquee({ items = SOCIAL_PLATFORMS, className = "" }: { items?: IntegrationIcon[]; className?: string }) {
+  return (
+    <div
+      className={`relative overflow-hidden ${className}`}
+      style={{
+        maskImage: "linear-gradient(to right, transparent, black 10%, black 90%, transparent)",
+        WebkitMaskImage: "linear-gradient(to right, transparent, black 10%, black 90%, transparent)",
+      }}
+      aria-hidden="true"
+    >
+      {/* A margin on each pill, not a gap, so half the track is exactly three
+          sets and the -50% loop has no seam. */}
+      <div className="integ-scroll-left flex w-max py-1" style={{ animationDuration: "40s" }}>
+        {repeat(items).map((item, i) => (
+          <div
+            key={`p-${i}`}
+            className="mr-4 flex h-14 shrink-0 items-center gap-3 rounded-full border border-hairline bg-white pl-3 pr-5 transition-colors hover:border-ink"
+          >
+            <span className="flex h-9 w-9 items-center justify-center rounded-full bg-mist">
+              <item.Icon className="h-5 w-5" style={{ color: item.color }} />
+            </span>
+            <span className="text-[15px] font-semibold tracking-[-0.01em] text-ink">{item.label}</span>
+          </div>
         ))}
       </div>
     </div>

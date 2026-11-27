@@ -5,7 +5,7 @@ import { Footer } from "@/components/footer"
 import { HeroSection } from "@/components/sections/hero-section"
 import { WorkflowVsAgentsSection } from "@/components/sections/workflow-vs-agents-section"
 import { HowItWorksSection } from "@/components/sections/how-it-works-section"
-import { WhatWeAnalyzeSection } from "@/components/sections/what-we-analyze-section"
+import { OtherAgentsSection } from "@/components/sections/other-agents-section"
 import { FAQSection } from "@/components/sections/faq-section"
 import { FinalCTASection } from "@/components/sections/final-cta-section"
 
@@ -153,8 +153,9 @@ const jsonLd = {
 }
 
 // ── Page ──────────────────────────────────────────────────────────────────────
-// The story runs: how the social media agent works, the other agents, why agents
-// beat workflow builders, then the objections and the ask.
+// The story runs: the platforms the social media agent works with, how it goes
+// from connecting your accounts to posting, the other agents you can add, why
+// agents beat workflow builders, then the objections and the ask.
 
 export default function HomePage() {
   return (
@@ -164,7 +165,7 @@ export default function HomePage() {
       <main>
         <HeroSection />
         <HowItWorksSection />
-        <WhatWeAnalyzeSection />
+        <OtherAgentsSection />
         <WorkflowVsAgentsSection />
         <FAQSection heading="Questions about the AI social media agent" items={FAQS} />
         <FinalCTASection />

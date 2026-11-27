@@ -5,7 +5,7 @@ import { useEffect, useState } from "react"
 import { ArrowRight } from "lucide-react"
 import { motion } from "framer-motion"
 import { HeroVideo } from "@/components/ui/hero-video"
-import { IntegrationMarquee } from "@/components/ui/integration-marquee"
+import { PlatformMarquee, SOCIAL_PLATFORMS } from "@/components/ui/integration-marquee"
 import { SIGNUP_URL } from "@/lib/links"
 
 // What the social media agent does for you, one result at a time. The last one
@@ -118,12 +118,15 @@ export function HeroSection() {
         </div>
       </div>
 
-      {/* Integration marks drift past below the fold-line, bled to the full page width. */}
+      {/* The platforms the agent works with drift past below the fold-line, bled
+          to the full page width. The strip is decoration, so the names are also
+          written out for screen readers. */}
       <div className="rise-in mt-6 pb-4 sm:mt-8" style={{ animationDelay: "0.2s" }}>
         <p className="mb-6 text-center text-[13px] text-faint">
-          Your AI Agents integrate seamlessly with any app you use
+          Your AI social media agent works with
+          <span className="sr-only">: {SOCIAL_PLATFORMS.map((p) => p.label).join(", ")}</span>
         </p>
-        <IntegrationMarquee />
+        <PlatformMarquee />
       </div>
     </section>
   )
