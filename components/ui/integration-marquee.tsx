@@ -5,7 +5,7 @@ import {
   SiNotion, SiSalesforce, SiHubspot, SiShopify, SiStripe,
   SiZendesk, SiGmail, SiAirtable, SiMailchimp, SiAsana,
   SiTrello, SiIntercom, SiJira,
-  SiInstagram, SiTiktok, SiFacebook, SiYoutube, SiThreads, SiPinterest,
+  SiInstagram, SiTiktok, SiFacebook, SiYoutube, SiThreads, SiPinterest, SiX,
 } from "react-icons/si"
 
 type IntegrationIcon = {
@@ -90,6 +90,7 @@ export const SOCIAL_PLATFORMS: IntegrationIcon[] = [
   { Icon: SiFacebook, color: "#0866FF", label: "Facebook" },
   { Icon: SiYoutube, color: "#FF0000", label: "YouTube" },
   { Icon: SiThreads, color: "#000000", label: "Threads" },
+  { Icon: SiX, color: "#000000", label: "X" },
   { Icon: SiPinterest, color: "#E60023", label: "Pinterest" },
   { Icon: FaLinkedin, color: "#0A66C2", label: "LinkedIn" },
 ]
@@ -110,7 +111,7 @@ export function PlatformMarquee({ items = SOCIAL_PLATFORMS, className = "" }: { 
     >
       {/* A margin on each pill, not a gap, so half the track is exactly three
           sets and the -50% loop has no seam. */}
-      <div className="integ-scroll-left flex w-max py-1" style={{ animationDuration: "40s" }}>
+      <div className="integ-scroll-left flex w-max py-1" style={{ animationDuration: "90s" }}>
         {repeat(items).map((item, i) => (
           <div
             key={`p-${i}`}

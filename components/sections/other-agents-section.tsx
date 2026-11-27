@@ -57,24 +57,16 @@ export function OtherAgentsSection() {
     <section id="use-cases" className="border-y border-hairline bg-mist py-24 sm:py-32">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-6xl">
-          <div className="reveal mb-10 flex flex-col items-center gap-8 text-center lg:mb-12 lg:flex-row lg:items-end lg:justify-between lg:text-left">
-            <div>
-              <p className="eyebrow mb-5">More AI agents</p>
-              <h2 className="display max-w-2xl text-[clamp(2rem,4.5vw,3.25rem)]">
-                Can I use other AI agents with Talk to me Data?
-              </h2>
-              <p className="lede mt-6 max-w-2xl text-base sm:text-lg">
-                Yes. The social media agent is where most people start and the one they use most, but every plan also
-                includes agents for SEO, your website, sales outreach and social listening. Add one whenever you&apos;re
-                ready, or ask us to build one for a job of your own.
-              </p>
-            </div>
-
-            {/* Large screens: arrows beside the heading */}
-            <div className="hidden shrink-0 gap-3 lg:flex">
-              <ArrowButton direction="prev" label="Previous agents" onClick={prev} disabled={!canPrev} />
-              <ArrowButton direction="next" label="More agents" onClick={next} disabled={!canNext} />
-            </div>
+          <div className="reveal mb-12 text-center sm:mb-14">
+            <p className="eyebrow mb-5">More AI agents</p>
+            <h2 className="display mx-auto max-w-4xl text-balance text-[clamp(2rem,4.5vw,3.25rem)]">
+              Can I use other AI agents with Talk to me Data?
+            </h2>
+            <p className="lede mx-auto mt-6 max-w-3xl text-base sm:text-lg">
+              Yes. The social media agent is where most people start and the one they use most, but every plan also
+              includes agents for SEO, your website, sales outreach and social listening. Add one whenever you&apos;re
+              ready, or ask us to build one for a job of your own.
+            </p>
           </div>
 
           <div
@@ -137,8 +129,8 @@ export function OtherAgentsSection() {
               </div>
             </div>
 
-            {/* Phones and tablets: arrows under the cards, either side of the dots */}
-            <div className="mt-6 flex items-center justify-between gap-3 lg:hidden">
+            {/* Arrows under the cards, either side of the dots */}
+            <div className="mx-auto mt-6 flex max-w-xs items-center justify-between gap-3">
               <ArrowButton direction="prev" label="Previous agents" onClick={prev} disabled={!canPrev} />
               <span className="flex gap-1.5" aria-hidden>
                 {Array.from({ length: snaps }).map((_, i) => (

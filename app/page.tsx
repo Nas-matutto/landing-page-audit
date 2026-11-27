@@ -3,7 +3,6 @@ import type { Metadata } from 'next'
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { HeroSection } from "@/components/sections/hero-section"
-import { WorkflowVsAgentsSection } from "@/components/sections/workflow-vs-agents-section"
 import { HowItWorksSection } from "@/components/sections/how-it-works-section"
 import { OtherAgentsSection } from "@/components/sections/other-agents-section"
 import { FAQSection } from "@/components/sections/faq-section"
@@ -154,8 +153,8 @@ const jsonLd = {
 
 // ── Page ──────────────────────────────────────────────────────────────────────
 // The story runs: the platforms the social media agent works with, how it goes
-// from connecting your accounts to posting, the other agents you can add, why
-// agents beat workflow builders, then the objections and the ask.
+// from connecting your accounts to posting, the other agents you can add, then
+// the objections and the ask.
 
 export default function HomePage() {
   return (
@@ -166,7 +165,6 @@ export default function HomePage() {
         <HeroSection />
         <HowItWorksSection />
         <OtherAgentsSection />
-        <WorkflowVsAgentsSection />
         <FAQSection heading="Questions about the AI social media agent" items={FAQS} />
         <FinalCTASection />
       </main>
