@@ -9,12 +9,9 @@ import { BlogCtaBand } from "@/components/blog/cta-band"
 import { JsonLd } from "@/components/blog/json-ld"
 import { Reveal } from "@/components/sections/social-agent/parts"
 import { PostCard } from "@/components/blog/post-card"
-import { FaqSection } from "@/components/blog/faq-section"
-import { AuthorAvatar } from "@/components/blog/author-avatar"
-import { SOCIAL_HUB, SocialHubGuide } from "@/components/blog/hubs/social-media-automation"
-import { getAuthor } from "@/lib/authors"
-import { comparePath, getVisibleComparisons } from "@/lib/compare"
+import { SOCIAL_HUB, SocialHubPage } from "@/components/blog/hubs/social-media-automation"
 import {
+  type BlogPost,
   CATEGORIES,
   SITE_NAME,
   SITE_URL,
@@ -37,10 +34,11 @@ function findCategory(id: string) {
   return CATEGORIES.find(c => c.id === (id as CategoryId))
 }
 
-// Full hubs: a long guide and an FAQ on top of the list of posts. A hub that
-// isn't reviewed yet only shows in development; production keeps the short page.
-const HUBS: Partial<Record<CategoryId, { hub: typeof SOCIAL_HUB; Guide: () => ReactNode }>> = {
-  "social-media-automation": { hub: SOCIAL_HUB, Guide: SocialHubGuide },
+// Full hubs: a long guide in the blog post frame, with the category's posts
+// woven in. A hub that isn't reviewed yet only shows in development;
+// production keeps the short category page.
+const HUBS: Partial<Record<CategoryId, { hub: typeof SOCIAL_HUB; Page: (props: { posts: BlogPost[] }) => ReactNode }>> = {
+  "social-media-automation": { hub: SOCIAL_HUB, Page: SocialHubPage },
 }
 
 function activeHub(id: CategoryId) {
@@ -87,10 +85,8 @@ export default async function CategoryPage({ params }: { params: Params }) {
   const url = absoluteUrl(categoryPath(category.id))
   const hubEntry = activeHub(category.id)
   const hub = hubEntry?.hub
-  const Guide = hubEntry?.Guide
+  const HubPage = hubEntry?.Page
   const { heading, description, intro } = hubCopy(category)
-  const comparisons = hub ? getVisibleComparisons() : []
-  const author = getAuthor("nas")
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -140,105 +136,81 @@ export default async function CategoryPage({ params }: { params: Params }) {
             Draft hub: only visible in development. Edit components/blog/hubs/social-media-automation.tsx, then set reviewed: true.
           </div>
         )}
-        <section className="bg-white pb-14 pt-36 sm:pt-44 lg:pb-16 lg:pt-40">
-          <div className="mx-auto max-w-6xl px-6 lg:px-8">
-            <nav aria-label="Breadcrumb" className="mb-8">
-              <ol className="flex items-center gap-1.5 text-sm text-quiet">
-                <li><Link href="/blog" className="transition-colors hover:text-ink">Blog</Link></li>
-                <li aria-hidden><ChevronRight className="h-3.5 w-3.5 text-faint" /></li>
-                <li className="text-ink">{category.name}</li>
-              </ol>
-            </nav>
-            <Reveal className="max-w-3xl">
-              <p className="eyebrow mb-5">
-                {posts.length} {posts.length === 1 ? "guide" : "guides"}
-              </p>
-              <h1 className="display text-[clamp(2.5rem,6vw,4.25rem)]">{heading}</h1>
-              <div className="lede mt-6 space-y-4 text-lg">
-                {intro.map(paragraph => (
-                  <p key={paragraph}>{paragraph}</p>
-                ))}
-              </div>
-              {hub?.nasTake && (
-                <aside className="mt-8 rounded-2xl border border-hairline p-6">
-                  <div className="mb-3 flex items-center gap-3">
-                    <AuthorAvatar author={author} size={32} />
-                    <p className="text-sm font-semibold text-ink">{author.name}&apos;s take</p>
+        {HubPage ? (
+          <>
+            <HubPage posts={posts} />
+            <section className="border-t border-hairline bg-mist px-6 py-16 lg:px-8">
+              <div className="mx-auto max-w-6xl">
+                <nav aria-label="Other topics" className="text-center">
+                  <p className="eyebrow mb-4">More topics</p>
+                  <div className="flex flex-wrap justify-center gap-2">
+                    {CATEGORIES.filter(c => c.id !== category.id).map(other => (
+                      <Link
+                        key={other.id}
+                        href={categoryPath(other.id)}
+                        className="rounded-full border border-hairline bg-white px-4 py-2 text-sm font-medium text-ink transition-colors hover:border-ink hover:bg-ink hover:text-white"
+                      >
+                        {other.name}
+                      </Link>
+                    ))}
                   </div>
-                  <p className="text-ink">{hub.nasTake}</p>
-                </aside>
-              )}
-            </Reveal>
-          </div>
-        </section>
-
-        {Guide && (
-          <section className="bg-white px-6 pb-20 lg:px-8">
-            <div className="mx-auto max-w-6xl">
-              <div className="max-w-3xl">
-                <Guide />
-                {hub?.ourSetup && (
-                  <>
-                    <h2 id="how-we-run-ours" className="mb-4 mt-14 text-3xl font-semibold tracking-[-0.02em] text-ink">How Do We Run Our Own Social Media?</h2>
-                    <p className="leading-relaxed text-neutral-600">{hub.ourSetup}</p>
-                  </>
-                )}
+                </nav>
               </div>
-            </div>
-          </section>
-        )}
+            </section>
+          </>
+        ) : (
+          <>
+            <section className="bg-white pb-14 pt-36 sm:pt-44 lg:pb-16 lg:pt-40">
+              <div className="mx-auto max-w-6xl px-6 lg:px-8">
+                <nav aria-label="Breadcrumb" className="mb-8">
+                  <ol className="flex items-center gap-1.5 text-sm text-quiet">
+                    <li><Link href="/blog" className="transition-colors hover:text-ink">Blog</Link></li>
+                    <li aria-hidden><ChevronRight className="h-3.5 w-3.5 text-faint" /></li>
+                    <li className="text-ink">{category.name}</li>
+                  </ol>
+                </nav>
+                <Reveal className="max-w-3xl">
+                  <p className="eyebrow mb-5">
+                    {posts.length} {posts.length === 1 ? "guide" : "guides"}
+                  </p>
+                  <h1 className="display text-[clamp(2.5rem,6vw,4.25rem)]">{heading}</h1>
+                  <div className="lede mt-6 space-y-4 text-lg">
+                    {intro.map(paragraph => (
+                      <p key={paragraph}>{paragraph}</p>
+                    ))}
+                  </div>
+                </Reveal>
+              </div>
+            </section>
 
-        <section className="border-y border-hairline bg-mist px-6 py-16 sm:py-24 lg:px-8">
-          <div className="mx-auto max-w-6xl">
-            <h2 className="eyebrow mb-5">All {category.name} guides</h2>
-            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-              {posts.map(post => (
-                <PostCard key={post.slug} post={post} />
-              ))}
-            </div>
-
-            {comparisons.length > 0 && (
-              <div className="mt-16">
-                <h2 className="eyebrow mb-5">Compare social media tools</h2>
-                <div className="grid gap-4 md:grid-cols-3">
-                  {comparisons.map(c => (
-                    <Link
-                      key={c.slug}
-                      href={comparePath(c.slug)}
-                      className="rounded-3xl border border-hairline bg-white p-6 transition-colors hover:border-ink"
-                    >
-                      <p className="text-lg font-semibold text-ink">Talk to me Data vs {c.competitor}</p>
-                      <p className="mt-2 text-sm leading-relaxed text-quiet">{c.description}</p>
-                    </Link>
+            <section className="border-y border-hairline bg-mist px-6 py-16 sm:py-24 lg:px-8">
+              <div className="mx-auto max-w-6xl">
+                <h2 className="eyebrow mb-5">All {category.name} guides</h2>
+                <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+                  {posts.map(post => (
+                    <PostCard key={post.slug} post={post} />
                   ))}
                 </div>
+                <nav aria-label="Other topics" className="mt-16 text-center">
+                  <p className="eyebrow mb-4">More topics</p>
+                  <div className="flex flex-wrap justify-center gap-2">
+                    {CATEGORIES.filter(c => c.id !== category.id).map(other => (
+                      <Link
+                        key={other.id}
+                        href={categoryPath(other.id)}
+                        className="rounded-full border border-hairline bg-white px-4 py-2 text-sm font-medium text-ink transition-colors hover:border-ink hover:bg-ink hover:text-white"
+                      >
+                        {other.name}
+                      </Link>
+                    ))}
+                  </div>
+                </nav>
               </div>
-            )}
+            </section>
+          </>
+        )}
 
-            {hub && (
-              <div className="mx-auto mt-16 max-w-3xl">
-                <FaqSection faqs={hub.faqs} />
-              </div>
-            )}
-
-            <nav aria-label="Other topics" className="mt-16 text-center">
-              <p className="eyebrow mb-4">More topics</p>
-              <div className="flex flex-wrap justify-center gap-2">
-                {CATEGORIES.filter(c => c.id !== category.id).map(other => (
-                  <Link
-                    key={other.id}
-                    href={categoryPath(other.id)}
-                    className="rounded-full border border-hairline bg-white px-4 py-2 text-sm font-medium text-ink transition-colors hover:border-ink hover:bg-ink hover:text-white"
-                  >
-                    {other.name}
-                  </Link>
-                ))}
-              </div>
-            </nav>
-          </div>
-        </section>
-
-        <BlogCtaBand />
+        {!HubPage && <BlogCtaBand />}
       </main>
       <Footer />
     </div>
