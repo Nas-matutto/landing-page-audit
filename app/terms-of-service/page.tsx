@@ -19,7 +19,7 @@ const { h2, p, ul, link } = legal
 
 export default function TermsOfServicePage() {
   return (
-    <LegalPage title="Terms of Service" lastUpdated="29 September 2026">
+    <LegalPage title="Terms of Service" lastUpdated="27 November 2026">
       <section>
         <p className={p}>
           These terms are the agreement between you and us for your use of Talk to Me Data. Please read them carefully. By creating an account or using the Service, you agree to them. If you don&rsquo;t agree, please don&rsquo;t use the Service.
@@ -117,7 +117,8 @@ export default function TermsOfServicePage() {
             You remain responsible for your use of those tools and platforms, and must follow their terms. These include the{" "}
             <ExternalLink href="https://help.instagram.com/581066165581870">Instagram Terms of Use</ExternalLink>,{" "}
             <ExternalLink href="https://www.facebook.com/terms.php">Meta&rsquo;s Terms</ExternalLink>,{" "}
-            <ExternalLink href="https://www.tiktok.com/legal/terms-of-service">TikTok&rsquo;s Terms of Service</ExternalLink>, and Google&rsquo;s terms.
+            <ExternalLink href="https://www.tiktok.com/legal/terms-of-service">TikTok&rsquo;s Terms of Service</ExternalLink>,{" "}
+            <ExternalLink href="https://policy.pinterest.com/en/terms-of-service">Pinterest&rsquo;s Terms of Service</ExternalLink>, and Google&rsquo;s terms.
           </li>
           <li>
             <strong>YouTube.</strong> The Social Media Manager uses YouTube API Services. By using its YouTube features, you agree to be bound by the{" "}

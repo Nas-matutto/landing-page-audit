@@ -25,6 +25,11 @@ export const metadata: Metadata = {
     "business automation",
   ],
   generator: "Next.js",
+  // Pinterest's claim of talktomedata.com (renders <meta name="p:domain_verify">).
+  // Keep it: Pinterest re-checks claimed sites and unclaims the domain if the tag goes.
+  verification: {
+    other: { "p:domain_verify": "61b84d679875b983f0dc29be18071ee8" },
+  },
   icons: {
     icon: [
       { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
