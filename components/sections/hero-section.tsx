@@ -8,16 +8,20 @@ import { HeroVideo } from "@/components/ui/hero-video"
 import { IntegrationMarquee } from "@/components/ui/integration-marquee"
 import { SIGNUP_URL } from "@/lib/links"
 
-// What the agent does for you, one result at a time. The last one is the whole
-// pitch, so it takes the brand's Signal Blue to stand out from the rest.
+// What the social media agent does for you, one result at a time. The last one
+// is the whole pitch, so it takes the brand's Signal Blue to stand out. Keep each
+// line no longer than "grows your social media": the title is sized to fit it.
 const OUTCOMES = [
+  { text: "creates your posts" },
+  { text: "schedules your posts" },
+  { text: "posts to Instagram" },
+  { text: "posts to TikTok" },
   { text: "grows your social media" },
-  { text: "grows your SEO" },
-  { text: "finds you new leads" },
-  { text: "manages your website" },
-  { text: "gets you cited by AI" },
-  { text: "runs your business", className: "text-[#0072D5]!" },
+  { text: "runs on autopilot", className: "text-[#0072D5]!" },
 ]
+
+/** The page's one H1: the search it should rank for, read by search engines and screen readers. */
+const HOME_H1 = "AI Social Media Agent That Creates, Schedules and Posts on Autopilot"
 
 /**
  * The outcomes sit in one grid cell, so the box keeps one height and nothing
@@ -61,13 +65,21 @@ export function HeroSection() {
     <section className="relative w-full overflow-hidden bg-white pt-36 sm:pt-44 lg:pt-36">
       <div className="relative mx-auto grid w-full max-w-6xl items-center gap-10 px-6 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)] lg:gap-8 lg:px-8">
         <div className="rise-in text-center lg:text-left">
-          <h1 className="display text-[clamp(1.375rem,7.4vw,2.5rem)] sm:text-[clamp(2.5rem,7vw,4.5rem)] lg:text-[clamp(2.25rem,3.5vw,3rem)]">
+          {/* The rotating headline puts every outcome in the HTML at once, which
+              reads as one run-on line to search engines. So the H1 is a single
+              plain sentence, and the animation is decoration beside it. */}
+          <h1 className="sr-only">{HOME_H1}</h1>
+          <p
+            aria-hidden="true"
+            className="display text-[clamp(1.375rem,7.4vw,2.5rem)] sm:text-[clamp(2.5rem,7vw,4.5rem)] lg:text-[clamp(2.25rem,3.5vw,3rem)]"
+          >
             <span className="block whitespace-nowrap">Get an AI Agent that</span>
             <RotatingOutcome />
-          </h1>
+          </p>
 
           <p className="lede mx-auto mt-5 max-w-lg text-base sm:mt-6 sm:text-xl lg:mx-0">
-            Agents that bring in customers and do the work for you, around the clock. Start free, no card needed.
+            It creates your posts in your brand, schedules them for your best times and posts them for you, around the
+            clock. Start free, no card needed.
           </p>
 
           <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row lg:justify-start">

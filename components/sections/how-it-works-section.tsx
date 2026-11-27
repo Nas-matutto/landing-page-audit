@@ -80,7 +80,7 @@ export function HowItWorksSection() {
           <div className="mb-14 text-center sm:mb-16">
             <p className="eyebrow mb-5">How it works</p>
             <h2 className="display mx-auto max-w-3xl text-[clamp(2rem,4.5vw,3.25rem)]">
-              Up and running in minutes, not months
+              How does the AI social media agent work?
             </h2>
             <p className="lede mx-auto mt-6 max-w-2xl text-base sm:text-lg">
               No workflows to wire and no code to write. Here&apos;s what it looks like inside the app.

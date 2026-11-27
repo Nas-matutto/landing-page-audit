@@ -17,11 +17,11 @@ export function FinalCTASection() {
         <div className="mx-auto max-w-3xl text-center">
           <div className="reveal">
             <h2 className="display text-[clamp(2.25rem,5.5vw,4rem)]">
-              Put your first agent to work today
+              Ready to put your social media on autopilot?
             </h2>
             <p className="lede mx-auto mt-6 max-w-xl text-lg">
-              Start free with a ready-made agent for social media, SEO or your website. Or tell us the job you want off your plate,
-              and we&apos;ll build an agent for it.
+              Start free with the social media agent: it creates your posts, schedules them and posts them for you. Need
+              something else? Tell us the job you want off your plate, and we&apos;ll build an agent for it.
             </p>
 
             <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">

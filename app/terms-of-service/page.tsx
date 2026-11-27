@@ -3,7 +3,7 @@ import Link from "next/link"
 import { Email, ExternalLink, LegalPage, legal } from "@/components/legal-page"
 
 export const metadata: Metadata = {
-  title: "Terms of Service | Talk to Me Data",
+  title: "Terms of Service | Talk to me Data",
   description:
     "The agreement between you and Talk to Me Data for using our website, app and AI agents: plans, payment, cancelling, acceptable use and liability.",
   alternates: { canonical: "https://talktomedata.com/terms-of-service" },

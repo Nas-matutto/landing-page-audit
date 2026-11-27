@@ -20,16 +20,19 @@ import { SOCIAL_AGENT_VIDEO } from "@/lib/links"
 const BASE_URL = "https://talktomedata.com"
 const PAGE_URL = `${BASE_URL}/agents/social-media`
 
-const TITLE = "AI Social Media Agent That Posts For You | Talk to me Data"
+// The homepage targets "AI social media agent". This page takes the other half of
+// the search, "AI social media manager", and the detail: insights, competitor
+// tracking and brand kit. Don't point both pages at the same phrase.
+const TITLE = "AI Social Media Manager for Instagram and TikTok | Talk to me Data"
 const DESCRIPTION =
-  "An AI agent that runs your social media. It finds your winning posts, tracks competitors, writes and designs the content in your brand, and schedules and posts it for you on Instagram, Facebook and TikTok."
+  "An AI social media manager that finds your winning posts, tracks competitors, designs posts in your brand kit and posts them to Instagram, TikTok and Facebook."
 
 export const metadata: Metadata = {
   title: TITLE,
   description: DESCRIPTION,
   keywords: [
-    "ai social media agent",
     "ai social media manager",
+    "ai instagram manager",
     "social media automation",
     "ai content creator",
     "automate social media posts",
@@ -44,7 +47,7 @@ export const metadata: Metadata = {
     description: DESCRIPTION,
     type: "article",
     url: PAGE_URL,
-    siteName: "Talk to Me Data",
+    siteName: "Talk to me Data",
     publishedTime: "2026-06-25",
   },
   twitter: {
@@ -66,7 +69,7 @@ const FAQS = [
   {
     question: "Which platforms does it work with?",
     answer:
-      "It analyses Instagram, TikTok, YouTube and Facebook Pages. It can auto-post to Instagram, Facebook and TikTok. For anything else, you get an email reminder with the finished post. If you need LinkedIn, X or a scheduler like Buffer, we build custom agents too. Tell us what you use.",
+      "It analyses Instagram, TikTok, YouTube and Facebook Pages. It schedules and posts to Instagram, TikTok, Facebook and Pinterest, and publishes to LinkedIn when you press Post now. For anything else, you get an email reminder with the finished post. If you need X or a scheduler like Buffer, we build custom agents too. Tell us what you use.",
   },
   {
     question: "Will the posts look and sound like my brand?",

@@ -12,17 +12,17 @@ const geistMono = Geist_Mono({ subsets: ["latin"], variable: "--font-geist-mono"
 export const metadata: Metadata = {
   // Makes the shared preview image (app/opengraph-image.png) an absolute URL.
   metadataBase: new URL("https://talktomedata.com"),
-  title: "TTMD | Talk to me Data - Build and Launch AI Agents",
+  // Fallbacks for pages that don't set their own. The site leads with the
+  // social media agent, which most users come for.
+  title: "Talk to me Data: AI Social Media Agent",
   description:
-    "TTMD (Talk to me Data) builds, hosts and manages AI agents for your business: customer support, booking, lead finding, invoices and more. Book a demo.",
+    "Talk to me Data's AI social media agent creates posts in your brand, schedules them and posts to Instagram, TikTok and Facebook on autopilot. Start free.",
   keywords: [
-    "TTMD",
+    "AI social media agent",
+    "AI social media manager",
     "Talk to me Data",
-    "AI agents",
+    "TTMD",
     "AI agents for business",
-    "custom AI agent",
-    "AI automation",
-    "business automation",
   ],
   generator: "Next.js",
   // Pinterest's claim of talktomedata.com (renders <meta name="p:domain_verify">).
@@ -56,8 +56,11 @@ const jsonLd = {
       "@id": "https://talktomedata.com/#organization",
       "name": "Talk to me Data",
       "url": "https://talktomedata.com",
+      "alternateName": "TTMD",
+      "description":
+        "Talk to me Data makes AI agents for small businesses. Its AI social media agent creates, schedules and posts content to Instagram, TikTok and Facebook on autopilot.",
       "logo": "https://talktomedata.com/android-chrome-512x512.png",
-      "sameAs": [],
+      "sameAs": ["https://www.instagram.com/talktomedata/"],
     },
     // Primary navigation — signals preferred sitelinks to search engines
     {

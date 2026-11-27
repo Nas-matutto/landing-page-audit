@@ -1,9 +1,11 @@
 import type { Metadata } from "next"
 
 export const metadata: Metadata = {
-  title: "Get Started — Build Your AI Agent | Talk to Me Data",
+  title: "Get Started: Build Your AI Agent | Talk to me Data",
   description:
-    "Tell us what you want to automate and which tools your agent should connect to. We'll show you exactly what your custom AI agent can do — in under 2 minutes.",
+    "Tell us what you want to automate and which tools your agent should connect to. We'll show you exactly what your custom AI agent can do in under 2 minutes.",
+  // A step in the signup funnel, not a page to land on from search.
+  robots: { index: false, follow: true },
 }
 
 export default function GetStartedLayout({

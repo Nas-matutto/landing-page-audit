@@ -3,9 +3,10 @@ import Link from "next/link"
 import { Email, ExternalLink, LegalPage, legal } from "@/components/legal-page"
 
 export const metadata: Metadata = {
-  title: "Data Deletion Instructions — Talk to Me Data",
+  title: "Data Deletion Instructions | Talk to me Data",
   description:
-    "How to delete your Talk to Me Data account, remove Instagram, Facebook or TikTok data, and what happens afterwards.",
+    "How to delete your Talk to me Data account, remove Instagram, Facebook or TikTok data, and what happens afterwards.",
+  alternates: { canonical: "https://talktomedata.com/data-deletion" },
 }
 
 const { h2, h3, p, ul, ol, link } = legal

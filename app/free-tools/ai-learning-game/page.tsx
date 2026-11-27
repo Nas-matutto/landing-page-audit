@@ -51,11 +51,19 @@ export default function AiLearningGamePage() {
             All free tools
           </Link>
 
+          {/* The game lives in an iframe, which search engines don't count as this
+              page's content, so the page names itself here. */}
+          <h1 className="display mb-3 text-[clamp(1.75rem,4vw,2.5rem)]">AI Quest: a free AI learning game</h1>
+          <p className="lede mb-8 max-w-2xl text-base">
+            A pixel RPG where every battle is an AI trivia duel. Explore the world and learn real AI concepts in your
+            browser, no signup required.
+          </p>
+
           <div className="-mx-4 sm:mx-0 sm:rounded-2xl sm:border sm:border-slate-200 overflow-hidden shadow-sm">
             <iframe
               ref={iframeRef}
               src={GAME_SRC}
-              title="AI Quest — AI learning game"
+              title="AI Quest, the AI learning game"
               className="block w-full border-0"
               style={{ height }}
             />

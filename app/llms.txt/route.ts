@@ -23,10 +23,11 @@ export function GET() {
 
   const body = `# ${SITE_NAME}
 
-> ${SITE_NAME} (TTMD) builds, hosts and manages AI agents for small and medium businesses: social media, SEO and GEO, customer support, lead finding, data entry and reporting, and invoice processing. Clients describe the work in plain language; TTMD builds the agent, connects it to their tools and runs it.
+> ${SITE_NAME} (TTMD) makes AI agents for small and medium businesses. Its main product is an AI social media agent that creates posts in your brand, schedules them and posts them to Instagram, TikTok and Facebook on autopilot. TTMD also offers SEO and GEO, website, sales and social listening agents, and builds custom agents around any workflow.
 
 ## Key pages
 
+- [AI social media agent](${absoluteUrl("/agents/social-media")}): creates, schedules and posts content on autopilot
 - [AI agents](${absoluteUrl("/agents")}): every ready-built agent
 - [Pricing](${absoluteUrl("/pricing")})
 - [Book a demo](${absoluteUrl("/book-demo")})

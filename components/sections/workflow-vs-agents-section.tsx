@@ -133,10 +133,10 @@ export function WorkflowVsAgentsSection() {
           <div className="mb-12 text-center">
             <p className="eyebrow mb-5">A smarter way to automate</p>
             <h2 className="display mx-auto max-w-3xl text-[clamp(2rem,4.5vw,3.25rem)]">
-              Don&apos;t build workflows. Just tell your agent what to do.
+              Why use an AI agent instead of Zapier or n8n?
             </h2>
             <p className="lede mx-auto mt-6 max-w-2xl text-base sm:text-lg">
-              Tools like Zapier and n8n make you wire every step by hand — then rebuild it the moment something
+              Tools like Zapier and n8n make you wire every step by hand, then rebuild it the moment something
               changes. An AI agent works from a plain-language brief and adapts on its own.
             </p>
           </div>

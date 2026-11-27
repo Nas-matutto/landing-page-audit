@@ -3,9 +3,10 @@ import Link from "next/link"
 import { Email, ExternalLink, LegalPage, Table, legal } from "@/components/legal-page"
 
 export const metadata: Metadata = {
-  title: "Privacy Policy — Talk to Me Data",
+  title: "Privacy Policy | Talk to me Data",
   description:
-    "What personal data Talk to Me Data collects, why, who we share it with, how long we keep it, and the rights you have.",
+    "What personal data Talk to me Data collects, why, who we share it with, how long we keep it, and the rights you have.",
+  alternates: { canonical: "https://talktomedata.com/privacy-policy" },
 }
 
 const COMPANY = {

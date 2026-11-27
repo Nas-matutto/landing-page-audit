@@ -21,6 +21,8 @@ const nextConfig = {
       { source: "/agents/lead-qualification", destination: "/agents/website-manager", permanent: true },
       // The Instagram snapshot page was renamed for search (2026-10).
       { source: "/free-tools/instagram-snapshot", destination: "/free-tools/social-media-analyzer", permanent: true },
+      // Two posts targeted the same searches, so they were merged into one (2026-11-27).
+      { source: "/blog/how-to-get-cited-by-chatgpt-perplexity-and-claude", destination: "/blog/how-to-get-cited-by-chatgpt", permanent: true },
     ]
   },
 }

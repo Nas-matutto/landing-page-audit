@@ -5,12 +5,14 @@ import { GUIDES } from '@/lib/guides'
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://talktomedata.com'
+  // lastModified is the date a page's content last changed, not today's date:
+  // a sitemap that always says "updated today" teaches Google to ignore it.
 
   return [
     // Core pages
     {
       url: baseUrl,
-      lastModified: new Date(),
+      lastModified: new Date('2026-11-27'),
       changeFrequency: 'weekly',
       priority: 1,
     },
@@ -22,13 +24,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       url: `${baseUrl}/free-tools`,
-      lastModified: new Date(),
+      lastModified: new Date('2026-11-03'),
       changeFrequency: 'weekly',
       priority: 0.85,
     },
     {
       url: `${baseUrl}/free-guides`,
-      lastModified: new Date(),
+      lastModified: new Date('2026-11-12'),
       changeFrequency: 'weekly',
       priority: 0.75,
     },
@@ -41,13 +43,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })),
     {
       url: `${baseUrl}/free-tools/calculator`,
-      lastModified: new Date(),
+      lastModified: new Date('2026-05-31'),
       changeFrequency: 'monthly',
       priority: 0.75,
     },
     {
       url: `${baseUrl}/free-tools/workflow-mapper`,
-      lastModified: new Date(),
+      lastModified: new Date('2026-07-23'),
       changeFrequency: 'monthly',
       priority: 0.75,
     },
@@ -71,7 +73,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       url: `${baseUrl}/agents`,
-      lastModified: new Date(),
+      lastModified: new Date('2026-11-03'),
       changeFrequency: 'weekly',
       priority: 0.9,
     },
@@ -139,19 +141,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       url: `${baseUrl}/watch-demo`,
-      lastModified: new Date(),
+      lastModified: new Date('2026-10-06'),
       changeFrequency: 'monthly',
       priority: 0.85,
     },
     {
       url: `${baseUrl}/book-demo`,
-      lastModified: new Date(),
+      lastModified: new Date('2026-11-03'),
       changeFrequency: 'monthly',
       priority: 0.9,
     },
     {
       url: `${baseUrl}/blog`,
-      lastModified: new Date(),
+      lastModified: new Date(getAllPostsSorted()[0].datePublished),
       changeFrequency: 'weekly',
       priority: 0.7,
     },
@@ -197,19 +199,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
     // Legal
     {
       url: `${baseUrl}/privacy-policy`,
-      lastModified: new Date(),
+      lastModified: new Date('2026-11-27'),
       changeFrequency: 'yearly',
       priority: 0.3,
     },
     {
       url: `${baseUrl}/data-deletion`,
-      lastModified: new Date(),
+      lastModified: new Date('2026-09-29'),
       changeFrequency: 'yearly',
       priority: 0.3,
     },
     {
       url: `${baseUrl}/terms-of-service`,
-      lastModified: new Date(),
+      lastModified: new Date('2026-11-27'),
       changeFrequency: 'yearly',
       priority: 0.3,
     },

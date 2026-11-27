@@ -331,9 +331,9 @@ export function GetStartedFlow({ onInFlowChange }: { onInFlowChange?: (inFlow: b
               <p className="text-xs font-semibold tracking-widest uppercase text-primary mb-3 text-center">
                 Let's get started
               </p>
-              <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 text-center mb-3 text-balance">
+              <h1 className="text-2xl sm:text-3xl font-bold text-slate-900 text-center mb-3 text-balance">
                 Let's build your AI agent
-              </h2>
+              </h1>
               <p className="text-slate-500 text-center mb-10 max-w-md mx-auto">
                 Answer a few quick questions and we'll show you exactly what your agent can do. Where should we send the details?
               </p>

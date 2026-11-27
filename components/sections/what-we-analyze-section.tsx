@@ -62,7 +62,7 @@ export function WhatWeAnalyzeSection() {
           <div className="reveal mb-16 text-center sm:mb-20">
             <p className="eyebrow mb-5">AI agents</p>
             <h2 className="display mx-auto max-w-3xl text-[clamp(2rem,4.5vw,3.25rem)]">
-              Start with a ready-made agent. Or have one built for you.
+              What else can your AI agents do?
             </h2>
             <p className="lede mx-auto mt-6 max-w-2xl text-base sm:text-lg">
               Five agents are ready to use today. Beyond those, we build custom agents around any workflow your
