@@ -52,8 +52,9 @@ export const metadata: Metadata = {
 
 // ── FAQ ───────────────────────────────────────────────────────────────────────
 // Facts here must match /pricing and the privacy policy (section on accounts
-// connected for posting): scheduled posting to Instagram, TikTok, Facebook and
-// Pinterest; LinkedIn only on "Post now", never scheduled; autopilot from Solo.
+// connected for posting) plus Nas (2026-11-27): scheduled posting to Instagram,
+// TikTok, Facebook and X; LinkedIn only on "Post now"; Pinterest coming soon;
+// autopilot from Solo.
 
 const FAQS = [
   {
@@ -79,7 +80,7 @@ const FAQS = [
   {
     question: "Which social media platforms can it post to?",
     answer:
-      "It schedules and posts to Instagram, TikTok, Facebook and Pinterest, and publishes to LinkedIn when you press Post now. It analyses Instagram, TikTok, YouTube and Facebook Pages. For any other platform you get an email reminder with the finished post.",
+      "Your Talk to me Data Social Media AI Agent can analyse and post to Instagram, X, Facebook and LinkedIn. YouTube, Threads and Pinterest will soon be enabled. It can also analyse all your social channels to identify patterns and breakout posts, and give you up to date recommendations.",
   },
   {
     question: "How does it know what to post?",
@@ -87,9 +88,9 @@ const FAQS = [
       "It reads every post on your account and works out which formats, hooks and topics win with your audience. Then it turns those patterns, and your competitors' breakout posts, into new posts for you.",
   },
   {
-    question: "Can it track my competitors?",
+    question: "Can I track my competitors on social media automatically?",
     answer:
-      "Yes. It reads your bio and captions to understand your niche, then suggests accounts like yours. You choose which to track, and it flags their breakout posts and turns the patterns behind them into plays you can run.",
+      "Yes. The Social Media AI Agent reads your bio and captions to understand your niche, then suggests accounts like yours. You choose which ones to track, and it flags their breakout posts and turns the patterns behind them into plays you can run.",
   },
   {
     question: "Will the posts look and sound like my brand?",
@@ -102,7 +103,7 @@ const FAQS = [
       "Only if you switch it on. You can review every post before it goes out, set it to publish on schedule, or get an email reminder with the finished post and share it yourself.",
   },
   {
-    question: "Can I just talk to it?",
+    question: "Can I just talk to my Social Media AI Agent?",
     answer:
       "Yes. Ask questions about your numbers in plain English, or tell it what to make, like “a 15 second reel on my morning routine”, and it builds the hooks, script and caption.",
   },

@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import type { ReactNode } from "react"
 import Link from "next/link"
 import { notFound } from "next/navigation"
 import { ChevronRight } from "lucide-react"
@@ -8,6 +9,11 @@ import { BlogCtaBand } from "@/components/blog/cta-band"
 import { JsonLd } from "@/components/blog/json-ld"
 import { Reveal } from "@/components/sections/social-agent/parts"
 import { PostCard } from "@/components/blog/post-card"
+import { FaqSection } from "@/components/blog/faq-section"
+import { AuthorAvatar } from "@/components/blog/author-avatar"
+import { SOCIAL_HUB, SocialHubGuide } from "@/components/blog/hubs/social-media-automation"
+import { getAuthor } from "@/lib/authors"
+import { comparePath, getVisibleComparisons } from "@/lib/compare"
 import {
   CATEGORIES,
   SITE_NAME,
@@ -31,23 +37,46 @@ function findCategory(id: string) {
   return CATEGORIES.find(c => c.id === (id as CategoryId))
 }
 
+// Full hubs: a long guide and an FAQ on top of the list of posts. A hub that
+// isn't reviewed yet only shows in development; production keeps the short page.
+const HUBS: Partial<Record<CategoryId, { hub: typeof SOCIAL_HUB; Guide: () => ReactNode }>> = {
+  "social-media-automation": { hub: SOCIAL_HUB, Guide: SocialHubGuide },
+}
+
+function activeHub(id: CategoryId) {
+  const entry = HUBS[id]
+  if (!entry) return undefined
+  return entry.hub.reviewed || process.env.NODE_ENV === "development" ? entry : undefined
+}
+
+/** The hub's heading, description and intro replace the category's once the hub is active. */
+function hubCopy(category: NonNullable<ReturnType<typeof findCategory>>) {
+  const hub = activeHub(category.id)?.hub
+  return {
+    heading: hub?.heading ?? category.heading,
+    description: hub?.description ?? category.description,
+    intro: hub?.intro ?? category.intro,
+  }
+}
+
 export async function generateMetadata({ params }: { params: Params }): Promise<Metadata> {
   const category = findCategory((await params).category)
   if (!category) return {}
   const url = absoluteUrl(categoryPath(category.id))
+  const { heading, description } = hubCopy(category)
   return {
-    title: category.heading,
-    description: category.description,
+    title: heading,
+    description,
     alternates: { canonical: url },
     openGraph: {
       type: "website",
       url,
-      title: category.heading,
-      description: category.description,
+      title: heading,
+      description,
       siteName: SITE_NAME,
-      images: [{ url: "/opengraph-image.png", width: 1200, height: 630, alt: category.heading }],
+      images: [{ url: "/opengraph-image.png", width: 1200, height: 630, alt: heading }],
     },
-    twitter: { card: "summary_large_image", title: category.heading, description: category.description, images: ["/opengraph-image.png"] },
+    twitter: { card: "summary_large_image", title: heading, description, images: ["/opengraph-image.png"] },
   }
 }
 
@@ -56,6 +85,12 @@ export default async function CategoryPage({ params }: { params: Params }) {
   if (!category) notFound()
   const posts = getPostsByCategory(category.id)
   const url = absoluteUrl(categoryPath(category.id))
+  const hubEntry = activeHub(category.id)
+  const hub = hubEntry?.hub
+  const Guide = hubEntry?.Guide
+  const { heading, description, intro } = hubCopy(category)
+  const comparisons = hub ? getVisibleComparisons() : []
+  const author = getAuthor("nas")
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -63,8 +98,8 @@ export default async function CategoryPage({ params }: { params: Params }) {
       {
         "@type": "CollectionPage",
         "@id": `${url}#page`,
-        name: category.heading,
-        description: category.description,
+        name: heading,
+        description,
         url,
         isPartOf: { "@id": `${SITE_URL}/#website` },
         mainEntity: {
@@ -85,6 +120,13 @@ export default async function CategoryPage({ params }: { params: Params }) {
           { "@type": "ListItem", position: 3, name: category.name, item: url },
         ],
       },
+      ...(hub && hub.faqs.length > 0
+        ? [{
+            "@type": "FAQPage",
+            "@id": `${url}#faq`,
+            mainEntity: hub.faqs.map(f => ({ "@type": "Question", name: f.question, acceptedAnswer: { "@type": "Answer", text: f.answer } })),
+          }]
+        : []),
     ],
   }
 
@@ -93,6 +135,11 @@ export default async function CategoryPage({ params }: { params: Params }) {
       <JsonLd data={jsonLd} />
       <Header />
       <main>
+        {hub && !hub.reviewed && (
+          <div className="fixed inset-x-0 bottom-0 z-50 bg-social px-4 py-3 text-center text-sm font-semibold text-white">
+            Draft hub: only visible in development. Edit components/blog/hubs/social-media-automation.tsx, then set reviewed: true.
+          </div>
+        )}
         <section className="bg-white pb-14 pt-36 sm:pt-44 lg:pb-16 lg:pt-40">
           <div className="mx-auto max-w-6xl px-6 lg:px-8">
             <nav aria-label="Breadcrumb" className="mb-8">
@@ -106,15 +153,40 @@ export default async function CategoryPage({ params }: { params: Params }) {
               <p className="eyebrow mb-5">
                 {posts.length} {posts.length === 1 ? "guide" : "guides"}
               </p>
-              <h1 className="display text-[clamp(2.5rem,6vw,4.25rem)]">{category.heading}</h1>
+              <h1 className="display text-[clamp(2.5rem,6vw,4.25rem)]">{heading}</h1>
               <div className="lede mt-6 space-y-4 text-lg">
-                {category.intro.map(paragraph => (
+                {intro.map(paragraph => (
                   <p key={paragraph}>{paragraph}</p>
                 ))}
               </div>
+              {hub?.nasTake && (
+                <aside className="mt-8 rounded-2xl border border-hairline p-6">
+                  <div className="mb-3 flex items-center gap-3">
+                    <AuthorAvatar author={author} size={32} />
+                    <p className="text-sm font-semibold text-ink">{author.name}&apos;s take</p>
+                  </div>
+                  <p className="text-ink">{hub.nasTake}</p>
+                </aside>
+              )}
             </Reveal>
           </div>
         </section>
+
+        {Guide && (
+          <section className="bg-white px-6 pb-20 lg:px-8">
+            <div className="mx-auto max-w-6xl">
+              <div className="max-w-3xl">
+                <Guide />
+                {hub?.ourSetup && (
+                  <>
+                    <h2 id="how-we-run-ours" className="mb-4 mt-14 text-3xl font-semibold tracking-[-0.02em] text-ink">How Do We Run Our Own Social Media?</h2>
+                    <p className="leading-relaxed text-neutral-600">{hub.ourSetup}</p>
+                  </>
+                )}
+              </div>
+            </div>
+          </section>
+        )}
 
         <section className="border-y border-hairline bg-mist px-6 py-16 sm:py-24 lg:px-8">
           <div className="mx-auto max-w-6xl">
@@ -124,6 +196,30 @@ export default async function CategoryPage({ params }: { params: Params }) {
                 <PostCard key={post.slug} post={post} />
               ))}
             </div>
+
+            {comparisons.length > 0 && (
+              <div className="mt-16">
+                <h2 className="eyebrow mb-5">Compare social media tools</h2>
+                <div className="grid gap-4 md:grid-cols-3">
+                  {comparisons.map(c => (
+                    <Link
+                      key={c.slug}
+                      href={comparePath(c.slug)}
+                      className="rounded-3xl border border-hairline bg-white p-6 transition-colors hover:border-ink"
+                    >
+                      <p className="text-lg font-semibold text-ink">Talk to me Data vs {c.competitor}</p>
+                      <p className="mt-2 text-sm leading-relaxed text-quiet">{c.description}</p>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {hub && (
+              <div className="mx-auto mt-16 max-w-3xl">
+                <FaqSection faqs={hub.faqs} />
+              </div>
+            )}
 
             <nav aria-label="Other topics" className="mt-16 text-center">
               <p className="eyebrow mb-4">More topics</p>

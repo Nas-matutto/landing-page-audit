@@ -2,6 +2,7 @@ import { MetadataRoute } from 'next'
 import { AUTHORS } from '@/lib/authors'
 import { CATEGORIES, getAllPostsSorted, getPostsByCategory } from '@/lib/blog'
 import { GUIDES } from '@/lib/guides'
+import { comparePath, getLiveComparisons } from '@/lib/compare'
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://talktomedata.com'
@@ -176,6 +177,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'monthly' as const,
       priority: 0.4,
     })),
+
+    // Comparison pages: only the ones Nas has reviewed (lib/compare.ts).
+    ...(getLiveComparisons().length > 0
+      ? [
+          { url: `${baseUrl}/compare`, changeFrequency: 'monthly' as const, priority: 0.7 },
+          ...getLiveComparisons().map(c => ({
+            url: `${baseUrl}${comparePath(c.slug)}`,
+            lastModified: new Date(c.dateModified),
+            changeFrequency: 'monthly' as const,
+            priority: 0.8,
+          })),
+        ]
+      : []),
 
     {
       url: `${baseUrl}/about`,

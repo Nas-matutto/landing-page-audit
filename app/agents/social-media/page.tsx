@@ -69,7 +69,7 @@ const FAQS = [
   {
     question: "Which platforms does it work with?",
     answer:
-      "It analyses Instagram, TikTok, YouTube and Facebook Pages. It schedules and posts to Instagram, TikTok, Facebook and Pinterest, and publishes to LinkedIn when you press Post now. For anything else, you get an email reminder with the finished post. If you need X or a scheduler like Buffer, we build custom agents too. Tell us what you use.",
+      "It analyses Instagram, TikTok, YouTube and Facebook Pages. It schedules and posts to Instagram, TikTok, Facebook and X, and publishes to LinkedIn when you press Post now. Pinterest is coming soon. For anything else, you get an email reminder with the finished post. If you need another platform or a scheduler like Buffer, we build custom agents too. Tell us what you use.",
   },
   {
     question: "Will the posts look and sound like my brand?",

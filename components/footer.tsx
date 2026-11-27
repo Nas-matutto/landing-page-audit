@@ -58,6 +58,16 @@ export function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href="/blog/category/social-media-automation" className="text-white/60 transition-colors hover:text-white">
+                  Social Media Automation
+                </Link>
+              </li>
+              <li>
+                <Link href="/compare" className="text-white/60 transition-colors hover:text-white">
+                  Compare Tools
+                </Link>
+              </li>
+              <li>
                 <Link href="/free-tools" className="text-white/60 transition-colors hover:text-white">
                   Free Tools
                 </Link>

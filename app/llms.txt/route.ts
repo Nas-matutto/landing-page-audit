@@ -1,6 +1,7 @@
 import { AGENTS } from "@/lib/agents"
 import { CATEGORIES, SITE_NAME, absoluteUrl, categoryPath, getPostsByCategory, postPath } from "@/lib/blog"
 import { GUIDES, guidePath } from "@/lib/guides"
+import { comparePath, getLiveComparisons } from "@/lib/compare"
 
 /**
  * /llms.txt (llmstxt.org): a plain-markdown map of the site for AI answer
@@ -20,6 +21,11 @@ export function GET() {
   const freeGuides = GUIDES.map(guide => `- [${guide.title}](${absoluteUrl(guidePath(guide.slug))}): ${guide.description}`).join("\n")
 
   const agents = AGENTS.map(agent => `- [${/agent$/i.test(agent.title) ? agent.title : `${agent.title} agent`}](${absoluteUrl(`/agents/${agent.slug}`)}): ${agent.tagline}`).join("\n")
+
+  // Reviewed comparison pages only (lib/compare.ts); drafts never appear here.
+  const comparisons = getLiveComparisons()
+    .map(c => `- [${c.title}](${absoluteUrl(comparePath(c.slug))}): ${c.description}`)
+    .join("\n")
 
   const body = `# ${SITE_NAME}
 
@@ -41,7 +47,7 @@ ${agents}
 
 ${guides}
 
-## [Free guides (PDF)](${absoluteUrl("/free-guides")})
+${comparisons ? `## Comparisons\n\n${comparisons}\n\n` : ""}## [Free guides (PDF)](${absoluteUrl("/free-guides")})
 
 ${freeGuides}
 `
