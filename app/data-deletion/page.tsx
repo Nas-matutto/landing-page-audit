@@ -5,7 +5,7 @@ import { Email, ExternalLink, LegalPage, legal } from "@/components/legal-page"
 export const metadata: Metadata = {
   title: "Data Deletion Instructions | Talk to me Data",
   description:
-    "How to delete your Talk to me Data account, remove Instagram, Facebook or TikTok data, and what happens afterwards.",
+    "How to delete your Talk to me Data account, remove YouTube, Instagram, Facebook or TikTok data, and what happens afterwards.",
   alternates: { canonical: "https://talktomedata.com/data-deletion" },
 }
 
@@ -13,10 +13,10 @@ const { h2, h3, p, ul, ol, link } = legal
 
 export default function DataDeletionPage() {
   return (
-    <LegalPage title="Data Deletion Instructions" lastUpdated="29 September 2026">
+    <LegalPage title="Data Deletion Instructions" lastUpdated="28 November 2026">
       <section>
         <p className={p}>
-          You can ask us to delete your data at any time. This page explains how to delete your whole Talk to Me Data account, how to remove data from Instagram, Facebook or TikTok, and what happens afterwards.
+          You can ask us to delete your data at any time. This page explains how to delete your whole Talk to Me Data account, how to remove data from YouTube, Instagram, Facebook or TikTok, and what happens afterwards.
         </p>
       </section>
 
@@ -36,6 +36,34 @@ export default function DataDeletionPage() {
           <li>delete your account, profile, agents, chat history, social media data, designs, brand kit, uploaded images and contact lists; and</li>
           <li>email you to confirm it&rsquo;s done, within <strong>30 days</strong> of your request at the latest.</li>
         </ol>
+        <p className={p}>
+          If your account had YouTube or any other Google service connected, we delete all the data we received from Google, including chats that may contain it, within <strong>7 calendar days</strong> of your request.
+        </p>
+      </section>
+
+      <section id="youtube" className="scroll-mt-32">
+        <h2 className={h2}>Delete your YouTube data</h2>
+        <p className={p}>
+          If you connected your YouTube channel so our agent could post for you or show you its analytics, use any of these options:
+        </p>
+        <ul className={ul}>
+          <li>
+            <strong>Disconnect it in Talk to Me Data:</strong> open the Social Media Manager, go to the <strong>Create</strong> tab (or the <strong>Audience</strong> tab) and click <strong>Disconnect</strong>. We revoke our access at Google and straight away delete the access tokens, your channel details and analytics, and your chats with the agent about that channel from the time you connected it.
+          </li>
+          <li>
+            <strong>Remove the channel from your dashboard:</strong> this deletes everything we hold about it straight away, including its posts, metrics, content plan and all its chats.
+          </li>
+          <li>
+            <strong>Email us:</strong> write to <Email subject="Delete my YouTube data" /> with the subject <strong>&ldquo;Delete my YouTube data&rdquo;</strong>. We delete it as soon as possible and always within <strong>7 calendar days</strong>, and confirm by email.
+          </li>
+        </ul>
+        <p className={p}>
+          You can also remove our access in your Google account at{" "}
+          <ExternalLink href="https://myaccount.google.com/permissions">myaccount.google.com/permissions</ExternalLink>. That stops us using your channel straight away; to delete the data we already hold, use one of the options above.
+        </p>
+        <p className={p}>
+          <strong>This does not delete anything on YouTube.</strong> Deleting data stored by Talk to Me Data leaves your videos, titles, descriptions, comments, channel and analytics on YouTube exactly as they are. To delete data on YouTube, use YouTube directly (for example YouTube Studio), or another authorised app that supports deleting that data.
+        </p>
       </section>
 
       <section id="social-media" className="scroll-mt-32">

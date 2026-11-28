@@ -19,7 +19,7 @@ const { h2, h3, p, ul, ol } = legal
 
 export default function PrivacyPolicyPage() {
   return (
-    <LegalPage title="Privacy Policy" lastUpdated="27 November 2026">
+    <LegalPage title="Privacy Policy" lastUpdated="28 November 2026">
       {/* Intro */}
       <section>
         <p className={p}>
@@ -138,7 +138,7 @@ export default function PrivacyPolicyPage() {
           <strong>Pinterest.</strong> If you connect Pinterest, we use that access only to: list your boards so you can choose where each pin goes; create a new board, only when you ask us to; publish the pins you designed or uploaded, now or at the time you schedule, to the board you chose, with the title, description and link you see on the post screen; and show you your own account&rsquo;s numbers on the Pinterest Overview: impressions, saves, pin clicks, outbound clicks and engagements for the last 30 days, and your best-performing pins. We read those numbers from Pinterest each time you open the Overview and do not store them; we keep only your username, name, profile photo, bio and follower, following and pin counts, to show which account is connected. We never edit or delete your pins or boards, never read other people&rsquo;s pins or boards, and never collect Pinterest data by scraping. When you disconnect Pinterest, we delete the access tokens and those profile details straight away. You can also remove our access at any time in your Pinterest account settings.
         </p>
         <p className={p}>
-          <strong>YouTube posting.</strong> If you connect your YouTube channel on the Social Media Manager&rsquo;s Create tab (<code>youtube.upload</code> and <code>youtube.readonly</code>), we use that access only to upload the videos you choose to your channel, now or at the time you schedule, with the title, description, tags and settings you see on the post screen (whether it&rsquo;s made for kids, the altered-content and paid-promotion labels, visibility and category), and to check that YouTube has finished processing each one. We read your channel&rsquo;s ID and name to confirm you connected the right channel. We never post anything you haven&rsquo;t uploaded and approved, and we never edit or delete videos on your channel. When you disconnect YouTube, we revoke our access at Google and delete the access tokens straight away.
+          <strong>YouTube posting.</strong> If you connect your YouTube channel on the Social Media Manager&rsquo;s Create tab (<code>youtube.upload</code> and <code>youtube.readonly</code>), we use that access only to upload the videos you choose to your channel, now or at the time you schedule, with the title, description, tags and settings you see on the post screen (whether it&rsquo;s made for kids, the altered-content and paid-promotion labels, visibility and category), and to check that YouTube has finished processing each one. We read your channel&rsquo;s ID and name to confirm you connected the right channel. We never post anything you haven&rsquo;t uploaded and approved, and we never edit or delete videos on your channel. When you disconnect YouTube, we revoke our access at Google and straight away delete the access tokens, everything we read with them, and your chats with the agent about that channel from the time you connected it (see <a href="#youtube-data-deletion" className="text-foreground underline underline-offset-4">Deleting your YouTube data</a>).
         </p>
         <p className={p}>
           <strong>Audience insights and comments.</strong> If you connect your account on the Social Media Manager&rsquo;s Audience tab, we also read information that only you can see on that platform:
@@ -229,8 +229,23 @@ export default function PrivacyPolicyPage() {
         <p className={p}>
           <strong>YouTube.</strong> The Social Media Manager uses YouTube API Services to show public data about YouTube channels. By using those features you agree to be bound by the{" "}
           <ExternalLink href="https://www.youtube.com/t/terms">YouTube Terms of Service</ExternalLink>, and Google&rsquo;s use of data is covered by the{" "}
-          <ExternalLink href="https://policies.google.com/privacy">Google Privacy Policy</ExternalLink>. Most YouTube features use public channel and video data through an API key. If you choose to connect your channel, you sign in with Google and give us access to upload the videos you choose and, if you allow it, read-only access to your channel details and YouTube Analytics (section 3.3). When you disconnect, we revoke that access at Google and immediately delete the tokens and the analytics data we read. We delete YouTube data we have stored when you remove that channel from your dashboard, and we keep and refresh it in line with the YouTube API Services Developer Policies. You can also revoke any access through Google&rsquo;s security settings page at{" "}
+          <ExternalLink href="https://policies.google.com/privacy">Google Privacy Policy</ExternalLink>. Most YouTube features use public channel and video data through an API key. If you choose to connect your channel, you sign in with Google and give us access to upload the videos you choose and, if you allow it, read-only access to your channel details and YouTube Analytics (section 3.3). When you disconnect, we revoke that access at Google and immediately delete the tokens, the analytics data we read, and your chats about that channel from the time you connected it. We delete YouTube data we have stored when you remove that channel from your dashboard, and we keep and refresh it in line with the YouTube API Services Developer Policies. You can also revoke any access through Google&rsquo;s security settings page at{" "}
           <ExternalLink href="https://myaccount.google.com/permissions">myaccount.google.com/permissions</ExternalLink>.
+        </p>
+        <h3 id="youtube-data-deletion" className={`${h3} scroll-mt-32`}>Deleting your YouTube and Google data</h3>
+        <p className={p}>
+          &ldquo;YouTube and Google data&rdquo; here means everything we received through your Google sign-in: access tokens, your channel ID and name, YouTube Analytics figures, the status of your uploads, and anything derived from them, including your agent&rsquo;s chat messages and summaries that may contain them. We delete all of it:
+        </p>
+        <ul className={ul}>
+          <li><strong>when you disconnect YouTube in the app</strong> (Create tab or Audience tab): straight away. We also revoke our access at Google;</li>
+          <li><strong>when you remove the channel from your dashboard</strong>: straight away, together with all its posts, metrics and chats;</li>
+          <li><strong>when you ask us to delete it, or ask us to close your account</strong> (see our <Link href="/data-deletion#youtube" className="text-foreground underline underline-offset-4">Data Deletion Instructions</Link>): as soon as possible and always within <strong>7 calendar days</strong> of your request.</li>
+        </ul>
+        <p className={p}>
+          Deleted data may stay in our database provider&rsquo;s encrypted backups for up to 7 days before they are overwritten. We never restore it from them, except to recover from a system failure.
+        </p>
+        <p className={p}>
+          <strong>Deleting data stored by Talk to Me Data does not delete anything stored by YouTube.</strong> Videos we uploaded for you, their titles and descriptions, comments, and your channel and its analytics stay on YouTube. To delete data on YouTube, use YouTube directly (for example YouTube Studio), or another authorised app that supports deleting that data.
         </p>
       </section>
 
@@ -342,8 +357,9 @@ export default function PrivacyPolicyPage() {
           <Table
             head={["Data", "How long"]}
             rows={[
-              ["Account and profile details", "While your account is open, then deleted within 30 days of closure"],
-              ["Agent chats and results", "While your account is open, unless you ask us to delete them sooner"],
+              ["Account and profile details", "While your account is open, then deleted within 30 days of closure (YouTube and Google data within 7 calendar days, see below)"],
+              ["Agent chats and results", "While your account is open, unless you ask us to delete them sooner. Chats about a YouTube channel from the time you connected it are deleted when you disconnect YouTube (section 5)"],
+              ["YouTube and Google data received through your Google sign-in", "Deleted immediately when you disconnect or remove the account in the app, and within 7 calendar days of a deletion request or account closure (section 5)"],
               ["Tokens for connected tools", "Until you disconnect the tool or close your account"],
               ["Instagram, Facebook, TikTok, LinkedIn and Pinterest posting tokens", "Deleted immediately when you disconnect the account or remove it from your dashboard, or when you close your account"],
               ["Your LinkedIn name and profile photo, and your Pinterest profile details and counts", "As for posting tokens"],
@@ -385,7 +401,7 @@ export default function PrivacyPolicyPage() {
           <li>not be subject to decisions based solely on automated processing that significantly affect you.</li>
         </ul>
         <p className={p}>
-          To use any of these rights, email <Email />. We will respond within one month. If your request is complex we may extend this by up to two further months and will tell you why. We may need to confirm your identity first. There is normally no charge.
+          To use any of these rights, email <Email />. We will respond within one month. If your request is complex we may extend this by up to two further months and will tell you why. We may need to confirm your identity first. There is normally no charge. A request to delete YouTube or Google data, or to close an account that had YouTube or Google connected, is always completed within 7 calendar days (section 5).
         </p>
         <p className={p}>
           To delete your data, see our{" "}
